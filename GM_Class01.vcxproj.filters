@@ -1,62 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{bc885f7f-9621-478f-8043-71e1d7e3ad9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="manager.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="renderer.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="polygon2D.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="field.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="manager.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="renderer.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="polygon2D.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="field.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="common.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
     <FxCompile Include="unlitTexturePS.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="unlitTextureVS.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="vertexLightingPS.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="vertexLightingVS.hlsl">
-      <Filter>リソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="common.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
