@@ -8,6 +8,5 @@ public:
 	static void Uninit();
 	static void Update();
 	static void Draw();
-
-	Polygon2D* m_pPoly;
+	
 };

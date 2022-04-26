@@ -40,7 +40,7 @@ void Polygon2D::Init()
 
 	//テクスチャ読み込み
 	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-		"asset\\texture\\blender.png",
+		"asset\\texture\\Slimecyclon.png",
 		NULL,
 		NULL,
 		&m_Texture,
