@@ -45,6 +45,9 @@
     <ClCompile Include="player.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

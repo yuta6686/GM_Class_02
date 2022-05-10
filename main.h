@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <windows.h>
 #include <assert.h>
+#include "input.h"
+
+#define DIRECTINPUT_VERSION 0x0800		// åxçêëŒèà
+#include "dinput.h"
+#include "mmsystem.h"
 
 
 
@@ -22,6 +27,9 @@
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "d3dx9.lib")
 #pragma comment (lib, "d3dx11.lib")
+#pragma comment (lib, "dxerr.lib")
+#pragma comment (lib, "dxguid.lib")
+#pragma comment (lib, "dinput8.lib")
 
 
 #define SCREEN_WIDTH	(960)

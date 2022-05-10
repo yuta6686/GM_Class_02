@@ -32,7 +32,12 @@ void Player::Uninit()
 
 void Player::Update()
 {
-
+	if (GetKeyboardPress(DIK_W)) {
+		m_Position.z += 1.0f;
+	}
+	if (GetKeyboardPress(DIK_S)) {
+		m_Position.z -= 1.0f;
+	}
 }
 
 void Player::Draw()
