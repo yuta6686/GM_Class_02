@@ -3,7 +3,8 @@
 #include "model.h"
 #include "player.h"
 
-char texName[] = { "asset\\model\\torus.obj" };
+char texName[] = { "asset\\model\\torii.obj" };
+float scale = 0.5f;
 
 void Player::Init()
 {	
@@ -17,7 +18,7 @@ void Player::Init()
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Rotateion = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	m_Scale = D3DXVECTOR3(scale, scale, scale);
 }
 
 void Player::Uninit()
