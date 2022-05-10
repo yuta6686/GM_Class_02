@@ -40,7 +40,7 @@ void Field::Init()
 
 	//テクスチャ読み込み
 	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-		"asset\\texture\\field.jpg",
+		"asset\\texture\\field1.jpg",
 		NULL,
 		NULL,
 		&m_Texture,
