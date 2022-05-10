@@ -16,7 +16,7 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="NewFilter1">
+    <Filter Include="Singleton">
       <UniqueIdentifier>{62a74c0c-8dbd-471d-b38b-d2c3237ed247}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -48,6 +48,9 @@
     <ClCompile Include="input.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="input.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
