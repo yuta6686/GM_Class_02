@@ -12,6 +12,14 @@ Field* g_field = nullptr;
 Camera* g_camera = nullptr;
 Player* g_player = nullptr;
 
+Manager &Manager::Instance()
+{
+	
+	static Manager instance;
+
+	return	instance;
+}
+
 void Manager::Init()
 {
 	Renderer::Init();	
@@ -58,16 +66,24 @@ void Manager::Draw()
 	//	Camera
 	g_camera->Draw();
 
-	//	æ‚É3D•`‰æ‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚ç‚µ‚¢B
+	//	æ‚É3D•`‰æ‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚ç‚µ‚¢B	
+	Draw3D();
 
-	//	3D
-	g_field->Draw();	
-	g_player->Draw();
-
-
-	//	2D
-	g_polygon->Draw();
-	
+	Draw2D();
+		
 
 	Renderer::End();
+}
+
+void Manager::Draw2D()
+{
+	//	2D
+	g_polygon->Draw();
+}
+
+void Manager::Draw3D()
+{
+	//	3D
+	g_field->Draw();
+	g_player->Draw();
 }

@@ -49,7 +49,7 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
-      <Filter>System</Filter>
+      <Filter>Singleton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +81,7 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>GameObject</Filter>
+      <Filter>Singleton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
