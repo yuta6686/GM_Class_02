@@ -1,11 +1,8 @@
 #pragma once
-class Field
+#include "gameObject.h"
+class Field:public GameObject
 {
 private:
-	D3DXVECTOR3 m_Position;
-	D3DXVECTOR3 m_Rotateion;
-	D3DXVECTOR3 m_Scale;
-
 	float m_pos;
 
 	ID3D11Buffer* m_VertexBuffer = NULL;
@@ -15,9 +12,9 @@ private:
 	ID3D11PixelShader* m_PixelShader;
 	ID3D11InputLayout* m_VertexLayout;
 public:
-	void Init();
-	void Uninit();
-	void Update();
-	void Draw();	
+	void Init()		override ;
+	void Uninit()	override ;
+	void Update()	override ;
+	void Draw()		override ;
 };
 
