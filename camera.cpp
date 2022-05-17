@@ -25,6 +25,12 @@
 #define	VALUE_ROTATE_CAMERA	(D3DX_PI * 0.01f)							// ƒJƒƒ‰‚Ì‰ñ“]—Ê
 
 
+Camera* Camera::Instance()
+{
+	if (m_Instance == nullptr)return new Camera();
+	return m_Instance;
+}
+
 void Camera::Init()
 {
 	m_Position =	D3DXVECTOR3( 0.0f,2.0f,-5.0f);

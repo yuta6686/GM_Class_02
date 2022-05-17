@@ -10,6 +10,7 @@ using namespace std;
 list<GameObject*> g_3DGameObjects;
 list<GameObject*> g_2DGameObjects;
 
+Camera* Camera::m_Instance = 0;
 
 Manager &Manager::Instance()
 {	
@@ -19,19 +20,17 @@ Manager &Manager::Instance()
 
 void Manager::Init()
 {
-	Renderer::Init();	
+	Renderer::Init();
 		
 	g_2DGameObjects.push_back(new Polygon2D());
 
-	g_3DGameObjects.push_back(new Camera());
+	g_3DGameObjects.push_back(Camera::Instance());
 	g_3DGameObjects.push_back(new Field());
 	g_3DGameObjects.push_back(new Player());
 
 	
 	for (auto x : g_2DGameObjects) 
-		x->Init();
-	
-
+		x->Init();	
 
 	for (auto x : g_3DGameObjects) 
 		x->Init();
@@ -54,6 +53,7 @@ void Manager::Uninit()
 		delete x;
 	}
 
+	
 }
 
 void Manager::Update()
