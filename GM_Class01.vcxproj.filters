@@ -51,6 +51,9 @@
     <ClCompile Include="model.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="model.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

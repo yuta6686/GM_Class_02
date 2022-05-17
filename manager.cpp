@@ -40,7 +40,7 @@ void Manager::Init()
 
 void Manager::Uninit()
 {
-	Renderer::Uninit();
+	Renderer::Uninit();	
 
 	for (auto x : g_2DGameObjects) {
 		x->Uninit();

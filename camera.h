@@ -4,7 +4,6 @@
 class Camera :public GameObject
 {
 private :
-	D3DXVECTOR3 m_Position;
 	D3DXVECTOR3 m_Target;
 
 	Camera() = default;
