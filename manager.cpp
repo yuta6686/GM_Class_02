@@ -45,12 +45,14 @@ void Manager::Uninit()
 	for (auto x : g_2DGameObjects) {
 		x->Uninit();
 		delete x;
+		x = nullptr;
 	}
 
 
 	for (auto x : g_3DGameObjects) {
 		x->Uninit();
 		delete x;
+		x = nullptr;
 	}
 
 	
