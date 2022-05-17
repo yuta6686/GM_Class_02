@@ -1,6 +1,7 @@
 #pragma once
 #include "polygon2D.h"
 
+
 class Manager
 {
 public:
@@ -21,4 +22,6 @@ private:
 
 	static void Draw2D();
 	static void Draw3D();
+
+
 };

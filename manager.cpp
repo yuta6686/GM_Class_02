@@ -5,34 +5,37 @@
 #include "polygon2D.h"
 #include "field.h"
 #include "player.h"
+#include <list>
+using namespace std;
+list<GameObject*> g_3DGameObjects;
+list<GameObject*> g_2DGameObjects;
 
-
-Polygon2D* g_polygon = nullptr;
-Field* g_field = nullptr;
-Camera* g_camera = nullptr;
-Player* g_player = nullptr;
 
 Manager &Manager::Instance()
-{
-	
+{	
 	static Manager instance;
-
 	return	instance;
 }
 
 void Manager::Init()
 {
 	Renderer::Init();	
-	
-	g_polygon = new Polygon2D();
-	g_field = new Field();
-	g_camera = new Camera();
-	g_player = new Player();
+		
+	g_2DGameObjects.push_back(new Polygon2D());
 
-	g_polygon->Init();
-	g_field->Init();
-	g_camera->Init();
-	g_player->Init();
+	g_3DGameObjects.push_back(new Camera());
+	g_3DGameObjects.push_back(new Field());
+	g_3DGameObjects.push_back(new Player());
+
+	
+	for (auto x : g_2DGameObjects) 
+		x->Init();
+	
+
+
+	for (auto x : g_3DGameObjects) 
+		x->Init();
+	
 }
 
 
@@ -40,31 +43,32 @@ void Manager::Uninit()
 {
 	Renderer::Uninit();
 
-	g_polygon->Uninit();
-	g_field->Uninit();
-	g_camera->Uninit();
-	g_player->Uninit();
+	for (auto x : g_2DGameObjects) {
+		x->Uninit();
+		delete x;
+	}
 
-	delete g_polygon;
-	delete g_field;
-	delete g_camera;
-	delete g_player;
+
+	for (auto x : g_3DGameObjects) {
+		x->Uninit();
+		delete x;
+	}
+
 }
 
 void Manager::Update()
 {
-	g_camera->Update();
-	g_polygon->Update();
-	g_field->Update();
-	g_player->Update();
+	for (auto x : g_2DGameObjects) 
+		x->Update();
+	
+	for (auto x : g_3DGameObjects) 
+		x->Update();
+	
 }
 
 void Manager::Draw()
 {
 	Renderer::Begin();
-
-	//	Camera
-	g_camera->Draw();
 
 	//	æ‚É3D•`‰æ‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚ç‚µ‚¢B	
 	Draw3D();
@@ -77,13 +81,12 @@ void Manager::Draw()
 
 void Manager::Draw2D()
 {
-	//	2D
-	g_polygon->Draw();
+	for (auto x : g_2DGameObjects) 
+		x->Draw();	
 }
 
 void Manager::Draw3D()
 {
-	//	3D
-	g_field->Draw();
-	g_player->Draw();
+	for (auto x : g_3DGameObjects) 
+		x->Draw();
 }
