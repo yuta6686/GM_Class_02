@@ -1,16 +1,9 @@
 #include "main.h"
 #include "manager.h"
 #include "renderer.h"
-#include "camera.h"
-#include "polygon2D.h"
-#include "field.h"
-#include "player.h"
-#include <list>
-using namespace std;
-list<GameObject*> g_3DGameObjects;
-list<GameObject*> g_2DGameObjects;
+#include "scene.h"
 
-Camera* Camera::m_Instance = 0;
+Scene* Manager::m_pScene=nullptr;
 
 Manager &Manager::Instance()
 {	
@@ -22,18 +15,8 @@ void Manager::Init()
 {
 	Renderer::Init();
 		
-	g_2DGameObjects.push_back(new Polygon2D());
-
-	g_3DGameObjects.push_back(Camera::Instance());
-	g_3DGameObjects.push_back(new Field());
-	g_3DGameObjects.push_back(new Player());
-
-	
-	for (auto x : g_2DGameObjects) 
-		x->Init();	
-
-	for (auto x : g_3DGameObjects) 
-		x->Init();
+	m_pScene = new Scene();
+	m_pScene->Init();
 	
 }
 
@@ -42,53 +25,22 @@ void Manager::Uninit()
 {
 	Renderer::Uninit();	
 
-	for (auto x : g_2DGameObjects) {
-		x->Uninit();
-		delete x;
-		x = nullptr;
-	}
-
-
-	for (auto x : g_3DGameObjects) {
-		x->Uninit();
-		delete x;
-		x = nullptr;
-	}
-
-	
+	m_pScene->Uninit();
 }
 
 void Manager::Update()
 {
-	for (auto x : g_2DGameObjects) 
-		x->Update();
-	
-	for (auto x : g_3DGameObjects) 
-		x->Update();
-	
+	m_pScene->Update();
 }
 
 void Manager::Draw()
 {
 	Renderer::Begin();
 
-	//	æ‚É3D•`‰æ‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚ç‚µ‚¢B	
-	Draw3D();
-
-	Draw2D();
+	m_pScene->Draw();
 		
 
 	Renderer::End();
 }
 
-void Manager::Draw2D()
-{
-	for (auto x : g_2DGameObjects) 
-		x->Draw();	
-}
 
-void Manager::Draw3D()
-{
-	for (auto x : g_3DGameObjects) 
-		x->Draw();
-}

@@ -20,8 +20,5 @@ private:
 	Manager() = default;
 	~Manager() = default;
 
-	static void Draw2D();
-	static void Draw3D();
-
-
+	static class Scene* m_pScene;
 };
