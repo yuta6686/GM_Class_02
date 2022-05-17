@@ -51,9 +51,6 @@
     <ClCompile Include="model.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="scene.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
