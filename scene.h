@@ -6,81 +6,82 @@
 #include "player.h"
 #include <list>
 #include <string>
+#include "Enemy.h"
 
 
 class Scene
 {
+protected :
+	std::list<GameObject*> m_GameObject;
 public:
-	Scene()=default;
-	~Scene() = default;
-
-	
-
-	virtual void Init() {		
-		Add2D(new Polygon2D());
-
-		Add3D(Camera::Instance());
-		Add3D(new Field());
-		Add3D(new Player());
 
 
-		for (auto x : g_2DGameObjects)
-			x->Init();
+	Scene() {}
+	virtual ~Scene() {}
 
-		for (auto x : g_3DGameObjects)
-			x->Init();
+	virtual void Init()
+	{
+		AddGameObject<Camera>();
+		AddGameObject<Field>();
+		AddGameObject<Player>();
+
+		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
+		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(3.0f, 0.5f, 5.0f));
+		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(-3.0f, 0.5f, 5.0f));
+
+
+
+		//AddGameObject<Bullet>();
+
+		//AddGameObject<Polygon2D>();
 	}
-	virtual void Uninit() {
-		for (auto x : g_2DGameObjects) {
-			x->Uninit();
-			delete x;
-			x = nullptr;
+
+	template <typename T>//テンプレート解放
+	T* AddGameObject()
+	{
+		T* gameObject = new T();
+		gameObject->Init();
+		m_GameObject.push_back(gameObject);
+
+		return gameObject;
+	}
+
+	template <typename T>
+	T* GetGameObject() {
+		for (auto* obj : m_GameObject) {
+			if (typeid(*obj) == typeid(T)) {
+				return (T*)obj;
+			}
+		}
+		return nullptr;	
+	}
+
+	virtual void UnInit()
+	{
+		for (GameObject* object : m_GameObject)
+		{
+			object->Uninit();
+			delete object;
+		}
+		m_GameObject.clear();//リストのクリア
+	}
+
+	virtual void Update()
+	{
+		for (GameObject* object : m_GameObject)
+		{
+			object->Update();
 		}
 
+		m_GameObject.remove_if([](GameObject* object) {return object->Destroy(); });
+	}
 
-		for (auto x : g_3DGameObjects) {
-			x->Uninit();
-			delete x;
-			x = nullptr;
+	virtual void Draw()
+	{
+		for (GameObject* object : m_GameObject)
+		{
+			object->Draw();
 		}
-
-	}
-	virtual void Update() {
-		for (auto x : g_2DGameObjects)
-			x->Update();
-
-		for (auto x : g_3DGameObjects)
-			x->Update();
-
-	}
-	virtual void Draw() {
-		//	先に3D描画しないといけないらしい。	
-		Draw3D();
-
-		Draw2D();
-	}
-
-	void Add2D(GameObject* other) {
-		if (other == nullptr)return;
-		g_2DGameObjects.push_back(other);
-	}
-
-	void Add3D(GameObject* other) {
-		if (other == nullptr)return;
-		g_3DGameObjects.push_back(other);
-	}
-	
-protected:
-	std::list<GameObject*> g_3DGameObjects;
-	std::list<GameObject*> g_2DGameObjects;
-
-	void Draw2D() {
-		for (auto x : g_2DGameObjects)
-			x->Draw();
-	}
-	void Draw3D() {
-		for (auto x : g_3DGameObjects)
-			x->Draw();
 	}
 };
 

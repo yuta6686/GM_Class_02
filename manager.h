@@ -4,21 +4,22 @@
 
 class Manager
 {
+private:
+	static class Scene* m_Scene;
+
 public:
-	static Manager& Instance();
-
+	//‰Šú‰»
 	static void Init();
-	static void Uninit();
-	static void Update();
-	static void Draw();
-	
-	Manager(const Manager&) = delete;
-	Manager& operator=(const Manager&) = delete;
-	Manager(Manager&&) = delete;
-	Manager& operator=(Manager&&) = delete;
-private:	
-	Manager() = default;
-	~Manager() = default;
 
-	static class Scene* m_pScene;
+	//I—¹ˆ—
+	static void Uninit();
+
+	//XVˆ—
+	static void Update();
+
+	//•`‰æˆ—
+	static void Draw();
+
+	static class Scene* GetScene() { return m_Scene; }
+
 };
