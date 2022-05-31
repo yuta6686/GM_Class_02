@@ -51,6 +51,15 @@
     <ClCompile Include="model.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="gm_input.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -87,6 +96,15 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="scene.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="gm_input.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

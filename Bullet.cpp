@@ -1,19 +1,17 @@
 
-
 #include "main.h"
 #include "renderer.h"
-#include "gameObject.h"
-#include "scene.h"
-#include "model.h"
-#include "player.h"
 #include "Bullet.h"
+
+#include "model.h"
 #include "manager.h"
 
-char texName[] = { "asset\\model\\torii.obj" };
+char texName[] = { "asset\\model\\torus.obj" };
 float scale = 0.5f;
 
-void Player::Init()
-{	
+
+void Bullet::Init()
+{
 	m_Model = new Model();
 	m_Model->Load(texName);
 
@@ -27,7 +25,7 @@ void Player::Init()
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 }
 
-void Player::Uninit()
+void Bullet::Uninit()
 {
 	m_Model->Unload();
 	delete m_Model;
@@ -37,26 +35,16 @@ void Player::Uninit()
 	m_PixelShader->Release();
 }
 
-void Player::Update()
+void Bullet::Update()
 {
-	if (GetKeyboardPress(DIK_W)) {
-		m_Position.z += 0.1f;
-	}
-	if (GetKeyboardPress(DIK_S)) {
-		m_Position.z -= 0.1f;
-	}
+	m_Position.z += 0.2f;
 
-	if (GetKeyboardPress(DIK_A)) {
-		m_Position.x -= 0.1f;
-	}
-
-	if (GetKeyboardPress(DIK_SPACE)) {
-		Scene* scene = Manager::GetScene();
-		scene->AddGameObject<Bullet>()->SetPosition(m_Position);
+	if (m_Position.z > 6.0f) {
+		SetDestroy();
 	}
 }
 
-void Player::Draw()
+void Bullet::Draw()
 {
 	//入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(m_VertexLayout);

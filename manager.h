@@ -1,6 +1,6 @@
 #pragma once
 #include "polygon2D.h"
-
+#include "scene.h"
 
 class Manager
 {
@@ -11,6 +11,8 @@ public:
 	static void Uninit();
 	static void Update();
 	static void Draw();
+
+	static Scene* GetScene() { return m_Scene; }
 	
 	Manager(const Manager&) = delete;
 	Manager& operator=(const Manager&) = delete;
@@ -23,5 +25,5 @@ private:
 	static void Draw2D();
 	static void Draw3D();
 
-
+	static class Scene* m_Scene;
 };
