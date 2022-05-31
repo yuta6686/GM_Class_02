@@ -1,10 +1,10 @@
 
 #include "main.h"
 #include "renderer.h"
-#include "Bullet.h"
 
 #include "model.h"
 #include "manager.h"
+#include "Bullet.h"
 
 char texName[] = { "asset\\model\\torus.obj" };
 float scale = 0.5f;

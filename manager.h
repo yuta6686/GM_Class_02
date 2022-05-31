@@ -1,5 +1,4 @@
 #pragma once
-#include "polygon2D.h"
 #include "scene.h"
 
 class Manager

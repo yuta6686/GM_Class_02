@@ -1,8 +1,8 @@
 
 #include "main.h"
 #include "renderer.h"
-#include "model.h"
 #include "Enemy.h"
+#include "model.h"
 
 
 char texName[] = { "asset\\model\\torus.obj" };

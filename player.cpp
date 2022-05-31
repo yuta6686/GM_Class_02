@@ -3,9 +3,9 @@
 #include "main.h"
 #include "renderer.h"
 #include "gameObject.h"
+#include "player.h"
 #include "scene.h"
 #include "model.h"
-#include "player.h"
 #include "Bullet.h"
 #include "manager.h"
 

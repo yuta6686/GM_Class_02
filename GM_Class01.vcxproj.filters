@@ -58,7 +58,7 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
