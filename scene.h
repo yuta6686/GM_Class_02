@@ -5,6 +5,8 @@
 #include "field.h"
 #include "player.h"
 #include <list>
+#include <vector>
+#include <typeinfo>
 #include <string>
 #include "Enemy.h"
 
@@ -46,14 +48,30 @@ public:
 		return gameObject;
 	}
 
+
 	template <typename T>
 	T* GetGameObject() {
-		for (auto* obj : m_GameObject) {
+		for (auto obj : m_GameObject) {
+
+			//	Œ^‚ğ’²‚×‚é(RTTI“®“IŒ^î•ñ)
 			if (typeid(*obj) == typeid(T)) {
 				return (T*)obj;
 			}
 		}
 		return nullptr;	
+	}
+
+	template <typename T>
+	std::vector<T*> GetGameObjects() {
+		std::vector<T*> objects;
+		for (auto obj : m_GameObject) {
+
+			//	Œ^‚ğ’²‚×‚é(RTTI“®“IŒ^î•ñ)
+			if (typeid(*obj) == typeid(T)) {
+				objects.push_back((T*)obj);
+			}
+		}
+		return objects;
 	}
 
 	virtual void UnInit()

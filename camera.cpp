@@ -1,6 +1,8 @@
 #include "main.h"
 #include "renderer.h"
 #include "camera.h"
+#include "scene.h"
+#include "manager.h"
 
 void Camera::Init()
 {
@@ -15,7 +17,14 @@ void Camera::Uninit()
 
 void Camera::Update()
 {
+	Scene* scene = Manager::GetScene();
+	D3DXVECTOR3 playerPosition = scene->GetGameObject<Player>()->GetPosition();
+	
+	m_Position = playerPosition;
+	m_Position.y = playerPosition.y + 2.5f;
+	m_Position.z = playerPosition.z - 5.0f;
 
+	m_Target = playerPosition;
 }
 
 void Camera::Draw()

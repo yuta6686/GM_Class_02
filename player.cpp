@@ -2,6 +2,11 @@
 #include "renderer.h"
 #include "model.h"
 #include "player.h"
+#include "Bullet.h"
+#include "manager.h"
+#include "scene.h"
+
+#define PLAYER_SPEED 0.25f
 
 char texName[] = { "asset\\model\\torii.obj" };
 float scale = 0.5f;
@@ -34,11 +39,23 @@ void Player::Uninit()
 void Player::Update()
 {
 	if (GetKeyboardPress(DIK_W)) {
-		m_Position.z += 1.0f;
+		m_Position.z += PLAYER_SPEED;
 	}
 	if (GetKeyboardPress(DIK_S)) {
-		m_Position.z -= 1.0f;
+		m_Position.z -= PLAYER_SPEED;
 	}
+
+	if (GetKeyboardPress(DIK_A)) {
+		m_Position.x -= PLAYER_SPEED;
+	}
+	if (GetKeyboardPress(DIK_D)) {
+		m_Position.x += PLAYER_SPEED;
+	}
+
+	if (GetKeyboardTrigger(DIK_SPACE)) {
+		Scene* scene = Manager::GetScene();
+		scene->AddGameObject<Bullet>()->SetPosition(m_Position);
+	}	
 }
 
 void Player::Draw()

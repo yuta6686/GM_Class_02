@@ -5,6 +5,8 @@
 #include "model.h"
 #include "input.h"
 #include "bullet.h"
+#include "scene.h"
+#include "manager.h"
 
 
 void Bullet::Init()
@@ -42,6 +44,24 @@ void Bullet::Update()
 	{
 		SetDestroy();
 		return;
+	}
+
+	//	エネミー取得
+	Scene* scene = Manager::GetScene();
+	std::vector<Enemy*> enemyList
+		= scene->GetGameObjects<Enemy>();
+
+	for (auto enemy : enemyList) {
+		D3DXVECTOR3 enemyPosition = enemy->GetPosition();
+		D3DXVECTOR3 direction = m_Position - enemyPosition;
+		float length = D3DXVec3Length(&direction);
+
+		if (length < 2.0f) {
+			enemy->SetDestroy();
+			SetDestroy();
+			this->SetDestroy();
+			return;
+		}
 	}
 }
 
