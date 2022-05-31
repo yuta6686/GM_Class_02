@@ -9,6 +9,7 @@
 #include <typeinfo>
 #include <string>
 #include "Enemy.h"
+#include "Item.h"
 
 
 class Scene
@@ -31,7 +32,7 @@ public:
 		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(3.0f, 0.5f, 5.0f));
 		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(-3.0f, 0.5f, 5.0f));
 
-
+		AddGameObject<item>()->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
 
 		//AddGameObject<Bullet>();
 

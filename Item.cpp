@@ -5,14 +5,17 @@
 #include "Bullet.h"
 #include "manager.h"
 #include "scene.h"
+#include "Item.h"
 
 #define PLAYER_SPEED 0.25f
 
 static char texName[] = { "asset\\model\\torii.obj" };
 static float scale = 0.5f;
 
-void Player::Init()
-{	
+void item::Init()
+{
+
+
 	m_Model = new Model();
 	m_Model->Load(texName);
 
@@ -26,7 +29,7 @@ void Player::Init()
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 }
 
-void Player::Uninit()
+void item::Uninit()
 {
 	m_Model->Unload();
 	delete m_Model;
@@ -36,47 +39,12 @@ void Player::Uninit()
 	m_PixelShader->Release();
 }
 
-void Player::Update()
+void item::Update()
 {
-	if (GetKeyboardPress(DIK_W)) {
-		m_Position.z += PLAYER_SPEED;
-	}
-	if (GetKeyboardPress(DIK_S)) {
-		m_Position.z -= PLAYER_SPEED;
-	}
-
-	if (GetKeyboardPress(DIK_A)) {
-		m_Position.x -= PLAYER_SPEED;
-	}
-	if (GetKeyboardPress(DIK_D)) {
-		m_Position.x += PLAYER_SPEED;
-	}
-
-	if (GetKeyboardTrigger(DIK_SPACE)) {
-		Scene* scene = Manager::GetScene();
-		scene->AddGameObject<Bullet>()->SetPosition(m_Position);
-	}	
-
-	//	エネミー取得
-	Scene* scene = Manager::GetScene();
-	std::vector<item*> itemList
-		= scene->GetGameObjects<item>();
-
-	for (auto item : itemList) {
-		D3DXVECTOR3 enemyPosition = item->GetPosition();
-		D3DXVECTOR3 direction = m_Position - enemyPosition;
-		float length = D3DXVec3Length(&direction);
-
-		if (length < 2.0f) {
-			item->SetDestroy();					
-			return;
-		}
-	}
 }
 
-void Player::Draw()
-{
-	//入力レイアウト設定
+void item::Draw()
+{//入力レイアウト設定
 	Renderer::GetDeviceContext()->IASetInputLayout(m_VertexLayout);
 
 	////シェーダ設定

@@ -45,9 +45,6 @@
     <ClCompile Include="polygon2D.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="model.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -56,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="bullet.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +89,6 @@
     <ClInclude Include="polygon2D.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="model.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -99,6 +99,12 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
