@@ -1,21 +1,15 @@
 #pragma once
-#include "gameObject.h"
+#include "main.h"
+#include "gameobject.h"
 
-class Camera :public GameObject
+class Camera : public GameObject
 {
-private :
+private:
 	D3DXVECTOR3 m_Target;
 
-	Camera() = default;
-	~Camera() = default;
-
-	static Camera* m_Instance;
 public:
-	static Camera* Instance();
-
-	void Init()		override;
-	void Uninit()	override;
-	void Update()	override;
-	void Draw()		override;
+	void Init();
+	void Uninit();
+	void Update();
+	void Draw();
 };
-

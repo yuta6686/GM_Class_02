@@ -3,44 +3,43 @@
 #include "renderer.h"
 #include "scene.h"
 
-Scene* Manager::m_pScene=nullptr;
 
-Manager &Manager::Instance()
-{	
-	static Manager instance;
-	return	instance;
-}
+Scene* Manager::m_Scene;
 
+//‰Šú‰»ˆ—
 void Manager::Init()
 {
 	Renderer::Init();
-		
-	m_pScene = new Scene();
-	m_pScene->Init();
-	
+
+
+	m_Scene = new Scene();
+	m_Scene->Init();
 }
 
-
+//I—¹ˆ—
 void Manager::Uninit()
 {
-	Renderer::Uninit();	
+	m_Scene->UnInit();
+	delete m_Scene;
 
-	m_pScene->Uninit();
+	Renderer::Uninit();
 }
 
+
+//XVˆ—
 void Manager::Update()
 {
-	m_pScene->Update();
+	m_Scene->Update();
 }
 
+
+//•`‰æˆ—
 void Manager::Draw()
 {
 	Renderer::Begin();
 
-	m_pScene->Draw();
-		
+	m_Scene->Draw();
 
 	Renderer::End();
 }
-
 
