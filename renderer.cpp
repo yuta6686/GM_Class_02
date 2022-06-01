@@ -223,7 +223,17 @@ void Renderer::Init()
 	D3DXVec4Normalize(&light.Direction, &light.Direction);
 	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+
+	//	ポイントライトの初期座標設定
+	light.ptPosition = D3DXVECTOR3(0.0f, 0.0f, 00.0f);
+
+	//	ポイントライトの初期カラーを設定
+	light.ptColor = D3DXCOLOR(15.0f, 0.0f, 0.0f,0.0f);
+	
+	light.ptRange = 100.0f;
+
 	light.EyePos = D3DXVECTOR3(0, 0, 0);
+	
 	SetLight(light);
 
 
@@ -353,7 +363,17 @@ void Renderer::SetLightEyePos(D3DXVECTOR3 pos)
 	D3DXVec4Normalize(&light.Direction, &light.Direction);
 	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+
+	//	ポイントライトの初期座標設定
+	light.ptPosition = D3DXVECTOR3(0.0f, 0.0f, 00.0f);
+
+	//	ポイントライトの初期カラーを設定
+	light.ptColor = D3DXCOLOR(0.1f, 0.0f, 0.0f, 0.0f);
+
+	light.ptRange = 100.0f;
+
 	light.EyePos = pos;
+
 	SetLight(light);
 }
 

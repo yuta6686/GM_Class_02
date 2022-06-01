@@ -39,11 +39,18 @@ struct LIGHT
 {
 	bool Enable;
 	bool3 Dummy;
-	float4 Direction;
-	float4 Diffuse;
-	float4 Ambient;
-    float3 EyePos;
     
+	// ディレクションライト用のデータ
+    float4 dirDirection; // ライトの方向
+    float4 dirColor; // ライトのカラー
+
+    // step-6 定数バッファーにポイントライト用の変数を追加
+    float3 ptPosition;
+    float3 ptColor;
+    float ptRange;
+
+    float3 eyePos; // 視点の位置
+    float3 ambientLight; // アンビエントライト
 };
 
 cbuffer LightBuffer : register(b4)

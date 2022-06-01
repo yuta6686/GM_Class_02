@@ -29,12 +29,21 @@ struct MATERIAL
 struct LIGHT
 {
 	BOOL		Enable;
-	BOOL		Dummy[3];
+	BOOL		Dummy[3];	
 	D3DXVECTOR4	Direction;
 	D3DXCOLOR	Diffuse;
-	D3DXCOLOR	Ambient;
+
+	D3DXVECTOR3 ptPosition;
+	float pad0;
+
+	D3DXCOLOR ptColor;
+	float ptRange;
+	float pad1[3];
+	
 	D3DXVECTOR3 EyePos;
-	BOOL		Dummy1;
+	float pad2;
+	
+	D3DXCOLOR	Ambient;
 };
 
 
