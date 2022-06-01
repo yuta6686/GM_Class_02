@@ -223,6 +223,7 @@ void Renderer::Init()
 	D3DXVec4Normalize(&light.Direction, &light.Direction);
 	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	light.EyePos = D3DXVECTOR3(0, 0, 0);
 	SetLight(light);
 
 
@@ -341,6 +342,19 @@ void Renderer::SetMaterial( MATERIAL Material )
 void Renderer::SetLight( LIGHT Light )
 {
 	m_DeviceContext->UpdateSubresource(m_LightBuffer, 0, NULL, &Light, 0, 0);
+}
+
+void Renderer::SetLightEyePos(D3DXVECTOR3 pos)
+{
+	// ÉâÉCÉgèâä˙âª
+	LIGHT light{};
+	light.Enable = true;
+	light.Direction = D3DXVECTOR4(1.0f, -1.0f, 1.0f, 0.0f);
+	D3DXVec4Normalize(&light.Direction, &light.Direction);
+	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
+	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	light.EyePos = pos;
+	SetLight(light);
 }
 
 

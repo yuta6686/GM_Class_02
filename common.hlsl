@@ -42,6 +42,8 @@ struct LIGHT
 	float4 Direction;
 	float4 Diffuse;
 	float4 Ambient;
+    float3 EyePos;
+    
 };
 
 cbuffer LightBuffer : register(b4)

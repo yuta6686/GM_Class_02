@@ -16,6 +16,15 @@ void main(in VS_IN In, out PS_IN Out)
 
 	float light = -dot(Light.Direction.xyz, worldNormal.xyz);
 	light = saturate(light);
+	
+    float3 refVec = reflect(Light.Direction.xyz, In.Normal.xyz);
+	
+    float3 toEye = Light.EyePos - In.Position.xyz;
+	
+    light = dot(refVec, toEye);
+    light = saturate(light);
+	
+    light = pow(light, 5.0f);
 
 	Out.Diffuse = In.Diffuse * Material.Diffuse * light * Light.Diffuse;
 	Out.Diffuse += In.Diffuse * Material.Ambient * Light.Ambient;
