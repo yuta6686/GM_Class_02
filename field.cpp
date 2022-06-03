@@ -49,9 +49,9 @@ void Field::Init()
 	assert(m_Texture);
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
-		"testVS.cso");
+		"testPointLightVS.cso");
 
-	Renderer::CreatePixelShader(&m_PixelShader, "testPS.cso");
+	Renderer::CreatePixelShader(&m_PixelShader, "testPointLightPS.cso");
 
 	m_Position =	D3DXVECTOR3( 0.0f,0.0f,0.0f );
 	m_Rotation =	D3DXVECTOR3( 0.0f,0.0f,0.0f );

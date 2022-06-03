@@ -59,7 +59,7 @@ void main(in VS_IN In, out PS_IN Out)
     
     affect = saturate(affect);
     
-    affect = pow(affect, 3.0f);
+    affect = pow(affect, 10.0f);
 
     // step-11 ŠgU”½ËŒõ‚Æ‹¾–Ê”½ËŒõ‚É‰e‹¿—¦‚ğæZ‚µ‚Ä‰e‹¿‚ğã‚ß‚é
     diffPoint *= affect;
@@ -120,7 +120,7 @@ float3 CalcPhongSpecular(float3 lightDirection, float3 lightColor, float3 worldP
     t = max(0.0f, t);
 
     // ‹¾–Ê”½Ë‚Ì‹­‚³‚ği‚é
-    t = pow(t, 5.0f);
+    t = pow(t, 10.0f);
 
     // ‹¾–Ê”½ËŒõ‚ğ‹‚ß‚é
     return lightColor * t;
