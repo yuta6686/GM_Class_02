@@ -7,13 +7,13 @@ void PointLight::Init()
 	// ÉâÉCÉgèâä˙âª
 
 	m_ptLight.Enable = true;
-	m_ptLight.Direction = D3DXVECTOR4(1.0f, -1.0f, -1.0f, 0.0f);
+	m_ptLight.Direction = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 0.0f);
 	D3DXVec4Normalize(&m_ptLight.Direction, &m_ptLight.Direction);
 	m_ptLight.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 0.2f);
 	m_ptLight.Diffuse = D3DXCOLOR(0.5f, 0.5f, 0.5f, 0.5f);
 	m_ptLight.EyePos = D3DXVECTOR3(0, 0, 0);
 	m_ptLight.ptPosition = m_Position;
-	m_ptLight.ptColor = D3DXCOLOR(3.0f, 0.0f, 0.0f,0.0f);
+	m_ptLight.ptColor = D3DXCOLOR(5.0f, 0.0f, 0.0f,0.0f);
 	m_ptLight.ptRange = 1000.0f;
 
 
