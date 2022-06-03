@@ -10,6 +10,7 @@
 #include <string>
 #include "Enemy.h"
 #include "Item.h"
+#include "pointLight.h"
 
 
 class Scene
@@ -25,6 +26,7 @@ public:
 	virtual void Init()
 	{
 		AddGameObject<Camera>();
+		AddGameObject<PointLight>();
 		AddGameObject<Field>();
 		AddGameObject<Player>();
 

@@ -37,6 +37,14 @@ struct LIGHT
 	BOOL		Dummy1;
 };
 
+struct POINT_LIGHT :public LIGHT
+{
+	D3DXVECTOR3 ptPosition;
+	float ptRange;
+
+	D3DXCOLOR ptColor;
+	
+};
 
 
 class Renderer
@@ -56,6 +64,7 @@ private:
 	static ID3D11Buffer*			m_ProjectionBuffer;
 	static ID3D11Buffer*			m_MaterialBuffer;
 	static ID3D11Buffer*			m_LightBuffer;
+	static ID3D11Buffer*			m_PointLightBuffer;
 
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;
@@ -77,6 +86,7 @@ public:
 	static void SetProjectionMatrix(D3DXMATRIX* ProjectionMatrix);
 	static void SetMaterial(MATERIAL Material);
 	static void SetLight(LIGHT Light);
+	static void SetPointLight(POINT_LIGHT Light);
 	static void SetLightEyePos(D3DXVECTOR3 pos);
 
 	static ID3D11Device* GetDevice( void ){ return m_Device; }

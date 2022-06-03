@@ -17,6 +17,7 @@ ID3D11Buffer*			Renderer::m_ViewBuffer = NULL;
 ID3D11Buffer*			Renderer::m_ProjectionBuffer = NULL;
 ID3D11Buffer*			Renderer::m_MaterialBuffer = NULL;
 ID3D11Buffer*			Renderer::m_LightBuffer = NULL;
+ID3D11Buffer*			Renderer::m_PointLightBuffer = NULL;
 
 
 ID3D11DepthStencilState* Renderer::m_DepthStateEnable = NULL;
@@ -213,6 +214,11 @@ void Renderer::Init()
 	m_DeviceContext->PSSetConstantBuffers(4, 1, &m_LightBuffer);
 
 
+	bufferDesc.ByteWidth = sizeof(POINT_LIGHT);
+
+	m_Device->CreateBuffer(&bufferDesc, NULL, &m_PointLightBuffer);
+	m_DeviceContext->VSSetConstantBuffers(5, 1, &m_PointLightBuffer);
+	m_DeviceContext->PSSetConstantBuffers(5, 1, &m_PointLightBuffer);
 
 
 
@@ -226,6 +232,18 @@ void Renderer::Init()
 	light.EyePos = D3DXVECTOR3(0, 0, 0);
 	SetLight(light);
 
+	// ライト初期化
+	/*POINT_LIGHT ptlight{};
+	ptlight.Enable = true;
+	ptlight.Direction = D3DXVECTOR4(1.0f, -1.0f, 1.0f, 0.0f);
+	D3DXVec4Normalize(&ptlight.Direction, &ptlight.Direction);
+	ptlight.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
+	ptlight.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	ptlight.EyePos = D3DXVECTOR3(0, 0, 0);
+	ptlight.ptColor = D3DXCOLOR(15.0f, 0.0f, 0.0f, 0.0f);
+	ptlight.ptPosition = D3DXVECTOR3(50.0f, 0.0f, 0.0f);
+	ptlight.ptRange = 100.0f;
+	SetPointLight(ptlight);*/
 
 
 	// マテリアル初期化
@@ -342,6 +360,11 @@ void Renderer::SetMaterial( MATERIAL Material )
 void Renderer::SetLight( LIGHT Light )
 {
 	m_DeviceContext->UpdateSubresource(m_LightBuffer, 0, NULL, &Light, 0, 0);
+}
+
+void Renderer::SetPointLight(POINT_LIGHT Light)
+{
+	m_DeviceContext->UpdateSubresource(m_PointLightBuffer, 0, NULL, &Light, 0, 0);
 }
 
 void Renderer::SetLightEyePos(D3DXVECTOR3 pos)

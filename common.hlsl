@@ -51,6 +51,24 @@ cbuffer LightBuffer : register(b4)
 	LIGHT Light;
 }
 
+struct POINT_LIGHT
+{
+    bool Enable;
+    bool3 Dummy;
+    float4 Direction;
+    float4 Diffuse;
+    float4 Ambient;
+    float3 EyePos;
+    
+    float3 ptPosition;
+    float ptRange;
+    float4 ptColor;
+};
+
+cbuffer LightBuffer : register(b5)
+{
+    POINT_LIGHT ptLight;
+}
 
 
 
@@ -69,4 +87,5 @@ struct PS_IN
 	float4 Position		: SV_POSITION;
 	float4 Diffuse		: COLOR0;
 	float2 TexCoord		: TEXCOORD0;
+    float3 worldPos		: TEXCOORD1;
 };

@@ -60,6 +60,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="pointLight.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -107,6 +110,9 @@
     <ClInclude Include="Item.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="pointLight.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -122,6 +128,12 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="vertexLightingVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="testPointLightVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="testPointLightPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
