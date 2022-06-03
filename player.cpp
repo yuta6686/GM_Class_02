@@ -17,9 +17,9 @@ void Player::Init()
 	m_Model->Load(texName);
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
-		"vertexLightingVS.cso");
+		"testPointLightVS.cso");
 
-	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
+	Renderer::CreatePixelShader(&m_PixelShader, "testPointLightPS.cso");
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
