@@ -11,7 +11,7 @@ private:
 
     inline static const float POINT_LIGHT_SPEED = 1.0f;
 public:
-    Light();
+    
       
     virtual void Init() override;
 

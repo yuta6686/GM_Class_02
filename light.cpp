@@ -5,7 +5,7 @@
 
 static int g_LightIndex = 0;
 
-Light::Light()
+void Light::Init()
 {
     //  ライトの最大値を取得
     const int LightNum = Renderer::GetLightNum();
@@ -17,12 +17,6 @@ Light::Light()
     if (g_LightIndex < LightNum) {
         g_LightIndex++;
     }
-    
-}
-
-void Light::Init()
-{
-
 
 	// ライト初期化
     InitDirectionLight(m_Light);

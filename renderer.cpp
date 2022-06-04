@@ -266,7 +266,6 @@ void Renderer::Init()
 
 void Renderer::Uninit()
 {
-
 	m_WorldBuffer->Release();
 	m_ViewBuffer->Release();
 	m_ProjectionBuffer->Release();
