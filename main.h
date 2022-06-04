@@ -37,3 +37,4 @@
 
 
 HWND GetWindow();
+char* GetDebugStr(void);

@@ -18,6 +18,14 @@ HWND GetWindow()
 	return g_Window;
 }
 
+static char g_DebugStr[2048] = "game";
+
+#ifdef _DEBUG
+char* GetDebugStr(void)
+{
+	return g_DebugStr;
+}
+#endif
 
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)

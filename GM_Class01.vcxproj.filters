@@ -57,14 +57,14 @@
     <ClCompile Include="camera.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="pointLight.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

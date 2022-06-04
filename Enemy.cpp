@@ -14,9 +14,9 @@ void Enemy::Init()
 
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
-		"vertexLightingVS.cso");
+		"testPointLightVS.cso");
 
-	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
+	Renderer::CreatePixelShader(&m_PixelShader, "testPointLightPS.cso");
 
 }
 

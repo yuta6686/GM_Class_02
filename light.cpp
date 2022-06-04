@@ -41,7 +41,7 @@ void Light::Update()
     Player* player = scene->GetGameObject<Player>();
 
 
-    //m_Light.eyePos = camera->GetPosition();
+    m_Light.eyePos = camera->GetPosition();
 
     //m_Position = player->GetPosition();
 
@@ -61,15 +61,35 @@ void Light::Update()
         movePos.x += POINT_LIGHT_SPEED;
     }
 
-    m_Position += movePos;
-    m_Light.ptPosition = { m_Position.x,m_Position.y+50.0f,m_Position.z };
+    if (GetKeyboardPress(DIK_UP)) {
+        movePos.y += POINT_LIGHT_SPEED;
+    }
+    if (GetKeyboardPress(DIK_DOWN)) {
+        movePos.y -= POINT_LIGHT_SPEED;
+    }
 
-    Renderer::SetLight(m_Light,m_index);
-	
+    m_Position += movePos;
+    m_Light.ptPosition = { m_Position.x,m_Position.y + 50.0f,m_Position.z };
+
+#ifdef _DEBUG
+
+    char* str = GetDebugStr();
+    wsprintf(GetDebugStr(), "game");
+    wsprintf(&str[strlen(str)], "Light Position.x: %d y:%d z:%d eyePosition.x:%d y:%d z:%d",
+        (int)m_Light.ptPosition.x,
+        (int)m_Light.ptPosition.y, 
+        (int)m_Light.ptPosition.z,
+        (int)m_Light.eyePos.x,
+        (int)m_Light.eyePos.y,
+        (int)m_Light.eyePos.z);
+
+    SetWindowText(GetWindow(), GetDebugStr());
+#endif    	
 }
 
 void Light::Draw()
 {
+    Renderer::SetLight(m_Light, m_index);
 }
 
 void Light::InitDirectionLight(LIGHT& light)
@@ -89,7 +109,7 @@ void Light::InitDirectionLight(LIGHT& light)
     // 視点の位置を設定する
     Scene* scene = Manager::GetScene();
     Camera* camera = scene->GetGameObject<Camera>();
-    m_Light.eyePos = camera->GetPosition();
+    //m_Light.eyePos = camera->GetPosition();
 
     light.eyePos = camera->GetPositionReference();
 }
@@ -105,7 +125,7 @@ void Light::InitPointLight(LIGHT& light)
     light.ptColor.z = 0.0f;
 
     // ポイントライトの影響範囲を設定する
-    light.ptRange = 500.0f;
+    light.ptRange = 50.0f;
 }
 
 void Light::InitAmbientLight(LIGHT& light)

@@ -27,9 +27,12 @@ public:
 	virtual void Init()
 	{
 		AddGameObject<Camera>();
-		AddGameObject<Light>()->SetPosition(D3DXVECTOR3(0, 0, 0));				
+
+		AddGameObject<Light>()->SetPosition(D3DXVECTOR3(0, 0, 0));
+					
 		AddGameObject<Field>();
 		AddGameObject<Player>();
+		
 
 		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
 		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(3.0f, 0.5f, 5.0f));

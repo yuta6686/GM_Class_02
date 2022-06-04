@@ -21,7 +21,7 @@ void main(in VS_IN In, out PS_IN Out)
 	
     float4 worldNormal, normal;
     normal = float4(In.Normal.xyz, 0.0);
-    worldNormal = mul(normal, World);
+    worldNormal = mul(World,normal);
     worldNormal = normalize(worldNormal);
     
     
