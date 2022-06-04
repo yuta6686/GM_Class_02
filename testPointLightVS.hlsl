@@ -30,9 +30,9 @@ void main(in VS_IN In, out PS_IN Out)
     //light = saturate(light);
     
      // ディレクションライトによるLambert拡散反射光を計算する
-    float3 diffDirection = CalcLambertDiffuse(ptLight.Direction.xyz, ptLight.ptColor.rgb, worldNormal.xyz);
+    float3 diffDirection = CalcLambertDiffuse(ptLight.Direction.xyz, ptLight.ptColor.xyz, worldNormal.xyz);
     // ディレクションライトによるPhong鏡面反射光を計算する
-    float3 specDirection = CalcPhongSpecular(ptLight.Direction.xyz, ptLight.ptColor.rgb, psIn.worldPos,worldNormal.xyz);
+    float3 specDirection = CalcPhongSpecular(ptLight.Direction.xyz, ptLight.ptColor.xyz, psIn.worldPos,worldNormal.xyz);
 
     // ポイントライトによるLambert拡散反射光とPhong鏡面反射光を計算する
     // step-7 サーフェイスに入射するポイントライトの光の向きを計算する
@@ -42,13 +42,13 @@ void main(in VS_IN In, out PS_IN Out)
     // step-8 減衰なしのLambert拡散反射光を計算する
     float3 diffPoint = CalcLambertDiffuse(
         ligDir,
-        ptLight.ptColor.rgb,
+        ptLight.ptColor.xyz,
         worldNormal.xyz);
 
     // step-9 減衰なしのPhong鏡面反射光を計算する
     float3 specPoint = CalcPhongSpecular(
         ligDir,
-        ptLight.ptColor.rgb,
+        ptLight.ptColor.xyz,
         psIn.worldPos,
         worldNormal.xyz
     );
