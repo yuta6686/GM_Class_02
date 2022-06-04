@@ -32,43 +32,60 @@ cbuffer MaterialBuffer : register(b3)
 	MATERIAL Material;
 }
 
-
-
-
-struct LIGHT
+// ライトデータにアクセスするための定数バッファーを用意する
+cbuffer DirectionLightCb : register(b4)
 {
-	bool Enable;
-	bool3 Dummy;
-	float4 Direction;
-	float4 Diffuse;
-	float4 Ambient;
-    float3 EyePos;
-    
+    // ディレクションライト用のデータ
+    float3 dirDirection; // ライトの方向
+    float3 dirColor; // ライトのカラー
+
+    // 定数バッファーにポイントライト用の変数を追加
+    float3 ptPosition; // ポイントライトの位置
+    float3 ptColor; // ポイントライトのカラー
+    float ptRange; // ポイントライトの影響範囲
+
+    // step-5 スポットライトのデータにアクセスするための変数を追加する
+
+    float3 eyePos; // 視点の位置
+    float3 ambientLight; // アンビエントライト
 };
 
-cbuffer LightBuffer : register(b4)
-{
-	LIGHT Light;
-}
-
-struct POINT_LIGHT
-{
-    bool Enable;
-    bool3 Dummy;
-    float4 Direction;
-    float4 Diffuse;
-    float4 Ambient;
-    float3 EyePos;
+//struct LIGHT
+//{
+//	bool Enable;
+//	bool3 Dummy;
+//	float4 Direction;
+//	float4 Diffuse;
+//	float4 Ambient;
+//    float3 EyePos;
     
-    float3 ptPosition;
-    float ptRange;
-    float4 ptColor;
-};
+//};
 
-cbuffer LightBuffer : register(b5)
-{
-    POINT_LIGHT ptLight;
-}
+//cbuffer LightBuffer : register(b6)
+//{
+//	LIGHT Light;
+//}
+
+//struct POINT_LIGHT
+//{
+//    bool Enable;
+//    bool3 Dummy;
+//    float4 Direction;
+//    float4 Diffuse;
+//    float4 Ambient;
+//    float3 EyePos;
+    
+//    float3 ptPosition;
+//    float ptRange;
+//    float4 ptColor;
+//};
+
+//cbuffer LightBuffer : register(b5)
+//{
+//    POINT_LIGHT ptLight;
+//}
+
+
 
 
 

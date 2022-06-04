@@ -26,7 +26,7 @@ void Camera::Update()
 
 	m_Target = playerPosition;
 
-	Renderer::SetLightEyePos(m_Position);
+	//Renderer::SetLightEyePos(m_Position);
 }
 
 void Camera::Draw()

@@ -19,6 +19,11 @@ public:
 		m_Position = Position;
 	}
 	D3DXVECTOR3 GetPosition() { return m_Position; }
+	
+	const D3DXVECTOR3& GetPositionReference()const 
+	{
+		return m_Position;
+	}
 
 	void SetDestroy() { m_Destroy = true; }
 

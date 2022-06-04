@@ -63,6 +63,9 @@
     <ClCompile Include="pointLight.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -111,6 +114,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="pointLight.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

@@ -30,32 +30,32 @@ void main(in VS_IN In, out PS_IN Out)
     //light = saturate(light);
     
      // ディレクションライトによるLambert拡散反射光を計算する
-    float3 diffDirection = CalcLambertDiffuse(ptLight.Direction.xyz, ptLight.ptColor.xyz, worldNormal.xyz);
+    float3 diffDirection = CalcLambertDiffuse(dirDirection, dirColor, worldNormal.xyz);
     // ディレクションライトによるPhong鏡面反射光を計算する
-    float3 specDirection = CalcPhongSpecular(ptLight.Direction.xyz, ptLight.ptColor.xyz, psIn.worldPos,worldNormal.xyz);
+    float3 specDirection = CalcPhongSpecular(dirDirection,dirColor, psIn.worldPos,worldNormal.xyz);
 
     // ポイントライトによるLambert拡散反射光とPhong鏡面反射光を計算する
     // step-7 サーフェイスに入射するポイントライトの光の向きを計算する
-    float3 ligDir = psIn.worldPos - ptLight.ptPosition;
+    float3 ligDir = psIn.worldPos - ptPosition;
     ligDir = normalize(ligDir);
 
     // step-8 減衰なしのLambert拡散反射光を計算する
     float3 diffPoint = CalcLambertDiffuse(
         ligDir,
-        ptLight.ptColor.xyz,
+        ptColor,
         worldNormal.xyz);
 
     // step-9 減衰なしのPhong鏡面反射光を計算する
     float3 specPoint = CalcPhongSpecular(
         ligDir,
-        ptLight.ptColor.xyz,
+        ptColor,
         psIn.worldPos,
         worldNormal.xyz
     );
 
     // step-10 距離による影響率を計算する
-    float3 distance = length(psIn.worldPos - ptLight.ptPosition);
-    float affect = 1.0f - 1.0f / ptLight.ptRange * distance;
+    float3 distance = length(psIn.worldPos - ptPosition);
+    float affect = 1.0f - 1.0f / ptRange * distance;
     
     affect = saturate(affect);
     
@@ -70,12 +70,15 @@ void main(in VS_IN In, out PS_IN Out)
     float specularLig = specPoint + specDirection;
 
     // 拡散反射光と鏡面反射光を足し算して、最終的な光を求める
-    float3 lig = diffuseLig + specularLig + ptLight.Ambient;    
+    float3 lig = diffuseLig + specularLig + ambientLight;    
  
     
-    Out.Diffuse = In.Diffuse * Material.Diffuse * ptLight.Diffuse;
-    Out.Diffuse.xyz = Out.Diffuse.xyz * lig;
-    Out.Diffuse += In.Diffuse * Material.Ambient * ptLight.Ambient;
+    Out.Diffuse = In.Diffuse * Material.Diffuse;
+    Out.Diffuse.xyz = Out.Diffuse.xyz * lig * dirColor;
+    
+    Out.Diffuse.xyz += In.Diffuse.xyz * Material.Ambient.xyz * ambientLight;
+    Out.Diffuse.a += In.Diffuse.a * Material.Ambient.a;
+    
     Out.Diffuse += Material.Emission;
     Out.Diffuse.a = In.Diffuse.a * Material.Diffuse.a;
 
@@ -110,7 +113,7 @@ float3 CalcPhongSpecular(float3 lightDirection, float3 lightColor, float3 worldP
     float3 refVec = reflect(lightDirection, normal);
 
     // 光が当たったサーフェイスから視点に伸びるベクトルを求める
-    float3 toEye = ptLight.EyePos - worldPos;
+    float3 toEye = eyePos - worldPos;
     toEye = normalize(toEye);
 
     // 鏡面反射の強さを求める

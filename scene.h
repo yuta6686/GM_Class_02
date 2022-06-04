@@ -10,7 +10,8 @@
 #include <string>
 #include "Enemy.h"
 #include "Item.h"
-#include "pointLight.h"
+//#include "pointLight.h"
+#include "light.h"
 
 
 class Scene
@@ -26,7 +27,7 @@ public:
 	virtual void Init()
 	{
 		AddGameObject<Camera>();
-		AddGameObject<PointLight>();
+		AddGameObject<Light>()->SetPosition(D3DXVECTOR3(100, 0, 0));		
 		AddGameObject<Field>();
 		AddGameObject<Player>();
 

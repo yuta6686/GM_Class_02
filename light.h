@@ -6,7 +6,12 @@ class Light :
 {
 private:
     LIGHT m_Light;
+
+    int m_index;
+
+    inline static const float POINT_LIGHT_SPEED = 1.0f;
 public:
+    Light();
       
     virtual void Init() override;
 
@@ -16,5 +21,11 @@ public:
 
     virtual void Draw() override;
 
+   
+    void InitDirectionLight(LIGHT& light);
+    void InitPointLight(LIGHT& light);
+    void InitAmbientLight(LIGHT& light);
 };
+
+
 

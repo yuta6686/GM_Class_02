@@ -2,7 +2,7 @@
 #include "main.h"
 #include "renderer.h"
 #include <io.h>
-
+#include <vector>
 
 D3D_FEATURE_LEVEL       Renderer::m_FeatureLevel = D3D_FEATURE_LEVEL_11_0;
 
@@ -16,7 +16,7 @@ ID3D11Buffer*			Renderer::m_WorldBuffer = NULL;
 ID3D11Buffer*			Renderer::m_ViewBuffer = NULL;
 ID3D11Buffer*			Renderer::m_ProjectionBuffer = NULL;
 ID3D11Buffer*			Renderer::m_MaterialBuffer = NULL;
-ID3D11Buffer*			Renderer::m_LightBuffer = NULL;
+std::vector<ID3D11Buffer*>			Renderer::m_LightBuffer(m_LightNum);
 ID3D11Buffer*			Renderer::m_PointLightBuffer = NULL;
 
 
@@ -209,28 +209,32 @@ void Renderer::Init()
 
 	bufferDesc.ByteWidth = sizeof(LIGHT);
 
-	m_Device->CreateBuffer( &bufferDesc, NULL, &m_LightBuffer );
-	m_DeviceContext->VSSetConstantBuffers( 4, 1, &m_LightBuffer );
-	m_DeviceContext->PSSetConstantBuffers(4, 1, &m_LightBuffer);
+	for (int i = 0; i < m_LightNum;i++) {
+		m_Device->CreateBuffer(&bufferDesc, NULL, &m_LightBuffer[i]);
+		m_DeviceContext->VSSetConstantBuffers(4, 1, &m_LightBuffer[i]);
+		m_DeviceContext->PSSetConstantBuffers(4, 1, &m_LightBuffer[i]);
+	}
 
 
-	bufferDesc.ByteWidth = sizeof(POINT_LIGHT);
 
-	m_Device->CreateBuffer(&bufferDesc, NULL, &m_PointLightBuffer);
-	m_DeviceContext->VSSetConstantBuffers(5, 1, &m_PointLightBuffer);
-	m_DeviceContext->PSSetConstantBuffers(5, 1, &m_PointLightBuffer);
+
+	//bufferDesc.ByteWidth = sizeof(POINT_LIGHT);
+
+	//m_Device->CreateBuffer(&bufferDesc, NULL, &m_PointLightBuffer);
+	//m_DeviceContext->VSSetConstantBuffers(5, 1, &m_PointLightBuffer);
+	//m_DeviceContext->PSSetConstantBuffers(5, 1, &m_PointLightBuffer);
 
 
 
 	// ライト初期化
-	LIGHT light{};
+	/*LIGHT light{};
 	light.Enable = true;
 	light.Direction = D3DXVECTOR4(1.0f, -1.0f, 1.0f, 0.0f);
 	D3DXVec4Normalize(&light.Direction, &light.Direction);
 	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	light.EyePos = D3DXVECTOR3(0, 0, 0);
-	SetLight(light);
+	SetLight(light);*/
 
 	// ライト初期化
 	/*POINT_LIGHT ptlight{};
@@ -266,7 +270,11 @@ void Renderer::Uninit()
 	m_WorldBuffer->Release();
 	m_ViewBuffer->Release();
 	m_ProjectionBuffer->Release();
-	m_LightBuffer->Release();
+
+	for (auto light : m_LightBuffer){
+		light->Release();
+	}
+	
 	m_MaterialBuffer->Release();
 
 
@@ -358,28 +366,28 @@ void Renderer::SetMaterial( MATERIAL Material )
 	m_DeviceContext->UpdateSubresource( m_MaterialBuffer, 0, NULL, &Material, 0, 0 );
 }
 
-void Renderer::SetLight( LIGHT Light )
-{
-	m_DeviceContext->UpdateSubresource(m_LightBuffer, 0, NULL, &Light, 0, 0);
+void Renderer::SetLight( LIGHT Light,const int& index )
+{	
+	m_DeviceContext->UpdateSubresource(m_LightBuffer[index], 0, NULL, &Light, 0, 0);
 }
 
-void Renderer::SetPointLight(POINT_LIGHT Light)
-{
-	m_DeviceContext->UpdateSubresource(m_PointLightBuffer, 0, NULL, &Light, 0, 0);
-}
-
-void Renderer::SetLightEyePos(D3DXVECTOR3 pos)
-{
-	// ライト初期化
-	LIGHT light{};
-	light.Enable = true;
-	light.Direction = D3DXVECTOR4(1.0f, -1.0f, 1.0f, 0.0f);
-	D3DXVec4Normalize(&light.Direction, &light.Direction);
-	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
-	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	light.EyePos = pos;
-	SetLight(light);
-}
+//void Renderer::SetPointLight(POINT_LIGHT Light)
+//{
+//	m_DeviceContext->UpdateSubresource(m_PointLightBuffer, 0, NULL, &Light, 0, 0);
+//}
+//
+//void Renderer::SetLightEyePos(D3DXVECTOR3 pos)
+//{
+//	// ライト初期化
+//	LIGHT light{};
+//	light.Enable = true;
+//	light.Direction = D3DXVECTOR4(1.0f, -1.0f, 1.0f, 0.0f);
+//	D3DXVec4Normalize(&light.Direction, &light.Direction);
+//	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
+//	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+//	light.EyePos = pos;
+//	SetLight(light);
+//}
 
 
 

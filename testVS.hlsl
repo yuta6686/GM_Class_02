@@ -11,7 +11,7 @@ void main(in VS_IN In, out PS_IN Out)
     worldNormal = mul(normal, World);
     worldNormal = normalize(worldNormal);
 
-    float light = -dot(Light.Direction.xyz, worldNormal.xyz);
+    float light = -dot(dirDirection, worldNormal.xyz);
     light = saturate(light);
 	
     //float3 refVec = reflect(Light.Direction.xyz, In.Normal.xyz);
@@ -23,9 +23,12 @@ void main(in VS_IN In, out PS_IN Out)
 	
     //light = pow(light, 5.0f);
 
-    Out.Diffuse = In.Diffuse * Material.Diffuse * light * Light.Diffuse;
-    Out.Diffuse += In.Diffuse * Material.Ambient * Light.Ambient;
-    Out.Diffuse += Material.Emission;
+    Out.Diffuse = In.Diffuse * Material.Diffuse;
+    Out.Diffuse.xyz = Out.Diffuse.xyz * light * dirColor;
+    
+    Out.Diffuse.xyz += In.Diffuse.xyz * Material.Ambient.xyz * ambientLight;
+    Out.Diffuse.a += In.Diffuse.a * Material.Ambient.a;
+    
     Out.Diffuse.a = In.Diffuse.a * Material.Diffuse.a;
 
     Out.Position = mul(In.Position, wvp);

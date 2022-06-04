@@ -1,5 +1,5 @@
 #pragma once
-
+#include <vector>
 
 
 
@@ -24,26 +24,35 @@ struct MATERIAL
 	float		Dummy[3];
 };
 
-
-
 struct LIGHT
 {
-	BOOL		Enable;
-	BOOL		Dummy[3];
-	D3DXVECTOR4	Direction;
-	D3DXCOLOR	Diffuse;
-	D3DXCOLOR	Ambient;
-	D3DXVECTOR3 EyePos;
-	BOOL		Dummy1;
-};
+	// ディレクションライト用のメンバ
+	D3DXVECTOR3 dirDirection;   // ライトの方向
+	float pad0;
+	D3DXVECTOR3 dirColor;       // ライトのカラー
+	float pad1;
 
-struct POINT_LIGHT :public LIGHT
-{
-	D3DXVECTOR3 ptPosition;
-	float ptRange;
+	// ライト構造体にポイントライト用のメンバ変数を追加
+	D3DXVECTOR3 ptPosition;     // 位置
+	float pad2;             // パディング
+	D3DXVECTOR3 ptColor;        // カラー
+	float ptRange;          // 影響範囲
 
-	D3DXCOLOR ptColor;
-	
+	// step-1 ライト構造体にスポットライト用のメンバ変数を追加
+	D3DXVECTOR3 spPosition;
+	float pad3;
+
+	D3DXVECTOR3 spColor;
+	float spRange;
+
+	D3DXVECTOR3 spDirection;
+	float spAngle;
+
+	D3DXVECTOR3 eyePos;         // 視点の位置
+	float pad4;
+
+	D3DXVECTOR3 ambientLight;   // アンビエントライト
+	float pad5;
 };
 
 
@@ -63,14 +72,14 @@ private:
 	static ID3D11Buffer*			m_ViewBuffer;
 	static ID3D11Buffer*			m_ProjectionBuffer;
 	static ID3D11Buffer*			m_MaterialBuffer;
-	static ID3D11Buffer*			m_LightBuffer;
+	static std::vector<ID3D11Buffer*>			m_LightBuffer;
 	static ID3D11Buffer*			m_PointLightBuffer;
 
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;
 	static ID3D11DepthStencilState* m_DepthStateDisable;
 
-
+	inline static const int m_LightNum = 1;
 
 
 public:
@@ -85,9 +94,9 @@ public:
 	static void SetViewMatrix(D3DXMATRIX* ViewMatrix);
 	static void SetProjectionMatrix(D3DXMATRIX* ProjectionMatrix);
 	static void SetMaterial(MATERIAL Material);
-	static void SetLight(LIGHT Light);
-	static void SetPointLight(POINT_LIGHT Light);
-	static void SetLightEyePos(D3DXVECTOR3 pos);
+	static void SetLight(LIGHT Light,const int& index);
+	//static void SetPointLight(POINT_LIGHT Light);
+	
 
 	static ID3D11Device* GetDevice( void ){ return m_Device; }
 	static ID3D11DeviceContext* GetDeviceContext( void ){ return m_DeviceContext; }
@@ -97,5 +106,5 @@ public:
 	static void CreateVertexShader(ID3D11VertexShader** VertexShader, ID3D11InputLayout** VertexLayout, const char* FileName);
 	static void CreatePixelShader(ID3D11PixelShader** PixelShader, const char* FileName);
 
-
+	static const int GetLightNum() { return m_LightNum; }
 };

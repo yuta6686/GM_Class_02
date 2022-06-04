@@ -5,7 +5,7 @@ class PointLight :
     public GameObject
 {
 private:
-    POINT_LIGHT m_ptLight;
+    //POINT_LIGHT m_ptLight;
 public:
     // GameObject ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual void Init() override;
