@@ -6,17 +6,17 @@
 void Enemy::Init()
 {
 	m_Model = new Model();
-	m_Model->Load("asset\\model\\torus.obj");
+	m_Model->Load("asset\\model\\stone_white.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 0.5f, 5.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_Scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	m_Scale = D3DXVECTOR3(0.5f, 0.5f, 0.5f);
 
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
-		"testPointLightVS.cso");
+		"vertexLightingVS.cso");
 
-	Renderer::CreatePixelShader(&m_PixelShader, "testPointLightPS.cso");
+	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
 
 }
 

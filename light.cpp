@@ -95,9 +95,9 @@ void Light::Draw()
 void Light::InitDirectionLight(LIGHT& light)
 { 
     // ƒ‰ƒCƒg‚Í‰E‘¤‚©‚ç“–‚½‚Á‚Ä‚¢‚é
-    light.dirDirection.x = 1.0f;
+    light.dirDirection.x = -1.0f;
     light.dirDirection.y = -1.0f;
-    light.dirDirection.z = -1.0f;
+    light.dirDirection.z = 2.0f;
     //light.dirDirection.Normalize();
     D3DXVec3Normalize(&light.dirDirection, &light.dirDirection);
 

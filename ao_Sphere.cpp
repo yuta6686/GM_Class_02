@@ -19,10 +19,7 @@ void Ao_Sphere::Init()
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(50.0f, 50.0f, 50.0f);
 
-	Scene* scene = Manager::GetScene();
-	auto go_player = scene->GetGameObject<Player>();
-
-	m_Position = go_player->GetPositionReference();
+	
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"unlitTextureVS.cso");
@@ -42,6 +39,10 @@ void Ao_Sphere::Uninit()
 
 void Ao_Sphere::Update()
 {
+	Scene* scene = Manager::GetScene();
+	auto go_player = scene->GetGameObject<Player>();
+
+	m_Position = go_player->GetPositionReference()*0.75f;
 	
 }
 

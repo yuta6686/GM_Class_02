@@ -67,7 +67,7 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="ao_Sphere.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,12 +140,6 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="vertexLightingVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="testPointLightVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="testPointLightPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="testVS.hlsl">

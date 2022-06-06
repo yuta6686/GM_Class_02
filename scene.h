@@ -42,8 +42,13 @@ public:
 		
 
 		AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
-		AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(3.0f, 0.5f, 5.0f));
-		AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(-3.0f, 0.5f, 5.0f));
+		for (int i = 1; i <= 5; i++) 
+		{
+			AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(3.0f*i, 0.5f, 5.0f));
+			AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(-3.0f*i, 0.5f, 5.0f));
+		}
+		
+		
 
 		AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
 		AddGameObject<Ao_Sphere>(LAYER_3D);
