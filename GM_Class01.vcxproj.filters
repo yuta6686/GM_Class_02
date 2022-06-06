@@ -66,6 +66,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="ao_Sphere.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -117,6 +120,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ao_Sphere.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

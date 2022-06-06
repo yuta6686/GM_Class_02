@@ -11,13 +11,20 @@
 #include "Enemy.h"
 #include "Item.h"
 //#include "pointLight.h"
-#include "light.h"
+#include "light.h" 
+#include "ao_Sphere.h"
 
+enum LAYER {
+	LAYER_FIRST=0,
+	LAYER_3D,
+	LAYER_2D,
+	LAYER_NUM_MAX,
+};
 
 class Scene
 {
 protected :
-	std::list<GameObject*> m_GameObject;
+	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];
 public:
 
 
@@ -26,31 +33,32 @@ public:
 
 	virtual void Init()
 	{
-		AddGameObject<Camera>();
+		AddGameObject<Camera>(LAYER_FIRST);
 
-		AddGameObject<Light>()->SetPosition(D3DXVECTOR3(0, 0, 0));
+		AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 					
-		AddGameObject<Field>();
-		AddGameObject<Player>();
+		AddGameObject<Field>(LAYER_3D);
+		AddGameObject<Player>(LAYER_3D);
 		
 
-		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
-		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(3.0f, 0.5f, 5.0f));
-		AddGameObject<Enemy>()->SetPosition(D3DXVECTOR3(-3.0f, 0.5f, 5.0f));
+		AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
+		AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(3.0f, 0.5f, 5.0f));
+		AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(-3.0f, 0.5f, 5.0f));
 
-		AddGameObject<item>()->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
+		AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
+		AddGameObject<Ao_Sphere>(LAYER_3D);
 
 		//AddGameObject<Bullet>();
 
-		//AddGameObject<Polygon2D>();
+		AddGameObject<Polygon2D>(LAYER_2D);
 	}
 
 	template <typename T>//ƒeƒ“ƒvƒŒ[ƒg‰ð•ú
-	T* AddGameObject()
+	T* AddGameObject(int Layer)
 	{
 		T* gameObject = new T();
 		gameObject->Init();
-		m_GameObject.push_back(gameObject);
+		m_GameObject[Layer].push_back(gameObject);
 
 		return gameObject;
 	}
@@ -58,11 +66,13 @@ public:
 
 	template <typename T>
 	T* GetGameObject() {
-		for (auto obj : m_GameObject) {
+		for (int i = 0; i < LAYER_NUM_MAX; i++) {
+			for (auto obj : m_GameObject[i]) {
 
-			//	Œ^‚ð’²‚×‚é(RTTI“®“IŒ^î•ñ)
-			if (typeid(*obj) == typeid(T)) {
-				return (T*)obj;
+				//	Œ^‚ð’²‚×‚é(RTTI“®“IŒ^î•ñ)
+				if (typeid(*obj) == typeid(T)) {
+					return (T*)obj;
+				}
 			}
 		}
 		return nullptr;	
@@ -71,11 +81,13 @@ public:
 	template <typename T>
 	std::vector<T*> GetGameObjects() {
 		std::vector<T*> objects;
-		for (auto obj : m_GameObject) {
+		for (int i = 0; i < LAYER_NUM_MAX; i++) {
+			for (auto obj : m_GameObject[i]) {
 
-			//	Œ^‚ð’²‚×‚é(RTTI“®“IŒ^î•ñ)
-			if (typeid(*obj) == typeid(T)) {
-				objects.push_back((T*)obj);
+				//	Œ^‚ð’²‚×‚é(RTTI“®“IŒ^î•ñ)
+				if (typeid(*obj) == typeid(T)) {
+					objects.push_back((T*)obj);
+				}
 			}
 		}
 		return objects;
@@ -83,29 +95,35 @@ public:
 
 	virtual void UnInit()
 	{
-		for (GameObject* object : m_GameObject)
-		{
-			object->Uninit();
-			delete object;
+		for (int i = 0; i < LAYER_NUM_MAX; i++) {
+			for (GameObject* object : m_GameObject[i])
+			{
+				object->Uninit();
+				delete object;
+			}
+			m_GameObject[i].clear();//ƒŠƒXƒg‚ÌƒNƒŠƒA
 		}
-		m_GameObject.clear();//ƒŠƒXƒg‚ÌƒNƒŠƒA
 	}
 
 	virtual void Update()
 	{
-		for (GameObject* object : m_GameObject)
-		{
-			object->Update();
-		}
+		for (int i = 0; i < LAYER_NUM_MAX; i++) {
+			for (GameObject* object : m_GameObject[i])
+			{
+				object->Update();
+			}
 
-		m_GameObject.remove_if([](GameObject* object) {return object->Destroy(); });
+			m_GameObject[i].remove_if([](GameObject* object) {return object->Destroy(); });
+		}
 	}
 
 	virtual void Draw()
 	{
-		for (GameObject* object : m_GameObject)
-		{
-			object->Draw();
+		for (int i = 0; i < LAYER_NUM_MAX; i++) {
+			for (GameObject* object : m_GameObject[i])
+			{
+				object->Draw();
+			}
 		}
 	}
 };

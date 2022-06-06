@@ -54,7 +54,7 @@ void Player::Update()
 
 	if (GetKeyboardTrigger(DIK_SPACE)) {
 		Scene* scene = Manager::GetScene();
-		scene->AddGameObject<Bullet>()->SetPosition(m_Position);
+		scene->AddGameObject<Bullet>(LAYER_3D)->SetPosition(m_Position);
 	}	
 
 	//	エネミー取得
