@@ -52,7 +52,8 @@ void Player::Update()
 		m_Position.x += PLAYER_SPEED;
 	}
 
-	if (GetKeyboardTrigger(DIK_SPACE)) {
+	//if (GetKeyboardTrigger(DIK_SPACE)) {
+	if (GetKeyboardPress(DIK_SPACE)) {
 		Scene* scene = Manager::GetScene();
 		scene->AddGameObject<Bullet>(LAYER_3D)->SetPosition(m_Position);
 	}	

@@ -1,18 +1,21 @@
 #pragma once
+
+#include <list>
+#include <vector>
+#include <typeinfo>
+#include <string>
+
+
 #include "gameObject.h"
 #include "camera.h"
 #include "polygon2D.h"
 #include "field.h"
 #include "player.h"
-#include <list>
-#include <vector>
-#include <typeinfo>
-#include <string>
 #include "Enemy.h"
 #include "Item.h"
-//#include "pointLight.h"
 #include "light.h" 
 #include "ao_Sphere.h"
+#include "Bullet.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -28,11 +31,13 @@ protected :
 public:
 
 
-	Scene() {}
-	virtual ~Scene() {}
+	inline Scene() {}
+	inline virtual ~Scene() {}
 
-	virtual void Init()
+	inline virtual void Init()
 	{
+		Load();
+
 		AddGameObject<Camera>(LAYER_FIRST);
 
 		AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
@@ -56,6 +61,16 @@ public:
 		//AddGameObject<Bullet>();
 
 		AddGameObject<Polygon2D>(LAYER_2D);
+
+		
+	}
+
+	inline void Load() {
+		Bullet::Load();
+	}
+
+	inline void Unload() {
+		Bullet::Unload();
 	}
 
 	template <typename T>//テンプレート解放
@@ -98,7 +113,7 @@ public:
 		return objects;
 	}
 
-	virtual void UnInit()
+	inline virtual void UnInit()
 	{
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
@@ -108,9 +123,11 @@ public:
 			}
 			m_GameObject[i].clear();//リストのクリア
 		}
+
+		Unload();
 	}
 
-	virtual void Update()
+	inline virtual void Update()
 	{
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
@@ -122,7 +139,7 @@ public:
 		}
 	}
 
-	virtual void Draw()
+	inline virtual void Draw()
 	{
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])

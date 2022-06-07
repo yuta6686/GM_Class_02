@@ -7,12 +7,25 @@
 #include "bullet.h"
 #include "scene.h"
 #include "manager.h"
+Model* Bullet::m_Model = nullptr;
 
+void Bullet::Load()
+{
+	if (m_Model == nullptr) {
+		m_Model = new Model();
+		m_Model->Load("asset\\model\\arrow.obj");
+	}
+}
+
+void Bullet::Unload()
+{
+	m_Model->Unload();
+	delete m_Model;
+}
 
 void Bullet::Init()
 {
-	m_Model = new Model();
-	m_Model->Load("asset\\model\\arrow.obj");
+	
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -28,9 +41,6 @@ void Bullet::Init()
 
 void Bullet::Uninit()
 {
-	m_Model->Unload();
-	delete m_Model;
-
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
 	m_PixelShader->Release();
@@ -38,7 +48,7 @@ void Bullet::Uninit()
 
 void Bullet::Update()
 {
-	m_Position.z += 0.1f;
+	m_Position.z += BULLET_SPEED_MAX;
 
 	if (m_Position.z > 6.0f)
 	{
