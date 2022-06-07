@@ -55,6 +55,8 @@
     <ClInclude Include="renderer.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="textureFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

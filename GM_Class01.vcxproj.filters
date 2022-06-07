@@ -19,6 +19,9 @@
     <Filter Include="Singleton">
       <UniqueIdentifier>{62a74c0c-8dbd-471d-b38b-d2c3237ed247}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Flyweight">
+      <UniqueIdentifier>{eb2b5e8d-a58c-461f-a7be-f4ae4605944f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,6 +126,12 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="ao_Sphere.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Flyweight</Filter>
+    </ClInclude>
+    <ClInclude Include="textureFactory.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
