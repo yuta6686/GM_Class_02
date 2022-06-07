@@ -31,6 +31,10 @@
 #pragma comment (lib, "dxguid.lib")
 #pragma comment (lib, "dinput8.lib")
 
+#include <memory>
+#include <vector>
+#include <list>
+#include <string>
 
 #define SCREEN_WIDTH	(960)
 #define SCREEN_HEIGHT	(540)

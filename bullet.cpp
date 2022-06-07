@@ -7,25 +7,16 @@
 #include "bullet.h"
 #include "scene.h"
 #include "manager.h"
-Model* Bullet::m_Model = nullptr;
-
-void Bullet::Load()
-{
-	if (m_Model == nullptr) {
-		m_Model = new Model();
-		m_Model->Load("asset\\model\\arrow.obj");
-	}
-}
+#include "ModelManager.h"
 
 void Bullet::Unload()
 {
-	m_Model->Unload();
-	delete m_Model;
+	m_Model->Unload();	
 }
 
 void Bullet::Init()
 {
-	
+	m_Model = ModelManager::GetModel("asset\\model\\arrow.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);

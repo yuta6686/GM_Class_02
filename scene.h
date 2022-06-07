@@ -16,6 +16,7 @@
 #include "light.h" 
 #include "ao_Sphere.h"
 #include "Bullet.h"
+#include "ModelManager.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -36,13 +37,14 @@ public:
 
 	inline virtual void Init()
 	{
-		Load();
+		
 
 		AddGameObject<Camera>(LAYER_FIRST);
 
 		AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 					
 		AddGameObject<Field>(LAYER_3D);
+		
 		AddGameObject<Player>(LAYER_3D);
 		
 
@@ -63,16 +65,18 @@ public:
 		AddGameObject<Polygon2D>(LAYER_2D);
 
 		
+		Load();
 	}
 
 	inline void Load() {
-		Bullet::Load();
-		Enemy::Load();
+		
+		
+		
 	}
 
 	inline void Unload() {
-		Bullet::Unload();
-		Enemy::Unload();
+		ModelManager::AllRelease();
+		
 	}
 
 	template <typename T>//テンプレート解放

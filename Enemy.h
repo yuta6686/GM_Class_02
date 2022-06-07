@@ -6,7 +6,7 @@
 class Enemy : public GameObject
 {
 private:
-	inline static class Model* m_Model = nullptr;
+	static inline std::shared_ptr<Model> m_Model;
 
 	ID3D11VertexShader* m_VertexShader = NULL;
 	ID3D11PixelShader* m_PixelShader = NULL;

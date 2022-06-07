@@ -6,7 +6,7 @@
 class Player:public GameObject
 {
 private:
-	Model* m_Model;
+	static inline std::shared_ptr<Model> m_Model;
 
 	ID3D11VertexShader* m_VertexShader;
 	ID3D11PixelShader* m_PixelShader;
@@ -16,5 +16,10 @@ public:
 	void Uninit()override;
 	void Update()override;
 	void Draw()	 override;
+
+	static void Unload() {
+		m_Model->Unload();
+	}
+
 };
 

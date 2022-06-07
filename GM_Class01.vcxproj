@@ -24,6 +24,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
+    <ClCompile Include="gameObject3D.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -43,12 +44,14 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="gameObject.h" />
+    <ClInclude Include="gameObject3D.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="model.h" />
+    <ClInclude Include="ModelManager.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="pointLight.h" />
     <ClInclude Include="polygon2D.h" />

@@ -13,8 +13,8 @@ static float scale = 0.5f;
 
 void Player::Init()
 {	
-	m_Model = new Model();
-	m_Model->Load(texName);
+	m_Model = ModelManager::GetModel(texName);
+	
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");
@@ -28,8 +28,7 @@ void Player::Init()
 
 void Player::Uninit()
 {
-	m_Model->Unload();
-	delete m_Model;
+	
 
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
@@ -94,3 +93,4 @@ void Player::Draw()
 
 	m_Model->Draw();
 }
+

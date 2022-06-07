@@ -1,5 +1,8 @@
 #pragma once
+
 #include "main.h"
+class Model;
+
 class GameObject
 {
 protected:
@@ -8,6 +11,7 @@ protected:
 	D3DXVECTOR3 m_Position;
 	D3DXVECTOR3 m_Rotation;
 	D3DXVECTOR3 m_Scale;
+	
 public:
 	virtual void Init()	 = 0;
 	virtual void Uninit()= 0;
@@ -40,5 +44,8 @@ public:
 			return false;
 		}
 	}
+
+	//void SetModel(std::shared_ptr<Model> pModel) { m_Model = pModel; }
+	//std::string GetFileName() { return m_FileName; }
 };
 
