@@ -67,10 +67,12 @@ public:
 
 	inline void Load() {
 		Bullet::Load();
+		Enemy::Load();
 	}
 
 	inline void Unload() {
 		Bullet::Unload();
+		Enemy::Unload();
 	}
 
 	template <typename T>//テンプレート解放

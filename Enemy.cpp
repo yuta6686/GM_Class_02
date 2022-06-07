@@ -3,10 +3,21 @@
 #include "enemy.h"
 #include "model.h"
 
-void Enemy::Init()
+void Enemy::Load()
 {
 	m_Model = new Model();
 	m_Model->Load("asset\\model\\stone_white.obj");
+}
+
+void Enemy::Unload()
+{
+	m_Model->Unload();
+	delete m_Model;
+}
+
+void Enemy::Init()
+{
+
 
 	m_Position = D3DXVECTOR3(0.0f, 0.5f, 5.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -22,8 +33,7 @@ void Enemy::Init()
 
 void Enemy::Uninit()
 {
-	m_Model->Unload();
-	delete m_Model;
+
 
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
