@@ -1,18 +1,22 @@
 #pragma once
+#include <list>
+#include <vector>
+#include <typeinfo>
+#include <string>
+#include <memory>
+
 #include "gameObject.h"
 #include "camera.h"
 #include "polygon2D.h"
 #include "field.h"
 #include "player.h"
-#include <list>
-#include <vector>
-#include <typeinfo>
-#include <string>
+
 #include "Enemy.h"
 #include "Item.h"
 //#include "pointLight.h"
 #include "light.h" 
 #include "ao_Sphere.h"
+#include "textureFactory.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -25,6 +29,9 @@ class Scene
 {
 protected :
 	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];
+
+private:
+	std::unique_ptr<TextureFactory> m_TextureFactory;
 public:
 
 
