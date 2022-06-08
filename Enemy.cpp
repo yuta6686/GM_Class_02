@@ -2,7 +2,7 @@
 #include "renderer.h"
 #include "enemy.h"
 #include "model.h"
-#include "ModelManager.h"
+#include "ResourceManager.h"
 
 void Enemy::Unload()
 {

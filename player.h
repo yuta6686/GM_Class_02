@@ -6,7 +6,7 @@
 class Player:public GameObject
 {
 private:
-	static inline std::shared_ptr<Model> m_Model;
+	static inline std::shared_ptr<Resource> m_Model;
 
 	ID3D11VertexShader* m_VertexShader;
 	ID3D11PixelShader* m_PixelShader;

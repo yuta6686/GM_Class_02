@@ -48,9 +48,6 @@
     <ClCompile Include="polygon2D.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="model.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -74,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="gameObject3D.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +107,6 @@
     <ClInclude Include="polygon2D.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="model.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -131,11 +131,20 @@
     <ClInclude Include="ao_Sphere.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="ModelManager.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="gameObject3D.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

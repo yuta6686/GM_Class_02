@@ -35,6 +35,7 @@
 #include <vector>
 #include <list>
 #include <string>
+#include <map>
 
 #define SCREEN_WIDTH	(960)
 #define SCREEN_HEIGHT	(540)

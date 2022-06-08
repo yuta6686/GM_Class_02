@@ -6,6 +6,7 @@
 #include "manager.h"
 #include "scene.h"
 #include "Item.h"
+#include "ResourceManager.h"
 
 #define PLAYER_SPEED 0.25f
 
@@ -13,11 +14,8 @@ static char texName[] = { "asset\\model\\torii.obj" };
 static float scale = 0.5f;
 
 void item::Init()
-{
-
-
-	m_Model = new Model();
-	m_Model->Load(texName);
+{	
+	m_Model = ResourceManger<Model>::GetResource(texName);
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");
@@ -31,9 +29,6 @@ void item::Init()
 
 void item::Uninit()
 {
-	m_Model->Unload();
-	delete m_Model;
-
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
 	m_PixelShader->Release();

@@ -36,6 +36,7 @@
     <ClCompile Include="polygon2D.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ao_Sphere.h" />
@@ -51,13 +52,15 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="model.h" />
-    <ClInclude Include="ModelManager.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="pointLight.h" />
     <ClInclude Include="polygon2D.h" />
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="texture.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

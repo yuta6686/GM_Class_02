@@ -1,6 +1,7 @@
 #include "polygon2D.h"
 #include "renderer.h"
 #include "main.h"
+#include "ResourceManager.h"
 
 void Polygon2D::Init()
 {
@@ -39,14 +40,15 @@ void Polygon2D::Init()
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
 	//テクスチャ読み込み
-	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+	/*D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
 		"asset\\texture\\Slimecyclon.png",
 		NULL,
 		NULL,
 		&m_Texture,
 		NULL);
 
-	assert(m_Texture);
+	assert(m_Texture);*/
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\Slimecyclon.png");
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"unlitTextureVS.cso");
@@ -56,8 +58,7 @@ void Polygon2D::Init()
 
 void Polygon2D::Uninit()
 {
-	m_VertexBuffer->Release();
-	m_Texture->Release();
+	m_VertexBuffer->Release();	
 
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
@@ -85,7 +86,12 @@ void Polygon2D::Draw()
 	UINT offset = 0;
 	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
 
-	//テクスチャ設定
+	
+	m_Texture->Draw();
+
+	//これ以下がm_Texture->Drawに入れ替わる↑
+	/*
+	* //テクスチャ設定
 	Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &m_Texture);
 
 	//プリミティブトポロジ設定
@@ -93,4 +99,5 @@ void Polygon2D::Draw()
 
 	//ポリゴン描画
 	Renderer::GetDeviceContext()->Draw(4, 0);
+	*/
 }

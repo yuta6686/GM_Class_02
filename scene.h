@@ -16,7 +16,8 @@
 #include "light.h" 
 #include "ao_Sphere.h"
 #include "Bullet.h"
-#include "ModelManager.h"
+#include "ResourceManager.h"
+#include "texture.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -74,9 +75,9 @@ public:
 		
 	}
 
-	inline void Unload() {
-		//ModelManager::AllRelease();
+	inline void Unload() {			
 		ResourceManger<Model>::AllRelease();
+		ResourceManger<Texture>::AllRelease();
 	}
 
 	template <typename T>//テンプレート解放

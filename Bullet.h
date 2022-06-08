@@ -6,7 +6,7 @@ class Bullet : public GameObject
 {
 private:
 	static inline const float BULLET_SPEED_MAX = 1.0f;
-	static inline std::shared_ptr<Model> m_Model;
+	static inline std::shared_ptr<Resource> m_Model;
 
 	ID3D11VertexShader* m_VertexShader = NULL;
 	ID3D11PixelShader* m_PixelShader = NULL;

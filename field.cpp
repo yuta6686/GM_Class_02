@@ -1,6 +1,8 @@
 #include "main.h"
 #include "renderer.h"
 #include "field.h"
+#include "texture.h"
+#include "ResourceManager.h"
 
 void Field::Init()
 {
@@ -39,14 +41,15 @@ void Field::Init()
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
 	//テクスチャ読み込み
-	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-		"asset\\texture\\field1.jpg",
-		NULL,
-		NULL,
-		&m_Texture,
-		NULL);
+	//D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+	//	"asset\\texture\\field1.jpg",
+	//	NULL,
+	//	NULL,
+	//	&m_Texture,
+	//	NULL);
 
-	assert(m_Texture);
+	//assert(m_Texture);
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\field1.jpg");
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");
@@ -60,8 +63,7 @@ void Field::Init()
 
 void Field::Uninit()
 {
-	m_VertexBuffer->Release();
-	m_Texture->Release();
+	m_VertexBuffer->Release();	
 
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
@@ -94,12 +96,5 @@ void Field::Draw()
 	UINT offset = 0;
 	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
 
-	//テクスチャ設定
-	Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &m_Texture);
-
-	//プリミティブトポロジ設定
-	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-	//ポリゴン描画
-	Renderer::GetDeviceContext()->Draw(4, 0);
+	m_Texture->Draw();
 }

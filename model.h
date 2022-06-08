@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "Resource.h"
 
 // マテリアル構造体
 struct MODEL_MATERIAL
@@ -39,7 +39,7 @@ struct MODEL
 
 
 
-class Model
+class Model:public Resource
 {
 private:
 
@@ -54,9 +54,8 @@ private:
 
 public:
 
-	void Draw();
-
-	void Load( const char *FileName );
-	void Unload();
+	virtual void Draw()override;
+	virtual void Load(const char* FileName)override;
+	virtual void Unload()override;
 
 };
