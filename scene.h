@@ -78,6 +78,9 @@ public:
 	inline void Unload() {			
 		ResourceManger<Model>::AllRelease();
 		ResourceManger<Texture>::AllRelease();
+		ResourceManger<VertexShader>::AllRelease();
+		ResourceManger<PixelShader>::AllRelease();
+		
 	}
 
 	template <typename T>//テンプレート解放

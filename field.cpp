@@ -51,10 +51,13 @@ void Field::Init()
 	//assert(m_Texture);
 	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\field1.jpg");
 
-	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
+	/*Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");
 
-	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
+	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");*/
+
+	m_VertexShader = ResourceManger<VertexShader>::GetResource("vertexLightingVS.cso");
+	m_PixelShader = ResourceManger<PixelShader>::GetResource("vertexLightingPS.cso");
 
 	m_Position =	D3DXVECTOR3( 0.0f,0.0f,0.0f );
 	m_Rotation =	D3DXVECTOR3( 0.0f,0.0f,0.0f );
@@ -64,10 +67,6 @@ void Field::Init()
 void Field::Uninit()
 {
 	m_VertexBuffer->Release();	
-
-	m_VertexLayout->Release();
-	m_VertexShader->Release();
-	m_PixelShader->Release();
 }
 
 void Field::Update()
@@ -76,12 +75,16 @@ void Field::Update()
 
 void Field::Draw()
 {
-	//入力レイアウト設定
-	Renderer::GetDeviceContext()->IASetInputLayout(m_VertexLayout);
+	//VertexShaderのDraw読んでからPixelShaderのDraw
+	m_VertexShader->Draw();
+	m_PixelShader->Draw();
 
-	//シェーダ設定
-	Renderer::GetDeviceContext()->VSSetShader(m_VertexShader, NULL, 0);
-	Renderer::GetDeviceContext()->PSSetShader(m_PixelShader, NULL, 0);
+	////入力レイアウト設定
+	//Renderer::GetDeviceContext()->IASetInputLayout(m_VertexLayout);
+
+	////シェーダ設定
+	//Renderer::GetDeviceContext()->VSSetShader(m_VertexShader, NULL, 0);
+	//Renderer::GetDeviceContext()->PSSetShader(m_PixelShader, NULL, 0);
 
 	//マトリクス設定
 	D3DXMATRIX world, scale, rot, trans;

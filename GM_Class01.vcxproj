@@ -31,10 +31,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="model.cpp" />
+    <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="polygon2D.cpp" />
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
@@ -52,6 +54,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="model.h" />
+    <ClInclude Include="pixelShader.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="pointLight.h" />
@@ -59,6 +62,7 @@
     <ClInclude Include="renderer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="vertexShader.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>

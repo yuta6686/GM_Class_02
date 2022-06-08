@@ -78,6 +78,12 @@
     <ClCompile Include="model.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
+    <ClCompile Include="vertexShader.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="pixelShader.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="model.h">
       <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="vertexShader.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="pixelShader.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
