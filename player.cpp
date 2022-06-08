@@ -13,7 +13,7 @@ static float scale = 0.5f;
 
 void Player::Init()
 {	
-	m_Model = ModelManager::GetModel(texName);
+	m_Model = ResourceManger<Model>::GetResource(texName);
 	
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,

@@ -9,14 +9,13 @@
 #include "manager.h"
 #include "ModelManager.h"
 
-void Bullet::Unload()
-{
-	m_Model->Unload();	
-}
+
 
 void Bullet::Init()
 {
-	m_Model = ModelManager::GetModel("asset\\model\\arrow.obj");
+	//m_Model = ModelManager::GetModel("asset\\model\\arrow.obj");
+	m_Model = ResourceManger<Model>::GetResource("asset\\model\\arrow.obj");
+	
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);

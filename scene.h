@@ -75,8 +75,8 @@ public:
 	}
 
 	inline void Unload() {
-		ModelManager::AllRelease();
-		
+		//ModelManager::AllRelease();
+		ResourceManger<Model>::AllRelease();
 	}
 
 	template <typename T>//テンプレート解放

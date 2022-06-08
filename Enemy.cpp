@@ -12,7 +12,7 @@ void Enemy::Unload()
 void Enemy::Init()
 {
 
-	m_Model = ModelManager::GetModel("asset\\model\\stone_white.obj");
+	m_Model = ResourceManger<Model>::GetResource("asset\\model\\stone_white.obj");
 	m_Position = D3DXVECTOR3(0.0f, 0.5f, 5.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(0.5f, 0.5f, 0.5f);

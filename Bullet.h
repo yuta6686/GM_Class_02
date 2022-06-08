@@ -14,7 +14,7 @@ private:
 
 public:
 	
-	static void Unload();
+	
 
 	void Init();
 	void Uninit();
