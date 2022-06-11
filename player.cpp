@@ -51,6 +51,14 @@ void Player::Update()
 		m_Position.x += PLAYER_SPEED;
 	}
 
+	if (GetKeyboardPress(DIK_I)) {
+		m_Position.y += PLAYER_SPEED / 5;
+	}
+
+	if (GetKeyboardPress(DIK_K)) {
+		m_Position.y -= PLAYER_SPEED / 5;
+	}
+
 	//if (GetKeyboardTrigger(DIK_SPACE)) {
 	if (GetKeyboardPress(DIK_SPACE)) {
 		Scene* scene = Manager::GetScene();
@@ -72,6 +80,17 @@ void Player::Update()
 			return;
 		}
 	}
+
+#ifdef _DEBUG
+	char* str = GetDebugStr();
+	wsprintf(GetDebugStr(), "game");
+	wsprintf(&str[strlen(str)], "Position.x: %d y:%d z:%d",
+		(int)m_Position.x,
+		(int)m_Position.y,
+		(int)m_Position.z);
+
+	SetWindowText(GetWindow(), GetDebugStr());
+#endif
 }
 
 void Player::Draw()

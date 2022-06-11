@@ -73,7 +73,7 @@ void Light::Update()
 
 #ifdef _DEBUG
 
-    char* str = GetDebugStr();
+    /*char* str = GetDebugStr();
     wsprintf(GetDebugStr(), "game");
     wsprintf(&str[strlen(str)], "Light Position.x: %d y:%d z:%d eyePosition.x:%d y:%d z:%d",
         (int)m_Light.ptPosition.x,
@@ -83,7 +83,7 @@ void Light::Update()
         (int)m_Light.eyePos.y,
         (int)m_Light.eyePos.z);
 
-    SetWindowText(GetWindow(), GetDebugStr());
+    SetWindowText(GetWindow(), GetDebugStr());*/
 #endif    	
 }
 
@@ -120,7 +120,7 @@ void Light::InitPointLight(LIGHT& light)
     light.ptPosition = m_Position;
 
     // ポイントライトのカラーを設定する
-    light.ptColor.x = 2.0f;
+    light.ptColor.x = 0.0f;
     light.ptColor.y = 0.0f;
     light.ptColor.z = 0.0f;
 

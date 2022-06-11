@@ -22,6 +22,9 @@
     <Filter Include="ResourceManager">
       <UniqueIdentifier>{6deee311-f715-4106-93ed-719def8ea8d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\StageObjects">
+      <UniqueIdentifier>{5a56da16-3bde-4a78-8040-cba5d356de23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,9 +35,6 @@
     </ClCompile>
     <ClCompile Include="renderer.cpp">
       <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="field.cpp">
-      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>GameObject</Filter>
@@ -66,9 +66,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="ao_Sphere.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="gameObject3D.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -84,6 +81,21 @@
     <ClCompile Include="pixelShader.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="ao_Sphere.cpp">
+      <Filter>GameObject\StageObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="field.cpp">
+      <Filter>GameObject\StageObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="stage_corridor.cpp">
+      <Filter>GameObject\StageObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="stage_corridor_corner.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="stage_wator_field.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -94,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="renderer.h">
       <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="field.h">
-      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>GameObject</Filter>
@@ -134,9 +143,6 @@
     <ClInclude Include="Light.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="ao_Sphere.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="gameObject3D.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -156,6 +162,21 @@
       <Filter>ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="pixelShader.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ao_Sphere.h">
+      <Filter>GameObject\StageObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="field.h">
+      <Filter>GameObject\StageObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="stage_corridor.h">
+      <Filter>GameObject\StageObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="stage_corridor_corner.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="stage_wator_field.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

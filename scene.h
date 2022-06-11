@@ -18,6 +18,9 @@
 #include "Bullet.h"
 #include "ResourceManager.h"
 #include "texture.h"
+#include "stage_corridor.h"
+#include "stage_corridor_corner.h"
+#include "stage_wator_field.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -44,7 +47,7 @@ public:
 
 		AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 					
-		AddGameObject<Field>(LAYER_3D);
+		//AddGameObject<Field>(LAYER_3D);
 		
 		AddGameObject<Player>(LAYER_3D);
 		
@@ -60,6 +63,9 @@ public:
 
 		AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
 		AddGameObject<Ao_Sphere>(LAYER_3D);
+
+		//	ステージ配置
+		StageCorridorCreate();
 
 		//AddGameObject<Bullet>();
 
@@ -158,6 +164,53 @@ public:
 			}
 		}
 	}
+
+private:
+	
+	void StageCorridorCreate() 
+	{
+		//	廊下（廻廊）
+		for (int i = 0; i < 10; i++) 
+		{
+			GameObject* left = AddGameObject<stage_corridor>(LAYER_3D);
+			GameObject* right = AddGameObject<stage_corridor>(LAYER_3D);
+			
+
+			left->SetPosition({ -25.0f,0,5.0f * (float)i - 10 });
+			right->SetPosition({ 24.0f,0,5.0f * (float)i - 9.25f });
+
+			if (i >= 8)continue;;
+
+			GameObject* inside = AddGameObject<stage_corridor>(LAYER_3D);
+
+			inside->SetPosition({ 5.0f * (float)i-11.5f,0.0f,42.5f });
+			inside->SetRotation({3.14,0,0});
+		}
+
+		D3DXVECTOR3 corner_position[2] =
+		{
+			{-22.0f,0.0f,45 },
+			{27.5f,0,45}
+		};
+
+		D3DXVECTOR3 corner_rotation[2] =
+		{
+			{3.14 / 2,0,0},
+			{3.14,0,0}
+		};
+		
+		//	廊下（廻廊）の角
+		for (int i = 0; i < 2; i++) {
+			GameObject* corner = AddGameObject<stage_corridor_corner>(LAYER_3D);
+
+			corner->SetPosition(corner_position[i]);
+			corner->SetRotation(corner_rotation[i]);
+		}
+				
+		//	下の水
+		AddGameObject<stage_wator_field>(LAYER_3D);
+	}
+
 };
 
 

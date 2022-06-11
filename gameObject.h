@@ -1,6 +1,9 @@
 #pragma once
 
 #include "main.h"
+#include "texture.h"
+#include "vertexShader.h"
+#include "pixelShader.h"
 
 class Model;
 
@@ -22,6 +25,11 @@ public:
 	void SetPosition(D3DXVECTOR3 Position)
 	{
 		m_Position = Position;
+	}
+
+	void SetRotation(D3DXVECTOR3 Rotation)
+	{
+		m_Rotation = Rotation;
 	}
 	D3DXVECTOR3 GetPosition() { return m_Position; }
 	

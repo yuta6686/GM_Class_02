@@ -1,7 +1,7 @@
-# Blender 3.1.0 MTL File: 'None'
+# Blender 3.1.0 MTL File: 'GG_kadai.blend'
 # www.blender.org
 
-newmtl マテリアル.001
+newmtl マテリアル.020
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
@@ -10,5 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd torii_color.png
-
+map_Kd  water.png

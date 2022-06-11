@@ -20,11 +20,22 @@ void Camera::Update()
 	Scene* scene = Manager::GetScene();
 	D3DXVECTOR3 playerPosition = scene->GetGameObject<Player>()->GetPosition();
 	
-	m_Position = playerPosition;
-	m_Position.y = playerPosition.y + 2.5f;
-	m_Position.z = playerPosition.z - 5.0f;
+	static D3DXVECTOR3 offset{ 0,2.5f,-5.0f };
 
+	if (GetKeyboardPress(DIK_UP)) {
+		offset.y += 0.1f;
+	}
+
+	if (GetKeyboardPress(DIK_DOWN)) {
+		offset.y -= 0.1f;
+	}
+
+	m_Position = playerPosition;
+	m_Position += offset;
+
+	playerPosition.y += 2.0f;
 	m_Target = playerPosition;
+	
 
 	//Renderer::SetLightEyePos(m_Position);
 }

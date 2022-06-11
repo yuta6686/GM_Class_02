@@ -1,8 +1,6 @@
 #pragma once
 #include "gameObject.h"
-#include "texture.h"
-#include "vertexShader.h"
-#include "pixelShader.h"
+
 
 class Field:public GameObject
 {
