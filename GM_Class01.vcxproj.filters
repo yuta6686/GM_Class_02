@@ -96,6 +96,9 @@
     <ClCompile Include="stage_wator_field.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="stage_otorii.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -177,6 +180,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="stage_wator_field.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="stage_otorii.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

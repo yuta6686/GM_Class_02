@@ -38,6 +38,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="stage_corridor.cpp" />
     <ClCompile Include="stage_corridor_corner.cpp" />
+    <ClCompile Include="stage_otorii.cpp" />
     <ClCompile Include="stage_wator_field.cpp" />
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="Singleton.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="scene.h" />
     <ClInclude Include="stage_corridor.h" />
     <ClInclude Include="stage_corridor_corner.h" />
+    <ClInclude Include="stage_otorii.h" />
     <ClInclude Include="stage_wator_field.h" />
     <ClInclude Include="vertexShader.h" />
     <ClInclude Include="Singleton.h" />

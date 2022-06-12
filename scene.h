@@ -21,6 +21,7 @@
 #include "stage_corridor.h"
 #include "stage_corridor_corner.h"
 #include "stage_wator_field.h"
+#include "stage_otorii.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -209,6 +210,9 @@ private:
 				
 		//	â∫ÇÃêÖ
 		AddGameObject<stage_wator_field>(LAYER_3D);
+
+		//	ëÂíπãè
+		AddGameObject< stage_otorii>(LAYER_3D);
 	}
 
 };
