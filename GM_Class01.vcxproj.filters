@@ -25,6 +25,12 @@
     <Filter Include="GameObject\StageObjects">
       <UniqueIdentifier>{5a56da16-3bde-4a78-8040-cba5d356de23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\MoveObjects">
+      <UniqueIdentifier>{272c1c9e-e7ea-41b3-a582-d7d161613376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\MainObjects">
+      <UniqueIdentifier>{b99f1c4a-de82-4cd6-ab1b-87a06bffeae2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,9 +42,6 @@
     <ClCompile Include="renderer.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="input.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -48,25 +51,10 @@
     <ClCompile Include="polygon2D.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="pointLight.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="gameObject3D.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="texture.cpp">
@@ -90,14 +78,29 @@
     <ClCompile Include="stage_corridor.cpp">
       <Filter>GameObject\StageObjects</Filter>
     </ClCompile>
-    <ClCompile Include="stage_corridor_corner.cpp">
-      <Filter>System</Filter>
+    <ClCompile Include="bullet.cpp">
+      <Filter>GameObject\MoveObjects</Filter>
     </ClCompile>
-    <ClCompile Include="stage_wator_field.cpp">
-      <Filter>System</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>GameObject\MoveObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>GameObject\MoveObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>GameObject\MainObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>GameObject\MainObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="stage_corridor_corner.cpp">
+      <Filter>GameObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="stage_otorii.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\StageObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="stage_wator_field.cpp">
+      <Filter>GameObject\StageObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,44 +113,14 @@
     <ClInclude Include="renderer.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="input.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="gameObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="polygon2D.h">
       <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="pointLight.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="gameObject3D.h">
-      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>ResourceManager</Filter>
@@ -164,9 +137,6 @@
     <ClInclude Include="vertexShader.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="pixelShader.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="ao_Sphere.h">
       <Filter>GameObject\StageObjects</Filter>
     </ClInclude>
@@ -177,13 +147,43 @@
       <Filter>GameObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="stage_corridor_corner.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="stage_wator_field.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="stage_otorii.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\StageObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="stage_wator_field.h">
+      <Filter>GameObject\StageObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="pixelShader.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>GameObject\MoveObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GameObject\MoveObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>GameObject\MoveObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>GameObject\MainObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="gameObject.h">
+      <Filter>GameObject\MainObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>GameObject\MainObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>GameObject\MainObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="pointLight.h">
+      <Filter>GameObject\MainObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>GameObject\MainObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
