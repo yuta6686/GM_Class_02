@@ -6,7 +6,7 @@ void stage_corridor::Init()
 	m_Model = ResourceManger<Model>::GetResource("asset\\model\\M_kairou.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_Rotation = D3DXVECTOR3(3.14 * 3 /2 , 0.0f, 0.0f);
+	m_Rotation = D3DXVECTOR3(3.14f * 3.0f/2.0f , 0.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(0.324f, 0.565f, 0.324f);
 
 

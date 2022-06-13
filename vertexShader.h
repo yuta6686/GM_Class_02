@@ -5,8 +5,8 @@ class VertexShader :
     public Resource
 {
 private:
-    ID3D11VertexShader* m_VertexShader;   
-    ID3D11InputLayout* m_VertexLayout;
+    ID3D11VertexShader* m_VertexShader = nullptr;   
+    ID3D11InputLayout* m_VertexLayout = nullptr;
 public:
     // Resource ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
     virtual void Draw() override;
@@ -15,5 +15,9 @@ public:
 
     virtual void Unload() override;
 
+    inline static const std::string DEFAULT_VERTEX_SHADER = "vertexLightingVS.cso";
+    inline static const std::string UNLIT_VERTEX_SHADER = "unlitTextureVS.cso";
+private:
+    
 };
 

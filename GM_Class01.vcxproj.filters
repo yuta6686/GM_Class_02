@@ -102,6 +102,12 @@
     <ClCompile Include="stage_wator_field.cpp">
       <Filter>GameObject\StageObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Effect_explosion.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Interface.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -184,6 +190,18 @@
     </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>GameObject\MainObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="effect_explosion.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="stage_include.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFactory.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Interface.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

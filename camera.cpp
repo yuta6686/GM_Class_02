@@ -6,6 +6,8 @@
 
 void Camera::Init()
 {
+	//D3DXMatrixIdentity(&m_ViewMatrix);
+
 	m_Position = D3DXVECTOR3(0.0f, 2.0f, -5.0f);
 	m_Target = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 }
@@ -23,11 +25,19 @@ void Camera::Update()
 	static D3DXVECTOR3 offset{ 0,2.5f,-5.0f };
 
 	if (GetKeyboardPress(DIK_UP)) {
-		offset.y += 0.1f;
+		offset.y -= 0.1f;
 	}
 
 	if (GetKeyboardPress(DIK_DOWN)) {
-		offset.y -= 0.1f;
+		offset.y += 0.1f;
+	}
+
+	if (GetKeyboardPress(DIK_LEFT)) {
+		offset.x += 0.1f;
+	}
+
+	if (GetKeyboardPress(DIK_RIGHT)) {
+		offset.x -= 0.1f;
 	}
 
 	m_Position = playerPosition;
@@ -43,12 +53,12 @@ void Camera::Update()
 void Camera::Draw()
 {
 	//ビューマトリクス設定
-	D3DXMATRIX viewMatix;
+	
 	D3DXVECTOR3 up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	D3DXMatrixLookAtLH(&viewMatix, &m_Position, &m_Target,
+	D3DXMatrixLookAtLH(&m_ViewMatrix, &m_Position, &m_Target,
 		&up);
 
-	Renderer::SetViewMatrix(&viewMatix);
+	Renderer::SetViewMatrix(&m_ViewMatrix);
 
 
 	//プロジェクションマトリクス設定

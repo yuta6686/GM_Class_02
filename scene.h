@@ -18,10 +18,8 @@
 #include "Bullet.h"
 #include "ResourceManager.h"
 #include "texture.h"
-#include "stage_corridor.h"
-#include "stage_corridor_corner.h"
-#include "stage_wator_field.h"
-#include "stage_otorii.h"
+#include "stage_include.h"
+#include "EnemyFactory.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -33,7 +31,7 @@ enum LAYER {
 class Scene
 {
 protected :
-	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];
+	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];	
 public:
 
 
@@ -48,7 +46,7 @@ public:
 
 		AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 					
-		//AddGameObject<Field>(LAYER_3D);
+		AddGameObject<Field>(LAYER_3D);
 		
 		AddGameObject<Player>(LAYER_3D);
 		
@@ -58,6 +56,8 @@ public:
 		{
 			AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(3.0f*i, 0.5f, 5.0f));
 			AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(-3.0f*i, 0.5f, 5.0f));
+
+			AddGameObject(EnemyFactory::Create<Enemy>(), LAYER_3D)->SetPosition({ -3.0f * i, -0.5f, -5.0f });
 		}
 		
 		
@@ -66,9 +66,7 @@ public:
 		AddGameObject<Ao_Sphere>(LAYER_3D);
 
 		//	ステージ配置
-		StageCorridorCreate();
-
-		//AddGameObject<Bullet>();
+		StageCorridorCreate();			
 
 		AddGameObject<Polygon2D>(LAYER_2D);
 
@@ -88,6 +86,12 @@ public:
 		ResourceManger<VertexShader>::AllRelease();
 		ResourceManger<PixelShader>::AllRelease();
 		
+	}
+	GameObject* AddGameObject(GameObject* pGameObject,int layer) 
+	{
+		pGameObject->Init();
+		m_GameObject[layer].push_back(pGameObject);
+		return pGameObject;
 	}
 
 	template <typename T>//テンプレート解放
@@ -185,19 +189,19 @@ private:
 			GameObject* inside = AddGameObject<stage_corridor>(LAYER_3D);
 
 			inside->SetPosition({ 5.0f * (float)i-11.5f,0.0f,42.5f });
-			inside->SetRotation({3.14,0,0});
+			inside->SetRotation({3.14f,0.0f,0.0f});
 		}
 
 		D3DXVECTOR3 corner_position[2] =
 		{
-			{-22.0f,0.0f,45 },
-			{27.5f,0,45}
+			{-22.0f,0.0f,45.0f },
+			{27.5f,0.0f,45.0f}
 		};
 
 		D3DXVECTOR3 corner_rotation[2] =
 		{
-			{3.14 / 2,0,0},
-			{3.14,0,0}
+			{3.14f / 2.0f,0.0f,0.0f},
+			{3.14f,0.0f,0.0f}
 		};
 		
 		//	廊下（廻廊）の角

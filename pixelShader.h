@@ -14,5 +14,7 @@ public:
 
     virtual void Unload() override;
 
+    inline static const std::string DEFAULT_PIXEL_SHADER = "vertexLightingPS.cso";
+    inline static const std::string UNLIT_PIXEL_SHADER = "unlitTexturePS.cso";
 };
 

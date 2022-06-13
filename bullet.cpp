@@ -8,7 +8,7 @@
 #include "scene.h"
 #include "manager.h"
 #include "ResourceManager.h"
-
+#include "effect_explosion.h"
 
 
 void Bullet::Init()
@@ -57,9 +57,9 @@ void Bullet::Update()
 		float length = D3DXVec3Length(&direction);
 
 		if (length < 2.0f) {
-			enemy->SetDestroy();
-			SetDestroy();
+			enemy->CollosionWithBullet();
 			this->SetDestroy();
+			scene->AddGameObject<Effect_explosion>(LAYER_3D)->SetPosition(m_Position);
 			return;
 		}
 	}

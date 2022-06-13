@@ -10,8 +10,10 @@ void stage_otorii::Init()
 	float scale = 1.1f;
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
-	m_VertexShader = ResourceManger<VertexShader>::GetResource("vertexLightingVS.cso");
-	m_PixelShader = ResourceManger<PixelShader>::GetResource("vertexLightingPS.cso");
+	m_VertexShader = 
+		ResourceManger<VertexShader>::GetResource(VertexShader::DEFAULT_VERTEX_SHADER.c_str());
+	m_PixelShader = 
+		ResourceManger<PixelShader>::GetResource(PixelShader::DEFAULT_PIXEL_SHADER.c_str());
 }
 
 void stage_otorii::Uninit()

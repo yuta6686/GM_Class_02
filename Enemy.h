@@ -1,11 +1,11 @@
 #pragma once
 #include "main.h"
 #include "Resource.h"
-#include "gameobject.h"
+#include "Enemy_Interface.h"
 
-class Enemy : public GameObject
+class Enemy : public Enemy_Interface
 {
-private:
+protected:
 	static inline std::shared_ptr<Model> m_Model;
 
 	ID3D11VertexShader* m_VertexShader = NULL;
@@ -19,4 +19,6 @@ public:
 	void Uninit();
 	void Update();
 	void Draw();
+
+		
 };
