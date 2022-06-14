@@ -6,6 +6,7 @@ class Enemy_Interface :
 private:    
     int m_MaxHp=1;
     int m_Hp = m_MaxHp;
+    static const int MAX_HP = 9999;
 public:
     virtual void Init() override=0;
     virtual void Uninit() override=0;
@@ -14,7 +15,7 @@ public:
 
     virtual bool SetMaxHp(const int& hp) 
     {
-        if (hp < 0 || hp >= 9999) {
+        if (hp < 0 || hp >= MAX_HP) {
             m_MaxHp = 1;
             return false;
         }
