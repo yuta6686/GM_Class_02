@@ -13,6 +13,14 @@ public:
 		return pEnemy;
 	}
 
+	template <typename T>
+	static Enemy_Interface* Create(const int& hp)
+	{
+		Enemy_Interface* pEnemy = new T();
 
+		pEnemy->SetMaxHp(hp);
+
+		return pEnemy;
+	}
 };
 

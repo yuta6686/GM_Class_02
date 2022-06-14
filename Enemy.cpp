@@ -22,6 +22,8 @@ void Enemy::Init()
 		"vertexLightingVS.cso");
 
 	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");	
+
+	SetHp(GetMaxHp());
 }
 
 void Enemy::Uninit()

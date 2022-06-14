@@ -15,6 +15,8 @@ private:
 	static const int TEX_WIDHT_NUM = 4;
 	static const int TEX_HEIGHT_NUM = 4;
 	static const int TEX_NUM = 16;
+
+	void InitVertex(VERTEX_3D* vertex);
 public:
 	void Init()		override;
 	void Uninit()	override;

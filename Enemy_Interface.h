@@ -13,6 +13,18 @@ public:
     virtual void Update() override=0;
     virtual void Draw() override=0;
 
+
+    int GetMaxHp() { return m_MaxHp; }
+    int GetHp() { return m_Hp; }    
+    virtual bool SetHp(const int& hp) {
+        if (hp < 0 || hp >= MAX_HP) {
+            m_Hp = 1;
+            return false;
+        }
+        m_Hp = hp;
+        return true;
+    }
+
     virtual bool SetMaxHp(const int& hp) 
     {
         if (hp < 0 || hp >= MAX_HP) {

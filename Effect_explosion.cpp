@@ -11,10 +11,8 @@
 #include "scene.h"
 #include "manager.h"
 
-void Effect_explosion::Init()
+void Effect_explosion::InitVertex(VERTEX_3D* vertex)
 {
-	VERTEX_3D vertex[4];
-
 	vertex[0].Position = D3DXVECTOR3(-1.0f, 1.0f, 0.0f);
 	vertex[0].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -34,6 +32,13 @@ void Effect_explosion::Init()
 	vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
+}
+
+void Effect_explosion::Init()
+{
+	VERTEX_3D vertex[4];
+	InitVertex(vertex);
+	
 
 	//	頂点バッファ生成
 	D3D11_BUFFER_DESC bd{};
@@ -114,6 +119,8 @@ void Effect_explosion::Draw()
 	vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[3].TexCoord = D3DXVECTOR2(x+widht, y+height);
+
+	Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
 
 	m_VertexShader->Draw();
 	m_PixelShader->Draw();

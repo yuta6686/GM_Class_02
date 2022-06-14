@@ -12,6 +12,7 @@ private:
 	ID3D11PixelShader* m_PixelShader = NULL;
 	ID3D11InputLayout* m_VertexLayout = NULL;
 
+	D3DXVECTOR3 m_Forward;
 public:
 	
 	
@@ -21,5 +22,8 @@ public:
 	void Update();
 	void Draw();
 
+	void SetForward(D3DXVECTOR3 vec) {
+		m_Forward = vec;
+	}
 };
 

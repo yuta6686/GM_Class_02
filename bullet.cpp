@@ -38,16 +38,25 @@ void Bullet::Uninit()
 
 void Bullet::Update()
 {
-	m_Position.z += BULLET_SPEED_MAX;
+	Scene* scene = Manager::GetScene();
 
-	if (m_Position.z > 6.0f)
+	Player* player = scene->GetGameObject<Player>();
+
+
+	//m_Position.z += BULLET_SPEED_MAX;
+	m_Position += m_Forward * BULLET_SPEED_MAX;
+	//m_Rotation = player->GetForward();
+
+	if (m_Position.z > 100.0f || 
+		m_Position.z < -100.0f ||
+		m_Position.x > 100.0f ||
+		m_Position.x < -100.0f)
 	{
 		SetDestroy();
 		return;
 	}
 
-	//	エネミー取得
-	Scene* scene = Manager::GetScene();
+	//	エネミー取得	
 	std::vector<Enemy*> enemyList
 		= scene->GetGameObjects<Enemy>();
 
@@ -63,6 +72,8 @@ void Bullet::Update()
 			return;
 		}
 	}
+
+
 }
 
 void Bullet::Draw()
