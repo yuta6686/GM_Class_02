@@ -21,6 +21,7 @@
 #include "stage_include.h"
 #include "EnemyFactory.h"
 #include "Cube2D.h"
+#include "Collision.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -72,12 +73,14 @@ public:
 		AddGameObject<Polygon2D>(LAYER_2D);
 
 		Cube2D* pcube2d_01 = AddGameObject<Cube2D>(LAYER_2D);
-		pcube2d_01->SetPosition({ -2.0f,1.0f,0.0f });
-		pcube2d_01->SetSpeed(D3DXVECTOR3(2.0f,5.0f,0.0f));
+		pcube2d_01->SetPosition({ -100.0f,1.0f,0.0f });
+		pcube2d_01->SetSpeed(D3DXVECTOR3(-10.0f,0.0f,0.0f));
 
 		Cube2D* pcube2d_02 = AddGameObject<Cube2D>(LAYER_2D);
-		pcube2d_02->SetPosition({ 2.0f,-1.0f,0.0f });
-		pcube2d_02->SetSpeed(D3DXVECTOR3(5.0f, 2.0f,0.0f));
+		pcube2d_02->SetPosition({ 200.0f,-1.0f,0.0f });
+		pcube2d_02->SetSpeed(D3DXVECTOR3(5.0f, 0.0f,0.0f));
+
+		AddGameObject<Collision2D>(LAYER_2D);
 		
 		Load();
 	}
@@ -166,6 +169,7 @@ public:
 
 			m_GameObject[i].remove_if([](GameObject* object) {return object->Destroy(); });
 		}
+		
 	}
 
 	inline virtual void Draw()

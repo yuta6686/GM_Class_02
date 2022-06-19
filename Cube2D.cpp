@@ -2,29 +2,38 @@
 #include "ResourceManager.h"
 #include "scene.h"
 #include "manager.h"
+#include "Collision.h"
+
+#define FRICTION				(0.5f)					// 摩擦
+#define FPS						(60)					// FPS
 
 using namespace std;
 
 void Cube2D::Init()
 {
+	m_mainPos.x = 100.0f;
+	m_mainPos.y = 100.0f;
+
+	m_Radius = 100.0f;
+
 	VERTEX_3D vertex[4];
 
-	vertex[0].Position = D3DXVECTOR3(-100.0f, -100.0f, 0.0f);
+	vertex[0].Position = D3DXVECTOR3(-m_mainPos.x, -m_mainPos.y, 0.0f);
 	vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
 
-	vertex[1].Position = D3DXVECTOR3(100.0f, -100.0f, 0.0f);
+	vertex[1].Position = D3DXVECTOR3(m_mainPos.x, -m_mainPos.y, 0.0f);
 	vertex[1].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
 
-	vertex[2].Position = D3DXVECTOR3(-100.0f, 100.0f, 0.0f);
+	vertex[2].Position = D3DXVECTOR3(-m_mainPos.x, m_mainPos.y, 0.0f);
 	vertex[2].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
 
-	vertex[3].Position = D3DXVECTOR3(100.0f, 100.0f, 0.0f);
+	vertex[3].Position = D3DXVECTOR3(m_mainPos.x, m_mainPos.y, 0.0f);
 	vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
@@ -73,26 +82,21 @@ void Cube2D::Uninit()
 
 void Cube2D::Update()
 {
+
+	//	座標更新
 	m_Position += m_Speed;
 
-	if (m_Position.x >= SCREEN_WIDTH ||
-		m_Position.x <= 0.0f)
+	//　端での跳ね返り
+	if (m_Position.x + m_mainPos.x >= SCREEN_WIDTH ||
+		m_Position.x - m_mainPos.x <= 0.0f)
 	{
 		m_Speed.x *= -1.0f;
 	}
 
-	if (m_Position.y >= SCREEN_HEIGHT ||
-		m_Position.y <= 0.0f)
+	if (m_Position.y + m_mainPos.y >= SCREEN_HEIGHT ||
+		m_Position.y - m_mainPos.y <= 0.0f)
 	{
 		m_Speed.y *= -1.0f;
-	}
-
-	vector<Cube2D*> cubes;
-	cubes = m_Scene->GetGameObjects<Cube2D>();
-
-	for (auto cube : cubes) {
-		if (cube->GetIndex() == m_Index)continue;
-
 	}
 }
 

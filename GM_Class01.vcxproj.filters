@@ -114,6 +114,9 @@
     <ClCompile Include="Cube2D.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -213,6 +216,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Cube2D.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

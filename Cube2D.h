@@ -19,6 +19,11 @@ private:
 	inline static int s_Index = 0;
 
 	Scene* m_Scene;
+
+	D3DXVECTOR3 m_mainPos;
+	float m_Radius;
+	float m_Mass = 1.0f;
+	
 public:
 	void Init()override;
 	void Uninit()override;
@@ -34,5 +39,9 @@ public:
 	}
 
 	int GetIndex() { return m_Index; }
+
+	float GetRadius() { return m_Radius; }
+	D3DXVECTOR3 GetVel() { return m_Speed; }
+	float GetMass() { return m_Mass; }
 };
 
