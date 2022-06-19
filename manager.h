@@ -1,6 +1,11 @@
 #pragma once
 #include "polygon2D.h"
 
+enum SCENE {
+	SCENE_TITLE = 0,
+	SCENE_GAME,
+	SCENE_RESULT,
+};
 
 class Manager
 {

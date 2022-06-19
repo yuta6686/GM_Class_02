@@ -108,6 +108,9 @@
     <ClCompile Include="Enemy_Interface.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="BaseScene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -188,9 +191,6 @@
     <ClInclude Include="pointLight.h">
       <Filter>GameObject\MainObjects</Filter>
     </ClInclude>
-    <ClInclude Include="scene.h">
-      <Filter>GameObject\MainObjects</Filter>
-    </ClInclude>
     <ClInclude Include="effect_explosion.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -201,6 +201,12 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Interface.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseScene.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

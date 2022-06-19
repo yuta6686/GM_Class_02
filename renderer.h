@@ -55,6 +55,16 @@ struct LIGHT
 	float pad5;
 };
 
+enum BLEND_MODE
+{
+	BLEND_MODE_NONE,		//ブレンド無し
+	BLEND_MODE_ALPHABLEND,	//αブレンド
+	BLEND_MODE_ADD,			//加算ブレンド
+	BLEND_MODE_SUBTRACT,	//減算ブレンド
+
+	BLEDD_MODE_NUM
+};
+
 
 class Renderer
 {
@@ -96,6 +106,7 @@ public:
 	static void SetMaterial(MATERIAL Material);
 	static void SetLight(LIGHT Light,const int& index);
 	//static void SetPointLight(POINT_LIGHT Light);
+	void SetBlendState(BLEND_MODE bm);
 	
 
 	static ID3D11Device* GetDevice( void ){ return m_Device; }

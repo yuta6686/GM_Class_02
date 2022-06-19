@@ -305,7 +305,28 @@ void Renderer::End()
 }
 
 
+void Renderer::SetBlendState(BLEND_MODE bm)
+{
+	/*g_BlendStateParam = bm;
 
+	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+	switch (g_BlendStateParam)
+	{
+	case BLEND_MODE_NONE:
+		m_DeviceContext->OMSetBlendState(g_BlendStateNone, blendFactor, 0xffffffff);
+		break;
+	case BLEND_MODE_ALPHABLEND:
+		m_DeviceContext->OMSetBlendState(g_BlendStateAlphaBlend, blendFactor, 0xffffffff);
+		break;
+	case BLEND_MODE_ADD:
+		m_DeviceContext->OMSetBlendState(g_BlendStateAdd, blendFactor, 0xffffffff);
+		break;
+	case BLEND_MODE_SUBTRACT:
+		m_DeviceContext->OMSetBlendState(g_BlendStateSubtract, blendFactor, 0xffffffff);
+		break;
+	}*/
+}
 
 void Renderer::SetDepthEnable( bool Enable )
 {

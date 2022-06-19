@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ao_Sphere.cpp" />
+    <ClCompile Include="BaseScene.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
@@ -47,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ao_Sphere.h" />
+    <ClInclude Include="BaseScene.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="effect_explosion.h" />
