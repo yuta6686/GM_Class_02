@@ -221,6 +221,9 @@
     <ClInclude Include="Collision.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

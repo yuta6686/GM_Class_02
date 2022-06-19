@@ -74,11 +74,14 @@ public:
 
 		Cube2D* pcube2d_01 = AddGameObject<Cube2D>(LAYER_2D);
 		pcube2d_01->SetPosition({ -100.0f,1.0f,0.0f });
-		pcube2d_01->SetSpeed(D3DXVECTOR3(-10.0f,0.0f,0.0f));
+		pcube2d_01->SetSpeed(D3DXVECTOR3(-5.0f,10.0f,0.0f));
+		pcube2d_01->SetRotation(MyMath::GetRadian({0.0f,0.0f,45.0f}));
+		//pcube2d_01->SetzContinuousRotation(MyMath::GetRadian(-5.0f));
 
 		Cube2D* pcube2d_02 = AddGameObject<Cube2D>(LAYER_2D);
 		pcube2d_02->SetPosition({ 200.0f,-1.0f,0.0f });
-		pcube2d_02->SetSpeed(D3DXVECTOR3(5.0f, 0.0f,0.0f));
+		pcube2d_02->SetSpeed(D3DXVECTOR3(50.0f, 4.0f,0.0f));
+		//pcube2d_02->SetzContinuousRotation(MyMath::GetRadian(1.0f));
 
 		AddGameObject<Collision2D>(LAYER_2D);
 		

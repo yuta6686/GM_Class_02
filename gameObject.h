@@ -4,6 +4,7 @@
 #include "texture.h"
 #include "vertexShader.h"
 #include "pixelShader.h"
+#include "MyMath.h"
 
 class Model;
 
@@ -51,6 +52,20 @@ public:
 		forward.z = rot._33;
 
 		return forward;
+	}
+
+	D3DXVECTOR3 GetUp()
+	{
+		D3DXMATRIX rot;
+		D3DXMatrixRotationYawPitchRoll(&rot,
+			m_Rotation.y, m_Rotation.x, m_Rotation.z);
+
+		D3DXVECTOR3 up;
+		up.x = rot._21;
+		up.y = rot._22;
+		up.z = rot._23;
+
+		return up;
 	}
 
 	D3DXVECTOR3 GetRight()

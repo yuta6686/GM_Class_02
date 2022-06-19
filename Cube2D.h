@@ -23,7 +23,9 @@ private:
 	D3DXVECTOR3 m_mainPos;
 	float m_Radius;
 	float m_Mass = 1.0f;
-	
+	float m_zContinuousRotation = 0.0f;
+
+	static Cube2D m_View;
 public:
 	void Init()override;
 	void Uninit()override;
@@ -43,5 +45,9 @@ public:
 	float GetRadius() { return m_Radius; }
 	D3DXVECTOR3 GetVel() { return m_Speed; }
 	float GetMass() { return m_Mass; }
+	void SetzContinuousRotation(float z) { m_zContinuousRotation = z; }
+
+	D3DXVECTOR3 GetMainPos() { return m_mainPos; }
+
 };
 

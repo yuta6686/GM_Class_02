@@ -11,8 +11,8 @@ using namespace std;
 
 void Cube2D::Init()
 {
-	m_mainPos.x = 100.0f;
-	m_mainPos.y = 100.0f;
+	m_mainPos.x = 40.0f;
+	m_mainPos.y = 30.0f;
 
 	m_Radius = 100.0f;
 
@@ -73,6 +73,8 @@ void Cube2D::Init()
 	s_Index++;
 
 	m_Scene = Manager::GetScene();
+		
+
 }
 
 void Cube2D::Uninit()
@@ -86,9 +88,11 @@ void Cube2D::Update()
 	//	座標更新
 	m_Position += m_Speed;
 
+	m_Rotation.z += m_zContinuousRotation;
+
 	//　端での跳ね返り
 	if (m_Position.x + m_mainPos.x >= SCREEN_WIDTH ||
-		m_Position.x - m_mainPos.x <= 0.0f)
+		m_Position.x - m_mainPos.x  <= 0.0f)
 	{
 		m_Speed.x *= -1.0f;
 	}

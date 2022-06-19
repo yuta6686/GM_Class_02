@@ -3,17 +3,112 @@
 #include "scene.h"
 #include "manager.h"
 
+
+
+bool Collision2D::AxisOfSeparationAe1(Cube2D& c1, Cube2D& c2)
+{
+	D3DXVECTOR3 L = c1.GetUp();
+
+	D3DXVECTOR3 eb1 = c2.GetRight() * c2.GetMainPos().x;
+	D3DXVECTOR3 eb2 = c2.GetUp() * -c2.GetMainPos().y;
+
+	FLOAT ra = c1.GetMainPos().y;
+	FLOAT rb = fabs(D3DXVec3Dot(&L, &eb1)) + fabs(D3DXVec3Dot(&L, &eb2));
+
+	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
+
+	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+
+	if (Interval < ra + rb) {
+		return true;
+	}
+
+	return false;
+}
+
+bool Collision2D::AxisOfSeparationAe2(Cube2D& c1, Cube2D& c2)
+{
+	D3DXVECTOR3 L = c1.GetRight();
+
+	D3DXVECTOR3 eb1 = c2.GetRight() * c2.GetMainPos().x;
+	D3DXVECTOR3 eb2 = c2.GetUp() * -c2.GetMainPos().y;
+	
+	FLOAT ra = c1.GetMainPos().x;
+	FLOAT rb = fabs(D3DXVec3Dot(&L, &eb1)) + fabs(D3DXVec3Dot(&L, &eb2));
+
+	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
+
+	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+
+	if (Interval < ra + rb) {
+		return true;
+	}
+
+	return false;
+}
+
+bool Collision2D::AxisOfSeparationBe1(Cube2D& c1, Cube2D& c2)
+{
+	D3DXVECTOR3 L = c2.GetUp();
+
+	D3DXVECTOR3 ea1 = c1.GetRight() * c1.GetMainPos().x;
+	D3DXVECTOR3 ea2 = c1.GetUp() * -c1.GetMainPos().y;
+
+	FLOAT ra = fabs(D3DXVec3Dot(&L, &ea1)) + fabs(D3DXVec3Dot(&L, &ea2));
+	FLOAT rb = c2.GetMainPos().y;
+
+	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
+
+	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+
+	if (Interval < ra + rb) {
+		return true;
+	}
+
+	return false;
+}
+
+bool Collision2D::AxisOfSeparationBe2(Cube2D& c1, Cube2D& c2)
+{
+	D3DXVECTOR3 L = c2.GetRight();
+
+	D3DXVECTOR3 ea1 = c1.GetRight() * c1.GetMainPos().x;
+	D3DXVECTOR3 ea2 = c1.GetUp() * -c1.GetMainPos().y;
+
+	FLOAT ra = fabs(D3DXVec3Dot(&L, &ea1)) + fabs(D3DXVec3Dot(&L, &ea2));
+	FLOAT rb = c2.GetMainPos().x;
+
+	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
+
+	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+
+	if (Interval < ra + rb) {
+		return true;
+	}
+
+	return false;
+}
+
 bool Collision2D::BallHitCcheck(Cube2D& c1, Cube2D& c2)
 {
-	float d = Distance2(c1.GetPosition(), c2.GetPosition());
-	float r = c1.GetRadius() + c2.GetRadius();
+	//float d = Distance2(c1.GetPosition(), c2.GetPosition());
+	//float r = c1.GetRadius() + c2.GetRadius();
 
-	D3DXVECTOR3 v1 = c1.GetPosition() - c1.GetVel();
-	D3DXVECTOR3 v2 = c2.GetPosition() - c2.GetVel();
+	//D3DXVECTOR3 v1 = c1.GetPosition() - c1.GetVel();
+	//D3DXVECTOR3 v2 = c2.GetPosition() - c2.GetVel();
 
-	//if (Distance2(v1, v2) < d)return false;
+	////if (Distance2(v1, v2) < d)return false;
 
-	return d < r* r;
+	//return d < r* r;
+
+	if (AxisOfSeparationAe1(c1, c2) &&
+		AxisOfSeparationAe2(c1, c2) &&
+		AxisOfSeparationBe1(c1, c2) &&
+		AxisOfSeparationBe2(c1, c2)) {
+		return true;
+	}
+
+	return false;
 }
 
 float Collision2D::Distance2(const D3DXVECTOR3& v1, const D3DXVECTOR3& v2)
@@ -22,13 +117,13 @@ float Collision2D::Distance2(const D3DXVECTOR3& v1, const D3DXVECTOR3& v2)
 	return dx * dx + dy * dy;
 }
 
-void Collision2D::OnBallHitInverse(Cube2D& c1, Cube2D& c2)
+void Collision2D::OnBallHitInverse(Cube2D* c1, Cube2D* c2)
 {
-	D3DXVECTOR3 v1 = c1.GetVel();
-	D3DXVECTOR3 v2 = c2.GetVel();
+	D3DXVECTOR3 v1 = c1->GetVel();
+	D3DXVECTOR3 v2 = c2->GetVel();
 
-	c1.SetSpeed(v1 * -1.0f);
-	c2.SetSpeed(v2 * -1.0f);
+	c1->SetSpeed(v1 * -1.0f);
+	c2->SetSpeed(v2 * -1.0f);
 }
 
 void Collision2D::OnBallHit(Cube2D* b1, Cube2D* b2)
@@ -99,6 +194,7 @@ void Collision2D::Update()
 			if (BallHitCcheck(*cubes[i], *cubes[j])) 
 			{
 				OnBallHit(cubes[i], cubes[j]);
+				// OnBallHitInverse(cubes[i], cubes[j]);
 //#ifdef _DEBUG
 //				char* str = GetDebugStr();
 //				wsprintf(GetDebugStr(), "game");

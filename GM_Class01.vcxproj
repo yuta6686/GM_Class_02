@@ -67,6 +67,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="model.h" />
+    <ClInclude Include="MyMath.h" />
     <ClInclude Include="pixelShader.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="player.h" />
