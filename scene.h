@@ -20,6 +20,7 @@
 #include "texture.h"
 #include "stage_include.h"
 #include "EnemyFactory.h"
+#include "Cube2D.h"
 
 enum LAYER {
 	LAYER_FIRST=0,
@@ -70,6 +71,13 @@ public:
 
 		AddGameObject<Polygon2D>(LAYER_2D);
 
+		Cube2D* pcube2d_01 = AddGameObject<Cube2D>(LAYER_2D);
+		pcube2d_01->SetPosition({ -2.0f,1.0f,0.0f });
+		pcube2d_01->SetSpeed(D3DXVECTOR3(2.0f,5.0f,0.0f));
+
+		Cube2D* pcube2d_02 = AddGameObject<Cube2D>(LAYER_2D);
+		pcube2d_02->SetPosition({ 2.0f,-1.0f,0.0f });
+		pcube2d_02->SetSpeed(D3DXVECTOR3(5.0f, 2.0f,0.0f));
 		
 		Load();
 	}

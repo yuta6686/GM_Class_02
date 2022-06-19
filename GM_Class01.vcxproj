@@ -23,6 +23,7 @@
     <ClCompile Include="BaseScene.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_Interface.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="Cube2D.h" />
     <ClInclude Include="effect_explosion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
