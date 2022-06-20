@@ -18,7 +18,7 @@ private:
 	int m_Index;
 	inline static int s_Index = 0;
 
-	Scene* m_Scene;
+	std::shared_ptr<Scene> m_Scene;
 
 	D3DXVECTOR3 m_mainPos;
 	float m_Radius;

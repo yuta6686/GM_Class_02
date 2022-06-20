@@ -28,7 +28,7 @@ void Camera::Uninit()
 
 void Camera::Update()
 {
-	Scene* scene = Manager::GetScene();
+	std::shared_ptr<Scene> scene = Manager::GetScene();
 	Player* player = scene->GetGameObject<Player>();
 	D3DXVECTOR3 playerPosition = player->GetPosition();	
 	D3DXVECTOR3 playerForward = player->GetCameraForward();

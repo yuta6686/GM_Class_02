@@ -39,7 +39,7 @@ void Bullet::Uninit()
 
 void Bullet::Update()
 {
-	Scene* scene = Manager::GetScene();
+	std::shared_ptr<Scene> scene = Manager::GetScene();
 
 	Player* player = scene->GetGameObject<Player>();
 

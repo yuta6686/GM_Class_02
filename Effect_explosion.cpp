@@ -127,7 +127,7 @@ void Effect_explosion::Draw()
 	m_PixelShader->Draw();
 
 	//	カメラのビューマトリクス取得
-	Scene* scene = Manager::GetScene();
+	std::shared_ptr<Scene> scene = Manager::GetScene();
 	Camera* camera = scene->GetGameObject<Camera>();
 	D3DXMATRIX view = camera->GetViewMatrix();
 

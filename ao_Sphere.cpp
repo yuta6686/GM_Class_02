@@ -39,7 +39,7 @@ void Ao_Sphere::Uninit()
 
 void Ao_Sphere::Update()
 {
-	Scene* scene = Manager::GetScene();
+	std::shared_ptr<Scene> scene = Manager::GetScene();
 	auto go_player = scene->GetGameObject<Player>();
 
 	m_Position = go_player->GetPositionReference()*0.75f;

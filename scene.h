@@ -16,6 +16,7 @@ enum LAYER {
 	LAYER_NUM_MAX,
 };
 
+
 class Scene
 {
 protected :

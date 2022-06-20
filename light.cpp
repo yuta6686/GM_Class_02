@@ -39,7 +39,7 @@ void Light::Uninit()
 
 void Light::Update()
 {
-    Scene* scene = Manager::GetScene();
+    std::shared_ptr<Scene> scene = Manager::GetScene();
     Camera* camera = scene->GetGameObject<Camera>();
     Player* player = scene->GetGameObject<Player>();
 
@@ -110,7 +110,7 @@ void Light::InitDirectionLight(LIGHT& light)
     light.dirColor.z = 1.5f;
 
     // ‹“_‚ÌˆÊ’u‚ğİ’è‚·‚é
-    Scene* scene = Manager::GetScene();
+    std::shared_ptr<Scene> scene = Manager::GetScene();
     Camera* camera = scene->GetGameObject<Camera>();
     //m_Light.eyePos = camera->GetPosition();
 

@@ -22,17 +22,32 @@
     <Filter Include="ResourceManager">
       <UniqueIdentifier>{6deee311-f715-4106-93ed-719def8ea8d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\StageObjects">
-      <UniqueIdentifier>{5a56da16-3bde-4a78-8040-cba5d356de23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\MoveObjects">
-      <UniqueIdentifier>{272c1c9e-e7ea-41b3-a582-d7d161613376}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\MainObjects">
       <UniqueIdentifier>{b99f1c4a-de82-4cd6-ab1b-87a06bffeae2}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Scene">
       <UniqueIdentifier>{059a7e1f-5d31-412a-b884-38b36722b802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\GameSceneObject">
+      <UniqueIdentifier>{b63413e0-97a8-468c-a731-e4893244f6c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\GameSceneObject\StageObjects">
+      <UniqueIdentifier>{5a56da16-3bde-4a78-8040-cba5d356de23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\TitleSceneObject">
+      <UniqueIdentifier>{5454a3e0-576b-456b-af6c-74b83e37f1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\GameSceneObject\MoveObjects">
+      <UniqueIdentifier>{272c1c9e-e7ea-41b3-a582-d7d161613376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\GameSceneObject\Enemy">
+      <UniqueIdentifier>{84e28b46-f434-426e-a885-af12eefef1e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\GameSceneObject\Effect">
+      <UniqueIdentifier>{7404b7f8-06d8-4d3c-883e-d086b6c6f2a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\ResultSceneObject">
+      <UniqueIdentifier>{c595b27b-410d-4744-9b25-74396cec665c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,22 +88,19 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="ao_Sphere.cpp">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="field.cpp">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="stage_corridor.cpp">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="bullet.cpp">
-      <Filter>GameObject\MoveObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>GameObject\MoveObjects</Filter>
+      <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>GameObject\MoveObjects</Filter>
+      <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>GameObject\MainObjects</Filter>
@@ -97,31 +109,40 @@
       <Filter>GameObject\MainObjects</Filter>
     </ClCompile>
     <ClCompile Include="stage_corridor_corner.cpp">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="stage_otorii.cpp">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="stage_wator_field.cpp">
-      <Filter>GameObject\StageObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Effect_explosion.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Interface.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseScene.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube2D.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitlePolygon.cpp">
+      <Filter>GameObject\TitleSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>GameObject\GameSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube2D.cpp">
+      <Filter>GameObject\GameSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>GameObject\GameSceneObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect_explosion.cpp">
+      <Filter>GameObject\GameSceneObject\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultPolygon.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,34 +180,31 @@
       <Filter>ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="ao_Sphere.h">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="field.h">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="stage_corridor.h">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="stage_corridor_corner.h">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="stage_otorii.h">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="stage_wator_field.h">
-      <Filter>GameObject\StageObjects</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="pixelShader.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>GameObject\MoveObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>GameObject\MoveObjects</Filter>
+      <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>GameObject\MoveObjects</Filter>
+      <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
       <Filter>GameObject\MainObjects</Filter>
@@ -203,35 +221,47 @@
     <ClInclude Include="pointLight.h">
       <Filter>GameObject\MainObjects</Filter>
     </ClInclude>
-    <ClInclude Include="effect_explosion.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="stage_include.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyFactory.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Interface.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseScene.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube2D.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="MyMath.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>GameObject\GameSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube2D.h">
+      <Filter>GameObject\GameSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TitlePolygon.h">
+      <Filter>GameObject\TitleSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="stage_include.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Interface.h">
+      <Filter>GameObject\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFactory.h">
+      <Filter>GameObject\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GameObject\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="effect_explosion.h">
+      <Filter>GameObject\GameSceneObject\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultPolygon.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

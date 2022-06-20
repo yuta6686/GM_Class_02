@@ -183,7 +183,7 @@ void Collision2D::Draw()
 
 void Collision2D::Update()
 {
-	Scene* scene = Manager::GetScene();
+	std::shared_ptr<Scene> scene = Manager::GetScene();
 
 	std::vector<Cube2D*> cubes;
 	cubes = scene->GetGameObjects<Cube2D>();

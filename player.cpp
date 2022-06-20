@@ -12,7 +12,7 @@
 static char texName[] = { "asset\\model\\torii.obj" };
 static float scale = 0.5f;
 
-static Scene* g_Scene;
+static std::shared_ptr<Scene> g_Scene;
 
 
 void Player::Init()

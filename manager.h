@@ -1,5 +1,6 @@
 #pragma once
 #include "polygon2D.h"
+#include "scene.h"
 
 enum SCENE {
 	SCENE_TITLE = 0,
@@ -10,8 +11,9 @@ enum SCENE {
 class Manager
 {
 private:
-	static class Scene* m_Scene;
+	//static class Scene* m_Scene;
 
+	static class std::shared_ptr<Scene> sh_Scene;
 public:
 	//‰Šú‰»
 	static void Init();
@@ -25,6 +27,10 @@ public:
 	//•`‰æˆ—
 	static void Draw();
 
-	static class Scene* GetScene() { return m_Scene; }
+	//static class Scene* GetScene() { return m_Scene; }
 
+	static class std::shared_ptr<Scene> GetScene()
+	{
+		return sh_Scene;
+	}
 };
