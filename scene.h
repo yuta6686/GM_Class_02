@@ -94,7 +94,7 @@ public:
 			m_GameObject[i].clear();//リストのクリア
 		}
 
-		Unload();
+		//Unload();
 	}
 
 	inline virtual void Update()

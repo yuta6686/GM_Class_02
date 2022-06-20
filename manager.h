@@ -10,10 +10,9 @@ enum SCENE {
 
 class Manager
 {
-private:
-	//static class Scene* m_Scene;
+private:	
 
-	static class std::shared_ptr<Scene> sh_Scene;
+	static class std::shared_ptr<Scene> m_Scene;
 public:
 	//‰Šú‰»
 	static void Init();
@@ -26,11 +25,22 @@ public:
 
 	//•`‰æˆ—
 	static void Draw();
-
-	//static class Scene* GetScene() { return m_Scene; }
+	
 
 	static class std::shared_ptr<Scene> GetScene()
 	{
-		return sh_Scene;
+		return m_Scene;
+	}
+
+	template <typename T>
+	static void SetScene() 
+	{
+		if (m_Scene) 
+		{
+			m_Scene->UnInit();
+		}
+		
+		m_Scene = std::make_shared<T>();
+		m_Scene->Init();
 	}
 };

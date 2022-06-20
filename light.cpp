@@ -17,9 +17,9 @@ void Light::Init()
     m_index = g_LightIndex;
 
     //  登録されるインデックスの数調整
-    if (g_LightIndex < LightNum) {
-        g_LightIndex++;
-    }
+    //if (g_LightIndex < LightNum) {
+    //    g_LightIndex++;
+    //}
 
 	// ライト初期化
     InitDirectionLight(m_Light);

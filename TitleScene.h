@@ -3,9 +3,10 @@
 class TitleScene :
     public Scene
 {
+    std::vector<int> a;
 public:
     // Scene ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual void Init() override;
-
+    virtual void Update()override;
 };
 

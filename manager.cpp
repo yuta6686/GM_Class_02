@@ -7,15 +7,15 @@
 
 
 //Scene* Manager::m_Scene;
-std::shared_ptr<Scene> Manager::sh_Scene;
+std::shared_ptr<Scene> Manager::m_Scene=nullptr;
 
 //‰Šú‰»ˆ—
 void Manager::Init()
 {
 	Renderer::Init();
 
-	sh_Scene = std::make_shared<ResultScene>();
-	sh_Scene->Init();
+	m_Scene = std::make_shared<ResultScene>();
+	m_Scene->Init();
 
 	//m_Scene = new ResultScene();
 	//m_Scene->Init();
@@ -24,10 +24,15 @@ void Manager::Init()
 //I—¹ˆ—
 void Manager::Uninit()
 {
-	sh_Scene->UnInit();
+	m_Scene->UnInit();
 
 	/*m_Scene->UnInit();
 	delete m_Scene;*/
+
+	ResourceManger<Model>::AllRelease();
+	ResourceManger<Texture>::AllRelease();
+	ResourceManger<VertexShader>::AllRelease();
+	ResourceManger<PixelShader>::AllRelease();
 
 	Renderer::Uninit();
 }
@@ -36,7 +41,7 @@ void Manager::Uninit()
 //XVˆ—
 void Manager::Update()
 {
-	sh_Scene->Update();
+	m_Scene->Update();
 
 	//m_Scene->Update();
 }
@@ -47,7 +52,7 @@ void Manager::Draw()
 {
 	Renderer::Begin();
 
-	sh_Scene->Draw();
+	m_Scene->Draw();
 
 	//m_Scene->Draw();
 

@@ -14,6 +14,9 @@
 #include "EnemyFactory.h"
 #include "Cube2D.h"
 #include "Collision.h"
+#include "manager.h"
+#include "ResultScene.h"
+
 void GameScene::Init()
 {
 	AddGameObject<Camera>(LAYER_FIRST);
@@ -68,6 +71,10 @@ void GameScene::Uninit()
 void GameScene::Update()
 {
 	Scene::Update();
+	
+	if (GetKeyboardTrigger(DIK_RETURN)) {
+		Manager::SetScene<ResultScene>();
+	}
 }
 
 void GameScene::StageCorridorCreate()
