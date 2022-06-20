@@ -10,6 +10,7 @@
 #include "ResourceManager.h"
 #include "scene.h"
 #include "manager.h"
+#include "camera.h"
 
 void Effect_explosion::InitVertex(VERTEX_3D* vertex)
 {

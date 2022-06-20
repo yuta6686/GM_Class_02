@@ -2,6 +2,9 @@
 #include "scene.h"
 #include "manager.h"
 #include "renderer.h"
+#include "GameScene.h"
+#include "player.h"
+#include "camera.h"
 
 static int g_LightIndex = 0;
 

@@ -9,7 +9,8 @@
 #include "manager.h"
 #include "ResourceManager.h"
 #include "effect_explosion.h"
-
+#include "player.h"
+#include "Enemy.h"
 
 void Bullet::Init()
 {

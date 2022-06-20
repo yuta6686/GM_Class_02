@@ -29,6 +29,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_Interface.cpp" />
     <ClCompile Include="field.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="Enemy_Interface.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="gameObject.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Light.h" />

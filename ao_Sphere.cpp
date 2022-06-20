@@ -8,7 +8,7 @@
 #include "scene.h"
 #include "manager.h"
 #include "ao_Sphere.h"
-
+#include "player.h"
 
 void Ao_Sphere::Init()
 {

@@ -1,7 +1,7 @@
 #include "main.h"
 #include "manager.h"
 #include "renderer.h"
-#include "scene.h"
+#include "GameScene.h"
 
 
 Scene* Manager::m_Scene;
@@ -12,7 +12,7 @@ void Manager::Init()
 	Renderer::Init();
 
 
-	m_Scene = new Scene();
+	m_Scene = new GameScene();
 	m_Scene->Init();
 }
 
