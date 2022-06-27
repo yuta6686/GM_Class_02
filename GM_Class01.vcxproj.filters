@@ -144,6 +144,9 @@
     <ClCompile Include="ResultPolygon.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="audio.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -261,6 +264,9 @@
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="ResultPolygon.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
