@@ -16,6 +16,7 @@
 #include "Collision.h"
 #include "manager.h"
 #include "ResultScene.h"
+#include "audio.h"
 
 void GameScene::Init()
 {
@@ -61,10 +62,21 @@ void GameScene::Init()
 	//pcube2d_02->SetzContinuousRotation(MyMath::GetRadian(1.0f));
 
 	AddGameObject<Collision2D>(LAYER_2D);
+
+	m_BGM = AddGameObject<Audio>(LAYER_3D);
+	m_BGM->Load("asset\\audio\\kanatanouchuu.wav");
+	m_BGM->Play(true);
+
+	sourceRate = 270.0f;
+	targetRate = 1024.0f;
+	float frequencyRatio = sourceRate / targetRate;
+	m_BGM->SetAudioPitch(frequencyRatio);
 }
 
 void GameScene::Uninit()
 {
+		
+
 	Scene::UnInit();
 }
 
@@ -75,6 +87,42 @@ void GameScene::Update()
 	if (GetKeyboardTrigger(DIK_RETURN)) {
 		Manager::SetScene<ResultScene>();
 	}
+
+	if (GetKeyboardPress(DIK_N)) 
+	{		
+		m_BGM->VolumeDown(0.01f);
+	}
+	if (GetKeyboardPress(DIK_M))
+	{	
+		m_BGM->VolumeUp(0.01f);
+	}
+
+	if (GetKeyboardPress(DIK_V))
+	{
+		m_BGM->PitchDown(1.0f);
+		
+	}
+	if (GetKeyboardPress(DIK_B))
+	{
+		m_BGM->PitchUp(1.0f);
+		
+	}
+
+
+
+
+//#ifdef _DEBUG
+//	char* str = GetDebugStr();
+//	wsprintf(GetDebugStr(), "game");
+//	wsprintf(&str[strlen(str)], "sourceRate:%d , targetRate:%d ",
+//		(int)sourceRate,(int)targetRate);
+//	
+//	SetWindowText(GetWindow(), GetDebugStr());
+//#endif
+
+
+
+	
 }
 
 void GameScene::StageCorridorCreate()

@@ -6,6 +6,7 @@
 #include "manager.h"
 #include "scene.h"
 #include "Item.h"
+#include "audio.h"
 
 #define PLAYER_SPEED 0.25f
 
@@ -24,6 +25,11 @@ void Player::Init()
 		"vertexLightingVS.cso");
 
 	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
+
+	std::shared_ptr<Scene> scene = Manager::GetScene();
+	m_ShotSE = scene->AddGameObject<Audio>(LAYER_3D);
+	m_ShotSE->Load("asset\\audio\\wan.wav");
+
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -177,5 +183,8 @@ void Player::ShootBullet()
 		obj->SetPosition(m_Position);
 		obj->SetRotation(rot);
 		obj->SetForward(GetCameraForward());
+
+
+		m_ShotSE->Play(false);
 	}
 }

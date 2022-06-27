@@ -4,6 +4,7 @@
 #include "GameScene.h"
 #include "TitleScene.h"
 #include "ResultScene.h"
+#include "audio.h"
 
 
 //Scene* Manager::m_Scene;
@@ -14,9 +15,11 @@ void Manager::Init()
 {
 	Renderer::Init();
 
-	m_Scene = std::make_shared<ResultScene>();
-	m_Scene->Init();
+	Audio::InitMaster();
 
+	m_Scene = std::make_shared<TitleScene>();
+	m_Scene->Init();
+	
 	//m_Scene = new ResultScene();
 	//m_Scene->Init();
 }
@@ -33,6 +36,8 @@ void Manager::Uninit()
 	ResourceManger<Texture>::AllRelease();
 	ResourceManger<VertexShader>::AllRelease();
 	ResourceManger<PixelShader>::AllRelease();
+
+	Audio::UninitMaster();
 
 	Renderer::Uninit();
 }

@@ -2,7 +2,7 @@
 #include "main.h"
 #include "model.h"
 #include "gameObject.h"
-
+class Audio;
 
 class Player:public GameObject
 {
@@ -16,6 +16,8 @@ private:
 	/// m_RotationにはX軸=0が入っている。
 	/// </summary>
 	D3DXVECTOR3 m_CameraRot;
+
+	class Audio* m_ShotSE;
 
 	//	後で他のクラスに標準化する
 	float GetRadian(float degree) { return degree * (D3DX_PI / 180.0f); }
