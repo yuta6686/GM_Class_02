@@ -94,6 +94,11 @@ void Audio::Load(const char *FileName)
 		mmioClose(hmmio, 0);
 	}
 
+	//	これ配列にして、プレイでも配列にする
+	/*for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
+		m_Xaudio->CreateSourceVoice(&m_SourceVoices[j], &wfx);
+	}*/
+
 
 	// サウンドソース生成
 	m_Xaudio->CreateSourceVoice(&m_SourceVoice, &wfx);
