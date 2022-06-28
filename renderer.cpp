@@ -135,7 +135,7 @@ void Renderer::Init()
 
 	// ブレンドステート設定
 	D3D11_BLEND_DESC blendDesc{};
-	blendDesc.AlphaToCoverageEnable = TRUE;
+	blendDesc.AlphaToCoverageEnable = FALSE;
 	blendDesc.IndependentBlendEnable = FALSE;
 	blendDesc.RenderTarget[0].BlendEnable = TRUE;
 	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
@@ -340,9 +340,9 @@ void Renderer::SetAlphaToCoverage(bool Enable)
 	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
 	if(Enable)
-		m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
-	else
 		m_DeviceContext->OMSetBlendState(m_BlendStateATC, blendFactor, 0xffffffff);
+	else
+		m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
 }
 
 void Renderer::SetDepthEnable( bool Enable )

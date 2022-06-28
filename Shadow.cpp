@@ -98,7 +98,7 @@ void Shadow::Draw()
 	world = scale * rot * trans;
 	Renderer::SetWorldMatrix(&world);
 
-	Renderer::SetAlphaToCoverage(false);
+	Renderer::SetAlphaToCoverage(TRUE);
 
 	//頂点バッファ設定
 	UINT stride = sizeof(VERTEX_3D);

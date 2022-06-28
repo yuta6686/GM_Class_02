@@ -153,9 +153,9 @@ void Effect_explosion::Draw()
 
 	//SetBlendState(BLEND_MODE_ADD);
 
-	Renderer::SetAlphaToCoverage(false);
+	Renderer::SetAlphaToCoverage(TRUE);
 
 	m_Texture->Draw();
 
-	Renderer::SetAlphaToCoverage(false);
+	Renderer::SetAlphaToCoverage(FALSE);
 }
