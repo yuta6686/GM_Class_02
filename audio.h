@@ -8,20 +8,22 @@
 //#define MAX_BUFFER_COUNT 3
 //BYTE buffers[MAX_BUFFER_COUNT][STREAMING_BUFFER_SIZE];
 
-#define SOUND_SOURCE_MAX 10
+#define SOUND_SOURCE_MAX 50
 
 class Audio : public GameObject
 {
 private:
 	static IXAudio2* m_Xaudio;
 	static IXAudio2MasteringVoice* m_MasteringVoice;
-	static std::vector<IXAudio2MasteringVoice*> m_MasteringVoices;
+	
 
 	IXAudio2SourceVoice* m_SourceVoice;
+	std::vector<IXAudio2SourceVoice*> m_SourceVoices;
 	BYTE* m_SoundData;
 
 	int						m_Length;
 	int						m_PlayLength;
+	int						m_Index;
 
 	float m_Volume;//	(0.0f Å` 1.0f)
 	float m_Pitch;
@@ -32,7 +34,9 @@ public:
 	static void InitMaster();
 	static void UninitMaster();
 
-	void Init() {};
+	void Init() {
+		m_SourceVoices.resize(SOUND_SOURCE_MAX);
+	};
 	void Uninit();
 	void Update() {};
 	void Draw() {};

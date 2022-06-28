@@ -169,7 +169,7 @@ void Player::GetItem()
 
 void Player::ShootBullet()
 {
-	if (IsMouseLeftPressed()) {
+	if (IsMouseLeftTriggered()) {
 		//	ƒoƒŒƒbƒg¶¬
 		Bullet* obj = g_Scene->AddGameObject<Bullet>(LAYER_3D);
 

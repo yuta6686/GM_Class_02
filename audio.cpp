@@ -6,8 +6,8 @@
 
 
 
-IXAudio2*				Audio::m_Xaudio = NULL;
-IXAudio2MasteringVoice*	Audio::m_MasteringVoice = NULL;
+IXAudio2* Audio::m_Xaudio = NULL;
+IXAudio2MasteringVoice* Audio::m_MasteringVoice = NULL;
 
 
 void Audio::InitMaster()
@@ -20,6 +20,8 @@ void Audio::InitMaster()
 
 	// マスタリングボイス生成
 	m_Xaudio->CreateMasteringVoice(&m_MasteringVoice);
+
+
 }
 
 
@@ -37,8 +39,7 @@ void Audio::UninitMaster()
 
 
 
-
-void Audio::Load(const char *FileName)
+void Audio::Load(const char* FileName)
 {
 
 	// サウンドデータ読込
@@ -95,21 +96,25 @@ void Audio::Load(const char *FileName)
 	}
 
 	//	これ配列にして、プレイでも配列にする
-	/*for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
+	for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
 		m_Xaudio->CreateSourceVoice(&m_SourceVoices[j], &wfx);
-	}*/
+		assert(m_SourceVoices[j]);
+	}
 
 
 	// サウンドソース生成
-	m_Xaudio->CreateSourceVoice(&m_SourceVoice, &wfx);
-	assert(m_SourceVoice);
+	//m_Xaudio->CreateSourceVoice(&m_SourceVoices[j], &wfx);
+	//assert(m_SourceVoice);
 }
 
 
 void Audio::Uninit()
 {
-	m_SourceVoice->Stop();
-	m_SourceVoice->DestroyVoice();
+	for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
+		m_SourceVoices[j]->Stop();
+		m_SourceVoices[j]->DestroyVoice();
+		m_SourceVoices[j] = nullptr;
+	}
 
 	delete[] m_SoundData;
 }
@@ -120,40 +125,60 @@ void Audio::Uninit()
 
 void Audio::Play(bool Loop)
 {
-	m_SourceVoice->Stop();
-	m_SourceVoice->FlushSourceBuffers();
+	for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
+
+		XAUDIO2_VOICE_STATE xa2state;
+		m_SourceVoices[j]->GetState(&xa2state);
+		if (xa2state.BuffersQueued != 0)continue;
 
 
-	// バッファ設定
-	XAUDIO2_BUFFER bufinfo;
+		// m_SourceVoices[j]->Stop();
+		// m_SourceVoices[j]->FlushSourceBuffers(); 
 
-	memset(&bufinfo, 0x00, sizeof(bufinfo));
-	bufinfo.AudioBytes = m_Length;
-	bufinfo.pAudioData = m_SoundData;
-	bufinfo.PlayBegin = 0;
-	bufinfo.PlayLength = m_PlayLength;
 
-	// ループ設定
-	if (Loop)
-	{
-		bufinfo.LoopBegin = 0;
-		bufinfo.LoopLength = m_PlayLength;
-		bufinfo.LoopCount = XAUDIO2_LOOP_INFINITE;
+
+		// バッファ設定
+		XAUDIO2_BUFFER bufinfo;
+
+		memset(&bufinfo, 0x00, sizeof(bufinfo));
+		bufinfo.AudioBytes = m_Length;
+		bufinfo.pAudioData = m_SoundData;
+		bufinfo.PlayBegin = 0;
+		bufinfo.PlayLength = m_PlayLength;
+		bufinfo.Flags = XAUDIO2_END_OF_STREAM;
+
+		// ループ設定
+		if (Loop)
+		{
+			bufinfo.LoopBegin = 0;
+			bufinfo.LoopLength = m_PlayLength;
+			bufinfo.LoopCount = XAUDIO2_LOOP_INFINITE;
+		}
+
+
+
+		m_SourceVoices[j]->SubmitSourceBuffer(&bufinfo, NULL);
+
+		/*
+			float outputMatrix[4] = { 0.0f , 0.0f, 1.0f , 0.0f };
+			m_SourceVoice->SetOutputMatrix(m_MasteringVoice, 2, 2, outputMatrix);
+			//m_SourceVoice->SetVolume(0.1f);
+		*/
+
+
+		// 再生
+		m_SourceVoices[j]->Start();
+
+		break;
 	}
 
-	m_SourceVoice->SubmitSourceBuffer(&bufinfo, NULL);
+	//m_SourceVoices[m_Index]->SubmitSourceBuffer(&bufinfo, NULL);
 
-/*
-	float outputMatrix[4] = { 0.0f , 0.0f, 1.0f , 0.0f };
-	m_SourceVoice->SetOutputMatrix(m_MasteringVoice, 2, 2, outputMatrix);
-	//m_SourceVoice->SetVolume(0.1f);
-*/
-
-
-	// 再生
-	m_SourceVoice->Start();
+	//// 再生
+	//m_SourceVoices[m_Index]->Start();
 
 }
+
 
 
 

@@ -77,6 +77,8 @@ private:
 	static IDXGISwapChain*         m_SwapChain;
 	static ID3D11RenderTargetView* m_RenderTargetView;
 	static ID3D11DepthStencilView* m_DepthStencilView;
+	static ID3D11BlendState* m_BlendState;
+	static ID3D11BlendState* m_BlendStateATC;
 
 	static ID3D11Buffer*			m_WorldBuffer;
 	static ID3D11Buffer*			m_ViewBuffer;
@@ -98,6 +100,7 @@ public:
 	static void Begin();
 	static void End();
 
+	static void SetAlphaToCoverage(bool Enable);
 	static void SetDepthEnable(bool Enable);
 	static void SetWorldViewProjection2D();
 	static void SetWorldMatrix(D3DXMATRIX* WorldMatrix);

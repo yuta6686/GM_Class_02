@@ -23,6 +23,9 @@ ID3D11Buffer*			Renderer::m_PointLightBuffer = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateEnable = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateDisable = NULL;
 
+ID3D11BlendState* Renderer::m_BlendState=NULL;
+ID3D11BlendState* Renderer::m_BlendStateATC=NULL;
+
 
 
 
@@ -132,7 +135,7 @@ void Renderer::Init()
 
 	// ブレンドステート設定
 	D3D11_BLEND_DESC blendDesc{};
-	blendDesc.AlphaToCoverageEnable = FALSE;
+	blendDesc.AlphaToCoverageEnable = TRUE;
 	blendDesc.IndependentBlendEnable = FALSE;
 	blendDesc.RenderTarget[0].BlendEnable = TRUE;
 	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
@@ -144,9 +147,13 @@ void Renderer::Init()
 	blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
 	float blendFactor[4] = {0.0f, 0.0f, 0.0f, 0.0f};
-	ID3D11BlendState* blendState = NULL;
-	m_Device->CreateBlendState( &blendDesc, &blendState );
-	m_DeviceContext->OMSetBlendState( blendState, blendFactor, 0xffffffff );
+	//ID3D11BlendState* blendState = NULL;	->メンバ変数にする
+	m_Device->CreateBlendState( &blendDesc, &m_BlendState );
+
+	blendDesc.AlphaToCoverageEnable = TRUE;
+	m_Device->CreateBlendState(&blendDesc, &m_BlendStateATC);
+
+	m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff );
 
 
 
@@ -328,6 +335,16 @@ void Renderer::SetBlendState(BLEND_MODE bm)
 	}*/
 }
 
+void Renderer::SetAlphaToCoverage(bool Enable)
+{
+	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+	if(Enable)
+		m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
+	else
+		m_DeviceContext->OMSetBlendState(m_BlendStateATC, blendFactor, 0xffffffff);
+}
+
 void Renderer::SetDepthEnable( bool Enable )
 {
 	if( Enable )
@@ -356,6 +373,8 @@ void Renderer::SetWorldViewProjection2D()
 	m_DeviceContext->UpdateSubresource( m_ProjectionBuffer, 0, NULL, &projection, 0, 0 );
 
 }
+
+
 
 
 void Renderer::SetWorldMatrix( D3DXMATRIX* WorldMatrix )
