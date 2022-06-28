@@ -46,8 +46,10 @@ public:
 
 //	ボリューム
 	void SetAudioVolume(const float& vol) {
-		if (m_SourceVoice == nullptr)return;
-		m_SourceVoice->SetVolume(vol);
+		for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
+			if (IsNowPlay(j) == false)continue;			
+			m_SourceVoices[j]->SetVolume(vol);
+		}
 	}
 
 	void VolumeUp(const float& vol) {
@@ -68,10 +70,12 @@ public:
 		SetAudioVolume(m_Volume);
 	}
 //	ピッチ
-	void SetAudioPitch(const float& pit) {
-		if (m_SourceVoice == nullptr)return;
+	void SetAudioPitch(const float& pit) {		
 		if (pit < 0.0f || pit > 1.0f)return;
-		m_SourceVoice->SetFrequencyRatio(pit);
+		for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
+			if (IsNowPlay(j) == false)continue;
+			m_SourceVoices[j]->SetFrequencyRatio(pit);
+		}		
 	}
 
 	void PitchUp(const float& pit) {
@@ -91,6 +95,15 @@ public:
 		m_sourceRate -= pit;
 		m_Pitch = m_sourceRate / m_targetRate;
 		SetAudioPitch(m_Pitch);
+	}
+
+	bool IsNowPlay(const int& index) {
+		XAUDIO2_VOICE_STATE xa2state;
+		m_SourceVoices[index]->GetState(&xa2state);
+
+		//	0じゃなかったら再生中
+		if (xa2state.BuffersQueued != 0)return true;
+		return false;
 	}
 	
 	void Strmng() {

@@ -7,6 +7,7 @@
 #include "scene.h"
 #include "Item.h"
 #include "audio.h"
+#include "Shadow.h"
 
 #define PLAYER_SPEED 0.25f
 
@@ -36,6 +37,8 @@ void Player::Init()
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
 	g_Scene = Manager::GetScene();
+
+	m_Shadow = g_Scene->AddGameObject<Shadow>(LAYER_3D);
 }
 
 void Player::Uninit()
@@ -71,6 +74,12 @@ void Player::Update()
 //
 //	SetWindowText(GetWindow(), GetDebugStr());
 //#endif
+
+	
+	D3DXVECTOR3 shadowPos = m_Position;
+	shadowPos.y = 0.25f;
+	m_Shadow->SetPosition(shadowPos);
+	m_Shadow->SetScale(m_Scale * 2.0f);
 }
 
 void Player::Draw()

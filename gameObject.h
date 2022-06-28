@@ -32,8 +32,14 @@ public:
 	{
 		m_Rotation = Rotation;
 	}
+	virtual void SetScale(D3DXVECTOR3 Scale)
+	{
+		m_Scale = Scale;
+	}
+
 	D3DXVECTOR3 GetPosition() { return m_Position; }
 	D3DXVECTOR3 GetRotation() { return m_Rotation; }
+
 	
 	const D3DXVECTOR3& GetPositionReference()const 
 	{

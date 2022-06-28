@@ -3,6 +3,7 @@
 #include "model.h"
 #include "gameObject.h"
 class Audio;
+class Shadow;
 
 class Player:public GameObject
 {
@@ -18,6 +19,7 @@ private:
 	D3DXVECTOR3 m_CameraRot;
 
 	class Audio* m_ShotSE;
+	class Shadow* m_Shadow;
 
 	//	Œã‚Å‘¼‚ÌƒNƒ‰ƒX‚É•W€‰»‚·‚é
 	float GetRadian(float degree) { return degree * (D3DX_PI / 180.0f); }

@@ -147,6 +147,9 @@
     <ClCompile Include="audio.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Shadow.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -267,6 +270,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="audio.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
