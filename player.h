@@ -28,6 +28,8 @@ private:
 	D3DXVECTOR3 GetRadian(D3DXVECTOR3 degree) { return degree * (D3DX_PI / 180.0f); }
 	D3DXVECTOR3 GetDegree(D3DXVECTOR3 radian) { return radian * (180.0f / D3DX_PI); }
 	
+	//	クォータニオン追加
+	D3DXQUATERNION m_Quaternion;
 public:
 	void Init()	 override;
 	void Uninit()override;

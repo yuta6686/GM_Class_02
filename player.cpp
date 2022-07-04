@@ -43,6 +43,9 @@ void Player::Init()
 
 	m_ShootBullet = new ShootBullet_Idle();
 	m_ShootBullet->Init();
+
+	//	クォータニオン追加
+	D3DXQuaternionIdentity(&m_Quaternion);
 }
 
 void Player::Uninit()
@@ -99,7 +102,12 @@ void Player::Draw()
 	//マトリクス設定
 	D3DXMATRIX world, scale, rot, trans;
 	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
+
+	//	クォータニオン削除
+	//D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
+	
+	//	クォータニオン追加
+	D3DXMatrixRotationQuaternion(&rot, &m_Quaternion);
 	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
 	world = scale * rot * trans;
 	Renderer::SetWorldMatrix(&world);
@@ -138,13 +146,13 @@ void Player::PlayerMove()
 
 void Player::PlayerRotation()
 {
-	if (GetKeyboardPress(DIK_I)) {
+	/*if (GetKeyboardPress(DIK_I)) {
 		m_CameraRot.y += PLAYER_SPEED / 5;
 	}
 
 	if (GetKeyboardPress(DIK_K)) {
 		m_CameraRot.y -= PLAYER_SPEED / 5;
-	}
+	}*/
 
 	if (IsMouseRightPressed()) {
 		m_CameraRot.y += GetMouseX() / 100.0f;
@@ -164,6 +172,39 @@ void Player::PlayerRotation()
 	m_Rotation = m_CameraRot;
 	m_Rotation.x = 0.0f;
 	
+
+//	クォータニオン追加
+	//	Z軸反時計周り
+	if (GetKeyboardPress(DIK_A)) {
+		D3DXQUATERNION quat;
+		D3DXVECTOR3 axis = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+		D3DXQuaternionRotationAxis(&quat, &axis, 0.1f);
+		m_Quaternion *= quat;
+	}
+
+	//	Z軸時計回り
+	if (GetKeyboardPress(DIK_D)) {
+		D3DXQUATERNION quat;
+		D3DXVECTOR3 axis = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+		D3DXQuaternionRotationAxis(&quat, &axis, -0.1f);
+		m_Quaternion *= quat;
+	}
+
+	//	X軸奥に回る
+	if (GetKeyboardPress(DIK_W)) {
+		D3DXQUATERNION quat;
+		D3DXVECTOR3 axis = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+		D3DXQuaternionRotationAxis(&quat, &axis, 0.1f);
+		m_Quaternion *= quat;
+	}
+
+	//	X軸手前に回る
+	if (GetKeyboardPress(DIK_S)) {
+		D3DXQUATERNION quat;
+		D3DXVECTOR3 axis = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+		D3DXQuaternionRotationAxis(&quat, &axis, -0.1f);
+		m_Quaternion *= quat;
+	}
 }
 
 void Player::GetItem()
