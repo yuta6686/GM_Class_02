@@ -13,11 +13,11 @@
 class Audio : public GameObject
 {
 private:
-	static IXAudio2* m_Xaudio;
-	static IXAudio2MasteringVoice* m_MasteringVoice;
-	
+	const float MAX_VOLUME = 0.75f;
 
-	IXAudio2SourceVoice* m_SourceVoice;
+	static IXAudio2* m_Xaudio;
+	static IXAudio2MasteringVoice* m_MasteringVoice;	
+	
 	std::vector<IXAudio2SourceVoice*> m_SourceVoices;
 	BYTE* m_SoundData;
 
@@ -52,17 +52,15 @@ public:
 		}
 	}
 
-	void VolumeUp(const float& vol) {
-		if (m_SourceVoice == nullptr)return;
-		if (m_Volume + vol > 1.0f) {
-			m_Volume = 1.0f;
+	void VolumeUp(const float& vol) {		
+		if (m_Volume + vol > MAX_VOLUME) {
+			m_Volume = MAX_VOLUME;
 		}
 		m_Volume += vol;
 		SetAudioVolume(m_Volume);
 	}
 	
-	void VolumeDown(const float& vol) {
-		if (m_SourceVoice == nullptr)return;
+	void VolumeDown(const float& vol) {		
 		if (m_Volume - vol < 0.0f) {
 			m_Volume = 0.0f;
 		}
@@ -78,8 +76,7 @@ public:
 		}		
 	}
 
-	void PitchUp(const float& pit) {
-		if (m_SourceVoice == nullptr)return;
+	void PitchUp(const float& pit) {		
 		if (m_sourceRate + pit > 1024.0f) {
 			m_sourceRate = 1024.0f;
 		}
@@ -87,8 +84,7 @@ public:
 		m_Pitch = m_sourceRate / m_targetRate;
 		SetAudioPitch(m_Pitch);
 	}
-	void PitchDown(const float& pit) {
-		if (m_SourceVoice == nullptr)return;
+	void PitchDown(const float& pit) {		
 		if (m_sourceRate - pit < 1.0f / 1024.0f) {
 			m_sourceRate = 1.0f / 1024.0f;
 		}

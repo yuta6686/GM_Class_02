@@ -101,6 +101,9 @@ bool Collision2D::BallHitCcheck(Cube2D& c1, Cube2D& c2)
 
 	//return d < r* r;
 
+	VERTEX_3D* v1 = c1.GetVertex();
+	VERTEX_3D* v2 = c2.GetVertex();	
+
 	if (AxisOfSeparationAe1(c1, c2) &&
 		AxisOfSeparationAe2(c1, c2) &&
 		AxisOfSeparationBe1(c1, c2) &&

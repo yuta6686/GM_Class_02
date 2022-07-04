@@ -26,6 +26,8 @@ private:
 	float m_zContinuousRotation = 0.0f;
 
 	static Cube2D m_View;
+
+	VERTEX_3D m_vertex[4];
 public:
 	void Init()override;
 	void Uninit()override;
@@ -49,5 +51,6 @@ public:
 
 	D3DXVECTOR3 GetMainPos() { return m_mainPos; }
 
+	VERTEX_3D* GetVertex() { return m_vertex; }
 };
 

@@ -14,6 +14,7 @@ private:
 	static bool AxisOfSeparationBe1(Cube2D& c1, Cube2D& c2);
 	static bool AxisOfSeparationBe2(Cube2D& c1, Cube2D& c2);
 	
+	
 public:
 	inline static const float BOUND_CONST = 1.0f;
 
