@@ -5,7 +5,8 @@
 class Bullet : public GameObject
 {
 private:
-	static inline const float BULLET_SPEED_MAX = 1.0f;
+	static inline const float BULLET_SPEED_MAX = 5.0f;
+	static inline float m_Speed = 1.0f;
 	static inline std::shared_ptr<Resource> m_Model;
 
 	ID3D11VertexShader* m_VertexShader = NULL;
@@ -13,10 +14,7 @@ private:
 	ID3D11InputLayout* m_VertexLayout = NULL;
 
 	D3DXVECTOR3 m_Forward;
-public:
-	
-	
-
+public:		
 	void Init();
 	void Uninit();
 	void Update();
@@ -24,6 +22,10 @@ public:
 
 	void SetForward(D3DXVECTOR3 vec) {
 		m_Forward = vec;
+	}
+
+	void SetSpeed(const float& speed) {
+		m_Speed = speed;
 	}
 };
 

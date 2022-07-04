@@ -8,6 +8,7 @@
 #include "Item.h"
 #include "audio.h"
 #include "Shadow.h"
+#include "ShootBullet_Idle.h"
 
 #define PLAYER_SPEED 0.25f
 
@@ -39,15 +40,19 @@ void Player::Init()
 	g_Scene = Manager::GetScene();
 
 	m_Shadow = g_Scene->AddGameObject<Shadow>(LAYER_3D);
+
+	m_ShootBullet = new ShootBullet_Idle();
+	m_ShootBullet->Init();
 }
 
 void Player::Uninit()
-{
-	
-
+{	
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
 	m_PixelShader->Release();
+
+	m_ShootBullet->Uninit();
+	delete m_ShootBullet;
 }
 
 void Player::Update()
@@ -59,7 +64,7 @@ void Player::Update()
 	PlayerRotation();
 
 	//	バレット撃つ処理
-	ShootBullet();
+	ShootBulletFunc();
 
 	//	アイテム取得	
 	GetItem();
@@ -100,6 +105,9 @@ void Player::Draw()
 	Renderer::SetWorldMatrix(&world);
 
 	m_Model->Draw();
+
+
+	m_ShootBullet->Draw();
 }
 
 void Player::PlayerMove()
@@ -176,24 +184,19 @@ void Player::GetItem()
 	}
 }
 
-void Player::ShootBullet()
+void Player::ShootBulletFunc()
 {
-	if (IsMouseLeftTriggered()) {
-		//	バレット生成
-		Bullet* obj = g_Scene->AddGameObject<Bullet>(LAYER_3D);
+	m_ShootBullet->Update();
+	if (m_ShootBullet->GetIsNextState()) {
+		//	次のstateのポインタだけもらう。
+		ShootBullet* sb = m_ShootBullet->CreateNextState();
 
-		//	回転調整
-		D3DXVECTOR3 rot = m_CameraRot, rrot = rot;
-		rot.x = rrot.y;
-		rot.y = rrot.x;
-		rot.z = rrot.z;
+		//	今のポインタは消す。
+		m_ShootBullet->Uninit();
+		delete m_ShootBullet;
 
-		//	セット
-		obj->SetPosition(m_Position);
-		obj->SetRotation(rot);
-		obj->SetForward(GetCameraForward());
-
-
-		m_ShotSE->Play(false);
+		//	新しいポインタを作る
+		m_ShootBullet = sb;
+		m_ShootBullet->Init();
 	}
 }

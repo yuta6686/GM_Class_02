@@ -45,7 +45,7 @@ void Bullet::Update()
 
 
 	//m_Position.z += BULLET_SPEED_MAX;
-	m_Position += m_Forward * BULLET_SPEED_MAX;
+	m_Position += m_Forward * m_Speed;
 	//m_Rotation = player->GetForward();
 
 	if (m_Position.z > 100.0f || 

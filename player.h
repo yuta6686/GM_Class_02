@@ -4,6 +4,7 @@
 #include "gameObject.h"
 class Audio;
 class Shadow;
+class ShootBullet;
 
 class Player:public GameObject
 {
@@ -20,6 +21,7 @@ private:
 
 	class Audio* m_ShotSE;
 	class Shadow* m_Shadow;
+	class ShootBullet* m_ShootBullet;	
 
 	//	å„Ç≈ëºÇÃÉNÉâÉXÇ…ïWèÄâªÇ∑ÇÈ
 	float GetRadian(float degree) { return degree * (D3DX_PI / 180.0f); }
@@ -46,6 +48,8 @@ public:
 
 		return forward;
 	}
+
+	Audio* GetShootSE() { return m_ShotSE; }
 private:
 	//	privateïœêî
 	static inline std::shared_ptr<Resource> m_Model;
@@ -58,6 +62,6 @@ private:
 	void PlayerMove();
 	void PlayerRotation();
 	void GetItem();
-	void ShootBullet();
+	void ShootBulletFunc();
 };
 

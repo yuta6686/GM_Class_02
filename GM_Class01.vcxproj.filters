@@ -150,6 +150,18 @@
     <ClCompile Include="Shadow.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="ShootBullet.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootBullet_Idle.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootBullet_Amass.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootBullet_Shoot.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -273,6 +285,18 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Shadow.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet_Idle.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet_Amass.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet_Shoot.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

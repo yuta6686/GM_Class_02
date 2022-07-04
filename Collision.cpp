@@ -191,6 +191,8 @@ void Collision2D::Update()
 	std::vector<Cube2D*> cubes;
 	cubes = scene->GetGameObjects<Cube2D>();
 
+	if (cubes.size() <= 0)return;
+
 	for (int i = 0;i<cubes.size()-1;i++) 
 	{
 		for (int j = i+1; j < cubes.size(); j++) {

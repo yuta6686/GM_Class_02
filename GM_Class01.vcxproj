@@ -43,6 +43,10 @@
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Shadow.cpp" />
+    <ClCompile Include="ShootBullet.cpp" />
+    <ClCompile Include="ShootBullet_Amass.cpp" />
+    <ClCompile Include="ShootBullet_Idle.cpp" />
+    <ClCompile Include="ShootBullet_Shoot.cpp" />
     <ClCompile Include="stage_corridor.cpp" />
     <ClCompile Include="stage_corridor_corner.cpp" />
     <ClCompile Include="stage_otorii.cpp" />
@@ -85,6 +89,10 @@
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="Shadow.h" />
+    <ClInclude Include="ShootBullet.h" />
+    <ClInclude Include="ShootBullet_Amass.h" />
+    <ClInclude Include="ShootBullet_Idle.h" />
+    <ClInclude Include="ShootBullet_Shoot.h" />
     <ClInclude Include="stage_corridor.h" />
     <ClInclude Include="stage_corridor_corner.h" />
     <ClInclude Include="stage_include.h" />
