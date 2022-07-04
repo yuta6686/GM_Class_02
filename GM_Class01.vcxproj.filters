@@ -162,6 +162,12 @@
     <ClCompile Include="ShootBullet_Shoot.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Charge.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -297,6 +303,12 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="ShootBullet_Shoot.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Charge.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

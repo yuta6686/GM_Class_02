@@ -17,6 +17,7 @@
 #include "manager.h"
 #include "ResultScene.h"
 #include "audio.h"
+#include "UI_Charge.h"
 
 void GameScene::Init()
 {
@@ -49,6 +50,7 @@ void GameScene::Init()
 	StageCorridorCreate();
 
 	AddGameObject<Polygon2D>(LAYER_2D);
+	AddGameObject<UI_Charge>(LAYER_2D);
 
 	//Cube2D* pcube2d_01 = AddGameObject<Cube2D>(LAYER_2D);
 	//pcube2d_01->SetPosition({ -100.0f,1.0f,0.0f });

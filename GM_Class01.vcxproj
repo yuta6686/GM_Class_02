@@ -53,6 +53,8 @@
     <ClCompile Include="stage_wator_field.cpp" />
     <ClCompile Include="TitlePolygon.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="UI_Charge.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -100,6 +102,8 @@
     <ClInclude Include="stage_wator_field.h" />
     <ClInclude Include="TitlePolygon.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="UI_Charge.h" />
+    <ClInclude Include="UserInterface.h" />
     <ClInclude Include="vertexShader.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="texture.h" />
