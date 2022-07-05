@@ -21,14 +21,14 @@ void UI_Charge::Init()
 	m_vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_vertex[0].Diffuse = D3DXVECTOR4(1.0f, 0.0f, 0.0f, 1.0f);	//	左上
-	m_vertex[2].Diffuse = D3DXVECTOR4(1.0f, 0.0f, 0.0f, 1.0f);	//	左下
+	m_vertex[2].Diffuse = D3DXVECTOR4(1.0f, 0.0f, 0.0f, 0.5f);	//	左下
 	m_vertex[1].Diffuse = D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f);	//	右上
-	m_vertex[3].Diffuse = D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f);	//	右下
+	m_vertex[3].Diffuse = D3DXVECTOR4(0.0f, 1.0f, 1.0f, 0.5f);	//	右下
 
-	m_vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
-	m_vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
-	m_vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
-	m_vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
+	m_vertex[3].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
+	m_vertex[2].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
+	m_vertex[1].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
+	m_vertex[0].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
 
 	//	頂点バッファ生成
 	D3D11_BUFFER_DESC bd{};
@@ -51,7 +51,7 @@ void UI_Charge::Init()
 		NULL);
 
 	assert(m_Texture);*/
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\blender1.png");
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\逢魔時.png");
 	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
 	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
 
@@ -73,19 +73,38 @@ void UI_Charge::Uninit()
 void UI_Charge::Update()
 {
 	UserInterface::Update();
-
-	m_Position.y = m_mainPos.y;
+			
 	
-	if (m_Counter >= COUNTER_MAX) {
-		m_Counter = 1.0f;
-	}
-	m_Counter+= CHARGE_SPEED;
 	m_Scale.x = logf(m_Counter);
 
-
+	if (m_IsDecrease) {
+		if (m_Counter < 1.0f) {
+			m_Counter = 1.0f;
+			m_IsDecrease = false;
+		}
+		m_Counter -= CHARGE_SPEED;
+	}
 }
 
 void UI_Charge::Draw()
 {
 	UserInterface::Draw();
+}
+
+void UI_Charge::AddCounter(const float& add)
+{
+	m_Counter += add;
+
+	if (m_Counter >= COUNTER_MAX) {
+		m_Counter = 1.0f;
+	}
+}
+
+void UI_Charge::SetCounter(const float& add)
+{
+	m_Counter = add;
+
+	if (m_Counter >= COUNTER_MAX) {
+		m_Counter = 1.0f;
+	}
 }

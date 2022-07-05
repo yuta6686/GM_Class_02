@@ -83,6 +83,7 @@ public:
 		return objects;
 	}
 
+
 	inline virtual void UnInit()
 	{
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {

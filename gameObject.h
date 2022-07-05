@@ -23,6 +23,8 @@ public:
 	virtual void Update()= 0;
 	virtual void Draw()	 = 0;
 
+	virtual void LastInit() {}
+
 	virtual void SetPosition(D3DXVECTOR3 Position)
 	{
 		m_Position = Position;

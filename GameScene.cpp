@@ -43,6 +43,8 @@ void GameScene::Init()
 
 
 
+
+
 	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
 	AddGameObject<Ao_Sphere>(LAYER_3D);
 
@@ -73,7 +75,10 @@ void GameScene::Init()
 	targetRate = 1024.0f;
 	float frequencyRatio = sourceRate / targetRate;
 	m_BGM->SetAudioPitch(frequencyRatio);
+
+
 }
+
 
 void GameScene::Uninit()
 {
