@@ -18,6 +18,7 @@
 #include "ResultScene.h"
 #include "audio.h"
 #include "UI_Charge.h"
+#include "Cylinder.h"
 
 void GameScene::Init()
 {
@@ -76,7 +77,23 @@ void GameScene::Init()
 	float frequencyRatio = sourceRate / targetRate;
 	m_BGM->SetAudioPitch(frequencyRatio);
 
+	{
+		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
+		cyl->SetPosition({ 5.0f,0.0f,2.0f });
+		cyl->SetScale({ 3.0f,3.0f,3.0f });
+	}
 
+	{
+		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
+		cyl->SetPosition({ 5.0f,0.0f,10.0f });
+		cyl->SetScale({ 3.0f,6.0f,3.0f });
+	}
+
+	{
+		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
+		cyl->SetPosition({ 5.0f,0.0f,17.0f });
+		cyl->SetScale({ 3.0f,9.0f,3.0f });
+	}
 }
 
 

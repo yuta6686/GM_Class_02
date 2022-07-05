@@ -9,8 +9,9 @@
 #include "audio.h"
 #include "Shadow.h"
 #include "ShootBullet_Idle.h"
+#include "Cylinder.h"
 
-#define PLAYER_SPEED 0.25f
+#define PLAYER_SPEED 0.01f
 
 static char texName[] = { "asset\\model\\torii.obj" };
 static float scale = 0.5f;
@@ -43,6 +44,8 @@ void Player::Init()
 
 	m_ShootBullet = new ShootBullet_Idle();
 	m_ShootBullet->Init();
+
+	m_Velocity = D3DXVECTOR3( 0.0f,0.0f,0.0f );
 }
 
 void Player::Uninit()
@@ -116,24 +119,87 @@ void Player::PlayerMove()
 
 	//	プレイヤー移動処理
 	if (GetKeyboardPress(DIK_W)) {
-		m_Position.z += PLAYER_SPEED * forward.z;
-		m_Position.x += PLAYER_SPEED * forward.x;
+		m_Velocity.z += PLAYER_SPEED * forward.z;
+		m_Velocity.x += PLAYER_SPEED * forward.x;
 	}
 	if (GetKeyboardPress(DIK_S)) {
-		m_Position.z -= PLAYER_SPEED * forward.z;
-		m_Position.x -= PLAYER_SPEED * forward.x;
+		m_Velocity.z -= PLAYER_SPEED * forward.z;
+		m_Velocity.x -= PLAYER_SPEED * forward.x;
 	}
 
 	if (GetKeyboardPress(DIK_A)) {
-		m_Position.z += PLAYER_SPEED * GetLeft().z;
-		m_Position.x += PLAYER_SPEED * GetLeft().x;
+		m_Velocity.z += PLAYER_SPEED * GetLeft().z;
+		m_Velocity.x += PLAYER_SPEED * GetLeft().x;
 	}
 	if (GetKeyboardPress(DIK_D)) {
-		m_Position.z += PLAYER_SPEED * GetRight().z;
-		m_Position.x += PLAYER_SPEED * GetRight().x;
+		m_Velocity.z += PLAYER_SPEED * GetRight().z;
+		m_Velocity.x += PLAYER_SPEED * GetRight().x;
 	}
-	
 
+	if (GetKeyboardTrigger(DIK_SPACE)) {
+		if (m_Position.y >= 0.2f) {
+			m_Velocity.y = JUMP*1.5f;
+		}
+		else {
+			m_Velocity.y = JUMP;
+		}
+	}
+
+	//	重力
+	m_Velocity.y -= GRAVITY;
+
+	//	減衰
+	m_Velocity.x *= ATTENUATION.x;
+	m_Velocity.y *= ATTENUATION.y;
+	m_Velocity.z *= ATTENUATION.z;
+
+	
+	
+	D3DXVECTOR3 oldPos = m_Position;
+
+	m_Position += m_Velocity;
+
+	//	接台
+	
+	float groundHeight = 0.0f;
+	std::vector<Cylinder*> clylist = g_Scene->GetGameObjects<Cylinder>();
+	for (auto cly : clylist) {
+		D3DXVECTOR3 clyPos = cly->GetPosition();
+		D3DXVECTOR3 clyScale = cly->GetScale();
+
+		D3DXVECTOR3 direction = m_Position - clyPos;
+		direction.y = 0.0f;
+
+		float length = D3DXVec3Length(&direction);
+
+		if (length < clyScale.x) {
+			if (m_Position.y < clyPos.y + clyScale.y -0.5f) {
+				m_Position.x = oldPos.x;
+				m_Position.z = oldPos.z;
+			}
+			else {
+				groundHeight = clyPos.y + clyScale.y;
+			}
+
+			break;
+		}
+	}
+
+	//	接地	
+	if (m_Position.y < groundHeight &&
+		m_Velocity.y < 0.0f) {
+		m_Position.y = groundHeight;
+		//	m_Velocity.y = 0;
+
+		//	反発
+		{
+			m_Velocity.y = m_Velocity.y * -0.25f;
+
+			if (m_Velocity.y < 0.2f) {
+				m_Velocity.y = 0;
+			}
+		}
+	}	
 }
 
 void Player::PlayerRotation()

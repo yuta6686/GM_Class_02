@@ -5,6 +5,7 @@
 #include "manager.h"
 #include "player.h"
 #include "audio.h"
+#include "UI_Charge.h"
 
 //	もし重かったら、static bool flagを用意して、static 関数でゲームシーンに入るたびに
 //	flagを戻す。
@@ -13,6 +14,7 @@ void ShootBullet_Shoot::Init()
 	 m_Scene = Manager::GetScene();
 
 	m_Player = m_Scene->GetGameObject<Player>();
+	
 }
 
 void ShootBullet_Shoot::Uninit()
@@ -22,12 +24,13 @@ void ShootBullet_Shoot::Uninit()
 void ShootBullet_Shoot::Update()
 {
 	m_Counter++;
-	if (m_Counter >= 5) {
+	if (m_Counter >= 10) {
 		m_Counter = 0;
 		m_BulletNum--;
 
 		m_Bullet = m_Scene->AddGameObject<Bullet>(LAYER_3D);
 
+		//	方向セット
 		D3DXVECTOR3 rot = m_Player->GetCameraRot(), rrot = rot;
 		rot.x = rrot.y;
 		rot.y = rrot.x;
@@ -38,13 +41,13 @@ void ShootBullet_Shoot::Update()
 		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
 		m_Bullet->SetRotation(rot);
 		m_Bullet->SetForward(m_Player->GetCameraForward());
-		float value = (m_BulletNum + 2) * 2.0f;
+		float value = (m_BulletNum + 2);
 		m_Bullet->SetSpeed(value);
-		m_Bullet->SetScale({ value,value,value});
+		float scale = value * 2.0f;
+		m_Bullet->SetScale({ scale,scale,scale });
 
 		m_Player->GetShootSE()->Play(false);
-
-
+						
 
 		if (m_BulletNum <= 0) {
 			m_IsNextState = true;

@@ -168,6 +168,9 @@
     <ClCompile Include="UI_Charge.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -309,6 +312,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="UI_Charge.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Cylinder.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

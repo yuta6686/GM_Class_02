@@ -8,7 +8,9 @@ private:
     inline static const float CHARGE_SPEED = 0.5f;
     inline static const float MAIN_POS_X = 100.0f;
     inline static const float MAIN_POS_Y = 15.0f;
+    inline static const float ATTENUATION = 0.8f;
     float m_Counter = 1.0f;
+    float m_Attenuation = ATTENUATION;
     bool m_IsDecrease;
 public:
     virtual void Init() override;
@@ -23,7 +25,11 @@ public:
 
     void AddCounter(const float& add);
     void SetCounter(const float& add);
-    void SetIsDecrease(const bool& flag) { m_IsDecrease = flag; }
+    void SetAttenuation(const float& att);
+    void SetIsDecrease(const bool& flag) { 
+        m_IsDecrease = flag; 
+    }
 };
+
 
 

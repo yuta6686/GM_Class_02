@@ -63,6 +63,7 @@ void UI_Charge::Init()
 	m_Scale = { 1.0f,1.0f,1.0f };
 
 	m_Counter = 1.0f;
+	m_Attenuation = ATTENUATION;
 }
 
 void UI_Charge::Uninit()
@@ -82,7 +83,7 @@ void UI_Charge::Update()
 			m_Counter = 1.0f;
 			m_IsDecrease = false;
 		}
-		m_Counter -= CHARGE_SPEED;
+		m_Counter *= m_Attenuation;
 	}
 }
 
@@ -96,7 +97,7 @@ void UI_Charge::AddCounter(const float& add)
 	m_Counter += add;
 
 	if (m_Counter >= COUNTER_MAX) {
-		m_Counter = 1.0f;
+		m_Counter = COUNTER_MAX;
 	}
 }
 
@@ -105,6 +106,11 @@ void UI_Charge::SetCounter(const float& add)
 	m_Counter = add;
 
 	if (m_Counter >= COUNTER_MAX) {
-		m_Counter = 1.0f;
+		m_Counter = COUNTER_MAX;
 	}
+}
+
+void UI_Charge::SetAttenuation(const float& att)
+{
+	m_Attenuation = att;
 }

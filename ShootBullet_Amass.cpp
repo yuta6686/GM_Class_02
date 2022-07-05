@@ -26,7 +26,7 @@ void ShootBullet_Amass::Update()
 			m_BulletNum++;
 		}
 
-		m_uiCharge->SetCounter((float)m_Counter);
+		m_uiCharge->SetCounter((float)m_Counter);		
 	}
 	else {
 		m_IsNextState = true;
@@ -46,5 +46,5 @@ void ShootBullet_Amass::Draw()
 
 ShootBullet* ShootBullet_Amass::CreateNextState()
 {
-    return new ShootBullet_Shoot(m_BulletNum);
+    return new ShootBullet_Shoot(m_BulletNum,m_Counter);
 }

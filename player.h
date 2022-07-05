@@ -18,6 +18,7 @@ private:
 	/// m_RotationÇ…ÇÕXé≤=0Ç™ì¸Ç¡ÇƒÇ¢ÇÈÅB
 	/// </summary>
 	D3DXVECTOR3 m_CameraRot;
+	D3DXVECTOR3 m_Velocity;	//	ë¨ìx
 
 	class Audio* m_ShotSE;
 	class Shadow* m_Shadow;
@@ -28,6 +29,9 @@ private:
 	D3DXVECTOR3 GetRadian(D3DXVECTOR3 degree) { return degree * (D3DX_PI / 180.0f); }
 	D3DXVECTOR3 GetDegree(D3DXVECTOR3 radian) { return radian * (180.0f / D3DX_PI); }
 	
+	inline static const float GRAVITY = 0.01f;
+	inline static const float JUMP = 0.3f;
+	inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };
 public:
 	void Init()	 override;
 	void Uninit()override;

@@ -25,6 +25,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Cube2D.cpp" />
+    <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Cube2D.h" />
+    <ClInclude Include="Cylinder.h" />
     <ClInclude Include="effect_explosion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
