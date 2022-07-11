@@ -60,6 +60,8 @@ void Player::Uninit()
 
 void Player::Update()
 {		
+	InvokeUpdate();
+
 	//	プレイヤー移動処理
 	PlayerMove();
 	
@@ -119,8 +121,23 @@ void Player::PlayerMove()
 
 	//	プレイヤー移動処理
 	if (GetKeyboardPress(DIK_W)) {
-		m_Velocity.z += PLAYER_SPEED * forward.z;
-		m_Velocity.x += PLAYER_SPEED * forward.x;
+
+		/*m_Velocity.z += PLAYER_SPEED * forward.z;
+		m_Velocity.x += PLAYER_SPEED * forward.x;*/
+		
+
+		void (Player:: * func)();
+		func = &Player::Move;
+
+		Invoke(func, 60);
+
+		/*void (Player::*func)();
+
+		func = &Player::Move;
+
+		(this->*func)();*/
+
+		
 	}
 	if (GetKeyboardPress(DIK_S)) {
 		m_Velocity.z -= PLAYER_SPEED * forward.z;
@@ -265,4 +282,12 @@ void Player::ShootBulletFunc()
 		m_ShootBullet = sb;
 		m_ShootBullet->Init();
 	}
+}
+
+void Player::Move()
+{
+	D3DXVECTOR3 forward = GetForward();
+
+	m_Velocity.z += PLAYER_SPEED * forward.z;
+	m_Velocity.x += PLAYER_SPEED * forward.x;
 }

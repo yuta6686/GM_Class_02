@@ -2,6 +2,7 @@
 #include "main.h"
 #include "model.h"
 #include "gameObject.h"
+#include <queue>
 class Audio;
 class Shadow;
 class ShootBullet;
@@ -32,6 +33,11 @@ private:
 	inline static const float GRAVITY = 0.01f;
 	inline static const float JUMP = 0.3f;
 	inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };
+
+
+	int m_DelayCountMax = 0;
+	int m_DelayCounter = 0;
+	bool m_IsInvoke = false;
 public:
 	void Init()	 override;
 	void Uninit()override;
@@ -67,5 +73,38 @@ private:
 	void PlayerRotation();
 	void GetItem();
 	void ShootBulletFunc();
+	void Move();
+
+		
+
+	typedef void(Player::* MAMBER_FUNC)();
+
+	std::queue<MAMBER_FUNC> m_FuncList;
+
+	template <class T>
+	void Invoke(T(Player::* func)(),int delay) {
+		m_FuncList.push(func);
+		m_IsInvoke = true;
+		m_DelayCountMax = delay;
+	}
+	
+	//	m_DelayCount ,m_DelayCounterÇqueueÇ…ÇµÇƒégÇ§ÅB
+	void InvokeUpdate() {
+		if (m_FuncList.empty())return;
+		while (!m_FuncList.empty()) {
+
+		}
+		if (m_IsInvoke ) {
+			if (m_DelayCounter < m_DelayCountMax) {
+				m_DelayCounter++;
+			}
+			else {
+				m_DelayCounter = 0;
+				m_IsInvoke = false;
+				(this->*m_FuncList.front())();
+				m_FuncList.pop();
+			}			
+		}		
+	}
 };
 
