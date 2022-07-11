@@ -48,6 +48,15 @@ void UI_Score::Init()
 
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
+	//テクスチャ読み込み
+	/*D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+		"asset\\texture\\Slimecyclon.png",
+		NULL,
+		NULL,
+		&m_Texture,
+		NULL);
+
+	assert(m_Texture);*/
 	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\number.png");
 	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
 	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
@@ -68,75 +77,91 @@ void UI_Score::Uninit()
 void UI_Score::Update()
 {
 	UserInterface::Update();
+
+	if (GetKeyboardPress(DIK_C)) {
+		m_Count++;
+	}
 }
 
 void UI_Score::Draw()
 {
-	float x = m_Count % TEX_WIDHT_NUM * (1.0f / (float)TEX_WIDHT_NUM);
-	float y = m_Count / TEX_HEIGHT_NUM * (1.0f / (float)TEX_HEIGHT_NUM);
+	int count = m_Count;
 
-	D3D11_MAPPED_SUBRESOURCE msr;
-	Renderer::GetDeviceContext()->Map(m_VertexBuffer, 0,
-		D3D11_MAP_WRITE_DISCARD, 0, &msr);
+	//	下の桁から入ってる
+	std::vector<int> digit(DIGIT_NUM);
+	float x_mergine = X_MARGINE;
 
-	VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
-
-	float widht = (1.0f / (float)TEX_WIDHT_NUM);
-	float height = (1.0f / (float)TEX_HEIGHT_NUM);
+	for (int i = 0; i < DIGIT_NUM; i++) {
+		digit[i] = count % 10;
+		count /= 10;
 
 
-	vertex[0].Position = D3DXVECTOR3(0.0f, -m_mainPos.y, 0.0f);
-	vertex[0].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[0].TexCoord = D3DXVECTOR2(x, y);
+
+		float x = digit[i] % TEX_WIDHT_NUM * (1.0f / (float)TEX_WIDHT_NUM);
+		float y = digit[i] / TEX_HEIGHT_NUM * (1.0f / (float)TEX_HEIGHT_NUM);
+
+		D3D11_MAPPED_SUBRESOURCE msr;
+		Renderer::GetDeviceContext()->Map(m_VertexBuffer, 0,
+			D3D11_MAP_WRITE_DISCARD, 0, &msr);
+
+		VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
+
+		float widht = (1.0f / (float)TEX_WIDHT_NUM);
+		float height = (1.0f / (float)TEX_HEIGHT_NUM);
 
 
-	vertex[1].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, -m_mainPos.y, 0.0f);
-	vertex[1].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[1].TexCoord = D3DXVECTOR2(x + widht, y);
+		vertex[0].Position = D3DXVECTOR3(x_mergine*i, -m_mainPos.y, 0.0f);
+		vertex[0].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+		vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+		vertex[0].TexCoord = D3DXVECTOR2(x, y);
 
-	vertex[2].Position = D3DXVECTOR3(0.0f, m_mainPos.y, 0.0f);
-	vertex[2].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[2].TexCoord = D3DXVECTOR2(x, y + height);
 
-	vertex[3].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, m_mainPos.y, 0.0f);
-	vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[3].TexCoord = D3DXVECTOR2(x + widht, y + height);
+		vertex[1].Position = D3DXVECTOR3(x_mergine * i + m_mainPos.x * 2.0f, -m_mainPos.y, 0.0f);
+		vertex[1].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+		vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+		vertex[1].TexCoord = D3DXVECTOR2(x + widht, y);
 
-	for (int i = 0; i < 4; i++) {
-		vertex[i].Position += m_cOffset;
+		vertex[2].Position = D3DXVECTOR3(x_mergine * i, m_mainPos.y, 0.0f);
+		vertex[2].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+		vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+		vertex[2].TexCoord = D3DXVECTOR2(x, y + height);
+
+		vertex[3].Position = D3DXVECTOR3(x_mergine * i + m_mainPos.x * 2.0f, m_mainPos.y, 0.0f);
+		vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+		vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+		vertex[3].TexCoord = D3DXVECTOR2(x + widht, y + height);
+
+		for (int i = 0; i < 4; i++) {
+			vertex[i].Position += m_cOffset;
+		}
+
+		Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
+
+		m_VertexShader->Draw();
+		m_PixelShader->Draw();
+
+		//マトリクス設定	
+		Renderer::SetWorldViewProjection2D();
+
+		D3DXMATRIX world, scale, rot, trans;
+		D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
+		D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
+		D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
+		world = scale * rot * trans;
+		Renderer::SetWorldMatrix(&world);
+
+
+
+		//頂点バッファ設定
+		UINT stride = sizeof(VERTEX_3D);
+		UINT offset = 0;
+		Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
+
+
+		Renderer::SetAlphaToCoverage(TRUE);
+
+		m_Texture->Draw();
+
+		Renderer::SetAlphaToCoverage(FALSE);
 	}
-
-	Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
-
-	m_VertexShader->Draw();
-	m_PixelShader->Draw();
-
-	//マトリクス設定	
-	Renderer::SetWorldViewProjection2D();
-
-	D3DXMATRIX world, scale, rot, trans;
-	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-	world = scale * rot * trans;
-	Renderer::SetWorldMatrix(&world);
-
-
-
-	//頂点バッファ設定
-	UINT stride = sizeof(VERTEX_3D);
-	UINT offset = 0;
-	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
-
-
-	Renderer::SetAlphaToCoverage(TRUE);
-
-	m_Texture->Draw();
-
-	Renderer::SetAlphaToCoverage(FALSE);
-
 }

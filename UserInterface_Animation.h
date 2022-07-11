@@ -10,11 +10,12 @@ private:
 
     inline static const int DIGIT_NUM = 4;
 
-    float m_Count;
     static const int TEX_WIDHT_NUM = 10;
     static const int TEX_HEIGHT_NUM = 1;
-    inline static const D3DXVECTOR3 m_cOffset = { 200.0f,0.0f ,0.0f };
-    inline static const float X_MARGINE = -75.0f;
+    inline static const D3DXVECTOR3 OFFSET = { 200.0f,0.0f ,0.0f };    
+
+    int m_Count;
+
 public:
     virtual void Init() override;
     virtual void Uninit() override;

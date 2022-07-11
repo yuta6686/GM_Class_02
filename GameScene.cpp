@@ -20,6 +20,7 @@
 #include "UI_Charge.h"
 #include "Cylinder.h"
 #include "UI_Score.h"
+#include "UserInterface_Animation.h"
 
 void GameScene::Init()
 {
