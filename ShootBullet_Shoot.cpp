@@ -6,6 +6,7 @@
 #include "player.h"
 #include "audio.h"
 #include "UI_Charge.h"
+#include "UI_Score.h"
 
 //	もし重かったら、static bool flagを用意して、static 関数でゲームシーンに入るたびに
 //	flagを戻す。
@@ -41,7 +42,7 @@ void ShootBullet_Shoot::Update()
 		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
 		m_Bullet->SetRotation(rot);
 		m_Bullet->SetForward(m_Player->GetCameraForward());
-		float value = (m_BulletNum + 2);
+		float value = (logf(m_BulletNum + 2)*2.0f);
 		m_Bullet->SetSpeed(value);
 		float scale = value * 2.0f;
 		m_Bullet->SetScale({ scale,scale,scale });
@@ -53,7 +54,8 @@ void ShootBullet_Shoot::Update()
 			m_IsNextState = true;
 		}
 
-		
+		std::shared_ptr<Scene> scene = Manager::GetScene();
+		scene->GetGameObject<UI_Score>()->AddCount(1);
 	}	
 }
 

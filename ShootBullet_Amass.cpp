@@ -1,6 +1,7 @@
 #include "ShootBullet_Amass.h"
 #include "ShootBullet_Shoot.h"
 #include "UI_Charge.h"
+
 #include "GameScene.h"
 #include "manager.h"
 
@@ -24,9 +25,11 @@ void ShootBullet_Amass::Update()
 		m_Counter++;
 		if (m_Counter % 10 == 0) {
 			m_BulletNum++;
+			
+			
 		}
 
-		m_uiCharge->SetCounter((float)m_Counter);		
+		m_uiCharge->SetCounter((float)m_Counter/10.0f);		
 	}
 	else {
 		m_IsNextState = true;

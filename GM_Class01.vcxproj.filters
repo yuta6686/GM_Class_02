@@ -49,6 +49,12 @@
     <Filter Include="GameObject\ResultSceneObject">
       <UniqueIdentifier>{c595b27b-410d-4744-9b25-74396cec665c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\GameSceneObject\MoveObjects\Bullet">
+      <UniqueIdentifier>{f020f1ea-6b40-4061-84a6-9a4016926191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\UI">
+      <UniqueIdentifier>{276129fd-b2ab-440a-a1b6-cc410f805813}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,9 +102,6 @@
     <ClCompile Include="stage_corridor.cpp">
       <Filter>GameObject\GameSceneObject\StageObjects</Filter>
     </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
     </ClCompile>
@@ -144,31 +147,40 @@
     <ClCompile Include="ResultPolygon.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
     <ClCompile Include="audio.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Shadow.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ShootBullet.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ShootBullet_Idle.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ShootBullet_Amass.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootBullet_Idle.cpp">
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="ShootBullet_Shoot.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="UserInterface.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="UI_Charge.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Cylinder.cpp">
+    <ClCompile Include="UI_Score.cpp">
+      <Filter>GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface_Animation.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -227,9 +239,6 @@
     <ClInclude Include="pixelShader.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>GameObject\GameSceneObject\MoveObjects</Filter>
     </ClInclude>
@@ -269,9 +278,6 @@
     <ClInclude Include="MyMath.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="stage_include.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy_Interface.h">
       <Filter>GameObject\GameSceneObject\Enemy</Filter>
     </ClInclude>
@@ -291,30 +297,42 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="audio.h">
-      <Filter>GameObject</Filter>
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootBullet.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootBullet_Idle.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootBullet_Amass.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootBullet_Shoot.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="UserInterface.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="UI_Charge.h">
+    <ClInclude Include="stage_include.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Cylinder.h">
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>GameObject\GameSceneObject\StageObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet.h">
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet_Amass.h">
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet_Idle.h">
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBullet_Shoot.h">
+      <Filter>GameObject\GameSceneObject\MoveObjects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Charge.h">
+      <Filter>GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Score.h">
+      <Filter>GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface_Animation.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

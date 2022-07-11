@@ -19,6 +19,7 @@
 #include "audio.h"
 #include "UI_Charge.h"
 #include "Cylinder.h"
+#include "UI_Score.h"
 
 void GameScene::Init()
 {
@@ -30,7 +31,6 @@ void GameScene::Init()
 
 	AddGameObject<Player>(LAYER_3D);
 
-
 	AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
 	for (int i = 1; i <= 5; i++)
 	{
@@ -39,12 +39,6 @@ void GameScene::Init()
 
 		AddGameObject(EnemyFactory::Create<Enemy>(i * 15), LAYER_3D)->SetPosition({ -3.0f * i, -0.5f, -5.0f });
 	}
-
-
-
-
-
-
 
 	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
 	AddGameObject<Ao_Sphere>(LAYER_3D);
@@ -55,6 +49,7 @@ void GameScene::Init()
 	AddGameObject<Polygon2D>(LAYER_2D);
 	AddGameObject<UI_Charge>(LAYER_2D);
 
+	AddGameObject< UI_Score>(LAYER_2D);
 	//Cube2D* pcube2d_01 = AddGameObject<Cube2D>(LAYER_2D);
 	//pcube2d_01->SetPosition({ -100.0f,1.0f,0.0f });
 	//pcube2d_01->SetSpeed(D3DXVECTOR3(-5.0f, 10.0f, 0.0f));
