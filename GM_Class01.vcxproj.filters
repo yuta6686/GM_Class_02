@@ -183,6 +183,12 @@
     <ClCompile Include="UserInterface_Animation.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject_Invoke.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Invoke_test.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -333,6 +339,12 @@
       <Filter>GameObject\UI</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface_Animation.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject_Invoke.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Invoke_test.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

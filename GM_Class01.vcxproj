@@ -29,8 +29,10 @@
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
+    <ClCompile Include="GameObject_Invoke.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="Invoke_test.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
@@ -76,8 +78,10 @@
     <ClInclude Include="Enemy_Interface.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="gameObject.h" />
+    <ClInclude Include="GameObject_Invoke.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="Invoke_test.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="main.h" />

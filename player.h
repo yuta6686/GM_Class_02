@@ -1,13 +1,15 @@
 #pragma once
 #include "main.h"
 #include "model.h"
-#include "gameObject.h"
+#include "gameObject_Invoke.h"
 #include <queue>
 class Audio;
 class Shadow;
 class ShootBullet;
 
-class Player:public GameObject
+
+
+class Player :public GameObject
 {
 private:
 	/// <summary>
@@ -23,21 +25,19 @@ private:
 
 	class Audio* m_ShotSE;
 	class Shadow* m_Shadow;
-	class ShootBullet* m_ShootBullet;	
+	class ShootBullet* m_ShootBullet;
 
 	//	後で他のクラスに標準化する
 	float GetRadian(float degree) { return degree * (D3DX_PI / 180.0f); }
 	D3DXVECTOR3 GetRadian(D3DXVECTOR3 degree) { return degree * (D3DX_PI / 180.0f); }
 	D3DXVECTOR3 GetDegree(D3DXVECTOR3 radian) { return radian * (180.0f / D3DX_PI); }
-	
+
 	inline static const float GRAVITY = 0.01f;
 	inline static const float JUMP = 0.3f;
 	inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };
 
 
-	int m_DelayCountMax = 0;
-	int m_DelayCounter = 0;
-	bool m_IsInvoke = false;
+
 public:
 	void Init()	 override;
 	void Uninit()override;
@@ -75,36 +75,41 @@ private:
 	void ShootBulletFunc();
 	void Move();
 
-		
+	std::vector<INVOKE> m_Invokes;
 
+	
 	typedef void(Player::* MAMBER_FUNC)();
 
-	std::queue<MAMBER_FUNC> m_FuncList;
+	std::vector<MAMBER_FUNC> m_FuncList;
 
 	template <class T>
-	void Invoke(T(Player::* func)(),int delay) {
-		m_FuncList.push(func);
-		m_IsInvoke = true;
-		m_DelayCountMax = delay;
+	void Invoke(T(Player::* func)(), int delay) {
+		m_FuncList.push_back(func);
+		m_Invokes.push_back({ delay,0,true });		
 	}
-	
+
 	//	m_DelayCount ,m_DelayCounterをqueueにして使う。
 	void InvokeUpdate() {
-		if (m_FuncList.empty())return;
-		while (!m_FuncList.empty()) {
+		
+		if (m_FuncList.empty() ||
+			m_Invokes.empty())return;
 
-		}
-		if (m_IsInvoke ) {
-			if (m_DelayCounter < m_DelayCountMax) {
-				m_DelayCounter++;
+		//	後ろから回す
+		for (int i = m_Invokes.size() - 1; i >= 0; i--) {
+			if (!m_Invokes[i].m_IsInvoke)continue;
+			if (m_Invokes[i].m_DelayCounter < m_Invokes[i].m_DelayCountMax) {
+				m_Invokes[i].m_DelayCounter++;
 			}
 			else {
-				m_DelayCounter = 0;
-				m_IsInvoke = false;
-				(this->*m_FuncList.front())();
-				m_FuncList.pop();
-			}			
-		}		
+				m_Invokes[i].m_DelayCounter = 0;
+				m_Invokes[i].m_IsInvoke = false;
+				(this->*m_FuncList[i])();
+
+				m_Invokes.erase(m_Invokes.begin() + i);
+				m_FuncList.erase(m_FuncList.begin() + i);
+
+			}
+		}
 	}
 };
 
