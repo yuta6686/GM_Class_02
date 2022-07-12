@@ -189,6 +189,9 @@
     <ClCompile Include="Invoke_test.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -345,6 +348,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Invoke_test.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

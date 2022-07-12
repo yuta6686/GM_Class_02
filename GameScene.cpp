@@ -21,6 +21,7 @@
 #include "Cylinder.h"
 #include "UI_Score.h"
 #include "UserInterface_Animation.h"
+#include "Transition.h"
 
 void GameScene::Init()
 {
@@ -90,6 +91,9 @@ void GameScene::Init()
 		cyl->SetPosition({ 5.0f,0.0f,17.0f });
 		cyl->SetScale({ 3.0f,9.0f,3.0f });
 	}
+
+	m_FadeIn = AddGameObject<Transition>(LAYER_2D);
+	m_FadeIn->SetFadeIn();
 }
 
 
@@ -104,8 +108,11 @@ void GameScene::Update()
 {
 	Scene::Update();
 	
+	
+
 	if (GetKeyboardTrigger(DIK_RETURN)) {
-		Manager::SetScene<ResultScene>();
+		m_FadeOut = AddGameObject<Transition>(LAYER_2D);
+		m_FadeOut->SetFadeOut();
 	}
 
 	if (GetKeyboardPress(DIK_N)) 
@@ -128,7 +135,19 @@ void GameScene::Update()
 		
 	}
 
+	if (m_FadeIn) {
+		if (m_FadeIn->GetIsFinishFadeIn()) {
+			m_FadeIn->SetDestroy();
+		}
+	}
 
+	if (m_FadeOut) {
+		if (m_FadeOut->GetIsTransition()) {
+			m_FadeOut->SetDestroy();
+			Manager::SetScene <ResultScene>();
+		}
+	}
+	
 
 
 //#ifdef _DEBUG

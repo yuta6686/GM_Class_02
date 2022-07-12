@@ -56,6 +56,7 @@
     <ClCompile Include="stage_wator_field.cpp" />
     <ClCompile Include="TitlePolygon.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI_Charge.cpp" />
     <ClCompile Include="UI_Score.cpp" />
     <ClCompile Include="UserInterface.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="stage_wator_field.h" />
     <ClInclude Include="TitlePolygon.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="Transition.h" />
     <ClInclude Include="UI_Charge.h" />
     <ClInclude Include="UI_Score.h" />
     <ClInclude Include="UserInterface.h" />
