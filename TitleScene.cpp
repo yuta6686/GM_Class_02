@@ -3,6 +3,7 @@
 #include "manager.h"
 #include "GameScene.h"
 #include "Transition.h"
+#include "GameObject_Invoke.h"
 
 void TitleScene::Init()
 {
@@ -17,9 +18,11 @@ void TitleScene::Update()
 {
 	Scene::Update();
 	
+	
 
 	if (GetKeyboardTrigger(DIK_SPACE)) {
 		m_FadeOut = AddGameObject<Transition>(LAYER_2D);
+		
 		m_FadeOut->SetFadeOut();
 	}
 

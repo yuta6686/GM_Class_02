@@ -5,6 +5,7 @@
 #include "TitleScene.h"
 #include "ResultScene.h"
 #include "audio.h"
+#include "GameObject_Invoke.h"
 
 
 //Scene* Manager::m_Scene;
@@ -47,6 +48,8 @@ void Manager::Uninit()
 void Manager::Update()
 {
 	m_Scene->Update();
+
+	
 
 	//m_Scene->Update();
 }

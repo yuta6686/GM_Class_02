@@ -122,14 +122,14 @@ void Player::PlayerMove()
 	//	ÉvÉåÉCÉÑÅ[à⁄ìÆèàóù
 	if (GetKeyboardPress(DIK_W)) {
 
-		/*m_Velocity.z += PLAYER_SPEED * forward.z;
-		m_Velocity.x += PLAYER_SPEED * forward.x;*/
+		m_Velocity.z += PLAYER_SPEED * forward.z;
+		m_Velocity.x += PLAYER_SPEED * forward.x;
 		
 
-		void (Player:: * func)();
+		/*void (Player:: * func)();
 		func = &Player::Move;
 
-		Invoke(func, 60);
+		Invoke(func, 60);*/
 
 		/*void (Player::*func)();
 

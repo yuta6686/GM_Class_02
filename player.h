@@ -75,11 +75,10 @@ private:
 	void ShootBulletFunc();
 	void Move();
 
-	std::vector<INVOKE> m_Invokes;
 
-	
+//	Invokeの処理
+	std::vector<INVOKE> m_Invokes;	
 	typedef void(Player::* MAMBER_FUNC)();
-
 	std::vector<MAMBER_FUNC> m_FuncList;
 
 	template <class T>
@@ -87,15 +86,15 @@ private:
 		m_FuncList.push_back(func);
 		m_Invokes.push_back({ delay,0,true });		
 	}
-
-	//	m_DelayCount ,m_DelayCounterをqueueにして使う。
+	
+	//	若干不安定なのでエラー出たらやめる。
 	void InvokeUpdate() {
 		
 		if (m_FuncList.empty() ||
 			m_Invokes.empty())return;
 
 		//	後ろから回す
-		for (int i = m_Invokes.size() - 1; i >= 0; i--) {
+		for (int i = m_Invokes.size() - 1; i > 0; i--) {
 			if (!m_Invokes[i].m_IsInvoke)continue;
 			if (m_Invokes[i].m_DelayCounter < m_Invokes[i].m_DelayCountMax) {
 				m_Invokes[i].m_DelayCounter++;

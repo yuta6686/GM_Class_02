@@ -7,22 +7,22 @@ void Shadow::InitVertex(VERTEX_3D* vertex)
 {
 	vertex[0].Position = D3DXVECTOR3(-1.0f, 0.0f, 1.0f);
 	vertex[0].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[0].Diffuse = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);
+	vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
 
 	vertex[1].Position = D3DXVECTOR3(1.0f, 0.0f, 1.0f);
 	vertex[1].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[1].Diffuse = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);
+	vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
 
 	vertex[2].Position = D3DXVECTOR3(-1.0f, 0.0f, -1.0f);
 	vertex[2].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[2].Diffuse = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);
+	vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
 
 	vertex[3].Position = D3DXVECTOR3(1.0f, 0.0f, -1.0f);
 	vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[3].Diffuse = D3DXVECTOR4(0.0f, 0.0f, 0.0f, 1.0f);
+	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
 }
 
@@ -53,7 +53,7 @@ void Shadow::Init()
 	//	NULL);
 
 	//assert(m_Texture);
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\shadow4.png");
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\shadow3.png");
 
 	/*Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");
@@ -97,13 +97,14 @@ void Shadow::Draw()
 	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
 	world = scale * rot * trans;
 	Renderer::SetWorldMatrix(&world);
-
-	Renderer::SetAlphaToCoverage(TRUE);
+	
 
 	//頂点バッファ設定
 	UINT stride = sizeof(VERTEX_3D);
 	UINT offset = 0;
 	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
+
+	Renderer::SetAlphaToCoverage(false);
 
 	m_Texture->Draw();
 
