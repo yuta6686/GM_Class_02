@@ -23,6 +23,7 @@
 #include "UserInterface_Animation.h"
 #include "Transition.h"
 
+
 void GameScene::Init()
 {
 	AddGameObject<Camera>(LAYER_FIRST);

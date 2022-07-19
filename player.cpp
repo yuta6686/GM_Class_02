@@ -10,6 +10,9 @@
 #include "Shadow.h"
 #include "ShootBullet_Idle.h"
 #include "Cylinder.h"
+#include <thread>
+#include "multi_thread.h"
+using namespace std;
 
 #define PLAYER_SPEED 0.01f
 
@@ -46,10 +49,13 @@ void Player::Init()
 	m_ShootBullet->Init();
 
 	m_Velocity = D3DXVECTOR3( 0.0f,0.0f,0.0f );
+
+
 }
 
 void Player::Uninit()
 {	
+
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
 	m_PixelShader->Release();
@@ -122,23 +128,22 @@ void Player::PlayerMove()
 	//	プレイヤー移動処理
 	if (GetKeyboardPress(DIK_W)) {
 
-		m_Velocity.z += PLAYER_SPEED * forward.z;
-		m_Velocity.x += PLAYER_SPEED * forward.x;
+
+
+		Move();
 		
+		//	これで実質あれができる。
+		/*thread thd([this]{ 
+			this_thread::sleep_for(5s);			
+			Move(); 
+			});
 
-		/*void (Player:: * func)();
-		func = &Player::Move;
-
-		Invoke(func, 60);*/
-
-		/*void (Player::*func)();
-
-		func = &Player::Move;
-
-		(this->*func)();*/
-
+		thd.detach();*/
 		
 	}
+	
+
+
 	if (GetKeyboardPress(DIK_S)) {
 		m_Velocity.z -= PLAYER_SPEED * forward.z;
 		m_Velocity.x -= PLAYER_SPEED * forward.x;
@@ -285,7 +290,7 @@ void Player::ShootBulletFunc()
 }
 
 void Player::Move()
-{
+{	
 	D3DXVECTOR3 forward = GetForward();
 
 	m_Velocity.z += PLAYER_SPEED * forward.z;

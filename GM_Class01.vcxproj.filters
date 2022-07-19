@@ -353,6 +353,9 @@
     <ClInclude Include="Transition.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="multi_thread.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

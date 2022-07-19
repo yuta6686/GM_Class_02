@@ -19,13 +19,13 @@ void ShootBullet_Idle::Update()
 
 void ShootBullet_Idle::Draw()
 {
-#ifdef _DEBUG
-	char* str = GetDebugStr();
-	wsprintf(GetDebugStr(), "game");
-	wsprintf(&str[strlen(str)], "Idle");
-
-	SetWindowText(GetWindow(), GetDebugStr());
-#endif
+//#ifdef _DEBUG
+//	char* str = GetDebugStr();
+//	wsprintf(GetDebugStr(), "game");
+//	wsprintf(&str[strlen(str)], "Idle");
+//
+//	SetWindowText(GetWindow(), GetDebugStr());
+//#endif
 }
 
 ShootBullet* ShootBullet_Idle::CreateNextState()

@@ -38,13 +38,13 @@ void ShootBullet_Amass::Update()
 
 void ShootBullet_Amass::Draw()
 {
-#ifdef _DEBUG
-	char* str = GetDebugStr();
-	wsprintf(GetDebugStr(), "game");
-	wsprintf(&str[strlen(str)], "Amass");
-
-	SetWindowText(GetWindow(), GetDebugStr());
-#endif
+//#ifdef _DEBUG
+//	char* str = GetDebugStr();
+//	wsprintf(GetDebugStr(), "game");
+//	wsprintf(&str[strlen(str)], "Amass");
+//
+//	SetWindowText(GetWindow(), GetDebugStr());
+//#endif
 }
 
 ShootBullet* ShootBullet_Amass::CreateNextState()

@@ -4,6 +4,7 @@
 #include <vector>
 #include <typeinfo>
 #include <string>
+#include <thread>
 
 #include "ResourceManager.h"
 #include "gameObject.h"
@@ -99,26 +100,28 @@ public:
 	}
 
 	inline virtual void Update()
-	{
+	{		
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
+				
 				object->Update();
+				
 			}
 
 			m_GameObject[i].remove_if([](GameObject* object) {return object->Destroy(); });
-		}
-		
+		}				
 	}
 
 	inline virtual void Draw()
-	{
+	{		
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
 				object->Draw();
 			}
 		}
+		
 	}
 
 private:

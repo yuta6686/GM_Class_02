@@ -3,6 +3,7 @@
 #include "model.h"
 #include "gameObject_Invoke.h"
 #include <queue>
+#include <thread>
 class Audio;
 class Shadow;
 class ShootBullet;
@@ -11,7 +12,8 @@ class ShootBullet;
 
 class Player :public GameObject
 {
-private:
+private:	
+	std::vector<std::thread> m_Threads;
 	/// <summary>
 	/// m_CameraRot
 	/// ~~~~~~~~~~~

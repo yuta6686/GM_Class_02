@@ -88,6 +88,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="model.h" />
+    <ClInclude Include="multi_thread.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="pixelShader.h" />
     <ClInclude Include="ResourceManager.h" />

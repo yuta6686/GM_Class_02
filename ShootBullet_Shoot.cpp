@@ -7,15 +7,17 @@
 #include "audio.h"
 #include "UI_Charge.h"
 #include "UI_Score.h"
+#include <thread>
+using namespace std;
 
 //	もし重かったら、static bool flagを用意して、static 関数でゲームシーンに入るたびに
 //	flagを戻す。
 void ShootBullet_Shoot::Init()
 {
-	 m_Scene = Manager::GetScene();
+	m_Scene = Manager::GetScene();
 
 	m_Player = m_Scene->GetGameObject<Player>();
-	
+
 }
 
 void ShootBullet_Shoot::Uninit()
@@ -24,53 +26,59 @@ void ShootBullet_Shoot::Uninit()
 
 void ShootBullet_Shoot::Update()
 {
-	m_Counter++;
-	if (m_Counter >= 10) {
-		m_Counter = 0;
-		m_BulletNum--;
+	thread thd([&] {
+		this_thread::sleep_for(1s);
+		m_Counter++;
+		if (m_Counter >= 10) {
+			m_Counter = 0;
+			m_BulletNum--;
 
-		m_Bullet = m_Scene->AddGameObject<Bullet>(LAYER_3D);
+			m_Bullet = m_Scene->AddGameObject<Bullet>(LAYER_3D);
 
-		//	方向セット
-		D3DXVECTOR3 rot = m_Player->GetCameraRot(), rrot = rot;
-		rot.x = rrot.y;
-		rot.y = rrot.x;
-		rot.z = rrot.z;
+			//	方向セット
+			D3DXVECTOR3 rot = m_Player->GetCameraRot(), rrot = rot;
+			rot.x = rrot.y;
+			rot.y = rrot.x;
+			rot.z = rrot.z;
 
-		//	セット
-		D3DXVECTOR3 offset = { 0.0f,1.0f,0.0f };
-		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
-		m_Bullet->SetRotation(rot);
-		m_Bullet->SetForward(m_Player->GetCameraForward());
-		float value = (logf(m_BulletNum + 2)*2.0f);
-		m_Bullet->SetSpeed(value);
-		float scale = value * 2.0f;
-		m_Bullet->SetScale({ scale,scale,scale });
+			//	セット
+			D3DXVECTOR3 offset = { 0.0f,1.0f,0.0f };
+			m_Bullet->SetPosition(m_Player->GetPosition() + offset);
+			m_Bullet->SetRotation(rot);
+			m_Bullet->SetForward(m_Player->GetCameraForward());
+			float value = (logf(m_BulletNum + 2) * 2.0f);
+			m_Bullet->SetSpeed(value);
+			float scale = value * 2.0f;
+			m_Bullet->SetScale({ scale,scale,scale });
 
-		m_Player->GetShootSE()->Play(false);
-						
+			m_Player->GetShootSE()->Play(false);
 
-		if (m_BulletNum <= 0) {
-			m_IsNextState = true;
+
+			if (m_BulletNum <= 0) {
+				m_IsNextState = true;
+			}
+
+			std::shared_ptr<Scene> scene = Manager::GetScene();
+			scene->GetGameObject<UI_Score>()->AddCount(1);
 		}
+		});
 
-		std::shared_ptr<Scene> scene = Manager::GetScene();
-		scene->GetGameObject<UI_Score>()->AddCount(1);
-	}	
+	thd.detach();
+
 }
 
 void ShootBullet_Shoot::Draw()
 {
-#ifdef _DEBUG
-	char* str = GetDebugStr();
-	wsprintf(GetDebugStr(), "game");
-	wsprintf(&str[strlen(str)], "Shoot");
-
-	SetWindowText(GetWindow(), GetDebugStr());
-#endif
+	//#ifdef _DEBUG
+	//	char* str = GetDebugStr();
+	//	wsprintf(GetDebugStr(), "game");
+	//	wsprintf(&str[strlen(str)], "Shoot");
+	//
+	//	SetWindowText(GetWindow(), GetDebugStr());
+	//#endif
 }
 
 ShootBullet* ShootBullet_Shoot::CreateNextState()
 {
-    return new ShootBullet_Idle();
+	return new ShootBullet_Idle();
 }
