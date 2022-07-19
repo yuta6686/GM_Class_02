@@ -22,6 +22,7 @@
 #include "UI_Score.h"
 #include "UserInterface_Animation.h"
 #include "Transition.h"
+#include "ComponentObjectTest.h"
 
 
 void GameScene::Init()
@@ -92,6 +93,8 @@ void GameScene::Init()
 		cyl->SetPosition({ 5.0f,0.0f,17.0f });
 		cyl->SetScale({ 3.0f,9.0f,3.0f });
 	}
+
+	AddGameObject<ComponentObjectTest>(LAYER_3D);
 
 	m_FadeIn = AddGameObject<Transition>(LAYER_2D);
 	m_FadeIn->SetFadeIn();

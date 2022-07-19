@@ -5,6 +5,17 @@
 #include "vertexShader.h"
 #include "pixelShader.h"
 #include "MyMath.h"
+#include "Component.h"
+
+enum COMPONENT_LAYER {
+	COMLAYER_FIRST = 0,
+	COMLAYER_SECOND,
+	COMLAYER_SHADER,
+	COMLAYER_MATRIX,
+	COMLAYER_DRAW,
+	COMLAYER_NUM_MAX,
+};
+
 
 class Model;
 
@@ -17,6 +28,7 @@ protected:
 	D3DXVECTOR3 m_Rotation;
 	D3DXVECTOR3 m_Scale;
 	
+	std::list<Component*> m_ComponentList[COMLAYER_NUM_MAX];
 public:
 	virtual void Init()	 = 0;
 	virtual void Uninit()= 0;
@@ -114,5 +126,35 @@ public:
 
 	//void SetModel(std::shared_ptr<Model> pModel) { m_Model = pModel; }
 	//std::string GetFileName() { return m_FileName; }
+
+	template<class T>
+	T* GetComponent()
+	{
+		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
+			for (auto com : m_ComponentList[i]) {
+				T* buff = dynamic_cast<T*>(com);
+				if (buff != nullptr)
+					return buff;
+			}
+		}
+
+		return nullptr;
+	}
+
+	template<class T>
+	T* AddComponent(int Layer)
+	{
+		T* buff = new T();
+		buff->m_Parent = this;
+		m_ComponentList[Layer].push_back(buff);
+		buff->Init();
+		return buff;
+	}
+
+	Component* AddComponent(Component* pComponent, int layer) {
+		pComponent->Init();
+		m_ComponentList[layer].push_back(pComponent);
+		return pComponent;
+	}
 };
 

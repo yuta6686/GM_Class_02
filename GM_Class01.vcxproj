@@ -22,8 +22,10 @@
     <ClCompile Include="ao_Sphere.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="ComponentObjectTest.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
@@ -37,6 +39,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
+    <ClCompile Include="MatrixComponent.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
@@ -45,6 +48,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
+    <ClCompile Include="ShaderComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="ShootBullet.cpp" />
     <ClCompile Include="ShootBullet_Amass.cpp" />
@@ -56,6 +60,7 @@
     <ClCompile Include="stage_wator_field.cpp" />
     <ClCompile Include="TitlePolygon.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI_Charge.cpp" />
     <ClCompile Include="UI_Score.cpp" />
@@ -69,10 +74,15 @@
     <ClInclude Include="ao_Sphere.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentObject.h" />
+    <ClInclude Include="ComponentObjectTest.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="ModelDrawComponent.h" />
     <ClInclude Include="effect_explosion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
@@ -87,6 +97,7 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
+    <ClInclude Include="MatrixComponent.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="multi_thread.h" />
     <ClInclude Include="MyMath.h" />
@@ -100,6 +111,7 @@
     <ClInclude Include="ResultPolygon.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="Shadow.h" />
     <ClInclude Include="ShootBullet.h" />
     <ClInclude Include="ShootBullet_Amass.h" />
@@ -112,6 +124,7 @@
     <ClInclude Include="stage_wator_field.h" />
     <ClInclude Include="TitlePolygon.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TransformInit.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="UI_Charge.h" />
     <ClInclude Include="UI_Score.h" />

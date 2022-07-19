@@ -125,6 +125,8 @@ void Player::PlayerMove()
 {
 	D3DXVECTOR3 forward = GetForward();
 
+	
+
 	//	ƒvƒŒƒCƒ„[ˆÚ“®ˆ—
 	if (GetKeyboardPress(DIK_W)) {
 
@@ -139,7 +141,7 @@ void Player::PlayerMove()
 			});
 
 		thd.detach();*/
-		
+		m_TargetRotation.y = 0.0f;
 	}
 	
 
@@ -147,16 +149,40 @@ void Player::PlayerMove()
 	if (GetKeyboardPress(DIK_S)) {
 		m_Velocity.z -= PLAYER_SPEED * forward.z;
 		m_Velocity.x -= PLAYER_SPEED * forward.x;
+
+		m_TargetRotation.y = D3DX_PI;
 	}
 
 	if (GetKeyboardPress(DIK_A)) {
 		m_Velocity.z += PLAYER_SPEED * GetLeft().z;
 		m_Velocity.x += PLAYER_SPEED * GetLeft().x;
+
+		m_TargetRotation.y = -D3DX_PI/2;
 	}
 	if (GetKeyboardPress(DIK_D)) {
 		m_Velocity.z += PLAYER_SPEED * GetRight().z;
 		m_Velocity.x += PLAYER_SPEED * GetRight().x;
+
+		m_TargetRotation.y = D3DX_PI/2;
 	}
+	D3DXVECTOR3 dist = m_TargetRotation - m_PlayerRotation;
+
+	if (dist.y > D3DX_PI) {
+		dist.y -= D3DX_PI * 2.0f;
+	}
+	else if (dist.y < -D3DX_PI) {
+		dist.y += D3DX_PI * 2.0f;
+	}
+
+	//	m_PlayerRotation += dist * 0.1f;
+
+	if (m_PlayerRotation.y > D3DX_PI) {
+		m_PlayerRotation.y -= D3DX_PI * 2.0f;
+	}
+	else if (m_PlayerRotation.y < -D3DX_PI) {
+		m_PlayerRotation.y += D3DX_PI * 2.0f;
+	}
+
 
 	if (GetKeyboardTrigger(DIK_SPACE)) {
 		if (m_Position.y >= 0.2f) {
@@ -250,6 +276,7 @@ void Player::PlayerRotation()
 	}
 
 	m_Rotation = m_CameraRot;
+	m_Rotation += m_PlayerRotation;
 	m_Rotation.x = 0.0f;
 	
 }

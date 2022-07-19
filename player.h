@@ -25,6 +25,9 @@ private:
 	D3DXVECTOR3 m_CameraRot;
 	D3DXVECTOR3 m_Velocity;	//	‘¬“x
 
+	D3DXVECTOR3 m_PlayerRotation;
+	D3DXVECTOR3 m_TargetRotation;
+
 	class Audio* m_ShotSE;
 	class Shadow* m_Shadow;
 	class ShootBullet* m_ShootBullet;

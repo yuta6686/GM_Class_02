@@ -55,6 +55,9 @@
     <Filter Include="GameObject\UI">
       <UniqueIdentifier>{276129fd-b2ab-440a-a1b6-cc410f805813}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component">
+      <UniqueIdentifier>{bb284d9c-7aff-42a8-b48d-6f145cf37d9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -190,6 +193,21 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Transition.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentObjectTest.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -355,6 +373,30 @@
     </ClInclude>
     <ClInclude Include="multi_thread.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentObject.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentObjectTest.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelDrawComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformInit.h">
+      <Filter>GameObject\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
