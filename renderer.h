@@ -1,7 +1,13 @@
 #pragma once
 #include <vector>
 
+#ifdef _DEBUG
 
+#include "imgui.h"
+#include "imgui_impl_dx11.h"
+#include "imgui_impl_win32.h"
+
+#endif // _DEBUG
 
 
 struct VERTEX_3D
@@ -70,11 +76,15 @@ class Renderer
 {
 private:
 
-	static D3D_FEATURE_LEVEL       m_FeatureLevel;
+	static D3D_FEATURE_LEVEL		m_FeatureLevel;
 
-	static ID3D11Device*           m_Device;
-	static ID3D11DeviceContext*    m_DeviceContext;
-	static IDXGISwapChain*         m_SwapChain;
+	static ID3D11Device*			m_Device;
+	static ID3D11DeviceContext*		m_DeviceContext;
+	static IDXGISwapChain*			m_SwapChain;
+
+	//ディスプレイのバッグバッファのテクスチャ	
+	static ComPtr<ID3D11Texture2D> m_pRTTex;
+
 	static ID3D11RenderTargetView* m_RenderTargetView;
 	static ID3D11DepthStencilView* m_DepthStencilView;
 	static ID3D11BlendState* m_BlendState;
@@ -93,6 +103,14 @@ private:
 
 	inline static const int m_LightNum = 1;
 
+#ifdef _DEBUG
+	// Our state
+	inline static bool show_demo_window = true;
+	inline static bool show_another_window = false;
+	inline static bool show_hello_world = true;
+	inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+	
+#endif // _DEBUG
 
 public:
 	static void Init();
@@ -121,4 +139,8 @@ public:
 	static void CreatePixelShader(ID3D11PixelShader** PixelShader, const char* FileName);
 
 	static const int GetLightNum() { return m_LightNum; }
+
+#ifdef _DEBUG
+	static void imguiDraw();
+#endif // _DEBUG
 };

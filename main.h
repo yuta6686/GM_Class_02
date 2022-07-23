@@ -31,6 +31,17 @@
 #pragma comment (lib, "dxguid.lib")
 #pragma comment (lib, "dinput8.lib")
 
+
+//シェーダーのコンパイラ
+#include <d3dcompiler.h>
+//ベクトルやFLOAT3など便利な算術ライブラリ
+#include <DirectXMath.h>
+//デバイスの管理をしやすくするためのDirectX版のスマートポインタのようなもの
+#include <wrl/client.h>
+
+using Microsoft::WRL::ComPtr;
+using namespace DirectX;
+
 #include <memory>
 #include <vector>
 #include <list>

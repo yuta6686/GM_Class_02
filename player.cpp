@@ -10,8 +10,6 @@
 #include "Shadow.h"
 #include "ShootBullet_Idle.h"
 #include "Cylinder.h"
-#include <thread>
-#include "multi_thread.h"
 using namespace std;
 
 #define PLAYER_SPEED 0.01f
@@ -135,6 +133,7 @@ void Player::PlayerMove()
 		Move();
 		
 		//	‚±‚ê‚ÅÀ¿‚ ‚ê‚ª‚Å‚«‚éB
+		//	‚¯‚Ç‚â‚ß‚Æ‚¯B
 		/*thread thd([this]{ 
 			this_thread::sleep_for(5s);			
 			Move(); 

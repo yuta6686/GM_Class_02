@@ -9,6 +9,7 @@ D3D_FEATURE_LEVEL       Renderer::m_FeatureLevel = D3D_FEATURE_LEVEL_11_0;
 ID3D11Device*           Renderer::m_Device = NULL;
 ID3D11DeviceContext*    Renderer::m_DeviceContext = NULL;
 IDXGISwapChain*         Renderer::m_SwapChain = NULL;
+ComPtr<ID3D11Texture2D> Renderer::m_pRTTex=nullptr;
 ID3D11RenderTargetView* Renderer::m_RenderTargetView = NULL;	//こいつに背景色入れてる
 ID3D11DepthStencilView* Renderer::m_DepthStencilView = NULL;
 
@@ -51,10 +52,17 @@ void Renderer::Init()
 	swapChainDesc.SampleDesc.Quality = 0;
 	swapChainDesc.Windowed = TRUE;
 
+	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+#if defined(_DEBUG)
+	// If the project is in a debug build, enable the debug layer.
+	//	creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	creationFlags = 0;
+#endif
+
 	hr = D3D11CreateDeviceAndSwapChain( NULL,
 										D3D_DRIVER_TYPE_HARDWARE,
 										NULL,
-										0,
+										creationFlags,
 										NULL,
 										0,
 										D3D11_SDK_VERSION,
@@ -67,14 +75,23 @@ void Renderer::Init()
 
 
 
+	// スワップチェインに用意されたバッファ（2Dテクスチャ）を取得
+	hr = m_SwapChain->GetBuffer(0, IID_PPV_ARGS(&m_pRTTex));
+	if (FAILED(hr)) {
+		return ;
+	}
 
+	// レンダーターゲットView作成
+	hr = m_Device->CreateRenderTargetView(m_pRTTex.Get(), NULL, &m_RenderTargetView);
+	if (FAILED(hr)) {
+		return ;
+	}
 
 	// レンダーターゲットビュー作成
-	ID3D11Texture2D* renderTarget = NULL;
+	/*ID3D11Texture2D* renderTarget = NULL;
 	m_SwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&renderTarget );
 	m_Device->CreateRenderTargetView( renderTarget, NULL, &m_RenderTargetView );
-	renderTarget->Release();
-
+	renderTarget->Release();*/
 
 	// デプスステンシルバッファ作成
 	ID3D11Texture2D* depthStencile = NULL;
@@ -103,7 +120,23 @@ void Renderer::Init()
 	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
 
 
+#ifdef _DEBUG
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsLight();
+
+	ImGui_ImplWin32_Init(GetWindow());
+	ImGui_ImplDX11_Init(m_Device, m_DeviceContext);
+
+
+#endif // _DEBUG
 
 
 	// ビューポート設定
@@ -264,15 +297,20 @@ void Renderer::Init()
 	material.Emission = D3DXCOLOR(0, 0, 0, 0);
 	SetMaterial(material);
 
-
-
-
 }
 
 
 
 void Renderer::Uninit()
 {
+
+#ifdef _DEBUG
+	// Cleanup
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+#endif // _DEBUG
+
 	m_WorldBuffer->Release();
 	m_ViewBuffer->Release();
 	m_ProjectionBuffer->Release();
@@ -285,7 +323,7 @@ void Renderer::Uninit()
 
 
 	m_DeviceContext->ClearState();
-	m_RenderTargetView->Release();
+	m_RenderTargetView->Release();	
 	m_SwapChain->Release();
 	m_DeviceContext->Release();
 	m_Device->Release();
@@ -296,18 +334,23 @@ void Renderer::Uninit()
 
 //	
 void Renderer::Begin()
-{
-
-	
+{			
 	float clearColor[4] = { 0.2f, 0.25f, 0.8f, 1.0f };
-	m_DeviceContext->ClearRenderTargetView( m_RenderTargetView, clearColor );
+	m_DeviceContext->ClearRenderTargetView( m_RenderTargetView, clearColor);
 	m_DeviceContext->ClearDepthStencilView( m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 
 
 void Renderer::End()
-{
+{		
+#ifdef _DEBUG
+
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+#endif // _DEBUG
+
 	m_SwapChain->Present( 1, 0 );
 }
 
@@ -374,9 +417,6 @@ void Renderer::SetWorldViewProjection2D()
 
 }
 
-
-
-
 void Renderer::SetWorldMatrix( D3DXMATRIX* WorldMatrix )
 {
 	D3DXMATRIX world;
@@ -397,8 +437,6 @@ void Renderer::SetProjectionMatrix( D3DXMATRIX* ProjectionMatrix )
 	D3DXMatrixTranspose(&projection, ProjectionMatrix);
 	m_DeviceContext->UpdateSubresource(m_ProjectionBuffer, 0, NULL, &projection, 0, 0);
 }
-
-
 
 void Renderer::SetMaterial( MATERIAL Material )
 {
@@ -429,9 +467,6 @@ void Renderer::SetLight( LIGHT Light,const int& index )
 //}
 
 
-
-
-
 void Renderer::CreateVertexShader( ID3D11VertexShader** VertexShader, ID3D11InputLayout** VertexLayout, const char* FileName )
 {
 
@@ -443,6 +478,8 @@ void Renderer::CreateVertexShader( ID3D11VertexShader** VertexShader, ID3D11Inpu
 	unsigned char* buffer = new unsigned char[fsize];
 	fread(buffer, fsize, 1, file);
 	fclose(file);
+
+	
 
 	m_Device->CreateVertexShader(buffer, fsize, NULL, VertexShader);
 
@@ -465,8 +502,6 @@ void Renderer::CreateVertexShader( ID3D11VertexShader** VertexShader, ID3D11Inpu
 	delete[] buffer;
 }
 
-
-
 void Renderer::CreatePixelShader( ID3D11PixelShader** PixelShader, const char* FileName )
 {
 	FILE* file;
@@ -483,4 +518,49 @@ void Renderer::CreatePixelShader( ID3D11PixelShader** PixelShader, const char* F
 	delete[] buffer;
 }
 
+#ifdef _DEBUG
+void Renderer::imguiDraw()
+{
+	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
+	if (show_demo_window)
+		ImGui::ShowDemoWindow(&show_demo_window);
 
+	
+
+	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
+	{
+		static float f = 0.0f;
+		static int counter = 0;
+
+		ImGui::Begin("Hello, world!",&show_hello_world);                          // Create a window called "Hello, world!" and append into it.
+
+		ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+		ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+		ImGui::Checkbox("Another Window", &show_another_window);
+		ImGui::Checkbox("Hello World Window", &show_hello_world);
+
+		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+		ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+
+		if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+			counter++;
+		ImGui::SameLine();
+		ImGui::Text("counter = %d", counter);
+
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		ImGui::End();
+	}
+
+	// 3. Show another simple window.
+	if (show_another_window)
+	{
+		ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+		ImGui::Text("Hello from another window!");
+		if (ImGui::Button("Close Me"))
+			show_another_window = false;
+		ImGui::End();
+	}
+
+	
+}
+#endif // _DEBUG

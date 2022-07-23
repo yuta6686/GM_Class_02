@@ -60,9 +60,15 @@ void Manager::Draw()
 {
 	Renderer::Begin();
 
+	//	m_Scene->Draw();
+
 	m_Scene->Draw();
 
-	//m_Scene->Draw();
+#ifdef _DEBUG
+	Renderer::imguiDraw();
+#endif // _DEBUG
+
+	
 
 	Renderer::End();
 }

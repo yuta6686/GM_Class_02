@@ -4,7 +4,7 @@
 #include <vector>
 #include <typeinfo>
 #include <string>
-#include <thread>
+
 
 #include "ResourceManager.h"
 #include "gameObject.h"
