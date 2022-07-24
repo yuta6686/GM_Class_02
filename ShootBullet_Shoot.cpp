@@ -51,7 +51,7 @@ void ShootBullet_Shoot::Update()
 		float scale = value * 2.0f;
 		m_Bullet->SetScale({ scale,scale,scale });
 
-		
+
 		m_Player->GetShootSE()->Play(false);
 		m_Player->GetShootSE()->SetAudioVolume(0.2f);
 
@@ -78,7 +78,10 @@ void ShootBullet_Shoot::Draw()
 	//#endif
 
 #ifdef _DEBUG
+
 	ImGui::Text("Shoot");
+	ImGui::Text("Bullet Num:%d", m_BulletNum);
+
 #endif // _DEBUG
 }
 

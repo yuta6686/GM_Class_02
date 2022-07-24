@@ -129,8 +129,25 @@ void Renderer::Init()
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
 	// Setup Dear ImGui style
-	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsDark();
 	//ImGui::StyleColorsLight();
+
+	ImGui::StyleColorsClassic();	
+
+	//  ウィンドウの角丸み->多分角度
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 15.0f);
+
+	//  ウィンドウボーダーサイズ
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 10.0f);
+
+	//	ウィンドウのタイトルのアラインメント
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowTitleAlign, ImVec2(0.5f, 0.5f));
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(20.0f, 20.0f));
+
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(20.0f, 3.0f));
+
+	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(5.0f, 5.0f));
 
 	ImGui_ImplWin32_Init(GetWindow());
 	ImGui_ImplDX11_Init(m_Device, m_DeviceContext);
@@ -546,6 +563,10 @@ void Renderer::imguiDraw()
 
 		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
 		ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+		ImGui::ColorEdit4("window color", (float*)&window_color);
+		
+		ImGui::SetNextWindowSize(ImVec2(window_color.x, window_color.y));
+
 
 		if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
 			counter++;

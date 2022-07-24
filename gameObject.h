@@ -30,7 +30,7 @@ protected:
 	
 	std::list<Component*> m_ComponentList[COMLAYER_NUM_MAX];
 
-	std::string m_TypeName = "GameObject of ";
+	std::string m_TypeName = "none";
 public:
 	virtual void Init()	 = 0;
 	virtual void Uninit()= 0;

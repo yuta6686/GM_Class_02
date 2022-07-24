@@ -5,8 +5,8 @@ class ImGuiComponent :
     public Component
 {
 private:
-    inline static const float POSITION_MIN = -100.0f;    
-    inline static const float POSITION_MAX = 100.0f;
+    inline static const float POSITION_MIN = -20.0f;    
+    inline static const float POSITION_MAX = 20.0f;
 
     inline static const float ROTATION_MIN = -D3DX_PI;
     inline static const float ROTATION_MAX = D3DX_PI;

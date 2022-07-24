@@ -47,7 +47,10 @@ void ShootBullet_Amass::Draw()
 //#endif
 
 #ifdef _DEBUG
+	
 	ImGui::Text("Amass");
+	ImGui::Text("Bullet Num:%d", m_BulletNum);
+	
 #endif // _DEBUG
 }
 

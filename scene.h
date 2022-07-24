@@ -123,7 +123,16 @@ public:
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
-				object->Draw();
+				if (object->GetTypeName() != "none") {
+					if (ImGui::CollapsingHeader(object->GetTypeName().c_str())) 
+					{
+						object->Draw();
+					}
+				}
+				else {
+					object->Draw();
+				}
+				
 			}
 		}
 		
