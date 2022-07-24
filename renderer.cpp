@@ -120,7 +120,7 @@ void Renderer::Init()
 	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
 
 
-#ifdef _DEBUG
+
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -141,7 +141,7 @@ void Renderer::Init()
 	//ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\arial.ttf", m_ImGuiFontSize, NULL, io.Fonts->GetGlyphRangesJapanese());
 
 	//IM_ASSERT(font != NULL);
-#endif // _DEBUG
+
 
 
 	// ビューポート設定
@@ -309,12 +309,12 @@ void Renderer::Init()
 void Renderer::Uninit()
 {
 
-#ifdef _DEBUG
+
 	// Cleanup
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
-#endif // _DEBUG
+
 
 	m_WorldBuffer->Release();
 	m_ViewBuffer->Release();
@@ -349,12 +349,12 @@ void Renderer::Begin()
 
 void Renderer::End()
 {		
-#ifdef _DEBUG
+
 
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-#endif // _DEBUG
+
 
 	m_SwapChain->Present( 1, 0 );
 }
@@ -554,7 +554,7 @@ void Renderer::imguiDraw()
 
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		ImGui::Text("MousePosDiffX: %d MousePosDiffY: %d", GetMouseX(), GetMouseY());
-		ImGui::Text("MousePosX: %d MousePosY: %d", GetMousePosition().x, GetMousePosition().y);
+		ImGui::Text("MousePosX: %.f MousePosY: %.f", ImGui::GetIO().MousePos.x,ImGui::GetIO().MousePos.y);
 		
 		ImGui::End();
 	}

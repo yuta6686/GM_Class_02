@@ -54,9 +54,3 @@ using namespace DirectX;
 
 HWND GetWindow();
 char* GetDebugStr(void);
-
-struct Point {
-	int x, y;
-};
-
-Point GetMousePosition();

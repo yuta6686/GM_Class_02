@@ -118,6 +118,17 @@ void Player::Draw()
 
 
 	m_ShootBullet->Draw();
+
+#ifdef _DEBUG
+	if(ImGui::Button("Player->Jump")) {
+		if (m_Position.y >= 0.2f) {
+			m_Velocity.y = JUMP * 1.5f;
+		}
+		else {
+			m_Velocity.y = JUMP;
+		}
+	}
+#endif // _DEBUG
 }
 
 void Player::PlayerMove()
