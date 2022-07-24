@@ -48,9 +48,15 @@ using namespace DirectX;
 #include <string>
 #include <map>
 
-#define SCREEN_WIDTH	(960)
-#define SCREEN_HEIGHT	(540)
+#define SCREEN_WIDTH	(960*2)
+#define SCREEN_HEIGHT	(540*2)
 
 
 HWND GetWindow();
 char* GetDebugStr(void);
+
+struct Point {
+	int x, y;
+};
+
+Point GetMousePosition();

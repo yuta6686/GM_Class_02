@@ -33,6 +33,8 @@
     <ClCompile Include="field.cpp" />
     <ClCompile Include="GameObject_Invoke.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="ImGuiComponent.cpp" />
+    <ClCompile Include="ImGuiObject.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -89,6 +91,8 @@
     <ClInclude Include="ComponentObjectTest.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="ImGuiComponent.h" />
+    <ClInclude Include="ImGuiObject.h" />
     <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="imgui\imconfig.h" />

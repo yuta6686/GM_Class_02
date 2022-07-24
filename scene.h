@@ -114,13 +114,22 @@ public:
 	}
 
 	inline virtual void Draw()
-	{		
+	{	
+#ifdef _DEBUG
+		ImGui::Begin("Parameters by Scene");
+#endif // _DEBUG
+		
+
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
 				object->Draw();
 			}
 		}
+		
+#ifdef _DEBUG
+		ImGui::End();
+#endif // _DEBUG
 		
 	}
 

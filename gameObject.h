@@ -29,6 +29,8 @@ protected:
 	D3DXVECTOR3 m_Scale;
 	
 	std::list<Component*> m_ComponentList[COMLAYER_NUM_MAX];
+
+	std::string m_TypeName = "GameObject of ";
 public:
 	virtual void Init()	 = 0;
 	virtual void Uninit()= 0;
@@ -55,6 +57,7 @@ public:
 	D3DXVECTOR3 GetRotation()const { return m_Rotation; }
 	D3DXVECTOR3 GetScale()const { return m_Scale; }
 
+	D3DXVECTOR3* GetPositionPointer() { return &m_Position; }
 	
 	const D3DXVECTOR3& GetPositionReference()const 
 	{
@@ -156,5 +159,7 @@ public:
 		m_ComponentList[layer].push_back(pComponent);
 		return pComponent;
 	}
+
+	std::string GetTypeName()const { return m_TypeName; }
 };
 

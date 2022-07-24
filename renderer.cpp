@@ -135,7 +135,12 @@ void Renderer::Init()
 	ImGui_ImplWin32_Init(GetWindow());
 	ImGui_ImplDX11_Init(m_Device, m_DeviceContext);
 
+	//	Fonts
+	io.Fonts->AddFontFromFileTTF("imgui/misc/fonts/Roboto-Medium.ttf", m_ImGuiFontSize);
+	//io.Fonts->Fonts[0]
+	//ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\arial.ttf", m_ImGuiFontSize, NULL, io.Fonts->GetGlyphRangesJapanese());
 
+	//IM_ASSERT(font != NULL);
 #endif // _DEBUG
 
 
@@ -548,6 +553,9 @@ void Renderer::imguiDraw()
 		ImGui::Text("counter = %d", counter);
 
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		ImGui::Text("MousePosDiffX: %d MousePosDiffY: %d", GetMouseX(), GetMouseY());
+		ImGui::Text("MousePosX: %d MousePosY: %d", GetMousePosition().x, GetMousePosition().y);
+		
 		ImGui::End();
 	}
 

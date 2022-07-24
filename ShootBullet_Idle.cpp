@@ -26,6 +26,9 @@ void ShootBullet_Idle::Draw()
 //
 //	SetWindowText(GetWindow(), GetDebugStr());
 //#endif
+#ifdef _DEBUG
+	ImGui::Text("Idle");
+#endif // _DEBUG
 }
 
 ShootBullet* ShootBullet_Idle::CreateNextState()

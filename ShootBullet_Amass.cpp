@@ -45,6 +45,10 @@ void ShootBullet_Amass::Draw()
 //
 //	SetWindowText(GetWindow(), GetDebugStr());
 //#endif
+
+#ifdef _DEBUG
+	ImGui::Text("Amass");
+#endif // _DEBUG
 }
 
 ShootBullet* ShootBullet_Amass::CreateNextState()

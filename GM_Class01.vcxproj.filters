@@ -243,6 +243,12 @@
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp">
       <Filter>System\imgui\backend</Filter>
     </ClCompile>
+    <ClCompile Include="ImGuiObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -445,6 +451,12 @@
     </ClInclude>
     <ClInclude Include="imgui\backends\imgui_impl_win32.h">
       <Filter>System\imgui\backend</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiObject.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiComponent.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

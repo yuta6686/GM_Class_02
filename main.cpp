@@ -28,6 +28,9 @@ char* GetDebugStr(void)
 }
 #endif
 
+Point g_MousePosition;
+Point GetMousePosition() { return g_MousePosition; }
+
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -169,8 +172,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		break;
 
 	default:
+		g_MousePosition.x = LOWORD(lParam);
+		g_MousePosition.y = HIWORD(lParam);
 		break;
 	}
+
+
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }

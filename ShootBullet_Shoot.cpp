@@ -18,6 +18,7 @@ void ShootBullet_Shoot::Init()
 
 	m_Player = m_Scene->GetGameObject<Player>();
 
+
 }
 
 void ShootBullet_Shoot::Uninit()
@@ -50,7 +51,9 @@ void ShootBullet_Shoot::Update()
 		float scale = value * 2.0f;
 		m_Bullet->SetScale({ scale,scale,scale });
 
+		
 		m_Player->GetShootSE()->Play(false);
+		m_Player->GetShootSE()->SetAudioVolume(0.2f);
 
 
 		if (m_BulletNum <= 0) {
@@ -73,6 +76,10 @@ void ShootBullet_Shoot::Draw()
 	//
 	//	SetWindowText(GetWindow(), GetDebugStr());
 	//#endif
+
+#ifdef _DEBUG
+	ImGui::Text("Shoot");
+#endif // _DEBUG
 }
 
 ShootBullet* ShootBullet_Shoot::CreateNextState()

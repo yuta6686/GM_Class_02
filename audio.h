@@ -45,6 +45,7 @@ public:
 	void Play(bool Loop = false);
 
 //	ƒ{ƒŠƒ…[ƒ€
+	//	0.0f`1.0f
 	void SetAudioVolume(const float& vol) {
 		for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
 			if (IsNowPlay(j) == false)continue;			

@@ -23,6 +23,7 @@
 #include "UserInterface_Animation.h"
 #include "Transition.h"
 #include "ComponentObjectTest.h"
+#include "ImGuiObject.h"
 
 
 void GameScene::Init()
@@ -95,6 +96,7 @@ void GameScene::Init()
 	}
 
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
+	//	AddGameObject< ImGuiObject>(LAYER_3D);
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);

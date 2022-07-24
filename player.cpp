@@ -33,6 +33,7 @@ void Player::Init()
 	std::shared_ptr<Scene> scene = Manager::GetScene();
 	m_ShotSE = scene->AddGameObject<Audio>(LAYER_3D);
 	m_ShotSE->Load("asset\\audio\\wan.wav");
+	
 
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
