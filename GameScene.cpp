@@ -96,8 +96,8 @@ void GameScene::Init()
 
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
 
-	m_FadeIn = AddGameObject<Transition>(LAYER_2D);
-	m_FadeIn->SetFadeIn();
+	m_Fade = AddGameObject<Transition>(LAYER_2D);
+	m_Fade->Start(true);
 }
 
 
@@ -115,8 +115,7 @@ void GameScene::Update()
 	
 
 	if (GetKeyboardTrigger(DIK_RETURN)) {
-		m_FadeOut = AddGameObject<Transition>(LAYER_2D);
-		m_FadeOut->SetFadeOut();
+		m_Fade->Start(false);
 	}
 
 	if (GetKeyboardPress(DIK_N)) 
@@ -137,19 +136,10 @@ void GameScene::Update()
 	{
 		m_BGM->PitchUp(1.0f);
 		
-	}
+	}	
 
-	if (m_FadeIn) {
-		if (m_FadeIn->GetIsFinishFadeIn()) {
-			m_FadeIn->SetDestroy();
-		}
-	}
-
-	if (m_FadeOut) {
-		if (m_FadeOut->GetIsTransition()) {
-			m_FadeOut->SetDestroy();
-			Manager::SetScene <ResultScene>();
-		}
+	if (m_Fade->GetFinish()) {
+		Manager::SetScene <ResultScene>();
 	}
 	
 
