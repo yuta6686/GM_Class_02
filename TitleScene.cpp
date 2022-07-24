@@ -8,10 +8,10 @@
 void TitleScene::Init()
 {
 	AddGameObject<TitlePolygon>(LAYER_2D);
-	m_FadeIn = AddGameObject<Transition>(LAYER_2D);
+	m_Fade = AddGameObject<Transition>(LAYER_2D);
 
 
-	m_FadeIn->SetFadeIn();
+	m_Fade->Start(true);
 }
 
 void TitleScene::Update()
@@ -21,21 +21,13 @@ void TitleScene::Update()
 	
 
 	if (GetKeyboardTrigger(DIK_SPACE)) {
-		m_FadeOut = AddGameObject<Transition>(LAYER_2D);
 		
-		m_FadeOut->SetFadeOut();
+		
+		m_Fade->Start(false);
 	}
 
-	if (m_FadeIn) {
-		if (m_FadeIn->GetIsFinishFadeIn()) {
-			m_FadeIn->SetDestroy();
-		}
-	}
 
-	if (m_FadeOut) {
-		if (m_FadeOut->GetIsTransition()) {
-			m_FadeOut->SetDestroy();
-			Manager::SetScene <GameScene>();
-		}
+	if (m_Fade->GetFinish()) {
+		Manager::SetScene <GameScene>();
 	}
 }
