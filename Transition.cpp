@@ -1,35 +1,10 @@
 #include "Transition.h"
+#include "ResourceManager.h"
 
-void Transition::FadeIn()
-{
-	if (m_IsFadeIn == false)return;
-
-	if (m_Count >0) {
-		m_Count--;
-	}
-	else {
-		m_IsFadeIn = false;
-		m_IsFinishFadeIn = true;
-	}
-}
-
-void Transition::FadeOut()
-{
-	if (m_IsFadeOut == false)return;
-	if (m_IsFadeIn == true)return;
-
-	if (m_Count < FADE_TIME) {
-		m_Count++;
-	}
-	else {
-		m_IsFadeOut = false;
-		m_IsTransition = true;
-	}
-}
 
 void Transition::Init()
 {
-	UserInterface::Init();
+
 
 	m_mainPos.x = SCREEN_WIDTH / 2.0f;
 	m_mainPos.y = SCREEN_HEIGHT / 2.0f;
@@ -71,31 +46,38 @@ void Transition::Init()
 
 	m_Offset = { 0.0f,SCREEN_HEIGHT / 2.0f,0.0f };
 
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\blender1.png");
+	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
+	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+
+
 	m_Position = { 0.0f,0.0f,0.0f };
 	m_Position += m_Offset;
 	m_Rotation = { 0.0f,0.0f,0.0f };
 	m_Scale = { 1.0f,1.0f,1.0f };
-
-	m_IsFadeIn = false;
-	m_IsFadeOut = false;
-
-	m_IsFinishFadeIn = false;
-	m_IsTransition = false;
 }
+
 
 void Transition::Uninit()
 {
-	UserInterface::Uninit();
+	m_VertexBuffer->Release();
 }
 
 void Transition::Update()
 {
-	UserInterface::Update();
+	if (m_In) {
+		if (m_Count > 0)
+			m_Count--;
+	}
+	else
+	{
+		if (m_Count < FADE_TIME)
+			m_Count++;
+		else
+			m_Finish = true;
+	}
 
-	FadeIn();
 
-	FadeOut();
-	
 }
 
 void Transition::Draw()
@@ -108,7 +90,7 @@ void Transition::Draw()
 	Renderer::GetDeviceContext()->Map(m_VertexBuffer, 0,
 		D3D11_MAP_WRITE_DISCARD, 0, &msr);
 
-	VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;	
+	VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
 
 
 	vertex[0].Position = D3DXVECTOR3(0.0f, -m_mainPos.y + y, 0.0f);
@@ -117,20 +99,54 @@ void Transition::Draw()
 	vertex[0].TexCoord = D3DXVECTOR2(0, 0);
 
 
-	vertex[1].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, -m_mainPos.y+y, 0.0f);
+	vertex[1].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, -m_mainPos.y + y, 0.0f);
 	vertex[1].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
 	vertex[1].TexCoord = D3DXVECTOR2(1, 0);
 
-	vertex[2].Position = D3DXVECTOR3(0.0f, m_mainPos.y+y, 0.0f);
+	vertex[2].Position = D3DXVECTOR3(0.0f, m_mainPos.y + y, 0.0f);
 	vertex[2].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[2].TexCoord = D3DXVECTOR2(0,1);
+	vertex[2].TexCoord = D3DXVECTOR2(0, 1);
 
-	vertex[3].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, m_mainPos.y+y, 0.0f);
+	vertex[3].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, m_mainPos.y + y, 0.0f);
 	vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[3].TexCoord = D3DXVECTOR2(1,1);
+	vertex[3].TexCoord = D3DXVECTOR2(1, 1);
 
-	UserInterface::Draw();
+	Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
+
+	m_VertexShader->Draw();
+	m_PixelShader->Draw();
+
+	//マトリクス設定	
+	Renderer::SetWorldViewProjection2D();
+
+	D3DXMATRIX world, scale, rot, trans;
+	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
+	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
+	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
+	world = scale * rot * trans;
+	Renderer::SetWorldMatrix(&world);
+
+
+
+	//頂点バッファ設定
+	UINT stride = sizeof(VERTEX_3D);
+	UINT offset = 0;
+	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
+
+
+	m_Texture->Draw();
+}
+
+void Transition::Start(bool in)
+{
+	m_In = in;
+	m_Finish = false;
+
+	if (m_In)
+		m_Count = 60;
+	else
+		m_Count = 0;
 }
