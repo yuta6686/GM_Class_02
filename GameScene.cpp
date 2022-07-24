@@ -96,14 +96,14 @@ void GameScene::Init()
 
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
 
-	m_FadeIn = AddGameObject<Transition>(LAYER_2D);
-	m_FadeIn->SetFadeIn();
+	m_Fade = AddGameObject<Transition>(LAYER_2D);
+	m_Fade->Start(true);
 }
 
 
 void GameScene::Uninit()
 {
-		
+
 
 	Scene::UnInit();
 }
@@ -111,61 +111,51 @@ void GameScene::Uninit()
 void GameScene::Update()
 {
 	Scene::Update();
-	
-	
+
+
 
 	if (GetKeyboardTrigger(DIK_RETURN)) {
-		m_FadeOut = AddGameObject<Transition>(LAYER_2D);
-		m_FadeOut->SetFadeOut();
+		m_Fade->Start(false);
 	}
 
-	if (GetKeyboardPress(DIK_N)) 
-	{		
+	if (GetKeyboardPress(DIK_N))
+	{
 		m_BGM->VolumeDown(0.01f);
 	}
 	if (GetKeyboardPress(DIK_M))
-	{	
+	{
 		m_BGM->VolumeUp(0.01f);
 	}
 
 	if (GetKeyboardPress(DIK_V))
 	{
 		m_BGM->PitchDown(1.0f);
-		
+
 	}
 	if (GetKeyboardPress(DIK_B))
 	{
 		m_BGM->PitchUp(1.0f);
-		
+
 	}
 
-	if (m_FadeIn) {
-		if (m_FadeIn->GetIsFinishFadeIn()) {
-			m_FadeIn->SetDestroy();
-		}
+	if (m_Fade->GetFinish()) {
+		Manager::SetScene <ResultScene>();
 	}
 
-	if (m_FadeOut) {
-		if (m_FadeOut->GetIsTransition()) {
-			m_FadeOut->SetDestroy();
-			Manager::SetScene <ResultScene>();
-		}
-	}
-	
 
 
-//#ifdef _DEBUG
-//	char* str = GetDebugStr();
-//	wsprintf(GetDebugStr(), "game");
-//	wsprintf(&str[strlen(str)], "sourceRate:%d , targetRate:%d ",
-//		(int)sourceRate,(int)targetRate);
-//	
-//	SetWindowText(GetWindow(), GetDebugStr());
-//#endif
+	//#ifdef _DEBUG
+	//	char* str = GetDebugStr();
+	//	wsprintf(GetDebugStr(), "game");
+	//	wsprintf(&str[strlen(str)], "sourceRate:%d , targetRate:%d ",
+	//		(int)sourceRate,(int)targetRate);
+	//	
+	//	SetWindowText(GetWindow(), GetDebugStr());
+	//#endif
 
 
 
-	
+
 }
 
 void GameScene::StageCorridorCreate()
