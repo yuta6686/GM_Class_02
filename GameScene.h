@@ -20,7 +20,6 @@ private:
     float sourceRate = 1.0f;
     float targetRate = 1.0f;
 
-    Transition* m_FadeIn = nullptr;
-    Transition* m_FadeOut = nullptr;
+    Transition* m_Fade = nullptr;    
 };
 

@@ -4,8 +4,8 @@ class Transition;
 class ResultScene :
     public Scene
 {
-    Transition* m_FadeIn;
-    Transition* m_FadeOut;
+    Transition* m_Fade;
+
 public:
     // Scene ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual void Init() override;

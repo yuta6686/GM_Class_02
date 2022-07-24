@@ -1,19 +1,22 @@
 #pragma once
-#include "UserInterface.h"
+#include "GameObject.h"
 class Transition :
-    public UserInterface
+    public GameObject
 {
 private:
+    ID3D11Buffer* m_VertexBuffer = NULL;
+    std::shared_ptr<Resource> m_Texture;
+
+    std::shared_ptr<VertexShader> m_VertexShader;
+    std::shared_ptr<PixelShader> m_PixelShader;
+
+    D3DXVECTOR3 m_mainPos;
+    D3DXVECTOR3 m_Offset = { SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f,0.0f };
+    VERTEX_3D m_vertex[4];
+
     int m_Count=0;
-
-    void FadeIn();
-    void FadeOut();
-
-    bool m_IsFadeIn;
-    bool m_IsFadeOut;
-
-    bool m_IsFinishFadeIn = false;
-    bool m_IsTransition = false;
+    bool m_In = false;
+    bool m_Finish = false;    
 
     static const int FADE_TIME = 60;
 public:  
@@ -24,27 +27,7 @@ public:
     virtual void Update() override;
     virtual void Draw() override;
 
-    void SetFadeIn()
-    {
-        m_IsFadeIn = true;
-        m_IsFadeOut = false;
-        m_Count = FADE_TIME;
-    }
-
-    void SetFadeOut()
-    {
-        m_IsFadeOut = true;
-        m_IsFadeIn = false;
-
-        m_Count = 0;
-    }
-
-    bool GetIsTransition()const {
-        return m_IsTransition;
-    }
-
-    bool GetIsFinishFadeIn()const {
-        return m_IsFinishFadeIn;
-    }
+    void Start(bool in);
+    bool GetFinish() { return m_Finish; }
 };
 
