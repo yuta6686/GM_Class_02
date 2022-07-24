@@ -116,7 +116,9 @@ public:
 	inline virtual void Draw()
 	{	
 #ifdef _DEBUG
-		ImGui::Begin("Parameters by Scene");
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, Renderer::GetWindowColor());
+
+		ImGui::Begin("Parameters by Scene",&parameters_by_scene);
 #endif // _DEBUG
 		
 
@@ -124,7 +126,10 @@ public:
 			for (GameObject* object : m_GameObject[i])
 			{
 				if (object->GetTypeName() != "none") {
+
+#ifdef _DEBUG
 					if (ImGui::CollapsingHeader(object->GetTypeName().c_str())) 
+#endif // _DEBUG
 					{
 						object->Draw();
 					}
@@ -138,10 +143,13 @@ public:
 		
 #ifdef _DEBUG
 		ImGui::End();
+
+		ImGui::PopStyleColor();
 #endif // _DEBUG
 		
 	}
 
+	inline static bool parameters_by_scene = true;
 private:
 	
 	

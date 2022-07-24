@@ -1,6 +1,8 @@
 
 #include "main.h"
 #include "renderer.h"
+#include "scene.h"
+#include "manager.h"
 #include <io.h>
 #include <vector>
 
@@ -132,7 +134,15 @@ void Renderer::Init()
 	//ImGui::StyleColorsDark();
 	//ImGui::StyleColorsLight();
 
-	ImGui::StyleColorsClassic();	
+	ImGui::StyleColorsClassic();
+	
+	//	ゲージの色Progresbar
+	ImGui::PushStyleColor(ImGuiCol_PlotHistogram, ImVec4(0.0f, 1.0f, 220.0f / 250.0f, 1.0f));
+
+	//	ホバー色
+	ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(0.3f, 0.85f, 0.875f, 0.4f));
+
+	ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0.0f, 1.0f, 0.9f, 0.7f));
 
 	//  ウィンドウの角丸み->多分角度
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 15.0f);
@@ -147,7 +157,7 @@ void Renderer::Init()
 
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(20.0f, 3.0f));
 
-	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(5.0f, 5.0f));
+	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(5.0f, 10.0f));
 
 	ImGui_ImplWin32_Init(GetWindow());
 	ImGui_ImplDX11_Init(m_Device, m_DeviceContext);
@@ -554,6 +564,8 @@ void Renderer::imguiDraw()
 		static float f = 0.0f;
 		static int counter = 0;
 
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, window_color);
+
 		ImGui::Begin("Hello, world!",&show_hello_world);                          // Create a window called "Hello, world!" and append into it.
 
 		ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
@@ -561,33 +573,42 @@ void Renderer::imguiDraw()
 		ImGui::Checkbox("Another Window", &show_another_window);
 		ImGui::Checkbox("Hello World Window", &show_hello_world);
 
-		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-		ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+		std::shared_ptr<Scene> scene = Manager::GetScene();
+		ImGui::Checkbox("Parameters by scene", &scene->parameters_by_scene);
+
+		//ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+		//ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 		ImGui::ColorEdit4("window color", (float*)&window_color);
+
+		
+		
 		
 		ImGui::SetNextWindowSize(ImVec2(window_color.x, window_color.y));
 
 
-		if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-			counter++;
+		//if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+			//counter++;
+		//ImGui::SameLine();
+		//ImGui::Text("counter = %d", counter);
+
+		//ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		ImGui::Text("Framerate : %.1f FPS",ImGui::GetIO().Framerate);
 		ImGui::SameLine();
-		ImGui::Text("counter = %d", counter);
+		ImGui::ProgressBar(ImGui::GetIO().Framerate / 60.0f);
 
-		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-		ImGui::Text("MousePosDiffX: %d MousePosDiffY: %d", GetMouseX(), GetMouseY());
-		ImGui::Text("MousePosX: %.f MousePosY: %.f", ImGui::GetIO().MousePos.x,ImGui::GetIO().MousePos.y);
+		ImGui::Text("MousePosDiffX: %d \nMousePosDiffY: %d", GetMouseX(), GetMouseY());
 		
-		ImGui::End();
-	}
+		ImGui::Text("Mouse_X: %.f", ImGui::GetIO().MousePos.x);
+		ImGui::SameLine();
+		ImGui::ProgressBar(ImGui::GetIO().MousePos.x / SCREEN_WIDTH);
 
-	// 3. Show another simple window.
-	if (show_another_window)
-	{
-		ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-		ImGui::Text("Hello from another window!");
-		if (ImGui::Button("Close Me"))
-			show_another_window = false;
+		ImGui::Text("Mouse_Y: %.f", ImGui::GetIO().MousePos.y);
+		ImGui::SameLine();
+		ImGui::ProgressBar(ImGui::GetIO().MousePos.y / SCREEN_HEIGHT);
+
 		ImGui::End();
+
+		ImGui::PopStyleColor();
 	}
 
 	
