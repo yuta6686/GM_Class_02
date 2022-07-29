@@ -75,7 +75,9 @@
     <ClCompile Include="UI_Charge.cpp" />
     <ClCompile Include="UI_Score.cpp" />
     <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="UserInterfaceComponent.cpp" />
     <ClCompile Include="UserInterface_Animation.cpp" />
+    <ClCompile Include="VertexChangeComponent.cpp" />
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -90,6 +92,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
+    <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="ImGuiComponent.h" />
@@ -147,7 +150,9 @@
     <ClInclude Include="UI_Charge.h" />
     <ClInclude Include="UI_Score.h" />
     <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="UserInterfaceComponent.h" />
     <ClInclude Include="UserInterface_Animation.h" />
+    <ClInclude Include="VertexChangeComponent.h" />
     <ClInclude Include="vertexShader.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="texture.h" />

@@ -15,6 +15,10 @@ void MatrixComponent::Update()
 
 void MatrixComponent::Draw()
 {
+	if (m_Is2D) {
+		Renderer::SetWorldViewProjection2D();
+	}
+
 	//ワールドマトリクス設定
 	D3DXMATRIX world, scale, rot, trans;
 	D3DXMatrixScaling(&scale,

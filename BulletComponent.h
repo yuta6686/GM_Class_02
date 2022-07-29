@@ -7,6 +7,9 @@ class BulletComponent :
 private:
 
     D3DXVECTOR3 m_Velocity;	//	‘¬“x
+    inline static const float VELOCITY_MIN = 0.001f;
+
+    inline static const float GRABITY = -0.01f;
 public:       
     virtual void Init() override;
 

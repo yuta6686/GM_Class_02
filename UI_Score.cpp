@@ -85,7 +85,7 @@ void UI_Score::Update()
 
 void UI_Score::Draw()
 {
-	int count = m_Count;
+	int count = static_cast<int>(m_Count);
 
 	//	‰º‚ÌŒ…‚©‚ç“ü‚Á‚Ä‚é
 	std::vector<int> digit(DIGIT_NUM);

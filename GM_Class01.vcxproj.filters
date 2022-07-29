@@ -195,9 +195,6 @@
     <ClCompile Include="UserInterface.cpp">
       <Filter>GameObject\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface_Animation.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject_Invoke.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -254,6 +251,15 @@
     </ClCompile>
     <ClCompile Include="StageLimitComponent.cpp">
       <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface_Animation.cpp">
+      <Filter>GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterfaceComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexChangeComponent.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,9 +410,6 @@
     <ClInclude Include="UserInterface.h">
       <Filter>GameObject\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterface_Animation.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject_Invoke.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -466,6 +469,18 @@
     </ClInclude>
     <ClInclude Include="TransformInit.h">
       <Filter>GameObject\Component\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface_Animation.h">
+      <Filter>GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterfaceComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_AimLing.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexChangeComponent.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,8 @@
 #pragma once
 #include "Component.h"
-
-class MatrixComponent :
+class VertexChangeComponent :
     public Component
 {
-private:
-    bool m_Is2D = false;
 public:
 
 
@@ -18,10 +15,7 @@ public:
 
     virtual void Draw() override;
 
-    virtual void DrawImgui()  override {};
+    virtual void DrawImgui() override;
 
-    void SetIs2D(bool flag = true) {
-        m_Is2D = flag;
-    }
 };
 

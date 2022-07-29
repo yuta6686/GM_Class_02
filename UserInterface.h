@@ -1,5 +1,6 @@
 #pragma once
 #include "gameObject.h"
+#include "ComponentObject.h"
 class UserInterface :
     public GameObject
 {

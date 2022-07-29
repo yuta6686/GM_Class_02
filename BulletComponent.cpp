@@ -16,8 +16,11 @@ void BulletComponent::Update()
 
 	m_Velocity *= 0.99f;
 
-
-	//	yは重力も考慮する必要があるので、ちょっとわからない
+	
+	
+	
+	//	重力
+	m_Velocity.y += GRABITY;
 
 }
 

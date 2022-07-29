@@ -42,11 +42,11 @@ void ShootBullet_Shoot::Update()
 		rot.z = rrot.z;
 
 		//	ƒZƒbƒg
-		D3DXVECTOR3 offset = { 0.0f,1.0f,0.0f };
+		D3DXVECTOR3 offset = { 0.0f,2.5f,0.0f };
 		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
 		m_Bullet->SetRotation(rot);
 		
-		float speed = (logf(m_BulletNum + 2) * 2.0f);
+		float speed = (m_BulletNum + 2);
 		
 		float scale = speed * 2.0f;
 

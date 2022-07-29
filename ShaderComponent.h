@@ -27,5 +27,10 @@ public:
 
     virtual void Draw() override;
     virtual void DrawImgui()  override {};
+
+    virtual void SetUnlitShader()
+    {
+        m_ShaderType = SHADER_UNLIT;
+    }
 };
 

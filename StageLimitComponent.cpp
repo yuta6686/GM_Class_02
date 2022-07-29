@@ -16,7 +16,9 @@ void StageLimitDeleteComponent::Update()
 	if (ppos.z > Z_MAX ||
 		ppos.z < Z_MIN ||
 		ppos.x > X_MAX ||
-		ppos.x < X_MIN)
+		ppos.x < X_MIN || 
+		ppos.y > Y_MAX ||
+		ppos.y < Y_MIN)
 	{
 		m_Parent->SetDestroy();
 		return;

@@ -4,6 +4,7 @@
 #include "player.h"	
 #include "Enemy.h"
 #include "Bullet.h"
+#include "CO_UI_AimLing.h"
 
 
 void ImGuiObject::Init()
@@ -60,5 +61,10 @@ void ImGuiObject::Draw()
 		}
 	}
 	
+	if (ImGui::CollapsingHeader("CO_UI_test")) {
+		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<ImGuiComponent>()->DrawImgui();
+		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<UserInterfaceComponent>()->DrawImgui();
+	}
+
 #endif // _DEBUG
 }

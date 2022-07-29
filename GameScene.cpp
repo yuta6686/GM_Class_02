@@ -24,7 +24,7 @@
 #include "Transition.h"
 #include "ComponentObjectTest.h"
 #include "ImGuiObject.h"
-
+#include "CO_UI_AimLing.h"
 
 void GameScene::Init()
 {
@@ -107,7 +107,7 @@ void GameScene::Init()
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
 
-
+	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 }
 
 

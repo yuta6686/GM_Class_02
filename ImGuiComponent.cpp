@@ -33,14 +33,28 @@ void ImGuiComponent::DrawImgui()
 		D3DXVECTOR3 ppos = m_Parent->GetPosition();
 		float fpos[3] = { ppos.x,ppos.y,ppos.z };
 
-		ImGui::SliderFloat("Position X:",
-			&fpos[0], POSITION_MIN, POSITION_MAX, "%.3f", 1.0f);
+		if (m_Is2D) {
+			ImGui::SliderFloat("Position X:",
+				&fpos[0], POSITION_MIN_2D, POSITION_MAX_X_2D, "%.3f", 1.0f);
 
-		ImGui::SliderFloat("Position Y:",
-			&fpos[1], POSITION_MIN, POSITION_MAX, "%.3f", 1.0f);
+			ImGui::SliderFloat("Position Y:",
+				&fpos[1], POSITION_MIN_2D, POSITION_MAX_Y_2D, "%.3f", 1.0f);
 
-		ImGui::SliderFloat("Position Z:",
-			&fpos[2], POSITION_MIN, POSITION_MAX, "%.3f", 1.0f);
+			ImGui::SliderFloat("Position Z:",
+				&fpos[2], POSITION_MIN_2D, POSITION_MIN_2D, "%.3f", 1.0f);
+		}
+		else {
+			ImGui::SliderFloat("Position X:",
+				&fpos[0], POSITION_MIN, POSITION_MAX, "%.3f", 1.0f);
+
+			ImGui::SliderFloat("Position Y:",
+				&fpos[1], POSITION_MIN, POSITION_MAX, "%.3f", 1.0f);
+
+			ImGui::SliderFloat("Position Z:",
+				&fpos[2], POSITION_MIN, POSITION_MAX, "%.3f", 1.0f);
+		}
+
+	
 
 
 

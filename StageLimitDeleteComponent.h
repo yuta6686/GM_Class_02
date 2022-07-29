@@ -14,6 +14,8 @@ private:
     float Z_MAX = 100.0F;
 
     bool m_NoLimit = false;
+
+    
 public:    
     virtual void Init() override;
 
