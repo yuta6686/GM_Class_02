@@ -23,5 +23,7 @@ public:
 
     virtual void Draw() override;
 
+    void DrawImgui() override;
+
 };
 

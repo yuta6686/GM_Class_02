@@ -11,17 +11,18 @@
 
 
 enum LAYER {
-	LAYER_FIRST=0,
+	LAYER_FIRST = 0,
 	LAYER_3D,
-	LAYER_2D,
+	LAYER_AUDIO,
+	LAYER_2D,	
 	LAYER_NUM_MAX,
 };
 
 
 class Scene
 {
-protected :
-	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];	
+protected:
+	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];
 public:
 
 
@@ -30,14 +31,14 @@ public:
 
 	inline virtual void Init() = 0;
 
-	inline void Unload() {			
+	inline void Unload() {
 		ResourceManger<Model>::AllRelease();
 		ResourceManger<Texture>::AllRelease();
 		ResourceManger<VertexShader>::AllRelease();
 		ResourceManger<PixelShader>::AllRelease();
-		
+
 	}
-	GameObject* AddGameObject(GameObject* pGameObject,int layer) 
+	GameObject* AddGameObject(GameObject* pGameObject, int layer)
 	{
 		pGameObject->Init();
 		m_GameObject[layer].push_back(pGameObject);
@@ -66,7 +67,7 @@ public:
 				}
 			}
 		}
-		return nullptr;	
+		return nullptr;
 	}
 
 	template <typename T>
@@ -100,59 +101,52 @@ public:
 	}
 
 	inline virtual void Update()
-	{		
+	{
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
-				
+
 				object->Update();
-				
+
 			}
 
 			m_GameObject[i].remove_if([](GameObject* object) {return object->Destroy(); });
-		}				
+		}
 	}
 
 	inline virtual void Draw()
-	{	
+	{
 #ifdef _DEBUG
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, Renderer::GetWindowColor());
 
-		ImGui::Begin("Parameters by Scene",&parameters_by_scene);
+		ImGui::Begin("Parameters by Scene", &parameters_by_scene);
 #endif // _DEBUG
-		
+
 
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
-				if (object->GetTypeName() != "none") {
+				object->Draw();
 
-#ifdef _DEBUG
-					if (ImGui::CollapsingHeader(object->GetTypeName().c_str())) 
-#endif // _DEBUG
-					{
-						object->Draw();
-					}
+				if (object->GetTypeName() == "none")continue;
+				if (ImGui::CollapsingHeader(object->GetTypeName().c_str())) {
+					object->DrawImgui();
 				}
-				else {
-					object->Draw();
-				}
-				
 			}
 		}
-		
+
 #ifdef _DEBUG
 		ImGui::End();
 
 		ImGui::PopStyleColor();
 #endif // _DEBUG
-		
+
 	}
 
 	inline static bool parameters_by_scene = true;
 private:
-	
-	
+
+
 
 };
 

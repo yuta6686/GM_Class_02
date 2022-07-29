@@ -31,7 +31,7 @@ void Player::Init()
 	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
 
 	std::shared_ptr<Scene> scene = Manager::GetScene();
-	m_ShotSE = scene->AddGameObject<Audio>(LAYER_3D);
+	m_ShotSE = scene->AddGameObject<Audio>(LAYER_AUDIO);
 	m_ShotSE->Load("asset\\audio\\wan.wav");
 
 
@@ -120,6 +120,10 @@ void Player::Draw()
 
 
 
+}
+
+void Player::DrawImgui()
+{
 #ifdef _DEBUG
 
 

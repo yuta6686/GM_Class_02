@@ -13,7 +13,7 @@
 class Audio : public GameObject
 {
 private:
-	const float MAX_VOLUME = 0.75f;
+	const float MAX_VOLUME = 1.0f;
 
 	static IXAudio2* m_Xaudio;
 	static IXAudio2MasteringVoice* m_MasteringVoice;	
@@ -29,17 +29,51 @@ private:
 	float m_Pitch;
 	float m_sourceRate = 1024.0f;
 	float m_targetRate = 1024.0f;
-
+	float m_curVolume;
+	float m_curSourceRate;
+	
 public:
 	static void InitMaster();
 	static void UninitMaster();
 
 	void Init() {
 		m_SourceVoices.resize(SOUND_SOURCE_MAX);
+		m_Volume = 1.0f;
+		m_curVolume = 1.0f;
+		m_curSourceRate = 1024.0f;
 	};
 	void Uninit();
-	void Update() {};
+	void Update() {
+		if (m_curSourceRate != m_sourceRate) {
+			PitchUp(0.0f);
+		}
+		if (m_curVolume != m_Volume) {
+			VolumeUp(0.0f);
+		}
+
+		m_curSourceRate = m_sourceRate;
+		m_curVolume = m_Volume;
+	};
 	void Draw() {};
+
+	void DrawImgui() override {		
+
+		if (ImGui::TreeNode("Volume")) {			
+			ImGui::ProgressBar(m_Volume);
+			ImGui::SliderFloat("Volume", &m_Volume, 0.0f, 1.0f, "%.1f");
+			ImGui::TreePop();
+		}
+		
+		
+
+		if (ImGui::TreeNode("SourceRate")) {
+			ImGui::ProgressBar(m_sourceRate / m_targetRate);
+			ImGui::SliderFloat("sourceRate", &m_sourceRate, 0.0f, 1024.0f, "%.1f");
+			ImGui::TreePop();
+		}
+		
+
+	}
 
 	void Load(const char* FileName);
 	void Play(bool Loop = false);
@@ -120,6 +154,10 @@ public:
 		}*/
 
 		//	https://docs.microsoft.com/ja-jp/windows/win32/xaudio2/how-to--stream-a-sound-from-disk
+	}
+
+	void SetSourceRate(float source) {
+		m_sourceRate = source;
 	}
 };
 

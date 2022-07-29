@@ -50,6 +50,7 @@
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="MatrixComponent.cpp" />
     <ClCompile Include="model.cpp" />
+    <ClCompile Include="ModelDrawComponent.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pointLight.cpp" />

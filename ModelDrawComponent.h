@@ -31,6 +31,8 @@ public:
     {
         m_Model->Draw();
     };
+    
+    virtual void DrawImgui()  override {};
 
 };
 

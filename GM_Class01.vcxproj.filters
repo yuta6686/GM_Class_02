@@ -249,6 +249,9 @@
     <ClCompile Include="ImGuiComponent.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="ModelDrawComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

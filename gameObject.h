@@ -36,6 +36,7 @@ public:
 	virtual void Uninit()= 0;
 	virtual void Update()= 0;
 	virtual void Draw()	 = 0;
+	virtual void DrawImgui() {}
 
 	virtual void LastInit() {}
 
