@@ -1,6 +1,5 @@
 #pragma once
 #include "ComponentObject.h"
-#include "ImGuiComponent.h"
 
 class ComponentObjectTest :
     public ComponentObject

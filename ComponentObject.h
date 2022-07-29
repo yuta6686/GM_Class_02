@@ -6,6 +6,8 @@
 #include "MatrixComponent.h"
 #include "ModelDrawComponent.h"
 #include "TransformInit.h"
+#include "ImGuiComponent.h"
+
 
 class ComponentObject :
 	public GameObject

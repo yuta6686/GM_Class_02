@@ -29,7 +29,6 @@
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="GameObject_Invoke.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -64,6 +63,7 @@
     <ClCompile Include="ShootBullet_Amass.cpp" />
     <ClCompile Include="ShootBullet_Idle.cpp" />
     <ClCompile Include="ShootBullet_Shoot.cpp" />
+    <ClCompile Include="StageLimitComponent.cpp" />
     <ClCompile Include="stage_corridor.cpp" />
     <ClCompile Include="stage_corridor_corner.cpp" />
     <ClCompile Include="stage_otorii.cpp" />
@@ -134,6 +134,7 @@
     <ClInclude Include="ShootBullet_Amass.h" />
     <ClInclude Include="ShootBullet_Idle.h" />
     <ClInclude Include="ShootBullet_Shoot.h" />
+    <ClInclude Include="StageLimitDeleteComponent.h" />
     <ClInclude Include="stage_corridor.h" />
     <ClInclude Include="stage_corridor_corner.h" />
     <ClInclude Include="stage_include.h" />

@@ -1,31 +1,45 @@
 #pragma once
 #include "main.h"
-#include "gameobject.h"
+#include "ComponentObject.h"
+#include "StageLimitDeleteComponent.h"
+#include "BulletComponent.h"
 
-class Bullet : public GameObject
+class Bullet : public ComponentObject
 {
 private:
-	static inline const float BULLET_SPEED_MAX = 5.0f;
-	static inline float m_Speed = 1.0f;
-	static inline std::shared_ptr<Resource> m_Model;
 
-	ID3D11VertexShader* m_VertexShader = NULL;
-	ID3D11PixelShader* m_PixelShader = NULL;
-	ID3D11InputLayout* m_VertexLayout = NULL;
-
-	D3DXVECTOR3 m_Forward;
 public:		
-	void Init();
-	void Uninit();
+	void Init() {
+
+		AddComponent<TransformInit>(COMLAYER_FIRST);
+
+		AddComponent<ShaderComponent>(COMLAYER_SHADER);
+
+		AddComponent<MatrixComponent>(COMLAYER_MATRIX);
+
+		ModelDrawComponent* mdc =
+			new ModelDrawComponent("asset\\model\\arrow.obj");
+
+		AddComponent(mdc, COMLAYER_DRAW);
+
+		AddComponent< ImGuiComponent>(COMLAYER_SECOND);
+
+		auto* sldc = AddComponent< StageLimitDeleteComponent>(COMLAYER_SECOND);
+		sldc->SetLimit('x', -200, 200);
+		sldc->SetLimit('z', -200, 200);
+
+		AddComponent< BulletComponent>(COMLAYER_SECOND);
+
+
+		ComponentObject::Init();
+	}
+	
 	void Update();
-	void Draw();
-
-	void SetForward(D3DXVECTOR3 vec) {
-		m_Forward = vec;
+	
+	void Shoot(D3DXVECTOR3 direction, const float& speed) {
+		GetComponent< BulletComponent>()->SetVelocity(direction * speed);
 	}
 
-	void SetSpeed(const float& speed) {
-		m_Speed = speed;
-	}
+
 };
 

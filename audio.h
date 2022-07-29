@@ -38,7 +38,7 @@ public:
 
 	void Init() {
 		m_SourceVoices.resize(SOUND_SOURCE_MAX);
-		m_Volume = 1.0f;
+		m_Volume = 0.5f;
 		m_curVolume = 1.0f;
 		m_curSourceRate = 1024.0f;
 	};

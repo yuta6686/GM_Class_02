@@ -2,7 +2,8 @@
 #include "manager.h"
 #include "GameScene.h"
 #include "player.h"	
-
+#include "Enemy.h"
+#include "Bullet.h"
 
 
 void ImGuiObject::Init()
@@ -25,17 +26,39 @@ void ImGuiObject::Draw()
 {
 #ifdef _DEBUG
 	
-	ImGui::Begin("Player Window", &m_PlayerWindow);
+	//	Player
+	if (ImGui::CollapsingHeader("Player")) {
+		m_Player->DrawImgui();
+	}
 
+
+	//	Enemy
+	if (ImGui::CollapsingHeader("Enemy")) {
+		std::vector<Enemy*> enemys = m_Scene->GetGameObjects<Enemy>();
+		for (int i = 0; i < enemys.size();i++) {
+			char buff[255];
+			sprintf(buff, "Enemy_%d", i);
+			if (ImGui::TreeNode(buff)) 
+			{
+				enemys[i]->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
 	
-	D3DXVECTOR3 ppos = m_Player->GetPosition();	
-	float fpos[3] = { ppos.x,ppos.y,ppos.z };
-	ImGui::SliderFloat3("Player Position",
-		fpos, -100.0f, 100.0f, "%.3f", 1.0f);
-	m_Player->SetPosition(fpos);
-
+	//	Bullet
+	if (ImGui::CollapsingHeader("Bullet")) {
+		std::vector<Bullet*> bullets = m_Scene->GetGameObjects<Bullet>();
+		for (int i = 0; i < bullets.size(); i++) {
+			char buff[255];
+			sprintf(buff, "Bullet_%d", i);
+			if (ImGui::TreeNode(buff))
+			{
+				bullets[i]->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
 	
-
-	ImGui::End();	
 #endif // _DEBUG
 }

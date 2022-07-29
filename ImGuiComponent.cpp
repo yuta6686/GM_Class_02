@@ -26,7 +26,7 @@ void ImGuiComponent::DrawImgui()
 {
 #ifdef _DEBUG
 
-	ImGui::BeginChild(ImGui::GetID((void*)0), ImVec2(400, 500));
+	ImGui::BeginChild(ImGui::GetID((void*)0), ImVec2(400, 400));
 
 	//	Position
 	{

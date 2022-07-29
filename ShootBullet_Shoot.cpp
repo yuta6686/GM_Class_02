@@ -45,10 +45,12 @@ void ShootBullet_Shoot::Update()
 		D3DXVECTOR3 offset = { 0.0f,1.0f,0.0f };
 		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
 		m_Bullet->SetRotation(rot);
-		m_Bullet->SetForward(m_Player->GetCameraForward());
-		float value = (logf(m_BulletNum + 2) * 2.0f);
-		m_Bullet->SetSpeed(value);
-		float scale = value * 2.0f;
+		
+		float speed = (logf(m_BulletNum + 2) * 2.0f);
+		
+		float scale = speed * 2.0f;
+
+		m_Bullet->Shoot(m_Player->GetCameraForward(), speed);
 		m_Bullet->SetScale({ scale,scale,scale });
 
 

@@ -22,13 +22,11 @@ void ShootBullet_Amass::Uninit()
 void ShootBullet_Amass::Update()
 {
 	if (IsMouseLeftPressed()) {
-		m_Counter++;
+		
 		if (m_Counter % 10 == 0) {
-			m_BulletNum++;
-			
-			
+			m_BulletNum++;						
 		}
-
+		m_Counter++;
 		m_uiCharge->SetCounter((float)m_Counter/10.0f);		
 	}
 	else {
@@ -38,14 +36,6 @@ void ShootBullet_Amass::Update()
 
 void ShootBullet_Amass::Draw()
 {
-//#ifdef _DEBUG
-//	char* str = GetDebugStr();
-//	wsprintf(GetDebugStr(), "game");
-//	wsprintf(&str[strlen(str)], "Amass");
-//
-//	SetWindowText(GetWindow(), GetDebugStr());
-//#endif
-
 #ifdef _DEBUG
 	
 	ImGui::Text("Amass");

@@ -102,10 +102,12 @@ void GameScene::Init()
 	}
 
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
-	//	AddGameObject< ImGuiObject>(LAYER_3D);
+	AddGameObject< ImGuiObject>(LAYER_3D);
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
+
+
 }
 
 
@@ -130,7 +132,7 @@ void GameScene::Update()
 	{
 		for (auto x : m_GameObject[LAYER_AUDIO]) {
 			Audio* audio = dynamic_cast<Audio*>(x);
-			audio->VolumeDown(0.01);
+			audio->VolumeDown(0.01f);
 
 		}
 	}
@@ -138,7 +140,7 @@ void GameScene::Update()
 	{
 		for (auto x : m_GameObject[LAYER_AUDIO]) {
 			Audio* audio = dynamic_cast<Audio*>(x);
-			audio->VolumeUp(0.01);
+			audio->VolumeUp(0.01f);
 
 		}
 

@@ -14,6 +14,7 @@ enum LAYER {
 	LAYER_FIRST = 0,
 	LAYER_3D,
 	LAYER_AUDIO,
+	LAYER_ENEMY,
 	LAYER_2D,	
 	LAYER_NUM_MAX,
 };
@@ -23,6 +24,7 @@ class Scene
 {
 protected:
 	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];
+	std::map<std::string, bool> m_Container;
 public:
 
 
@@ -126,12 +128,7 @@ public:
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
-				object->Draw();
-
-				if (object->GetTypeName() == "none")continue;
-				if (ImGui::CollapsingHeader(object->GetTypeName().c_str())) {
-					object->DrawImgui();
-				}
+				object->Draw();												
 			}
 		}
 

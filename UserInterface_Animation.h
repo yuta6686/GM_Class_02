@@ -22,7 +22,7 @@ public:
     virtual void Update() override;
     virtual void Draw() override;
 
-    void AddCount(const float& addcount) {
+    void AddCount(const int& addcount) {
         if (addcount < 0.0f || addcount >= 1000000.0f)return;
         m_Count += addcount;
     }

@@ -2,6 +2,8 @@
 #include "GameObject.h"
 class Scene;
 class Player;
+
+
 class ImGuiObject :
     public GameObject
 {
