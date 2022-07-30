@@ -21,7 +21,7 @@ public:
 
         AddComponent(mdc, COMLAYER_DRAW);
 
-        AddComponent< ImGuiComponent>(COMLAYER_SECOND);
+        AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
 
         SetHp(GetMaxHp());        
 

@@ -25,7 +25,11 @@ public:
             m_MaxHp = 1;
             return false;
         }
+        if (m_MaxHp == hp) {
+            return false;
+        }        
         m_MaxHp = hp;
+        SetHp(hp);
         return true;
     }
     void CollosionWithBullet()

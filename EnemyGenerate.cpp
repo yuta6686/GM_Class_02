@@ -9,6 +9,16 @@ using namespace std;
 void EnemyGenerate::Init()
 {
 	m_Scene = Manager::GetScene();
+	for (int i = 1; i < 100;i++) {
+		std::ostringstream oss;
+		oss << i;
+		ifstream ifs(m_FileName.c_str() + oss.str() + m_Extension.c_str());
+
+		if (!ifs) {
+			m_NowFileNum = i;
+			break;
+		}		
+	}
 }
 
 void EnemyGenerate::Uninit()
@@ -20,13 +30,21 @@ void EnemyGenerate::Update()
 	ImGui::Begin("EnemyGenerate");
 
 	if (ImGui::Button("Generate!")) {
-		m_Scene->AddGameObject<Enemy>(LAYER_3D);
+		m_Scene->AddGameObject<Enemy>(LAYER_3D)->SetMaxHp(10);
 	}
 
 	std::vector<Enemy*> enemys = m_Scene->GetGameObjects<Enemy>();
 
+	
+
 	if (ImGui::Button("Save!")) {
-		std::ofstream ofs(m_FileName.c_str());
+		m_NowFileNum++;
+		std::ostringstream oss;
+
+		oss << m_SaveFileIndex;		
+		
+		//	FileName + FileIndex + Extension
+		std::ofstream ofs(m_FileName.c_str() + oss.str() + m_Extension.c_str());
 
 		if (!ofs) {
 			ImGui::Text("Could not open file.");
@@ -48,8 +66,17 @@ void EnemyGenerate::Update()
 		}
 	}
 
+	ImGui::SliderInt("SaveFileIndex", &m_SaveFileIndex, 1, m_NowFileNum, "%d");
+	
+	ImGui::Separator();
+
 	if (ImGui::Button("Load")) {
-		ifstream ifs(m_FileName.c_str());
+				
+		std::ostringstream oss;
+
+		oss << m_LoadFileIndex;
+
+		ifstream ifs(m_FileName.c_str() + oss.str() + m_Extension.c_str());
 		string str_buf;
 		string str_conma_buf;
 		vector<string> str_buf_vec;
@@ -89,6 +116,16 @@ void EnemyGenerate::Update()
 			str_buf_vec.clear();
 		}
 
+	}
+	ImGui::SliderInt("LoadFileIndex", &m_LoadFileIndex, 1, m_NowFileNum-1, "%d");
+
+
+	if(ImGui::CollapsingHeader("Reset Enemy")) {
+		if(ImGui::Button("Reset Enemy Button")) {
+			for (auto enemy : enemys) {
+				enemy->SetDestroy();
+			}
+		}
 	}
 
 	//	Enemy

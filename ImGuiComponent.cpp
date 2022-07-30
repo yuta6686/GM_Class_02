@@ -1,7 +1,7 @@
 #include "ImGuiComponent.h"
 #include "gameObject.h"
 #include "ComponentObject.h"
-
+#include "Enemy.h"
 
 #define nameof(x) #x
 
@@ -26,7 +26,7 @@ void ImGuiComponent::DrawImgui()
 {
 #ifdef _DEBUG
 
-	ImGui::BeginChild(ImGui::GetID((void*)0), ImVec2(400, 400));
+	ImGui::BeginChild(ImGui::GetID((void*)0));
 
 	//	Position
 	{
@@ -34,6 +34,9 @@ void ImGuiComponent::DrawImgui()
 		float fpos[3] = { ppos.x,ppos.y,ppos.z };
 
 		if (m_Is2D) {
+			int a = 0;
+			ImGui::SliderInt("a", &a, 0, 1000, "%d", ImGuiSliderFlags_AlwaysClamp);
+
 			ImGui::SliderFloat("Position X:",
 				&fpos[0], POSITION_MIN_2D, POSITION_MAX_X_2D, "%.3f", 1.0f);
 
@@ -95,8 +98,25 @@ void ImGuiComponent::DrawImgui()
 		m_Parent->SetScale(fsca);
 	}
 
+	if (m_IsEnemyVersion) {
+		auto pEnemy = dynamic_cast<Enemy*>(m_Parent);
+
+		if (pEnemy!=nullptr) {
+
+			int hp = pEnemy->GetMaxHp();
+
+			ImGui::Text("HP     : %d", pEnemy->GetHp());
+			ImGui::Text("Max Hp : %d", hp);
+			ImGui::ProgressBar(static_cast<float>(pEnemy->GetHp()) / static_cast<float>(hp));
+			ImGui::SliderInt("Enemy Max HP", &hp, 1, 100, "%d");
+
+			pEnemy->SetMaxHp(hp);			
+		}
+	}
+
 	ImGui::EndChild();
 
 
 #endif // _DEBUG
 }
+
