@@ -128,39 +128,37 @@ void GameScene::Update()
 		m_Fade->Start(false);
 	}
 
-	if (GetKeyboardPress(DIK_N)) 
-	{		
-		m_BGM->VolumeDown(0.01f);
+	if (GetKeyboardPress(DIK_N))
+	{
+		for (auto x : m_GameObject[LAYER_AUDIO]) {
+			Audio* audio = dynamic_cast<Audio*>(x);
+			audio->VolumeDown(0.01f);
+
+		}
 	}
 	if (GetKeyboardPress(DIK_M))
-	{	
-		m_BGM->VolumeUp(0.01f);
+	{
+		for (auto x : m_GameObject[LAYER_AUDIO]) {
+			Audio* audio = dynamic_cast<Audio*>(x);
+			audio->VolumeUp(0.01f);
+
+		}
+
 	}
 
 	if (GetKeyboardPress(DIK_V))
 	{
 		m_BGM->PitchDown(1.0f);
-		
 	}
 	if (GetKeyboardPress(DIK_B))
 	{
 		m_BGM->PitchUp(1.0f);
-		
 	}
 
-	if (m_FadeIn) {
-		if (m_FadeIn->GetIsFinishFadeIn()) {
-			m_FadeIn->SetDestroy();
-		}
+	if (m_Fade->GetFinish()) {
+		Manager::SetScene <ResultScene>();
 	}
 
-	if (m_FadeOut) {
-		if (m_FadeOut->GetIsTransition()) {
-			m_FadeOut->SetDestroy();
-			Manager::SetScene <ResultScene>();
-		}
-	}
-	
 
 
 	//#ifdef _DEBUG
