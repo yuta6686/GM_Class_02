@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="ao_Sphere.cpp" />
     <ClCompile Include="audio.cpp" />
+    <ClCompile Include="BlinkComponent.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -57,6 +58,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
+    <ClCompile Include="Rotate2D.cpp" />
     <ClCompile Include="ShaderComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="ShootBullet.cpp" />
@@ -77,14 +79,16 @@
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="UserInterfaceComponent.cpp" />
     <ClCompile Include="UserInterface_Animation.cpp" />
-    <ClCompile Include="VertexChangeComponent.cpp" />
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlinkComponentAlpha2D.h" />
     <ClInclude Include="ao_Sphere.h" />
     <ClInclude Include="audio.h" />
+    <ClInclude Include="BlinkComponent.h" />
+    <ClInclude Include="BlinkComponent_Scale.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="camera.h" />
@@ -130,6 +134,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResultPolygon.h" />
     <ClInclude Include="ResultScene.h" />
+    <ClInclude Include="Rotate2D.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="Shadow.h" />

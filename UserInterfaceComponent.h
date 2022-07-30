@@ -48,6 +48,7 @@ public:
     void SetIsChangeVertex(bool flag = true) { m_IsChangeVertex = flag; }
     
     void SetColor(const D3DXVECTOR4& color) { m_Color = color; }
+    void SetAlpha(const float& alpha) { m_Color.w = alpha; }
 
     void InitVertex();
     void ChangeVertex(VERTEX_3D* vertex);

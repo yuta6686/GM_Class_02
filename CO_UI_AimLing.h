@@ -2,6 +2,9 @@
 #include "ComponentObject.h"
 #include "UserInterfaceComponent.h"
 #include "VertexChangeComponent.h"
+#include "BlinkComponentAlpha2D.h"
+#include "BlinkComponent_Scale.h"
+#include "Rotate2D.h"
 class CO_UI_AimLing :
     public ComponentObject
 {
@@ -24,6 +27,12 @@ public:
         AddComponent<ImGuiComponent>(COMLAYER_SECOND)->SetIs2D();
 
         AddComponent<VertexChangeComponent>(COMLAYER_CHANGEVERTEX);
+
+        AddComponent<AlphaBlink2DComponent>(COMLAYER_SECOND);
+        AddComponent< BlinkComponent_Scale>(COMLAYER_SECOND)
+            ->SetParameter(AXIS_XYZ,0.1f,1.0f,3.0f);
+
+        AddComponent<Rotate2D>(COMLAYER_SECOND);
 
         ComponentObject::Init();
     }

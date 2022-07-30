@@ -7,15 +7,17 @@ public:
 
 
     // Component ‚ð‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
-    virtual void Init() override;
+    virtual void Init() override {};
 
-    virtual void Uninit() override;
+    virtual void Uninit() override {};
 
-    virtual void Update() override;
+    virtual void Update() override {};
 
-    virtual void Draw() override;
+    virtual void Draw() override {
+        m_Parent->GetComponent<UserInterfaceComponent>()->ChangeVertexDraw();
+    }
 
-    virtual void DrawImgui() override;
+    virtual void DrawImgui() override {};
 
 };
 

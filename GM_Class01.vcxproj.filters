@@ -73,6 +73,12 @@
     <Filter Include="GameObject\Component\Function">
       <UniqueIdentifier>{f842ca22-ed3d-4f69-857d-168d0bac4323}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\UI">
+      <UniqueIdentifier>{032dd5b2-6f82-4c1c-86b9-86b8adc08563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\ComponentObject">
+      <UniqueIdentifier>{907161ae-b483-458a-b63a-252891e0737f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -204,9 +210,6 @@
     <ClCompile Include="Transition.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentObjectTest.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -243,23 +246,29 @@
     <ClCompile Include="ShaderComponent.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="BulletComponent.cpp">
-      <Filter>GameObject\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiComponent.cpp">
-      <Filter>GameObject\Component\Function</Filter>
-    </ClCompile>
     <ClCompile Include="StageLimitComponent.cpp">
       <Filter>GameObject\Component\Function</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface_Animation.cpp">
       <Filter>GameObject\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterfaceComponent.cpp">
-      <Filter>System</Filter>
+    <ClCompile Include="ImGuiComponent.cpp">
+      <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="VertexChangeComponent.cpp">
-      <Filter>System</Filter>
+    <ClCompile Include="BulletComponent.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentObjectTest.cpp">
+      <Filter>GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="BlinkComponent.cpp">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotate2D.cpp">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterfaceComponent.cpp">
+      <Filter>GameObject\Component\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -428,9 +437,6 @@
     <ClInclude Include="ComponentObject.h">
       <Filter>GameObject\Component</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentObjectTest.h">
-      <Filter>GameObject\Component</Filter>
-    </ClInclude>
     <ClInclude Include="MatrixComponent.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
@@ -455,15 +461,6 @@
     <ClInclude Include="imgui\backends\imgui_impl_win32.h">
       <Filter>System\imgui\backend</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiComponent.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletComponent.h">
-      <Filter>GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiObject.h">
-      <Filter>GameObject\Component\Function</Filter>
-    </ClInclude>
     <ClInclude Include="StageLimitDeleteComponent.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
@@ -473,14 +470,38 @@
     <ClInclude Include="UserInterface_Animation.h">
       <Filter>GameObject\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterfaceComponent.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="BlinkComponent_Scale.h">
+      <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_AimLing.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="ImGuiComponent.h">
+      <Filter>GameObject\Component\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiObject.h">
+      <Filter>GameObject\Object\GameSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BlinkComponent.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BlinkComponentAlpha2D.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotate2D.h">
+      <Filter>GameObject\Component\UI</Filter>
     </ClInclude>
     <ClInclude Include="VertexChangeComponent.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterfaceComponent.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletComponent.h">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentObjectTest.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_AimLing.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
