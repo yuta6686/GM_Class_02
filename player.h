@@ -48,6 +48,7 @@ public:
 	void Uninit()override;
 	void Update()override;
 	void Draw()	 override;
+	void DrawImgui() override;
 
 	D3DXVECTOR3 GetCameraRot() { return m_CameraRot; }
 	D3DXVECTOR3 GetCameraForward()

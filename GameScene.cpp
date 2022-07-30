@@ -23,18 +23,24 @@
 #include "UserInterface_Animation.h"
 #include "Transition.h"
 #include "ComponentObjectTest.h"
-
+#include "ImGuiObject.h"
+#include "CO_UI_AimLing.h"
 
 void GameScene::Init()
 {
+	//	カメラ
 	AddGameObject<Camera>(LAYER_FIRST);
 
+	//	ライト
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
+	//	フィールド
 	AddGameObject<Field>(LAYER_3D);
 
+	//	プレイヤー
 	AddGameObject<Player>(LAYER_3D);
 
+	//	エネミー
 	AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
 	for (int i = 1; i <= 5; i++)
 	{
@@ -44,7 +50,10 @@ void GameScene::Init()
 		AddGameObject(EnemyFactory::Create<Enemy>(i * 15), LAYER_3D)->SetPosition({ -3.0f * i, -0.5f, -5.0f });
 	}
 
+	//	アイテム
 	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
+
+	//	AO球
 	AddGameObject<Ao_Sphere>(LAYER_3D);
 
 	//	ステージ配置
@@ -67,14 +76,12 @@ void GameScene::Init()
 
 	AddGameObject<Collision2D>(LAYER_2D);
 
-	m_BGM = AddGameObject<Audio>(LAYER_3D);
+	//	Audio
+	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
 	m_BGM->Load("asset\\audio\\kanatanouchuu.wav");
 	m_BGM->Play(true);
 
-	sourceRate = 270.0f;
-	targetRate = 1024.0f;
-	float frequencyRatio = sourceRate / targetRate;
-	m_BGM->SetAudioPitch(frequencyRatio);
+	m_BGM->SetSourceRate(270.0f);
 
 	{
 		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
@@ -95,9 +102,12 @@ void GameScene::Init()
 	}
 
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
+	AddGameObject< ImGuiObject>(LAYER_3D);
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
+
+	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 }
 
 
@@ -118,30 +128,39 @@ void GameScene::Update()
 		m_Fade->Start(false);
 	}
 
-	if (GetKeyboardPress(DIK_N))
-	{
+	if (GetKeyboardPress(DIK_N)) 
+	{		
 		m_BGM->VolumeDown(0.01f);
 	}
 	if (GetKeyboardPress(DIK_M))
-	{
+	{	
 		m_BGM->VolumeUp(0.01f);
 	}
 
 	if (GetKeyboardPress(DIK_V))
 	{
 		m_BGM->PitchDown(1.0f);
-
+		
 	}
 	if (GetKeyboardPress(DIK_B))
 	{
 		m_BGM->PitchUp(1.0f);
-
+		
 	}
 
-	if (m_Fade->GetFinish()) {
-		Manager::SetScene <ResultScene>();
+	if (m_FadeIn) {
+		if (m_FadeIn->GetIsFinishFadeIn()) {
+			m_FadeIn->SetDestroy();
+		}
 	}
 
+	if (m_FadeOut) {
+		if (m_FadeOut->GetIsTransition()) {
+			m_FadeOut->SetDestroy();
+			Manager::SetScene <ResultScene>();
+		}
+	}
+	
 
 
 	//#ifdef _DEBUG

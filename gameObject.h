@@ -10,8 +10,9 @@
 enum COMPONENT_LAYER {
 	COMLAYER_FIRST = 0,
 	COMLAYER_SECOND,
+	COMLAYER_CHANGEVERTEX,
 	COMLAYER_SHADER,
-	COMLAYER_MATRIX,
+	COMLAYER_MATRIX,	
 	COMLAYER_DRAW,
 	COMLAYER_NUM_MAX,
 };
@@ -29,11 +30,14 @@ protected:
 	D3DXVECTOR3 m_Scale;
 	
 	std::list<Component*> m_ComponentList[COMLAYER_NUM_MAX];
+
+	std::string m_TypeName = "none";
 public:
 	virtual void Init()	 = 0;
 	virtual void Uninit()= 0;
 	virtual void Update()= 0;
 	virtual void Draw()	 = 0;
+	virtual void DrawImgui() {}
 
 	virtual void LastInit() {}
 
@@ -55,6 +59,7 @@ public:
 	D3DXVECTOR3 GetRotation()const { return m_Rotation; }
 	D3DXVECTOR3 GetScale()const { return m_Scale; }
 
+	D3DXVECTOR3* GetPositionPointer() { return &m_Position; }
 	
 	const D3DXVECTOR3& GetPositionReference()const 
 	{
@@ -156,5 +161,7 @@ public:
 		m_ComponentList[layer].push_back(pComponent);
 		return pComponent;
 	}
+
+	std::string GetTypeName()const { return m_TypeName; }
 };
 

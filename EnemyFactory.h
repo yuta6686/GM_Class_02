@@ -2,13 +2,16 @@
 #include "Enemy.h"
 class EnemyFactory
 {
-public:
+private:
+	inline static int m_EnemyNum = 0;
+public:	
+
 	template <typename T>
 	static Enemy_Interface* Create() 
 	{
 		Enemy_Interface* pEnemy = new T();
 
-		pEnemy->SetMaxHp(50);		
+		pEnemy->SetMaxHp(50);	
 
 		return pEnemy;
 	}

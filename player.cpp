@@ -21,9 +21,9 @@ static std::shared_ptr<Scene> g_Scene;
 
 
 void Player::Init()
-{	
+{
 	m_Model = ResourceManger<Model>::GetResource(texName);
-	
+
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");
@@ -31,8 +31,9 @@ void Player::Init()
 	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
 
 	std::shared_ptr<Scene> scene = Manager::GetScene();
-	m_ShotSE = scene->AddGameObject<Audio>(LAYER_3D);
+	m_ShotSE = scene->AddGameObject<Audio>(LAYER_AUDIO);
 	m_ShotSE->Load("asset\\audio\\wan.wav");
+
 
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
@@ -46,13 +47,13 @@ void Player::Init()
 	m_ShootBullet = new ShootBullet_Idle();
 	m_ShootBullet->Init();
 
-	m_Velocity = D3DXVECTOR3( 0.0f,0.0f,0.0f );
+	m_Velocity = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
-
+	m_TypeName = "Player";
 }
 
 void Player::Uninit()
-{	
+{
 
 	m_VertexLayout->Release();
 	m_VertexShader->Release();
@@ -63,12 +64,12 @@ void Player::Uninit()
 }
 
 void Player::Update()
-{		
+{
 	InvokeUpdate();
 
 	//	プレイヤー移動処理
 	PlayerMove();
-	
+
 	//	プレイヤー回転処理
 	PlayerRotation();
 
@@ -78,18 +79,18 @@ void Player::Update()
 	//	アイテム取得	
 	GetItem();
 
-//#ifdef _DEBUG
-//	char* str = GetDebugStr();
-//	wsprintf(GetDebugStr(), "game");
-//	wsprintf(&str[strlen(str)], "Position.x: %d y:%d z:%d",
-//		(int)m_Position.x,
-//		(int)m_Position.y,
-//		(int)m_Position.z);
-//
-//	SetWindowText(GetWindow(), GetDebugStr());
-//#endif
+	//#ifdef _DEBUG
+	//	char* str = GetDebugStr();
+	//	wsprintf(GetDebugStr(), "game");
+	//	wsprintf(&str[strlen(str)], "Position.x: %d y:%d z:%d",
+	//		(int)m_Position.x,
+	//		(int)m_Position.y,
+	//		(int)m_Position.z);
+	//
+	//	SetWindowText(GetWindow(), GetDebugStr());
+	//#endif
 
-	
+
 	D3DXVECTOR3 shadowPos = m_Position;
 	shadowPos.y = 0.25f;
 	m_Shadow->SetPosition(shadowPos);
@@ -116,14 +117,41 @@ void Player::Draw()
 	m_Model->Draw();
 
 
+
+
+
+}
+
+void Player::DrawImgui()
+{
+#ifdef _DEBUG
+
+
 	m_ShootBullet->Draw();
+
+	ImGui::Separator();
+
+
+	if (ImGui::Button("Player->Jump")) {
+		if (m_Position.y >= 0.2f) {
+			m_Velocity.y = JUMP * 1.5f;
+		}
+		else {
+			m_Velocity.y = JUMP;
+		}
+	}
+
+
+	ImGui::Separator();
+
+#endif // _DEBUG
 }
 
 void Player::PlayerMove()
 {
 	D3DXVECTOR3 forward = GetForward();
 
-	
+
 
 	//	プレイヤー移動処理
 	if (GetKeyboardPress(DIK_W)) {
@@ -131,18 +159,18 @@ void Player::PlayerMove()
 
 
 		Move();
-		
+
 		//	これで実質あれができる。
 		//	けどやめとけ。
-		/*thread thd([this]{ 
-			this_thread::sleep_for(5s);			
-			Move(); 
+		/*thread thd([this]{
+			this_thread::sleep_for(5s);
+			Move();
 			});
 
 		thd.detach();*/
 		m_TargetRotation.y = 0.0f;
 	}
-	
+
 
 
 	if (GetKeyboardPress(DIK_S)) {
@@ -156,13 +184,13 @@ void Player::PlayerMove()
 		m_Velocity.z += PLAYER_SPEED * GetLeft().z;
 		m_Velocity.x += PLAYER_SPEED * GetLeft().x;
 
-		m_TargetRotation.y = -D3DX_PI/2;
+		m_TargetRotation.y = -D3DX_PI / 2;
 	}
 	if (GetKeyboardPress(DIK_D)) {
 		m_Velocity.z += PLAYER_SPEED * GetRight().z;
 		m_Velocity.x += PLAYER_SPEED * GetRight().x;
 
-		m_TargetRotation.y = D3DX_PI/2;
+		m_TargetRotation.y = D3DX_PI / 2;
 	}
 	D3DXVECTOR3 dist = m_TargetRotation - m_PlayerRotation;
 
@@ -185,7 +213,7 @@ void Player::PlayerMove()
 
 	if (GetKeyboardTrigger(DIK_SPACE)) {
 		if (m_Position.y >= 0.2f) {
-			m_Velocity.y = JUMP*1.5f;
+			m_Velocity.y = JUMP * 1.5f;
 		}
 		else {
 			m_Velocity.y = JUMP;
@@ -200,14 +228,14 @@ void Player::PlayerMove()
 	m_Velocity.y *= ATTENUATION.y;
 	m_Velocity.z *= ATTENUATION.z;
 
-	
-	
+
+
 	D3DXVECTOR3 oldPos = m_Position;
 
 	m_Position += m_Velocity;
 
 	//	接台
-	
+
 	float groundHeight = 0.0f;
 	std::vector<Cylinder*> clylist = g_Scene->GetGameObjects<Cylinder>();
 	for (auto cly : clylist) {
@@ -220,7 +248,7 @@ void Player::PlayerMove()
 		float length = D3DXVec3Length(&direction);
 
 		if (length < clyScale.x) {
-			if (m_Position.y < clyPos.y + clyScale.y -0.5f) {
+			if (m_Position.y < clyPos.y + clyScale.y - 0.5f) {
 				m_Position.x = oldPos.x;
 				m_Position.z = oldPos.z;
 			}
@@ -246,7 +274,7 @@ void Player::PlayerMove()
 				m_Velocity.y = 0;
 			}
 		}
-	}	
+	}
 }
 
 void Player::PlayerRotation()
@@ -277,7 +305,7 @@ void Player::PlayerRotation()
 	m_Rotation = m_CameraRot;
 	m_Rotation += m_PlayerRotation;
 	m_Rotation.x = 0.0f;
-	
+
 }
 
 void Player::GetItem()
@@ -316,7 +344,7 @@ void Player::ShootBulletFunc()
 }
 
 void Player::Move()
-{	
+{
 	D3DXVECTOR3 forward = GetForward();
 
 	m_Velocity.z += PLAYER_SPEED * forward.z;

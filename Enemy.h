@@ -5,20 +5,28 @@
 
 class Enemy : public Enemy_Interface
 {
-protected:
-	static inline std::shared_ptr<Model> m_Model;
-
-	ID3D11VertexShader* m_VertexShader = NULL;
-	ID3D11PixelShader* m_PixelShader = NULL;
-	ID3D11InputLayout* m_VertexLayout = NULL;
 
 public:
-	static void Load();
-	static void Unload();
-	void Init();
-	void Uninit();
-	void Update();
-	void Draw();
+    virtual void Init() {
 
-		
+
+        AddComponent<TransformInit>(COMLAYER_FIRST);
+
+        AddComponent<ShaderComponent>(COMLAYER_SHADER);
+
+        AddComponent<MatrixComponent>(COMLAYER_MATRIX);
+
+        ModelDrawComponent* mdc =
+            new ModelDrawComponent("asset\\model\\stone_white.obj");
+
+        AddComponent(mdc, COMLAYER_DRAW);
+
+        AddComponent< ImGuiComponent>(COMLAYER_SECOND);
+
+        SetHp(GetMaxHp());
+
+
+
+        ComponentObject::Init();
+    }
 };

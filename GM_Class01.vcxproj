@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="ao_Sphere.cpp" />
     <ClCompile Include="audio.cpp" />
+    <ClCompile Include="BlinkComponent.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -29,10 +30,11 @@
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="GameObject_Invoke.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="ImGuiComponent.cpp" />
+    <ClCompile Include="ImGuiObject.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -48,6 +50,7 @@
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="MatrixComponent.cpp" />
     <ClCompile Include="model.cpp" />
+    <ClCompile Include="ModelDrawComponent.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pointLight.cpp" />
@@ -55,12 +58,14 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
+    <ClCompile Include="Rotate2D.cpp" />
     <ClCompile Include="ShaderComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="ShootBullet.cpp" />
     <ClCompile Include="ShootBullet_Amass.cpp" />
     <ClCompile Include="ShootBullet_Idle.cpp" />
     <ClCompile Include="ShootBullet_Shoot.cpp" />
+    <ClCompile Include="StageLimitComponent.cpp" />
     <ClCompile Include="stage_corridor.cpp" />
     <ClCompile Include="stage_corridor_corner.cpp" />
     <ClCompile Include="stage_otorii.cpp" />
@@ -72,14 +77,18 @@
     <ClCompile Include="UI_Charge.cpp" />
     <ClCompile Include="UI_Score.cpp" />
     <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="UserInterfaceComponent.cpp" />
     <ClCompile Include="UserInterface_Animation.cpp" />
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlinkComponentAlpha2D.h" />
     <ClInclude Include="ao_Sphere.h" />
     <ClInclude Include="audio.h" />
+    <ClInclude Include="BlinkComponent.h" />
+    <ClInclude Include="BlinkComponent_Scale.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="camera.h" />
@@ -87,8 +96,11 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
+    <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="ImGuiComponent.h" />
+    <ClInclude Include="ImGuiObject.h" />
     <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -122,6 +134,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResultPolygon.h" />
     <ClInclude Include="ResultScene.h" />
+    <ClInclude Include="Rotate2D.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="ShaderComponent.h" />
     <ClInclude Include="Shadow.h" />
@@ -129,6 +142,7 @@
     <ClInclude Include="ShootBullet_Amass.h" />
     <ClInclude Include="ShootBullet_Idle.h" />
     <ClInclude Include="ShootBullet_Shoot.h" />
+    <ClInclude Include="StageLimitDeleteComponent.h" />
     <ClInclude Include="stage_corridor.h" />
     <ClInclude Include="stage_corridor_corner.h" />
     <ClInclude Include="stage_include.h" />
@@ -141,7 +155,9 @@
     <ClInclude Include="UI_Charge.h" />
     <ClInclude Include="UI_Score.h" />
     <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="UserInterfaceComponent.h" />
     <ClInclude Include="UserInterface_Animation.h" />
+    <ClInclude Include="VertexChangeComponent.h" />
     <ClInclude Include="vertexShader.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="texture.h" />

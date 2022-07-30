@@ -18,6 +18,7 @@ void ShootBullet_Shoot::Init()
 
 	m_Player = m_Scene->GetGameObject<Player>();
 
+
 }
 
 void ShootBullet_Shoot::Uninit()
@@ -41,16 +42,20 @@ void ShootBullet_Shoot::Update()
 		rot.z = rrot.z;
 
 		//	ƒZƒbƒg
-		D3DXVECTOR3 offset = { 0.0f,1.0f,0.0f };
+		D3DXVECTOR3 offset = { 0.0f,2.5f,0.0f };
 		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
 		m_Bullet->SetRotation(rot);
-		m_Bullet->SetForward(m_Player->GetCameraForward());
-		float value = (logf(m_BulletNum + 2) * 2.0f);
-		m_Bullet->SetSpeed(value);
-		float scale = value * 2.0f;
+		
+		float speed = (m_BulletNum + 2);
+		
+		float scale = speed * 2.0f;
+
+		m_Bullet->Shoot(m_Player->GetCameraForward(), speed);
 		m_Bullet->SetScale({ scale,scale,scale });
 
+
 		m_Player->GetShootSE()->Play(false);
+		m_Player->GetShootSE()->SetAudioVolume(0.2f);
 
 
 		if (m_BulletNum <= 0) {
@@ -73,6 +78,13 @@ void ShootBullet_Shoot::Draw()
 	//
 	//	SetWindowText(GetWindow(), GetDebugStr());
 	//#endif
+
+#ifdef _DEBUG
+
+	ImGui::Text("Shoot");
+	ImGui::Text("Bullet Num:%d", m_BulletNum);
+
+#endif // _DEBUG
 }
 
 ShootBullet* ShootBullet_Shoot::CreateNextState()

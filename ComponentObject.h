@@ -6,12 +6,14 @@
 #include "MatrixComponent.h"
 #include "ModelDrawComponent.h"
 #include "TransformInit.h"
+#include "ImGuiComponent.h"
+
 
 class ComponentObject :
-    public GameObject
+	public GameObject
 {
 public:
-	virtual void Init() 
+	virtual void Init()
 	{
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
@@ -27,7 +29,7 @@ public:
 			}
 		}
 	}
-	virtual void Update() 
+	virtual void Update()
 	{
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
@@ -35,11 +37,20 @@ public:
 			}
 		}
 	}
-	virtual void Draw() 
+	virtual void Draw()
 	{
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
 				com->Draw();
+			}
+		}
+	}
+
+	virtual void DrawImgui()override
+	{
+		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
+			for (auto com : m_ComponentList[i]) {
+				com->DrawImgui();
 			}
 		}
 	}

@@ -109,7 +109,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 				dwExecLastTime = dwCurrentTime;
 
 				
-#ifdef _DEBUG
+
 				//	ImGui classÇçÏÇÈÅB
 				//	static ä÷êîÇ…ÇµÇƒÇ±Ç±Ç≈égÇ§ÅB
 
@@ -117,7 +117,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 				ImGui_ImplDX11_NewFrame();
 				ImGui_ImplWin32_NewFrame();
 				ImGui::NewFrame();
-#endif // _DEBUG
+
 
 				UpdateInput();
 				Manager::Update();
@@ -137,21 +137,21 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	return (int)msg.wParam;
 }
 
-#ifdef _DEBUG
+
 
 // Forward declare message handler from imgui_impl_win32.cpp
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-#endif // _DEBUG
+
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-#ifdef _DEBUG
+
 
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
 		return true;
 
-#endif // _DEBUG
+
 
 	switch(uMsg)
 	{
@@ -171,6 +171,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	default:
 		break;
 	}
+
+
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }

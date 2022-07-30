@@ -32,15 +32,16 @@ void Audio::UninitMaster()
 	CoUninitialize();
 }
 
-
-
-
-
-
-
-
 void Audio::Load(const char* FileName)
 {
+	std::string fn = FileName;
+	m_TypeName.clear();
+	m_TypeName = "Audio:";
+
+	for (int i = 12; i < fn.size(); i++) {
+		m_TypeName += fn.at(i);
+	}
+		
 
 	// サウンドデータ読込
 	WAVEFORMATEX wfx = { 0 };

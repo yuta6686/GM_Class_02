@@ -1,14 +1,18 @@
 #pragma once
-#include "Component.h"
+#include "GameObject.h"
+class Scene;
+class Player;
 
-class MatrixComponent :
-    public Component
+
+class ImGuiObject :
+    public GameObject
 {
 private:
-    bool m_Is2D = false;
+    bool m_PlayerWindow;
+    std::shared_ptr<Scene> m_Scene;
+    Player* m_Player;
+    
 public:
-
-
     // Component ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
     virtual void Init() override;
 
@@ -17,11 +21,5 @@ public:
     virtual void Update() override;
 
     virtual void Draw() override;
-
-    virtual void DrawImgui()  override {};
-
-    void SetIs2D(bool flag = true) {
-        m_Is2D = flag;
-    }
 };
 
