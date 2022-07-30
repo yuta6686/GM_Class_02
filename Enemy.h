@@ -8,7 +8,7 @@ class Enemy : public Enemy_Interface
 
 public:
     virtual void Init() {
-
+        
 
         AddComponent<TransformInit>(COMLAYER_FIRST);
 
@@ -23,9 +23,7 @@ public:
 
         AddComponent< ImGuiComponent>(COMLAYER_SECOND);
 
-        SetHp(GetMaxHp());
-
-
+        SetHp(GetMaxHp());        
 
         ComponentObject::Init();
     }

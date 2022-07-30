@@ -30,6 +30,7 @@
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
+    <ClCompile Include="EnemyGenerate.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="GameObject_Invoke.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="EnemyGenerate.h" />
     <ClInclude Include="ImGuiComponent.h" />
     <ClInclude Include="ImGuiObject.h" />
     <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />

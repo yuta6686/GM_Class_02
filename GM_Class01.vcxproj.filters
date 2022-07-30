@@ -270,6 +270,9 @@
     <ClCompile Include="UserInterfaceComponent.cpp">
       <Filter>GameObject\Component\UI</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyGenerate.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -502,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="CO_UI_AimLing.h">
       <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGenerate.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@
 #include "Bullet.h"
 #include "CO_UI_AimLing.h"
 #include "BlinkComponentAlpha2D.h"
+#include "Enemy.h"
 
 void ImGuiObject::Init()
 {
@@ -33,19 +34,7 @@ void ImGuiObject::Draw()
 	}
 
 
-	//	Enemy
-	if (ImGui::CollapsingHeader("Enemy")) {
-		std::vector<Enemy*> enemys = m_Scene->GetGameObjects<Enemy>();
-		for (int i = 0; i < enemys.size(); i++) {
-			char buff[255];
-			sprintf(buff, "Enemy_%d", i);
-			if (ImGui::TreeNode(buff))
-			{
-				enemys[i]->DrawImgui();
-				ImGui::TreePop();
-			}
-		}
-	}
+	
 
 	//	Bullet
 	if (ImGui::CollapsingHeader("Bullet")) {
@@ -72,5 +61,22 @@ void ImGuiObject::Draw()
 		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<AlphaBlink2DComponent>()->DrawImgui();
 		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<Rotate2D>()->DrawImgui();
 	}
+
+	//Enemy
+	if (ImGui::CollapsingHeader("Enemy"))
+	{
+		std::vector<Enemy*> enemy = m_Scene->GetGameObjects<Enemy>();
+		for (int i = 0; i < enemy.size(); i++)
+		{
+			char buff[255];
+			sprintf(buff, "Enemy_%d", i);
+			if (ImGui::TreeNode(buff))
+			{
+				enemy[i]->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
+
 #endif // _DEBUG
 }

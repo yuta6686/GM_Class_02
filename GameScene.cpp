@@ -25,6 +25,7 @@
 #include "ComponentObjectTest.h"
 #include "ImGuiObject.h"
 #include "CO_UI_AimLing.h"
+#include "EnemyGenerate.h"
 
 void GameScene::Init()
 {
@@ -41,14 +42,14 @@ void GameScene::Init()
 	AddGameObject<Player>(LAYER_3D);
 
 	//	エネミー
-	AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
+	/*AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
 	for (int i = 1; i <= 5; i++)
 	{
 		AddGameObject(EnemyFactory::Create<Enemy>(i * 5), LAYER_3D)->SetPosition(D3DXVECTOR3(3.0f * i, 0.5f, 5.0f));
 		AddGameObject(EnemyFactory::Create<Enemy>(i * 10), LAYER_3D)->SetPosition(D3DXVECTOR3(-3.0f * i, 0.5f, 5.0f));
 
 		AddGameObject(EnemyFactory::Create<Enemy>(i * 15), LAYER_3D)->SetPosition({ -3.0f * i, -0.5f, -5.0f });
-	}
+	}*/
 
 	//	アイテム
 	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
@@ -108,6 +109,8 @@ void GameScene::Init()
 	m_Fade->Start(true);
 
 	AddGameObject<CO_UI_AimLing>(LAYER_2D);
+
+	AddGameObject<EnemyGenerate>(LAYER_3D);
 }
 
 
