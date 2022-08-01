@@ -27,7 +27,12 @@ void EnemyGenerate::Uninit()
 
 void EnemyGenerate::Update()
 {
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, window_color);
+
 	ImGui::Begin("EnemyGenerate");
+	
+
+	ImGui::ColorEdit4("window color", (float*)&window_color);
 
 	if (ImGui::Button("Generate!")) {
 		m_Scene->AddGameObject<Enemy>(LAYER_3D)->SetMaxHp(10);
@@ -142,6 +147,8 @@ void EnemyGenerate::Update()
 	}
 
 	ImGui::End();
+
+	ImGui::PopStyleColor();
 }
 
 void EnemyGenerate::Draw()

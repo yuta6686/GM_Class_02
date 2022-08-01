@@ -13,6 +13,7 @@ private:
     int m_SaveFileIndex = 2;
     int m_LoadFileIndex = 2;
     int m_NowFileNum = 2;
+    inline static ImVec4 window_color = ImVec4(0.0f, 0.0f, 0.2f, 0.85f);
 public:    
     virtual void Init() override;
 

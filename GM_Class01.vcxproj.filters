@@ -177,12 +177,6 @@
     <ClCompile Include="Shadow.cpp">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="ShootBullet.cpp">
-      <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="ShootBullet_Amass.cpp">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
@@ -271,6 +265,12 @@
       <Filter>GameObject\Component\UI</Filter>
     </ClCompile>
     <ClCompile Include="EnemyGenerate.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent_Bullet.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -507,6 +507,12 @@
       <Filter>GameObject\Component\ComponentObject</Filter>
     </ClInclude>
     <ClInclude Include="EnemyGenerate.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent_Bullet.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

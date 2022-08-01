@@ -7,6 +7,7 @@
 #include "CO_UI_AimLing.h"
 #include "BlinkComponentAlpha2D.h"
 #include "Enemy.h"
+#include "audio.h"
 
 void ImGuiObject::Init()
 {
@@ -45,6 +46,19 @@ void ImGuiObject::Draw()
 			if (ImGui::TreeNode(buff))
 			{
 				bullets[i]->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
+
+	if (ImGui::CollapsingHeader("Audio")) {
+		std::vector<Audio*> audios = m_Scene->GetGameObjects<Audio>();
+		for (int i = 0; i < audios.size(); i++) {
+			char buff[255];
+			sprintf(buff, "Audio_%d", i);
+			if (ImGui::TreeNode(buff))
+			{
+				audios[i]->DrawImgui();
 				ImGui::TreePop();
 			}
 		}

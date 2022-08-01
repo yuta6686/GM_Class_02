@@ -131,6 +131,8 @@ void Player::DrawImgui()
 
 	ImGui::Separator();
 
+	ImGui::Checkbox("IsUseBullet", &m_IsUseBullet);
+
 
 	if (ImGui::Button("Player->Jump")) {
 		if (m_Position.y >= 0.2f) {
@@ -328,7 +330,10 @@ void Player::GetItem()
 
 void Player::ShootBulletFunc()
 {
-	m_ShootBullet->Update();
+	if (m_IsUseBullet == false)return;
+
+	m_ShootBullet->Update();	
+
 	if (m_ShootBullet->GetIsNextState()) {
 		//	次のstateのポインタだけもらう。
 		ShootBullet* sb = m_ShootBullet->CreateNextState();

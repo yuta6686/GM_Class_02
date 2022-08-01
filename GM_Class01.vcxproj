@@ -22,10 +22,11 @@
     <ClCompile Include="ao_Sphere.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="BlinkComponent.cpp" />
-    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CollisionComponent.cpp" />
+    <ClCompile Include="CollisionComponent_Bullet.cpp" />
     <ClCompile Include="ComponentObjectTest.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
@@ -62,7 +63,6 @@
     <ClCompile Include="Rotate2D.cpp" />
     <ClCompile Include="ShaderComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
-    <ClCompile Include="ShootBullet.cpp" />
     <ClCompile Include="ShootBullet_Amass.cpp" />
     <ClCompile Include="ShootBullet_Idle.cpp" />
     <ClCompile Include="ShootBullet_Shoot.cpp" />
@@ -94,6 +94,8 @@
     <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="CollisionComponent.h" />
+    <ClInclude Include="CollisionComponent_Bullet.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />

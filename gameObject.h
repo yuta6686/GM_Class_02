@@ -60,6 +60,7 @@ public:
 	D3DXVECTOR3 GetScale()const { return m_Scale; }
 
 	D3DXVECTOR3* GetPositionPointer() { return &m_Position; }
+	virtual float GetLength() { return D3DXVec3Length(&m_Scale); }
 	
 	const D3DXVECTOR3& GetPositionReference()const 
 	{

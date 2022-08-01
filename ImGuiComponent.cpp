@@ -26,7 +26,8 @@ void ImGuiComponent::DrawImgui()
 {
 #ifdef _DEBUG
 
-	ImGui::BeginChild(ImGui::GetID((void*)0));
+	ImGui::BeginChild(ImGui::GetID((void*)0),
+		ImVec2(SCREEN_WIDTH,SCREEN_HEIGHT/2.0f));
 
 	//	Position
 	{
@@ -96,6 +97,11 @@ void ImGuiComponent::DrawImgui()
 			&fsca[2], SCALE_MIN, SCALE_MAX, "%.3f", 1.0f);
 
 		m_Parent->SetScale(fsca);
+	}
+
+	//	Length
+	{
+		ImGui::Text("Length %.2f", m_Parent->GetLength());
 	}
 
 	if (m_IsEnemyVersion) {
