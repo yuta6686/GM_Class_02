@@ -28,6 +28,7 @@
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="CollisionComponent_Bullet.cpp" />
     <ClCompile Include="ComponentObjectTest.cpp" />
+    <ClCompile Include="CO_3DPloygonTest.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ImGuiComponent.cpp" />
     <ClCompile Include="ImGuiObject.cpp" />
+    <ClCompile Include="ImGuiObject_Title.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -57,6 +59,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="polygon2D.cpp" />
+    <ClCompile Include="Polygon3DComponent.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -99,12 +102,14 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
+    <ClInclude Include="CO_3DPloygonTest.h" />
     <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EnemyGenerate.h" />
     <ClInclude Include="ImGuiComponent.h" />
     <ClInclude Include="ImGuiObject.h" />
+    <ClInclude Include="ImGuiObject_Title.h" />
     <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -130,6 +135,7 @@
     <ClInclude Include="multi_thread.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="pixelShader.h" />
+    <ClInclude Include="Polygon3DComponent.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="pointLight.h" />
@@ -162,6 +168,7 @@
     <ClInclude Include="UserInterfaceComponent.h" />
     <ClInclude Include="UserInterface_Animation.h" />
     <ClInclude Include="VertexChangeComponent.h" />
+    <ClInclude Include="VertexInitialize.h" />
     <ClInclude Include="vertexShader.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="texture.h" />

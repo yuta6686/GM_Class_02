@@ -111,6 +111,20 @@ void GameScene::Init()
 	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 
 	AddGameObject<EnemyGenerate>(LAYER_3D);
+
+	int numLayer = 16;
+	D3DXVECTOR3 center = { 10.0f,0.0f,0.0f };
+	float radius = 20.0f;
+	float interval = 360.0f / static_cast<float>(numLayer);
+	D3DXVECTOR3 circlePos = { 0.0f,0.0f,0.0f };
+	for (int i = 0; i < numLayer; i++) {
+		float angle =
+			MyMath::GetRadian(static_cast<float>(i * interval));
+		circlePos.x = radius * sinf(angle);
+		circlePos.z = radius * cosf(angle);
+		AddGameObject<Enemy>(LAYER_3D)->SetPosition(circlePos);
+	}
+	
 }
 
 

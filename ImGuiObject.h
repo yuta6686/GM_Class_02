@@ -7,7 +7,7 @@ class Player;
 class ImGuiObject :
     public GameObject
 {
-private:
+protected:
     bool m_PlayerWindow;
     std::shared_ptr<Scene> m_Scene;
     Player* m_Player;

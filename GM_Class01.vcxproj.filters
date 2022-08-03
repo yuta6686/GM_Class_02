@@ -273,6 +273,15 @@
     <ClCompile Include="CollisionComponent_Bullet.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Polygon3DComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_3DPloygonTest.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiObject_Title.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -513,6 +522,18 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CollisionComponent_Bullet.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexInitialize.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon3DComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_3DPloygonTest.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiObject_Title.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

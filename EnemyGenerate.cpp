@@ -1,6 +1,7 @@
 #include "EnemyGenerate.h"
 #include "Enemy.h"
 
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -19,6 +20,7 @@ void EnemyGenerate::Init()
 			break;
 		}		
 	}
+	m_Player = m_Scene->GetGameObject<Player>();
 }
 
 void EnemyGenerate::Uninit()
@@ -35,15 +37,28 @@ void EnemyGenerate::Update()
 	ImGui::ColorEdit4("window color", (float*)&window_color);
 
 	if (ImGui::Button("Generate!")) {
-		m_Scene->AddGameObject<Enemy>(LAYER_3D)->SetMaxHp(10);
+		m_Scene->AddGameObject<Enemy>(LAYER_3D)->SetMaxHp(10);	
 	}
+	ImGui::SameLine();
+	if (ImGui::Button("Generate Player Transform") ||
+		GetKeyboardTrigger(DIK_E)) {
+		
+		auto* enemy = m_Scene->AddGameObject<Enemy>(LAYER_3D);
+		enemy->SetPosition(m_Player->GetPosition());
+		//enemy->SetRotation(m_Player->GetRotation());
+		enemy->SetMaxHp(10);
+	}
+
 
 	std::vector<Enemy*> enemys = m_Scene->GetGameObjects<Enemy>();
 
 	
 
 	if (ImGui::Button("Save!")) {
-		m_NowFileNum++;
+		if (m_SaveFileIndex == m_NowFileNum) {
+			m_NowFileNum++;
+		}
+		
 		std::ostringstream oss;
 
 		oss << m_SaveFileIndex;		
@@ -66,7 +81,8 @@ void EnemyGenerate::Update()
 				<< enemys[i]->GetRotation().z << ","
 				<< enemys[i]->GetScale().x << ","
 				<< enemys[i]->GetScale().y << ","
-				<< enemys[i]->GetScale().z  << std::endl;
+				<< enemys[i]->GetScale().z  << ","
+				<< enemys[i]->GetMaxHp() << std::endl;
 
 		}
 	}
@@ -98,6 +114,7 @@ void EnemyGenerate::Update()
 			D3DXVECTOR3 pos;
 			D3DXVECTOR3 rot;
 			D3DXVECTOR3 sca;
+			int hp = 1;
 
 			pos.x = stof(str_buf_vec[0]);
 			pos.y = stof(str_buf_vec[1]);
@@ -110,12 +127,15 @@ void EnemyGenerate::Update()
 			sca.x = stof(str_buf_vec[6]);
 			sca.y = stof(str_buf_vec[7]);
 			sca.z = stof(str_buf_vec[8]);
+			hp = stoi(str_buf_vec[9]);
 
 			auto* penemy = m_Scene->AddGameObject<Enemy>(LAYER_3D);
 
 			penemy->SetPosition(pos);
 			penemy->SetRotation(rot);
 			penemy->SetScale(sca);
+			penemy->SetMaxHp(hp);
+			penemy->SetHp(hp);
 			
 
 			str_buf_vec.clear();
@@ -140,8 +160,11 @@ void EnemyGenerate::Update()
 			sprintf(buff, "Enemy_%d", i);
 			if (ImGui::TreeNode(buff))
 			{
-				enemys[i]->DrawImgui();
+				enemys[i]->DrawImgui();				
 				ImGui::TreePop();
+			}
+			if (ImGui::Button("destroy")) {
+				enemys[i]->SetDestroy();
 			}
 		}
 	}

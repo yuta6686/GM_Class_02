@@ -2,6 +2,7 @@
 #include "gameObject.h"
 #include "manager.h"
 #include "scene.h"
+#include "player.h"
 
 class EnemyGenerate :
     public GameObject
@@ -13,7 +14,9 @@ private:
     int m_SaveFileIndex = 2;
     int m_LoadFileIndex = 2;
     int m_NowFileNum = 2;
-    inline static ImVec4 window_color = ImVec4(0.0f, 0.0f, 0.2f, 0.85f);
+    inline static ImVec4 window_color = ImVec4(0.0f, 0.0f, 0.2f, 0.0f);
+
+    Player* m_Player;
 public:    
     virtual void Init() override;
 

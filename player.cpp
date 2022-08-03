@@ -50,6 +50,8 @@ void Player::Init()
 	m_Velocity = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_TypeName = "Player";
+
+	m_MouseSpeed_X = MOUSE_SPEED_FIRST_X;
 }
 
 void Player::Uninit()
@@ -65,13 +67,17 @@ void Player::Uninit()
 
 void Player::Update()
 {
+	//	プレイヤー回転処理
+	PlayerRotation();
+
+	if (m_IsNoMove)return;
+
 	InvokeUpdate();
 
 	//	プレイヤー移動処理
 	PlayerMove();
 
-	//	プレイヤー回転処理
-	PlayerRotation();
+
 
 	//	バレット撃つ処理
 	ShootBulletFunc();
@@ -142,6 +148,10 @@ void Player::DrawImgui()
 			m_Velocity.y = JUMP;
 		}
 	}
+
+	ImGui::SliderFloat("Mouse Speed X", &m_MouseSpeed_X, MOUSE_SPEED_FIRST_X, 1000.0f, "%.2f");
+
+	ImGui::SliderFloat("Mouse Speed Y", &m_MouseSpeed_Y, MOUSE_SPEED_FIRST_Y, 1000.0f, "%.2f");
 
 
 	ImGui::Separator();
@@ -290,7 +300,7 @@ void Player::PlayerRotation()
 	}
 
 	if (IsMouseRightPressed()) {
-		m_CameraRot.y += GetMouseX() / 100.0f;
+		m_CameraRot.y += GetMouseX() / m_MouseSpeed_Y;
 
 		if (m_CameraRot.x > GetRadian(60.0f)) {
 			m_CameraRot.x = GetRadian(60.0f);
@@ -299,9 +309,17 @@ void Player::PlayerRotation()
 			m_CameraRot.x = GetRadian(-60.0f);
 		}
 		else {
-			m_CameraRot.x += GetMouseY() / 100.0f;
+			m_CameraRot.x += GetMouseY() / m_MouseSpeed_X;
 		}
 
+	}
+
+	if (m_CameraRot.y >= D3DX_PI) {
+		m_CameraRot.y = -D3DX_PI;
+	}
+
+	if (m_CameraRot.y < -D3DX_PI) {
+		m_CameraRot.y = D3DX_PI;
 	}
 
 	m_Rotation = m_CameraRot;

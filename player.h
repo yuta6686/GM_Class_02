@@ -12,8 +12,8 @@ class ShootBullet;
 
 class Player :public GameObject
 {
-private:	
-	
+private:
+
 	/// <summary>
 	/// m_CameraRot
 	/// ~~~~~~~~~~~
@@ -43,6 +43,13 @@ private:
 
 	bool m_IsUseBullet = true;
 
+	inline static const float MOUSE_SPEED_FIRST_X = 500.0f;
+	float m_MouseSpeed_X = MOUSE_SPEED_FIRST_X;
+
+	inline static const float MOUSE_SPEED_FIRST_Y = 500.0f;
+	float m_MouseSpeed_Y = MOUSE_SPEED_FIRST_Y;
+
+	bool m_IsNoMove = false;
 public:
 	void Init()	 override;
 	void Uninit()override;
@@ -66,6 +73,16 @@ public:
 	}
 
 	Audio* GetShootSE() { return m_ShotSE; }
+
+	void SetIsUseBullet(bool flag = true) {
+		m_IsUseBullet = flag;
+	}
+
+	void SetIsNoMove(bool flag = true)
+	{
+		m_IsNoMove = flag;
+	}
+
 private:
 	//	private変数
 	static inline std::shared_ptr<Resource> m_Model;
@@ -82,20 +99,20 @@ private:
 	void Move();
 
 
-//	Invokeの処理
-	std::vector<INVOKE> m_Invokes;	
+	//	Invokeの処理
+	std::vector<INVOKE> m_Invokes;
 	typedef void(Player::* MAMBER_FUNC)();
 	std::vector<MAMBER_FUNC> m_FuncList;
 
 	template <class T>
 	void Invoke(T(Player::* func)(), int delay) {
 		m_FuncList.push_back(func);
-		m_Invokes.push_back({ delay,0,true });		
+		m_Invokes.push_back({ delay,0,true });
 	}
-	
+
 	//	若干不安定なのでエラー出たらやめる。
 	void InvokeUpdate() {
-		
+
 		if (m_FuncList.empty() ||
 			m_Invokes.empty())return;
 
@@ -117,8 +134,6 @@ private:
 		}
 	}
 
-	void SetIsUseBullet(bool flag = true) {
-		m_IsUseBullet = flag;
-	}
-};
 
+
+};
