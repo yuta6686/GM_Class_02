@@ -195,7 +195,7 @@ void Renderer::Init()
 
 	m_DeviceContext->RSSetState( rs );
 
-
+	
 
 
 	// ブレンドステート設定

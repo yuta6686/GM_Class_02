@@ -34,5 +34,6 @@ public:
     void SetIsChangeVertex(bool flag = true) { m_IsChangeVertex = flag; }
 
     void ChangeVertexDraw();
+    void ChangeVertexDraw(const D3DXVECTOR4& color);
 };
 

@@ -536,6 +536,9 @@
     <ClInclude Include="ImGuiObject_Title.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="VertexChangerComponent_Color.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

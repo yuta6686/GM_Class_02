@@ -168,6 +168,7 @@
     <ClInclude Include="UserInterfaceComponent.h" />
     <ClInclude Include="UserInterface_Animation.h" />
     <ClInclude Include="VertexChangeComponent.h" />
+    <ClInclude Include="VertexChangerComponent_Color.h" />
     <ClInclude Include="VertexInitialize.h" />
     <ClInclude Include="vertexShader.h" />
     <ClInclude Include="Singleton.h" />

@@ -18,7 +18,7 @@ void Polygon3DComponent::Init()
 
 	if (m_IsChangeVertex)
 	{
-		bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+		bd.Usage = D3D11_USAGE_DYNAMIC;
 		bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	}
 
@@ -70,6 +70,21 @@ void Polygon3DComponent::ChangeVertexDraw()
 		VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
 
 		
+
+		Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
+	}
+}
+
+void Polygon3DComponent::ChangeVertexDraw(const D3DXVECTOR4& color)
+{
+	if (m_IsChangeVertex) {
+		D3D11_MAPPED_SUBRESOURCE msr;
+		Renderer::GetDeviceContext()->Map(m_VertexBuffer, 0,
+			D3D11_MAP_WRITE_DISCARD, 0, &msr);
+
+		VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
+
+		VertexInitialize::InitVertex_Vertical(vertex, color);
 
 		Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
 	}

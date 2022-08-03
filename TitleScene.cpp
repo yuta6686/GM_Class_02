@@ -5,7 +5,7 @@
 #include "camera.h"
 #include "Transition.h"
 #include "GameObject_Invoke.h"
-#include "CO_3DPloygonTest.h"
+
 #include "player.h"
 #include "light.h"
 #include "ImGuiObject_Title.h"
@@ -34,7 +34,8 @@ void TitleScene::Init()
 			MyMath::GetRadian(static_cast<float>(i * interval));
 		circlePos.x = radius * sinf(angle);
 		circlePos.z = radius * cosf(angle);
-		AddGameObject<CO_3DPloygonTest>(LAYER_3D)->SetPosition(circlePos);
+		m_SwitchToScenes.push_back(AddGameObject<CO_3DPloygonTest>(LAYER_3D));
+		m_SwitchToScenes[i]->SetPosition(circlePos);
 	}
 
 	AddGameObject<ImGuiObject_Title>(LAYER_3D);
@@ -51,11 +52,14 @@ void TitleScene::Update()
 {
 	Scene::Update();
 	
-	
-
-	if (GetKeyboardTrigger(DIK_SPACE)) {
-		
-		
+	bool istogame = false;
+	for (auto sts : m_SwitchToScenes)
+	{
+		if (sts->GetComponent<VertexChangerComponent_Color>()->GetIsToGame())
+			istogame = true;
+	}
+	if (GetKeyboardTrigger(DIK_SPACE) && istogame) {
+				
 		m_Fade->Start(false);
 	}
 
