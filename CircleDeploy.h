@@ -15,7 +15,8 @@ public:
 		const int& NumLayer,
 		const int& MaxNumLayer,		
 		const D3DXVECTOR3& center,
-		const float& radius)
+		const float& radius,
+		const float& offset)
 	{
 		std::vector<T*> result;
 		std::shared_ptr<Scene> scene = Manager::GetScene();
@@ -25,9 +26,10 @@ public:
 		for (int i = 0; i < NumLayer; i++)
 		{
 			float angle =
-				MyMath::GetRadian(static_cast<float>(i * interval));
+				MyMath::GetRadian(static_cast<float>(i * interval) + offset);
 
 			circlePos.x = radius * sinf(angle);
+			circlePos.y = center.y;
 			circlePos.z = radius * cosf(angle);
 
 			

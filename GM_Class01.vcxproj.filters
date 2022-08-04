@@ -288,6 +288,15 @@
     <ClCompile Include="ModelColorChangeComponent.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="CO_3DPolygon_circle.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_TitleBackGround.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -555,6 +564,15 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="ModelColorChangeComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_3DPolygon_circle.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_TitleBackGround.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelColorChangeComponent_Titlebg.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

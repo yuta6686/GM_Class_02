@@ -20,7 +20,7 @@ public:
         mdc->SetSourcePath("asset\\model\\cylinder.obj");
         mdc->SetIsVariable(true);               
 
-        AddComponent(mdc, COMLAYER_DRAW);
+        //AddComponent(mdc, COMLAYER_DRAW);
 
 
         AddComponent< ModelColorChangeComponent>(COMLAYER_SECOND);

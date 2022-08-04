@@ -6,6 +6,7 @@
 #include "manager.h"
 #include "VertexChangerComponent_Color.h"
 #include "CO_3DPloygonTest.h"
+#include "CO_TitleBackGround.h"
 
 class ImGuiObject_Title :
 	public ImGuiObject
@@ -39,6 +40,7 @@ public:
 			pol3d->GetComponent<VertexChangeComponent_ToGame>()->DrawImgui();
 			
 		}
+		
 	}
 };
 

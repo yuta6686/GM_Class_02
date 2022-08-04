@@ -48,7 +48,9 @@ public:
     virtual void Draw() override 
     {
         if (m_IsVariable) {
+            Renderer::SetAlphaToCoverage(true);
             m_Model_variable->Draw();
+            Renderer::SetAlphaToCoverage(false);
         }
         else
         {

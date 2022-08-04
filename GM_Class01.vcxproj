@@ -29,6 +29,8 @@
     <ClCompile Include="CollisionComponent_Bullet.cpp" />
     <ClCompile Include="ComponentObjectTest.cpp" />
     <ClCompile Include="CO_3DPloygonTest.cpp" />
+    <ClCompile Include="CO_3DPolygon_circle.cpp" />
+    <ClCompile Include="CO_TitleBackGround.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
@@ -55,6 +57,7 @@
     <ClCompile Include="MatrixComponent.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="ModelColorChangeComponent.cpp" />
+    <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp" />
     <ClCompile Include="model_variable.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
@@ -106,6 +109,8 @@
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
     <ClInclude Include="CO_3DPloygonTest.h" />
+    <ClInclude Include="CO_3DPolygon_circle.h" />
+    <ClInclude Include="CO_TitleBackGround.h" />
     <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
@@ -119,6 +124,7 @@
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_internal.h" />
     <ClInclude Include="ModelColorChangeComponent.h" />
+    <ClInclude Include="ModelColorChangeComponent_Titlebg.h" />
     <ClInclude Include="ModelDrawComponent.h" />
     <ClInclude Include="effect_explosion.h" />
     <ClInclude Include="Enemy.h" />

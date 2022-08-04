@@ -11,6 +11,7 @@ class Polygon3DComponent :
     bool IsUseAlphaToCoverage = true;
     bool m_IsCullNone = false;
     bool m_IsChangeVertex = false;    
+    bool m_IsVertical = true;
 public:
     
     virtual void Init() override;
@@ -38,6 +39,7 @@ public:
     }
 
     void SetIsChangeVertex(bool flag = true) { m_IsChangeVertex = flag; }
+    void SetIsVertical(bool flag) { m_IsVertical = flag; }
 
     void ChangeVertexDraw();
     void ChangeVertexDraw(const D3DXVECTOR4& color);

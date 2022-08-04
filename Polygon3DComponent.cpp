@@ -6,7 +6,14 @@
 void Polygon3DComponent::Init()
 {
 	VERTEX_3D vertex[4];
-	VertexInitialize::InitVertex_Vertical(vertex);
+	if (m_IsVertical) {
+		VertexInitialize::InitVertex_Vertical(vertex);
+	}
+	else
+	{
+		VertexInitialize::InitVertex_Horizontal(vertex);
+	}
+	
 
 
 	//	頂点バッファ生成
@@ -91,7 +98,15 @@ void Polygon3DComponent::ChangeVertexDraw(const D3DXVECTOR4& color)
 
 		VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
 
-		VertexInitialize::InitVertex_Vertical(vertex, color);
+
+		if (m_IsVertical) {
+			VertexInitialize::InitVertex_Vertical(vertex, color);
+		}
+		else
+		{
+			VertexInitialize::InitVertex_Horizontal(vertex,color);
+		}
+
 
 		Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
 	}

@@ -6,9 +6,11 @@ class VertexChangeComponent_ToGame :
 private:
     Player* m_Player;
     const D3DXVECTOR4 m_FrontFaceColor = { 0.75f,0.75f,0.75f,0.75f };
-    const D3DXVECTOR4 m_BackFaceColor = { 0.25f,0.25f,0.25f,0.25f };
+    const D3DXVECTOR4 m_BackFaceColor = { 0.25f,0.25f,0.25f,1.0f };
     const D3DXVECTOR4 m_ToGameColor = { 0.0f,1.0f,1.0f,1.0f };
-    const D3DXVECTOR4 m_ToExitColor = { 1.0f,0.0f,0.0f,1.0f };    
+    const D3DXVECTOR4 m_ToExitColor = { 1.0f,0.0f,0.0f,1.0f };   
+
+
 
     const float m_AngleMax = 30.0f;
     D3DXVECTOR3 m_PlayerForwardVector;
@@ -55,11 +57,15 @@ public:
             m_Parent->SetScale(m_myScale);
             m_IsInSide = true;
         }
+        else if (m_degree >= 150.0f) {
+            m_IsToExit = true;
+        }
         else
         {
             m_Color = m_BackFaceColor;
             m_Parent->SetScale(DEFAULT_SCALE);
             m_IsInSide = false;
+            m_IsToExit = false;
         }
 
         //  ‹­§‚ÅF‚ð•ÏX‚·‚é
@@ -78,14 +84,8 @@ public:
         }
 
         if (m_degree_fixation > 150.0f) {
-            m_Color += m_ToExitColor;
-            m_IsToExit = true;
+            m_Color += m_ToExitColor;            
         }
-        else
-        {
-            m_IsToExit = false;
-        }
-
     }
 
 
@@ -97,12 +97,17 @@ public:
     }
 
     bool GetIsToExit()const {
-        return m_IsToExit && m_IsInSide;
+        return m_IsToExit;
     }
 
     bool GetIsToGame()const
     {
         return m_IsToGame && m_IsInSide;
     }
+
+    D3DXVECTOR4 GetFrontFaceColor()const { return m_FrontFaceColor; }
+    D3DXVECTOR4 GetBackFaceColor()const { return m_BackFaceColor; }
+    D3DXVECTOR4 GetToGameColor()const { return m_ToGameColor; }
+    D3DXVECTOR4 GetToExitColor()const { return m_ToExitColor; }
 };
 

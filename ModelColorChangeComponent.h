@@ -4,7 +4,7 @@
 class ModelColorChangeComponent :
     public Component
 {
-private:
+protected:
     D3DXCOLOR m_Diffuse = { 1.0f,1.0f,0.5f,1.0f };
 public:
 
