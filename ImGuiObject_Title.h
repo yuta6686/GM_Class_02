@@ -6,6 +6,7 @@
 #include "manager.h"
 #include "VertexChangerComponent_Color.h"
 #include "CO_3DPloygonTest.h"
+
 class ImGuiObject_Title :
 	public ImGuiObject
 {
@@ -35,7 +36,7 @@ public:
 		if (ImGui::CollapsingHeader("VertexChange")) {
 			std::shared_ptr<Scene> scene = Manager::GetScene();
 			CO_3DPloygonTest* pol3d = scene->GetGameObject<CO_3DPloygonTest>();
-			pol3d->GetComponent<VertexChangerComponent_Color>()->DrawImgui();
+			pol3d->GetComponent<VertexChangeComponent_ToGame>()->DrawImgui();
 			
 		}
 	}

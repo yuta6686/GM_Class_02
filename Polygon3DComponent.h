@@ -9,7 +9,8 @@ class Polygon3DComponent :
     std::shared_ptr<Resource> m_Texture;
 
     bool IsUseAlphaToCoverage = true;
-    bool m_IsChangeVertex = false;
+    bool m_IsCullNone = false;
+    bool m_IsChangeVertex = false;    
 public:
     
     virtual void Init() override;
@@ -26,9 +27,14 @@ public:
         m_Texture = ResourceManger<Texture>::GetResource(texture);
     }
 
-    void SetIsUseAlphaToCoverage(bool flag = false)
+    void SetIsUseAlphaToCoverage(bool flag = true)
     {
         IsUseAlphaToCoverage = flag;
+    }
+
+    void SetIsCullNone(bool flag = true)
+    {
+        m_IsCullNone = flag;
     }
 
     void SetIsChangeVertex(bool flag = true) { m_IsChangeVertex = flag; }

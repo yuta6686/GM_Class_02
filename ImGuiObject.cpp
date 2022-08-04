@@ -8,6 +8,8 @@
 #include "BlinkComponentAlpha2D.h"
 #include "Enemy.h"
 #include "audio.h"
+#include "ComponentObjectTest.h"
+#include "ModelColorChangeComponent.h"
 
 void ImGuiObject::Init()
 {
@@ -87,6 +89,23 @@ void ImGuiObject::Draw()
 			if (ImGui::TreeNode(buff))
 			{
 				enemy[i]->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
+
+	//ComponentObjectTest
+	if (ImGui::CollapsingHeader("ComponentObjectTest"))
+	{
+		std::vector<ComponentObjectTest*> cot = m_Scene->GetGameObjects<ComponentObjectTest>();
+		for (int i = 0; i < cot.size(); i++)
+		{
+			char buff[255];
+			sprintf(buff, "ComponentObjectTest_%d", i);
+			if (ImGui::TreeNode(buff))
+			{
+				cot[i]->DrawImgui();	
+				cot[i]->GetComponent<ModelColorChangeComponent>()->DrawImgui();
 				ImGui::TreePop();
 			}
 		}

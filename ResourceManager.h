@@ -2,6 +2,7 @@
 #include "main.h"
 #include "renderer.h"
 #include "model.h"
+#include "model_variable.h"
 template <typename T>
 class ResourceManger {
 private:

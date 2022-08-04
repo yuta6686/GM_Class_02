@@ -51,7 +51,14 @@ void Polygon3DComponent::Draw()
 		Renderer::SetAlphaToCoverage(TRUE);
 	}	
 
+	if (m_IsCullNone) {
+		Renderer::SetCullNone(true);
+	}
+	
+
 	m_Texture->Draw();	
+
+	Renderer::SetCullNone(false);
 
 	Renderer::SetAlphaToCoverage(FALSE);
 }

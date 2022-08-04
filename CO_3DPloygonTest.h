@@ -1,7 +1,7 @@
 #pragma once
 #include "ComponentObject.h"
 #include "Polygon3DComponent.h"
-#include "VertexChangerComponent_Color.h"
+#include "VertexChangeComponent_ToGame.h"
 class CO_3DPloygonTest :
     public ComponentObject
 {
@@ -16,10 +16,11 @@ public:
 
         auto* pol3d = AddComponent<Polygon3DComponent>(COMLAYER_DRAW);
         pol3d->LoadTexture("asset\\texture\\rect.png");
-        pol3d->SetIsChangeVertex();
-        pol3d->SetIsUseAlphaToCoverage();
+        pol3d->SetIsChangeVertex(true);
+        pol3d->SetIsUseAlphaToCoverage(true);
+        //  pol3d->SetIsCullNone(true);       
 
-        AddComponent< VertexChangerComponent_Color>(COMLAYER_CHANGEVERTEX);
+        AddComponent< VertexChangeComponent_ToGame>(COMLAYER_CHANGEVERTEX);
 
         ComponentObject::Init();
     }

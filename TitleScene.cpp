@@ -9,6 +9,7 @@
 #include "player.h"
 #include "light.h"
 #include "ImGuiObject_Title.h"
+#include "CircleDeploy.h"
 
 void TitleScene::Init()
 {
@@ -23,20 +24,10 @@ void TitleScene::Init()
 	
 
 	//	AddGameObject<TitlePolygon>(LAYER_2D);
+	
 
-	int numLayer = 16;
-	D3DXVECTOR3 center = { 0.0f,0.0f,0.0f };
-	float radius = 20.0f;
-	float interval = 360.0f / static_cast<float>(numLayer);
-	D3DXVECTOR3 circlePos = { 0.0f,1.0f,0.0f };
-	for (int i = 0; i < numLayer; i++) {
-		float angle =
-			MyMath::GetRadian(static_cast<float>(i * interval));
-		circlePos.x = radius * sinf(angle);
-		circlePos.z = radius * cosf(angle);
-		m_SwitchToScenes.push_back(AddGameObject<CO_3DPloygonTest>(LAYER_3D));
-		m_SwitchToScenes[i]->SetPosition(circlePos);
-	}
+	D3DXVECTOR3 centerpos = { 0.0f,0.0f,0.0f };
+	m_SwitchToScenes = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPloygonTest>(16, 16, centerpos, 20.0f);
 
 	AddGameObject<ImGuiObject_Title>(LAYER_3D);
 
@@ -55,7 +46,7 @@ void TitleScene::Update()
 	bool istogame = false;
 	for (auto sts : m_SwitchToScenes)
 	{
-		if (sts->GetComponent<VertexChangerComponent_Color>()->GetIsToGame())
+		if (sts->GetComponent<VertexChangeComponent_ToGame>()->GetIsToGame())
 			istogame = true;
 	}
 	if (GetKeyboardTrigger(DIK_SPACE) && istogame) {

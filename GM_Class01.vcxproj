@@ -54,7 +54,8 @@
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="MatrixComponent.cpp" />
     <ClCompile Include="model.cpp" />
-    <ClCompile Include="ModelDrawComponent.cpp" />
+    <ClCompile Include="ModelColorChangeComponent.cpp" />
+    <ClCompile Include="model_variable.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pointLight.cpp" />
@@ -76,6 +77,7 @@
     <ClCompile Include="stage_wator_field.cpp" />
     <ClCompile Include="TitlePolygon.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="ToGameSceneComponent.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI_Charge.cpp" />
@@ -96,6 +98,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="CircleDeploy.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionComponent_Bullet.h" />
@@ -115,6 +118,7 @@
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="ModelColorChangeComponent.h" />
     <ClInclude Include="ModelDrawComponent.h" />
     <ClInclude Include="effect_explosion.h" />
     <ClInclude Include="Enemy.h" />
@@ -132,6 +136,7 @@
     <ClInclude Include="manager.h" />
     <ClInclude Include="MatrixComponent.h" />
     <ClInclude Include="model.h" />
+    <ClInclude Include="model_variable.h" />
     <ClInclude Include="multi_thread.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="pixelShader.h" />
@@ -160,6 +165,7 @@
     <ClInclude Include="stage_wator_field.h" />
     <ClInclude Include="TitlePolygon.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="VertexChangeComponent_ToGame.h" />
     <ClInclude Include="TransformInit.h" />
     <ClInclude Include="Transition.h" />
     <ClInclude Include="UI_Charge.h" />

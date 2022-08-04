@@ -234,9 +234,6 @@
     <ClCompile Include="MatrixComponent.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="ModelDrawComponent.cpp">
-      <Filter>GameObject\Component\Draw</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderComponent.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
@@ -280,6 +277,15 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiObject_Title.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ToGameSceneComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="model_variable.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelColorChangeComponent.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -537,6 +543,18 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="VertexChangerComponent_Color.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexChangeComponent_ToGame.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleDeploy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="model_variable.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelColorChangeComponent.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

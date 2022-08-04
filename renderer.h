@@ -88,6 +88,10 @@ private:
 	static ID3D11BlendState* m_BlendState;
 	static ID3D11BlendState* m_BlendStateATC;
 
+	static ID3D11RasterizerState* m_RS_Wireframe;
+	static ID3D11RasterizerState* m_RS_CullBack;
+	static ID3D11RasterizerState* m_RS_CullNone;
+
 	static ID3D11Buffer*			m_WorldBuffer;
 	static ID3D11Buffer*			m_ViewBuffer;
 	static ID3D11Buffer*			m_ProjectionBuffer;
@@ -119,6 +123,9 @@ public:
 
 	static void SetAlphaToCoverage(bool Enable);
 	static void SetDepthEnable(bool Enable);
+	static void SetCullNone(bool Enable);
+	static void SetCullBack(bool Enable);
+	static void SetWireframe(bool Enable);
 	static void SetWorldViewProjection2D();
 	static void SetWorldMatrix(D3DXMATRIX* WorldMatrix);
 	static void SetViewMatrix(D3DXMATRIX* ViewMatrix);
