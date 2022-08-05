@@ -282,9 +282,6 @@
     <ClCompile Include="ToGameSceneComponent.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="model_variable.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="ModelColorChangeComponent.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -296,6 +293,12 @@
     </ClCompile>
     <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="model_variable.cpp">
+      <Filter>ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -560,9 +563,6 @@
     <ClInclude Include="CircleDeploy.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="model_variable.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="ModelColorChangeComponent.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -573,6 +573,18 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="ModelColorChangeComponent_Titlebg.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="model_variable.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackingComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_ToriiBlock.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

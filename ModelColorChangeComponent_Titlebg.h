@@ -57,7 +57,8 @@ public:
 		ImGui::End();
 
 		m_Parent->GetComponent<ModelDrawComponent>()->SetDiffuse(m_Diffuse);
+			
     }
-
+	
 };
 

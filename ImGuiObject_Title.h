@@ -7,6 +7,7 @@
 #include "VertexChangerComponent_Color.h"
 #include "CO_3DPloygonTest.h"
 #include "CO_TitleBackGround.h"
+#include "CO_ToriiBlock.h"
 
 class ImGuiObject_Title :
 	public ImGuiObject
@@ -41,6 +42,12 @@ public:
 			
 		}
 		
+		if (ImGui::CollapsingHeader("CO_ToriiBlock")) {
+			std::shared_ptr<Scene> scene = Manager::GetScene();
+			CO_ToriiBlock* pol3d = scene->GetGameObject<CO_ToriiBlock>();
+			pol3d->DrawImgui();
+
+		}
 	}
 };
 

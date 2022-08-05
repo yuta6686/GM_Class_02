@@ -59,6 +59,7 @@
     <ClCompile Include="ModelColorChangeComponent.cpp" />
     <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp" />
     <ClCompile Include="model_variable.cpp" />
+    <ClCompile Include="ParticleObject.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pointLight.cpp" />
@@ -111,10 +112,12 @@
     <ClInclude Include="CO_3DPloygonTest.h" />
     <ClInclude Include="CO_3DPolygon_circle.h" />
     <ClInclude Include="CO_TitleBackGround.h" />
+    <ClInclude Include="CO_ToriiBlock.h" />
     <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EnemyGenerate.h" />
+    <ClInclude Include="TrackingComponent.h" />
     <ClInclude Include="ImGuiComponent.h" />
     <ClInclude Include="ImGuiObject.h" />
     <ClInclude Include="ImGuiObject_Title.h" />
@@ -145,6 +148,7 @@
     <ClInclude Include="model_variable.h" />
     <ClInclude Include="multi_thread.h" />
     <ClInclude Include="MyMath.h" />
+    <ClInclude Include="ParticleObject.h" />
     <ClInclude Include="pixelShader.h" />
     <ClInclude Include="Polygon3DComponent.h" />
     <ClInclude Include="ResourceManager.h" />

@@ -13,6 +13,7 @@
 #include "CO_3DPolygon_circle.h"
 #include "CO_TitleBackGround.h"
 #include "ComponentObjectTest.h"
+#include "CO_ToriiBlock.h"
 
 void TitleScene::Init()
 {
@@ -51,6 +52,9 @@ void TitleScene::Init()
 	m_Circles.push_back(circles_);
 
 	AddGameObject< CO_TitleBackGround>(LAYER_3D);
+
+	AddGameObject< CO_ToriiBlock>(LAYER_3D)->SetPosition({ 0.0f,-7.5f,-15.0f });
+	AddGameObject< CO_ToriiBlock>(LAYER_3D)->SetPosition({ 0.0f,-7.5f,15.0f });
 	
 
 
