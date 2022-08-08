@@ -14,6 +14,7 @@ private:
 
     const float m_AngleMax = 30.0f;
     D3DXVECTOR3 m_PlayerForwardVector;
+    float m_first_degree = 0.0f;
     float m_degree = 0.0f;
     float m_degree_fixation;
 
@@ -29,6 +30,31 @@ public:
         std::shared_ptr<Scene> scene = Manager::GetScene();
         m_Player = scene->GetGameObject<Player>();
         m_PlayerForwardVector = m_Player->GetForward();
+
+        //  中心から30度の視野角内に写っているかわかる
+        D3DXVECTOR3 playerForwardvec = m_Player->GetForward();
+        D3DXVec3Normalize(&playerForwardvec, &playerForwardvec);
+
+
+        D3DXVECTOR3 myForwardvec = m_Parent->GetPosition() - m_Player->GetPosition();
+        D3DXVec3Normalize(&myForwardvec, &myForwardvec);
+
+        m_first_degree = MyMath::GetDegree(acosf(D3DXVec3Dot(&playerForwardvec, &myForwardvec)));
+
+        if (m_first_degree <= m_AngleMax) {
+            m_IsToGame = true;
+            m_Color = m_ToGameColor;
+        }
+        else if (m_first_degree >= 150.0f) {
+            m_IsToExit = true;
+            m_Color = m_ToExitColor;
+        }
+        else
+        {
+            m_IsToGame = false;
+            m_IsToExit = false;
+            m_Color = m_BackFaceColor;
+        }
     }
 
 
@@ -44,10 +70,10 @@ public:
 
         m_degree = MyMath::GetDegree(acosf(D3DXVec3Dot(&playerForwardvec, &myForwardvec)));
         
+        
 
         if (m_degree <= m_AngleMax)
-        {
-            m_Color = m_FrontFaceColor;
+        {            
             float lerp_scale = (1.0f - m_degree / m_AngleMax) * 3.0f;
 
             m_myScale.x = DEFAULT_SCALE.x + lerp_scale;
@@ -56,36 +82,34 @@ public:
 
             m_Parent->SetScale(m_myScale);
             m_IsInSide = true;
-        }
-        else if (m_degree >= 150.0f) {
-            m_IsToExit = true;
-        }
+        }        
         else
-        {
-            m_Color = m_BackFaceColor;
+        {            
             m_Parent->SetScale(DEFAULT_SCALE);
-            m_IsInSide = false;
-            m_IsToExit = false;
+            m_IsInSide = false;            
         }
 
         //  強制で色を変更する
         //  ゲームシーンへ ---> 青？
         //  ゲーム終了     ---> 赤？
+ 
+        
 
-        //  プレイヤーが最初に向いていた方向
-        D3DXVec3Normalize(&m_PlayerForwardVector, &m_PlayerForwardVector);
-        m_degree_fixation = MyMath::GetDegree(acosf(D3DXVec3Dot(&m_PlayerForwardVector, &myForwardvec)));
-        if (m_degree_fixation < 30.0f) {
-            m_Color += m_ToGameColor;
-            m_IsToGame = true;
+        if (GetIsToExitAndInside()) {
+            m_Color = m_ToExitColor;
+            return;
         }
-        else {
-            m_IsToGame = false;
+        else if (GetIsToGameAndInside()) {
+            m_Color = m_ToGameColor;
+        }
+        else
+        {
+            m_Color = m_BackFaceColor;
         }
 
-        if (m_degree_fixation > 150.0f) {
-            m_Color += m_ToExitColor;            
-        }
+        if (m_IsInSide) {
+            m_Color += m_FrontFaceColor;
+        } 
     }
 
 
@@ -93,14 +117,26 @@ public:
     virtual void DrawImgui() override
     {
         ImGui::Text("angle:%.2f", m_degree);
-        
+        ImGui::Text("m_first_degree:%.2f", m_first_degree);
+        ImGui::Checkbox("IsToGame", &m_IsToGame);
+        ImGui::Checkbox("IsToExit", &m_IsToExit);
+        ImGui::Checkbox("IsInside", &m_IsInSide);
     }
 
-    bool GetIsToExit()const {
+    bool GetIsToExit()const
+    {
         return m_IsToExit;
     }
-
     bool GetIsToGame()const
+    {
+        return m_IsToGame;
+    }
+
+    bool GetIsToExitAndInside()const {
+        return m_IsToExit & m_IsInSide;
+    }
+
+    bool GetIsToGameAndInside()const
     {
         return m_IsToGame && m_IsInSide;
     }

@@ -86,7 +86,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 
 	MSG msg;
-	while(1)
+	while(!Manager::GetIsExit())
 	{
         if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{

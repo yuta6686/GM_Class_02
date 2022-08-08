@@ -11,7 +11,7 @@ enum SCENE {
 class Manager
 {
 private:	
-
+	inline static bool m_IsExit = false;
 	static class std::shared_ptr<Scene> m_Scene;
 public:
 	//‰Šú‰»
@@ -43,4 +43,7 @@ public:
 		m_Scene = std::make_shared<T>();
 		m_Scene->Init();
 	}
+
+	static void SetIsExit(const bool& flag) { m_IsExit = flag; }
+	static bool GetIsExit() { return m_IsExit; }
 };

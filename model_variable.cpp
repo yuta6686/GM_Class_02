@@ -26,7 +26,7 @@ void Model_variable::Draw()
 
 		// ƒ|ƒŠƒSƒ“•`‰æ
 		Renderer::GetDeviceContext()->DrawIndexed(m_SubsetArray[i].IndexNum, m_SubsetArray[i].StartIndex, 0);
-	}
+	}	
 }
 
 void Model_variable::Load(const char* FileName)

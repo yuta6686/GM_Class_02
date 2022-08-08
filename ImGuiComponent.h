@@ -7,6 +7,7 @@ class ImGuiComponent :
 protected:
     bool m_Is2D = false;
     bool m_IsEnemyVersion = false;
+    bool m_IsUse = false;
 
     float POSITION_MIN = -20.0f;    
     float POSITION_MAX = 20.0f;
@@ -54,5 +55,9 @@ public:
 
         m_ImVecY = 700;
     }
+
+    bool GetIsUse()const { return m_IsUse; }
+    void SetIsUse(const bool& flag) { m_IsUse = flag; }  
+    
 };
 

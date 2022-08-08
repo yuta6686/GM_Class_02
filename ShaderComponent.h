@@ -5,6 +5,7 @@
 enum SHADER_TYPE {
     SHADER_DEFAULT,
     SHADER_UNLIT,
+    SHADER_UNLIT_NO_MATERIAL,
 };
 
 class ShaderComponent :
@@ -31,6 +32,11 @@ public:
     virtual void SetUnlitShader()
     {
         m_ShaderType = SHADER_UNLIT;
+    }
+
+    virtual void SetUnlitNoMaterialShader()
+    {
+        m_ShaderType = SHADER_UNLIT_NO_MATERIAL;
     }
 };
 

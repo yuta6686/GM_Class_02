@@ -300,6 +300,24 @@
     <ClCompile Include="model_variable.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
+    <ClCompile Include="CO_toExit.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_toGame.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitScene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfirmationComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_Confirmation.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -587,6 +605,24 @@
     <ClInclude Include="CO_ToriiBlock.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CO_toExit.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_toGame.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitScene.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmationComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Confirmation.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -608,6 +644,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="testPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="unlitTextureNoMat.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

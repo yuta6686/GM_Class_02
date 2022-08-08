@@ -28,13 +28,18 @@
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="CollisionComponent_Bullet.cpp" />
     <ClCompile Include="ComponentObjectTest.cpp" />
+    <ClCompile Include="ConfirmationComponent.cpp" />
     <ClCompile Include="CO_3DPloygonTest.cpp" />
     <ClCompile Include="CO_3DPolygon_circle.cpp" />
+    <ClCompile Include="CO_Confirmation.cpp" />
     <ClCompile Include="CO_TitleBackGround.cpp" />
+    <ClCompile Include="CO_toExit.cpp" />
+    <ClCompile Include="CO_toGame.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="EnemyGenerate.cpp" />
+    <ClCompile Include="ExitScene.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="GameObject_Invoke.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -79,6 +84,7 @@
     <ClCompile Include="stage_corridor_corner.cpp" />
     <ClCompile Include="stage_otorii.cpp" />
     <ClCompile Include="stage_wator_field.cpp" />
+    <ClCompile Include="TextureComponent.cpp" />
     <ClCompile Include="TitlePolygon.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="ToGameSceneComponent.cpp" />
@@ -109,14 +115,20 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
+    <ClInclude Include="ConfirmationComponent.h" />
     <ClInclude Include="CO_3DPloygonTest.h" />
     <ClInclude Include="CO_3DPolygon_circle.h" />
+    <ClInclude Include="CO_Confirmation.h" />
     <ClInclude Include="CO_TitleBackGround.h" />
+    <ClInclude Include="CO_toExit.h" />
+    <ClInclude Include="CO_toGame.h" />
     <ClInclude Include="CO_ToriiBlock.h" />
     <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EnemyGenerate.h" />
+    <ClInclude Include="ExitScene.h" />
+    <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="TrackingComponent.h" />
     <ClInclude Include="ImGuiComponent.h" />
     <ClInclude Include="ImGuiObject.h" />
@@ -206,6 +218,14 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="unlitTextureNoMat.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="unlitTexturePS.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

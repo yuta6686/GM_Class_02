@@ -1,6 +1,8 @@
 #pragma once
 #include "ComponentObject.h"
 #include "ModelColorChangeComponent_Titlebg.h"
+#include "BlinkComponent.h"
+#include "gameObject.h"
 class CO_TitleBackGround :
     public ComponentObject
 {
@@ -22,10 +24,28 @@ public:
         
 
         AddComponent< ModelColorChangeComponent_Titlebg>(COMLAYER_SECOND);
+
+        AddComponent<BlinkComponent>(COMLAYER_SECOND)->
+            SetParameter(0.01f, 15.0f, 20.0f);
         
 
         ComponentObject::Init();
         mdc->SetDiffuse({ 0.0f,0.0f,0.0f,0.0f });
+    }
+
+    virtual void Update()override
+    {
+        float blink = GetComponent<BlinkComponent>()->GetBlinkValue();
+        m_Scale.x = blink;
+        m_Scale.y = blink;
+        m_Scale.z = blink;
+
+        if (m_Rotation.x >= 360.0f) {
+            m_Rotation.x = 0.0f;
+        }
+        m_Rotation.x += 0.1f;
+
+        ComponentObject::Update();
     }
 };
 

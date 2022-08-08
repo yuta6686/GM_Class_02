@@ -8,6 +8,7 @@
 #include "CO_3DPloygonTest.h"
 #include "CO_TitleBackGround.h"
 #include "CO_ToriiBlock.h"
+#include "CO_Confirmation.h"
 
 class ImGuiObject_Title :
 	public ImGuiObject
@@ -37,8 +38,11 @@ public:
 
 		if (ImGui::CollapsingHeader("VertexChange")) {
 			std::shared_ptr<Scene> scene = Manager::GetScene();
-			CO_3DPloygonTest* pol3d = scene->GetGameObject<CO_3DPloygonTest>();
-			pol3d->GetComponent<VertexChangeComponent_ToGame>()->DrawImgui();
+			std::vector<CO_3DPloygonTest*> pol3d = scene->GetGameObjects<CO_3DPloygonTest>();
+			for (auto pol : pol3d) {
+				pol->GetComponent<VertexChangeComponent_ToGame>()->DrawImgui();
+			}
+			
 			
 		}
 		
@@ -46,6 +50,13 @@ public:
 			std::shared_ptr<Scene> scene = Manager::GetScene();
 			CO_ToriiBlock* pol3d = scene->GetGameObject<CO_ToriiBlock>();
 			pol3d->DrawImgui();
+
+		}
+
+		if (ImGui::CollapsingHeader("CO_Confirmation")) {
+			std::shared_ptr<Scene> scene = Manager::GetScene();
+			CO_Confirmation* con = scene->GetGameObject<CO_Confirmation>();
+			con->DrawImgui();
 
 		}
 	}

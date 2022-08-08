@@ -14,6 +14,7 @@ public:
             m_Parent->SetDestroy();
             m_Scene->AddGameObject<Effect_explosion>
                 (LAYER_3D)->SetPosition(m_Parent->GetPosition());
+            break;
         }        
     }
 };

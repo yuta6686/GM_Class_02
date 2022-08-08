@@ -14,6 +14,10 @@
 #include "CO_TitleBackGround.h"
 #include "ComponentObjectTest.h"
 #include "CO_ToriiBlock.h"
+#include "CO_toExit.h"
+#include "CO_toGame.h"
+#include "ExitScene.h"
+#include "CO_Confirmation.h"
 
 void TitleScene::Init()
 {
@@ -32,8 +36,10 @@ void TitleScene::Init()
 
 	D3DXVECTOR3 centerpos = { 0.0f,0.0f,0.0f };
 	m_SwitchToScenes = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPloygonTest>(16, 16, centerpos, 20.0f,0.0f);
+	for (auto switchscene : m_SwitchToScenes) {
+		switchscene->GetComponent<VertexChangeComponent_ToGame>()->Init();
+	}
 
-	AddGameObject<ImGuiObject_Title>(LAYER_3D);
 
 	centerpos.y = 10.0f;
 	m_Circles.push_back(CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 0.0f));
@@ -53,10 +59,21 @@ void TitleScene::Init()
 
 	AddGameObject< CO_TitleBackGround>(LAYER_3D);
 
-	AddGameObject< CO_ToriiBlock>(LAYER_3D)->SetPosition({ 0.0f,-7.5f,-15.0f });
-	AddGameObject< CO_ToriiBlock>(LAYER_3D)->SetPosition({ 0.0f,-7.5f,15.0f });
-	
+	AddGameObject< CO_ToriiBlock>(LAYER_3D)->SetPosition({ 0.0f,-7.5f,-30.0f });
+	AddGameObject< CO_ToriiBlock>(LAYER_3D)->SetPosition({ 0.0f,-7.5f,30.0f });
 
+	auto* exit = AddGameObject < CO_toExit>(LAYER_3D);
+	exit->SetPosition({ 0.0f,13.0f,-30.0f });
+	exit->SetRotation({ MyMath::GetRadian(180.0f),0.0f,0.0f });
+	
+	auto* game = AddGameObject < CO_toGame>(LAYER_3D);
+	game->SetPosition({ 0.0f,13.0f,30.0f });
+	float gameslca = 7.5f;
+	game->SetScale({ gameslca ,gameslca ,gameslca });
+
+	
+	
+	AddGameObject<ImGuiObject_Title>(LAYER_3D);
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 
@@ -68,14 +85,8 @@ void TitleScene::Init()
 void TitleScene::Update()
 {
 	Scene::Update();
-	
-	bool istogame = false;
-	for (auto sts : m_SwitchToScenes)
-	{
-		if (sts->GetComponent<VertexChangeComponent_ToGame>()->GetIsToGame())
-			istogame = true;
-	}
 
+	//	‰ñ“]
 	for (auto circle : m_Circles) {
 		for (auto circle2 : circle) {
 			D3DXVECTOR3 pos = circle2->GetPosition();
@@ -91,6 +102,13 @@ void TitleScene::Update()
 			circle2->SetPosition(pos);
 		}
 	}
+	
+	bool istogame = false;
+	for (auto sts : m_SwitchToScenes)
+	{
+		if (sts->GetComponent<VertexChangeComponent_ToGame>()->GetIsToGameAndInside())
+			istogame = true;
+	}
 
 	if (GetKeyboardTrigger(DIK_SPACE) && istogame) {
 				
@@ -98,7 +116,42 @@ void TitleScene::Update()
 	}
 
 
-	if (m_Fade->GetFinish()) {
+	if (m_Fade->GetFinish() && istogame) {
 		Manager::SetScene <GameScene>();
+		return;
 	}
+
+	bool istoexit = false;
+	for (auto sts : m_SwitchToScenes)
+	{
+		if (sts->GetComponent<VertexChangeComponent_ToGame>()->GetIsToExitAndInside()) {
+			istoexit = true;
+			break;
+		}
+			
+	}
+
+	if (GetKeyboardTrigger(DIK_SPACE) && istoexit && m_Confirmation == nullptr) {
+		m_Confirmation = AddGameObject< CO_Confirmation>(LAYER_2D);		
+		return;
+	}
+
+	if (GetKeyboardTrigger(DIK_SPACE) && m_Confirmation != nullptr && m_Confirmation->GetComponent<ConfirmationComponent>()->GetIsYes())
+	{
+		m_Fade->Start(false);
+	}
+
+	if (GetKeyboardTrigger(DIK_SPACE) && m_Confirmation != nullptr && m_Confirmation->GetComponent<ConfirmationComponent>()->GetIsYes()==false) {
+		m_Confirmation->SetDestroy();		
+		m_Confirmation = nullptr;
+	}
+
+
+	if (m_Fade->GetFinish() && istoexit) {
+		Manager::SetScene <ExitScene>();
+		return;
+	}
+
+
+
 }
