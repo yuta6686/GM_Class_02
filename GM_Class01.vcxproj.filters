@@ -79,6 +79,15 @@
     <Filter Include="GameObject\Component\ComponentObject">
       <UniqueIdentifier>{907161ae-b483-458a-b63a-252891e0737f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\Collision">
+      <UniqueIdentifier>{c50465a7-e935-46e2-88a4-a160a34bbe44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\UI\2D">
+      <UniqueIdentifier>{eb084f03-22db-4329-b24f-36c4619b26b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\UI\3D">
+      <UniqueIdentifier>{7627deba-eab6-4494-9c52-86ffeef6bd48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -195,9 +204,6 @@
     <ClCompile Include="UserInterface.cpp">
       <Filter>GameObject\UI</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject_Invoke.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="Invoke_test.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -249,13 +255,7 @@
     <ClCompile Include="BulletComponent.cpp">
       <Filter>GameObject\Component\Function</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentObjectTest.cpp">
-      <Filter>GameObject\Component</Filter>
-    </ClCompile>
     <ClCompile Include="BlinkComponent.cpp">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Rotate2D.cpp">
       <Filter>GameObject\Component\UI</Filter>
     </ClCompile>
     <ClCompile Include="UserInterfaceComponent.cpp">
@@ -264,34 +264,10 @@
     <ClCompile Include="EnemyGenerate.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionComponent.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionComponent_Bullet.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="Polygon3DComponent.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="CO_3DPloygonTest.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiObject_Title.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ToGameSceneComponent.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="ModelColorChangeComponent.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CO_3DPolygon_circle.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CO_TitleBackGround.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="ParticleObject.cpp">
@@ -300,23 +276,11 @@
     <ClCompile Include="model_variable.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="CO_toExit.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CO_toGame.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ExitScene.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ConfirmationComponent.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CO_Confirmation.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="TextureComponent.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotate2D.cpp">
+      <Filter>GameObject\Component\UI\2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -530,12 +494,6 @@
     <ClInclude Include="BlinkComponent.h">
       <Filter>GameObject\Component\UI</Filter>
     </ClInclude>
-    <ClInclude Include="BlinkComponentAlpha2D.h">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Rotate2D.h">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClInclude>
     <ClInclude Include="VertexChangeComponent.h">
       <Filter>GameObject\Component\UI</Filter>
     </ClInclude>
@@ -554,74 +512,80 @@
     <ClInclude Include="EnemyGenerate.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionComponent.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionComponent_Bullet.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="VertexInitialize.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Polygon3DComponent.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CO_3DPloygonTest.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="ImGuiObject_Title.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="VertexChangerComponent_Color.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexChangeComponent_ToGame.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="CircleDeploy.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelColorChangeComponent.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CO_3DPolygon_circle.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CO_TitleBackGround.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelColorChangeComponent_Titlebg.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="model_variable.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="TrackingComponent.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CO_ToriiBlock.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CO_toExit.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CO_toGame.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="ExitScene.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="ConfirmationComponent.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="CO_3DPloygonTest.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_3DPolygon_circle.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
     </ClInclude>
     <ClInclude Include="CO_Confirmation.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_TitleBackGround.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_toExit.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_toGame.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_ToriiBlock.h">
+      <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleObject.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent_Bullet.h">
+      <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
     <ClInclude Include="TextureComponent.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexChangeComponent_ToGame.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexChangerComponent_Color.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmationComponent.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackingComponent.h">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="BlinkComponentAlpha2D.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotate2D.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon3DComponent.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelColorChangeComponent.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelColorChangeComponent_Titlebg.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

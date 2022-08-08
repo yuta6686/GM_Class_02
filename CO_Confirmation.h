@@ -38,9 +38,5 @@ public:
         ComponentObject::Init();
     }
 
-    virtual void Draw()override
-    {
-        ComponentObject::Draw();
-    }
 };
 
