@@ -23,7 +23,7 @@ void UserInterfaceComponent::Init()
 
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
-	m_Parent->SetPosition(m_Offset);
+	// m_Parent->SetPosition(m_Offset);
 }
 
 void UserInterfaceComponent::Uninit()

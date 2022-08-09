@@ -56,7 +56,11 @@ public:
 		if (ImGui::CollapsingHeader("CO_Confirmation")) {
 			std::shared_ptr<Scene> scene = Manager::GetScene();
 			CO_Confirmation* con = scene->GetGameObject<CO_Confirmation>();
-			con->DrawImgui();
+
+			if (con != nullptr) {
+				con->DrawImgui();
+			}
+			
 
 		}
 	}

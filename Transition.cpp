@@ -90,7 +90,7 @@ void Transition::Draw()
 	float col = (m_Count / 60.0f);
 	m_Diffuse.y = (1.0f-col);
 	m_Diffuse.z = (1.0f-col);
-	m_Diffuse.w = col;
+	m_Diffuse.w = fmax(col + 0.2f, 1.0f);
 
 	
 	float ratio = (1.0f - (m_Count / 60.0f)) * RATIO;

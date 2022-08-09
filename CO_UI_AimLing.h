@@ -12,7 +12,8 @@ public:
     virtual void Init()override {
         m_TypeName = "CO_UI_test";
 
-        AddComponent<TransformInit>(COMLAYER_FIRST);
+        AddComponent<TransformInit>(COMLAYER_FIRST)->
+            SetInitPosition({ SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f,0.0f });
 
         AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetUnlitShader();
 

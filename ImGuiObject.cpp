@@ -10,6 +10,7 @@
 #include "audio.h"
 #include "ComponentObjectTest.h"
 #include "ModelColorChangeComponent.h"
+#include "CO_UI_Quest.h"
 
 void ImGuiObject::Init()
 {
@@ -76,6 +77,10 @@ void ImGuiObject::Draw()
 	if (ImGui::CollapsingHeader("AlphaBlink2DComponent")) {		
 		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<AlphaBlink2DComponent>()->DrawImgui();
 		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<Rotate2D>()->DrawImgui();
+	}
+
+	if(ImGui::CollapsingHeader("CO_UI_Quest")) {
+		m_Scene->GetGameObject<CO_UI_Quest>()->DrawImgui();
 	}
 
 	//Enemy

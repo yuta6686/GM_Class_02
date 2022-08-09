@@ -27,6 +27,10 @@ void Model_variable::Draw()
 		// ƒ|ƒŠƒSƒ“•`‰æ
 		Renderer::GetDeviceContext()->DrawIndexed(m_SubsetArray[i].IndexNum, m_SubsetArray[i].StartIndex, 0);
 	}	
+
+	for (unsigned int i = 0; i < m_SubsetNum; i++) {
+		m_SubsetArray[i].Material.Material.Diffuse = { 1.0f,1.0f,1.0f,1.0f };
+	}
 }
 
 void Model_variable::Load(const char* FileName)

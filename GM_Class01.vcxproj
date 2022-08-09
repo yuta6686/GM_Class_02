@@ -25,6 +25,7 @@
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CO_UI_Quest.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
@@ -48,7 +49,6 @@
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="MatrixComponent.cpp" />
     <ClCompile Include="model.cpp" />
-    <ClCompile Include="ModelColorChangeComponent.cpp" />
     <ClCompile Include="model_variable.cpp" />
     <ClCompile Include="ParticleObject.cpp" />
     <ClCompile Include="pixelShader.cpp" />
@@ -101,6 +101,7 @@
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
     <ClInclude Include="ConfirmationComponent.h" />
+    <ClInclude Include="CountComponent.h" />
     <ClInclude Include="CO_3DPloygonTest.h" />
     <ClInclude Include="CO_3DPolygon_circle.h" />
     <ClInclude Include="CO_Confirmation.h" />
@@ -109,6 +110,7 @@
     <ClInclude Include="CO_toGame.h" />
     <ClInclude Include="CO_ToriiBlock.h" />
     <ClInclude Include="CO_UI_AimLing.h" />
+    <ClInclude Include="CO_UI_Quest.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EnemyGenerate.h" />

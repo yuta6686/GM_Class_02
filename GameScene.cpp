@@ -26,6 +26,7 @@
 #include "ImGuiObject.h"
 #include "CO_UI_AimLing.h"
 #include "EnemyGenerate.h"
+#include "CO_UI_Quest.h"
 
 void GameScene::Init()
 {
@@ -59,6 +60,8 @@ void GameScene::Init()
 
 	//	ステージ配置
 	StageCorridorCreate();
+
+	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 
 	AddGameObject<Polygon2D>(LAYER_2D);
 	AddGameObject<UI_Charge>(LAYER_2D);
@@ -103,12 +106,15 @@ void GameScene::Init()
 	}
 
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
+	AddGameObject<ComponentObjectTest>(LAYER_3D);
+	AddGameObject<ComponentObjectTest>(LAYER_3D);
+
 	AddGameObject< ImGuiObject>(LAYER_3D);
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
 
-	AddGameObject<CO_UI_AimLing>(LAYER_2D);
+	
 
 	AddGameObject<EnemyGenerate>(LAYER_3D);
 
@@ -125,6 +131,7 @@ void GameScene::Init()
 		AddGameObject<Enemy>(LAYER_3D)->SetPosition(circlePos);
 	}
 	
+	AddGameObject<CO_UI_Quest>(LAYER_2D);
 }
 
 

@@ -7,6 +7,7 @@
 #include "ModelDrawComponent.h"
 #include "TransformInit.h"
 #include "ImGuiComponent.h"
+#include "CountComponent.h"
 
 
 class ComponentObject :
