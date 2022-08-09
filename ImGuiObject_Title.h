@@ -9,6 +9,9 @@
 #include "CO_TitleBackGround.h"
 #include "CO_ToriiBlock.h"
 #include "CO_Confirmation.h"
+#include "CO_UI_Quest.h"
+#include "CO_UI_Quest_Purpose.h"
+#include "CO_UI_Quest_Belt.h"
 
 class ImGuiObject_Title :
 	public ImGuiObject
@@ -59,9 +62,34 @@ public:
 
 			if (con != nullptr) {
 				con->DrawImgui();
-			}
-			
+			}			
+		}
 
+		if (ImGui::CollapsingHeader("CO_UI_Quest")) {
+			std::shared_ptr<Scene> scene = Manager::GetScene();
+			CO_UI_Quest* obj = scene->GetGameObject<CO_UI_Quest>();
+
+			if (obj != nullptr) {
+				obj->DrawImgui();
+			}
+		}
+
+		if (ImGui::CollapsingHeader("CO_UI_Quest_Purpose")) {
+			std::shared_ptr<Scene> scene = Manager::GetScene();
+			CO_UI_Quest_Purpose* obj = scene->GetGameObject<CO_UI_Quest_Purpose>();
+
+			if (obj != nullptr) {
+				obj->DrawImgui();
+			}
+		}
+
+		if (ImGui::CollapsingHeader("CO_UI_Quest_Belt")) {
+			std::shared_ptr<Scene> scene = Manager::GetScene();
+			CO_UI_Quest_Belt* obj = scene->GetGameObject<CO_UI_Quest_Belt>();
+
+			if (obj != nullptr) {
+				obj->DrawImgui();
+			}
 		}
 	}
 };

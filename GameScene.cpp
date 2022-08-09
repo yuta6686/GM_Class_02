@@ -27,6 +27,8 @@
 #include "CO_UI_AimLing.h"
 #include "EnemyGenerate.h"
 #include "CO_UI_Quest.h"
+#include "CO_UI_Quest_Belt.h"
+#include "CO_UI_Quest_Purpose.h"
 
 void GameScene::Init()
 {
@@ -109,6 +111,8 @@ void GameScene::Init()
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
 
+	
+
 	AddGameObject< ImGuiObject>(LAYER_3D);
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
@@ -132,6 +136,24 @@ void GameScene::Init()
 	}
 	
 	AddGameObject<CO_UI_Quest>(LAYER_2D);
+	AddGameObject< CO_UI_Quest_Purpose>(LAYER_2D);
+
+	float dest_y = 400.0f;
+	float dep_y = 800.0f;
+	{
+		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
+		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
+		couibelt->Start(false, 60, 60);
+	}
+
+	{
+		float sep_y = 200.0f;
+		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
+		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
+		couibelt->Start(false, 60, 90);
+	}
 }
 
 

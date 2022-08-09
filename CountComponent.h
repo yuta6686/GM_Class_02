@@ -26,6 +26,7 @@ public:
                 m_Count--;
             }     
             
+            m_0to1 = static_cast<float>(min(m_Count + m_Delay, m_MaxCount)) / static_cast<float>(m_MaxCount);
         }        
         else
         {
@@ -35,9 +36,11 @@ public:
                 m_Finish = true;
             }
             m_Count++;            
+
+            m_0to1 = static_cast<float>(max(m_Count - m_Delay, 0)) / static_cast<float>(m_MaxCount);
         }        
 
-        m_0to1 = static_cast<float>(max(m_Count - m_Delay, 0)) / static_cast<float>(m_MaxCount);
+        
     }
     virtual void Draw() override {}
     virtual void DrawImgui() override {}

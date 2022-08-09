@@ -18,7 +18,8 @@
 #include "CO_toGame.h"
 #include "ExitScene.h"
 #include "CO_Confirmation.h"
-
+#include "CO_UI_Quest.h"
+#include "CO_UI_Quest_Belt.h"
 
 void TitleScene::Init()
 {
@@ -80,8 +81,25 @@ void TitleScene::Init()
 	float gameslca = 7.5f;
 	game->SetScale({ gameslca ,gameslca ,gameslca });
 
+	AddGameObject<CO_UI_Quest>(LAYER_2D);
+	
+	float dest_y = 400.0f;
+	float dep_y = 800.0f;
+	{
+		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
+		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
+		couibelt->Start(false, 60, 60,true);
+	}
 
-
+	{
+		float sep_y = 200.0f;
+		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
+		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
+		couibelt->Start(false, 60, 90,true);
+	}
+	
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------

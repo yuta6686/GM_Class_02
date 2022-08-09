@@ -81,11 +81,12 @@ void Transition::Update()
 void Transition::Draw()
 {
 
-	float x;
-	x = ((m_Count / 60.0f)) * SCREEN_WIDTH * RATIO;	
+	//float x;
+	//x = ((m_Count / 60.0f)) * SCREEN_WIDTH * RATIO;	
 
-	float xleft = (m_Count / 60.0f) * SCREEN_WIDTH * RATIO;
-	float xright = (m_Count / 60.0f) * SCREEN_WIDTH * (1.0f - RATIO);
+	float count0to1 = powf(m_Count / 60.0f,4.0f);
+	float xleft = count0to1 * SCREEN_WIDTH * RATIO;
+	float xright = count0to1 * SCREEN_WIDTH * (1.0f - RATIO);
 
 	float col = (m_Count / 60.0f);
 	m_Diffuse.y = (1.0f-col);

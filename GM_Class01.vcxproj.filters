@@ -288,6 +288,9 @@
     <ClCompile Include="CO_UI_Quest.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="CO_UI_Quest_Belt.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -509,9 +512,6 @@
     <ClInclude Include="VertexInitialize.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiObject_Title.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="CircleDeploy.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -597,6 +597,15 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CountComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Quest_Belt.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiObject_Title.h">
+      <Filter>GameObject\Object\GameSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Quest_Purpose.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,6 +26,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CO_UI_Quest.cpp" />
+    <ClCompile Include="CO_UI_Quest_Belt.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
@@ -111,6 +112,8 @@
     <ClInclude Include="CO_ToriiBlock.h" />
     <ClInclude Include="CO_UI_AimLing.h" />
     <ClInclude Include="CO_UI_Quest.h" />
+    <ClInclude Include="CO_UI_Quest_Belt.h" />
+    <ClInclude Include="CO_UI_Quest_Purpose.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EnemyGenerate.h" />
