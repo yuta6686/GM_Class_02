@@ -177,6 +177,7 @@
     <ClInclude Include="stage_wator_field.h" />
     <ClInclude Include="TitlePolygon.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="VelocityComponent.h" />
     <ClInclude Include="VertexChangeComponent_ToGame.h" />
     <ClInclude Include="TransformInit.h" />
     <ClInclude Include="Transition.h" />

@@ -608,6 +608,9 @@
     <ClInclude Include="CO_UI_Quest_Purpose.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="VelocityComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

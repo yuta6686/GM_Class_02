@@ -4,6 +4,7 @@
 #include "scene.h"
 #include "manager.h"
 #include "player.h"
+#include "VelocityComponent.h"
 
 class TrackingComponent :
     public Component
@@ -11,17 +12,20 @@ class TrackingComponent :
 private:
     GameObject* m_Target;
 
-    //  Velocityコンポーネントとして実装
-    D3DXVECTOR3 m_Velocity;
+    //  Velocityコンポーネントとして実装    
+    VelocityComponent* m_VelocityComponent;
+
+    float m_Speed = 0.1;
 public:
+    void SetSpeed(const float& speed) { m_Speed = speed; }
 
     virtual void Init() override
     {
         std::shared_ptr<Scene> scene = Manager::GetScene();
         m_Target = scene->GetGameObject<Player>();
 
-        //  Velocityコンポーネントとして実装
-        m_Velocity = { 0.0f,0.0f,0.0f };
+        //  Velocityコンポーネントとして実装        
+        m_VelocityComponent = m_Parent->AddComponent< VelocityComponent>(COMLAYER_SECOND);        
     }
 
     virtual void Uninit() override
@@ -41,14 +45,14 @@ public:
         //  正規化　向きを取る　(-1.0f ～ 1.0f）
         D3DXVec3Normalize(&direction, &direction);
 
-        m_Velocity = direction * 0.1f;
+        m_VelocityComponent->m_Velocity = direction * m_Speed;
 
         //m_Parent->SetRotation({ acosf(direction.x),asinf(direction.y),asinf(direction.z) });
         m_Parent->SetRotation({ acosf(direction.x),0.0f,0.0f });
 
 
         //  Velocityコンポーネントとして実装
-        m_Parent->SetPosition(enemypos + m_Velocity);
+        //m_Parent->SetPosition(enemypos + m_VelocityComponent->m_Velocity);
     }
 
     virtual void Draw() override
@@ -57,6 +61,7 @@ public:
 
     virtual void DrawImgui() override
     {
+        
     }
 
 };

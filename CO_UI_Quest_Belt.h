@@ -72,7 +72,7 @@ public:
         if (m_Count == nullptr)return;
         if (m_Count->GetFinish() && m_IsReverse)
         {
-            m_Count->Start(true);
+            m_Count->Start(true,60,60);
         } 
 
         D3DXVec3Lerp(&m_Position, &m_Departure, &m_Destination, powf(m_Count->Get0to1Count(),4.0f));

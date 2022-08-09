@@ -48,7 +48,7 @@ public:
         ComponentObject::Update();
 
         if (m_Count == nullptr)return;
-        if (m_Count->GetFinish()) 
+        if (m_Count->GetFinish())
         {
             m_Count->Start(true, 60, 300);
         }

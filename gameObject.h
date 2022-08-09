@@ -24,6 +24,7 @@ class GameObject
 {
 protected:
 	bool m_Destroy = false;
+	bool m_NoUpdate = false;
 
 	D3DXVECTOR3 m_Position;
 	D3DXVECTOR3 m_Rotation;
@@ -44,6 +45,17 @@ public:
 	virtual void SetPosition(D3DXVECTOR3 Position)
 	{
 		m_Position = Position;
+	}
+
+	void AddPosition(D3DXVECTOR3 apos)
+	{
+		m_Position += apos;
+	}
+
+	void AddPosition(float apos) {
+		m_Position.x += apos;
+		m_Position.y += apos;
+		m_Position.z += apos;
 	}
 
 	void SetRotation(D3DXVECTOR3 Rotation)
@@ -129,6 +141,8 @@ public:
 			return false;
 		}
 	}
+
+	void SetNoUpdate(const bool& flag = true) { m_NoUpdate = flag; }
 
 	//void SetModel(std::shared_ptr<Model> pModel) { m_Model = pModel; }
 	//std::string GetFileName() { return m_FileName; }
