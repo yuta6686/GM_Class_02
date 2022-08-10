@@ -21,7 +21,7 @@ ID3D11Buffer* Renderer::m_ProjectionBuffer = NULL;
 ID3D11Buffer* Renderer::m_MaterialBuffer = NULL;
 std::vector<ID3D11Buffer*>			Renderer::m_LightBuffer(m_LightNum);
 ID3D11Buffer* Renderer::m_PointLightBuffer = NULL;
-
+ID3D11Buffer* Renderer::m_MonochoromBuffer = NULL;
 
 ID3D11DepthStencilState* Renderer::m_DepthStateEnable = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateDisable = NULL;
@@ -303,8 +303,18 @@ void Renderer::Init()
 		m_DeviceContext->PSSetConstantBuffers(4, 1, &m_LightBuffer[i]);
 	}
 
+	bufferDesc.ByteWidth = sizeof(VALIABLE);
+	
+	m_Device->CreateBuffer(&bufferDesc, NULL, &m_MonochoromBuffer);
+	m_DeviceContext->VSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
+	m_DeviceContext->PSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
 
-
+	VALIABLE a;
+	a.MonochoromeRate = 0.0f;
+	a.pad1 = 1.0f;
+	a.pad3 = 1.0f;
+	a.pad3 = 1.0f;
+	m_DeviceContext->UpdateSubresource(m_MonochoromBuffer, 0, NULL, &a, 0, 0);
 
 	//bufferDesc.ByteWidth = sizeof(POINT_LIGHT);
 
@@ -342,7 +352,7 @@ void Renderer::Init()
 	MATERIAL material{};
 	material.Diffuse = D3DXCOLOR(0.5f, 0.5f, 0.5f, 0.5f);
 	material.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 0.2f);
-	material.Emission = D3DXCOLOR(0, 0, 0, 0);
+	material.Emission = D3DXCOLOR(0, 0, 0, 0);	
 	SetMaterial(material);
 
 }
@@ -368,6 +378,7 @@ void Renderer::Uninit()
 	}
 
 	m_MaterialBuffer->Release();
+	m_MonochoromBuffer->Release();
 
 
 	m_DeviceContext->ClearState();
@@ -519,6 +530,13 @@ void Renderer::SetLight(LIGHT Light, const int& index)
 {
 	m_DeviceContext->UpdateSubresource(m_LightBuffer[index], 0, NULL, &Light, 0, 0);
 }
+
+void Renderer::SetValiable(VALIABLE val)
+{
+	m_DeviceContext->UpdateSubresource(m_MonochoromBuffer, 0, NULL, &val, 0, 0);
+}
+
+
 
 //void Renderer::SetPointLight(POINT_LIGHT Light)
 //{

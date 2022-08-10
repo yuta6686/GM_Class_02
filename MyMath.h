@@ -1,5 +1,6 @@
 #pragma once
 #include "main.h"
+#include "renderer.h"
 class MyMath
 {
 public:
@@ -11,5 +12,12 @@ public:
 	{
 		return GetDegree(acosf(D3DXVec3Dot(vec1, vec2)));
 	}
+	static float* FloatLerp(float* pOut, const float* pv1, const float* pv2, float s)
+	{
+		*pOut = (*pv1) + s * (*pv2 - *pv1);
+		return pOut;
+	}
+
+	inline static VALIABLE m_MonochromeRate = { 0.0f,1.0f,1.0f,1.0f };
 };
 

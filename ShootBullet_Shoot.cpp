@@ -46,7 +46,7 @@ void ShootBullet_Shoot::Update()
 		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
 		m_Bullet->SetRotation(rot);
 		
-		float speed = (m_BulletNum + 2);
+		float speed = static_cast<float>(m_BulletNum + 2);
 		
 		float scale = speed * 2.0f;
 
@@ -71,14 +71,6 @@ void ShootBullet_Shoot::Update()
 
 void ShootBullet_Shoot::Draw()
 {
-	//#ifdef _DEBUG
-	//	char* str = GetDebugStr();
-	//	wsprintf(GetDebugStr(), "game");
-	//	wsprintf(&str[strlen(str)], "Shoot");
-	//
-	//	SetWindowText(GetWindow(), GetDebugStr());
-	//#endif
-
 #ifdef _DEBUG
 
 	ImGui::Text("Shoot");

@@ -10,6 +10,7 @@
 #include "Shadow.h"
 #include "ShootBullet_Idle.h"
 #include "Cylinder.h"
+
 using namespace std;
 
 #define PLAYER_SPEED 0.01f
@@ -42,8 +43,7 @@ void Player::Init()
 	m_Velocity = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_TypeName = "Player";
-
-	m_MouseSpeed_X = MOUSE_SPEED_FIRST_X;
+	
 
 //	↓ここにコンポーネントついか　--------------------------------------	
 
@@ -54,6 +54,8 @@ void Player::Init()
 	auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
 	mdc->SetSourcePath("asset\\model\\torii.obj");
 	//mdc->SetIsVariable(true);
+
+	AddComponent<PlayerRotateComponent>(COMLAYER_SECOND);
 
 	AddComponent< ImGuiComponent>(COMLAYER_SECOND);
 
@@ -71,10 +73,15 @@ void Player::Uninit()
 
 void Player::Update()
 {
-	//	プレイヤー回転処理
-	PlayerRotation();
 
-	if (m_IsNoMove)return;
+	if (m_IsNoMove) {
+		GetComponent<PlayerRotateComponent>()->Update();
+		return;
+	}
+	else
+	{
+		ComponentObject::Update();
+	}
 
 	//	プレイヤー移動処理
 	PlayerMove();
@@ -90,7 +97,9 @@ void Player::Update()
 	m_Shadow->SetPosition(shadowPos);
 	m_Shadow->SetScale(m_Scale * 2.0f);
 
-	ComponentObject::Update();
+
+
+	
 }
 
 void Player::DrawImgui()
@@ -112,12 +121,7 @@ void Player::DrawImgui()
 		else {
 			m_Velocity.y = JUMP;
 		}
-	}
-
-	ImGui::SliderFloat("Mouse Speed X", &m_MouseSpeed_X, MOUSE_SPEED_FIRST_X, 1000.0f, "%.2f");
-
-	ImGui::SliderFloat("Mouse Speed Y", &m_MouseSpeed_Y, MOUSE_SPEED_FIRST_Y, 1000.0f, "%.2f");
-
+	}	
 
 	ImGui::Separator();
 
@@ -135,61 +139,31 @@ void Player::PlayerMove()
 	//	プレイヤー移動処理
 	if (GetKeyboardPress(DIK_W)) {
 
-
-
-		Move();
-
-		//	これで実質あれができる。
-		//	けどやめとけ。
-		/*thread thd([this]{
-			this_thread::sleep_for(5s);
-			Move();
-			});
-
-		thd.detach();*/
-		m_TargetRotation.y = 0.0f;
+		m_Velocity.z += PLAYER_SPEED * forward.z;
+		m_Velocity.x += PLAYER_SPEED * forward.x;		
 	}
-
-
-
 	if (GetKeyboardPress(DIK_S)) {
 		m_Velocity.z -= PLAYER_SPEED * forward.z;
 		m_Velocity.x -= PLAYER_SPEED * forward.x;
-
-		m_TargetRotation.y = D3DX_PI;
 	}
-
 	if (GetKeyboardPress(DIK_A)) {
 		m_Velocity.z += PLAYER_SPEED * GetLeft().z;
 		m_Velocity.x += PLAYER_SPEED * GetLeft().x;
-
-		m_TargetRotation.y = -D3DX_PI / 2;
 	}
 	if (GetKeyboardPress(DIK_D)) {
 		m_Velocity.z += PLAYER_SPEED * GetRight().z;
 		m_Velocity.x += PLAYER_SPEED * GetRight().x;
-
-		m_TargetRotation.y = D3DX_PI / 2;
-	}
-	D3DXVECTOR3 dist = m_TargetRotation - m_PlayerRotation;
-
-	if (dist.y > D3DX_PI) {
-		dist.y -= D3DX_PI * 2.0f;
-	}
-	else if (dist.y < -D3DX_PI) {
-		dist.y += D3DX_PI * 2.0f;
-	}
-
-	//	m_PlayerRotation += dist * 0.1f;
-
-	if (m_PlayerRotation.y > D3DX_PI) {
-		m_PlayerRotation.y -= D3DX_PI * 2.0f;
-	}
-	else if (m_PlayerRotation.y < -D3DX_PI) {
-		m_PlayerRotation.y += D3DX_PI * 2.0f;
 	}
 
 
+	//if (m_PlayerRotation.y > D3DX_PI) {
+	//	m_PlayerRotation.y -= D3DX_PI * 2.0f;
+	//}
+	//else if (m_PlayerRotation.y < -D3DX_PI) {
+	//	m_PlayerRotation.y += D3DX_PI * 2.0f;
+	//}
+
+	//	ジャンプ
 	if (GetKeyboardTrigger(DIK_SPACE)) {
 		if (m_Position.y >= 0.2f) {
 			m_Velocity.y = JUMP * 1.5f;
@@ -256,44 +230,6 @@ void Player::PlayerMove()
 	}
 }
 
-void Player::PlayerRotation()
-{
-	if (GetKeyboardPress(DIK_I)) {
-		m_CameraRot.y += PLAYER_SPEED / 5;
-	}
-
-	if (GetKeyboardPress(DIK_K)) {
-		m_CameraRot.y -= PLAYER_SPEED / 5;
-	}
-
-	if (IsMouseRightPressed()) {
-		m_CameraRot.y += GetMouseX() / m_MouseSpeed_Y;
-
-		if (m_CameraRot.x > GetRadian(60.0f)) {
-			m_CameraRot.x = GetRadian(60.0f);
-		}
-		else if (m_CameraRot.x < GetRadian(-60.0f)) {
-			m_CameraRot.x = GetRadian(-60.0f);
-		}
-		else {
-			m_CameraRot.x += GetMouseY() / m_MouseSpeed_X;
-		}
-
-	}
-
-	if (m_CameraRot.y >= D3DX_PI) {
-		m_CameraRot.y = -D3DX_PI;
-	}
-
-	if (m_CameraRot.y < -D3DX_PI) {
-		m_CameraRot.y = D3DX_PI;
-	}
-
-	m_Rotation = m_CameraRot;
-	m_Rotation += m_PlayerRotation;
-	m_Rotation.x = 0.0f;
-
-}
 
 void Player::GetItem()
 {
@@ -331,12 +267,4 @@ void Player::ShootBulletFunc()
 		m_ShootBullet = sb;
 		m_ShootBullet->Init();
 	}
-}
-
-void Player::Move()
-{
-	D3DXVECTOR3 forward = GetForward();
-
-	m_Velocity.z += PLAYER_SPEED * forward.z;
-	m_Velocity.x += PLAYER_SPEED * forward.x;
 }

@@ -43,7 +43,7 @@ void ImGuiObject::Draw()
 	//	Bullet
 	if (ImGui::CollapsingHeader("Bullet")) {
 		std::vector<Bullet*> bullets = m_Scene->GetGameObjects<Bullet>();
-		for (int i = 0; i < bullets.size(); i++) {
+		for (unsigned int i = 0; i < bullets.size(); i++) {
 			char buff[255];
 			sprintf(buff, "Bullet_%d", i);
 			if (ImGui::TreeNode(buff))
@@ -56,7 +56,7 @@ void ImGuiObject::Draw()
 
 	if (ImGui::CollapsingHeader("Audio")) {
 		std::vector<Audio*> audios = m_Scene->GetGameObjects<Audio>();
-		for (int i = 0; i < audios.size(); i++) {
+		for (unsigned int i = 0; i < audios.size(); i++) {
 			char buff[255];
 			sprintf(buff, "Audio_%d", i);
 			if (ImGui::TreeNode(buff))
@@ -87,7 +87,7 @@ void ImGuiObject::Draw()
 	if (ImGui::CollapsingHeader("Enemy"))
 	{
 		std::vector<Enemy*> enemy = m_Scene->GetGameObjects<Enemy>();
-		for (int i = 0; i < enemy.size(); i++)
+		for (unsigned int i = 0; i < enemy.size(); i++)
 		{
 			char buff[255];
 			sprintf(buff, "Enemy_%d", i);
@@ -103,7 +103,7 @@ void ImGuiObject::Draw()
 	if (ImGui::CollapsingHeader("ComponentObjectTest"))
 	{
 		std::vector<ComponentObjectTest*> cot = m_Scene->GetGameObjects<ComponentObjectTest>();
-		for (int i = 0; i < cot.size(); i++)
+		for (unsigned int i = 0; i < cot.size(); i++)
 		{
 			char buff[255];
 			sprintf(buff, "ComponentObjectTest_%d", i);
@@ -115,6 +115,9 @@ void ImGuiObject::Draw()
 			}
 		}
 	}
+
+	ImGui::SliderFloat("MonochromeRate:", &MyMath::m_MonochromeRate.MonochoromeRate, 0.0f, 1.0f, "%.2f");		
+	Renderer::SetValiable(MyMath::m_MonochromeRate);
 
 #endif // _DEBUG
 }

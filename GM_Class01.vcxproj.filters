@@ -611,6 +611,9 @@
     <ClInclude Include="Transition.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerRotateComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

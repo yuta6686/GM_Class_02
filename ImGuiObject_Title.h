@@ -21,6 +21,9 @@ class ImGuiObject_Title :
 public:
 	virtual void Draw()override
 	{
+#ifdef _DEBUG
+
+
 		//	Rotation
 		if (ImGui::CollapsingHeader("Player Rotation")) {
 
@@ -43,6 +46,7 @@ public:
 			std::shared_ptr<Scene> scene = Manager::GetScene();
 			std::vector<CO_3DPloygonTest*> pol3d = scene->GetGameObjects<CO_3DPloygonTest>();
 			for (auto pol : pol3d) {
+				if (pol == nullptr)continue;
 				pol->GetComponent<VertexChangeComponent_ToGame>()->DrawImgui();
 			}
 			
@@ -52,7 +56,10 @@ public:
 		if (ImGui::CollapsingHeader("CO_ToriiBlock")) {
 			std::shared_ptr<Scene> scene = Manager::GetScene();
 			CO_ToriiBlock* pol3d = scene->GetGameObject<CO_ToriiBlock>();
-			pol3d->DrawImgui();
+			if (pol3d) {
+				pol3d->DrawImgui();
+			}
+			
 
 		}
 
@@ -91,6 +98,8 @@ public:
 				obj->DrawImgui();
 			}
 		}
+
+#endif // _DEBUG
 	}
 };
 

@@ -6,9 +6,9 @@ class VelocityComponent :
 {
 private:
     CountComponent* m_Counter;
-    D3DXVECTOR3 m_Liner = { 1.0f,1.0f,1.0f };
-    const D3DXVECTOR3 m_Fast = { 1.0f,1.0f,1.0f };
-    const D3DXVECTOR3 m_Late = { 0.1f,0.1f,0.1f };
+    float m_Liner = 1.0f;
+    const float m_Fast = 1.0f;
+    const float m_Late = 0.1f;
     bool m_IsSlow = false;
     bool m_IsBack = false;
 public:
@@ -21,7 +21,7 @@ public:
 
         m_Counter->Start(true, 60, 0);
 
-        m_Liner = { 1.0f,1.0f,1.0f };
+        m_Liner = 1.0f;
     }
     virtual void Uninit() override
     {
@@ -47,17 +47,17 @@ public:
             m_Counter->Start(true, 60, 0);
             m_IsBack = false;
         }
-        
-        D3DXVec3Lerp(&m_Liner,&m_Fast,&m_Late,m_Counter->Get0to1Count());
                 
-        m_Parent->AddPosition(m_Velocity * m_Liner.x);
+                
+        MyMath::FloatLerp(&m_Liner, &m_Fast, &m_Late, m_Counter->Get0to1Count());
+        m_Parent->AddPosition(m_Velocity * m_Liner);
     }
     virtual void Draw() override
     {
     }
     virtual void DrawImgui() override
     {
-        ImGui::Text("aaaaa %.2f", m_Liner.x);
+        ImGui::Text("aaaaa %.2f", m_Liner);
         ImGui::Text("Get0to1Count %.2f", m_Counter->Get0to1Count());        
     }
 };

@@ -118,6 +118,7 @@
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EnemyGenerate.h" />
     <ClInclude Include="ExitScene.h" />
+    <ClInclude Include="PlayerRotateComponent.h" />
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="TrackingComponent.h" />
     <ClInclude Include="ImGuiComponent.h" />

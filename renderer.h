@@ -24,8 +24,8 @@ struct MATERIAL
 	D3DXCOLOR	Diffuse;
 	D3DXCOLOR	Specular;
 	D3DXCOLOR	Emission;
-	float		Shininess;
-	float		Dummy[3];
+	float		Shininess;	
+	float		Dummy[3];	
 };
 
 struct LIGHT
@@ -57,6 +57,13 @@ struct LIGHT
 
 	D3DXVECTOR3 ambientLight;   // アンビエントライト
 	float pad5;
+};
+
+struct VALIABLE {
+	float MonochoromeRate;
+	float pad1;
+	float pad2;
+	float pad3;
 };
 
 enum BLEND_MODE
@@ -98,6 +105,7 @@ private:
 	static ID3D11Buffer*			m_MaterialBuffer;
 	static std::vector<ID3D11Buffer*>			m_LightBuffer;
 	static ID3D11Buffer*			m_PointLightBuffer;
+	static ID3D11Buffer* m_MonochoromBuffer;
 
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;
@@ -131,7 +139,8 @@ public:
 	static void SetViewMatrix(D3DXMATRIX* ViewMatrix);
 	static void SetProjectionMatrix(D3DXMATRIX* ProjectionMatrix);
 	static void SetMaterial(MATERIAL Material);
-	static void SetLight(LIGHT Light,const int& index);
+	static void SetLight(LIGHT Light,const int& index);	
+	static void SetValiable(VALIABLE val);
 	//static void SetPointLight(POINT_LIGHT Light);
 	void SetBlendState(BLEND_MODE bm);
 	

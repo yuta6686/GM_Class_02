@@ -3,6 +3,7 @@
 #include "model.h"
 #include "gameObject_Invoke.h"
 #include "ComponentObject.h"
+#include "PlayerRotateComponent.h"
 
 class Audio;
 class Shadow;
@@ -22,11 +23,10 @@ private:
 	/// 
 	/// m_RotationÇ…ÇÕXé≤=0Ç™ì¸Ç¡ÇƒÇ¢ÇÈÅB
 	/// </summary>
-	D3DXVECTOR3 m_CameraRot;
 	D3DXVECTOR3 m_Velocity;	//	ë¨ìx
 
-	D3DXVECTOR3 m_PlayerRotation;
-	D3DXVECTOR3 m_TargetRotation;
+	//D3DXVECTOR3 m_PlayerRotation;
+	//D3DXVECTOR3 m_TargetRotation;
 
 	class Audio* m_ShotSE;
 	class Shadow* m_Shadow;
@@ -43,11 +43,6 @@ private:
 
 	bool m_IsUseBullet = true;
 
-	inline static const float MOUSE_SPEED_FIRST_X = 500.0f;
-	float m_MouseSpeed_X = MOUSE_SPEED_FIRST_X;
-
-	inline static const float MOUSE_SPEED_FIRST_Y = 500.0f;
-	float m_MouseSpeed_Y = MOUSE_SPEED_FIRST_Y;
 
 	bool m_IsNoMove = false;
 public:
@@ -56,12 +51,16 @@ public:
 	void Update()override;
 	void DrawImgui() override;
 
-	D3DXVECTOR3 GetCameraRot() { return m_CameraRot; }
+	D3DXVECTOR3 GetCameraRot() { 
+
+		return GetComponent<PlayerRotateComponent>()->m_CameraRot;
+	}
 	D3DXVECTOR3 GetCameraForward()
 	{
 		D3DXMATRIX rot;
+		D3DXVECTOR3 crot = GetComponent<PlayerRotateComponent>()->m_CameraRot;
 		D3DXMatrixRotationYawPitchRoll(&rot,
-			m_CameraRot.y, m_CameraRot.x, m_CameraRot.z);
+			crot.y, crot.x, crot.z);
 
 		D3DXVECTOR3 forward;
 		forward.x = rot._31;
@@ -80,6 +79,7 @@ public:
 	void SetIsNoMove(bool flag = true)
 	{
 		m_IsNoMove = flag;
+		
 	}
 
 private:
@@ -90,6 +90,5 @@ private:
 	void PlayerRotation();
 	void GetItem();
 	void ShootBulletFunc();
-	void Move();
 
 };

@@ -23,8 +23,9 @@ struct MATERIAL
 	float4 Diffuse;
 	float4 Specular;
 	float4 Emission;
-	float Shininess;
+	float Shininess;    
 	float3 Dummy;
+	
 };
 
 cbuffer MaterialBuffer : register(b3)
@@ -49,6 +50,15 @@ cbuffer DirectionLightCb : register(b4)
     float3 eyePos; // 視点の位置
     float3 ambientLight; // アンビエントライト
 };
+
+cbuffer Valiable : register(b5)
+{
+    float monochoromRate;
+    float pad1;
+    float pad2;
+    float pad3;
+}
+
 
 //struct LIGHT
 //{

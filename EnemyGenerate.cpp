@@ -29,6 +29,11 @@ void EnemyGenerate::Uninit()
 
 void EnemyGenerate::Update()
 {
+#ifdef _DEBUG
+
+
+
+
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, window_color);
 
 	ImGui::Begin("EnemyGenerate");
@@ -172,6 +177,8 @@ void EnemyGenerate::Update()
 	ImGui::End();
 
 	ImGui::PopStyleColor();
+
+#endif // _DEBUG
 }
 
 void EnemyGenerate::Draw()

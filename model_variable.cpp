@@ -1,4 +1,5 @@
 #include "model_variable.h"
+#include "MyMath.h"
 
 void Model_variable::Draw()
 {
@@ -13,6 +14,7 @@ void Model_variable::Draw()
 
 	// プリミティブトポロジ設定
 	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
 
 
 	for (unsigned int i = 0; i < m_SubsetNum; i++)
