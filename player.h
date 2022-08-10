@@ -2,7 +2,7 @@
 #include "main.h"
 #include "model.h"
 #include "gameObject_Invoke.h"
-#include <queue>
+#include "ComponentObject.h"
 
 class Audio;
 class Shadow;
@@ -10,7 +10,7 @@ class ShootBullet;
 
 
 
-class Player :public GameObject
+class Player :public ComponentObject
 {
 private:
 
@@ -54,7 +54,6 @@ public:
 	void Init()	 override;
 	void Uninit()override;
 	void Update()override;
-	void Draw()	 override;
 	void DrawImgui() override;
 
 	D3DXVECTOR3 GetCameraRot() { return m_CameraRot; }
@@ -85,11 +84,6 @@ public:
 
 private:
 	//	private変数
-	static inline std::shared_ptr<Resource> m_Model;
-
-	ID3D11VertexShader* m_VertexShader;
-	ID3D11PixelShader* m_PixelShader;
-	ID3D11InputLayout* m_VertexLayout;
 
 	//	private関数
 	void PlayerMove();
@@ -97,43 +91,5 @@ private:
 	void GetItem();
 	void ShootBulletFunc();
 	void Move();
-
-
-	//	Invokeの処理
-	std::vector<INVOKE> m_Invokes;
-	typedef void(Player::* MAMBER_FUNC)();
-	std::vector<MAMBER_FUNC> m_FuncList;
-
-	template <class T>
-	void Invoke(T(Player::* func)(), int delay) {
-		m_FuncList.push_back(func);
-		m_Invokes.push_back({ delay,0,true });
-	}
-
-	//	若干不安定なのでエラー出たらやめる。
-	void InvokeUpdate() {
-
-		if (m_FuncList.empty() ||
-			m_Invokes.empty())return;
-
-		//	後ろから回す
-		for (int i = m_Invokes.size() - 1; i > 0; i--) {
-			if (!m_Invokes[i].m_IsInvoke)continue;
-			if (m_Invokes[i].m_DelayCounter < m_Invokes[i].m_DelayCountMax) {
-				m_Invokes[i].m_DelayCounter++;
-			}
-			else {
-				m_Invokes[i].m_DelayCounter = 0;
-				m_Invokes[i].m_IsInvoke = false;
-				(this->*m_FuncList[i])();
-
-				m_Invokes.erase(m_Invokes.begin() + i);
-				m_FuncList.erase(m_FuncList.begin() + i);
-
-			}
-		}
-	}
-
-
 
 };

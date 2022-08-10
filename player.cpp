@@ -22,14 +22,6 @@ static std::shared_ptr<Scene> g_Scene;
 
 void Player::Init()
 {
-	m_Model = ResourceManger<Model>::GetResource(texName);
-
-
-	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
-		"vertexLightingVS.cso");
-
-	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
-
 	std::shared_ptr<Scene> scene = Manager::GetScene();
 	m_ShotSE = scene->AddGameObject<Audio>(LAYER_AUDIO);
 	m_ShotSE->Load("asset\\audio\\ビーム音.wav");
@@ -52,17 +44,29 @@ void Player::Init()
 	m_TypeName = "Player";
 
 	m_MouseSpeed_X = MOUSE_SPEED_FIRST_X;
+
+//	↓ここにコンポーネントついか　--------------------------------------	
+
+	AddComponent<ShaderComponent>(COMLAYER_SHADER);
+
+	AddComponent<MatrixComponent>(COMLAYER_MATRIX)->SetIsInvertXYRotate();
+
+	auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
+	mdc->SetSourcePath("asset\\model\\torii.obj");
+	//mdc->SetIsVariable(true);
+
+	AddComponent< ImGuiComponent>(COMLAYER_SECOND);
+
+//	↑ここにコンポーネントついか　--------------------------------------
+	ComponentObject::Init();
 }
 
 void Player::Uninit()
 {
-
-	m_VertexLayout->Release();
-	m_VertexShader->Release();
-	m_PixelShader->Release();
-
 	m_ShootBullet->Uninit();
 	delete m_ShootBullet;
+
+	ComponentObject::Uninit();
 }
 
 void Player::Update()
@@ -72,12 +76,8 @@ void Player::Update()
 
 	if (m_IsNoMove)return;
 
-	InvokeUpdate();
-
 	//	プレイヤー移動処理
 	PlayerMove();
-
-
 
 	//	バレット撃つ処理
 	ShootBulletFunc();
@@ -85,47 +85,12 @@ void Player::Update()
 	//	アイテム取得	
 	GetItem();
 
-	//#ifdef _DEBUG
-	//	char* str = GetDebugStr();
-	//	wsprintf(GetDebugStr(), "game");
-	//	wsprintf(&str[strlen(str)], "Position.x: %d y:%d z:%d",
-	//		(int)m_Position.x,
-	//		(int)m_Position.y,
-	//		(int)m_Position.z);
-	//
-	//	SetWindowText(GetWindow(), GetDebugStr());
-	//#endif
-
-
 	D3DXVECTOR3 shadowPos = m_Position;
 	shadowPos.y = 0.25f;
 	m_Shadow->SetPosition(shadowPos);
 	m_Shadow->SetScale(m_Scale * 2.0f);
-}
 
-void Player::Draw()
-{
-	//入力レイアウト設定
-	Renderer::GetDeviceContext()->IASetInputLayout(m_VertexLayout);
-
-	////シェーダ設定
-	Renderer::GetDeviceContext()->VSSetShader(m_VertexShader, NULL, 0);
-	Renderer::GetDeviceContext()->PSSetShader(m_PixelShader, NULL, 0);
-
-	//マトリクス設定
-	D3DXMATRIX world, scale, rot, trans;
-	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-	world = scale * rot * trans;
-	Renderer::SetWorldMatrix(&world);
-
-	m_Model->Draw();
-
-
-
-
-
+	ComponentObject::Update();
 }
 
 void Player::DrawImgui()
@@ -155,6 +120,8 @@ void Player::DrawImgui()
 
 
 	ImGui::Separator();
+
+	ComponentObject::DrawImgui();
 
 #endif // _DEBUG
 }

@@ -10,8 +10,12 @@ class MatrixComponent :
 private:
     bool m_Is2D = false;
     bool m_IsBillboard = false;
+    bool m_IsInvertXYRotate = false;
+
     std::shared_ptr<Scene> m_Scene;
+
     Camera* m_Camera;
+
 public:
 
 
@@ -31,5 +35,6 @@ public:
     }
 
     void SetIsBillboard(bool flag = true) { m_IsBillboard = flag; }
+    void SetIsInvertXYRotate(bool flag = true) { m_IsInvertXYRotate = flag; }
 };
 
