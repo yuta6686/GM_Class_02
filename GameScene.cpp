@@ -84,10 +84,11 @@ void GameScene::Init()
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
-	m_BGM->Load("asset\\audio\\kanatanouchuu.wav");
+	m_BGM->Load("asset\\audio\\193.wav");
 	m_BGM->Play(true);
+	m_BGM->SetAudioVolume(0.2f);
 
-	m_BGM->SetSourceRate(270.0f);
+	//	m_BGM->SetSourceRate(270.0f);
 
 	{
 		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);

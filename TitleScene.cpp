@@ -6,6 +6,8 @@
 #include "Transition.h"
 #include "GameObject_Invoke.h"
 
+#include "audio.h"
+
 #include "player.h"
 #include "light.h"
 #include "ImGuiObject_Title.h"
@@ -100,6 +102,12 @@ void TitleScene::Init()
 		couibelt->Start(false, 60, 90,true);
 	}
 	
+	//	Audio
+	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
+	m_BGM->Load("asset\\audio\\black.wav");
+	m_BGM->Play(true);
+	
+
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------

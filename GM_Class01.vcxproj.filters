@@ -446,9 +446,6 @@
     <ClInclude Include="Invoke_test.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Transition.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="multi_thread.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -610,6 +607,9 @@
     </ClInclude>
     <ClInclude Include="VelocityComponent.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>GameObject\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

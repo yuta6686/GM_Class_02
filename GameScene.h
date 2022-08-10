@@ -12,6 +12,7 @@ public:
     void Uninit();
     void Update();
 
+    Audio* GetBGM()const { return m_BGM; }
 private:
     void StageCorridorCreate();
 

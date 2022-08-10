@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+class Audio;
 class Transition :
     public GameObject
 {
@@ -30,6 +31,8 @@ private:
     bool m_Finish = false;
 
     static const int FADE_TIME = 60;
+
+    Audio* m_SE;
 public:
 
     // GameObject ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½

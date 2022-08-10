@@ -1,6 +1,7 @@
 #include "Transition.h"
 #include "ResourceManager.h"
-
+#include "audio.h"
+#include "manager.h"
 
 void Transition::Init()
 {
@@ -48,6 +49,10 @@ void Transition::Init()
 	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_NO_MATERIAL_VERTEX_SHADER.c_str());
 	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
 
+	m_SE = Manager::GetScene()->AddGameObject<Audio>(LAYER_AUDIO);
+	
+	m_SE->Load("asset\\audio\\up.wav");	
+	m_SE->SetAudioVolume(0.5f);
 
 	m_Position = { 0.0f,0.0f,0.0f };
 	m_Position += m_Offset;
@@ -154,6 +159,8 @@ void Transition::Start(bool in)
 {
 	m_In = in;
 	m_Finish = false;
+
+	m_SE->Play(false);
 
 	if (m_In)
 		m_Count = 60;

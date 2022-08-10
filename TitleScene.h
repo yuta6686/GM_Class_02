@@ -2,6 +2,7 @@
 #include "scene.h"
 #include "CO_3DPloygonTest.h"
 #include "CO_Confirmation.h"
+class Audio;
 class Transition;
 class CO_3DPolygon_circle;
 class TitleScene :
@@ -14,7 +15,7 @@ class TitleScene :
     CO_Confirmation* m_Confirmation;
 
     float m_Angle=1.0f;
-    
+    class Audio* m_BGM;
 public:
     // Scene ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
     virtual void Init() override;

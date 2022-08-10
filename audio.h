@@ -81,9 +81,10 @@ public:
 //	ƒ{ƒŠƒ…[ƒ€
 	//	0.0f`1.0f
 	void SetAudioVolume(const float& vol) {
+		m_Volume = vol;
 		for (int j = 0; j < SOUND_SOURCE_MAX; j++) {
 			if (IsNowPlay(j) == false)continue;			
-			m_SourceVoices[j]->SetVolume(vol);
+			m_SourceVoices[j]->SetVolume(m_Volume);
 		}
 	}
 
