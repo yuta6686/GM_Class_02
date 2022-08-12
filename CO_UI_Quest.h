@@ -38,7 +38,7 @@ public:
             ->SetParameter(0.01f, 0.5f, 1.0f);*/
 
         m_Count = AddComponent<CountComponent>(COMLAYER_SECOND);
-        m_Count->Start(false, 150,60);
+        m_Count->Start(false, 150,60,0);
 
         ComponentObject::Init();
     }

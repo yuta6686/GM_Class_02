@@ -1,5 +1,6 @@
 #include "StageLimitDeleteComponent.h"
 #include "gameObject.h"
+#include "StageLimitComponent.h"
 
 void StageLimitDeleteComponent::Init()
 {

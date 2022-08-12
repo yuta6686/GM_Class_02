@@ -6,6 +6,7 @@ class CountComponent :
 {
 private:
     int m_Count = 0;
+    int m_CountOffset = 0;
     int m_MaxCount = 60;
     int m_Delay = 0;
     float m_0to1 = 0.0f;
@@ -81,7 +82,7 @@ public:
 
     void Start(bool in,
         const int& max,
-        const int& delay = 0) {        
+        const int& delay) {        
         m_MaxCount = max;
         m_Delay = delay;        
 
@@ -97,6 +98,29 @@ public:
         else
         {            
             m_Count = 0;
+        }
+    }
+
+    void Start(bool in,
+        const int& max,
+        const int& delay,
+        const int& offset) {
+        m_CountOffset = offset;
+        m_MaxCount = max;
+        m_Delay = delay;
+
+
+        m_InFinish = false;
+        m_Finish = false;
+        m_In = in;
+
+
+        if (m_In) {
+            m_Count = m_MaxCount + m_Delay - m_CountOffset;
+        }
+        else
+        {
+            m_Count = m_CountOffset;
         }
     }
 

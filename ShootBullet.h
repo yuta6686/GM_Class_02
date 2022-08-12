@@ -1,7 +1,8 @@
 #pragma once
+#include "ComponentObject.h"
 #include "gameObject.h"
 class ShootBullet :
-    public GameObject
+    public ComponentObject
 {
 protected:
     bool m_IsNextState = false;

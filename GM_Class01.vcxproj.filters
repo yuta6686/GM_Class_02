@@ -291,6 +291,15 @@
     <ClCompile Include="CO_UI_Quest_Belt.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="ShootBulletComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="MonochromeComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWave.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -503,9 +512,6 @@
     <ClInclude Include="BulletComponent.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyGenerate.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="VertexInitialize.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -613,6 +619,36 @@
     </ClInclude>
     <ClInclude Include="PlayerRotateComponent.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBulletComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MonochromeComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="StageLimitComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_EnemyWave.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_1_1.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGenerate.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_1_2.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_1_3.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

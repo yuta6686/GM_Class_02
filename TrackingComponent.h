@@ -15,9 +15,10 @@ private:
     //  Velocityコンポーネントとして実装    
     VelocityComponent* m_VelocityComponent;
 
-    float m_Speed = 0.1f;
+    float m_Speed = 0.0f;
 public:
     void SetSpeed(const float& speed) { m_Speed = speed; }
+    float GetSpeed()const { return m_Speed; }
 
     virtual void Init() override
     {
@@ -46,6 +47,7 @@ public:
         D3DXVec3Normalize(&direction, &direction);
 
         m_VelocityComponent->m_Velocity = direction * m_Speed;
+        
 
         //m_Parent->SetRotation({ acosf(direction.x),asinf(direction.y),asinf(direction.z) });
         m_Parent->SetRotation({ acosf(direction.x),0.0f,0.0f });
@@ -61,7 +63,7 @@ public:
 
     virtual void DrawImgui() override
     {
-        
+        ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 0.5f, "%.2f");
     }
 
 };

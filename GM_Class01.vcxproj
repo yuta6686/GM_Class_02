@@ -31,6 +31,7 @@
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="EnemyGenerate.cpp" />
+    <ClCompile Include="EnemyWave.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ImGuiComponent.cpp" />
@@ -51,6 +52,7 @@
     <ClCompile Include="MatrixComponent.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="model_variable.cpp" />
+    <ClCompile Include="MonochromeComponent.cpp" />
     <ClCompile Include="ParticleObject.cpp" />
     <ClCompile Include="pixelShader.cpp" />
     <ClCompile Include="player.cpp" />
@@ -63,6 +65,7 @@
     <ClCompile Include="Rotate2D.cpp" />
     <ClCompile Include="ShaderComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
+    <ClCompile Include="ShootBulletComponent.cpp" />
     <ClCompile Include="ShootBullet_Amass.cpp" />
     <ClCompile Include="ShootBullet_Idle.cpp" />
     <ClCompile Include="ShootBullet_Shoot.cpp" />
@@ -117,8 +120,17 @@
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EnemyGenerate.h" />
+    <ClInclude Include="EnemyWave.h" />
+    <ClInclude Include="CO_EnemyWave.h" />
+    <ClInclude Include="EnemyWave_1_1.h" />
+    <ClInclude Include="EnemyWave_1_2.h" />
+    <ClInclude Include="EnemyWave_1_3.h" />
     <ClInclude Include="ExitScene.h" />
+    <ClInclude Include="JumpComponent.h" />
+    <ClInclude Include="MonochromeComponent.h" />
     <ClInclude Include="PlayerRotateComponent.h" />
+    <ClInclude Include="ShootBulletComponent.h" />
+    <ClInclude Include="StageLimitComponent.h" />
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="TrackingComponent.h" />
     <ClInclude Include="ImGuiComponent.h" />

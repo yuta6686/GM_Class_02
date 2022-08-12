@@ -29,6 +29,7 @@
 #include "CO_UI_Quest.h"
 #include "CO_UI_Quest_Belt.h"
 #include "CO_UI_Quest_Purpose.h"
+#include "CO_EnemyWave.h"
 
 void GameScene::Init()
 {
@@ -122,6 +123,8 @@ void GameScene::Init()
 	
 
 	AddGameObject<EnemyGenerate>(LAYER_3D);
+
+	AddGameObject< CO_EnemyWave>(LAYER_3D);
 
 	int numLayer = 16;
 	D3DXVECTOR3 center = { 10.0f,0.0f,0.0f };
@@ -223,7 +226,8 @@ void GameScene::Update()
 }
 
 void GameScene::StageCorridorCreate()
-{//	òLâ∫ÅiâÙòLÅj
+{
+	//	òLâ∫ÅiâÙòLÅj
 	for (int i = 0; i < 10; i++)
 	{
 		GameObject* left = AddGameObject<stage_corridor>(LAYER_3D);
@@ -240,25 +244,65 @@ void GameScene::StageCorridorCreate()
 		inside->SetPosition({ 5.0f * (float)i - 11.5f,0.0f,42.5f });
 		inside->SetRotation({ 3.14f,0.0f,0.0f });
 	}
-
-	D3DXVECTOR3 corner_position[2] =
+	for (int i = 0; i < 10; i++)
 	{
-		{-22.0f,0.0f,45.0f },
-		{27.5f,0.0f,45.0f}
-	};
+		GameObject* left = AddGameObject<stage_corridor>(LAYER_3D);
+		GameObject* right = AddGameObject<stage_corridor>(LAYER_3D);
 
-	D3DXVECTOR3 corner_rotation[2] =
+
+		left->SetPosition({ -25.0f,0,5.0f * -(float)i + 10 });
+		right->SetPosition({ 24.0f,0,5.0f * -(float)i + 9.25f });
+
+		if (i >= 8)continue;;
+
+		GameObject* inside = AddGameObject<stage_corridor>(LAYER_3D);
+
+		inside->SetPosition({ 5.0f * (float)i - 11.5f,0.0f,-42.5f });
+		inside->SetRotation({ 3.14f,0.0f,0.0f });
+	}
+
 	{
-		{3.14f / 2.0f,0.0f,0.0f},
-		{3.14f,0.0f,0.0f}
-	};
+		D3DXVECTOR3 corner_position[2] =
+		{
+			{-22.0f,0.0f,45.0f },
+			{27.5f,0.0f,45.0f}
+		};
 
-	//	òLâ∫ÅiâÙòLÅjÇÃäp
-	for (int i = 0; i < 2; i++) {
-		GameObject* corner = AddGameObject<stage_corridor_corner>(LAYER_3D);
+		D3DXVECTOR3 corner_rotation[2] =
+		{
+			{3.14f / 2.0f,0.0f,0.0f},
+			{3.14f,0.0f,0.0f}
+		};
 
-		corner->SetPosition(corner_position[i]);
-		corner->SetRotation(corner_rotation[i]);
+		//	òLâ∫ÅiâÙòLÅjÇÃäp
+		for (int i = 0; i < 2; i++) {
+			GameObject* corner = AddGameObject<stage_corridor_corner>(LAYER_3D);
+
+			corner->SetPosition(corner_position[i]);
+			corner->SetRotation(corner_rotation[i]);
+		}
+	}
+
+	{
+		D3DXVECTOR3 corner_position[2] =
+		{
+			{-21.0f,0.0f,-39.5f },
+			{26.0f,0.0f,-39.5f}
+		};
+
+		D3DXVECTOR3 corner_rotation[2] =
+		{
+			{0.0f,0.0f,0.0f},
+			{-D3DX_PI / 2.0f,0.0f,0.0f}
+		};
+
+		//	òLâ∫ÅiâÙòLÅjÇÃäp
+		for (int i = 0; i < 2; i++) {
+			GameObject* corner = AddGameObject<stage_corridor_corner>(LAYER_3D);
+
+			corner->SetPosition(corner_position[i]);
+			corner->SetRotation(corner_rotation[i]);
+		}
 	}
 
 	//	â∫ÇÃêÖ

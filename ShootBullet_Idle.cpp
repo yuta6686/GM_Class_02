@@ -31,3 +31,7 @@ ShootBullet* ShootBullet_Idle::CreateNextState()
 {
 	return new ShootBullet_Amass();
 }
+
+void ShootBullet_Idle::DrawImgui()
+{
+}

@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "Enemy_Interface.h"
 #include "TrackingComponent.h"
+#include "StageLimitComponent.h"
 
 class Enemy : public Enemy_Interface
 {
@@ -25,6 +26,8 @@ public:
         AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
 
         AddComponent< TrackingComponent>(COMLAYER_SECOND);
+
+        AddComponent<StageLimitComponent>(COMLAYER_SECOND);
 
         SetHp(GetMaxHp());        
 

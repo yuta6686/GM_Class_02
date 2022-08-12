@@ -11,5 +11,8 @@ public:
 
     // ShootBullet ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual ShootBullet* CreateNextState() override;
+
+    // ShootBullet ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
+    virtual void DrawImgui() override;
 };
 

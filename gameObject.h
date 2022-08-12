@@ -162,6 +162,23 @@ public:
 	}
 
 	template<class T>
+	std::vector<T*> GetComponents()
+	{
+		std::vector<T*> result;
+
+		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
+			for (auto com : m_ComponentList[i]) {		
+				T* buff = dynamic_cast<T*>(com);
+				if (buff != nullptr) {
+					result.push_back(buff);
+				}					
+			}
+		}
+
+		return result;
+	}
+
+	template<class T>
 	T* AddComponent(int Layer)
 	{
 		T* buff = new T();
