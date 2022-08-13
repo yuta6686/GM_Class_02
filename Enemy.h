@@ -2,34 +2,83 @@
 #include "main.h"
 #include "Resource.h"
 #include "Enemy_Interface.h"
-#include "TrackingComponent.h"
-#include "StageLimitComponent.h"
+
 
 class Enemy : public Enemy_Interface
 {
-
 public:
+    Enemy() :Enemy_Interface(ENEMY_NORMAL){}
+
     virtual void Init() {
         
-
-        AddComponent<TransformInit>(COMLAYER_FIRST);
-
-        AddComponent<ShaderComponent>(COMLAYER_SHADER);
-
-        AddComponent<MatrixComponent>(COMLAYER_MATRIX);
+        Enemy_Interface::Init();
 
         ModelDrawComponent* mdc =
             new ModelDrawComponent("asset\\model\\stone_white.obj");
 
         AddComponent(mdc, COMLAYER_DRAW);
 
-        AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
+        
 
-        AddComponent< TrackingComponent>(COMLAYER_SECOND);
+        ComponentObject::Init();
+    }
+};
 
-        AddComponent<StageLimitComponent>(COMLAYER_SECOND);
+class Enemy_Tracking : public Enemy_Interface
+{
+public:
+    Enemy_Tracking() :Enemy_Interface(ENEMY_TRACKING) {}
 
-        SetHp(GetMaxHp());        
+    virtual void Init() {
+
+        Enemy_Interface::Init();
+
+        ModelDrawComponent* mdc =
+            new ModelDrawComponent("asset\\model\\stone_white.obj");
+
+        AddComponent(mdc, COMLAYER_DRAW);
+
+        AddComponent<TrackingComponent>(COMLAYER_SECOND);
+
+        ComponentObject::Init();
+    }
+};
+
+class Enemy_Tracking_Fast : public Enemy_Interface
+{
+public:
+    Enemy_Tracking_Fast() :Enemy_Interface(ENEMY_TRACKING_FAST) {}
+
+    virtual void Init() {
+
+        Enemy_Interface::Init();
+
+        ModelDrawComponent* mdc =
+            new ModelDrawComponent("asset\\model\\stone_white.obj");
+
+        AddComponent(mdc, COMLAYER_DRAW);
+
+        AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.3f);
+
+        ComponentObject::Init();
+    }
+};
+
+class Enemy_Tracking_Late : public Enemy_Interface
+{
+public:
+    Enemy_Tracking_Late() :Enemy_Interface(ENEMY_TRACKING_LATE) {}
+
+    virtual void Init() {
+
+        Enemy_Interface::Init();
+
+        ModelDrawComponent* mdc =
+            new ModelDrawComponent("asset\\model\\stone_white.obj");
+
+        AddComponent(mdc, COMLAYER_DRAW);
+
+        AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.01f);
 
         ComponentObject::Init();
     }

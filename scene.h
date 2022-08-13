@@ -10,6 +10,7 @@
 #include "gameObject.h"
 #include "ImGuiComponent.h"
 
+
 enum LAYER {
 	LAYER_FIRST = 0,
 	LAYER_3D,
@@ -57,6 +58,14 @@ public:
 		return gameObject;
 	}
 
+	std::vector<GameObject*> GetGameObjectLayer(const int& Layer)
+	{
+		std::vector<GameObject*> objects;
+		for (auto obj : m_GameObject[Layer]) {
+			objects.push_back(obj);
+		}		
+		return objects;
+	}
 
 	template <typename T>
 	T* GetGameObject() {

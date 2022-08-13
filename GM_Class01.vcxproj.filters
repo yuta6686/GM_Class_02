@@ -300,6 +300,15 @@
     <ClCompile Include="EnemyWave.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyWave_1_3.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene2.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWave_2_3.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -648,6 +657,18 @@
       <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_1_3.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene2.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_2_1.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_2_2.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_2_3.h">
       <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

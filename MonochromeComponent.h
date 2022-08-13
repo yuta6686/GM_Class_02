@@ -18,7 +18,7 @@ private:
 
 	VALIABLE m_Valiable = { 0.0f,1.0f,1.0f,1.0f };
 	std::vector<VelocityComponent*> m_VelocityComponents;
-	std::vector<Enemy*> m_Enemys;
+	std::vector<GameObject*> m_Enemys;
 public:
 	void SetBulletNum(const int& bulletnum) { m_BulletNum = bulletnum; }
 

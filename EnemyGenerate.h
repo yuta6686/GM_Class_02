@@ -11,7 +11,7 @@ private:
     std::shared_ptr<Scene> m_Scene;
     std::string m_FileName = "asset\\file\\EnemyGenerate";
     std::string m_Extension = ".txt";
-    std::string m_Version = "speed";
+    std::string m_Version = "_EnemyIndex";
     int m_SaveFileIndex = 2;
     int m_LoadFileIndex = 2;
     int m_NowFileNum = 2;

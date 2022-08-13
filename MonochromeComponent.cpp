@@ -18,7 +18,7 @@ void MonochromeComponent::Update()
 {
     VelocityComponent* pvel = m_Parent->GetComponent<VelocityComponent>();
 
-    m_Enemys = m_Scene->GetGameObjects<Enemy>();
+    m_Enemys = m_Scene->GetGameObjectLayer(LAYER_ENEMY);
 
     
     int BulletNum = m_BulletNum * 7;

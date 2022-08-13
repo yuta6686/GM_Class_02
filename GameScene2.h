@@ -3,13 +3,13 @@
 class Audio;
 class Transition;
 class CO_EnemyWave;
-class GameScene :
+class GameScene2 :
     public Scene
 {
 public:
 
-    void Init();    
-    
+    void Init();
+
     void Uninit();
     void Update();
 
@@ -22,7 +22,7 @@ private:
     float sourceRate = 1.0f;
     float targetRate = 1.0f;
 
-    Transition* m_Fade = nullptr;    
+    Transition* m_Fade = nullptr;
     CO_EnemyWave* m_EnemyWave = nullptr;
 };
 

@@ -7,14 +7,12 @@ class EnemyWave_1_2 :
 public:
 
     EnemyWave_1_2(const std::string& filename)
-        :EnemyWave(filename) {}
+        :EnemyWave(filename,EW_1_2) {}
 
-    EnemyWave_1_2(const std::string& filename, const bool& isTracking)
-        :EnemyWave(filename, isTracking) {}
 
     virtual EnemyWave* CreateNextWave() override
     {
-        return new EnemyWave_1_3("asset\\file\\EnemyGenerate1-3.txt",true);
+        return new EnemyWave_1_3("asset\\file\\EnemyGenerate1-3.txt");
     }
 };
 

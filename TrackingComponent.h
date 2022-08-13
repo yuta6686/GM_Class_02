@@ -15,7 +15,7 @@ private:
     //  Velocityコンポーネントとして実装    
     VelocityComponent* m_VelocityComponent;
 
-    float m_Speed = 0.0f;
+    float m_Speed = 0.1f;
 public:
     void SetSpeed(const float& speed) { m_Speed = speed; }
     float GetSpeed()const { return m_Speed; }

@@ -45,15 +45,6 @@ void GameScene::Init()
 	//	プレイヤー
 	AddGameObject<Player>(LAYER_3D);
 
-	//	エネミー
-	/*AddGameObject<Enemy>(LAYER_3D)->SetPosition(D3DXVECTOR3(0.0f, 0.5f, 5.0f));
-	for (int i = 1; i <= 5; i++)
-	{
-		AddGameObject(EnemyFactory::Create<Enemy>(i * 5), LAYER_3D)->SetPosition(D3DXVECTOR3(3.0f * i, 0.5f, 5.0f));
-		AddGameObject(EnemyFactory::Create<Enemy>(i * 10), LAYER_3D)->SetPosition(D3DXVECTOR3(-3.0f * i, 0.5f, 5.0f));
-
-		AddGameObject(EnemyFactory::Create<Enemy>(i * 15), LAYER_3D)->SetPosition({ -3.0f * i, -0.5f, -5.0f });
-	}*/
 
 	//	アイテム
 	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
@@ -70,16 +61,6 @@ void GameScene::Init()
 	AddGameObject<UI_Charge>(LAYER_2D);
 
 	AddGameObject< UI_Score>(LAYER_2D);
-	//Cube2D* pcube2d_01 = AddGameObject<Cube2D>(LAYER_2D);
-	//pcube2d_01->SetPosition({ -100.0f,1.0f,0.0f });
-	//pcube2d_01->SetSpeed(D3DXVECTOR3(-5.0f, 10.0f, 0.0f));
-	//pcube2d_01->SetRotation(MyMath::GetRadian({ 0.0f,0.0f,45.0f }));
-	////pcube2d_01->SetzContinuousRotation(MyMath::GetRadian(-5.0f));
-
-	//Cube2D* pcube2d_02 = AddGameObject<Cube2D>(LAYER_2D);
-	//pcube2d_02->SetPosition({ 200.0f,-1.0f,0.0f });
-	//pcube2d_02->SetSpeed(D3DXVECTOR3(50.0f, 4.0f, 0.0f));
-	////pcube2d_02->SetzContinuousRotation(MyMath::GetRadian(1.0f));
 
 	AddGameObject<Collision2D>(LAYER_2D);
 
@@ -87,27 +68,27 @@ void GameScene::Init()
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
 	m_BGM->Load("asset\\audio\\193.wav");
 	m_BGM->Play(true);
-	m_BGM->SetAudioVolume(0.2f);
+	m_BGM->SetAudioVolume(0.1f);
 
 	//	m_BGM->SetSourceRate(270.0f);
 
-	{
-		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
-		cyl->SetPosition({ 5.0f,0.0f,2.0f });
-		cyl->SetScale({ 3.0f,3.0f,3.0f });
-	}
+	//{
+	//	GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
+	//	cyl->SetPosition({ 5.0f,0.0f,2.0f });
+	//	cyl->SetScale({ 3.0f,3.0f,3.0f });
+	//}
 
-	{
-		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
-		cyl->SetPosition({ 5.0f,0.0f,10.0f });
-		cyl->SetScale({ 3.0f,6.0f,3.0f });
-	}
+	//{
+	//	GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
+	//	cyl->SetPosition({ 5.0f,0.0f,10.0f });
+	//	cyl->SetScale({ 3.0f,6.0f,3.0f });
+	//}
 
-	{
-		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
-		cyl->SetPosition({ 5.0f,0.0f,17.0f });
-		cyl->SetScale({ 3.0f,9.0f,3.0f });
-	}
+	//{
+	//	GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
+	//	cyl->SetPosition({ 5.0f,0.0f,17.0f });
+	//	cyl->SetScale({ 3.0f,9.0f,3.0f });
+	//}
 
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
 	AddGameObject<ComponentObjectTest>(LAYER_3D);
@@ -124,20 +105,8 @@ void GameScene::Init()
 
 	AddGameObject<EnemyGenerate>(LAYER_3D);
 
-	AddGameObject< CO_EnemyWave>(LAYER_3D);
+	
 
-	int numLayer = 16;
-	D3DXVECTOR3 center = { 10.0f,0.0f,0.0f };
-	float radius = 20.0f;
-	float interval = 360.0f / static_cast<float>(numLayer);
-	D3DXVECTOR3 circlePos = { 0.0f,0.0f,0.0f };
-	for (int i = 0; i < numLayer; i++) {
-		float angle =
-			MyMath::GetRadian(static_cast<float>(i * interval));
-		circlePos.x = radius * sinf(angle);
-		circlePos.z = radius * cosf(angle);
-		AddGameObject<Enemy>(LAYER_3D)->SetPosition(circlePos);
-	}
 	
 	AddGameObject<CO_UI_Quest>(LAYER_2D);
 	AddGameObject< CO_UI_Quest_Purpose>(LAYER_2D);
@@ -158,6 +127,8 @@ void GameScene::Init()
 		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
 		couibelt->Start(false, 60, 90);
 	}
+
+	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 }
 
 
@@ -174,7 +145,8 @@ void GameScene::Update()
 
 
 
-	if (GetKeyboardTrigger(DIK_RETURN)) {
+	if (m_EnemyWave->GetIsStageClear()){
+		m_EnemyWave->SetIsStageClear(false);
 		m_Fade->Start(false);
 	}
 
@@ -222,7 +194,7 @@ void GameScene::Update()
 
 
 
-
+	
 }
 
 void GameScene::StageCorridorCreate()

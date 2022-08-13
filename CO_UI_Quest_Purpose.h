@@ -12,6 +12,8 @@ private:
     UserInterfaceComponent* m_UIComponent;
     CountComponent* m_Count;
 public:
+    void Start(){ m_Count->Start(false, 150, 60); }
+    void SetTexture(std::string file) { m_UIComponent->LoadTexture(file.c_str()); }
     virtual void Init()override {
         m_TypeName = "CO_UI_test";
 
@@ -50,7 +52,7 @@ public:
         if (m_Count == nullptr)return;
         if (m_Count->GetFinish())
         {
-            m_Count->Start(true, 60, 300);
+            m_Count->Start(true, 60, 120);
         }
 
         m_UIComponent->SetAlpha(m_Count->Get0to1Count());

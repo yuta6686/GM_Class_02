@@ -8,9 +8,9 @@ class CollisionComponent_Bullet :
 public:
     virtual void Update() override
     {
-        std::vector<Enemy*> enemys = IsCollisionSphere<Enemy>();
+        std::vector<GameObject*> enemys = IsCollisionSphere(LAYER_ENEMY);
         for (auto enemy : enemys) {
-            enemy->CollosionWithBullet();
+            dynamic_cast<Enemy_Interface*>(enemy)->CollosionWithBullet();            
             m_Parent->SetDestroy();
             m_Scene->AddGameObject<Effect_explosion>
                 (LAYER_3D)->SetPosition(m_Parent->GetPosition());
