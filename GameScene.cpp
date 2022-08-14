@@ -132,7 +132,7 @@ void GameScene::Init()
 
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 
-	AddGameObject<ParticleObject>(LAYER_3D);
+	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 }
 
 
@@ -147,7 +147,8 @@ void GameScene::Update()
 {
 	Scene::Update();
 
-
+	for(int i=0;i<3;i++)
+		m_Particle->SetParticle_Preset3(50.0f);
 
 	if (m_EnemyWave->GetIsStageClear()){
 		m_EnemyWave->SetIsStageClear(false);

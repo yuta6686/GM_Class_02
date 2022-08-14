@@ -5,6 +5,7 @@
 class Audio;
 class Transition;
 class CO_3DPolygon_circle;
+class ParticleObject;
 class TitleScene :
     public Scene
 {
@@ -13,6 +14,7 @@ class TitleScene :
     std::vector<CO_3DPloygonTest*> m_SwitchToScenes;
     std::vector<std::vector<CO_3DPolygon_circle*>> m_Circles;
     CO_Confirmation* m_Confirmation;
+    ParticleObject* m_Particle;
 
     float m_Angle=1.0f;
     class Audio* m_BGM;

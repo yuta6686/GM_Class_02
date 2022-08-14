@@ -22,6 +22,7 @@
 #include "CO_Confirmation.h"
 #include "CO_UI_Quest.h"
 #include "CO_UI_Quest_Belt.h"
+#include "ParticleObject.h"
 
 void TitleScene::Init()
 {
@@ -107,7 +108,7 @@ void TitleScene::Init()
 	m_BGM->Load("asset\\audio\\black.wav");
 	m_BGM->Play(true);
 	
-
+	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
 //	↑に追加
 //--これ以降は追加しない-------------------------------------------------------------------
@@ -138,6 +139,8 @@ void TitleScene::Update()
 		}
 	}
 
+	m_Particle->SetParticle_Preset3(10.0f);
+
 //	以下はシーン遷移処理なので、ゲームオブジェクトは「持たず、作らず、持ち込ませず」
 	
 	//	ゲームシーンへの遷移処理
@@ -151,7 +154,8 @@ void TitleScene::Update()
 		}
 
 		if (GetKeyboardTrigger(DIK_SPACE) && istogame) {
-
+			for(int i=0;i<30;i++)
+				m_Particle->SetParticle_Preset1();
 			m_Fade->Start(false);
 		}
 
@@ -182,7 +186,7 @@ void TitleScene::Update()
 
 		//	確認UIの結果-->Yesの場合のフェードスタート
 		if (GetKeyboardTrigger(DIK_SPACE) && m_Confirmation != nullptr && m_Confirmation->GetComponent<ConfirmationComponent>()->GetIsYes())
-		{
+		{			
 			m_Fade->Start(false);
 		}
 

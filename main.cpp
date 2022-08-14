@@ -31,7 +31,7 @@ char* GetDebugStr(void)
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	srand((unsigned int)time(NULL));
+
 
 	WNDCLASSEX wcex =
 	{
@@ -67,7 +67,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		NULL);
 
 	
-
+	srand((unsigned int)time(NULL));
 	
 	Manager::Init();
 	InitInput(hInstance, g_Window);

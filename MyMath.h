@@ -51,8 +51,26 @@ public:
 	static float Random(float min, float max)
 	{
 		float diff = max - min;
-		float rnum = min + (rand() / RAND_MAX * max);
+		float rnum = min + ((float)rand() / (float)RAND_MAX * diff);
 		return rnum;
+	}
+
+	static D3DXVECTOR3 VEC3Random(float min, float max)
+	{
+		D3DXVECTOR3 random;
+		random.x = Random(min, max);
+		random.y = Random(min, max);
+		random.z = Random(min, max);
+		return random;
+	}
+
+	static D3DXVECTOR3 XZRandom(float min, float max)
+	{
+		D3DXVECTOR3 random;
+		random.x = Random(min, max);
+		random.y = 0.0f;
+		random.z = Random(min, max);
+		return random;
 	}
 };
 

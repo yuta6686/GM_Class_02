@@ -3,6 +3,7 @@
 class Audio;
 class Transition;
 class CO_EnemyWave;
+class ParticleObject;
 class GameScene :
     public Scene
 {
@@ -24,5 +25,6 @@ private:
 
     Transition* m_Fade = nullptr;    
     CO_EnemyWave* m_EnemyWave = nullptr;
+    ParticleObject* m_Particle;
 };
 

@@ -316,7 +316,7 @@
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameScene3.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -668,9 +668,6 @@
     <ClInclude Include="EnemyWave_1_3.h">
       <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene2.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyWave_2_1.h">
       <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
     </ClInclude>
@@ -684,7 +681,10 @@
       <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="GameScene3.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene2.h">
+      <Filter>GameObject\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

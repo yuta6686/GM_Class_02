@@ -2,6 +2,8 @@
 #include "ComponentObject.h"
 #include "TrackingComponent.h"
 #include "StageLimitComponent.h"
+
+#include "ParticleObject.h"
 enum ENEMY
 {
     ENEMY_NORMAL,
@@ -59,6 +61,11 @@ public:
         m_Hp--;
 
         if (m_Hp <= 0) {
+            for (int i = 0; i < 30; i++) {
+                Manager::GetScene()->
+                    GetGameObject< ParticleObject>()->
+                    SetParticle_Preset2(m_Position);
+            }
             SetDestroy();
         }
     }

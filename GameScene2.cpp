@@ -22,6 +22,7 @@
 #include "stage_include.h"
 #include "EnemyGenerate.h"
 #include "GameScene3.h"
+#include "ParticleObject.h"
 
 void GameScene2::Init()
 {
@@ -119,6 +120,8 @@ void GameScene2::Init()
 
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 	m_EnemyWave->SetEnemyWave<EnemyWave_2_1>("asset\\file\\EnemyGenerate2-1.txt");
+
+	AddGameObject<ParticleObject>(LAYER_3D);
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 }
