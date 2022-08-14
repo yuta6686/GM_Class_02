@@ -34,9 +34,12 @@
     <ClCompile Include="EnemyWave.cpp" />
     <ClCompile Include="EnemyWave_1_3.cpp" />
     <ClCompile Include="EnemyWave_2_3.cpp" />
+    <ClCompile Include="EnemyWave_3_3.cpp" />
+    <ClCompile Include="EnemyWave_3_all.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameScene2.cpp" />
+    <ClCompile Include="GameScene3.cpp" />
     <ClCompile Include="ImGuiComponent.cpp" />
     <ClCompile Include="ImGuiObject.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
@@ -131,8 +134,10 @@
     <ClInclude Include="EnemyWave_2_1.h" />
     <ClInclude Include="EnemyWave_2_2.h" />
     <ClInclude Include="EnemyWave_2_3.h" />
+    <ClInclude Include="EnemyWave_3_all.h" />
     <ClInclude Include="ExitScene.h" />
     <ClInclude Include="GameScene2.h" />
+    <ClInclude Include="GameScene3.h" />
     <ClInclude Include="JumpComponent.h" />
     <ClInclude Include="MonochromeComponent.h" />
     <ClInclude Include="PlayerRotateComponent.h" />

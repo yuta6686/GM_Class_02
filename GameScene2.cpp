@@ -18,6 +18,11 @@
 #include "CO_EnemyWave.h"
 #include "EnemyWave_2_1.h"
 
+#include "ResultScene.h"
+#include "stage_include.h"
+#include "EnemyGenerate.h"
+#include "GameScene3.h"
+
 void GameScene2::Init()
 {
 	//	ÉJÉÅÉâ
@@ -87,7 +92,7 @@ void GameScene2::Init()
 
 
 
-	// AddGameObject<EnemyGenerate>(LAYER_3D);
+	AddGameObject<EnemyGenerate>(LAYER_3D);
 
 
 
@@ -114,16 +119,141 @@ void GameScene2::Init()
 
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 	m_EnemyWave->SetEnemyWave<EnemyWave_2_1>("asset\\file\\EnemyGenerate2-1.txt");
+
+	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 }
 
 void GameScene2::Uninit()
 {
+	Scene::UnInit();
 }
 
 void GameScene2::Update()
 {
+	Scene::Update();
+
+
+
+	if (m_EnemyWave->GetIsStageClear()) {
+		m_EnemyWave->SetIsStageClear(false);
+		m_Fade->Start(false);
+	}
+
+	if (GetKeyboardPress(DIK_N))
+	{
+		for (auto x : m_GameObject[LAYER_AUDIO]) {
+			Audio* audio = dynamic_cast<Audio*>(x);
+			audio->VolumeDown(0.01f);
+
+		}
+	}
+	if (GetKeyboardPress(DIK_M))
+	{
+		for (auto x : m_GameObject[LAYER_AUDIO]) {
+			Audio* audio = dynamic_cast<Audio*>(x);
+			audio->VolumeUp(0.01f);
+
+		}
+
+	}
+
+	if (GetKeyboardPress(DIK_V))
+	{
+		m_BGM->PitchDown(1.0f);
+	}
+	if (GetKeyboardPress(DIK_B))
+	{
+		m_BGM->PitchUp(1.0f);
+	}
+
+	if (m_Fade->GetFinish()) {
+		Manager::SetScene <GameScene3>();
+	}
 }
 
 void GameScene2::StageCorridorCreate()
 {
+	//	òLâ∫ÅiâÙòLÅj
+	for (int i = 0; i < 10; i++)
+	{
+		GameObject* left = AddGameObject<stage_corridor>(LAYER_3D);
+		GameObject* right = AddGameObject<stage_corridor>(LAYER_3D);
+
+
+		left->SetPosition({ -25.0f,0,5.0f * (float)i - 10 });
+		right->SetPosition({ 24.0f,0,5.0f * (float)i - 9.25f });
+
+		if (i >= 8)continue;;
+
+		GameObject* inside = AddGameObject<stage_corridor>(LAYER_3D);
+
+		inside->SetPosition({ 5.0f * (float)i - 11.5f,0.0f,42.5f });
+		inside->SetRotation({ 3.14f,0.0f,0.0f });
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		GameObject* left = AddGameObject<stage_corridor>(LAYER_3D);
+		GameObject* right = AddGameObject<stage_corridor>(LAYER_3D);
+
+
+		left->SetPosition({ -25.0f,0,5.0f * -(float)i + 10 });
+		right->SetPosition({ 24.0f,0,5.0f * -(float)i + 9.25f });
+
+		if (i >= 8)continue;;
+
+		GameObject* inside = AddGameObject<stage_corridor>(LAYER_3D);
+
+		inside->SetPosition({ 5.0f * (float)i - 11.5f,0.0f,-42.5f });
+		inside->SetRotation({ 3.14f,0.0f,0.0f });
+	}
+
+	{
+		D3DXVECTOR3 corner_position[2] =
+		{
+			{-22.0f,0.0f,45.0f },
+			{27.5f,0.0f,45.0f}
+		};
+
+		D3DXVECTOR3 corner_rotation[2] =
+		{
+			{3.14f / 2.0f,0.0f,0.0f},
+			{3.14f,0.0f,0.0f}
+		};
+
+		//	òLâ∫ÅiâÙòLÅjÇÃäp
+		for (int i = 0; i < 2; i++) {
+			GameObject* corner = AddGameObject<stage_corridor_corner>(LAYER_3D);
+
+			corner->SetPosition(corner_position[i]);
+			corner->SetRotation(corner_rotation[i]);
+		}
+	}
+
+	{
+		D3DXVECTOR3 corner_position[2] =
+		{
+			{-21.0f,0.0f,-39.5f },
+			{26.0f,0.0f,-39.5f}
+		};
+
+		D3DXVECTOR3 corner_rotation[2] =
+		{
+			{0.0f,0.0f,0.0f},
+			{-D3DX_PI / 2.0f,0.0f,0.0f}
+		};
+
+		//	òLâ∫ÅiâÙòLÅjÇÃäp
+		for (int i = 0; i < 2; i++) {
+			GameObject* corner = AddGameObject<stage_corridor_corner>(LAYER_3D);
+
+			corner->SetPosition(corner_position[i]);
+			corner->SetRotation(corner_rotation[i]);
+		}
+	}
+
+	//	â∫ÇÃêÖ
+	AddGameObject<stage_wator_field>(LAYER_3D);
+
+	//	ëÂíπãè
+	AddGameObject< stage_otorii>(LAYER_3D);
 }

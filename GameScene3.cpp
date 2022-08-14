@@ -1,39 +1,29 @@
-#include "GameScene.h"
-#include "camera.h"
-#include "polygon2D.h"
+#include "GameScene3.h"
+
+
+#include "light.h"
 #include "field.h"
 #include "player.h"
-#include "Enemy.h"
 #include "Item.h"
-#include "light.h" 
 #include "ao_Sphere.h"
-#include "Bullet.h"
-#include "ResourceManager.h"
-#include "texture.h"
-#include "stage_include.h"
-#include "EnemyFactory.h"
-#include "Cube2D.h"
-#include "Collision.h"
-#include "manager.h"
-#include "ResultScene.h"
-#include "audio.h"
-#include "UI_Charge.h"
-#include "Cylinder.h"
-#include "UI_Score.h"
-#include "UserInterface_Animation.h"
-#include "Transition.h"
-#include "ComponentObjectTest.h"
-#include "ImGuiObject.h"
 #include "CO_UI_AimLing.h"
-#include "EnemyGenerate.h"
-#include "CO_UI_Quest.h"
+#include "audio.h"
+#include "Transition.h"
+#include "UI_Charge.h"
+#include "UI_Score.h"
+#include "ImGuiObject.h"
 #include "CO_UI_Quest_Belt.h"
+#include "CO_UI_Quest.h"
 #include "CO_UI_Quest_Purpose.h"
 #include "CO_EnemyWave.h"
-#include "GameScene2.h"
-#include "ParticleObject.h"
+#include "EnemyWave_2_1.h"
 
-void GameScene::Init()
+#include "ResultScene.h"
+#include "stage_include.h"
+#include "EnemyGenerate.h"
+#include "EnemyWave_3_all.h"
+
+void GameScene3::Init()
 {
 	//	ÉJÉÅÉâ
 	AddGameObject<Camera>(LAYER_FIRST);
@@ -64,7 +54,6 @@ void GameScene::Init()
 
 	AddGameObject< UI_Score>(LAYER_2D);
 
-	AddGameObject<Collision2D>(LAYER_2D);
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
@@ -92,24 +81,22 @@ void GameScene::Init()
 	//	cyl->SetScale({ 3.0f,9.0f,3.0f });
 	//}
 
-	AddGameObject<ComponentObjectTest>(LAYER_3D);
-	AddGameObject<ComponentObjectTest>(LAYER_3D);
-	AddGameObject<ComponentObjectTest>(LAYER_3D);
 
-	
+
+
 
 	AddGameObject< ImGuiObject>(LAYER_3D);
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
 
-	
+
 
 	AddGameObject<EnemyGenerate>(LAYER_3D);
 
-	
 
-	
+
+
 	AddGameObject<CO_UI_Quest>(LAYER_2D);
 	AddGameObject< CO_UI_Quest_Purpose>(LAYER_2D);
 
@@ -131,25 +118,23 @@ void GameScene::Init()
 	}
 
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+	m_EnemyWave->SetEnemyWave<EnemyWave_3_1>("asset\\file\\EnemyGenerate3-1.txt");
 
-	AddGameObject<ParticleObject>(LAYER_3D);
+	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 }
 
-
-void GameScene::Uninit()
+void GameScene3::Uninit()
 {
-
-
 	Scene::UnInit();
 }
 
-void GameScene::Update()
+void GameScene3::Update()
 {
 	Scene::Update();
 
 
 
-	if (m_EnemyWave->GetIsStageClear()){
+	if (m_EnemyWave->GetIsStageClear()) {
 		m_EnemyWave->SetIsStageClear(false);
 		m_Fade->Start(false);
 	}
@@ -182,26 +167,11 @@ void GameScene::Update()
 	}
 
 	if (m_Fade->GetFinish()) {
-		Manager::SetScene <GameScene2>();
+		Manager::SetScene <ResultScene>();
 	}
-
-
-
-	//#ifdef _DEBUG
-	//	char* str = GetDebugStr();
-	//	wsprintf(GetDebugStr(), "game");
-	//	wsprintf(&str[strlen(str)], "sourceRate:%d , targetRate:%d ",
-	//		(int)sourceRate,(int)targetRate);
-	//	
-	//	SetWindowText(GetWindow(), GetDebugStr());
-	//#endif
-
-
-
-	
 }
 
-void GameScene::StageCorridorCreate()
+void GameScene3::StageCorridorCreate()
 {
 	//	òLâ∫ÅiâÙòLÅj
 	for (int i = 0; i < 10; i++)
@@ -287,4 +257,3 @@ void GameScene::StageCorridorCreate()
 	//	ëÂíπãè
 	AddGameObject< stage_otorii>(LAYER_3D);
 }
-

@@ -55,7 +55,7 @@ void EnemyGenerate::Update()
 	}
 
 
-	std::vector<Enemy*> enemys = m_Scene->GetGameObjects<Enemy>();
+	std::vector<GameObject*> enemys = m_Scene->GetGameObjectLayer(LAYER_ENEMY);
 
 
 	ImGui::SliderInt("SaveFileIndex", &m_SaveFileIndex, 1, m_NowFileNum, "%d");
@@ -96,8 +96,8 @@ void EnemyGenerate::Update()
 				<< enemys[i]->GetScale().x << ","
 				<< enemys[i]->GetScale().y << ","
 				<< enemys[i]->GetScale().z << ","
-				<< enemys[i]->GetMaxHp() << ","
-				<< enemys[i]->GetEnemyIndex() << std::endl;
+				<< dynamic_cast<Enemy_Interface*>(enemys[i])->GetMaxHp() << ","
+				<< dynamic_cast<Enemy_Interface*>(enemys[i])->GetEnemyIndex() << std::endl;
 
 		}
 	}

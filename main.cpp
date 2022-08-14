@@ -31,6 +31,8 @@ char* GetDebugStr(void)
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	srand((unsigned int)time(NULL));
+
 	WNDCLASSEX wcex =
 	{
 		sizeof(WNDCLASSEX),

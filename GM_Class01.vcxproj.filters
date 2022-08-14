@@ -301,12 +301,21 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="EnemyWave_1_3.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene2.cpp">
-      <Filter>System</Filter>
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemyWave_2_3.cpp">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWave_3_all.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWave_3_3.cpp">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene2.cpp">
+      <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene3.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -670,6 +679,12 @@
     </ClInclude>
     <ClInclude Include="EnemyWave_2_3.h">
       <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_3_all.h">
+      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene3.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

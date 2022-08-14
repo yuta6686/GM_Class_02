@@ -9,6 +9,8 @@ void ResultScene::Init()
 	AddGameObject<ResultPolygon>(LAYER_2D);
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
+
+	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 }
 
 void ResultScene::Update()

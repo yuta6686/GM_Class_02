@@ -19,5 +19,40 @@ public:
 	}
 
 	inline static VALIABLE m_MonochromeRate = { 0.0f,1.0f,1.0f,1.0f };
+
+	static void FromD3DXCOLORToImVec4(ImVec4* imc,const D3DXCOLOR& d3c)
+	{
+		imc->x = d3c.r;
+		imc->y = d3c.g;
+		imc->z = d3c.b;
+		imc->w = d3c.a;
+	}
+
+	static void FromImVec4ToD3DXCOLOR(D3DXCOLOR* d3c, const ImVec4& imc)
+	{
+		d3c->r = imc.x;
+		d3c->g = imc.y;
+		d3c->b = imc.z;
+		d3c->a = imc.w;
+	}
+
+	//	Random()ŠÖ”
+	//	num1 ` num2‚Ü‚Å‚Ì’l‚ð•Ô‚·B
+	static int Random(int min, int max) {
+		int rnum, diff;
+		if (min > max) {
+			std::swap(min, max);
+		}
+		diff = max - min;
+		rnum = min + rand() % diff;
+		return rnum;
+	}
+
+	static float Random(float min, float max)
+	{
+		float diff = max - min;
+		float rnum = min + (rand() / RAND_MAX * max);
+		return rnum;
+	}
 };
 
