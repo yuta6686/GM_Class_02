@@ -12,6 +12,8 @@
 #include "Cylinder.h"
 
 #include "StageLimitComponent.h"
+#include "HPComponent.h"
+#include "CollisionComponent_Player.h"
 
 using namespace std;
 
@@ -66,7 +68,9 @@ void Player::Init()
 
 	AddComponent< StageLimitComponent>(COMLAYER_SECOND);
 
+	AddComponent< HPComponent>(COMLAYER_SECOND);
 
+	AddComponent< CollisionComponent_Player>(COMLAYER_SECOND);
 	
 
 //	↑ここにコンポーネントついか　--------------------------------------
@@ -104,6 +108,12 @@ void Player::Update()
 
 
 	
+}
+
+void Player::Draw()
+{
+	if (GetComponent<HPComponent>()->GetIsDeath())return;
+	ComponentObject::Draw();
 }
 
 void Player::DrawImgui()

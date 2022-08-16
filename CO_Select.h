@@ -1,0 +1,114 @@
+#pragma once
+#include "ComponentObject.h"
+#include "CO_UI_Select.h"
+enum SELECT_NEXT {
+    SELECT_NO=-1,
+    SELECT_GIVE_UP,
+    SELECT_CONTINUE,
+    SELECT_RETURN_TO_TITLE,
+    SELECT_MAX
+};
+class CO_Select :
+    public ComponentObject
+{
+private:
+    //  通常メンバ変数
+    std::shared_ptr<Scene> m_Scene;
+
+    std::vector<CO_UI_Select*> m_UISelects;
+    std::vector<CO_UI_Select*> m_UISelects_String;
+    std::vector<CO_UI_Select*> m_UISelects_Box;
+
+    int m_SelectIndex = 0;
+    int m_Select = SELECT_NO;
+public:
+
+    virtual void Init()override
+    {
+        m_Scene = Manager::GetScene();
+
+        m_UISelects = m_Scene->GetGameObjects<CO_UI_Select>();
+
+        //  ボックスUI と 文字UI に わける
+        //  挙動が少し違うため。
+        for (auto x : m_UISelects)
+        {
+            if (x->GetIsString()) {
+                m_UISelects_String.push_back(x);
+            }
+            else {
+                m_UISelects_Box.push_back(x);
+            }
+
+            //  位置をデフォルトfalseで設定
+            x->PositionAdaptation(false);
+        }
+        
+
+        m_SelectIndex = 0;
+
+        ComponentObject::Init();
+    }
+
+    virtual void Update()override
+    {        
+
+    //  Select-->True
+        //  ボックスUI
+        m_UISelects_Box[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(CO_UI_Select::GetFileName_SelectTrue());
+        m_UISelects_Box[m_SelectIndex]->PositionAdaptation(true);
+
+        //  文字UI
+        m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor({ 1.0f,0.0f,0.0f,1.0f });       
+        m_UISelects_String[m_SelectIndex]->PositionAdaptation(true);
+
+        if (GetKeyboardTrigger(DIK_W))
+        {
+        //  Select --> False
+            //  ボックスUI
+            m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(CO_UI_Select::GetFileName_SelectFalse());
+            m_UISelects_Box[m_SelectIndex]->PositionAdaptation(false);
+
+            //文字UI
+            m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
+            m_UISelects_String[m_SelectIndex]->PositionAdaptation(false);
+
+            //  インデックス処理
+            m_SelectIndex--;
+            if (m_SelectIndex < 0)
+            {
+                m_SelectIndex = (int)(min(m_UISelects_Box.size(), m_UISelects_Box.size())) - 1;
+            }
+        }
+
+        if (GetKeyboardTrigger(DIK_S))
+        {
+        //  Select --> False
+            //  ボックスUI
+            m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(CO_UI_Select::GetFileName_SelectFalse());
+            m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
+
+            //文字UI
+            m_UISelects_Box[m_SelectIndex]->PositionAdaptation(false);
+            m_UISelects_String[m_SelectIndex]->PositionAdaptation(false);
+
+            //  インデックス処理
+            m_SelectIndex++;
+            m_SelectIndex %= (int)(min(m_UISelects_Box.size(), m_UISelects_Box.size()));
+        }
+
+        //  決定結果を設定　通知は一度だけ。
+        if (GetKeyboardTrigger(DIK_SPACE)) {
+            m_Select = m_SelectIndex;
+        }
+        else
+        {
+            m_Select = SELECT_NO;
+        }
+
+        ComponentObject::Update();
+    }
+
+    int GetSelect()const { return m_Select; }
+};
+

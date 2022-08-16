@@ -99,6 +99,27 @@ void UserInterfaceComponent::InitVertex()
 		break;
 	case DEPLOY_RIGHTDOWN:
 		break;
+	case DEPLOY_LEFT_MOVE_RIGHT:
+		m_vertex[0].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition, 0.0f, 0.0f);
+		m_vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vertex[0].Diffuse = m_Color;
+		m_vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
+
+		m_vertex[1].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition + m_RightXPosition, 0.0f, 0.0f);
+		m_vertex[1].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vertex[1].Diffuse = m_Color;
+		m_vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
+
+		m_vertex[2].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition, m_mainPosDouble.y, 0.0f);
+		m_vertex[2].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vertex[2].Diffuse = m_Color;
+		m_vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
+
+		m_vertex[3].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition + m_RightXPosition, m_mainPosDouble.y, 0.0f);
+		m_vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_vertex[3].Diffuse = m_Color;
+		m_vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
+		break;
 	case DEPLOY_CENTER:
 	case DEPLOY_MAX:
 	default:
@@ -158,6 +179,27 @@ void UserInterfaceComponent::ChangeVertex(VERTEX_3D* vertex)
 	case DEPLOY_LEFTDOWN:
 		break;
 	case DEPLOY_RIGHTDOWN:
+		break;
+	case DEPLOY_LEFT_MOVE_RIGHT:
+		vertex[0].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition, 0.0f, 0.0f);
+		vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		vertex[0].Diffuse = m_Color;
+		vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
+
+		vertex[1].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition+m_RightXPosition, 0.0f, 0.0f);
+		vertex[1].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		vertex[1].Diffuse = m_Color;
+		vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
+
+		vertex[2].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition, m_mainPosDouble.y, 0.0f);
+		vertex[2].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		vertex[2].Diffuse = m_Color;
+		vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
+
+		vertex[3].Position = D3DXVECTOR3(m_mainPos.x + m_LeftXPosition+m_RightXPosition, m_mainPosDouble.y, 0.0f);
+		vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		vertex[3].Diffuse = m_Color;
+		vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
 		break;
 	case DEPLOY_CENTER:
 	case DEPLOY_MAX:

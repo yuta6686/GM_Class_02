@@ -35,7 +35,7 @@ private:
 	inline static const float GRAVITY = 0.01f;
 	inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };
 
-	bool m_IsUseBullet = true;
+	bool m_IsUseBullet = true;	
 	inline static const float JUMP = 0.6f;
 
 	bool m_IsNoMove = false;
@@ -45,6 +45,7 @@ public:
 	
 	void Init()	 override;	
 	void Update()override;
+	void Draw()override;
 	void DrawImgui() override;
 
 	D3DXVECTOR3 GetCameraRot() { 

@@ -1,9 +1,9 @@
 #pragma once
 #include "CollisionComponent.h"
-#include "Enemy.h"
+#include "Enemy_Interface.h"
 #include "effect_explosion.h"
-#include "ParticleObject.h"
-class CollisionComponent_Bullet :
+#include "HPComponent.h"
+class CollisionComponent_Player :
     public CollisionComponent
 {
 public:
@@ -11,21 +11,21 @@ public:
     {
         std::vector<GameObject*> enemys = IsCollisionSphere(LAYER_ENEMY);
         for (auto enemy : enemys) {
-            dynamic_cast<Enemy_Interface*>(enemy)->CollosionWithBullet();            
+            dynamic_cast<Enemy_Interface*>(enemy)->CollosionWithBullet();
 
-
-            m_Parent->SetDestroy();
-
+            enemy->SetDestroy();
+            
+            m_Parent->GetComponent<HPComponent>()->TakeDamage(2);
 
             m_Scene->AddGameObject<Effect_explosion>
-                (LAYER_3D)->SetPosition(m_Parent->GetPosition());
+                (LAYER_3D)->SetPosition(m_Parent->GetPosition());            
 
             for (int i = 0; i < 5; i++) {
                 m_Scene->GetGameObject< ParticleObject>()
-                    ->SetParticle_Preset1(enemy->GetPosition());
+                    ->SetParticle_Preset1(m_Parent->GetPosition());
             }
             break;
-        }        
+        }
     }
 };
 

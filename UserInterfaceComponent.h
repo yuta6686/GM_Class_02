@@ -9,23 +9,54 @@ enum TEXTURE_DEPLOY {
     DEPLOY_RIGHTUP,
     DEPLOY_LEFTDOWN,
     DEPLOY_RIGHTDOWN,
+    DEPLOY_LEFT_MOVE_RIGHT,
     DEPLOY_MAX,
+};
+// --------main_positionÇÃê‡ñæ-----------------
+// 
+//  if(deploy_index!=DEPLOY_LEFT_MOVE_RIGHT)
+// 
+//      -->ïùÅAçÇÇ≥Ç∆ÇµÇƒì≠Ç≠
+// 
+//  if(deploy_index == DEPLOY_LEFT_MOVE_RIGHT)
+// 
+//      -->äÓèÄà íuÇ∆ÇµÇƒì≠Ç≠
+// 
+// --------main_positionÇÃê‡ñæ-----------------
+
+struct UI_Information {
+    std::string _texture = "asset\\texture\\Rect.png";
+    bool _is_change_vertex = false;
+
+    int _deploy_index = DEPLOY_CENTER;
+    D3DXVECTOR3 _main_pos = { SCREEN_WIDTH/2.0f,SCREEN_HEIGHT/2.0f,0.0f };
+    D3DXVECTOR4 _color = { 1.0f,1.0f,1.0f,1.0f };
+    float _right_pos = 500.0f;
+    float _left_pos = 0.0f;
+    
 };
 class UserInterfaceComponent :
     public Component
 {
 private:
+    VERTEX_3D m_vertex[4];
     ID3D11Buffer* m_VertexBuffer = NULL;
+
     std::shared_ptr<Resource> m_Texture;
+
+    int m_DeployIndex = DEPLOY_CENTER;
 
     D3DXVECTOR3 m_mainPos = { 100.0f,100.0f,0.0f };
     D3DXVECTOR3 m_mainPosDouble = m_mainPos * 2.0f;
-    float m_Radius = 100.0f;
-    VERTEX_3D m_vertex[4];
     D3DXVECTOR3 m_Offset = { SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f,0.0f };
-    int m_DeployIndex = DEPLOY_CENTER;
+
     D3DXVECTOR4 m_Color = { 1.0f,1.0f,1.0f,1.0f };
+            
+    float m_RightXPosition = SCREEN_WIDTH;
+    float m_LeftXPosition =  0.0f;
+
     bool m_IsChangeVertex = false;
+
 public:
     virtual void Init()override;
 
@@ -36,6 +67,24 @@ public:
     virtual void Draw() override ;
 
     virtual void DrawImgui()  override;
+
+    void SetUIInfo(UI_Information inf) {
+        LoadTexture(inf._texture);
+        SetIsChangeVertex(inf._is_change_vertex);
+        SetDeployIndex(inf._deploy_index);
+
+        SetWidthHeight(inf._main_pos);
+        SetColor(inf._color);
+        
+        SetRightXPosition(inf._right_pos);
+        SetLeftXPosition(inf._left_pos);
+
+        Init();
+    }
+
+    void SetRightXPosition(const float& pos) { m_RightXPosition = pos; }
+    void SetLeftXPosition(const float& pos) { m_LeftXPosition = pos; }
+
 
     void LoadTexture(std::string texture) {
         m_Texture = ResourceManger<Texture>::GetResource(texture);        

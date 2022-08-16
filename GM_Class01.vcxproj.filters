@@ -318,6 +318,24 @@
     <ClCompile Include="GameScene3.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="HPComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_dot.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Line.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="DefeatScene.cpp">
+      <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Select.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Default.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -685,6 +703,33 @@
     </ClInclude>
     <ClInclude Include="GameScene2.h">
       <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="HPComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent_Player.h">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_PlayerHPGauge.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_dot.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Line.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="DefeatScene.h">
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Select.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Select.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Default.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

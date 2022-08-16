@@ -23,7 +23,11 @@ private:
     float sourceRate = 1.0f;
     float targetRate = 1.0f;
 
+    bool m_IsPlayerDeath = false;
+
     Transition* m_Fade = nullptr;    
+    
+
     CO_EnemyWave* m_EnemyWave = nullptr;
     ParticleObject* m_Particle;
 };

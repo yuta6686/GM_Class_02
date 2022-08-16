@@ -23,6 +23,11 @@
 #include "EnemyGenerate.h"
 #include "EnemyWave_3_all.h"
 #include "ParticleObject.h"
+#include "HPComponent.h"
+#include "DefeatScene.h"
+#include "CO_UI_PlayerHPGauge.h"
+#include "CO_UI_dot.h"
+#include "CO_UI_Line.h"
 
 void GameScene3::Init()
 {
@@ -34,6 +39,13 @@ void GameScene3::Init()
 
 	//	フィールド
 	AddGameObject<Field>(LAYER_3D);
+
+
+	//	プレイヤーの前に入れる
+	AddGameObject<CO_UI_dot>(LAYER_2D);
+	AddGameObject< CO_UI_PlayerHPGauge>(LAYER_2D);
+	AddGameObject< CO_UI_Line>(LAYER_2D)->SetPosition({ 0.0f,55.0f,0.0f });
+	AddGameObject< CO_UI_Line>(LAYER_2D)->SetPosition({ 0.0f,85.0f,0.0f });
 
 	//	プレイヤー
 	AddGameObject<Player>(LAYER_3D);
@@ -50,10 +62,7 @@ void GameScene3::Init()
 
 	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 
-	AddGameObject<Polygon2D>(LAYER_2D);
 	AddGameObject<UI_Charge>(LAYER_2D);
-
-	AddGameObject< UI_Score>(LAYER_2D);
 
 
 	//	Audio
@@ -121,9 +130,11 @@ void GameScene3::Init()
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 	m_EnemyWave->SetEnemyWave<EnemyWave_3_1>("asset\\file\\EnemyGenerate3-1.txt");
 
-	AddGameObject<ParticleObject>(LAYER_3D);
+	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
+
+	m_IsPlayerDeath = false;
 }
 
 void GameScene3::Uninit()
@@ -135,10 +146,19 @@ void GameScene3::Update()
 {
 	Scene::Update();
 
-
+	for (int i = 0; i < 3; i++)
+		m_Particle->SetParticle_Preset3(50.0f);
 
 	if (m_EnemyWave->GetIsStageClear()) {
 		m_EnemyWave->SetIsStageClear(false);
+		m_Fade->Start(false);
+	}
+
+
+	if (GetGameObject<Player>()->GetComponent<HPComponent>()->GetIsDeath() &&
+		m_IsPlayerDeath == false)
+	{
+		m_IsPlayerDeath = true;
 		m_Fade->Start(false);
 	}
 
@@ -167,6 +187,13 @@ void GameScene3::Update()
 	if (GetKeyboardPress(DIK_B))
 	{
 		m_BGM->PitchUp(1.0f);
+	}
+
+	if (m_Fade->GetFinish() &&
+		m_IsPlayerDeath)
+	{
+		Manager::SetScene<DefeatScene>();
+		return;
 	}
 
 	if (m_Fade->GetFinish()) {

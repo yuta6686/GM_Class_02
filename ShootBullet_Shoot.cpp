@@ -63,7 +63,11 @@ void ShootBullet_Shoot::Update()
 		}
 
 		std::shared_ptr<Scene> scene = Manager::GetScene();
-		scene->GetGameObject<UI_Score>()->AddCount(1);
+		UI_Score* score = scene->GetGameObject<UI_Score>();
+		if (score) {
+			score->AddCount(1);
+		}
+		
 	}
 
 

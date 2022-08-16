@@ -17,8 +17,7 @@ void ResultScene::Update()
 {
 	Scene::Update();
 
-	if (GetKeyboardTrigger(DIK_RETURN)) {
-		//m_FadeOut = AddGameObject<Transition>(LAYER_2D);
+	if (GetKeyboardTrigger(DIK_RETURN)) {	
 		m_Fade->Start(false);
 	}
 

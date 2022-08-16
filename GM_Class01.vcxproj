@@ -25,10 +25,15 @@
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CO_UI_Default.cpp" />
+    <ClCompile Include="CO_UI_dot.cpp" />
+    <ClCompile Include="CO_UI_Line.cpp" />
     <ClCompile Include="CO_UI_Quest.cpp" />
     <ClCompile Include="CO_UI_Quest_Belt.cpp" />
+    <ClCompile Include="CO_UI_Select.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
+    <ClCompile Include="DefeatScene.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="EnemyGenerate.cpp" />
     <ClCompile Include="EnemyWave.cpp" />
@@ -40,6 +45,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameScene2.cpp" />
     <ClCompile Include="GameScene3.cpp" />
+    <ClCompile Include="HPComponent.cpp" />
     <ClCompile Include="ImGuiComponent.cpp" />
     <ClCompile Include="ImGuiObject.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
@@ -107,6 +113,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionComponent_Bullet.h" />
+    <ClInclude Include="CollisionComponent_Player.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
@@ -115,6 +122,11 @@
     <ClInclude Include="CO_3DPloygonTest.h" />
     <ClInclude Include="CO_3DPolygon_circle.h" />
     <ClInclude Include="CO_Confirmation.h" />
+    <ClInclude Include="CO_Select.h" />
+    <ClInclude Include="CO_UI_Default.h" />
+    <ClInclude Include="CO_UI_dot.h" />
+    <ClInclude Include="CO_UI_Line.h" />
+    <ClInclude Include="CO_UI_PlayerHPGauge.h" />
     <ClInclude Include="CO_TitleBackGround.h" />
     <ClInclude Include="CO_toExit.h" />
     <ClInclude Include="CO_toGame.h" />
@@ -123,8 +135,10 @@
     <ClInclude Include="CO_UI_Quest.h" />
     <ClInclude Include="CO_UI_Quest_Belt.h" />
     <ClInclude Include="CO_UI_Quest_Purpose.h" />
+    <ClInclude Include="CO_UI_Select.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="DefeatScene.h" />
     <ClInclude Include="EnemyGenerate.h" />
     <ClInclude Include="EnemyWave.h" />
     <ClInclude Include="CO_EnemyWave.h" />
@@ -138,6 +152,7 @@
     <ClInclude Include="ExitScene.h" />
     <ClInclude Include="GameScene2.h" />
     <ClInclude Include="GameScene3.h" />
+    <ClInclude Include="HPComponent.h" />
     <ClInclude Include="JumpComponent.h" />
     <ClInclude Include="MonochromeComponent.h" />
     <ClInclude Include="PlayerRotateComponent.h" />
