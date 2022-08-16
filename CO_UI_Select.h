@@ -10,7 +10,9 @@ class CO_UI_Select :
 private:
 //  inline static const ïœêî
     inline static const std::string m_FileName_Select_True = "asset\\texture\\UI_Select_true.png";
+    inline static const std::string m_FileName_Select_True_Blue = "asset\\texture\\UI_Select_true_blue.png";
     inline static const std::string m_FileName_Select_False = "asset\\texture\\UI_Select_false.png";
+    inline static const std::string m_FileName_Select_False_Blue = "asset\\texture\\UI_Select_false_blue.png";
     inline static const std::vector<std::string> m_FileNameBox
         = { 
         "asset\\texture\\UI_GiveUp.png" ,
@@ -59,7 +61,9 @@ public:
     }
 
     static std::string GetFileName_SelectTrue() { return m_FileName_Select_True; }
+    static std::string GetFileName_SelectTrue_Blue() { return m_FileName_Select_True_Blue; }
     static std::string GetFileName_SelectFalse() { return m_FileName_Select_False; }
+    static std::string GetFileName_SelectFalse_Blue() { return m_FileName_Select_False_Blue; }
     static std::vector<std::string> GetFileName_Box() { return m_FileNameBox; }
 
     void SetIsString(bool flag = true) { m_IsString = flag; }

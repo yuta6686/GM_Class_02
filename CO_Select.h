@@ -21,6 +21,12 @@ private:
 
     int m_SelectIndex = 0;
     int m_Select = SELECT_NO;
+
+    bool m_IsBlue = false;
+    D3DXVECTOR4 m_TrueColor = { 1.0f,0.0f,0.0f,1.0f };
+
+    std::string m_NowFileName_true;
+    std::string m_NowFileName_false;
 public:
 
     virtual void Init()override
@@ -47,6 +53,9 @@ public:
 
         m_SelectIndex = 0;
 
+        m_NowFileName_true = CO_UI_Select::GetFileName_SelectTrue();
+        m_NowFileName_false = CO_UI_Select::GetFileName_SelectFalse();
+
         ComponentObject::Init();
     }
 
@@ -55,18 +64,18 @@ public:
 
     //  Select-->True
         //  ボックスUI
-        m_UISelects_Box[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(CO_UI_Select::GetFileName_SelectTrue());
+        m_UISelects_Box[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(m_NowFileName_true);
         m_UISelects_Box[m_SelectIndex]->PositionAdaptation(true);
 
         //  文字UI
-        m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor({ 1.0f,0.0f,0.0f,1.0f });       
+        m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor(m_TrueColor);
         m_UISelects_String[m_SelectIndex]->PositionAdaptation(true);
 
         if (GetKeyboardTrigger(DIK_W))
         {
         //  Select --> False
             //  ボックスUI
-            m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(CO_UI_Select::GetFileName_SelectFalse());
+            m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(m_NowFileName_false);
             m_UISelects_Box[m_SelectIndex]->PositionAdaptation(false);
 
             //文字UI
@@ -85,7 +94,7 @@ public:
         {
         //  Select --> False
             //  ボックスUI
-            m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(CO_UI_Select::GetFileName_SelectFalse());
+            m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(m_NowFileName_false);
             m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
 
             //文字UI
@@ -110,5 +119,20 @@ public:
     }
 
     int GetSelect()const { return m_Select; }
+    void SetBlue(bool flag = true) { 
+        m_IsBlue = flag; 
+        m_TrueColor = { 0.0f,0.25f,0.65f,1.0f };
+
+        m_NowFileName_true = CO_UI_Select::GetFileName_SelectTrue_Blue();
+        m_NowFileName_false = CO_UI_Select::GetFileName_SelectFalse_Blue();
+
+        for (auto x : m_UISelects_Box)
+        {
+            x->GetComponent<UserInterfaceComponent>()->LoadTexture(m_NowFileName_false);
+        }
+    }
+    void SetColor(const D3DXVECTOR4& col) {
+        m_TrueColor = col;
+    }
 };
 

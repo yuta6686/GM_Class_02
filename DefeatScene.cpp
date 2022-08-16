@@ -21,7 +21,7 @@ void DefeatScene::Init()
 	}
 	for (int i = 0; i < 3; i++) {
 		CO_UI_Select* select = AddGameObject<CO_UI_Select>(LAYER_2D);
-		select->SetTrue_False_Position({ SCREEN_WIDTH / 2.0f,700.0f + 70.0f * i,0.0f },10.0f);
+		select->SetTrue_False_Position({ SCREEN_WIDTH / 2.0f+100.0f,700.0f + 70.0f * i,0.0f },10.0f);
 		select->SetIsString();
 		select->GetComponent<UserInterfaceComponent>()->
 			LoadTexture(CO_UI_Select::GetFileName_Box()[i]);		
@@ -29,6 +29,7 @@ void DefeatScene::Init()
 
 	//	CO_UI_Select‚Ì‚ ‚Æ‚É‚â‚é
 	m_Select = AddGameObject< CO_Select>(LAYER_2D);
+	//	m_Select->SetBlue(true);
 
 	m_NextIsExit = false;
 	m_NextIsGame = false;
