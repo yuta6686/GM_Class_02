@@ -77,6 +77,8 @@ public:
             //  ボックスUI
             m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(m_NowFileName_false);
             m_UISelects_Box[m_SelectIndex]->PositionAdaptation(false);
+            m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()
+                ->SetParameter(AXIS_XY, 0.0f, 1.0f, 1.0f);
 
             //文字UI
             m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
@@ -88,6 +90,9 @@ public:
             {
                 m_SelectIndex = (int)(min(m_UISelects_Box.size(), m_UISelects_Box.size())) - 1;
             }
+
+            m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()
+                ->SetParameter(AXIS_XY, 0.05f, 1.0f, 1.1f);
         }
 
         if (GetKeyboardTrigger(DIK_S))
@@ -96,6 +101,8 @@ public:
             //  ボックスUI
             m_UISelects[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->LoadTexture(m_NowFileName_false);
             m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor({ 1.0f,1.0f,1.0f,1.0f });
+            m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()
+                ->SetParameter(AXIS_XY, 0.0f, 1.0f, 1.0f);
 
             //文字UI
             m_UISelects_Box[m_SelectIndex]->PositionAdaptation(false);
@@ -104,6 +111,10 @@ public:
             //  インデックス処理
             m_SelectIndex++;
             m_SelectIndex %= (int)(min(m_UISelects_Box.size(), m_UISelects_Box.size()));
+
+
+            m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()
+                ->SetParameter(AXIS_XY, 0.05f, 1.0f, 1.1f);
         }
 
         //  決定結果を設定　通知は一度だけ。

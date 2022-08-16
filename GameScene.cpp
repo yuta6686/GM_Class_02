@@ -37,6 +37,7 @@
 #include "CO_UI_PlayerHPGauge.h"
 #include "CO_UI_dot.h"
 #include "CO_UI_Line.h"
+#include "ParticleObject_2D.h"
 
 
 void GameScene::Init()
@@ -64,7 +65,7 @@ void GameScene::Init()
 	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
 
 	//	AO球
-	AddGameObject<Ao_Sphere>(LAYER_3D);
+	AddGameObject<Ao_Sphere>(LAYER_3D)->LoadModel("asset\\model\\ao_Sphere_omaga.obj");
 
 	//	ステージ配置
 	StageCorridorCreate();
@@ -146,7 +147,7 @@ void GameScene::Init()
 
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
-	
+	AddGameObject<ParticleObject_2D>(LAYER_2D);
 
 	m_IsPlayerDeath = false;
 }

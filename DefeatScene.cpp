@@ -8,6 +8,7 @@
 #include "ExitScene.h"
 #include "GameScene.h"
 #include "CO_UI_Default.h"
+#include "ParticleObject_2D.h"
 
 void DefeatScene::Init()
 {
@@ -41,13 +42,19 @@ void DefeatScene::Init()
 	uii._texture = "asset\\texture\\GameOver.png";
 	uii._main_pos = { 200.0f ,50.0f,0.0f};
 
-	AddGameObject< CO_UI_Default>(LAYER_2D)->SetUIInfo(uii, {SCREEN_WIDTH/2.0f,SCREEN_HEIGHT/2.0f - 100.0f,0.0f});
+	CO_UI_Default* ui2d = AddGameObject< CO_UI_Default>(LAYER_2D);
+	ui2d->SetUIInfo(uii, { SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f - 100.0f,0.0f });
+	ui2d->AddComponent<BlinkComponent_Scale>(COMLAYER_SECOND)->SetParameter(AXIS_XY, 0.1f, 1.0f, 1.5f);
+
+	m_Particle = AddGameObject<ParticleObject_2D>(LAYER_2D);
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 }
 
 void DefeatScene::Update()
 {
+	m_Particle->SetParticle_Descent({ 1.0f,0.0f,0.0f,0.0f });
+
 	Scene::Update();
 
 	switch (m_Select->GetSelect())

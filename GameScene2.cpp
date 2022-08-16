@@ -28,6 +28,7 @@
 #include "CO_UI_PlayerHPGauge.h"
 #include "CO_UI_dot.h"
 #include "CO_UI_Line.h"
+#include "ParticleObject_2D.h"
 
 void GameScene2::Init()
 {
@@ -54,7 +55,7 @@ void GameScene2::Init()
 	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
 
 	//	AO球
-	AddGameObject<Ao_Sphere>(LAYER_3D);
+	AddGameObject<Ao_Sphere>(LAYER_3D)->LoadModel("asset\\model\\ao_Sphere_sinonome.obj");
 
 	//	ステージ配置
 	StageCorridorCreate();
@@ -130,6 +131,8 @@ void GameScene2::Init()
 	m_EnemyWave->SetEnemyWave<EnemyWave_2_1>("asset\\file\\EnemyGenerate2-1.txt");
 
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
+
+	AddGameObject<ParticleObject_2D>(LAYER_2D);
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 

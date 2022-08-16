@@ -3,6 +3,7 @@
 #include "Enemy_Interface.h"
 #include "effect_explosion.h"
 #include "HPComponent.h"
+#include "ParticleObject_2D.h"
 class CollisionComponent_Player :
     public CollisionComponent
 {
@@ -24,6 +25,9 @@ public:
                 m_Scene->GetGameObject< ParticleObject>()
                     ->SetParticle_Preset1(m_Parent->GetPosition());
             }
+
+            for(int i=0;i<100;i++)
+                m_Scene->GetGameObject< ParticleObject_2D>()->SetParticle_Gather();
             break;
         }
     }

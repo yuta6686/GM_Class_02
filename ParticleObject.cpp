@@ -33,6 +33,8 @@ void ParticleObject::Init()
 		m_Particles[i].size = m_Particles[i].m_SizeOverLifeTime_Start;
 		m_Particles[i].use = false;
 		m_Particles[i].col = m_Particles[i].m_ColorOverLifeTime_Start;
+		
+		
 	}
 }
 

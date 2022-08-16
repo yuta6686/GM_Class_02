@@ -8,6 +8,7 @@
 #include "ExitScene.h"
 #include "GameScene.h"
 #include "CO_UI_Default.h"
+#include "ParticleObject_2D.h"
 
 void ResultScene::Init()
 {
@@ -43,11 +44,16 @@ void ResultScene::Init()
 
 	AddGameObject< CO_UI_Default>(LAYER_2D)->SetUIInfo(uii, { SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f - 100.0f,0.0f });
 
+	m_Particle = AddGameObject<ParticleObject_2D>(LAYER_2D);
+
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 }
 
 void ResultScene::Update()
 {
+	m_Particle->SetParticle_Rising();
+
+
 	Scene::Update();
 
 	switch (m_Select->GetSelect())

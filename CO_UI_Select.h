@@ -57,6 +57,9 @@ public:
 
         AddComponent<VertexChangeComponent>(COMLAYER_CHANGEVERTEX);
 
+        AddComponent<BlinkComponent_Scale>(COMLAYER_SECOND)
+            ->SetParameter(AXIS_XY, 0.0f, 1.0f, 1.0f);
+
         ComponentObject::Init();
     }
 
