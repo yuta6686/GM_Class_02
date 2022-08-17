@@ -22,6 +22,7 @@ struct PARTICLE
 	float	size = 1.0f;		// 大きさ
 	int		life = 60;		// 消滅時間(フレーム数)
 	bool    use = false;
+	bool	use_torii = false;
 
 	D3DXCOLOR col = { 1.0f,1.0f,1.0f,1.0f };		// 色
 
@@ -43,12 +44,16 @@ private:
 	std::shared_ptr<Model_variable> m_Model_Cube;
 	std::shared_ptr<Model_variable> m_Model_Sphere;
 
+	std::vector<std::shared_ptr<Model_variable>> m_Torii_Broken;
+
 	std::shared_ptr <VertexShader> m_VertexShader;
 	std::shared_ptr<PixelShader> m_PixelShader;
 
 	std::string m_ModelName = "asset\\model\\particle_object.obj";
 	std::string m_ModelName_Cube = "asset\\model\\particle_object_cube.obj";
 	std::string m_ModelName_Sphere = "asset\\model\\particle_object_sphere.obj";
+	std::string m_ModelName_Torii = "asset\\model\\torii\\torii_broken_";
+	std::string m_Obj = ".obj";
 
 	float m_Random_Min = -0.1f;
 	float m_Random_Max = 0.1f;
@@ -77,6 +82,8 @@ public:
 	//	全部白
 	//	下から↑に小さくなっていく
 	void SetParticle_Preset3(const float& area);
+
+	void SetParticle_ToriiBloken_Rising();
 
 	//	SetParticles 群---------------------------------------
 	void SetParticles(const D3DXVECTOR3& velocity);
@@ -119,5 +126,6 @@ public:
 		const float& start_size,
 		const float& end_size);
 
+	void SetParticle(const PARTICLE& par);
 };
 

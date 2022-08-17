@@ -61,6 +61,31 @@ public:
         return ResultObjects;
     }
 
+    template<class T>
+    std::vector<T*> IsCollisionXAxis()
+    {
+        std::vector<T*> m_GameObjects;
+        std::vector<T*> ResultObjects;
+        m_GameObjects = m_Scene->GetGameObjects<T>();
+        for (auto object : m_GameObjects) {
+            D3DXVECTOR3 objectPosition = object->GetPosition();   
+            D3DXVECTOR3 parentPosition = m_Parent->GetPosition();
+            D3DXVECTOR3 objectScale = object->GetScale();
+            D3DXVECTOR3 parentScale = m_Parent->GetScale();
+
+            if (objectPosition.x + objectScale.x > parentPosition.x - parentScale.x &&
+                objectPosition.x - objectScale.x <= parentPosition.x + parentScale.x //&&
+                /*objectPosition.y + objectScale.y <= parentPosition.y - parentScale.y &&
+                objectPosition.y - objectScale.y > parentPosition.y + parentScale.y &&
+                objectPosition.z + objectScale.z <= parentPosition.z - parentScale.z &&
+                objectPosition.z - objectScale.z > parentPosition.z + parentScale.z*/) {
+                ResultObjects.push_back(object);
+            }
+        }
+
+        return ResultObjects;
+    }
+
     std::vector<GameObject*> IsCollisionSphere(const int& Layer)
     {
         std::vector<GameObject*> m_GameObjects;

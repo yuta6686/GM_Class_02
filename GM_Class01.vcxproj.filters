@@ -315,6 +315,12 @@
     <ClCompile Include="ParticleObject_2D.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="CO_Torii_Broken.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_Stand.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -711,6 +717,12 @@
       <Filter>GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="ParticleObject_2D.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Torii_Broken.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Stand.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

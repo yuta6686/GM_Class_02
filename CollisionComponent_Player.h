@@ -4,6 +4,7 @@
 #include "effect_explosion.h"
 #include "HPComponent.h"
 #include "ParticleObject_2D.h"
+#include "CO_Stand.h"
 class CollisionComponent_Player :
     public CollisionComponent
 {
@@ -30,6 +31,10 @@ public:
                 m_Scene->GetGameObject< ParticleObject_2D>()->SetParticle_Gather();
             break;
         }
+
+        
+
+
     }
 };
 

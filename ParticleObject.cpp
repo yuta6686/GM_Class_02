@@ -3,6 +3,7 @@
 #include "VertexInitialize.h"
 #include "manager.h"
 #include "player.h"
+#include <sstream>
 
 
 void ParticleObject::Init()
@@ -11,6 +12,20 @@ void ParticleObject::Init()
 	m_Model = ResourceManger<Model_variable>::GetResource(m_ModelName.c_str());
 	m_Model_Cube = ResourceManger<Model_variable>::GetResource(m_ModelName_Cube.c_str());
 	m_Model_Sphere = ResourceManger<Model_variable>::GetResource(m_ModelName_Sphere.c_str());
+
+	for (int i = 1; i <= 50; i++)
+	{
+		std::ostringstream oss;
+		if (i <= 9) {
+			oss << 0 << 0;
+		}
+		else if (i >= 10) {
+			oss << 0;
+		}
+		
+		oss << i;
+		m_Torii_Broken.push_back(ResourceManger<Model_variable>::GetResource(m_ModelName_Torii.c_str() + oss.str() + m_Obj.c_str()));
+	}
 
 	m_VertexShader =
 		ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
@@ -78,7 +93,7 @@ void ParticleObject::Update()
 		MyMath::FloatLerp(&m_Particles[i].size,
 			&m_Particles[i].m_SizeOverLifeTime_Start,
 			&m_Particles[i].m_SizeOverLifeTime_End,
-			(float)m_Particles[i].status / (float)m_Particles[i].life);
+			powf((float)m_Particles[i].status / (float)m_Particles[i].life,2.0f));
 		
 		//	Žõ–½‘ª’è
 		m_Particles[i].status++;
@@ -117,28 +132,36 @@ void ParticleObject::Draw()
 		
 
 		Renderer::SetAlphaToCoverage(true);
-		switch (m_Particles[i].type)
+
+		if (m_Particles[i].use_torii) 
 		{
-		case PARTICLE_TYPE_NORMAL:
-			m_Model->SetDiffuse(m_Particles[i].col);
+			m_Torii_Broken[m_Particles[i].type]->Draw();
+		}
+		else
+		{
+			switch (m_Particles[i].type)
+			{
+			case PARTICLE_TYPE_NORMAL:
+				m_Model->SetDiffuse(m_Particles[i].col);
 
-			m_Model->Draw();
-			break;
-		case PARTICLE_TYPE_CUBE:
-			m_Model_Cube->SetDiffuse(m_Particles[i].col);
+				m_Model->Draw();
+				break;
+			case PARTICLE_TYPE_CUBE:
+				m_Model_Cube->SetDiffuse(m_Particles[i].col);
 
-			m_Model_Cube->Draw();
-			break;
-		case PARTICLE_TYPE_SPHERE:
-			m_Model_Sphere->SetDiffuse(m_Particles[i].col);
+				m_Model_Cube->Draw();
+				break;
+			case PARTICLE_TYPE_SPHERE:
+				m_Model_Sphere->SetDiffuse(m_Particles[i].col);
 
-			m_Model_Sphere->Draw();
-			break;
-		default:
-			m_Model->SetDiffuse(m_Particles[i].col);
+				m_Model_Sphere->Draw();
+				break;
+			default:
+				m_Model->SetDiffuse(m_Particles[i].col);
 
-			m_Model->Draw();
-			break;
+				m_Model->Draw();
+				break;
+			}
 		}
 		
 		Renderer::SetAlphaToCoverage(false);
@@ -301,6 +324,31 @@ void ParticleObject::SetParticle_Preset3(const float& area)
 	SetParticles(position, velocity, rot_velocity, 500, type, start_color, end_color, start_size, end_size);
 }
 
+void ParticleObject::SetParticle_ToriiBloken_Rising()
+{
+	PARTICLE par;
+	par.acc = { 0.0f,0.0f,0.0f };
+	par.m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,0.7f };
+	par.m_ColorOverLifeTime_End = { 1.0f,1.0f,1.0f,0.5f };
+	par.col = par.m_ColorOverLifeTime_Start;
+	par.life = 180;	
+	par.pos = MyMath::XZRandom(-50.0f, 50.0f);
+	par.pos.y = -0.1f;
+	par.rot = { 0.0f,0.0f,0.0f };
+	par.rot_vel = MyMath::VEC3Random(-0.01f, 0.01f);
+	par.m_SizeOverLifeTime_Start = 2.0f;
+	par.m_SizeOverLifeTime_End = 0.0f;
+	par.size = par.m_SizeOverLifeTime_Start;
+	par.status = 0;
+	par.type = rand() % m_Torii_Broken.size();
+	par.use = true;
+	par.use_torii = true;
+	par.vel = MyMath::XZRandom(-0.01f, 0.01f);
+	par.vel.y = MyMath::Random(0.01f, 0.2f);
+
+	SetParticle(par);
+}
+
 void ParticleObject::SetParticles(const D3DXVECTOR3& velocity)
 {
 	for (unsigned int i = 0; i < m_Particles.size(); i++) {
@@ -447,6 +495,15 @@ void ParticleObject::SetParticles(const D3DXVECTOR3& pos, const D3DXVECTOR3& vel
 		m_Particles[i].m_ColorOverLifeTime_End = end_col;
 		m_Particles[i].col = m_Particles[i].m_ColorOverLifeTime_Start;
 		m_Particles[i].life = life;
+		break;
+	}
+}
+
+void ParticleObject::SetParticle(const PARTICLE& par)
+{
+	for (unsigned int i = 0; i < m_Particles.size(); i++) {
+		if (m_Particles[i].use)continue;
+		m_Particles[i] = par;
 		break;
 	}
 }

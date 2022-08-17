@@ -38,6 +38,8 @@
 #include "CO_UI_dot.h"
 #include "CO_UI_Line.h"
 #include "ParticleObject_2D.h"
+#include "CO_Torii_Broken.h"
+#include "CO_Stand.h"
 
 
 void GameScene::Init()
@@ -49,7 +51,7 @@ void GameScene::Init()
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
 	//	フィールド
-	AddGameObject<Field>(LAYER_3D);
+	//AddGameObject<Field>(LAYER_3D);
 
 	//	プレイヤーの前に入れる
 	AddGameObject<CO_UI_dot>(LAYER_2D);
@@ -69,6 +71,13 @@ void GameScene::Init()
 
 	//	ステージ配置
 	StageCorridorCreate();
+
+	for (int i = -10; i < 10; i++)
+	{
+
+		AddGameObject < CO_Stand>(LAYER_3D)->SetPosition({2.5f,0.0f,23.0f * i});
+	}
+	
 
 	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 
@@ -105,10 +114,6 @@ void GameScene::Init()
 	//	cyl->SetScale({ 3.0f,9.0f,3.0f });
 	//}
 
-	AddGameObject<ComponentObjectTest>(LAYER_3D);
-	AddGameObject<ComponentObjectTest>(LAYER_3D);
-	AddGameObject<ComponentObjectTest>(LAYER_3D);
-
 	
 
 	AddGameObject< ImGuiObject>(LAYER_3D);
@@ -143,7 +148,9 @@ void GameScene::Init()
 		couibelt->Start(false, 60, 90);
 	}
 
-	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+	 m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+
+	AddGameObject<CO_Torii_Broken>(LAYER_3D);
 
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
@@ -164,12 +171,14 @@ void GameScene::Update()
 {
 	Scene::Update();
 
-	for(int i=0;i<3;i++)
-		m_Particle->SetParticle_Preset3(50.0f);
+	
+	m_Particle->SetParticle_ToriiBloken_Rising();
 
-	if (m_EnemyWave->GetIsStageClear()){
-		m_EnemyWave->SetIsStageClear(false);
-		m_Fade->Start(false);
+	if (m_EnemyWave != nullptr) {
+		if (m_EnemyWave->GetIsStageClear()) {
+			m_EnemyWave->SetIsStageClear(false);
+			m_Fade->Start(false);
+		}
 	}
 
 	if (GetGameObject<Player>()->GetComponent<HPComponent>()->GetIsDeath() &&
@@ -317,6 +326,16 @@ void GameScene::StageCorridorCreate()
 	AddGameObject<stage_wator_field>(LAYER_3D);
 
 	//	大鳥居
-	AddGameObject< stage_otorii>(LAYER_3D);
+	{
+		stage_otorii* ot = AddGameObject< stage_otorii>(LAYER_3D);
+		ot->SetPosition({ 17.0f,0.0f,70.0f });
+		ot->SetScale({ 5.0f,5.0f,5.0f });
+	}
+	{
+		stage_otorii* ot = AddGameObject< stage_otorii>(LAYER_3D);
+		ot->SetPosition({ -17.0f,0.0f,-70.0f });
+		ot->SetScale({ 5.0f,5.0f,5.0f });
+		ot->SetRotation({ D3DX_PI,0.0f,0.0f });
+	}
 }
 

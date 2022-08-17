@@ -179,12 +179,18 @@ void Player::PlayerMove()
 
 
 	D3DXVECTOR3 oldPos = m_Position;
-	
+	float groundHeight = 0.0f;
 
+	std::vector<CO_Stand*> stands = GetComponent<CollisionComponent>()->IsCollisionXAxis<CO_Stand>();
+	if (!stands.empty())
+	{
+		groundHeight = 0.1f * stands[0]->GetScale().y;
+		m_Position = oldPos;
+	}
 
 	//	ê⁄ë‰
 
-	float groundHeight = 0.0f;
+	
 	std::vector<Cylinder*> clylist = g_Scene->GetGameObjects<Cylinder>();
 	for (auto cly : clylist) {
 		D3DXVECTOR3 clyPos = cly->GetPosition();
@@ -207,6 +213,8 @@ void Player::PlayerMove()
 			break;
 		}
 	}
+
+
 
 	//	ÉWÉÉÉìÉv	
 	if (GetKeyboardTrigger(DIK_SPACE) &&

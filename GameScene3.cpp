@@ -150,7 +150,7 @@ void GameScene3::Update()
 	Scene::Update();
 
 	for (int i = 0; i < 3; i++)
-		m_Particle->SetParticle_Preset3(50.0f);
+		m_Particle->SetParticle_ToriiBloken_Rising();
 
 	if (m_EnemyWave->GetIsStageClear()) {
 		m_EnemyWave->SetIsStageClear(false);
@@ -288,5 +288,5 @@ void GameScene3::StageCorridorCreate()
 	AddGameObject<stage_wator_field>(LAYER_3D);
 
 	//	ëÂíπãè
-	AddGameObject< stage_otorii>(LAYER_3D);
+	AddGameObject< stage_otorii>(LAYER_3D)->SetPosition({ 4.0f,0.0f,0.0f });
 }
