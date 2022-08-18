@@ -64,9 +64,6 @@
     <Filter Include="GameObject\Object\GameSceneObject\MoveObjects\Bullet">
       <UniqueIdentifier>{f020f1ea-6b40-4061-84a6-9a4016926191}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Object\GameSceneObject\Enemy">
-      <UniqueIdentifier>{84e28b46-f434-426e-a885-af12eefef1e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Object\GameSceneObject\Effect">
       <UniqueIdentifier>{7404b7f8-06d8-4d3c-883e-d086b6c6f2a8}</UniqueIdentifier>
     </Filter>
@@ -85,14 +82,17 @@
     <Filter Include="GameObject\Component\UI\2D">
       <UniqueIdentifier>{eb084f03-22db-4329-b24f-36c4619b26b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Component\UI\3D">
-      <UniqueIdentifier>{7627deba-eab6-4494-9c52-86ffeef6bd48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Component\ComponentObject\2D">
       <UniqueIdentifier>{6b9106f2-f228-4536-82ef-948ad40796fe}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Component\ComponentObject\3D">
       <UniqueIdentifier>{87aa624b-020f-4759-baf0-972fed034ee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\UI\3D">
+      <UniqueIdentifier>{7627deba-eab6-4494-9c52-86ffeef6bd48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\ComponentObject\Enemy">
+      <UniqueIdentifier>{84e28b46-f434-426e-a885-af12eefef1e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -292,13 +292,13 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="EnemyWave_1_3.cpp">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemyWave_2_3.cpp">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemyWave_3_3.cpp">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="GameScene2.cpp">
       <Filter>GameObject\Scene</Filter>
@@ -313,15 +313,6 @@
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
     <ClCompile Include="ParticleObject_2D.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CO_Torii_Broken.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CO_Stand.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="CO_Bow.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -420,13 +411,13 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Interface.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyFactory.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="effect_explosion.h">
       <Filter>GameObject\Object\GameSceneObject\Effect</Filter>
@@ -627,31 +618,31 @@
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_1_1.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyGenerate.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_1_2.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_1_3.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_2_1.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_2_2.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_2_3.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyWave_3_all.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="GameScene3.h">
       <Filter>GameObject\Scene</Filter>
@@ -664,9 +655,6 @@
     </ClInclude>
     <ClInclude Include="DefeatScene.h">
       <Filter>GameObject\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="CO_EnemyWave.h">
-      <Filter>GameObject\Component\ComponentObject</Filter>
     </ClInclude>
     <ClInclude Include="CO_Select.h">
       <Filter>GameObject\Component\ComponentObject</Filter>
@@ -722,13 +710,22 @@
     <ClInclude Include="ParticleObject_2D.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Torii_Broken.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="CO_Bow.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
     </ClInclude>
     <ClInclude Include="CO_Stand.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Bow.h">
+    <ClInclude Include="CO_Torii_Broken.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_EnemyWave.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="StageLimitComponent_Reflect.h">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomVelocityComponent.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

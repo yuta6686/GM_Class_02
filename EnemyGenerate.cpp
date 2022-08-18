@@ -178,11 +178,15 @@ void EnemyGenerate::Update()
 			case ENEMY_TRACKING_LATE:
 				penemy = m_Scene->AddGameObject<Enemy_Tracking_Late>(LAYER_ENEMY);
 				break;
+
 			case ENEMY_NO_DRUM:
 				cly = m_Scene->AddGameObject<Cylinder>(LAYER_3D);
 				cly->SetPosition(pos);
 				cly->SetRotation(rot);
 				cly->SetScale(sca);
+				break;
+			case ENEMY_MOVE_STRAIGHT:
+				penemy = m_Scene->AddGameObject<Enemy_Move_Straight>(LAYER_ENEMY);
 				break;
 			case ENEMY_MAX:
 				penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
@@ -233,7 +237,7 @@ void EnemyGenerate::Update()
 
 	//	Enemy
 	if (ImGui::CollapsingHeader("Enemy")) {		
-		for (int i = 0; i < enemys.size(); i++) {
+		for (unsigned int i = 0; i < enemys.size(); i++) {
 			char buff[255];
 			sprintf(buff, "Enemy_%d", i);
 			if (ImGui::TreeNode(buff))
@@ -243,6 +247,18 @@ void EnemyGenerate::Update()
 			}
 			if (ImGui::Button("destroy")) {
 				enemys[i]->SetDestroy();
+			}
+		}
+	}
+
+	std::vector<Cylinder*> cylinder = m_Scene->GetGameObjects< Cylinder>();
+	if (ImGui::CollapsingHeader("Drum")) {
+		for (unsigned int i = 0; i < cylinder.size(); i++) {
+			std::ostringstream oss;
+			oss << "Drum_" << i;
+			if (ImGui::TreeNode(oss.str().c_str())) {
+				cylinder[i]->DrawImgui();
+				ImGui::TreePop();
 			}
 		}
 	}

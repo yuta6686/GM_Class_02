@@ -2,6 +2,8 @@
 #include "main.h"
 #include "Resource.h"
 #include "Enemy_Interface.h"
+#include "StageLimitComponent_Reflect.h"
+#include "RandomVelocityComponent.h"
 
 
 class Enemy : public Enemy_Interface
@@ -18,7 +20,7 @@ public:
 
         AddComponent(mdc, COMLAYER_DRAW);
 
-        
+        AddComponent<StageLimitComponent>(COMLAYER_SECOND);
 
         ComponentObject::Init();
     }
@@ -40,6 +42,8 @@ public:
 
         AddComponent<TrackingComponent>(COMLAYER_SECOND);
 
+        AddComponent<StageLimitComponent>(COMLAYER_SECOND);
+
         ComponentObject::Init();
     }
 };
@@ -60,6 +64,8 @@ public:
 
         AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.3f);
 
+        AddComponent<StageLimitComponent>(COMLAYER_SECOND);
+
         ComponentObject::Init();
     }
 };
@@ -76,9 +82,37 @@ public:
         ModelDrawComponent* mdc =
             new ModelDrawComponent("asset\\model\\stone_white.obj");
 
+
         AddComponent(mdc, COMLAYER_DRAW);
 
         AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.01f);
+
+        AddComponent<StageLimitComponent>(COMLAYER_SECOND);
+
+        ComponentObject::Init();
+    }
+};
+
+class Enemy_Move_Straight : public Enemy_Interface
+{
+public:
+    Enemy_Move_Straight() :Enemy_Interface(ENEMY_MOVE_STRAIGHT) {}
+
+    virtual void Init() {
+
+        Enemy_Interface::Init();
+
+        ModelDrawComponent* mdc =
+            new ModelDrawComponent("asset\\model\\stone_white.obj");
+
+        AddComponent(mdc, COMLAYER_DRAW);
+
+        AddComponent<VelocityComponent>(COMLAYER_SECOND);
+
+        
+        AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.1f);
+
+        AddComponent<StageLimitComponent_Reflect>(COMLAYER_SECOND);
 
         ComponentObject::Init();
     }

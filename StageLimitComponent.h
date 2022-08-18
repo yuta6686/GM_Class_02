@@ -5,7 +5,7 @@
 class StageLimitComponent :
     public Component
 {
-private:
+protected:
     std::vector<VelocityComponent*> m_Velocities;
 
     inline static const float X_MAX = 23.5f;

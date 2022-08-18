@@ -25,9 +25,6 @@
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="CO_Bow.cpp" />
-    <ClCompile Include="CO_Stand.cpp" />
-    <ClCompile Include="CO_Torii_Broken.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
@@ -156,8 +153,10 @@
     <ClInclude Include="MonochromeComponent.h" />
     <ClInclude Include="ParticleObject_2D.h" />
     <ClInclude Include="PlayerRotateComponent.h" />
+    <ClInclude Include="RandomVelocityComponent.h" />
     <ClInclude Include="ShootBulletComponent.h" />
     <ClInclude Include="StageLimitComponent.h" />
+    <ClInclude Include="StageLimitComponent_Reflect.h" />
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="TrackingComponent.h" />
     <ClInclude Include="ImGuiComponent.h" />

@@ -9,18 +9,18 @@ protected:
     bool m_IsEnemyVersion = false;
     bool m_IsUse = false;
 
-    float POSITION_MIN = -20.0f;    
-    float POSITION_MAX = 20.0f;
+    float POSITION_MIN = -50.0f;    
+    float POSITION_MAX = 50.0f;
 
     float POSITION_MIN_2D = 0.0f;
     float POSITION_MAX_X_2D = SCREEN_WIDTH;
     float POSITION_MAX_Y_2D = SCREEN_HEIGHT;
 
-    float ROTATION_MIN = -D3DX_PI;
-    float ROTATION_MAX = D3DX_PI;
+    float ROTATION_MIN = 0.0f;
+    float ROTATION_MAX = D3DX_PI * 2.0f;
 
-    float SCALE_MIN = 0.2f;
-    float SCALE_MAX = 5.0f;
+    float SCALE_MIN = 0.0f;
+    float SCALE_MAX = 200.0f;
 
     int m_ImVecY = 400;
 public:

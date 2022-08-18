@@ -11,6 +11,8 @@ enum ENEMY
     ENEMY_TRACKING_FAST,
     ENEMY_TRACKING_LATE,
     ENEMY_NO_DRUM,
+    ENEMY_MOVE_STRAIGHT,
+    ENEMY_MOVE_RANDOM,    
     ENEMY_MAX
 };
 class Enemy_Interface :
@@ -81,8 +83,7 @@ public:
         AddComponent<ShaderComponent>(COMLAYER_SHADER);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
-          
-        AddComponent<StageLimitComponent>(COMLAYER_SECOND);
+                 
 
         SetHp(GetMaxHp());
 

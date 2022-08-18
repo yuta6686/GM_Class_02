@@ -93,6 +93,9 @@ protected:
 				cly->SetRotation(rot);
 				cly->SetScale(sca);
 				break;
+			case ENEMY_MOVE_STRAIGHT:
+				penemy = m_Scene->AddGameObject<Enemy_Move_Straight>(LAYER_ENEMY);
+				break;
 			case ENEMY_MAX:
 				penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
 				break;

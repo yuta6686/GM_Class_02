@@ -1,7 +1,7 @@
 #pragma once
-#include "gameObject.h"
+#include "ComponentObject.h"
 class Cylinder :
-    public GameObject
+    public ComponentObject
 {
 private:
     std::shared_ptr<Model> m_Model;
@@ -19,6 +19,8 @@ public:
     virtual void Update() override;
 
     virtual void Draw() override;
+
+    virtual void DrawImgui() override;
 
 };
 

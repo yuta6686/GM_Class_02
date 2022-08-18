@@ -29,6 +29,9 @@
 #include "CO_UI_dot.h"
 #include "CO_UI_Line.h"
 #include "ParticleObject_2D.h"
+#include "CO_Torii_Broken.h"
+#include "CO_Stand.h"
+#include "CO_Bow.h"
 
 void GameScene3::Init()
 {
@@ -60,6 +63,12 @@ void GameScene3::Init()
 
 	//	ステージ配置
 	StageCorridorCreate();
+
+	for (int i = -10; i < 10; i++)
+	{
+
+		AddGameObject < CO_Stand>(LAYER_3D)->SetPosition({ 2.5f,0.0f,23.0f * i });
+	}
 
 	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 
@@ -134,6 +143,11 @@ void GameScene3::Init()
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
 	AddGameObject<ParticleObject_2D>(LAYER_2D);
+
+	AddGameObject<CO_Bow>(LAYER_3D);
+
+	AddGameObject<CO_Bow>(LAYER_3D)->SetPosition({ 0.0f,20.0f,-50.0f });
+
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 
