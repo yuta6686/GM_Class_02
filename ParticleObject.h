@@ -44,7 +44,7 @@ private:
 	std::shared_ptr<Model_variable> m_Model_Cube;
 	std::shared_ptr<Model_variable> m_Model_Sphere;
 
-	std::vector<std::shared_ptr<Model_variable>> m_Torii_Broken;
+	inline static std::vector<std::shared_ptr<Model_variable>> m_Torii_Broken;
 
 	std::shared_ptr <VertexShader> m_VertexShader;
 	std::shared_ptr<PixelShader> m_PixelShader;
@@ -60,6 +60,7 @@ private:
 
 	Camera* m_Camera;
 public:
+	static unsigned int GetToriiModelMax() { return m_Torii_Broken.size(); }
 	void SetModelName(const std::string& name) { m_ModelName = name; }
 
 	virtual void Init() override;
@@ -84,6 +85,8 @@ public:
 	void SetParticle_Preset3(const float& area);
 
 	void SetParticle_ToriiBloken_Rising();
+
+	void SetParticle_Title();
 
 	//	SetParticles ŒQ---------------------------------------
 	void SetParticles(const D3DXVECTOR3& velocity);

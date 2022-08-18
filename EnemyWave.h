@@ -2,7 +2,7 @@
 #include "ComponentObject.h"
 #include "Enemy.h"
 #include "manager.h"
-
+#include "Cylinder.h"
 
 #include <fstream>
 #include <iostream>
@@ -69,7 +69,8 @@ protected:
 			hp = stoi(str_buf_vec[9]);
 			enemy_index = stoi(str_buf_vec[10]);
 
-			Enemy_Interface* penemy;
+			Enemy_Interface* penemy=nullptr;
+			Cylinder* cly;
 
 			switch (enemy_index)
 			{
@@ -85,6 +86,13 @@ protected:
 			case ENEMY_TRACKING_LATE:
 				penemy = m_Scene->AddGameObject<Enemy_Tracking_Late>(LAYER_ENEMY);
 				break;
+			case ENEMY_NO_DRUM:
+				m_Scene->AddGameObject<Cylinder>(LAYER_3D);
+				cly = m_Scene->AddGameObject<Cylinder>(LAYER_3D);
+				cly->SetPosition(pos);
+				cly->SetRotation(rot);
+				cly->SetScale(sca);
+				break;
 			case ENEMY_MAX:
 				penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
 				break;
@@ -93,13 +101,15 @@ protected:
 				break;
 			}
 
-			penemy->SetPosition(pos);
-			penemy->SetRotation(rot);
-			penemy->SetScale(sca);
-			penemy->SetMaxHp(hp);
-			penemy->SetHp(hp);
+			if (penemy != nullptr) {
+				penemy->SetPosition(pos);
+				penemy->SetRotation(rot);
+				penemy->SetScale(sca);
+				penemy->SetMaxHp(hp);
+				penemy->SetHp(hp);
+			}
 
-			penemy->AddComponent<TrackingComponent>(COMLAYER_SECOND);
+			//penemy->AddComponent<TrackingComponent>(COMLAYER_SECOND);
 
 			str_buf_vec.clear();
 		}

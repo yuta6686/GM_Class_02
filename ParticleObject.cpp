@@ -349,6 +349,31 @@ void ParticleObject::SetParticle_ToriiBloken_Rising()
 	SetParticle(par);
 }
 
+void ParticleObject::SetParticle_Title()
+{
+	PARTICLE par;
+	par.acc = { 0.0f,0.0f,0.0f };
+	par.m_ColorOverLifeTime_Start = { 1.0f,0.3f,0.3f,MyMath::Random(0.0f,1.0f) };
+	par.m_ColorOverLifeTime_End = { 0.0f,1.0f,1.0f,0.5f };
+	par.col = par.m_ColorOverLifeTime_Start;
+	par.life = 240;
+	par.pos = MyMath::XZRandom(-100.0f, 100.0f);
+	par.pos.y = -50.0f;
+	par.rot = { 0.0f,0.0f,0.0f };
+	par.rot_vel = MyMath::VEC3Random(-0.01f, 0.01f);
+	par.m_SizeOverLifeTime_Start = MyMath::Random(0.1f, 2.0f);
+	par.m_SizeOverLifeTime_End = 0.0f;
+	par.size = par.m_SizeOverLifeTime_Start;
+	par.status = 0;
+	par.type = PARTICLE_TYPE_SPHERE;
+	par.use = true;
+	par.use_torii = false;
+	par.vel = MyMath::XZRandom(-0.01f, 0.01f);
+	par.vel.y = MyMath::Random(0.1f, 0.5f);
+
+	SetParticle(par);
+}
+
 void ParticleObject::SetParticles(const D3DXVECTOR3& velocity)
 {
 	for (unsigned int i = 0; i < m_Particles.size(); i++) {

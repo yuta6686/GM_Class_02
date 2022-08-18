@@ -84,24 +84,24 @@ void TitleScene::Init()
 	float gameslca = 7.5f;
 	game->SetScale({ gameslca ,gameslca ,gameslca });
 
-	AddGameObject<CO_UI_Quest>(LAYER_2D);
+	//AddGameObject<CO_UI_Quest>(LAYER_2D);
 	
-	float dest_y = 400.0f;
-	float dep_y = 800.0f;
-	{
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
-		couibelt->Start(false, 60, 60,true);
-	}
+	//float dest_y = 400.0f;
+	//float dep_y = 800.0f;
+	//{
+	//	CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+	//	couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
+	//	couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
+	//	couibelt->Start(false, 60, 60,true);
+	//}
 
-	{
-		float sep_y = 200.0f;
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
-		couibelt->Start(false, 60, 90,true);
-	}
+	//{
+	//	float sep_y = 200.0f;
+	//	CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+	//	couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
+	//	couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
+	//	couibelt->Start(false, 60, 90,true);
+	//}
 	
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
@@ -139,7 +139,8 @@ void TitleScene::Update()
 		}
 	}
 
-	m_Particle->SetParticle_Preset3(10.0f);
+	for(int i=0;i<2;i++)
+		m_Particle->SetParticle_Title();
 
 //	以下はシーン遷移処理なので、ゲームオブジェクトは「持たず、作らず、持ち込ませず」
 	
@@ -154,8 +155,28 @@ void TitleScene::Update()
 		}
 
 		if (GetKeyboardTrigger(DIK_SPACE) && istogame) {
-			for(int i=0;i<30;i++)
-				m_Particle->SetParticle_Preset1();
+			for (int i = 0; i < 100; i++) {
+				PARTICLE par;
+				par.acc = { 0.0f,0.0f,0.0f };
+				par.m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,0.5f };
+				par.m_ColorOverLifeTime_End = { 0.0f,1.0f,1.0f,1.0f };
+				par.col = par.m_ColorOverLifeTime_Start;
+				par.life = 30;
+				par.pos = { 0.0f,1.0f,0.0f };
+				par.rot = { 0.0f,0.0f,0.0f };
+				par.rot_vel = MyMath::VEC3Random(-0.01f, 0.01f);
+				par.m_SizeOverLifeTime_Start = 0.5f;
+				par.m_SizeOverLifeTime_End = 0.0f;
+				par.size = par.m_SizeOverLifeTime_Start;
+				par.status = 0;
+				par.type = rand() % PARTICLE_TYPE_MAX;
+				par.use = true;
+				par.use_torii = false;
+				par.vel = MyMath::VEC3Random(-0.5f, 0.5f);
+
+				m_Particle->SetParticle(par);
+			}
+				
 			m_Fade->Start(false);
 		}
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "main.h"
 #include "Component.h"
+#include "ParticleObject.h"
 class BulletComponent :
     public Component
 {
@@ -10,6 +11,7 @@ private:
     inline static const float VELOCITY_MIN = 0.001f;
 
     inline static const float GRABITY = -0.01f;
+    ParticleObject* m_Particle;
 public:       
     virtual void Init() override;
 

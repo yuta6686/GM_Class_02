@@ -127,7 +127,7 @@ void Player::DrawImgui()
 
 
 
-	
+	ImGui::Checkbox("IsPlayer_Move", &m_IsUseBullet);
 
 	ImGui::Separator();
 
@@ -161,12 +161,47 @@ void Player::PlayerMove()
 		m_VelocityCom->m_Velocity.x += PLAYER_SPEED * GetRight().x;
 	}
 
+	if (m_IsUseBullet) 
+	{		
+		float speedup = 3.0f;
+
+		//	プレイヤー移動処理
+		if (GetKeyboardPress(DIK_W)) {
+
+			m_VelocityCom->m_Velocity.z += PLAYER_SPEED * forward.z * speedup;
+			m_VelocityCom->m_Velocity.x += PLAYER_SPEED * forward.x * speedup;
+		}
+		if (GetKeyboardPress(DIK_S)) {
+			m_VelocityCom->m_Velocity.z -= PLAYER_SPEED * forward.z * speedup;
+			m_VelocityCom->m_Velocity.x -= PLAYER_SPEED * forward.x * speedup;
+		}
+		if (GetKeyboardPress(DIK_A)) {
+			m_VelocityCom->m_Velocity.z += PLAYER_SPEED * GetLeft().z * speedup;
+			m_VelocityCom->m_Velocity.x += PLAYER_SPEED * GetLeft().x * speedup;
+		}
+		if (GetKeyboardPress(DIK_D)) {
+			m_VelocityCom->m_Velocity.z += PLAYER_SPEED * GetRight().z * speedup;
+			m_VelocityCom->m_Velocity.x += PLAYER_SPEED * GetRight().x * speedup;
+		}
+
+
+		if (GetKeyboardPress(DIK_I)) {
+			
+			m_VelocityCom->m_Velocity.y += PLAYER_SPEED * speedup;
+		}
+		if (GetKeyboardPress(DIK_K)) {			
+			m_VelocityCom->m_Velocity.y -= PLAYER_SPEED * speedup;
+		}
+	}
+	else
+	{
+		//	重力	
+		m_VelocityCom->m_Velocity.y -= GRAVITY;
+	}
 
 
 
-
-	//	重力	
-	m_VelocityCom->m_Velocity.y -= GRAVITY;
+	
 	
 	
 			

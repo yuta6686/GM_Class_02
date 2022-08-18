@@ -13,8 +13,7 @@
 void DefeatScene::Init()
 {
 	AddGameObject<ResultPolygon>(LAYER_2D);
-	m_Fade = AddGameObject<Transition>(LAYER_2D);
-	m_Fade->Start(true);
+	
 
 	for (int i = 0; i < 3; i++) {
 		AddGameObject<CO_UI_Select>(LAYER_2D)
@@ -49,6 +48,9 @@ void DefeatScene::Init()
 	m_Particle = AddGameObject<ParticleObject_2D>(LAYER_2D);
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
+
+	m_Fade = AddGameObject<Transition>(LAYER_2D);
+	m_Fade->Start(true);
 }
 
 void DefeatScene::Update()

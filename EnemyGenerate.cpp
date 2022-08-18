@@ -42,13 +42,13 @@ void EnemyGenerate::Update()
 	ImGui::ColorEdit4("window color", (float*)&window_color);
 
 	if (ImGui::Button("Generate!")) {
-		m_Scene->AddGameObject<Enemy>(LAYER_3D)->SetMaxHp(10);	
+		m_Scene->AddGameObject<Enemy>(LAYER_ENEMY)->SetMaxHp(2);	
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Generate Player Transform") ||
 		GetKeyboardTrigger(DIK_E)) {
 		
-		auto* enemy = m_Scene->AddGameObject<Enemy>(LAYER_3D);
+		auto* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
 		enemy->SetPosition(m_Player->GetPosition());
 		//enemy->SetRotation(m_Player->GetRotation());
 		enemy->SetMaxHp(1);
@@ -56,6 +56,7 @@ void EnemyGenerate::Update()
 
 
 	std::vector<GameObject*> enemys = m_Scene->GetGameObjectLayer(LAYER_ENEMY);
+	std::vector<Cylinder*> clies = m_Scene->GetGameObjects<Cylinder>();
 
 
 	ImGui::SliderInt("SaveFileIndex", &m_SaveFileIndex, 1, m_NowFileNum, "%d");
@@ -84,7 +85,8 @@ void EnemyGenerate::Update()
 			ImGui::Text("Could not open file.");
 		}
 
-		for (int i = 0; i < enemys.size(); i++) {			
+		//	エネミー
+		for (unsigned int i = 0; i < enemys.size(); i++) {			
 
 			ofs << showpoint
 				<< enemys[i]->GetPosition().x << ","
@@ -99,6 +101,21 @@ void EnemyGenerate::Update()
 				<< dynamic_cast<Enemy_Interface*>(enemys[i])->GetMaxHp() << ","
 				<< dynamic_cast<Enemy_Interface*>(enemys[i])->GetEnemyIndex() << std::endl;
 
+		}
+
+		//	 シリンダー
+		for (unsigned int i = 0; i < clies.size(); i++) {
+			ofs << clies[i]->GetPosition().x << ","
+				<< clies[i]->GetPosition().y << ","
+				<< clies[i]->GetPosition().z << ","
+				<< clies[i]->GetRotation().x << ","
+				<< clies[i]->GetRotation().y << ","
+				<< clies[i]->GetRotation().z << ","
+				<< clies[i]->GetScale().x << ","
+				<< clies[i]->GetScale().y << ","
+				<< clies[i]->GetScale().z << ","
+				<< 0 << ","
+				<< ENEMY_NO_DRUM << std::endl;
 		}
 	}
 
@@ -144,7 +161,8 @@ void EnemyGenerate::Update()
 			hp = stoi(str_buf_vec[9]);
 			enemy_index = stoi(str_buf_vec[10]);
 
-			Enemy_Interface* penemy;
+			Enemy_Interface* penemy = nullptr;
+			Cylinder* cly;
 
 			switch (enemy_index)
 			{
@@ -160,6 +178,12 @@ void EnemyGenerate::Update()
 			case ENEMY_TRACKING_LATE:
 				penemy = m_Scene->AddGameObject<Enemy_Tracking_Late>(LAYER_ENEMY);
 				break;
+			case ENEMY_NO_DRUM:
+				cly = m_Scene->AddGameObject<Cylinder>(LAYER_3D);
+				cly->SetPosition(pos);
+				cly->SetRotation(rot);
+				cly->SetScale(sca);
+				break;
 			case ENEMY_MAX:
 				penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
 				break;
@@ -168,11 +192,13 @@ void EnemyGenerate::Update()
 				break;
 			}			
 
-			penemy->SetPosition(pos);
-			penemy->SetRotation(rot);
-			penemy->SetScale(sca);
-			penemy->SetMaxHp(hp);
-			penemy->SetHp(hp);	
+			if (penemy != nullptr) {
+				penemy->SetPosition(pos);
+				penemy->SetRotation(rot);
+				penemy->SetScale(sca);
+				penemy->SetMaxHp(hp);
+				penemy->SetHp(hp);
+			}
 
 			str_buf_vec.clear();
 		}

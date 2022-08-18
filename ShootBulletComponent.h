@@ -47,7 +47,7 @@ public:
     }
 
     virtual void DrawImgui() override
-    {
+    {        
         ImGui::Checkbox("IsUseBullet", &m_IsUseBullet);
     }
 };

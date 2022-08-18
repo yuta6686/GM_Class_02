@@ -3,7 +3,7 @@
 
 void Cylinder::Init()
 {
-	m_Model = ResourceManger<Model>::GetResource("asset\\model\\cylinder.obj");
+	m_Model = ResourceManger<Model>::GetResource("asset\\model\\drum.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);

@@ -26,13 +26,13 @@ public:
     }
     virtual void Update() override
     {
-		if (GetKeyboardPress(DIK_I)) {
+		/*if (GetKeyboardPress(DIK_I)) {
 			m_CameraRot.y += PLAYER_SPEED / 5;
 		}
 
 		if (GetKeyboardPress(DIK_K)) {
 			m_CameraRot.y -= PLAYER_SPEED / 5;
-		}
+		}*/
 
 		if (IsMouseRightPressed()) {
 			m_CameraRot.y += GetMouseX() / m_MouseSpeed_Y;

@@ -10,6 +10,7 @@ enum ENEMY
     ENEMY_TRACKING,
     ENEMY_TRACKING_FAST,
     ENEMY_TRACKING_LATE,
+    ENEMY_NO_DRUM,
     ENEMY_MAX
 };
 class Enemy_Interface :
