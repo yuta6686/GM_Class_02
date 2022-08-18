@@ -40,6 +40,7 @@
 #include "ParticleObject_2D.h"
 #include "CO_Torii_Broken.h"
 #include "CO_Stand.h"
+#include "CO_Bow.h"
 
 
 void GameScene::Init()
@@ -155,6 +156,10 @@ void GameScene::Init()
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
 	AddGameObject<ParticleObject_2D>(LAYER_2D);
+
+	AddGameObject<CO_Bow>(LAYER_3D);
+
+	AddGameObject<CO_Bow>(LAYER_3D)->SetPosition({ 0.0f,20.0f,-50.0f });
 
 	m_IsPlayerDeath = false;
 }

@@ -321,6 +321,9 @@
     <ClCompile Include="CO_Stand.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="CO_Bow.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -723,6 +726,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CO_Stand.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Bow.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

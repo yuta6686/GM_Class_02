@@ -20,7 +20,7 @@ using namespace std;
 #define PLAYER_SPEED 0.01f
 
 static char texName[] = { "asset\\model\\torii.obj" };
-static float scale = 0.5f;
+static float scale = 2.0f;
 
 static std::shared_ptr<Scene> g_Scene;
 
@@ -54,7 +54,7 @@ void Player::Init()
 	AddComponent<MatrixComponent>(COMLAYER_MATRIX)->SetIsInvertXYRotate();
 
 	auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
-	mdc->SetSourcePath("asset\\model\\torii.obj");
+	mdc->SetSourcePath("asset\\model\\bow.obj");
 	//mdc->SetIsVariable(true);
 
 	AddComponent<PlayerRotateComponent>(COMLAYER_SECOND);

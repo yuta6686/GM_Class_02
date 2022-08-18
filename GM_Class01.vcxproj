@@ -25,6 +25,7 @@
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CO_Bow.cpp" />
     <ClCompile Include="CO_Stand.cpp" />
     <ClCompile Include="CO_Torii_Broken.cpp" />
     <ClCompile Include="Cube2D.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="CountComponent.h" />
     <ClInclude Include="CO_3DPloygonTest.h" />
     <ClInclude Include="CO_3DPolygon_circle.h" />
+    <ClInclude Include="CO_Bow.h" />
     <ClInclude Include="CO_Confirmation.h" />
     <ClInclude Include="CO_Select.h" />
     <ClInclude Include="CO_Stand.h" />
