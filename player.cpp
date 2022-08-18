@@ -358,7 +358,7 @@ void Player::SetParticle_Landing()
 	par.type = rand() % PARTICLE_TYPE_MAX;
 	par.use = true;
 	par.use_torii = false;
-	par.vel = MyMath::XZRandom(-0.05f, 0.05f);
-	par.vel.y = MyMath::Random(0.01f, 0.1f);
+	par.vel = MyMath::XZRandom(-0.15f, 0.15f);
+	par.vel.y = MyMath::Random(0.01f, 0.05f);
 	m_Particle->SetParticle(par);
 }
