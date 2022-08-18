@@ -8,9 +8,11 @@
 #include "MonochromeComponent.h"
 #include "VelocityComponent.h"
 #include "JumpComponent.h"
+#include "ParticleObject.h"
 
 class Audio;
 class Shadow;
+
 
 class Player :public ComponentObject
 {
@@ -28,8 +30,7 @@ private:
 	//D3DXVECTOR3 m_PlayerRotation;
 	//D3DXVECTOR3 m_TargetRotation;
 
-	class Audio* m_ShotSE;
-	class Shadow* m_Shadow;	
+	class Audio* m_ShotSE;	
 	class ShootBullet* m_ShootBullet;
 
 	inline static const float GRAVITY = 0.01f;
@@ -41,6 +42,7 @@ private:
 	bool m_IsNoMove = false;
 
 	VelocityComponent* m_VelocityCom;	
+	ParticleObject* m_Particle;
 public:
 	
 	void Init()	 override;	
@@ -88,5 +90,7 @@ private:
 	//	privateä÷êî
 	void PlayerMove();	
 	void GetItem();	
+	void SetParticle(const D3DXCOLOR& start_col);
+	void SetParticle_Landing();
 
 };

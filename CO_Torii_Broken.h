@@ -4,6 +4,7 @@
 #include "model.h"
 #include "Resource.h"
 #include "ResourceManager.h"
+#include "BlinkComponent.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -11,10 +12,11 @@
 struct FIELD_OBJECT {
     std::shared_ptr<Model> _model;
 
-    D3DXVECTOR3 _position;
+    D3DXVECTOR3 _position;    
     D3DXVECTOR3 _rotation;
     D3DXVECTOR3 _scale;
-    
+
+    float _blink;
 };
 class CO_Torii_Broken :
     public ComponentObject
@@ -25,6 +27,7 @@ private:
 
     std::vector<std::shared_ptr<Model>> m_Models;
     std::vector< FIELD_OBJECT> m_Objects;
+    std::vector< BlinkComponent*> m_Blink;
     std::string m_ModelName = "asset\\model\\torii\\torii_broken_";
     std::string m_Obj = ".obj";
 
@@ -73,7 +76,10 @@ public:
             fo._rotation = { 0.0f,0.0f,0.0f };
             fo._scale = { 3.0f,3.0f,3.0f };
             fo._model = m_Models[i];
+            fo._blink = 0.0f;
             m_Objects.push_back(fo);
+            m_Blink.push_back(AddComponent<BlinkComponent>(COMLAYER_SECOND));
+            m_Blink[i]->SetParameter(MyMath::Random(0.001f, 0.005f), MyMath::Random(0.5f,0.75f), MyMath::Random(1.25f,1.5f));
         }
 
         for (int i = 1; i < 100; i++) {
@@ -123,6 +129,16 @@ public:
         }
 
         ComponentObject::Init();
+    }
+
+    virtual void Update()override
+    {
+        for (unsigned int i = 0; i < m_Objects.size(); i++)
+        {
+            m_Objects[i]._blink = m_Blink[i]->GetBlinkValue();
+        }
+
+        ComponentObject::Update();
     }
 
     virtual void Draw()override
@@ -188,7 +204,7 @@ public:
                 }
 
                 m_Objects[index]._position.x = stof(str_buf_vec[0]);
-                m_Objects[index]._position.y = stof(str_buf_vec[1]);
+                m_Objects[index]._position.y = stof(str_buf_vec[1]) * m_Objects[index]._blink;
                 m_Objects[index]._position.z = stof(str_buf_vec[2]);
 
                 m_Objects[index]._rotation.x = stof(str_buf_vec[3]);
@@ -253,7 +269,7 @@ public:
                 m_Objects[i]._rotation.z);
             D3DXMatrixTranslation(&trans,
                 m_Objects[i]._position.x,
-                m_Objects[i]._position.y,
+                m_Objects[i]._position.y * m_Blink[i]->GetBlinkValue() ,
                 m_Objects[i]._position.z);
             world = scale * rot * trans;
             Renderer::SetWorldMatrix(&world);
