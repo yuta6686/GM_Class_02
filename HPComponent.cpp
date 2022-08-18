@@ -33,8 +33,9 @@ void HPComponent::Update()
 
 	float ratio = (float)m_Hp / (float)m_MaxHp;
 	float result = 0.0f;
+	float start = 0.0f;
 	MyMath::FloatLerp(&result,
-		&LEFT_POSITION,
+		&start,
 		&RIGHT_POSITION,
 		ratio);
 
@@ -57,4 +58,6 @@ void HPComponent::Draw()
 void HPComponent::DrawImgui()
 {
 	if (m_UIComponent == nullptr)return;
+
+	ImGui::Text("HPRatio : %.2f", (float)m_Hp / (float)m_MaxHp);
 }

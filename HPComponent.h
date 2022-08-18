@@ -53,5 +53,12 @@ public:
 
     virtual void DrawImgui() override;
 
+    float GetHpRatio()
+    {
+        return (float)m_Hp / (float)m_MaxHp;
+    }
+    
+    int GetHp() { return m_Hp; }
+    int GetMaxHp() { return m_MaxHp; }
 };
 

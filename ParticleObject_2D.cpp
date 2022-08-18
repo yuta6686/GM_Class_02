@@ -241,10 +241,10 @@ void ParticleObject_2D::SetParticle_Descent(const D3DXVECTOR4& end_color)
 	SetParticles(par);
 }
 
-void ParticleObject_2D::SetParticle_Gather()
+void ParticleObject_2D::SetParticle_Gather(const D3DXVECTOR4& end_color)
 {
 	PARTICLE2D par;
-	par.m_Color4OverLifeTime_Start = { 1.0f,0.2f,0.4f,1.0f };
+	par.m_Color4OverLifeTime_Start = end_color;
 	par.m_Color4OverLifeTime_End = {1.0f,0.0f,0.0f,0.0f};
 	par.col4 = par.m_Color4OverLifeTime_Start;
 	par.life = 120;
