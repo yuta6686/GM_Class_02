@@ -57,7 +57,7 @@ void Player::Init()
 
 	auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
 	mdc->SetSourcePath("asset\\model\\bow.obj");
-	//mdc->SetIsVariable(true);
+	mdc->SetIsVariable(true);
 
 	AddComponent<PlayerRotateComponent>(COMLAYER_SECOND);
 
@@ -127,6 +127,13 @@ void Player::DrawImgui()
 
 
 	ImGui::Checkbox("IsPlayer_Move", &m_IsUseBullet);
+
+	static ImVec4 color = { 1.0f,1.0f,1.0f,1.0f };
+
+	ImGui::ColorEdit4("color", (float*)&color);
+
+	MyMath::FromImVec4ToD3DXCOLOR(&m_Color ,color);
+	GetComponent< ModelDrawComponent>()->SetDiffuse(m_Color);
 
 	ImGui::Separator();
 

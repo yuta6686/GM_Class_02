@@ -43,6 +43,7 @@ private:
 
 	VelocityComponent* m_VelocityCom;	
 	ParticleObject* m_Particle;
+	D3DXCOLOR m_Color = { 1.0f,1.0f,1.0f,1.0f };
 public:
 	
 	void Init()	 override;	

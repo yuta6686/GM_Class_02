@@ -1,5 +1,7 @@
 #include "MonochromeComponent.h"
 #include "Enemy.h"
+#include "ShootBullet_Amass.h"
+#include "ShootBullet_Shoot.h"
 void MonochromeComponent::Init()
 {
     m_VelocityComponents = m_Parent->GetComponents<VelocityComponent>();
@@ -10,6 +12,8 @@ void MonochromeComponent::Init()
     m_Count->Start(true, 1, 0,0);
 
     m_Scene = Manager::GetScene();
+
+    
 }
 void MonochromeComponent::Uninit()
 {
@@ -17,16 +21,20 @@ void MonochromeComponent::Uninit()
 void MonochromeComponent::Update()
 {
     VelocityComponent* pvel = m_Parent->GetComponent<VelocityComponent>();
+    m_ShootBullet = m_Parent->GetComponent<ShootBulletComponent>()->GetShootBullet();
 
     m_Enemys = m_Scene->GetGameObjectLayer(LAYER_ENEMY);
 
     
     int BulletNum = m_BulletNum * 7;
 
+    
     //  GetKeyboardPress(DIK_SPCE)はプレイヤーのVelocityが0より大きかったらにする
-    if ((pvel->m_Velocity.y > 0.1f ||
-        pvel->m_Velocity.y < -0.1f) &&
-        IsMouseLeftTriggered()) {
+    if ((pvel->m_Velocity.y > 0.05f ||
+        pvel->m_Velocity.y < -0.05f) &&
+        IsMouseLeftTriggered()) //  IsMouseLeftTriggerd() --> ShootBulletがShootBullet_Amassだったら
+    {
+
         m_Count->Start(false, 30, 0,0);
 
         m_In = true;
@@ -41,8 +49,10 @@ void MonochromeComponent::Update()
     }
 
     //  !GetKeyboardPress(DIK_SPCE)はプレイヤーのVelocityが止まったらにする。
+    //   ImGui::IsMouseReleased(ImGuiMouseButton_Left) --> ShootBulletがShootBullet_Idleだったら
     if (!pvel->GetHasVelocityChanged_Y() &&
-        ImGui::IsMouseReleased(ImGuiMouseButton_Left) &&
+        //ImGui::IsMouseReleased(ImGuiMouseButton_Left) &&
+        dynamic_cast<ShootBullet_Shoot*>(m_ShootBullet) &&
         m_In)
     {
         m_In = false;

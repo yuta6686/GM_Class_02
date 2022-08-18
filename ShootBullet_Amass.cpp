@@ -26,6 +26,9 @@ void ShootBullet_Amass::Update()
 		
 		if (m_Counter % 10 == 0) {
 			m_BulletNum++;						
+			if (m_BulletNum >= 20) {
+				m_IsNextState = true;
+			}
 		}
 		m_Counter++;
 		m_uiCharge->SetCounter((float)m_Counter/10.0f);		

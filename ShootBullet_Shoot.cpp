@@ -27,6 +27,8 @@ void ShootBullet_Shoot::Uninit()
 
 void ShootBullet_Shoot::Update()
 {
+	m_Player->GetComponent<ModelDrawComponent>()->SetDiffuse({ 1.0f,1.0f,1.0f,0.2f });
+
 
 	m_Counter++;
 	if (m_Counter >= 10) {
@@ -42,11 +44,12 @@ void ShootBullet_Shoot::Update()
 		rot.z = rrot.z;
 
 		//	ƒZƒbƒg
-		D3DXVECTOR3 offset = { 0.0f,2.5f,0.0f };
+		D3DXVECTOR3 offset = { 0.0f,0.5f,0.0f };
 		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
 		m_Bullet->SetRotation(rot);
 		
 		float speed = static_cast<float>(m_BulletNum + 2);
+		speed = logf(speed);
 		
 		float scale = speed * 2.0f;
 
@@ -85,5 +88,6 @@ void ShootBullet_Shoot::Draw()
 
 ShootBullet* ShootBullet_Shoot::CreateNextState()
 {
+	m_Player->GetComponent<ModelDrawComponent>()->SetDiffuse({ 1.0f,1.0f,1.0f,1.0f });
 	return new ShootBullet_Idle();
 }

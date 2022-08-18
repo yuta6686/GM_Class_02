@@ -6,6 +6,7 @@
 #include "manager.h"
 
 class Enemy;
+class ShootBullet;
 class MonochromeComponent :
 	public Component
 {
@@ -19,6 +20,7 @@ private:
 	VALIABLE m_Valiable = { 0.0f,1.0f,1.0f,1.0f };
 	std::vector<VelocityComponent*> m_VelocityComponents;
 	std::vector<GameObject*> m_Enemys;
+	ShootBullet* m_ShootBullet;
 public:
 	void SetBulletNum(const int& bulletnum) { m_BulletNum = bulletnum; }
 

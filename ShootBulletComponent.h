@@ -9,6 +9,7 @@ private:
 
     bool m_IsUseBullet = true;
 public:    
+    ShootBullet* GetShootBullet() { return m_ShootBullet; }
     void SetIsUseBullet(bool flag = true) { m_IsUseBullet = flag; }
     virtual void Init() override
     {
