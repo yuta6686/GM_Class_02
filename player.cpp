@@ -20,7 +20,7 @@ using namespace std;
 #define PLAYER_SPEED 0.01f
 
 static char texName[] = { "asset\\model\\torii.obj" };
-static float scale = 2.0f;
+static float scale = 1.0f;
 
 static std::shared_ptr<Scene> g_Scene;
 
@@ -33,7 +33,7 @@ void Player::Init()
 
 
 
-	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	m_Position = D3DXVECTOR3(0.0f, 2.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 

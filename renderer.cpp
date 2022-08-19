@@ -350,7 +350,7 @@ void Renderer::Init()
 
 	// ƒ}ƒeƒŠƒAƒ‹‰Šú‰»
 	MATERIAL material{};
-	material.Diffuse = D3DXCOLOR(0.5f, 0.5f, 0.5f, 0.5f);
+	material.Diffuse = D3DXCOLOR(0.5f, 0.5f, 0.5f, 0.0f);
 	material.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 0.2f);
 	material.Emission = D3DXCOLOR(0, 0, 0, 0);	
 	SetMaterial(material);

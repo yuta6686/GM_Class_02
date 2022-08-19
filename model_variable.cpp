@@ -20,7 +20,7 @@ void Model_variable::Draw()
 	for (unsigned int i = 0; i < m_SubsetNum; i++)
 	{
 		// マテリアル設定	
-		m_SubsetArray[i].Material.Material.Diffuse = m_Diffuse;
+		m_SubsetArray[i].Material.Material.Diffuse = m_Diffuse;		
 		Renderer::SetMaterial(m_SubsetArray[i].Material.Material);
 
 		// テクスチャ設定

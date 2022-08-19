@@ -103,6 +103,30 @@ public:
 
         return ResultObjects;
     }
+    
+    std::vector<GameObject*> IsCollisionCube(const int& Layer)
+    {
+        std::vector<GameObject*> m_GameObjects;
+        std::vector<GameObject*> ResultObjects;
+        m_GameObjects = m_Scene->GetGameObjectLayer(Layer);
+        for (auto object : m_GameObjects) {
+            D3DXVECTOR3 objectPosition = object->GetPosition();
+            D3DXVECTOR3 parentPosition = m_Parent->GetPosition();
+            D3DXVECTOR3 objectScale = object->GetScale();
+            D3DXVECTOR3 parentScale = m_Parent->GetScale();
+
+            if (objectPosition.x + objectScale.x/6.0f > parentPosition.x - parentScale.x &&
+                objectPosition.x - objectScale.x/6.0f <= parentPosition.x + parentScale.x &&
+                objectPosition.y + objectScale.y*3.5f >= parentPosition.y - parentScale.y &&
+                objectPosition.y - objectScale.y < parentPosition.y + parentScale.y &&
+                objectPosition.z + objectScale.z / 6.0f >= parentPosition.z - parentScale.z &&
+                objectPosition.z - objectScale.z / 6.0f < parentPosition.z + parentScale.z) {
+                ResultObjects.push_back(object);
+            }
+        }
+
+        return ResultObjects;
+    }
 
    /* template<class T>
     std::vector<T*> IsCollisionCube()

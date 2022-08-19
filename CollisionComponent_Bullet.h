@@ -9,7 +9,7 @@ class CollisionComponent_Bullet :
 public:
     virtual void Update() override
     {
-        std::vector<GameObject*> enemys = IsCollisionSphere(LAYER_ENEMY);
+        std::vector<GameObject*> enemys = IsCollisionCube(LAYER_ENEMY);
         for (auto enemy : enemys) {
             dynamic_cast<Enemy_Interface*>(enemy)->CollosionWithBullet();            
 

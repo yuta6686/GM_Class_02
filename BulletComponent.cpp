@@ -41,8 +41,7 @@ void BulletComponent::Update()
 		par.type = rand() % PARTICLE_TYPE_MAX;
 		par.use = true;
 		par.use_torii = false;
-		par.vel = MyMath::XZRandom(-0.01f, 0.01f);
-		par.vel.y = MyMath::Random(0.01f, 0.2f);
+		par.vel = MyMath::XZRandom(-0.01f, 0.01f);		
 		
 		m_Particle->SetParticle(par);
 	}

@@ -44,14 +44,13 @@ void ShootBullet_Shoot::Update()
 		rot.z = rrot.z;
 
 		//	ƒZƒbƒg
-		D3DXVECTOR3 offset = { 0.0f,0.5f,0.0f };
-		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
+		D3DXVECTOR3 offset = { 0.0f,2.0f,0.0f };
+		m_Bullet->SetPosition(m_Player->GetPosition() + offset + m_Player->GetForward()*0.2f);
 		m_Bullet->SetRotation(rot);
 		
-		float speed = static_cast<float>(m_BulletNum + 2);
-		speed = logf(speed);
+		float speed = static_cast<float>(m_BulletNum + 2);		
 		
-		float scale = speed * 2.0f;
+		float scale = logf(speed * 2.0f) + 0.0f;
 
 		m_Bullet->Shoot(m_Player->GetCameraForward(), speed);
 		m_Bullet->SetScale({ scale,scale,scale });
