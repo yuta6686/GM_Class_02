@@ -104,7 +104,7 @@ public:
         return ResultObjects;
     }
     
-    std::vector<GameObject*> IsCollisionCube(const int& Layer)
+    std::vector<GameObject*> IsCollisionCube_Enemy(const int& Layer)
     {
         std::vector<GameObject*> m_GameObjects;
         std::vector<GameObject*> ResultObjects;
