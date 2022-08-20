@@ -64,9 +64,6 @@
     <Filter Include="GameObject\Object\GameSceneObject\MoveObjects\Bullet">
       <UniqueIdentifier>{f020f1ea-6b40-4061-84a6-9a4016926191}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Object\GameSceneObject\Enemy">
-      <UniqueIdentifier>{84e28b46-f434-426e-a885-af12eefef1e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Object\GameSceneObject\Effect">
       <UniqueIdentifier>{7404b7f8-06d8-4d3c-883e-d086b6c6f2a8}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,24 @@
     </Filter>
     <Filter Include="GameObject\Component\ComponentObject">
       <UniqueIdentifier>{907161ae-b483-458a-b63a-252891e0737f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Collision">
+      <UniqueIdentifier>{c50465a7-e935-46e2-88a4-a160a34bbe44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\UI\2D">
+      <UniqueIdentifier>{eb084f03-22db-4329-b24f-36c4619b26b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\ComponentObject\2D">
+      <UniqueIdentifier>{6b9106f2-f228-4536-82ef-948ad40796fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\ComponentObject\3D">
+      <UniqueIdentifier>{87aa624b-020f-4759-baf0-972fed034ee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\UI\3D">
+      <UniqueIdentifier>{7627deba-eab6-4494-9c52-86ffeef6bd48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\ComponentObject\Enemy">
+      <UniqueIdentifier>{84e28b46-f434-426e-a885-af12eefef1e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,12 +192,6 @@
     <ClCompile Include="Shadow.cpp">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="ShootBullet.cpp">
-      <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="ShootBullet_Amass.cpp">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
@@ -200,9 +209,6 @@
     </ClCompile>
     <ClCompile Include="UserInterface.cpp">
       <Filter>GameObject\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject_Invoke.cpp">
-      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="Invoke_test.cpp">
       <Filter>System</Filter>
@@ -240,9 +246,6 @@
     <ClCompile Include="MatrixComponent.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="ModelDrawComponent.cpp">
-      <Filter>GameObject\Component\Draw</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderComponent.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
@@ -258,17 +261,68 @@
     <ClCompile Include="BulletComponent.cpp">
       <Filter>GameObject\Component\Function</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentObjectTest.cpp">
-      <Filter>GameObject\Component</Filter>
-    </ClCompile>
     <ClCompile Include="BlinkComponent.cpp">
       <Filter>GameObject\Component\UI</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyGenerate.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon3DComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="model_variable.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
     <ClCompile Include="Rotate2D.cpp">
-      <Filter>GameObject\Component\UI</Filter>
+      <Filter>GameObject\Component\UI\2D</Filter>
     </ClCompile>
     <ClCompile Include="UserInterfaceComponent.cpp">
-      <Filter>GameObject\Component\UI</Filter>
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootBulletComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="MonochromeComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWave_1_3.cpp">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWave_2_3.cpp">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyWave_3_3.cpp">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene2.cpp">
+      <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene3.cpp">
+      <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="HPComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="DefeatScene.cpp">
+      <Filter>GameObject\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleObject_2D.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomJumpComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent_Enemy.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Tutorial_Move.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -366,13 +420,13 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Interface.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyFactory.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>GameObject\Object\GameSceneObject\Enemy</Filter>
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="effect_explosion.h">
       <Filter>GameObject\Object\GameSceneObject\Effect</Filter>
@@ -423,9 +477,6 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Invoke_test.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Transition.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="multi_thread.h">
@@ -482,26 +533,230 @@
     <ClInclude Include="BlinkComponent.h">
       <Filter>GameObject\Component\UI</Filter>
     </ClInclude>
-    <ClInclude Include="BlinkComponentAlpha2D.h">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Rotate2D.h">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexChangeComponent.h">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UserInterfaceComponent.h">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClInclude>
     <ClInclude Include="BulletComponent.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentObjectTest.h">
-      <Filter>GameObject\Component\ComponentObject</Filter>
+    <ClInclude Include="VertexInitialize.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleDeploy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="model_variable.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitScene.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleObject.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent_Bullet.h">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureComponent.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmationComponent.h">
+      <Filter>GameObject\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackingComponent.h">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="BlinkComponentAlpha2D.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotate2D.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon3DComponent.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelColorChangeComponent.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelColorChangeComponent_Titlebg.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexChangeComponent.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexChangerComponent_Color.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexChangeComponent_ToGame.h">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterfaceComponent.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_3DPloygonTest.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_3DPolygon_circle.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Confirmation.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_TitleBackGround.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_toExit.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_toGame.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_ToriiBlock.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
     </ClInclude>
     <ClInclude Include="CO_UI_AimLing.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentObjectTest.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiObject_Title.h">
+      <Filter>GameObject\Object\GameSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_1_1.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGenerate.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_1_2.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_1_3.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_2_1.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_2_2.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_2_3.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyWave_3_all.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene3.h">
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene2.h">
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent_Player.h">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="DefeatScene.h">
+      <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Select.h">
       <Filter>GameObject\Component\ComponentObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Select.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Default.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_dot.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Line.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_PlayerHPGauge.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Quest.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Quest_Belt.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Quest_Purpose.h">
+      <Filter>GameObject\Component\ComponentObject\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="VelocityComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="StageLimitComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootBulletComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRotateComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MonochromeComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="HPComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CountComponent.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleObject_2D.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Bow.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Stand.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Torii_Broken.h">
+      <Filter>GameObject\Component\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_EnemyWave.h">
+      <Filter>GameObject\Component\ComponentObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="StageLimitComponent_Reflect.h">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomVelocityComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomJumpComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent_Enemy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Tutorial.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Tutorial_Move.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Noise.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Tutorial_Move2.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -524,6 +779,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="testPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="unlitTextureNoMat.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

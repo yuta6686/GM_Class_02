@@ -17,6 +17,17 @@ void ShaderComponent::Init()
 		m_PixelShader =
 			ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
 		break;
+	case SHADER_UNLIT_NO_MATERIAL:
+		m_VertexShader =
+			ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_NO_MATERIAL_VERTEX_SHADER.c_str());
+		m_PixelShader =
+			ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+	case SHADER_TEST:
+		m_VertexShader =
+			ResourceManger<VertexShader>::GetResource("testVS.cso");
+		m_PixelShader =
+			ResourceManger<PixelShader>::GetResource("testPS.cso");
+		break;
 	default:
 		break;
 	}

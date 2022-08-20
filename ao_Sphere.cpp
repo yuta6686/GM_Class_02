@@ -13,7 +13,7 @@
 void Ao_Sphere::Init()
 {
 	m_Model = new Model();
-	m_Model->Load("asset\\model\\ao_Sphere.obj");
+	m_Model->Load("asset\\model\\ao_Sphere_sky.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);

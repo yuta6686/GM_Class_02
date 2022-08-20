@@ -1,11 +1,21 @@
 #pragma once
 #include "Component.h"
+#include "scene.h"
+#include "manager.h"
+#include "camera.h"
 
 class MatrixComponent :
     public Component
 {
 private:
     bool m_Is2D = false;
+    bool m_IsBillboard = false;
+    bool m_IsInvertXYRotate = false;
+
+    std::shared_ptr<Scene> m_Scene;
+
+    Camera* m_Camera;
+
 public:
 
 
@@ -23,5 +33,8 @@ public:
     void SetIs2D(bool flag = true) {
         m_Is2D = flag;
     }
+
+    void SetIsBillboard(bool flag = true) { m_IsBillboard = flag; }
+    void SetIsInvertXYRotate(bool flag = true) { m_IsInvertXYRotate = flag; }
 };
 

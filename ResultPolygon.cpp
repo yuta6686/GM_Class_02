@@ -51,7 +51,7 @@ void ResultPolygon::Init()
 		NULL);
 
 	assert(m_Texture);*/
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\blender1.png");
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\gameover_bg.png");
 	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
 	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
 

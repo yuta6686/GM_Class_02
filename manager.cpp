@@ -34,6 +34,7 @@ void Manager::Uninit()
 	delete m_Scene;*/
 
 	ResourceManger<Model>::AllRelease();
+	ResourceManger<Model_variable>::AllRelease();
 	ResourceManger<Texture>::AllRelease();
 	ResourceManger<VertexShader>::AllRelease();
 	ResourceManger<PixelShader>::AllRelease();

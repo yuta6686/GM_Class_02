@@ -1,6 +1,7 @@
 #include "ShootBullet_Amass.h"
 #include "ShootBullet_Shoot.h"
 #include "UI_Charge.h"
+#include "player.h"
 
 #include "GameScene.h"
 #include "manager.h"
@@ -10,8 +11,8 @@ void ShootBullet_Amass::Init()
 	m_BulletNum = 0;
 	m_Counter = 0;
 
-	std::shared_ptr<Scene> scene = Manager::GetScene();
-	m_uiCharge = scene->GetGameObject<UI_Charge>();
+	m_Scene = Manager::GetScene();
+	m_uiCharge = m_Scene->GetGameObject<UI_Charge>();
 }
 
 void ShootBullet_Amass::Uninit()
@@ -25,6 +26,9 @@ void ShootBullet_Amass::Update()
 		
 		if (m_Counter % 10 == 0) {
 			m_BulletNum++;						
+			if (m_BulletNum >= 20) {
+				m_IsNextState = true;
+			}
 		}
 		m_Counter++;
 		m_uiCharge->SetCounter((float)m_Counter/10.0f);		
@@ -46,5 +50,9 @@ void ShootBullet_Amass::Draw()
 
 ShootBullet* ShootBullet_Amass::CreateNextState()
 {
+	m_Scene->GetGameObject<Player>()
+		->GetComponent<MonochromeComponent>()
+		->SetBulletNum(m_BulletNum);
+
     return new ShootBullet_Shoot(m_BulletNum,m_Counter);
 }

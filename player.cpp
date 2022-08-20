@@ -10,139 +10,134 @@
 #include "Shadow.h"
 #include "ShootBullet_Idle.h"
 #include "Cylinder.h"
+
+#include "StageLimitComponent.h"
+#include "HPComponent.h"
+#include "CollisionComponent_Player.h"
+
 using namespace std;
 
 #define PLAYER_SPEED 0.01f
 
 static char texName[] = { "asset\\model\\torii.obj" };
-static float scale = 0.5f;
+static float scale = 1.0f;
 
 static std::shared_ptr<Scene> g_Scene;
 
 
 void Player::Init()
 {
-	m_Model = ResourceManger<Model>::GetResource(texName);
-
-
-	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
-		"vertexLightingVS.cso");
-
-	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");
-
 	std::shared_ptr<Scene> scene = Manager::GetScene();
 	m_ShotSE = scene->AddGameObject<Audio>(LAYER_AUDIO);
-	m_ShotSE->Load("asset\\audio\\wan.wav");
+	m_ShotSE->Load("asset\\audio\\ビーム音.wav");
 
 
 
-	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	m_Position = D3DXVECTOR3(0.0f, 2.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
 	g_Scene = Manager::GetScene();
 
-	m_Shadow = g_Scene->AddGameObject<Shadow>(LAYER_3D);
+	
 
-	m_ShootBullet = new ShootBullet_Idle();
-	m_ShootBullet->Init();
-
-	m_Velocity = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	//m_ShootBullet = new ShootBullet_Idle();
+	//m_ShootBullet->Init();	
 
 	m_TypeName = "Player";
-}
 
-void Player::Uninit()
-{
+	m_Particle = g_Scene->AddGameObject<ParticleObject>(LAYER_3D);
+	
 
-	m_VertexLayout->Release();
-	m_VertexShader->Release();
-	m_PixelShader->Release();
+//	↓ここにコンポーネントついか　--------------------------------------	
 
-	m_ShootBullet->Uninit();
-	delete m_ShootBullet;
+	AddComponent<ShaderComponent>(COMLAYER_SHADER);
+
+	AddComponent<MatrixComponent>(COMLAYER_MATRIX)->SetIsInvertXYRotate();
+
+	auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
+	mdc->SetSourcePath("asset\\model\\bow.obj");
+	mdc->SetIsVariable(true);
+
+	AddComponent<PlayerRotateComponent>(COMLAYER_SECOND);
+
+	AddComponent< ShootBulletComponent>(COMLAYER_SECOND);
+
+	
+
+
+	m_VelocityCom = AddComponent<VelocityComponent>(COMLAYER_SECOND);
+
+	AddComponent< StageLimitComponent>(COMLAYER_SECOND);
+
+	AddComponent< HPComponent>(COMLAYER_SECOND);
+
+	AddComponent< CollisionComponent_Player>(COMLAYER_SECOND);
+	
+
+//	↑ここにコンポーネントついか　--------------------------------------
+
+	AddComponent<MonochromeComponent>(COMLAYER_SECOND);
+
+	AddComponent< ImGuiComponent>(COMLAYER_SECOND);
+
+	ComponentObject::Init();
 }
 
 void Player::Update()
 {
-	InvokeUpdate();
+
+	if (m_IsNoMove) {
+		GetComponent<PlayerRotateComponent>()->Update();
+		return;
+	}
+	else
+	{
+		ComponentObject::Update();
+	}
 
 	//	プレイヤー移動処理
 	PlayerMove();
 
-	//	プレイヤー回転処理
-	PlayerRotation();
-
-	//	バレット撃つ処理
-	ShootBulletFunc();
-
 	//	アイテム取得	
 	GetItem();
 
-	//#ifdef _DEBUG
-	//	char* str = GetDebugStr();
-	//	wsprintf(GetDebugStr(), "game");
-	//	wsprintf(&str[strlen(str)], "Position.x: %d y:%d z:%d",
-	//		(int)m_Position.x,
-	//		(int)m_Position.y,
-	//		(int)m_Position.z);
-	//
-	//	SetWindowText(GetWindow(), GetDebugStr());
-	//#endif
 
 
-	D3DXVECTOR3 shadowPos = m_Position;
-	shadowPos.y = 0.25f;
-	m_Shadow->SetPosition(shadowPos);
-	m_Shadow->SetScale(m_Scale * 2.0f);
+
+	
 }
 
 void Player::Draw()
 {
-	//入力レイアウト設定
-	Renderer::GetDeviceContext()->IASetInputLayout(m_VertexLayout);
-
-	////シェーダ設定
-	Renderer::GetDeviceContext()->VSSetShader(m_VertexShader, NULL, 0);
-	Renderer::GetDeviceContext()->PSSetShader(m_PixelShader, NULL, 0);
-
-	//マトリクス設定
-	D3DXMATRIX world, scale, rot, trans;
-	D3DXMatrixScaling(&scale, m_Scale.x, m_Scale.y, m_Scale.z);
-	D3DXMatrixRotationYawPitchRoll(&rot, m_Rotation.y, m_Rotation.x, m_Rotation.z);
-	D3DXMatrixTranslation(&trans, m_Position.x, m_Position.y, m_Position.z);
-	world = scale * rot * trans;
-	Renderer::SetWorldMatrix(&world);
-
-	m_Model->Draw();
-
-
-
-
-
+	if (GetComponent<HPComponent>()->GetIsDeath())return;
+	ComponentObject::Draw();
 }
 
 void Player::DrawImgui()
 {
 #ifdef _DEBUG
 
+	
 
-	m_ShootBullet->Draw();
+	ImGui::Separator();
+
+	ImGui::Text("Velocity Length:%.2f",D3DXVec3Length(&m_VelocityCom->m_Velocity));
+	ImGui::Text("Velocity Y:%.2f", m_VelocityCom->m_Velocity.y);
+
+
+	ImGui::Checkbox("IsPlayer_Move", &m_IsUseBullet);
+
+	static ImVec4 color = { 1.0f,1.0f,1.0f,1.0f };
+
+	ImGui::ColorEdit4("color", (float*)&color);
+
+	MyMath::FromImVec4ToD3DXCOLOR(&m_Color ,color);
+	GetComponent< ModelDrawComponent>()->SetDiffuse(m_Color);
 
 	ImGui::Separator();
 
-
-	if (ImGui::Button("Player->Jump")) {
-		if (m_Position.y >= 0.2f) {
-			m_Velocity.y = JUMP * 1.5f;
-		}
-		else {
-			m_Velocity.y = JUMP;
-		}
-	}
-
-
-	ImGui::Separator();
+	ComponentObject::DrawImgui();
 
 #endif // _DEBUG
 }
@@ -156,87 +151,109 @@ void Player::PlayerMove()
 	//	プレイヤー移動処理
 	if (GetKeyboardPress(DIK_W)) {
 
-
-
-		Move();
-
-		//	これで実質あれができる。
-		//	けどやめとけ。
-		/*thread thd([this]{
-			this_thread::sleep_for(5s);
-			Move();
-			});
-
-		thd.detach();*/
-		m_TargetRotation.y = 0.0f;
+		m_VelocityCom->m_Velocity.z += PLAYER_SPEED * forward.z;
+		m_VelocityCom->m_Velocity.x += PLAYER_SPEED * forward.x;
 	}
-
-
-
 	if (GetKeyboardPress(DIK_S)) {
-		m_Velocity.z -= PLAYER_SPEED * forward.z;
-		m_Velocity.x -= PLAYER_SPEED * forward.x;
-
-		m_TargetRotation.y = D3DX_PI;
+		m_VelocityCom->m_Velocity.z -= PLAYER_SPEED * forward.z;
+		m_VelocityCom->m_Velocity.x -= PLAYER_SPEED * forward.x;
 	}
-
 	if (GetKeyboardPress(DIK_A)) {
-		m_Velocity.z += PLAYER_SPEED * GetLeft().z;
-		m_Velocity.x += PLAYER_SPEED * GetLeft().x;
-
-		m_TargetRotation.y = -D3DX_PI / 2;
+		m_VelocityCom->m_Velocity.z += PLAYER_SPEED * GetLeft().z;
+		m_VelocityCom->m_Velocity.x += PLAYER_SPEED * GetLeft().x;
 	}
 	if (GetKeyboardPress(DIK_D)) {
-		m_Velocity.z += PLAYER_SPEED * GetRight().z;
-		m_Velocity.x += PLAYER_SPEED * GetRight().x;
-
-		m_TargetRotation.y = D3DX_PI / 2;
-	}
-	D3DXVECTOR3 dist = m_TargetRotation - m_PlayerRotation;
-
-	if (dist.y > D3DX_PI) {
-		dist.y -= D3DX_PI * 2.0f;
-	}
-	else if (dist.y < -D3DX_PI) {
-		dist.y += D3DX_PI * 2.0f;
+		m_VelocityCom->m_Velocity.z += PLAYER_SPEED * GetRight().z;
+		m_VelocityCom->m_Velocity.x += PLAYER_SPEED * GetRight().x;
 	}
 
-	//	m_PlayerRotation += dist * 0.1f;
+	if (m_IsUseBullet) 
+	{		
+		float speedup = 3.0f;
 
-	if (m_PlayerRotation.y > D3DX_PI) {
-		m_PlayerRotation.y -= D3DX_PI * 2.0f;
-	}
-	else if (m_PlayerRotation.y < -D3DX_PI) {
-		m_PlayerRotation.y += D3DX_PI * 2.0f;
-	}
+		//	プレイヤー移動処理
+		if (GetKeyboardPress(DIK_W)) {
 
-
-	if (GetKeyboardTrigger(DIK_SPACE)) {
-		if (m_Position.y >= 0.2f) {
-			m_Velocity.y = JUMP * 1.5f;
+			m_VelocityCom->m_Velocity.z += PLAYER_SPEED * forward.z * speedup;
+			m_VelocityCom->m_Velocity.x += PLAYER_SPEED * forward.x * speedup;
 		}
-		else {
-			m_Velocity.y = JUMP;
+		if (GetKeyboardPress(DIK_S)) {
+			m_VelocityCom->m_Velocity.z -= PLAYER_SPEED * forward.z * speedup;
+			m_VelocityCom->m_Velocity.x -= PLAYER_SPEED * forward.x * speedup;
+		}
+		if (GetKeyboardPress(DIK_A)) {
+			m_VelocityCom->m_Velocity.z += PLAYER_SPEED * GetLeft().z * speedup;
+			m_VelocityCom->m_Velocity.x += PLAYER_SPEED * GetLeft().x * speedup;
+		}
+		if (GetKeyboardPress(DIK_D)) {
+			m_VelocityCom->m_Velocity.z += PLAYER_SPEED * GetRight().z * speedup;
+			m_VelocityCom->m_Velocity.x += PLAYER_SPEED * GetRight().x * speedup;
+		}
+
+
+		if (GetKeyboardPress(DIK_I)) {
+			
+			m_VelocityCom->m_Velocity.y += PLAYER_SPEED * speedup;
+		}
+		if (GetKeyboardPress(DIK_K)) {			
+			m_VelocityCom->m_Velocity.y -= PLAYER_SPEED * speedup;
+		}
+	}
+	else
+	{
+		//	重力	
+		m_VelocityCom->m_Velocity.y -= GRAVITY;
+	}
+
+	static int counter = 0;
+
+	if (counter % 2 == 0) {
+
+
+		float length = D3DXVec3Length(&m_VelocityCom->m_Velocity);
+
+		if (length >= 0.03f &&
+			length < 0.06f) {
+			SetParticle({0.0f,1.0f,1.0f,0.5f});
+		}
+		else if (length >= 0.06f &&
+			length < 0.15f) 
+		{
+			for (int i = 0; i < 2; i++)
+				SetParticle({ 0.0f,1.0f,1.0f,0.75f });
+
+		}
+		else if(length >= 0.15f)
+		{
+			for (int i = 0; i < 5; i++)
+				SetParticle({ 0.0f,1.0f,1.0f,1.0f });
 		}
 	}
 
-	//	重力
-	m_Velocity.y -= GRAVITY;
+	
+	counter++;
+					
 
-	//	減衰
-	m_Velocity.x *= ATTENUATION.x;
-	m_Velocity.y *= ATTENUATION.y;
-	m_Velocity.z *= ATTENUATION.z;
+	//	減衰	
+	m_VelocityCom->m_Velocity.x *= ATTENUATION.x;	
+	m_VelocityCom->m_Velocity.y *= ATTENUATION.y;
+	m_VelocityCom->m_Velocity.z *= ATTENUATION.z;
 
 
 
 	D3DXVECTOR3 oldPos = m_Position;
+	float groundHeight = 0.0f;
 
-	m_Position += m_Velocity;
+	std::vector<CO_Stand*> stands = GetComponent<CollisionComponent>()->IsCollisionXAxis<CO_Stand>();
+	if (!stands.empty())
+	{
+		groundHeight = 0.1f * stands[0]->GetScale().y;
+		m_Position = oldPos;
+	}
 
 	//	接台
 
-	float groundHeight = 0.0f;
+	
 	std::vector<Cylinder*> clylist = g_Scene->GetGameObjects<Cylinder>();
 	for (auto cly : clylist) {
 		D3DXVECTOR3 clyPos = cly->GetPosition();
@@ -260,53 +277,32 @@ void Player::PlayerMove()
 		}
 	}
 
+
+
+	//	ジャンプ	
+	if (GetKeyboardTrigger(DIK_SPACE) &&
+		m_Position.y < groundHeight + 0.1f &&
+		m_VelocityCom->m_Velocity.y < 0.1f) {
+		for (int i = 0; i < 100; i++)
+			SetParticle_Landing();
+		m_VelocityCom->m_Velocity.y = JUMP;
+	}
+
 	//	接地	
 	if (m_Position.y < groundHeight &&
-		m_Velocity.y < 0.0f) {
+		m_VelocityCom->m_Velocity.y < 0.0f) {
+
+		if (m_VelocityCom->m_Velocity.y < -0.35f) {
+			for(int i=0;i<100;i++)
+				SetParticle_Landing();
+		}
 		m_Position.y = groundHeight;
-		//	m_Velocity.y = 0;
-
-		//	反発
-		{
-			m_Velocity.y = m_Velocity.y * -0.25f;
-
-			if (m_Velocity.y < 0.2f) {
-				m_Velocity.y = 0;
-			}
-		}
+		m_VelocityCom->m_Velocity.y = 0;		
 	}
+
+
 }
 
-void Player::PlayerRotation()
-{
-	if (GetKeyboardPress(DIK_I)) {
-		m_CameraRot.y += PLAYER_SPEED / 5;
-	}
-
-	if (GetKeyboardPress(DIK_K)) {
-		m_CameraRot.y -= PLAYER_SPEED / 5;
-	}
-
-	if (IsMouseRightPressed()) {
-		m_CameraRot.y += GetMouseX() / 100.0f;
-
-		if (m_CameraRot.x > GetRadian(60.0f)) {
-			m_CameraRot.x = GetRadian(60.0f);
-		}
-		else if (m_CameraRot.x < GetRadian(-60.0f)) {
-			m_CameraRot.x = GetRadian(-60.0f);
-		}
-		else {
-			m_CameraRot.x += GetMouseY() / 100.0f;
-		}
-
-	}
-
-	m_Rotation = m_CameraRot;
-	m_Rotation += m_PlayerRotation;
-	m_Rotation.x = 0.0f;
-
-}
 
 void Player::GetItem()
 {
@@ -326,27 +322,50 @@ void Player::GetItem()
 	}
 }
 
-void Player::ShootBulletFunc()
+void Player::SetParticle(const D3DXCOLOR& start_col)
 {
-	m_ShootBullet->Update();
-	if (m_ShootBullet->GetIsNextState()) {
-		//	次のstateのポインタだけもらう。
-		ShootBullet* sb = m_ShootBullet->CreateNextState();
-
-		//	今のポインタは消す。
-		m_ShootBullet->Uninit();
-		delete m_ShootBullet;
-
-		//	新しいポインタを作る
-		m_ShootBullet = sb;
-		m_ShootBullet->Init();
-	}
+	PARTICLE par;
+	par.acc = { 0.0f,0.0f,0.0f };
+	par.m_ColorOverLifeTime_Start = start_col;
+	par.m_ColorOverLifeTime_End = { 0.0f,0.0f,0.0f,1.0f };
+	par.col = par.m_ColorOverLifeTime_Start;
+	par.life = 30;
+	par.pos = m_Position +MyMath::VEC3Random(-0.25f,0.25f);
+	par.pos.y = m_Position.y;
+	par.rot = { 0.0f,0.0f,0.0f };
+	par.rot_vel = MyMath::VEC3Random(-0.01f, 0.01f);
+	par.m_SizeOverLifeTime_Start = MyMath::Random(0.01f,0.2f);
+	par.m_SizeOverLifeTime_End = 0.0f;
+	par.size = par.m_SizeOverLifeTime_Start;
+	par.status = 0;
+	par.type = rand() % PARTICLE_TYPE_MAX;
+	par.use = true;
+	par.use_torii = false;
+	par.vel = MyMath::XZRandom(-0.01f, 0.01f);
+	par.vel.y = MyMath::Random(0.01f, 0.1f);
+	m_Particle->SetParticle(par);
 }
 
-void Player::Move()
+void Player::SetParticle_Landing()
 {
-	D3DXVECTOR3 forward = GetForward();
-
-	m_Velocity.z += PLAYER_SPEED * forward.z;
-	m_Velocity.x += PLAYER_SPEED * forward.x;
+	PARTICLE par;
+	par.acc = { 0.0f,0.0f,0.0f };
+	par.m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,1.0f };
+	par.m_ColorOverLifeTime_End = { 0.0f,0.0f,0.0f,1.0f };
+	par.col = par.m_ColorOverLifeTime_Start;
+	par.life = 60;
+	par.pos = m_Position + MyMath::VEC3Random(-0.25f, 0.25f);
+	par.pos.y = m_Position.y;
+	par.rot = { 0.0f,0.0f,0.0f };
+	par.rot_vel = MyMath::VEC3Random(-0.01f, 0.01f);
+	par.m_SizeOverLifeTime_Start = MyMath::Random(0.01f, 0.2f);
+	par.m_SizeOverLifeTime_End = 0.0f;
+	par.size = par.m_SizeOverLifeTime_Start;
+	par.status = 0;
+	par.type = rand() % PARTICLE_TYPE_MAX;
+	par.use = true;
+	par.use_torii = false;
+	par.vel = MyMath::XZRandom(-0.15f, 0.15f);
+	par.vel.y = MyMath::Random(0.01f, 0.05f);
+	m_Particle->SetParticle(par);
 }

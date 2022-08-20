@@ -24,8 +24,8 @@ struct MATERIAL
 	D3DXCOLOR	Diffuse;
 	D3DXCOLOR	Specular;
 	D3DXCOLOR	Emission;
-	float		Shininess;
-	float		Dummy[3];
+	float		Shininess;	
+	float		Dummy[3];	
 };
 
 struct LIGHT
@@ -59,6 +59,13 @@ struct LIGHT
 	float pad5;
 };
 
+struct VALIABLE {
+	float MonochoromeRate;
+	float pad1;
+	float pad2;
+	float pad3;
+};
+
 enum BLEND_MODE
 {
 	BLEND_MODE_NONE,		//ƒuƒŒƒ“ƒh–³‚µ
@@ -87,6 +94,11 @@ private:
 	static ID3D11DepthStencilView* m_DepthStencilView;
 	static ID3D11BlendState* m_BlendState;
 	static ID3D11BlendState* m_BlendStateATC;
+	static ID3D11BlendState* m_BlendStateADDATC;
+
+	static ID3D11RasterizerState* m_RS_Wireframe;
+	static ID3D11RasterizerState* m_RS_CullBack;
+	static ID3D11RasterizerState* m_RS_CullNone;
 
 	static ID3D11Buffer*			m_WorldBuffer;
 	static ID3D11Buffer*			m_ViewBuffer;
@@ -94,6 +106,7 @@ private:
 	static ID3D11Buffer*			m_MaterialBuffer;
 	static std::vector<ID3D11Buffer*>			m_LightBuffer;
 	static ID3D11Buffer*			m_PointLightBuffer;
+	static ID3D11Buffer* m_MonochoromBuffer;
 
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;
@@ -107,7 +120,7 @@ private:
 	inline static bool show_another_window = false;
 	inline static bool show_hello_world = true;
 	inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	inline static ImVec4 window_color = ImVec4(0.0f,0.0f,0.2f,0.85f);
+	inline static ImVec4 window_color = ImVec4(0.0f,0.0f,0.2f,0.0f);
 	
 #endif // _DEBUG
 	inline static float m_ImGuiFontSize = 28.0f;
@@ -118,13 +131,18 @@ public:
 	static void End();
 
 	static void SetAlphaToCoverage(bool Enable);
+	static void SetAddBlend(bool Enable);
 	static void SetDepthEnable(bool Enable);
+	static void SetCullNone(bool Enable);
+	static void SetCullBack(bool Enable);
+	static void SetWireframe(bool Enable);
 	static void SetWorldViewProjection2D();
 	static void SetWorldMatrix(D3DXMATRIX* WorldMatrix);
 	static void SetViewMatrix(D3DXMATRIX* ViewMatrix);
 	static void SetProjectionMatrix(D3DXMATRIX* ProjectionMatrix);
 	static void SetMaterial(MATERIAL Material);
-	static void SetLight(LIGHT Light,const int& index);
+	static void SetLight(LIGHT Light,const int& index);	
+	static void SetValiable(VALIABLE val);
 	//static void SetPointLight(POINT_LIGHT Light);
 	void SetBlendState(BLEND_MODE bm);
 	
@@ -138,6 +156,8 @@ public:
 	static void CreatePixelShader(ID3D11PixelShader** PixelShader, const char* FileName);
 
 	static const int GetLightNum() { return m_LightNum; }
+
+	inline static VALIABLE m_Valiable = { 0.0f,0.0f,0.0f,0.0f };
 
 #ifdef _DEBUG
 	static void imguiDraw();

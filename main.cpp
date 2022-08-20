@@ -31,6 +31,8 @@ char* GetDebugStr(void)
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+
+
 	WNDCLASSEX wcex =
 	{
 		sizeof(WNDCLASSEX),
@@ -65,7 +67,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		NULL);
 
 	
-
+	srand((unsigned int)time(NULL));
 	
 	Manager::Init();
 	InitInput(hInstance, g_Window);
@@ -86,7 +88,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 
 	MSG msg;
-	while(1)
+	while(!Manager::GetIsExit())
 	{
         if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{

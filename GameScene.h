@@ -2,6 +2,8 @@
 #include "scene.h"
 class Audio;
 class Transition;
+class CO_EnemyWave;
+class ParticleObject;
 class GameScene :
     public Scene
 {
@@ -12,6 +14,7 @@ public:
     void Uninit();
     void Update();
 
+    Audio* GetBGM()const { return m_BGM; }
 private:
     void StageCorridorCreate();
 
@@ -20,6 +23,12 @@ private:
     float sourceRate = 1.0f;
     float targetRate = 1.0f;
 
+    bool m_IsPlayerDeath = false;
+
     Transition* m_Fade = nullptr;    
+    
+
+    CO_EnemyWave* m_EnemyWave = nullptr;
+    ParticleObject* m_Particle;
 };
 

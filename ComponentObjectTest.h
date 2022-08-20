@@ -1,6 +1,8 @@
 #pragma once
 #include "ComponentObject.h"
 
+#include "ModelColorChangeComponent.h"
+
 class ComponentObjectTest :
     public ComponentObject
 {
@@ -12,12 +14,16 @@ public:
 
         AddComponent<ShaderComponent>(COMLAYER_SHADER);
 
-        AddComponent<MatrixComponent>(COMLAYER_MATRIX);
+        AddComponent<MatrixComponent>(COMLAYER_MATRIX);                   
 
-        ModelDrawComponent* mdc = 
-            new ModelDrawComponent("asset\\model\\cylinder.obj");
+        auto* mdc =AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\cylinder.obj");
+        mdc->SetIsVariable(true);               
 
-        AddComponent(mdc, COMLAYER_DRAW);
+        //AddComponent(mdc, COMLAYER_DRAW);
+
+
+        AddComponent< ModelColorChangeComponent>(COMLAYER_SECOND);
 
         AddComponent< ImGuiComponent>(COMLAYER_SECOND);
         

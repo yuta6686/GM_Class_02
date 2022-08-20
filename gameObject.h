@@ -24,6 +24,7 @@ class GameObject
 {
 protected:
 	bool m_Destroy = false;
+	bool m_NoUpdate = false;
 
 	D3DXVECTOR3 m_Position;
 	D3DXVECTOR3 m_Rotation;
@@ -46,6 +47,17 @@ public:
 		m_Position = Position;
 	}
 
+	void AddPosition(D3DXVECTOR3 apos)
+	{
+		m_Position += apos;
+	}
+
+	void AddPosition(float apos) {
+		m_Position.x += apos;
+		m_Position.y += apos;
+		m_Position.z += apos;
+	}
+
 	void SetRotation(D3DXVECTOR3 Rotation)
 	{
 		m_Rotation = Rotation;
@@ -60,6 +72,7 @@ public:
 	D3DXVECTOR3 GetScale()const { return m_Scale; }
 
 	D3DXVECTOR3* GetPositionPointer() { return &m_Position; }
+	virtual float GetLength() { return D3DXVec3Length(&m_Scale); }
 	
 	const D3DXVECTOR3& GetPositionReference()const 
 	{
@@ -129,6 +142,8 @@ public:
 		}
 	}
 
+	void SetNoUpdate(const bool& flag = true) { m_NoUpdate = flag; }
+
 	//void SetModel(std::shared_ptr<Model> pModel) { m_Model = pModel; }
 	//std::string GetFileName() { return m_FileName; }
 
@@ -144,6 +159,23 @@ public:
 		}
 
 		return nullptr;
+	}
+
+	template<class T>
+	std::vector<T*> GetComponents()
+	{
+		std::vector<T*> result;
+
+		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
+			for (auto com : m_ComponentList[i]) {		
+				T* buff = dynamic_cast<T*>(com);
+				if (buff != nullptr) {
+					result.push_back(buff);
+				}					
+			}
+		}
+
+		return result;
 	}
 
 	template<class T>

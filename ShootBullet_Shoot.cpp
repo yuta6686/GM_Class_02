@@ -27,6 +27,8 @@ void ShootBullet_Shoot::Uninit()
 
 void ShootBullet_Shoot::Update()
 {
+	m_Player->GetComponent<ModelDrawComponent>()->SetDiffuse({ 1.0f,1.0f,1.0f,0.2f });
+
 
 	m_Counter++;
 	if (m_Counter >= 10) {
@@ -42,13 +44,13 @@ void ShootBullet_Shoot::Update()
 		rot.z = rrot.z;
 
 		//	ƒZƒbƒg
-		D3DXVECTOR3 offset = { 0.0f,2.5f,0.0f };
-		m_Bullet->SetPosition(m_Player->GetPosition() + offset);
+		D3DXVECTOR3 offset = { 0.0f,2.0f,0.0f };
+		m_Bullet->SetPosition(m_Player->GetPosition() + offset + m_Player->GetForward()*0.2f);
 		m_Bullet->SetRotation(rot);
 		
-		float speed = (m_BulletNum + 2);
+		float speed = static_cast<float>(m_BulletNum + 2);		
 		
-		float scale = speed * 2.0f;
+		float scale = logf(speed * 2.0f) + 0.0f;
 
 		m_Bullet->Shoot(m_Player->GetCameraForward(), speed);
 		m_Bullet->SetScale({ scale,scale,scale });
@@ -63,7 +65,11 @@ void ShootBullet_Shoot::Update()
 		}
 
 		std::shared_ptr<Scene> scene = Manager::GetScene();
-		scene->GetGameObject<UI_Score>()->AddCount(1);
+		UI_Score* score = scene->GetGameObject<UI_Score>();
+		if (score) {
+			score->AddCount(1);
+		}
+		
 	}
 
 
@@ -71,14 +77,6 @@ void ShootBullet_Shoot::Update()
 
 void ShootBullet_Shoot::Draw()
 {
-	//#ifdef _DEBUG
-	//	char* str = GetDebugStr();
-	//	wsprintf(GetDebugStr(), "game");
-	//	wsprintf(&str[strlen(str)], "Shoot");
-	//
-	//	SetWindowText(GetWindow(), GetDebugStr());
-	//#endif
-
 #ifdef _DEBUG
 
 	ImGui::Text("Shoot");
@@ -89,5 +87,6 @@ void ShootBullet_Shoot::Draw()
 
 ShootBullet* ShootBullet_Shoot::CreateNextState()
 {
+	m_Player->GetComponent<ModelDrawComponent>()->SetDiffuse({ 1.0f,1.0f,1.0f,1.0f });
 	return new ShootBullet_Idle();
 }

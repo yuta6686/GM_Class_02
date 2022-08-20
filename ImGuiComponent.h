@@ -4,21 +4,25 @@
 class ImGuiComponent :
     public Component
 {
-private:
+protected:
     bool m_Is2D = false;
+    bool m_IsEnemyVersion = false;
+    bool m_IsUse = false;
 
-    inline static const float POSITION_MIN = -20.0f;    
-    inline static const float POSITION_MAX = 20.0f;
+    float POSITION_MIN = -50.0f;    
+    float POSITION_MAX = 50.0f;
 
-    inline static const float POSITION_MIN_2D = 0.0f;
-    inline static const float POSITION_MAX_X_2D = SCREEN_WIDTH;
-    inline static const float POSITION_MAX_Y_2D = SCREEN_HEIGHT;
+    float POSITION_MIN_2D = 0.0f;
+    float POSITION_MAX_X_2D = SCREEN_WIDTH;
+    float POSITION_MAX_Y_2D = SCREEN_HEIGHT;
 
-    inline static const float ROTATION_MIN = -D3DX_PI;
-    inline static const float ROTATION_MAX = D3DX_PI;
+    float ROTATION_MIN = 0.0f;
+    float ROTATION_MAX = D3DX_PI * 2.0f;
 
-    inline static const float SCALE_MIN = 0.2f;
-    inline static const float SCALE_MAX = 5.0f;
+    float SCALE_MIN = 0.0f;
+    float SCALE_MAX = 200.0f;
+
+    int m_ImVecY = 400;
 public:
     // Component ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
     virtual void Init() override;
@@ -35,5 +39,25 @@ public:
     {
         m_Is2D = flag;
     }
+
+    void SetEnemyVersion() 
+    {
+        m_IsEnemyVersion = true;
+
+        POSITION_MIN = -200.0f;
+        POSITION_MAX = 200.0f;
+
+        ROTATION_MIN = -D3DX_PI;
+        ROTATION_MAX = D3DX_PI;
+
+        SCALE_MIN = 0.2f;
+        SCALE_MAX = 5.0f;
+
+        m_ImVecY = 700;
+    }
+
+    bool GetIsUse()const { return m_IsUse; }
+    void SetIsUse(const bool& flag) { m_IsUse = flag; }  
+    
 };
 

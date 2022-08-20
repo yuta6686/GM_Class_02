@@ -8,6 +8,7 @@
 
 #include "ResourceManager.h"
 #include "gameObject.h"
+#include "ImGuiComponent.h"
 
 
 enum LAYER {
@@ -15,7 +16,8 @@ enum LAYER {
 	LAYER_3D,
 	LAYER_AUDIO,
 	LAYER_ENEMY,
-	LAYER_2D,	
+	LAYER_2D,
+	LAYER_PARTICLE,
 	LAYER_NUM_MAX,
 };
 
@@ -57,6 +59,14 @@ public:
 		return gameObject;
 	}
 
+	std::vector<GameObject*> GetGameObjectLayer(const int& Layer)
+	{
+		std::vector<GameObject*> objects;
+		for (auto obj : m_GameObject[Layer]) {
+			objects.push_back(obj);
+		}		
+		return objects;
+	}
 
 	template <typename T>
 	T* GetGameObject() {
@@ -128,7 +138,15 @@ public:
 		for (int i = 0; i < LAYER_NUM_MAX; i++) {
 			for (GameObject* object : m_GameObject[i])
 			{
-				object->Draw();												
+				object->Draw();
+#ifdef _DEBUG
+				ImGuiComponent* imc = object->GetComponent<ImGuiComponent>();
+				if (imc == nullptr)continue;
+				if (imc->GetIsUse() == false)continue;
+				if (ImGui::CollapsingHeader(object->GetTypeName().c_str())) {
+					object->DrawImgui();
+				}				
+#endif // _DEBUG
 			}
 		}
 

@@ -41,7 +41,7 @@ struct MODEL
 
 class Model:public Resource
 {
-private:
+protected:
 
 	ID3D11Buffer*	m_VertexBuffer;
 	ID3D11Buffer*	m_IndexBuffer;

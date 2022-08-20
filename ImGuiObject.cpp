@@ -6,6 +6,13 @@
 #include "Bullet.h"
 #include "CO_UI_AimLing.h"
 #include "BlinkComponentAlpha2D.h"
+#include "Enemy.h"
+#include "audio.h"
+#include "ComponentObjectTest.h"
+#include "ModelColorChangeComponent.h"
+#include "CO_UI_Quest.h"
+#include "CO_EnemyWave.h"
+#include "CO_UI_Tutorial_Move.h"
 
 void ImGuiObject::Init()
 {
@@ -33,29 +40,30 @@ void ImGuiObject::Draw()
 	}
 
 
-	//	Enemy
-	if (ImGui::CollapsingHeader("Enemy")) {
-		std::vector<Enemy*> enemys = m_Scene->GetGameObjects<Enemy>();
-		for (int i = 0; i < enemys.size(); i++) {
-			char buff[255];
-			sprintf(buff, "Enemy_%d", i);
-			if (ImGui::TreeNode(buff))
-			{
-				enemys[i]->DrawImgui();
-				ImGui::TreePop();
-			}
-		}
-	}
+	
 
 	//	Bullet
 	if (ImGui::CollapsingHeader("Bullet")) {
 		std::vector<Bullet*> bullets = m_Scene->GetGameObjects<Bullet>();
-		for (int i = 0; i < bullets.size(); i++) {
+		for (unsigned int i = 0; i < bullets.size(); i++) {
 			char buff[255];
 			sprintf(buff, "Bullet_%d", i);
 			if (ImGui::TreeNode(buff))
 			{
 				bullets[i]->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
+
+	if (ImGui::CollapsingHeader("Audio")) {
+		std::vector<Audio*> audios = m_Scene->GetGameObjects<Audio>();
+		for (unsigned int i = 0; i < audios.size(); i++) {
+			char buff[255];
+			sprintf(buff, "Audio_%d", i);
+			if (ImGui::TreeNode(buff))
+			{
+				audios[i]->DrawImgui();
 				ImGui::TreePop();
 			}
 		}
@@ -72,5 +80,62 @@ void ImGuiObject::Draw()
 		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<AlphaBlink2DComponent>()->DrawImgui();
 		m_Scene->GetGameObject<CO_UI_AimLing>()->GetComponent<Rotate2D>()->DrawImgui();
 	}
+
+	if(ImGui::CollapsingHeader("CO_UI_Quest")) {
+		m_Scene->GetGameObject<CO_UI_Quest>()->DrawImgui();
+	}
+
+	if (ImGui::CollapsingHeader("CO_EnemyWave")) {
+		m_Scene->GetGameObject< CO_EnemyWave>()->DrawImgui();
+	}
+
+	//Enemy
+	if (ImGui::CollapsingHeader("Enemy"))
+	{
+		std::vector<Enemy*> enemy = m_Scene->GetGameObjects<Enemy>();
+		for (unsigned int i = 0; i < enemy.size(); i++)
+		{
+			char buff[255];
+			sprintf(buff, "Enemy_%d", i);
+			if (ImGui::TreeNode(buff))
+			{
+				enemy[i]->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
+
+	//ComponentObjectTest
+	if (ImGui::CollapsingHeader("ComponentObjectTest"))
+	{
+		std::vector<ComponentObjectTest*> cot = m_Scene->GetGameObjects<ComponentObjectTest>();
+		for (unsigned int i = 0; i < cot.size(); i++)
+		{
+			char buff[255];
+			sprintf(buff, "ComponentObjectTest_%d", i);
+			if (ImGui::TreeNode(buff))
+			{
+				cot[i]->DrawImgui();	
+				cot[i]->GetComponent<ModelColorChangeComponent>()->DrawImgui();
+				ImGui::TreePop();
+			}
+		}
+	}
+
+	if (ImGui::CollapsingHeader("Tutorial UI")) {
+		std::vector<CO_UI_Tutorial*> cot = m_Scene->GetGameObjects<CO_UI_Tutorial>();
+		for (unsigned int i = 0; i < cot.size(); i++)
+		{			
+			if (ImGui::TreeNode(cot[i]->m_Name.c_str()))
+			{
+				cot[i]->DrawImgui();				
+				ImGui::TreePop();
+			}
+		}		
+	}
+
+	ImGui::SliderFloat("MonochromeRate:", &MyMath::m_MonochromeRate.MonochoromeRate, 0.0f, 1.0f, "%.2f");		
+	Renderer::SetValiable(MyMath::m_MonochromeRate);
+
 #endif // _DEBUG
 }

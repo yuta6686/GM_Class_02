@@ -3,7 +3,7 @@
 
 void Cylinder::Init()
 {
-	m_Model = ResourceManger<Model>::GetResource("asset\\model\\cylinder.obj");
+	m_Model = ResourceManger<Model>::GetResource("asset\\model\\drum.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -13,14 +13,20 @@ void Cylinder::Init()
 
 	m_VertexShader = ResourceManger<VertexShader>::GetResource("vertexLightingVS.cso");
 	m_PixelShader = ResourceManger<PixelShader>::GetResource("vertexLightingPS.cso");
+
+	AddComponent<ImGuiComponent>(COMLAYER_SECOND);
+
+	ComponentObject::Init();
 }
 
 void Cylinder::Uninit()
 {
+	ComponentObject::Uninit();
 }
 
 void Cylinder::Update()
 {
+	ComponentObject::Update();
 }
 
 void Cylinder::Draw()
@@ -40,4 +46,11 @@ void Cylinder::Draw()
 
 
 	m_Model->Draw();
+
+	ComponentObject::Draw();
+}
+
+void Cylinder::DrawImgui()
+{
+	ComponentObject::DrawImgui();
 }

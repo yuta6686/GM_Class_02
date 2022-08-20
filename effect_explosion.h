@@ -12,11 +12,9 @@ private:
 
 	int m_Count;
 
-	static const int TEX_WIDHT_NUM = 4;
-	static const int TEX_HEIGHT_NUM = 4;
-	static const int TEX_NUM = 16;
-
-	void InitVertex(VERTEX_3D* vertex);
+	static const int TEX_WIDHT_NUM = 5;
+	static const int TEX_HEIGHT_NUM = 6;
+	static const int TEX_NUM = 30;	
 public:
 	void Init()		override;
 	void Uninit()	override;

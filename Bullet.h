@@ -3,11 +3,13 @@
 #include "ComponentObject.h"
 #include "StageLimitDeleteComponent.h"
 #include "BulletComponent.h"
+#include "CollisionComponent_Bullet.h"
 
 class Bullet : public ComponentObject
 {
 private:
-
+	inline static const float LENGTH_ = 0.2f;
+	
 public:		
 	void Init() {
 
@@ -29,17 +31,18 @@ public:
 		sldc->SetLimit('z', -200, 200);
 
 		AddComponent< BulletComponent>(COMLAYER_SECOND);
-
+		AddComponent< CollisionComponent_Bullet>(COMLAYER_SECOND);
+		
 
 		ComponentObject::Init();
 	}
 	
-	void Update();
+	
 	
 	void Shoot(D3DXVECTOR3 direction, const float& speed) {
 		GetComponent< BulletComponent>()->SetVelocity(direction * speed);
 	}
 
-
+	float GetLength()override  { return GameObject::GetLength() * LENGTH_; }
 };
 

@@ -1,32 +1,31 @@
 #include "Transition.h"
 #include "ResourceManager.h"
-
+#include "audio.h"
+#include "manager.h"
 
 void Transition::Init()
 {
-
-
 	m_mainPos.x = SCREEN_WIDTH / 2.0f;
 	m_mainPos.y = SCREEN_HEIGHT / 2.0f;
 
 	m_vertex[0].Position = D3DXVECTOR3(-m_mainPos.x, -m_mainPos.y, 0.0f);
 	m_vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[0].Diffuse = m_Diffuse;
 	m_vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
 
 	m_vertex[1].Position = D3DXVECTOR3(m_mainPos.x, -m_mainPos.y, 0.0f);
 	m_vertex[1].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[1].Diffuse = m_Diffuse;
 	m_vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
 
 	m_vertex[2].Position = D3DXVECTOR3(-m_mainPos.x, m_mainPos.y, 0.0f);
 	m_vertex[2].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[2].Diffuse = m_Diffuse;
 	m_vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
 
 	m_vertex[3].Position = D3DXVECTOR3(m_mainPos.x, m_mainPos.y, 0.0f);
 	m_vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertex[3].Diffuse = m_Diffuse;
 	m_vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
 
 	D3D11_BUFFER_DESC bd{};
@@ -46,10 +45,14 @@ void Transition::Init()
 
 	m_Offset = { 0.0f,SCREEN_HEIGHT / 2.0f,0.0f };
 
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\blender1.png");
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\noen_white.png");
+	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_NO_MATERIAL_VERTEX_SHADER.c_str());
 	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
 
+	m_SE = Manager::GetScene()->AddGameObject<Audio>(LAYER_AUDIO);
+	
+	m_SE->Load("asset\\audio\\up.wav");	
+	m_SE->SetAudioVolume(0.5f);
 
 	m_Position = { 0.0f,0.0f,0.0f };
 	m_Position += m_Offset;
@@ -83,36 +86,48 @@ void Transition::Update()
 void Transition::Draw()
 {
 
-	float y;
-	y = (m_Count / 60.0f - 1.0f) * SCREEN_HEIGHT;
+	//float x;
+	//x = ((m_Count / 60.0f)) * SCREEN_WIDTH * RATIO;	
+
+	float count0to1 = powf(m_Count / 60.0f,4.0f);
+	float xleft = count0to1 * SCREEN_WIDTH * RATIO;
+	float xright = count0to1 * SCREEN_WIDTH * (1.0f - RATIO);
+
+	float col = (m_Count / 60.0f);
+	m_Diffuse.y = (1.0f-col);
+	m_Diffuse.z = (1.0f-col);
+	m_Diffuse.w = fmax(col + 0.2f, 1.0f);
+
+	
+	float ratio = (1.0f - (m_Count / 60.0f)) * RATIO;
 
 	D3D11_MAPPED_SUBRESOURCE msr;
 	Renderer::GetDeviceContext()->Map(m_VertexBuffer, 0,
 		D3D11_MAP_WRITE_DISCARD, 0, &msr);
 
 	VERTEX_3D* vertex = (VERTEX_3D*)msr.pData;
+	
 
-
-	vertex[0].Position = D3DXVECTOR3(0.0f, -m_mainPos.y + y, 0.0f);
+	vertex[0].Position = D3DXVECTOR3(m_OffsetX[0] - xleft , -m_mainPos.y, 0.0f);
 	vertex[0].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[0].TexCoord = D3DXVECTOR2(0, 0);
+	vertex[0].Diffuse = m_Diffuse;
+	vertex[0].TexCoord = D3DXVECTOR2(ratio, 0);
 
 
-	vertex[1].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, -m_mainPos.y + y, 0.0f);
+	vertex[1].Position = D3DXVECTOR3(m_OffsetX[1] + xright, -m_mainPos.y, 0.0f);
 	vertex[1].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[1].TexCoord = D3DXVECTOR2(1, 0);
+	vertex[1].Diffuse = m_Diffuse;
+	vertex[1].TexCoord = D3DXVECTOR2(1-ratio, 0);
 
-	vertex[2].Position = D3DXVECTOR3(0.0f, m_mainPos.y + y, 0.0f);
+	vertex[2].Position = D3DXVECTOR3(m_OffsetX[2] - xright , m_mainPos.y, 0.0f);
 	vertex[2].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[2].TexCoord = D3DXVECTOR2(0, 1);
+	vertex[2].Diffuse = m_Diffuse;
+	vertex[2].TexCoord = D3DXVECTOR2(ratio, 1);
 
-	vertex[3].Position = D3DXVECTOR3(m_mainPos.x * 2.0f, m_mainPos.y + y, 0.0f);
+	vertex[3].Position = D3DXVECTOR3(m_OffsetX[3] + xleft, m_mainPos.y, 0.0f);
 	vertex[3].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[3].TexCoord = D3DXVECTOR2(1, 1);
+	vertex[3].Diffuse = m_Diffuse;
+	vertex[3].TexCoord = D3DXVECTOR2(1-ratio, 1);
 
 	Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
 
@@ -144,6 +159,8 @@ void Transition::Start(bool in)
 {
 	m_In = in;
 	m_Finish = false;
+
+	m_SE->Play(false);
 
 	if (m_In)
 		m_Count = 60;

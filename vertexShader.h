@@ -17,6 +17,7 @@ public:
 
     inline static const std::string DEFAULT_VERTEX_SHADER = "vertexLightingVS.cso";
     inline static const std::string UNLIT_VERTEX_SHADER = "unlitTextureVS.cso";
+    inline static const std::string UNLIT_NO_MATERIAL_VERTEX_SHADER = "unlitTextureNoMat.cso";
 private:
     
 };
