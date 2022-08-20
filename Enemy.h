@@ -17,8 +17,7 @@ public:
 
         ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
         mdc->SetSourcePath("asset\\model\\stone_white.obj");
-
-        AddComponent(mdc, COMLAYER_DRAW);
+        mdc->SetIsVariable(true);        
 
 
         ComponentObject::Init();
@@ -35,8 +34,7 @@ public:
         Enemy_Interface::Init();
         ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
         mdc->SetSourcePath("asset\\model\\stone_white.obj");
-
-        AddComponent(mdc, COMLAYER_DRAW);
+        mdc->SetIsVariable(true);        
 
         AddComponent<TrackingComponent>(COMLAYER_SECOND);
 
@@ -55,9 +53,8 @@ public:
         Enemy_Interface::Init();
 
         ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
-        mdc->SetSourcePath("asset\\model\\stone_white.obj");
-
-        AddComponent(mdc, COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\stone_white.obj");        
+        mdc->SetIsVariable(true);
 
         AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.3f);
 
@@ -77,9 +74,8 @@ public:
 
         ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
         mdc->SetSourcePath("asset\\model\\stone_white.obj");
-
-
-        AddComponent(mdc, COMLAYER_DRAW);
+        
+        mdc->SetIsVariable(true);
 
         AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.01f);
 
@@ -100,8 +96,7 @@ public:
 
         ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
         mdc->SetSourcePath("asset\\model\\stone_white.obj");
-
-        AddComponent(mdc, COMLAYER_DRAW);
+        mdc->SetIsVariable(true);        
 
 
         
@@ -123,12 +118,10 @@ public:
 
         ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
         mdc->SetSourcePath("asset\\model\\stone_white.obj");
-
+        mdc->SetIsVariable(true);
         
 
-
         AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.1f);
-
 
         AddComponent< RandomJumpComponent>(COMLAYER_DRAW);
 

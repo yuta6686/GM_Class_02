@@ -2,6 +2,8 @@
 #include "ComponentObject.h"
 #include "CO_UI_Tutorial.h"
 #include "manager.h"
+#include "CO_UI_Tutorial_Move2.h"
+#include "ParticleObject_2D.h"
 
 class CO_UI_Tutorial_Move :
     public ComponentObject
@@ -11,10 +13,24 @@ private:
     std::shared_ptr<Scene> m_Scene;
 
     CountComponent* m_Count;
+    ParticleObject_2D* m_Particle2D;
+
+    bool m_IsMove = false;
+    bool m_IsRayMove = false;
+    bool m_IsJump = false;
+
+    D3DXVECTOR3 m_MovePos = { 0.0f,0.0f,0.0f };
+    D3DXVECTOR3 m_RayMovePos = { 0.0f,0.0f,0.0f };
+    D3DXVECTOR3 m_JumpPos = { 0.0f,0.0f,0.0f };
+
+    inline static const D3DXVECTOR4 CLEAR_COLOR = { 0.0f,0.0f,0.0f,0.75f };
+    inline static const D3DXVECTOR4 ACTION_COLOR = { 0.0f,1.0f,1.0f,0.75f };
+    inline static const D3DXVECTOR4 NO_ACTION_COLOR = { 1.0f,1.0f,1.0f,0.75f };
 public:
     virtual void Init()override
     {
         m_Scene = Manager::GetScene();
+        m_Particle2D = m_Scene->GetGameObject<ParticleObject_2D>();
 
         //  下地 テクスチャ 0
         {
@@ -139,7 +155,8 @@ public:
 
             tut->SetUIComponentInfo(uiinf);
 
-            tut->SetPosition({ 300.0f,750.0f,0.0f });
+            m_MovePos = { 300.0f,750.0f,0.0f };
+            tut->SetPosition(m_MovePos);
 
             tut->m_Name = "Movement";
 
@@ -164,7 +181,8 @@ public:
 
             tut->SetUIComponentInfo(uiinf);
 
-            tut->SetPosition({ 300.0f,630.0f,0.0f });
+            m_JumpPos = { 300.0f,630.0f,0.0f };
+            tut->SetPosition(m_JumpPos);
 
             tut->m_Name = "Jump";
 
@@ -190,7 +208,8 @@ public:
 
             tut->SetUIComponentInfo(uiinf);
 
-            tut->SetPosition({ 300.0f,870,0.0f });
+            m_RayMovePos = { 300.0f,870,0.0f };
+            tut->SetPosition(m_RayMovePos);
 
             tut->m_Name = "RayMove";
 
@@ -211,42 +230,88 @@ public:
             GetKeyboardPress(DIK_S) ||
             GetKeyboardPress(DIK_A) ||
             GetKeyboardPress(DIK_D)) {
-            m_Tutorial[2]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
-            m_Tutorial[4]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
+            if (m_IsMove == false) {
+                m_IsMove = true;
+                for (int i = 0; i < 100; i++)
+                    m_Particle2D->SetParticle_Explosion(m_MovePos);
+            }
+            
+            m_Tutorial[2]->SetColor(ACTION_COLOR);
+            m_Tutorial[4]->SetColor(NO_ACTION_COLOR);
         }
         else
         {
-            m_Tutorial[2]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
-            m_Tutorial[4]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
+            if (m_IsMove) {
+                m_Tutorial[2]->SetColor(CLEAR_COLOR);
+                m_Tutorial[4]->SetColor(NO_ACTION_COLOR);
+            }
+            else {
+                m_Tutorial[2]->SetColor(NO_ACTION_COLOR);
+                m_Tutorial[4]->SetColor(ACTION_COLOR);
+            }
         }
-        
+
         if (GetKeyboardPress(DIK_SPACE)) {
-            m_Tutorial[1]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
-            m_Tutorial[5]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
+            if (m_IsJump == false) {
+                m_IsJump = true;
+                for (int i = 0; i < 100; i++)
+                    m_Particle2D->SetParticle_Explosion(m_JumpPos);
+            }
+            
+            m_Tutorial[1]->SetColor(ACTION_COLOR);
+            m_Tutorial[5]->SetColor(NO_ACTION_COLOR);
         }
         else
         {
-            m_Tutorial[1]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
-            m_Tutorial[5]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
+            if (m_IsJump) {
+                m_Tutorial[1]->SetColor(CLEAR_COLOR);
+                m_Tutorial[5]->SetColor(NO_ACTION_COLOR);
+            }
+            else {
+                m_Tutorial[1]->SetColor(NO_ACTION_COLOR);
+                m_Tutorial[5]->SetColor(ACTION_COLOR);
+            }
         }
 
         if (IsMouseRightPressed()) {
-
-            m_Tutorial[3]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
-            m_Tutorial[6]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
+            if (m_IsRayMove == false) {
+                m_IsRayMove = true;
+                for(int i=0;i<100;i++)
+                    m_Particle2D->SetParticle_Explosion(m_RayMovePos);
+            }
+            
+            m_Tutorial[3]->SetColor(ACTION_COLOR);
+            m_Tutorial[6]->SetColor(NO_ACTION_COLOR);
         }
         else
         {
-            m_Tutorial[3]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
-            m_Tutorial[6]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
+            if (m_IsRayMove) {
+                m_Tutorial[3]->SetColor(CLEAR_COLOR);
+                m_Tutorial[6]->SetColor(NO_ACTION_COLOR);
+            }
+            else {
+                m_Tutorial[3]->SetColor(NO_ACTION_COLOR);
+                m_Tutorial[6]->SetColor(ACTION_COLOR);
+            }
+
         }
 
         
 
         if (m_Count == nullptr)return;
-        if (m_Count->GetFinish())
+        if (m_Count->GetFinish() && m_IsJump && m_IsMove && m_IsRayMove)
         {
-            m_Count->Start(true, 60, 15 * 60);
+            m_Count->Start(true, 60, 0);
+        }
+
+        if (m_Count->GetInFinist()) {
+            m_Scene->AddGameObject<CO_UI_Tutorial_Move2>(LAYER_2D);        
+            for (auto tut : m_Tutorial)
+            {
+                tut->SetDestroy();
+            }
+            this->SetDestroy();
+            return;
         }
 
         for (auto tuto : m_Tutorial) {

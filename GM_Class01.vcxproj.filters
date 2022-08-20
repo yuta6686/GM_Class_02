@@ -755,7 +755,7 @@
     <ClInclude Include="CO_Noise.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Tutorial_2.h">
+    <ClInclude Include="CO_UI_Tutorial_Move2.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

@@ -32,6 +32,7 @@
 #include "CO_Torii_Broken.h"
 #include "CO_Stand.h"
 #include "CO_Bow.h"
+#include "CO_Noise.h"
 
 void GameScene2::Init()
 {
@@ -136,6 +137,8 @@ void GameScene2::Init()
 		couibelt->Start(false, 60, 90);
 	}
 
+	AddGameObject<CO_Torii_Broken>(LAYER_3D);
+
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 	m_EnemyWave->SetEnemyWave<EnemyWave_2_1>("asset\\file\\EnemyGenerate2-1.txt");
 
@@ -146,6 +149,9 @@ void GameScene2::Init()
 	AddGameObject<CO_Bow>(LAYER_3D);
 
 	AddGameObject<CO_Bow>(LAYER_3D)->SetPosition({ 0.0f,20.0f,-50.0f });
+	
+
+	AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 
@@ -300,5 +306,15 @@ void GameScene2::StageCorridorCreate()
 	AddGameObject<stage_wator_field>(LAYER_3D);
 
 	//	ëÂíπãè
-	AddGameObject< stage_otorii>(LAYER_3D)->SetPosition({ 4.0f,0.0f,0.0f });
+	{
+		stage_otorii* ot = AddGameObject< stage_otorii>(LAYER_3D);
+		ot->SetPosition({ 17.0f,0.0f,70.0f });
+		ot->SetScale({ 5.0f,5.0f,5.0f });
+	}
+	{
+		stage_otorii* ot = AddGameObject< stage_otorii>(LAYER_3D);
+		ot->SetPosition({ -17.0f,0.0f,-70.0f });
+		ot->SetScale({ 5.0f,5.0f,5.0f });
+		ot->SetRotation({ D3DX_PI,0.0f,0.0f });
+	}
 }

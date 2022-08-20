@@ -61,6 +61,12 @@ public:
         m_EnemyIndex = index; 
     }
 
+    void SetDiffuse(const D3DXCOLOR& color) {
+        ModelDrawComponent* mdc = GetComponent<ModelDrawComponent>();
+        if(mdc!=nullptr)
+            GetComponent<ModelDrawComponent>()->SetDiffuse(color);
+    }
+
     void CollosionWithBullet()
     {
         m_Hp--;
@@ -99,6 +105,19 @@ public:
         AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
 
         ComponentObject::Init();
+    }
+
+    virtual void Update()
+    {
+        if (m_Hp <= 1) {
+            SetDiffuse({ 1.0f,0.5f,0.5f,1.0f });
+        }
+        else if (m_Hp <= 2 && m_Hp > 1) {
+            SetDiffuse({ 1.0f,1.0f,0.5f,1.0f });
+        }
+        else {
+            SetDiffuse({ 0.8f,1.0f,1.0f,1.0f });
+        }
     }
 };
 

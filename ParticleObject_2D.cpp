@@ -298,6 +298,32 @@ void ParticleObject_2D::SetParticle_Gather(const D3DXVECTOR4& end_color)
 	SetParticles(par);
 }
 
+void ParticleObject_2D::SetParticle_Explosion(const D3DXVECTOR3& pos)
+{
+	PARTICLE2D par;
+	par.m_Color4OverLifeTime_Start = { 1.0f,1.0f,1.0f,1.0f };
+	par.m_Color4OverLifeTime_End = {1.0f,1.0f,1.0f,0.0f};
+	par.col4 = par.m_Color4OverLifeTime_Start;
+	par.life = 120;
+	par.pos = pos;
+	par.pos.x += MyMath::Random(-100.0f, 100.0f);
+	par.pos.y += MyMath::Random(-50.0f, 50.0f);
+	par.vel.x = MyMath::Random(-1.0f, 1.0f) * 5.0f;
+	par.vel.y = MyMath::Random(-1.0f, 1.0f) * 5.0f;
+	par.vel.z = 0.0f;
+	par.rot = { 0.0f,0.0f,0.0f };
+	par.rot_vel.z = MyMath::Random(-0.5f, 0.5f);
+	par.m_SizeOverLifeTime_End = 0.0f;
+	par.m_SizeOverLifeTime_Start = 0.3f;
+	par.size = par.m_SizeOverLifeTime_Start;
+	par.acc = { 0.0f,0.0f,0.0f };
+	par.status = 0;
+	par.type = rand() % PARTICLE_TYPE_2D_CIRCLE;
+	par.use = true;
+
+	SetParticles(par);
+}
+
 void ParticleObject_2D::SetParticles(const PARTICLE2D& particle)
 {
 	for (unsigned int i = 0; i < m_Particles.size(); i++) {

@@ -138,7 +138,7 @@
     <ClInclude Include="CO_UI_Quest_Purpose.h" />
     <ClInclude Include="CO_UI_Select.h" />
     <ClInclude Include="CO_UI_Tutorial.h" />
-    <ClInclude Include="CO_UI_Tutorial_2.h" />
+    <ClInclude Include="CO_UI_Tutorial_Move2.h" />
     <ClInclude Include="CO_UI_Tutorial_Move.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />

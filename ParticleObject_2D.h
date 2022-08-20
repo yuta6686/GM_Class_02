@@ -83,6 +83,7 @@ public:
     void SetParticle_Descent(const D3DXVECTOR4& end_color);
 
     void SetParticle_Gather(const D3DXVECTOR4& end_color);
+    void SetParticle_Explosion(const D3DXVECTOR3& pos);
 
     void SetParticles(const PARTICLE2D& particle);
 };

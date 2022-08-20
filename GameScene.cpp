@@ -43,6 +43,7 @@
 #include "CO_Bow.h"
 #include "CO_UI_Tutorial_Move.h"
 #include "CO_Noise.h"
+#include "CO_UI_Tutorial_Move2.h"
 
 
 void GameScene::Init()
@@ -157,7 +158,7 @@ void GameScene::Init()
 
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
-	AddGameObject<ParticleObject_2D>(LAYER_2D);
+	AddGameObject<ParticleObject_2D>(LAYER_PARTICLE);
 
 	AddGameObject<CO_Bow>(LAYER_3D);
 
