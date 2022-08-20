@@ -4,6 +4,7 @@
 #include "StageLimitComponent_Reflect.h"
 #include "CollisionComponent_Enemy.h"
 #include "GravityComponent.h"
+#include "CountComponent.h"
 
 #include "ParticleObject.h"
 enum ENEMY
@@ -15,6 +16,7 @@ enum ENEMY
     ENEMY_NO_DRUM,
     ENEMY_MOVE_STRAIGHT,
     ENEMY_JUMP,
+    ENEMY_BOSS,
     ENEMY_MAX
 };
 class Enemy_Interface :
@@ -25,6 +27,9 @@ protected:
     int m_Hp = m_MaxHp;
     static const int MAX_HP = 9999;
     int m_EnemyIndex = ENEMY_NORMAL;
+    CountComponent* m_Count;
+    D3DXVECTOR3 m_FirstScale;
+    bool m_IsDestroy = false;
 public:
     Enemy_Interface(const int& index)
         :m_EnemyIndex(index) {}
@@ -72,7 +77,8 @@ public:
         m_Hp--;
 
         if (m_Hp <= 0) {
-            SetDestroy();
+            m_IsDestroy = true;
+            //SetDestroy();
         }
     }
 
@@ -81,7 +87,7 @@ public:
         m_Hp -= damage;
 
         if (m_Hp <= 0) {
-            SetDestroy();
+            m_IsDestroy = true;
         }
     }    
 
@@ -102,9 +108,14 @@ public:
 
         SetHp(GetMaxHp());
 
+        m_Count = AddComponent< CountComponent>(COMLAYER_SECOND);
+        m_Count->Start(false, 60, 0);
+
         AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
 
         ComponentObject::Init();
+
+        m_FirstScale = m_Scale;
     }
 
     virtual void Update()
@@ -118,6 +129,18 @@ public:
         else {
             SetDiffuse({ 0.8f,1.0f,1.0f,1.0f });
         }
+
+        if (m_IsDestroy && m_Count->GetFinish()) {
+            m_Count->Start(true, 15, 0);
+        }
+
+        if (m_Count->GetInFinist()) {
+            SetDestroy();
+        }
+        
+        m_Scale = m_FirstScale *  m_Count->Get0to1Count();
+
+        ComponentObject::Update();
     }
 };
 

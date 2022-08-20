@@ -191,6 +191,9 @@ void EnemyGenerate::Update()
 			case ENEMY_JUMP:
 				penemy = m_Scene->AddGameObject<Enemy_Jump>(LAYER_ENEMY);
 				break;
+			case ENEMY_BOSS:
+				penemy = m_Scene->AddGameObject<Enemy_Boss>(LAYER_ENEMY);
+				break;
 			case ENEMY_MAX:
 				penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
 				break;

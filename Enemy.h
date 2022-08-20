@@ -128,3 +128,27 @@ public:
         ComponentObject::Init();
     }
 };
+
+class Enemy_Boss :public Enemy_Interface
+{
+public:
+    Enemy_Boss() :Enemy_Interface(ENEMY_BOSS) {}
+
+    virtual void Init() {
+
+        Enemy_Interface::Init();
+
+        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\enemy_boss.obj");
+        mdc->SetIsVariable(true);
+        
+
+        AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.5f);
+
+        AddComponent< RandomJumpComponent>(COMLAYER_DRAW);
+
+        ComponentObject::Init();
+
+        m_Scale = { 1.0f,1.0f,1.0f };
+    }
+};
