@@ -63,24 +63,22 @@ public:
 
     virtual void Update()override
     {
-        ComponentObject::Update();
-        
+        ComponentObject::Update();                        
+    }
 
-        static D3DXVECTOR2 uv = { 0.0f,0.0f };
-
-        if (uv.y >= 100.0f) {
-            uv.y = 0.0f;
-            uv.x = 0.0f;
+    virtual void Draw()override
+    {
+        if (Renderer::m_Valiable.pad2 >= 100.0f) {
+            Renderer::m_Valiable.pad1 = 0.0f;
+            Renderer::m_Valiable.pad2 = 0.0f;
         }
 
-        uv.x += 0.0f;
-        uv.y += 0.05f;
+        Renderer::m_Valiable.pad1 += 0.0f;
+        Renderer::m_Valiable.pad2 += 0.05f;
 
-        VALIABLE val = { 0.0f,uv.x,uv.y,0.0f };
-        
-                
+        Renderer::SetValiable(Renderer::m_Valiable);
 
-        Renderer::SetValiable(val);
+        ComponentObject::Draw();
     }
 };
 

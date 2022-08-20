@@ -2,8 +2,7 @@
 #include "ComponentObject.h"
 #include "CO_UI_Tutorial.h"
 #include "manager.h"
-
-class CO_UI_Tutorial_Move :
+class CO_UI_Tutorial_2 :
     public ComponentObject
 {
 private:
@@ -196,7 +195,7 @@ public:
 
             m_Tutorial.push_back(tut);
         }
-        
+
         m_Count = AddComponent<CountComponent>(COMLAYER_SECOND);
         m_Count->Start(false, 60, 60, 0);
 
@@ -219,7 +218,7 @@ public:
             m_Tutorial[2]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
             m_Tutorial[4]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
         }
-        
+
         if (GetKeyboardPress(DIK_SPACE)) {
             m_Tutorial[1]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
             m_Tutorial[5]->SetColor({ 0.0f,1.0f,1.0f,0.75f });
@@ -241,7 +240,7 @@ public:
             m_Tutorial[6]->SetColor({ 1.0f,1.0f,1.0f,0.75f });
         }
 
-        
+
 
         if (m_Count == nullptr)return;
         if (m_Count->GetFinish())
@@ -252,7 +251,7 @@ public:
         for (auto tuto : m_Tutorial) {
             tuto->GetComponent<UserInterfaceComponent>()->SetAlpha(m_Count->Get0to1Count() * 0.8f);
         }
-        
+
     }
 };
 

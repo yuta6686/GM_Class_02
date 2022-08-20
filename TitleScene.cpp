@@ -111,7 +111,7 @@ void TitleScene::Init()
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
-	//AddGameObject< CO_Noise>(LAYER_2D);
+	AddGameObject< CO_Noise>(LAYER_2D);
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------

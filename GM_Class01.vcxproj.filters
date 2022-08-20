@@ -755,6 +755,9 @@
     <ClInclude Include="CO_Noise.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CO_UI_Tutorial_2.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">

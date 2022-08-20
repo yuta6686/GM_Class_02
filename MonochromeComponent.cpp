@@ -69,8 +69,8 @@ void MonochromeComponent::Update()
 
     
 
-    m_Valiable.MonochoromeRate = m_Count->Get0to1Count();
-    Renderer::SetValiable(m_Valiable);
+    Renderer::m_Valiable.MonochoromeRate = m_Count->Get0to1Count();
+    Renderer::SetValiable(Renderer::m_Valiable);
 
 }
 void MonochromeComponent::Draw()

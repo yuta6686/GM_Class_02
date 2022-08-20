@@ -157,6 +157,8 @@ public:
 
 	static const int GetLightNum() { return m_LightNum; }
 
+	inline static VALIABLE m_Valiable = { 0.0f,0.0f,0.0f,0.0f };
+
 #ifdef _DEBUG
 	static void imguiDraw();
 	static ImVec4 GetWindowColor() { return window_color; }

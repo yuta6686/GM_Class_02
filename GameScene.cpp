@@ -165,7 +165,7 @@ void GameScene::Init()
 
 	AddGameObject< CO_UI_Tutorial_Move>(LAYER_2D);
 
-	//AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });// ->
+	AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });// ->
 		//SetSourcePath("asset\\model\\grad_cube.obj");
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
