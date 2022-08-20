@@ -23,6 +23,7 @@
 #include "CO_UI_Quest.h"
 #include "CO_UI_Quest_Belt.h"
 #include "ParticleObject.h"
+#include "CO_Noise.h"
 
 void TitleScene::Init()
 {
@@ -109,6 +110,8 @@ void TitleScene::Init()
 	m_BGM->Play(true);
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
+
+	//AddGameObject< CO_Noise>(LAYER_2D);
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------

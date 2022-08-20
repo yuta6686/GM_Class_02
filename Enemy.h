@@ -15,8 +15,8 @@ public:
         
         Enemy_Interface::Init();
 
-        ModelDrawComponent* mdc =
-            new ModelDrawComponent("asset\\model\\stone_white.obj");
+        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\stone_white.obj");
 
         AddComponent(mdc, COMLAYER_DRAW);
 
@@ -33,9 +33,8 @@ public:
     virtual void Init() {
 
         Enemy_Interface::Init();
-
-        ModelDrawComponent* mdc =
-            new ModelDrawComponent("asset\\model\\stone_white.obj");
+        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\stone_white.obj");
 
         AddComponent(mdc, COMLAYER_DRAW);
 
@@ -55,8 +54,8 @@ public:
 
         Enemy_Interface::Init();
 
-        ModelDrawComponent* mdc =
-            new ModelDrawComponent("asset\\model\\stone_white.obj");
+        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\stone_white.obj");
 
         AddComponent(mdc, COMLAYER_DRAW);
 
@@ -76,8 +75,8 @@ public:
 
         Enemy_Interface::Init();
 
-        ModelDrawComponent* mdc =
-            new ModelDrawComponent("asset\\model\\stone_white.obj");
+        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\stone_white.obj");
 
 
         AddComponent(mdc, COMLAYER_DRAW);
@@ -99,8 +98,8 @@ public:
 
         Enemy_Interface::Init();
 
-        ModelDrawComponent* mdc =
-            new ModelDrawComponent("asset\\model\\stone_white.obj");
+        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\stone_white.obj");
 
         AddComponent(mdc, COMLAYER_DRAW);
 
@@ -122,10 +121,9 @@ public:
 
         Enemy_Interface::Init();
 
-        ModelDrawComponent* mdc =
-            new ModelDrawComponent("asset\\model\\stone_white.obj");
+        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+        mdc->SetSourcePath("asset\\model\\stone_white.obj");
 
-        AddComponent(mdc, COMLAYER_DRAW);
         
 
 

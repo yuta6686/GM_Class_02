@@ -237,6 +237,7 @@ void Renderer::Init()
 
 	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+	
 	m_Device->CreateBlendState(&blendDesc, &m_BlendStateADDATC);
 
 	m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);

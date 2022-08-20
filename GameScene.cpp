@@ -42,6 +42,7 @@
 #include "CO_Stand.h"
 #include "CO_Bow.h"
 #include "CO_UI_Tutorial_Move.h"
+#include "CO_Noise.h"
 
 
 void GameScene::Init()
@@ -163,6 +164,11 @@ void GameScene::Init()
 	AddGameObject<CO_Bow>(LAYER_3D)->SetPosition({ 0.0f,20.0f,-50.0f });
 
 	AddGameObject< CO_UI_Tutorial_Move>(LAYER_2D);
+
+	//AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });// ->
+		//SetSourcePath("asset\\model\\grad_cube.obj");
+
+	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 
 	m_IsPlayerDeath = false;
 }
