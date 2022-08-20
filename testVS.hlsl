@@ -22,6 +22,7 @@ void main(in VS_IN In, out PS_IN Out)
     //light = saturate(light);
 	
     //light = pow(light, 5.0f);
+    
 
     Out.Diffuse = In.Diffuse * Material.Diffuse;
     Out.Diffuse.xyz = Out.Diffuse.xyz * light * dirColor;

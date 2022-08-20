@@ -12,6 +12,7 @@
 #include "ModelColorChangeComponent.h"
 #include "CO_UI_Quest.h"
 #include "CO_EnemyWave.h"
+#include "CO_UI_Tutorial_Move.h"
 
 void ImGuiObject::Init()
 {
@@ -119,6 +120,18 @@ void ImGuiObject::Draw()
 				ImGui::TreePop();
 			}
 		}
+	}
+
+	if (ImGui::CollapsingHeader("Tutorial UI")) {
+		std::vector<CO_UI_Tutorial*> cot = m_Scene->GetGameObjects<CO_UI_Tutorial>();
+		for (unsigned int i = 0; i < cot.size(); i++)
+		{			
+			if (ImGui::TreeNode(cot[i]->m_Name.c_str()))
+			{
+				cot[i]->DrawImgui();				
+				ImGui::TreePop();
+			}
+		}		
 	}
 
 	ImGui::SliderFloat("MonochromeRate:", &MyMath::m_MonochromeRate.MonochoromeRate, 0.0f, 1.0f, "%.2f");		

@@ -10,6 +10,7 @@ enum TEXTURE_DEPLOY {
     DEPLOY_LEFTDOWN,
     DEPLOY_RIGHTDOWN,
     DEPLOY_LEFT_MOVE_RIGHT,
+    DEPLOY_SEPALATE_UP_DOWN,
     DEPLOY_MAX,
 };
 // --------main_positionÇÃê‡ñæ-----------------
@@ -34,6 +35,8 @@ struct UI_Information {
     float _right_pos = 500.0f;
     float _left_pos = 0.0f;
     
+    float _up_pos = 500.0f;
+    float _down_pos = 0.0f;
 };
 class UserInterfaceComponent :
     public Component
@@ -42,7 +45,9 @@ private:
     VERTEX_3D m_vertex[4];
     ID3D11Buffer* m_VertexBuffer = NULL;
 
+
     std::shared_ptr<Resource> m_Texture;
+    std::string m_TextureName = "asset\\texture\\Rect.png";
 
     int m_DeployIndex = DEPLOY_CENTER;
 
@@ -54,6 +59,9 @@ private:
             
     float m_RightXPosition = SCREEN_WIDTH;
     float m_LeftXPosition =  0.0f;
+
+    float m_UpXPosition = SCREEN_WIDTH / 2.0f;
+    float m_DownXPosition = SCREEN_HEIGHT / 2.0f;
 
     bool m_IsChangeVertex = false;
 
@@ -69,7 +77,8 @@ public:
     virtual void DrawImgui()  override;
 
     void SetUIInfo(UI_Information inf) {
-        LoadTexture(inf._texture);
+        m_TextureName = inf._texture;
+        LoadTexture(m_TextureName);
         SetIsChangeVertex(inf._is_change_vertex);
         SetDeployIndex(inf._deploy_index);
 
@@ -79,11 +88,31 @@ public:
         SetRightXPosition(inf._right_pos);
         SetLeftXPosition(inf._left_pos);
 
+        SetUpXPosition(inf._up_pos);
+        SetDownXPosition(inf._down_pos);
+
         Init();
     }
 
+    UI_Information GetUIInfo()
+    {
+        UI_Information uiinfo;
+        uiinfo._color = m_Color;
+        uiinfo._deploy_index = m_DeployIndex;
+        uiinfo._down_pos = m_DownXPosition;
+        uiinfo._is_change_vertex = m_IsChangeVertex;
+        uiinfo._left_pos = m_LeftXPosition;
+        uiinfo._main_pos = m_mainPos;
+        uiinfo._right_pos = m_RightXPosition;
+        uiinfo._texture = m_TextureName;
+        uiinfo._up_pos = m_UpXPosition;
+
+        return uiinfo;
+    }
     void SetRightXPosition(const float& pos) { m_RightXPosition = pos; }
     void SetLeftXPosition(const float& pos) { m_LeftXPosition = pos; }
+    void SetUpXPosition(const float& pos) { m_UpXPosition = pos; }
+    void SetDownXPosition(const float& pos) { m_DownXPosition = pos; }
 
 
     void LoadTexture(std::string texture) {

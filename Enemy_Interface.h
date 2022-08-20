@@ -1,7 +1,9 @@
 #pragma once
 #include "ComponentObject.h"
 #include "TrackingComponent.h"
-#include "StageLimitComponent.h"
+#include "StageLimitComponent_Reflect.h"
+#include "CollisionComponent_Enemy.h"
+#include "GravityComponent.h"
 
 #include "ParticleObject.h"
 enum ENEMY
@@ -12,7 +14,7 @@ enum ENEMY
     ENEMY_TRACKING_LATE,
     ENEMY_NO_DRUM,
     ENEMY_MOVE_STRAIGHT,
-    ENEMY_MOVE_RANDOM,    
+    ENEMY_JUMP,
     ENEMY_MAX
 };
 class Enemy_Interface :
@@ -83,7 +85,14 @@ public:
         AddComponent<ShaderComponent>(COMLAYER_SHADER);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
+
+        AddComponent<VelocityComponent>(COMLAYER_SECOND);
+
+        AddComponent< GravityComponent>(COMLAYER_SECOND);
                  
+        AddComponent<StageLimitComponent_Reflect>(COMLAYER_MATRIX);
+
+        AddComponent<CollisionComponent_Enemy>(COMLAYER_SECOND);
 
         SetHp(GetMaxHp());
 

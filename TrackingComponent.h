@@ -26,7 +26,7 @@ public:
         m_Target = scene->GetGameObject<Player>();
 
         //  Velocityコンポーネントとして実装        
-        m_VelocityComponent = m_Parent->AddComponent< VelocityComponent>(COMLAYER_SECOND);        
+        m_VelocityComponent = m_Parent->GetComponent<VelocityComponent>();
     }
 
     virtual void Uninit() override

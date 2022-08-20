@@ -25,6 +25,8 @@
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CollisionComponent_Enemy.cpp" />
+    <ClCompile Include="CO_UI_Tutorial_Move.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
@@ -64,6 +66,7 @@
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="polygon2D.cpp" />
     <ClCompile Include="Polygon3DComponent.cpp" />
+    <ClCompile Include="RandomJumpComponent.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -106,6 +109,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionComponent_Bullet.h" />
+    <ClInclude Include="CollisionComponent_Enemy.h" />
     <ClInclude Include="CollisionComponent_Player.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
@@ -116,6 +120,7 @@
     <ClInclude Include="CO_3DPolygon_circle.h" />
     <ClInclude Include="CO_Bow.h" />
     <ClInclude Include="CO_Confirmation.h" />
+    <ClInclude Include="CO_Noise.h" />
     <ClInclude Include="CO_Select.h" />
     <ClInclude Include="CO_Stand.h" />
     <ClInclude Include="CO_Torii_Broken.h" />
@@ -132,6 +137,8 @@
     <ClInclude Include="CO_UI_Quest_Belt.h" />
     <ClInclude Include="CO_UI_Quest_Purpose.h" />
     <ClInclude Include="CO_UI_Select.h" />
+    <ClInclude Include="CO_UI_Tutorial.h" />
+    <ClInclude Include="CO_UI_Tutorial_Move.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="DefeatScene.h" />
@@ -148,11 +155,13 @@
     <ClInclude Include="ExitScene.h" />
     <ClInclude Include="GameScene2.h" />
     <ClInclude Include="GameScene3.h" />
+    <ClInclude Include="GravityComponent.h" />
     <ClInclude Include="HPComponent.h" />
     <ClInclude Include="JumpComponent.h" />
     <ClInclude Include="MonochromeComponent.h" />
     <ClInclude Include="ParticleObject_2D.h" />
     <ClInclude Include="PlayerRotateComponent.h" />
+    <ClInclude Include="RandomJumpComponent.h" />
     <ClInclude Include="RandomVelocityComponent.h" />
     <ClInclude Include="ShootBulletComponent.h" />
     <ClInclude Include="StageLimitComponent.h" />

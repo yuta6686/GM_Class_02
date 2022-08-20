@@ -52,6 +52,29 @@ public:
         m_Parent->SetPosition(pos);
     }
 
+    void SetOldPos(char xyz,float ypos) {
+        D3DXVECTOR3 pos = m_Parent->GetPosition();
+        switch (xyz)
+        {
+        case 'x':
+        case 'X':
+            pos.x = m_OldPos.x;
+            break;
+        case 'y':
+        case 'Y':
+            pos.y = ypos;
+            break;
+        case 'z':
+        case 'Z':
+            pos.z = m_OldPos.z;
+            break;
+        default:
+            m_Parent->SetPosition(m_OldPos);
+            break;
+        }
+        m_Parent->SetPosition(pos);
+    }
+
     // Component ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual void Init() override
     {

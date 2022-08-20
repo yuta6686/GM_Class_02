@@ -94,6 +94,7 @@ private:
 	static ID3D11DepthStencilView* m_DepthStencilView;
 	static ID3D11BlendState* m_BlendState;
 	static ID3D11BlendState* m_BlendStateATC;
+	static ID3D11BlendState* m_BlendStateADDATC;
 
 	static ID3D11RasterizerState* m_RS_Wireframe;
 	static ID3D11RasterizerState* m_RS_CullBack;
@@ -130,6 +131,7 @@ public:
 	static void End();
 
 	static void SetAlphaToCoverage(bool Enable);
+	static void SetAddBlend(bool Enable);
 	static void SetDepthEnable(bool Enable);
 	static void SetCullNone(bool Enable);
 	static void SetCullBack(bool Enable);

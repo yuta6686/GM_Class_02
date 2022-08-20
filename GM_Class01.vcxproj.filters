@@ -315,6 +315,15 @@
     <ClCompile Include="ParticleObject_2D.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="RandomJumpComponent.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent_Enemy.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Tutorial_Move.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -726,6 +735,24 @@
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="RandomVelocityComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomJumpComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent_Enemy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityComponent.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Tutorial.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_UI_Tutorial_Move.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_Noise.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

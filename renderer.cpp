@@ -28,6 +28,7 @@ ID3D11DepthStencilState* Renderer::m_DepthStateDisable = NULL;
 
 ID3D11BlendState* Renderer::m_BlendState = NULL;
 ID3D11BlendState* Renderer::m_BlendStateATC = NULL;
+ID3D11BlendState* Renderer::m_BlendStateADDATC = NULL;
 
 ID3D11RasterizerState* Renderer::m_RS_Wireframe = NULL;
 ID3D11RasterizerState* Renderer::m_RS_CullBack = NULL;
@@ -233,6 +234,10 @@ void Renderer::Init()
 
 	blendDesc.AlphaToCoverageEnable = TRUE;
 	m_Device->CreateBlendState(&blendDesc, &m_BlendStateATC);
+
+	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+	m_Device->CreateBlendState(&blendDesc, &m_BlendStateADDATC);
 
 	m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
 
@@ -443,6 +448,16 @@ void Renderer::SetAlphaToCoverage(bool Enable)
 
 	if (Enable)
 		m_DeviceContext->OMSetBlendState(m_BlendStateATC, blendFactor, 0xffffffff);
+	else
+		m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
+}
+
+void Renderer::SetAddBlend(bool Enable)
+{
+	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+	if (Enable)
+		m_DeviceContext->OMSetBlendState(m_BlendStateADDATC, blendFactor, 0xffffffff);
 	else
 		m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
 }

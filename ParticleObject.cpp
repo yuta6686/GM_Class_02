@@ -131,7 +131,7 @@ void ParticleObject::Draw()
 
 		
 
-		Renderer::SetAlphaToCoverage(true);
+		Renderer::SetAddBlend(true);
 
 		if (m_Particles[i].use_torii) 
 		{
@@ -164,7 +164,7 @@ void ParticleObject::Draw()
 			}
 		}
 		
-		Renderer::SetAlphaToCoverage(false);
+		Renderer::SetAddBlend(false);
 
 	}
 

@@ -45,6 +45,7 @@ private:
 	ParticleObject* m_Particle;
 	D3DXCOLOR m_Color = { 1.0f,1.0f,1.0f,1.0f };
 public:
+	static float GetGravity() { return GRAVITY; }
 	
 	void Init()	 override;	
 	void Update()override;

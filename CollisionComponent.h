@@ -3,6 +3,7 @@
 #include "manager.h"
 #include "scene.h"
 #include "gameObject.h"
+#include "Cylinder.h"
 
 class CollisionComponent :
     public Component
@@ -79,6 +80,51 @@ public:
                 objectPosition.y - objectScale.y > parentPosition.y + parentScale.y &&
                 objectPosition.z + objectScale.z <= parentPosition.z - parentScale.z &&
                 objectPosition.z - objectScale.z > parentPosition.z + parentScale.z*/) {
+                ResultObjects.push_back(object);
+            }
+        }
+
+        return ResultObjects;
+    }
+
+    
+    std::vector<Cylinder*> IsCollisionCylinder()
+    {
+        std::vector<Cylinder*> m_GameObjects;
+        std::vector<Cylinder*> ResultObjects;
+        m_GameObjects = m_Scene->GetGameObjects<Cylinder>();
+        for (auto object : m_GameObjects) {         
+
+            D3DXVECTOR3 clyPos = object->GetPosition();
+            D3DXVECTOR3 clyScale = object->GetScale();
+
+            D3DXVECTOR3 direction = m_Parent->GetPosition() - clyPos;
+            direction.y = 0.0f;
+
+            float length = D3DXVec3Length(&direction);
+
+            if (length < clyScale.x) {                
+                ResultObjects.push_back(object);
+            }
+        }
+
+        return ResultObjects;
+    }
+
+    
+    std::vector<GameObject*> IsCollisionXAxis_Enemy()
+    {
+        std::vector<GameObject*> m_GameObjects;
+        std::vector<GameObject*> ResultObjects;
+        m_GameObjects = m_Scene->GetGameObjectLayer(LAYER_ENEMY);
+        for (auto object : m_GameObjects) {
+            D3DXVECTOR3 objectPosition = object->GetPosition();
+            D3DXVECTOR3 parentPosition = m_Parent->GetPosition();
+            D3DXVECTOR3 objectScale = object->GetScale();
+            D3DXVECTOR3 parentScale = m_Parent->GetScale();
+
+            if (objectPosition.x + objectScale.x > parentPosition.x - parentScale.x &&
+                objectPosition.x - objectScale.x <= parentPosition.x + parentScale.x ) {
                 ResultObjects.push_back(object);
             }
         }

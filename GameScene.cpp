@@ -41,6 +41,7 @@
 #include "CO_Torii_Broken.h"
 #include "CO_Stand.h"
 #include "CO_Bow.h"
+#include "CO_UI_Tutorial_Move.h"
 
 
 void GameScene::Init()
@@ -160,6 +161,8 @@ void GameScene::Init()
 	AddGameObject<CO_Bow>(LAYER_3D);
 
 	AddGameObject<CO_Bow>(LAYER_3D)->SetPosition({ 0.0f,20.0f,-50.0f });
+
+	AddGameObject< CO_UI_Tutorial_Move>(LAYER_2D);
 
 	m_IsPlayerDeath = false;
 }
