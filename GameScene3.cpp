@@ -53,7 +53,7 @@ void GameScene3::Init()
 	AddGameObject< CO_UI_Line>(LAYER_2D)->SetPosition({ 0.0f,85.0f,0.0f });
 
 	//	プレイヤー
-	AddGameObject<Player>(LAYER_3D);
+	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });
 
 
 	//	アイテム

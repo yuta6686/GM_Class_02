@@ -39,7 +39,7 @@ void TitleScene::Init()
 	//	”’‚¢ŽlŠp‚¢‚â‚Â
 	{
 		D3DXVECTOR3 centerpos = { 0.0f,0.0f,0.0f };
-		m_SwitchToScenes = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPloygonTest>(16, 16, centerpos, 20.0f, 0.0f);
+		m_SwitchToScenes = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPloygonTest>(16, 16, centerpos, 20.0f, 0.0f,LAYER_3D);
 		for (auto switchscene : m_SwitchToScenes) {
 			switchscene->GetComponent<VertexChangeComponent_ToGame>()->Init();
 		}
@@ -49,16 +49,16 @@ void TitleScene::Init()
 	{
 		D3DXVECTOR3 centerpos = { 0.0f,0.0f,0.0f };
 		centerpos.y = 10.0f;
-		m_Circles.push_back(CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 0.0f));
-		std::vector<CO_3DPolygon_circle*> circles = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 180.0f);
+		m_Circles.push_back(CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 0.0f, LAYER_3D));
+		std::vector<CO_3DPolygon_circle*> circles = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 180.0f, LAYER_3D);
 		for (CO_3DPolygon_circle* cir : circles) {
 			cir->GetComponent<Polygon3DComponent>()->LoadTexture("asset\\texture\\circle_pink.png");
 		}
 		m_Circles.push_back(circles);
 
 		centerpos.y = -10.0f;
-		m_Circles.push_back(CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 0.0f));
-		std::vector<CO_3DPolygon_circle*> circles_ = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 180.0f);
+		m_Circles.push_back(CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 0.0f, LAYER_3D));
+		std::vector<CO_3DPolygon_circle*> circles_ = CircleDeploy::AddGameObject_CircleDeploy<CO_3DPolygon_circle>(16, 32, centerpos, 20.0f, 180.0f, LAYER_3D);
 		for (CO_3DPolygon_circle* cir : circles_) {
 			cir->GetComponent<Polygon3DComponent>()->LoadTexture("asset\\texture\\circle_pink.png");
 		}

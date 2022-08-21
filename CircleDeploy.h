@@ -11,12 +11,13 @@ private:
 public:
 
 	template <class T>
-	inline static std::vector<T*> AddGameObject_CircleDeploy(
+	inline static std::vector<T*> AddGameObject_CircleDeploy(		
 		const int& NumLayer,
 		const int& MaxNumLayer,		
 		const D3DXVECTOR3& center,
 		const float& radius,
-		const float& offset)
+		const float& offset,
+		const int& GameObject_Layer )
 	{
 		std::vector<T*> result;
 		std::shared_ptr<Scene> scene = Manager::GetScene();
@@ -33,7 +34,7 @@ public:
 			circlePos.z = radius * cosf(angle);
 
 			
-			result.push_back(scene->AddGameObject<T>(LAYER_3D));
+			result.push_back(scene->AddGameObject<T>(GameObject_Layer));
 			
 			result[i]->SetPosition(circlePos);
 			

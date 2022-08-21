@@ -94,13 +94,11 @@ public:
     virtual void Init() {
         AddComponent<TransformInit>(COMLAYER_FIRST);
 
-        AddComponent<ShaderComponent>(COMLAYER_SHADER);
+        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetUnlitShader();
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 
-        AddComponent<VelocityComponent>(COMLAYER_SECOND);
-
-        AddComponent< GravityComponent>(COMLAYER_SECOND);
+        AddComponent<VelocityComponent>(COMLAYER_SECOND);        
                  
         AddComponent<StageLimitComponent_Reflect>(COMLAYER_MATRIX);
 

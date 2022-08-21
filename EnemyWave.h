@@ -29,6 +29,7 @@ protected:
 	std::vector<Enemy_Tracking*> m_EnemyTrackingList;
 	std::vector<Enemy_Tracking_Fast*> m_EnemyFastList;
 	std::vector<Enemy_Tracking_Late*> m_EnemyLateList;
+	std::vector<Cylinder*> m_Cylinders;
 
 	std::string m_StageFileName = "asset\\file\\EnemyGenerate1-1.txt";
 	bool m_IsNextWave = false;
@@ -86,12 +87,12 @@ protected:
 			case ENEMY_TRACKING_LATE:
 				penemy = m_Scene->AddGameObject<Enemy_Tracking_Late>(LAYER_ENEMY);
 				break;
-			case ENEMY_NO_DRUM:
-				m_Scene->AddGameObject<Cylinder>(LAYER_3D);
+			case ENEMY_NO_DRUM:				
 				cly = m_Scene->AddGameObject<Cylinder>(LAYER_3D);
 				cly->SetPosition(pos);
 				cly->SetRotation(rot);
 				cly->SetScale(sca);
+				m_Cylinders.push_back(cly);
 				break;
 			case ENEMY_MOVE_STRAIGHT:
 				penemy = m_Scene->AddGameObject<Enemy_Move_Straight>(LAYER_ENEMY);
@@ -138,7 +139,11 @@ public:
 
 	virtual void Uninit() override
 	{
+		for (auto cyl : m_Cylinders) {
+			cyl->SetDestroy();
+		}
 
+		m_Cylinders.clear();
 	}
 
 	virtual void Update() override

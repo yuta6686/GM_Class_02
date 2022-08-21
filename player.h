@@ -77,7 +77,7 @@ public:
 		ShootBulletComponent* sbc = GetComponent<ShootBulletComponent>();
 
 		if (sbc)
-			sbc->SetIsUseBullet(flag);
+			sbc->SetIsUseBullet(!flag);
 		m_IsUseBullet = flag;
 	}
 

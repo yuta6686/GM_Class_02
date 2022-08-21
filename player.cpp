@@ -82,6 +82,9 @@ void Player::Init()
 	AddComponent< ImGuiComponent>(COMLAYER_SECOND);
 
 	ComponentObject::Init();
+
+	
+	
 }
 
 void Player::Update()
@@ -191,11 +194,11 @@ void Player::PlayerMove()
 		}
 
 
-		if (GetKeyboardPress(DIK_I)) {
+		if (GetKeyboardPress(DIK_I) || GetKeyboardPress(DIK_SPACE)) {
 			
 			m_VelocityCom->m_Velocity.y += PLAYER_SPEED * speedup;
 		}
-		if (GetKeyboardPress(DIK_K)) {			
+		if (GetKeyboardPress(DIK_K) || GetKeyboardPress(DIK_LSHIFT)) {			
 			m_VelocityCom->m_Velocity.y -= PLAYER_SPEED * speedup;
 		}
 	}
@@ -236,7 +239,13 @@ void Player::PlayerMove()
 
 	//	減衰	
 	m_VelocityCom->m_Velocity.x *= ATTENUATION.x;	
-	m_VelocityCom->m_Velocity.y *= ATTENUATION.y;
+	if (m_IsUseBullet) {
+		m_VelocityCom->m_Velocity.y *= 0.9f;
+	}
+	else {
+		m_VelocityCom->m_Velocity.y *= ATTENUATION.y;
+	}
+	
 	m_VelocityCom->m_Velocity.z *= ATTENUATION.z;
 
 
@@ -279,13 +288,15 @@ void Player::PlayerMove()
 
 
 
-	//	ジャンプ	
-	if (GetKeyboardTrigger(DIK_SPACE) &&
-		m_Position.y < groundHeight + 0.1f &&
-		m_VelocityCom->m_Velocity.y < 0.1f) {
-		for (int i = 0; i < 100; i++)
-			SetParticle_Landing();
-		m_VelocityCom->m_Velocity.y = JUMP;
+	if (!m_IsUseBullet) {
+		//	ジャンプ	
+		if (GetKeyboardTrigger(DIK_SPACE) &&
+			m_Position.y < groundHeight + 0.1f &&
+			m_VelocityCom->m_Velocity.y < 0.1f) {
+			for (int i = 0; i < 100; i++)
+				SetParticle_Landing();
+			m_VelocityCom->m_Velocity.y = JUMP;
+		}
 	}
 
 	//	接地	

@@ -6,19 +6,44 @@
 #include "ParticleObject_2D.h"
 #include "CO_Stand.h"
 #include "HPComponent.h"
+#include "CountComponent.h"
 class CollisionComponent_Player :
     public CollisionComponent
 {
+private:
+    bool m_IsCollision = true;
+    bool m_IsGenerateMode = false;
+    CountComponent* m_Count;
 public:
+    void SetIsCollision(bool flag) { m_IsCollision = flag; }
+    void SetIsGenerateMode(bool flag) { m_IsGenerateMode = flag; }
+    virtual void Init()override
+    {
+        CollisionComponent::Init();
+        m_Count = m_Parent->AddComponent<CountComponent>(COMLAYER_SECOND);
+    }
     virtual void Update() override
     {
+        if (m_IsGenerateMode)return;
+
+        if (m_Count->GetFinish()) {
+            m_IsCollision = true;
+        }
+
+        if (m_IsCollision == false)return;
+
         std::vector<GameObject*> enemys = IsCollisionSphere(LAYER_ENEMY);
         HPComponent* hp = m_Parent->GetComponent<HPComponent>();
 
+        
+
         for (auto enemy : enemys) {
+            m_Count->Start(false, 60, 0);
+            m_IsCollision = false;
+
             dynamic_cast<Enemy_Interface*>(enemy)->CollosionWithBullet();
 
-            enemy->SetDestroy();
+            //enemy->SetDestroy();
             
             m_Parent->GetComponent<HPComponent>()->TakeDamage(2);
 
@@ -53,11 +78,12 @@ public:
                 m_Scene->GetGameObject< ParticleObject_2D>()->SetParticle_Gather(color);
            
             break;
-        }
+        }        
+    }
 
-        
-
-
+    void DrawImgui()
+    {
+        ImGui::Checkbox("Is Player Collision", &m_IsCollision);
     }
 };
 

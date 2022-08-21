@@ -120,6 +120,7 @@ public:
         mdc->SetSourcePath("asset\\model\\stone_white.obj");
         mdc->SetIsVariable(true);
         
+        AddComponent< GravityComponent>(COMLAYER_SECOND);
 
         AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.1f);
 
@@ -142,6 +143,8 @@ public:
         mdc->SetSourcePath("asset\\model\\enemy_boss.obj");
         mdc->SetIsVariable(true);
         
+        
+        AddComponent< GravityComponent>(COMLAYER_SECOND);
 
         AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.5f);
 
@@ -149,6 +152,6 @@ public:
 
         ComponentObject::Init();
 
-        m_Scale = { 1.0f,1.0f,1.0f };
+        m_Scale = { 2.0f,2.0f,2.0f };
     }
 };
