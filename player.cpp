@@ -29,7 +29,7 @@ void Player::Init()
 {
 	std::shared_ptr<Scene> scene = Manager::GetScene();
 	m_ShotSE = scene->AddGameObject<Audio>(LAYER_AUDIO);
-	m_ShotSE->Load("asset\\audio\\ƒr[ƒ€‰¹.wav");
+	m_ShotSE->Load("asset\\audio\\SE_Shoot1.wav");
 
 
 

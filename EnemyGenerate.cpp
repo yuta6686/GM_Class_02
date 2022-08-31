@@ -62,11 +62,10 @@ void EnemyGenerate::Update()
 
 	SetEnemyGenerateMode(IsEnemyGenerateMode);
 
-	if (ImGui::CollapsingHeader("EnemyGenerate!")) {
-		ImGui::SliderFloat("scale", &_scale, 0.0f, 30.0f,"%.2f");
-		ImGui::SliderFloat("scale3.x", &_scale3.x, _scale, 30.0f);
-		ImGui::SliderFloat("scale3.y", &_scale3.y, _scale, 30.0f);
-		ImGui::SliderFloat("scale3.z", &_scale3.z, _scale, 30.0f);
+	if (ImGui::CollapsingHeader("EnemyGenerate!")) {		
+		ImGui::SliderFloat("scale3.x", &_scale3.x, 1.0f, 30.0f);
+		ImGui::SliderFloat("scale3.y", &_scale3.y, 1.0f, 30.0f);
+		ImGui::SliderFloat("scale3.z", &_scale3.z, 1.0f, 30.0f);
 
 		ImGui::SliderInt("hp", &_hp, 1, 3);
 		ImGui::SliderInt("enemy_index", &_enemy_index, ENEMY_NORMAL, ENEMY_MAX);
@@ -97,9 +96,45 @@ void EnemyGenerate::Update()
 		if (ImGui::Button("Generate Player Transform") ||
 			GetKeyboardTrigger(DIK_E)) {
 
-			auto* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+			Enemy_Interface* enemy;
+
+			switch (_enemy_index)
+			{
+			case ENEMY_NORMAL:
+				enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+				break;
+			case ENEMY_TRACKING:
+				enemy = m_Scene->AddGameObject<Enemy_Tracking>(LAYER_ENEMY);
+				break;
+			case ENEMY_TRACKING_FAST:
+				enemy = m_Scene->AddGameObject<Enemy_Tracking_Fast>(LAYER_ENEMY);
+				break;
+			case ENEMY_TRACKING_LATE:
+				enemy = m_Scene->AddGameObject<Enemy_Tracking_Late>(LAYER_ENEMY);
+				break;
+			case ENEMY_NO_DRUM:
+				enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+				break;
+			case ENEMY_MOVE_STRAIGHT:
+				enemy = m_Scene->AddGameObject<Enemy_Move_Straight>(LAYER_ENEMY);
+				break;
+			case ENEMY_JUMP:
+				enemy = m_Scene->AddGameObject<Enemy_Jump>(LAYER_ENEMY);
+				break;
+			case ENEMY_BOSS:
+				enemy = m_Scene->AddGameObject<Enemy_Boss>(LAYER_ENEMY);
+				break;
+			case ENEMY_MAX:
+				enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+				break;
+			default:
+				enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+				break;
+			}
+
 			enemy->SetPosition(m_Player->GetPosition());
-			enemy->SetScale({ _scale3 });
+			enemy->SetFirstScale(_scale3);
+			enemy->SetScale(_scale3);
 			//enemy->SetRotation(m_Player->GetRotation());
 			enemy->SetMaxHp(_hp);
 		}

@@ -106,8 +106,12 @@ void TitleScene::Init()
 	
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
-	m_BGM->Load("asset\\audio\\black.wav");
+	m_BGM->Load("asset\\audio\\BGM_Title.wav");
 	m_BGM->Play(true);
+
+	m_SESelect = AddGameObject<Audio>(LAYER_AUDIO);
+	m_SESelect->Load("asset\\audio\\SE_Kettei2.wav");
+	m_SESelect->SetAudioVolume(0.5f);
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
@@ -181,6 +185,7 @@ void TitleScene::Update()
 			}
 				
 			m_Fade->Start(false);
+			m_SESelect->Play(false);
 		}
 
 
@@ -204,18 +209,21 @@ void TitleScene::Update()
 
 		//	確認UIの出現
 		if (GetKeyboardTrigger(DIK_SPACE) && istoexit && m_Confirmation == nullptr) {
+			m_SESelect->Play(false);
 			m_Confirmation = AddGameObject< CO_Confirmation>(LAYER_2D);
 			return;
 		}
 
 		//	確認UIの結果-->Yesの場合のフェードスタート
 		if (GetKeyboardTrigger(DIK_SPACE) && m_Confirmation != nullptr && m_Confirmation->GetComponent<ConfirmationComponent>()->GetIsYes())
-		{			
+		{	
+			m_SESelect->Play(false);
 			m_Fade->Start(false);
 		}
 
 		//	確認UIの結果-->No の場合のフェードスタート
 		if (GetKeyboardTrigger(DIK_SPACE) && m_Confirmation != nullptr && m_Confirmation->GetComponent<ConfirmationComponent>()->GetIsYes() == false) {
+			m_SESelect->Play(false);
 			m_Confirmation->SetDestroy();
 			m_Confirmation = nullptr;
 		}

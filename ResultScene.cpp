@@ -9,6 +9,7 @@
 #include "GameScene.h"
 #include "CO_UI_Default.h"
 #include "ParticleObject_2D.h"
+#include "audio.h"
 
 void ResultScene::Init()
 {
@@ -44,6 +45,10 @@ void ResultScene::Init()
 	AddGameObject< CO_UI_Default>(LAYER_2D)->SetUIInfo(uii, { SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f - 100.0f,0.0f });
 
 	m_Particle = AddGameObject<ParticleObject_2D>(LAYER_2D);
+
+	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
+	m_BGM->Load("asset\\audio\\BGM_GameClear.wav");
+	m_BGM->Play(true);
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 

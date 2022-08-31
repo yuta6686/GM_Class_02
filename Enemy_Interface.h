@@ -46,6 +46,11 @@ public:
         return true;
     }
 
+    void SetFirstScale(const D3DXVECTOR3& scale)
+    {
+        m_FirstScale = scale;
+    }
+
     virtual bool SetMaxHp(const int& hp) 
     {
         if (hp < 0 || hp >= MAX_HP) {

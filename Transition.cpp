@@ -51,7 +51,7 @@ void Transition::Init()
 
 	m_SE = Manager::GetScene()->AddGameObject<Audio>(LAYER_AUDIO);
 	
-	m_SE->Load("asset\\audio\\up.wav");	
+	m_SE->Load("asset\\audio\\SE_Transition.wav");	
 	m_SE->SetAudioVolume(0.5f);
 
 	m_Position = { 0.0f,0.0f,0.0f };

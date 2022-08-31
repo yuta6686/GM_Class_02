@@ -18,6 +18,7 @@ class TitleScene :
 
     float m_Angle=1.0f;
     class Audio* m_BGM;
+    class Audio* m_SESelect;
 public:
     // Scene ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual void Init() override;

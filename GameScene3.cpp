@@ -78,7 +78,7 @@ void GameScene3::Init()
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
-	m_BGM->Load("asset\\audio\\yomi.wav");
+	m_BGM->Load("asset\\audio\\BGM_Game3.wav");
 	m_BGM->Play(true);
 	m_BGM->SetAudioVolume(0.5f);
 

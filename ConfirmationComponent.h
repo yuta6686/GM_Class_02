@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "UserInterfaceComponent.h"
 #include "manager.h"
+#include "audio.h"
 
 class ConfirmationComponent :
     public Component
@@ -19,6 +20,8 @@ private:
         "asset\\texture\\message_box_No.png";
 
     bool m_IsYes = false;
+
+    Audio* m_SE;
     
 public:   
     virtual void Init() override
@@ -30,6 +33,9 @@ public:
         //uic->SetWidthHeight(widthheight / 3.0f);
         
         m_UIComponent->LoadTexture(m_MessageBox_No);
+
+        m_SE = Manager::GetScene()->AddGameObject<Audio>(LAYER_AUDIO);
+        m_SE->Load("asset\\audio\\SE_Kettei4.wav");
 
         m_IsYes = false;
     }
@@ -45,6 +51,7 @@ public:
             m_IsYes == false)
         {
             m_IsYes = true;
+            m_SE->Play(false);
             m_UIComponent->LoadTexture(m_MessageBox_Yes);
         }
 
@@ -52,6 +59,7 @@ public:
             GetKeyboardTrigger(DIK_D) &&
             m_IsYes == true) {
             m_IsYes = false;
+            m_SE->Play(false);
             m_UIComponent->LoadTexture(m_MessageBox_No);
         }
     }

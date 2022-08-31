@@ -94,7 +94,7 @@ void GameScene::Init()
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
-	m_BGM->Load("asset\\audio\\193.wav");
+	m_BGM->Load("asset\\audio\\BGM_Game1.wav");
 	m_BGM->Play(true);
 	m_BGM->SetAudioVolume(0.1f);
 
@@ -152,7 +152,7 @@ void GameScene::Init()
 		couibelt->Start(false, 60, 90);
 	}
 
-	//m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);
 
