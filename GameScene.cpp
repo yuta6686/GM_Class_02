@@ -65,10 +65,8 @@ void GameScene::Init()
 
 	//	プレイヤー
 	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });
-
-
-	//	アイテム
-	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
+	
+	
 
 	//	AO球
 	AddGameObject<Ao_Sphere>(LAYER_3D)->LoadModel("asset\\model\\ao_Sphere_omaga.obj");
@@ -152,7 +150,7 @@ void GameScene::Init()
 		couibelt->Start(false, 60, 90);
 	}
 
-		m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);
 

@@ -152,6 +152,50 @@ void EnemyGenerate::Update()
 
 			ImGui::TreePop();
 		}
+
+		if (ImGui::TreeNode("Enemy Vertical Deploy")) {
+			ImGui::SliderInt("Vertical Deploy Number", &m_VerticalDeployNum, 1, 10);
+			ImGui::SliderFloat("Width", &m_VerticalDelpoyWidth, 0.0f, 50.0f);
+
+			ImGui::RadioButton("X", &m_Axis,VDA_X);
+			ImGui::RadioButton("-X", &m_Axis, VDA_MX);
+			ImGui::RadioButton("Y", &m_Axis, VDA_Y);			
+			ImGui::RadioButton("Z", &m_Axis, VDA_Z);
+			ImGui::RadioButton("-Z", &m_Axis, VDA_MZ);
+
+			if (ImGui::Button("Deploy")) {
+				for (int i = 0; i < m_VerticalDeployNum; i++) {
+					Enemy_Interface* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+					D3DXVECTOR3 player_position = m_Player->GetPosition();
+					switch (m_Axis)
+					{
+					case VDA_X:
+						enemy->SetPosition({ player_position.x + (i * m_VerticalDelpoyWidth),player_position.y,player_position.z });
+						break;
+					case VDA_MX:
+						enemy->SetPosition({ player_position.x + (-i * m_VerticalDelpoyWidth),player_position.y,player_position.z });
+						break;
+					case VDA_Y:
+						enemy->SetPosition({ player_position.x ,player_position.y + (i * m_VerticalDelpoyWidth),player_position.z });
+						break;					
+					case VDA_Z:
+						enemy->SetPosition({ player_position.x,player_position.y,player_position.z + (i * m_VerticalDelpoyWidth) });
+						break;
+					case VDA_MZ:
+						enemy->SetPosition({ player_position.x,player_position.y,player_position.z + (-i * m_VerticalDelpoyWidth) });
+						break;
+					default:
+						break;
+					}
+					
+					enemy->SetFirstScale(_scale3);
+					enemy->SetScale(_scale3);				
+					enemy->SetMaxHp(_hp);
+				}				
+			}
+
+			ImGui::TreePop();
+		}
 	}
 
 

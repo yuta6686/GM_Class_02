@@ -11,15 +11,15 @@ private:
     std::shared_ptr<Scene> m_Scene;
 
     
-
+    
     CountComponent* m_Count;
 
     bool m_IsCharge = false;
     bool m_IsShoot = false;    
 
     inline static const D3DXVECTOR4 CLEAR_COLOR = { 0.0f,0.0f,0.0f,0.75f };
-    inline static const D3DXVECTOR4 ACTION_COLOR = { 1.0f,1.0f,1.0f,0.75f };
-    inline static const D3DXVECTOR4 NO_ACTION_COLOR = { 0.0f,1.0f,1.0f,0.75f };
+    inline static const D3DXVECTOR4 ACTION_COLOR = { 0.0f,0.5f,1.0f,0.75f };
+    inline static const D3DXVECTOR4 NO_ACTION_COLOR = { 1.0f,1.0f,1.0f,0.25f };
 public:
     virtual void Init()override
     {
@@ -166,6 +166,7 @@ public:
         m_IsShoot = false;
         
 
+
         ComponentObject::Init();
     }
 
@@ -197,7 +198,7 @@ public:
         if (ImGui::IsMouseReleased(ImGuiMouseButton_Left)) {
             m_IsShoot = true;
             m_Tutorial[1]->SetColor(ACTION_COLOR);
-            m_Tutorial[4]->SetColor(NO_ACTION_COLOR);
+            m_Tutorial[4]->SetColor(NO_ACTION_COLOR);            
         }
         else
         {

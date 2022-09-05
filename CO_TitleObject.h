@@ -1,14 +1,16 @@
 #pragma once
 #include "ComponentObject.h"
 #include "ModelColorChangeComponent_Titlebg.h"
+#include "BlinkComponent.h"
 #include "BlinkComponent_Scale.h"
-class CO_toGame :
+#include "gameObject.h"
+class CO_TitleObject :
     public ComponentObject
 {
 public:
     virtual void Init()override
     {
-        const float scale = 2.5f;
+        const float scale = 5.0f;
         auto* init = AddComponent<TransformInit>(COMLAYER_FIRST);
         init->SetInitScale({ scale,scale,scale });
 
@@ -18,13 +20,13 @@ public:
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 
         auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
-        mdc->SetSourcePath("asset\\model\\toGame.obj");
+        mdc->SetSourcePath("asset\\model\\title_object.obj");
         mdc->SetIsVariable(true);
 
         AddComponent< ModelColorChangeComponent_Titlebg>(COMLAYER_SECOND);
 
         AddComponent< BlinkComponent_Scale>(COMLAYER_SECOND)
-            ->SetParameter(AXIS_XYZ, 0.05f, 2.5f, 3.0f);
+            ->SetParameter(AXIS_XYZ, 0.05f, 7.5f, 10.0f);
 
         AddComponent<ImGuiComponent>(COMLAYER_SECOND);
 
@@ -32,5 +34,7 @@ public:
         ComponentObject::Init();
         mdc->SetDiffuse({ 1.0f,1.0f,1.0f,1.0f });
     }
+    
+
 };
 

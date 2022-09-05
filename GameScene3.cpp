@@ -54,10 +54,7 @@ void GameScene3::Init()
 
 	//	プレイヤー
 	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });
-
-
-	//	アイテム
-	AddGameObject<item>(LAYER_3D)->SetPosition(D3DXVECTOR3(-5.0f, 0.5f, 5.0f));
+	
 
 	//	AO球
 	AddGameObject<Ao_Sphere>(LAYER_3D)->LoadModel("asset\\model\\ao_Sphere_sky.obj");

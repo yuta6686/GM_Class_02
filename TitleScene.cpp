@@ -22,6 +22,7 @@
 #include "CO_Confirmation.h"
 #include "CO_UI_Quest.h"
 #include "CO_UI_Quest_Belt.h"
+#include "CO_TitleObject.h"
 #include "ParticleObject.h"
 #include "CO_Noise.h"
 
@@ -68,6 +69,8 @@ void TitleScene::Init()
 	//	îwåiÇÃè\éö
 	AddGameObject< CO_TitleBackGround>(LAYER_3D);
 
+	
+
 	//	íπãè Exit
 	AddGameObject< CO_ToriiBlock>(LAYER_3D)->SetPosition({ 0.0f,-7.5f,-30.0f });
 
@@ -81,9 +84,10 @@ void TitleScene::Init()
 	
 	//	GameÉÇÉfÉã
 	auto* game = AddGameObject < CO_toGame>(LAYER_3D);
-	game->SetPosition({ 0.0f,13.0f,30.0f });
-	float gameslca = 7.5f;
-	game->SetScale({ gameslca ,gameslca ,gameslca });
+	game->SetPosition({ 0.0f,12.0f,30.0f });
+
+	auto* title_object = AddGameObject< CO_TitleObject>(LAYER_3D);
+	title_object->SetPosition({ 0.0f,15.0f,30.0f });
 
 	//AddGameObject<CO_UI_Quest>(LAYER_2D);
 	

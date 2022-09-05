@@ -4,6 +4,14 @@
 #include "scene.h"
 #include "player.h"
 
+enum VERTICAL_DEPLOY_AXIS {
+	VDA_X = 0,
+	VDA_MX,
+	VDA_Y,	
+	VDA_Z,
+	VDA_MZ
+};
+
 class EnemyGenerate :
 	public GameObject
 {
@@ -28,6 +36,11 @@ private:
 	int m_NumLayer_Max = 16;
 	float m_Radius = 10.0f;
 	float m_Offset = 0.0f;
+
+	//	Vertical Deploy
+	int m_VerticalDeployNum = 3;
+	float m_VerticalDelpoyWidth = 5.0f;
+	int m_Axis = VDA_X;
 
 	bool IsEnemyGenerateMode = false;
 

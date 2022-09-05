@@ -20,9 +20,28 @@ public:
             m_Scene->AddGameObject<Effect_explosion>
                 (LAYER_3D)->SetPosition(m_Parent->GetPosition());
 
-            for (int i = 0; i < 5; i++) {
+            int this_enemy_hp = dynamic_cast<Enemy_Interface*>(enemy)->GetHp();
+            int particle_num = 10;
+
+            switch (this_enemy_hp)
+            {
+            case 0:
+                particle_num = 200;
+                break;
+            case 1:
+                particle_num = 50;
+                break;
+            case 2:
+                particle_num = 25;
+                break;
+            default:
+                particle_num = 10;
+                break;
+            }
+
+            for (int i = 0; i < particle_num; i++) {
                 m_Scene->GetGameObject< ParticleObject>()
-                    ->SetParticle_Preset1(enemy->GetPosition());
+                    ->SetParticle_EnemyCollision(enemy->GetPosition(),this_enemy_hp);
             }
             break;
         }        

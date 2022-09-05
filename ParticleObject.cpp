@@ -374,6 +374,50 @@ void ParticleObject::SetParticle_Title()
 	SetParticle(par);
 }
 
+void ParticleObject::SetParticle_EnemyCollision(const D3DXVECTOR3& position, const int& hp)
+{
+	PARTICLE par;
+	par.acc = { 0.0f,0.0f,0.0f };
+
+	switch (hp)
+	{
+		
+	case 0:
+		par.m_ColorOverLifeTime_Start = { 1.0f,MyMath::Random(0.0f,1.0f),MyMath::Random(0.0f,1.0f),1.0f };
+		par.life = 120;
+		break;
+	case 1:
+		par.m_ColorOverLifeTime_Start = { 1.0f,MyMath::Random(0.0f,1.0f),MyMath::Random(0.0f,1.0f),1.0f };
+		par.life = 60;
+		break;		
+	default:
+		par.m_ColorOverLifeTime_Start = { 1.0f,MyMath::Random(0.0f,1.0f),MyMath::Random(0.0f,1.0f),1.0f };
+		par.life = 60;
+		break;
+	}
+
+	
+	par.m_ColorOverLifeTime_End = { 0.0f,0.0f,0.0f,1.0f };
+	par.col = par.m_ColorOverLifeTime_Start;
+	
+	par.pos = position ;	
+	par.rot = { 0.0f,0.0f,0.0f };
+	par.rot_vel = MyMath::VEC3Random(-0.01f, 0.01f);
+	par.m_SizeOverLifeTime_Start = MyMath::Random(0.1f, 0.5f);
+	par.m_SizeOverLifeTime_End = 0.0f;
+	par.size = par.m_SizeOverLifeTime_Start;
+	par.status = 0;
+	par.type = rand() % PARTICLE_TYPE_MAX;
+	par.use = true;
+	par.use_torii = false;
+	par.vel = MyMath::VEC3Random(-0.4f,0.4f);
+	par.acc = par.vel * -1.0f / 50.0f;
+
+	SetParticle(par);
+}
+
+
+
 void ParticleObject::SetParticles(const D3DXVECTOR3& velocity)
 {
 	for (unsigned int i = 0; i < m_Particles.size(); i++) {

@@ -324,6 +324,9 @@
     <ClCompile Include="CO_UI_Tutorial_Move.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="CO_TitleObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -756,6 +759,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CO_UI_Tutorial_Move2.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_TitleObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

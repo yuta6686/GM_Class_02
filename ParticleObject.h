@@ -88,6 +88,8 @@ public:
 
 	void SetParticle_Title();
 
+	void SetParticle_EnemyCollision(const D3DXVECTOR3& position,const int& hp);
+
 	//	SetParticles ŒQ---------------------------------------
 	void SetParticles(const D3DXVECTOR3& velocity);
 

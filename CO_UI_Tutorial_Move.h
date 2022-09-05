@@ -24,8 +24,8 @@ private:
     D3DXVECTOR3 m_JumpPos = { 0.0f,0.0f,0.0f };
 
     inline static const D3DXVECTOR4 CLEAR_COLOR = { 0.0f,0.0f,0.0f,0.75f };
-    inline static const D3DXVECTOR4 ACTION_COLOR = { 0.0f,1.0f,1.0f,0.75f };
-    inline static const D3DXVECTOR4 NO_ACTION_COLOR = { 1.0f,1.0f,1.0f,0.75f };
+    inline static const D3DXVECTOR4 ACTION_COLOR = { 0.0f,0.5f,1.0f,0.75f };
+    inline static const D3DXVECTOR4 NO_ACTION_COLOR = { 1.0f,1.0f,1.0f,0.25f };
 public:
     virtual void Init()override
     {

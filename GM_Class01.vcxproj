@@ -26,6 +26,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionComponent_Enemy.cpp" />
+    <ClCompile Include="CO_TitleObject.cpp" />
     <ClCompile Include="CO_UI_Tutorial_Move.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="CO_Noise.h" />
     <ClInclude Include="CO_Select.h" />
     <ClInclude Include="CO_Stand.h" />
+    <ClInclude Include="CO_TitleObject.h" />
     <ClInclude Include="CO_Torii_Broken.h" />
     <ClInclude Include="CO_UI_Default.h" />
     <ClInclude Include="CO_UI_dot.h" />
