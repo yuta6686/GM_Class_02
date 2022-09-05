@@ -1,4 +1,11 @@
 #pragma once
+//  ---------------------------------------------------------
+//  CO_toGame [CO_toGame.h]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/05
+//  ------------------------summary--------------------------
+//  - Titleシーンのオブジェクト
+//  ---------------------------------------------------------
 #include "ComponentObject.h"
 #include "ModelColorChangeComponent_Titlebg.h"
 #include "BlinkComponent_Scale.h"

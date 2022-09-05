@@ -1,4 +1,11 @@
 #pragma once
+//  ---------------------------------------------------------
+//  CircleDeploy [CircleDeploy.h]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/05
+//  ------------------------summary--------------------------
+//  - ‰~Œ`”z’u
+//  ---------------------------------------------------------
 #include "gameObject.h"
 #include "scene.h"
 #include "manager.h"

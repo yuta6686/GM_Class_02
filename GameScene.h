@@ -1,4 +1,5 @@
 #pragma once
+
 #include "scene.h"
 class Audio;
 class Transition;
@@ -17,6 +18,7 @@ public:
     Audio* GetBGM()const { return m_BGM; }
 private:
     void StageCorridorCreate();
+    void AudioUpdate();
 
     class Audio* m_BGM;
     float m_volume = 1.0f;

@@ -25,9 +25,6 @@
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="CollisionComponent_Enemy.cpp" />
-    <ClCompile Include="CO_TitleObject.cpp" />
-    <ClCompile Include="CO_UI_Tutorial_Move.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
@@ -51,7 +48,6 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="input.cpp" />
-    <ClCompile Include="Invoke_test.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
@@ -67,14 +63,12 @@
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="polygon2D.cpp" />
     <ClCompile Include="Polygon3DComponent.cpp" />
-    <ClCompile Include="RandomJumpComponent.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Rotate2D.cpp" />
     <ClCompile Include="ShaderComponent.cpp" />
     <ClCompile Include="Shadow.cpp" />
-    <ClCompile Include="ShootBulletComponent.cpp" />
     <ClCompile Include="ShootBullet_Amass.cpp" />
     <ClCompile Include="ShootBullet_Idle.cpp" />
     <ClCompile Include="ShootBullet_Shoot.cpp" />
@@ -83,10 +77,8 @@
     <ClCompile Include="stage_corridor_corner.cpp" />
     <ClCompile Include="stage_otorii.cpp" />
     <ClCompile Include="stage_wator_field.cpp" />
-    <ClCompile Include="TextureComponent.cpp" />
     <ClCompile Include="TitlePolygon.cpp" />
     <ClCompile Include="TitleScene.cpp" />
-    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="UI_Charge.cpp" />
     <ClCompile Include="UI_Score.cpp" />
@@ -188,10 +180,8 @@
     <ClInclude Include="Enemy_Interface.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="gameObject.h" />
-    <ClInclude Include="GameObject_Invoke.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="input.h" />
-    <ClInclude Include="Invoke_test.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="main.h" />
@@ -199,7 +189,6 @@
     <ClInclude Include="MatrixComponent.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="model_variable.h" />
-    <ClInclude Include="multi_thread.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="ParticleObject.h" />
     <ClInclude Include="pixelShader.h" />

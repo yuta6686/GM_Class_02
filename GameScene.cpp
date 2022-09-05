@@ -1,3 +1,12 @@
+//  ---------------------------------------------------------
+//  GameScene [GameScene.cpp]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/05
+//  ------------------------summary--------------------------
+//  - GameScene 1
+//	- ステージ1
+//	- シーンを継承
+//  ---------------------------------------------------------
 #include "GameScene.h"
 #include "camera.h"
 #include "polygon2D.h"
@@ -54,9 +63,6 @@ void GameScene::Init()
 	//	ライト
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
-	//	フィールド
-	//AddGameObject<Field>(LAYER_3D);
-
 	//	プレイヤーの前に入れる
 	AddGameObject<CO_UI_dot>(LAYER_2D);
 	AddGameObject< CO_UI_PlayerHPGauge>(LAYER_2D);
@@ -64,9 +70,7 @@ void GameScene::Init()
 	AddGameObject< CO_UI_Line>(LAYER_2D)->SetPosition({ 0.0f,85.0f,0.0f });
 
 	//	プレイヤー
-	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });
-	
-	
+	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });		
 
 	//	AO球
 	AddGameObject<Ao_Sphere>(LAYER_3D)->LoadModel("asset\\model\\ao_Sphere_omaga.obj");
@@ -74,19 +78,16 @@ void GameScene::Init()
 	//	ステージ配置
 	StageCorridorCreate();
 
+	//	道
 	for (int i = -10; i < 10; i++)
 	{
-
 		AddGameObject < CO_Stand>(LAYER_3D)->SetPosition({2.5f,0.0f,23.0f * i});
 	}
 	
-
+	//	User Interface
 	AddGameObject<CO_UI_AimLing>(LAYER_2D);
-
-	//	AddGameObject<Polygon2D>(LAYER_2D);
+	
 	AddGameObject<UI_Charge>(LAYER_2D);
-
-	//	AddGameObject< UI_Score>(LAYER_2D);
 
 	AddGameObject<Collision2D>(LAYER_2D);
 
@@ -96,40 +97,18 @@ void GameScene::Init()
 	m_BGM->Play(true);
 	m_BGM->SetAudioVolume(0.1f);
 
-	//	m_BGM->SetSourceRate(270.0f);
-
-	/*{
-		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
-		cyl->SetPosition({ 5.0f,0.0f,2.0f });
-		cyl->SetScale({ 3.0f,3.0f,3.0f });
-	}
-
-	{
-		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
-		cyl->SetPosition({ 5.0f,0.0f,10.0f });
-		cyl->SetScale({ 3.0f,6.0f,3.0f });
-	}
-
-	{
-		GameObject* cyl = AddGameObject<Cylinder>(LAYER_3D);
-		cyl->SetPosition({ 5.0f,0.0f,17.0f });
-		cyl->SetScale({ 3.0f,9.0f,3.0f });
-	}*/
-
 	
 
 	AddGameObject< ImGuiObject>(LAYER_3D);
 
+	//	シーン遷移
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
 
-	
-
+	//	EnemyGenerate
 	AddGameObject<EnemyGenerate>(LAYER_3D);
-
 	
-
-	
+	//	UserInterface 
 	AddGameObject<CO_UI_Quest>(LAYER_2D);
 	AddGameObject< CO_UI_Quest_Purpose>(LAYER_2D);
 
@@ -150,22 +129,27 @@ void GameScene::Init()
 		couibelt->Start(false, 60, 90);
 	}
 
+	//	EnemyWave
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 
+	//	鳥居の破片パーティクル
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);
 
+	//	このシーンの3Dパーティクル
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
+	//	このシーンの2Dパーティクル
 	AddGameObject<ParticleObject_2D>(LAYER_PARTICLE);
 
+	//	装飾用弓矢
 	AddGameObject<CO_Bow>(LAYER_3D);
-
 	AddGameObject<CO_Bow>(LAYER_3D)->SetPosition({ 0.0f,20.0f,-50.0f });
 
+	//	UI
 	AddGameObject< CO_UI_Tutorial_Move>(LAYER_2D);
 
-	AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });// ->
-		//SetSourcePath("asset\\model\\grad_cube.obj");
+	//	Noise Object
+	AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 
@@ -175,8 +159,6 @@ void GameScene::Init()
 
 void GameScene::Uninit()
 {
-
-
 	Scene::UnInit();
 }
 
@@ -184,9 +166,10 @@ void GameScene::Update()
 {
 	Scene::Update();
 
-	
+	//	常に鳥居破片パーティクルを発生させる
 	m_Particle->SetParticle_ToriiBloken_Rising();
 
+	//	ステージクリア管理
 	if (m_EnemyWave != nullptr) {
 		if (m_EnemyWave->GetIsStageClear()) {
 			m_EnemyWave->SetIsStageClear(false);
@@ -194,6 +177,7 @@ void GameScene::Update()
 		}
 	}
 
+	//	プレイヤーの死亡＆敗北シーンへの遷移処理
 	if (GetGameObject<Player>()->GetComponent<HPComponent>()->GetIsDeath() &&
 		m_IsPlayerDeath == false)
 	{
@@ -201,33 +185,10 @@ void GameScene::Update()
 		m_Fade->Start(false);
 	}
 
-	if (GetKeyboardPress(DIK_N))
-	{
-		for (auto x : m_GameObject[LAYER_AUDIO]) {
-			Audio* audio = dynamic_cast<Audio*>(x);
-			audio->VolumeDown(0.01f);
+	//	音量調整用関数
+	AudioUpdate();
 
-		}
-	}
-	if (GetKeyboardPress(DIK_M))
-	{
-		for (auto x : m_GameObject[LAYER_AUDIO]) {
-			Audio* audio = dynamic_cast<Audio*>(x);
-			audio->VolumeUp(0.01f);
-
-		}
-
-	}
-
-	if (GetKeyboardPress(DIK_V))
-	{
-		m_BGM->PitchDown(1.0f);
-	}
-	if (GetKeyboardPress(DIK_B))
-	{
-		m_BGM->PitchUp(1.0f);
-	}
-
+	//	フェード処理
 	if (m_Fade->GetFinish() &&
 		m_IsPlayerDeath)
 	{
@@ -237,22 +198,7 @@ void GameScene::Update()
 
 	if (m_Fade->GetFinish()) {
 		Manager::SetScene <GameScene2>();
-	}
-
-
-
-	//#ifdef _DEBUG
-	//	char* str = GetDebugStr();
-	//	wsprintf(GetDebugStr(), "game");
-	//	wsprintf(&str[strlen(str)], "sourceRate:%d , targetRate:%d ",
-	//		(int)sourceRate,(int)targetRate);
-	//	
-	//	SetWindowText(GetWindow(), GetDebugStr());
-	//#endif
-
-
-
-	
+	}	
 }
 
 void GameScene::StageCorridorCreate()
@@ -350,5 +296,35 @@ void GameScene::StageCorridorCreate()
 		ot->SetScale({ 5.0f,5.0f,5.0f });
 		ot->SetRotation({ D3DX_PI,0.0f,0.0f });
 	}
+}
+
+void GameScene::AudioUpdate()
+{
+#ifdef _DEBUG
+	if (GetKeyboardPress(DIK_N))
+	{
+		for (auto x : m_GameObject[LAYER_AUDIO]) {
+			Audio* audio = dynamic_cast<Audio*>(x);
+			audio->VolumeDown(0.01f);
+
+		}
+	}
+	if (GetKeyboardPress(DIK_M))
+	{
+		for (auto x : m_GameObject[LAYER_AUDIO]) {
+			Audio* audio = dynamic_cast<Audio*>(x);
+			audio->VolumeUp(0.01f);
+
+		}
+	}
+	if (GetKeyboardPress(DIK_V))
+	{
+		m_BGM->PitchDown(1.0f);
+	}
+	if (GetKeyboardPress(DIK_B))
+	{
+		m_BGM->PitchUp(1.0f);
+	}
+#endif // _DEBUG
 }
 

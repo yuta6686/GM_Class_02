@@ -1,3 +1,10 @@
+//  ---------------------------------------------------------
+//  Transition [Transition.cpp]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/05
+//  ------------------------summary--------------------------
+//  - フェード処理
+//  ---------------------------------------------------------
 #include "Transition.h"
 #include "ResourceManager.h"
 #include "audio.h"
@@ -96,7 +103,7 @@ void Transition::Draw()
 	float col = (m_Count / 60.0f);
 	m_Diffuse.y = (1.0f-col);
 	m_Diffuse.z = (1.0f-col);
-	m_Diffuse.w = fmax(col + 0.2f, 1.0f);
+	m_Diffuse.w = fmaxf(col + 0.2f, 1.0f);
 
 	
 	float ratio = (1.0f - (m_Count / 60.0f)) * RATIO;
