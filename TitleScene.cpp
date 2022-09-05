@@ -149,6 +149,7 @@ void TitleScene::Update()
 	for(int i=0;i<2;i++)
 		m_Particle->SetParticle_Title();
 
+
 //	以下はシーン遷移処理なので、ゲームオブジェクトは「持たず、作らず、持ち込ませず」
 	
 	//	ゲームシーンへの遷移処理

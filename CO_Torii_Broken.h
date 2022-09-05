@@ -80,7 +80,7 @@ public:
             m_Objects.push_back(fo);
             m_Blink.push_back(AddComponent<BlinkComponent>(COMLAYER_SECOND));
             m_Blink[i]->SetParameter(MyMath::Random(0.001f, 0.005f), MyMath::Random(0.5f,0.75f), MyMath::Random(1.25f,1.5f));
-            if (i == 3 || i==14) {
+            if (i == 3 || i==14 || i==20) {
                 m_Blink[i]->SetParameter(0.0f, 1.0f, 1.0f);
             }
         }

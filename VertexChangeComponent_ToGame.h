@@ -1,5 +1,6 @@
 #pragma once
 #include "VertexChangerComponent_Color.h"
+#include "audio.h"
 class VertexChangeComponent_ToGame :
     public VertexChangerComponent_Color
 {
@@ -22,14 +23,21 @@ private:
     bool m_IsToGame = false;
     bool m_IsToExit = false;
 
+    bool once_flag = false;
+
     const D3DXVECTOR3 DEFAULT_SCALE = { 1.5f,3.0f,1.0f };
     D3DXVECTOR3 m_myScale = DEFAULT_SCALE;
+
+    Audio* m_SE;
 public:
     virtual void Init() override
     {
         std::shared_ptr<Scene> scene = Manager::GetScene();
         m_Player = scene->GetGameObject<Player>();
         m_PlayerForwardVector = m_Player->GetForward();
+
+        m_SE = scene->AddGameObject<Audio>(LAYER_AUDIO);
+        m_SE->Load("asset\\audio\\SE_Scroll.wav");
 
         //  ’†S‚©‚ç30“x‚ÌŽ‹–ìŠp“à‚ÉŽÊ‚Á‚Ä‚¢‚é‚©‚í‚©‚é
         D3DXVECTOR3 playerForwardvec = m_Player->GetForward();
@@ -82,6 +90,17 @@ public:
 
             m_Parent->SetScale(m_myScale);
             m_IsInSide = true;
+
+            
+            if (m_degree / m_AngleMax >= 0.9f) {
+                if (once_flag == false) {
+                    once_flag = true;
+                    m_SE->Play();
+                }                                 
+            }
+            else {
+                once_flag = false;
+            }
         }        
         else
         {            

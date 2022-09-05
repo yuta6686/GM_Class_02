@@ -31,6 +31,8 @@ private:
 	//D3DXVECTOR3 m_TargetRotation;
 
 	class Audio* m_ShotSE;	
+	class Audio* m_SEJump;
+	class Audio* m_SELanding;
 	class ShootBullet* m_ShootBullet;
 
 	inline static const float GRAVITY = 0.01f;

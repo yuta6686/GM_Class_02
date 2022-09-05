@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "manager.h"
 #include "Cylinder.h"
+#include "audio.h"
 
 #include <fstream>
 #include <iostream>
@@ -23,6 +24,8 @@ enum ENEMY_WAVE {
 class EnemyWave :
 	public GameObject
 {
+private:
+	class Audio* m_SEEnemySpawn;
 protected:
 	std::shared_ptr<Scene> m_Scene;
 	std::vector<GameObject*> m_EnemyList;
@@ -134,6 +137,9 @@ public:
 
 	virtual void Init() override {
 		m_Scene = Manager::GetScene();
+		m_SEEnemySpawn = m_Scene->AddGameObject<Audio>(LAYER_AUDIO);
+		m_SEEnemySpawn->Load("asset\\audio\\SE_EnemyAppear.wav");
+		m_SEEnemySpawn->Play(false);
 		LoadStageFile();
 	}
 

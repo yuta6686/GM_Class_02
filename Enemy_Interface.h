@@ -7,6 +7,7 @@
 #include "CountComponent.h"
 
 #include "ParticleObject.h"
+#include "audio.h"
 enum ENEMY
 {
     ENEMY_NORMAL,
@@ -22,6 +23,9 @@ enum ENEMY
 class Enemy_Interface :
     public ComponentObject
 {
+private:
+    class Audio* m_SEEnemyCollision;
+    class Audio* m_SEEnemyKill;
 protected:    
     int m_MaxHp=1;
     int m_Hp = m_MaxHp;
@@ -84,17 +88,13 @@ public:
         if (m_Hp <= 0) {
             m_IsDestroy = true;
             //SetDestroy();
+            m_SEEnemyKill->Play(false);
         }
-    }
-
-    void CollosionWithBullet(int damage)
-    {
-        m_Hp -= damage;
-
-        if (m_Hp <= 0) {
-            m_IsDestroy = true;
+        else {
+            m_SEEnemyCollision->Play(false);
         }
-    }    
+
+    } 
 
     virtual void Init() {
         AddComponent<TransformInit>(COMLAYER_FIRST);
@@ -119,19 +119,18 @@ public:
         ComponentObject::Init();
 
         m_FirstScale = m_Scale;
+
+        std::shared_ptr<Scene> scene = Manager::GetScene();
+        m_SEEnemyCollision = scene->AddGameObject<Audio>(LAYER_AUDIO);
+        m_SEEnemyCollision->Load("asset\\audio\\SE_EnemyCollision.wav");
+        m_SEEnemyKill = scene->AddGameObject<Audio>(LAYER_AUDIO);
+        m_SEEnemyKill->Load("asset\\audio\\SE_EnemyKill.wav");
+
     }
 
     virtual void Update()
     {
-        if (m_Hp <= 1) {
-            SetDiffuse({ 1.0f,0.5f,0.5f,1.0f });
-        }
-        else if (m_Hp <= 2 && m_Hp > 1) {
-            SetDiffuse({ 1.0f,1.0f,0.5f,1.0f });
-        }
-        else {
-            SetDiffuse({ 0.8f,1.0f,1.0f,1.0f });
-        }
+
 
         if (m_IsDestroy && m_Count->GetFinish()) {
             m_Count->Start(true, 15, 0);
@@ -144,6 +143,21 @@ public:
         m_Scale = m_FirstScale *  m_Count->Get0to1Count();
 
         ComponentObject::Update();
+    }
+
+    virtual void Draw()
+    {
+        if (m_Hp <= 1) {
+            SetDiffuse({ 1.0f,0.5f,0.5f,1.0f });
+        }
+        else if (m_Hp <= 2 && m_Hp > 1) {
+            SetDiffuse({ 1.0f,1.0f,0.5f,1.0f });
+        }
+        else {
+            SetDiffuse({ 0.8f,1.0f,1.0f,1.0f });
+        }
+
+        ComponentObject::Draw();
     }
 };
 

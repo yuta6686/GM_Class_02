@@ -1,6 +1,7 @@
 #pragma once
 #include "ComponentObject.h"
 #include "CO_UI_Select.h"
+#include "audio.h"
 enum SELECT_NEXT {
     SELECT_NO=-1,
     SELECT_GIVE_UP,
@@ -27,6 +28,9 @@ private:
 
     std::string m_NowFileName_true;
     std::string m_NowFileName_false;
+
+    class Audio* m_SESelect;
+    class Audio* m_SEKettei;
 public:
 
     virtual void Init()override
@@ -56,6 +60,12 @@ public:
         m_NowFileName_true = CO_UI_Select::GetFileName_SelectTrue();
         m_NowFileName_false = CO_UI_Select::GetFileName_SelectFalse();
 
+        m_SESelect = m_Scene->AddGameObject<Audio>(LAYER_AUDIO);
+        m_SESelect->Load("asset\\audio\\SE_Scroll.wav");
+
+        m_SEKettei = m_Scene->AddGameObject<Audio>(LAYER_AUDIO);
+        m_SEKettei->Load("asset\\audio\\SE_Kettei2.wav");
+
         ComponentObject::Init();
     }
 
@@ -71,7 +81,8 @@ public:
         m_UISelects_String[m_SelectIndex]->GetComponent<UserInterfaceComponent>()->SetColor(m_TrueColor);
         m_UISelects_String[m_SelectIndex]->PositionAdaptation(true);
 
-        if (GetKeyboardTrigger(DIK_W))
+        if (GetKeyboardTrigger(DIK_W) || 
+            GetKeyboardTrigger(DIK_UP))
         {
         //  Select --> False
             //  ボックスUI
@@ -93,9 +104,12 @@ public:
 
             m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()
                 ->SetParameter(AXIS_XY, 0.05f, 1.0f, 1.1f);
+
+            m_SESelect->Play(false);
         }
 
-        if (GetKeyboardTrigger(DIK_S))
+        if (GetKeyboardTrigger(DIK_S) ||
+            GetKeyboardTrigger(DIK_DOWN))
         {
         //  Select --> False
             //  ボックスUI
@@ -115,11 +129,14 @@ public:
 
             m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()
                 ->SetParameter(AXIS_XY, 0.05f, 1.0f, 1.1f);
+
+            m_SESelect->Play(false);
         }
 
         //  決定結果を設定　通知は一度だけ。
         if (GetKeyboardTrigger(DIK_SPACE)) {
             m_Select = m_SelectIndex;
+            m_SEKettei->Play(false);
         }
         else
         {

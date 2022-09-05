@@ -4,6 +4,7 @@
 class Transition;
 class CO_Select;
 class ParticleObject_2D;
+class Audio;
 class DefeatScene :
     public Scene
 {
@@ -11,6 +12,7 @@ private:
     Transition* m_Fade;   
     CO_Select* m_Select;
     ParticleObject_2D* m_Particle;
+    Audio* m_BGM;
 
     bool m_NextIsExit = false;
     bool m_NextIsGame = false;

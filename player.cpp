@@ -31,7 +31,12 @@ void Player::Init()
 	m_ShotSE = scene->AddGameObject<Audio>(LAYER_AUDIO);
 	m_ShotSE->Load("asset\\audio\\SE_Shoot1.wav");
 
+	m_SEJump = scene->AddGameObject<Audio>(LAYER_AUDIO);
+	m_SEJump->Load("asset\\audio\\SE_Jump.wav");
 
+	m_SELanding = scene->AddGameObject<Audio>(LAYER_AUDIO);
+	m_SELanding->Load("asset\\audio\\SE_Landing.wav");
+	
 
 	m_Position = D3DXVECTOR3(0.0f, 2.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -296,6 +301,9 @@ void Player::PlayerMove()
 			for (int i = 0; i < 100; i++)
 				SetParticle_Landing();
 			m_VelocityCom->m_Velocity.y = JUMP;
+
+			m_SEJump->SetAudioVolume(0.25f);
+			m_SEJump->Play(false);
 		}
 	}
 
@@ -306,9 +314,12 @@ void Player::PlayerMove()
 		if (m_VelocityCom->m_Velocity.y < -0.35f) {
 			for(int i=0;i<100;i++)
 				SetParticle_Landing();
+			m_SELanding->SetAudioVolume(0.4f);
+			m_SELanding->Play(false);
 		}
 		m_Position.y = groundHeight;
 		m_VelocityCom->m_Velocity.y = 0;		
+		
 	}
 
 

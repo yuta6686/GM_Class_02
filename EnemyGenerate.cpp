@@ -67,7 +67,7 @@ void EnemyGenerate::Update()
 		ImGui::SliderFloat("scale3.y", &_scale3.y, 1.0f, 30.0f);
 		ImGui::SliderFloat("scale3.z", &_scale3.z, 1.0f, 30.0f);
 
-		ImGui::SliderInt("hp", &_hp, 1, 3);
+		ImGui::SliderInt("hp", &_hp, 1, 5);
 		ImGui::SliderInt("enemy_index", &_enemy_index, ENEMY_NORMAL, ENEMY_MAX);
 
 		

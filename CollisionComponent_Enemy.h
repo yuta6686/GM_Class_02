@@ -15,31 +15,28 @@ public:
         std::vector<CO_Stand*> stands = IsCollisionXAxis<CO_Stand>();
         StageLimitComponent_Reflect* slcr = m_Parent->GetComponent< StageLimitComponent_Reflect>();
 
-        if (stands.empty()) {
-            slcr->SetYmin(max(0.0f, slcr->GetYmin()));            
-        }
-        else {
+        float ymin = 0.0f;
+
+        if (!stands.empty()) {
             for (auto stand : stands) {
 
-                slcr->SetYmin(max(0.1f * stand->GetScale().y, slcr->GetYmin()));
+                ymin = (max(0.1f * stand->GetScale().y, ymin));
                 break;
             }
         }
         
 
         std::vector< Cylinder*> cylinders = IsCollisionCylinder();
-        if (cylinders.empty()) {
-            slcr->SetYmin(max(0.0f, slcr->GetYmin()));            
-        }
-        else {
+        if (!cylinders.empty()){
             for (auto cy : cylinders) {
 
-                slcr->SetYmin(max(cy->GetPosition().y + cy->GetScale().y, slcr->GetYmin()));
+                ymin = (max(cy->GetPosition().y + cy->GetScale().y, ymin));
 
                 break;
             }
         }
         
+        slcr->SetYmin(ymin);
     }
 
 };

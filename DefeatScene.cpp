@@ -9,6 +9,7 @@
 #include "GameScene.h"
 #include "CO_UI_Default.h"
 #include "ParticleObject_2D.h"
+#include "audio.h"
 
 void DefeatScene::Init()
 {
@@ -51,6 +52,10 @@ void DefeatScene::Init()
 
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
 	m_Fade->Start(true);
+
+	m_BGM = Manager::GetScene()->AddGameObject<Audio>(LAYER_AUDIO);
+	m_BGM->Load("asset\\audio\\BGM_GameOver.wav");
+	m_BGM->Play(true);
 }
 
 void DefeatScene::Update()

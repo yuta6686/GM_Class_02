@@ -152,7 +152,7 @@ void GameScene::Init()
 		couibelt->Start(false, 60, 90);
 	}
 
-	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+		m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);
 
