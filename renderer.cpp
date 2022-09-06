@@ -88,6 +88,8 @@ void Renderer::Init()
 		return;
 	}
 
+	
+
 	// レンダーターゲットView作成
 	hr = m_Device->CreateRenderTargetView(m_pRTTex.Get(), NULL, &m_RenderTargetView);
 	if (FAILED(hr)) {

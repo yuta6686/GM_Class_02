@@ -25,6 +25,7 @@
 #include "CO_TitleObject.h"
 #include "ParticleObject.h"
 #include "CO_Noise.h"
+#include "CO_AnimationModelTest.h"
 
 void TitleScene::Init()
 {
@@ -120,6 +121,8 @@ void TitleScene::Init()
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
 	AddGameObject< CO_Noise>(LAYER_2D);
+
+	AddGameObject< CO_AnimationModelTest>(LAYER_3D);
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------

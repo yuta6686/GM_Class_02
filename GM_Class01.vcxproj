@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationModel.cpp" />
     <ClCompile Include="ao_Sphere.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="BlinkComponent.cpp" />
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CO_AnimationModelTest.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
@@ -90,6 +92,8 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationModel.h" />
+    <ClInclude Include="AnimationModelComponent.h" />
     <ClInclude Include="BlinkComponentAlpha2D.h" />
     <ClInclude Include="ao_Sphere.h" />
     <ClInclude Include="audio.h" />
@@ -111,6 +115,7 @@
     <ClInclude Include="CountComponent.h" />
     <ClInclude Include="CO_3DPloygonTest.h" />
     <ClInclude Include="CO_3DPolygon_circle.h" />
+    <ClInclude Include="CO_AnimationModelTest.h" />
     <ClInclude Include="CO_Bow.h" />
     <ClInclude Include="CO_Confirmation.h" />
     <ClInclude Include="CO_Noise.h" />

@@ -330,6 +330,12 @@
     <ClCompile Include="Cube2D.cpp">
       <Filter>System\Garbage</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationModel.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_AnimationModelTest.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -757,6 +763,15 @@
     </ClInclude>
     <ClInclude Include="Cube2D.h">
       <Filter>System\Garbage</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationModel.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_AnimationModelTest.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationModelComponent.h">
+      <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@
 #include "ResultScene.h"
 #include "audio.h"
 #include "GameObject_Invoke.h"
+#include "AnimationModel.h"
 
 
 //Scene* Manager::m_Scene;
@@ -38,6 +39,7 @@ void Manager::Uninit()
 	ResourceManger<Texture>::AllRelease();
 	ResourceManger<VertexShader>::AllRelease();
 	ResourceManger<PixelShader>::AllRelease();
+	ResourceManger<AnimationModel>::AllRelease();
 
 	Audio::UninitMaster();
 

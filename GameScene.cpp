@@ -130,7 +130,7 @@ void GameScene::Init()
 	}
 
 	//	EnemyWave
-	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+	//m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 
 	//	鳥居の破片パーティクル
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);
