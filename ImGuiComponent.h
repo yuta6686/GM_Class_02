@@ -1,4 +1,12 @@
+//  ---------------------------------------------------------
+//  ImGuiComponent [ImGuiComponent.h]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  - Transform Т▓Ро
+//  ---------------------------------------------------------
 #pragma once
+
 #include "Component.h"
 #include "gameObject.h"
 class ImGuiComponent :

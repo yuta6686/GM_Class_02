@@ -52,7 +52,7 @@ public:
 
         Enemy_Interface::Init();
 
-        ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+                 ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
         mdc->SetSourcePath("asset\\model\\stone_white.obj");        
         mdc->SetIsVariable(true);
 

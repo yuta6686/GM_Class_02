@@ -1,3 +1,10 @@
+//  ---------------------------------------------------------
+//  ImGuiComponent [ImGuiComponent.cpp]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  - Transformï\é¶ÅEí≤êÆ
+//  ---------------------------------------------------------
 #include "ImGuiComponent.h"
 #include "gameObject.h"
 #include "ComponentObject.h"
