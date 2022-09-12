@@ -1,4 +1,5 @@
 #pragma once
+#include <unordered_map>
 
 #include "assimp/cimport.h"
 #include "assimp/scene.h"
@@ -18,6 +19,9 @@ private:
 	const aiScene* m_AiScene = NULL;
 	ID3D11Buffer** m_VertexBuffer;
 	ID3D11Buffer** m_IndexBuffer;
+
+	std::unordered_map<std::string,
+		ID3D11ShaderResourceView*> m_Texture;
 public:
 	void Load(const char* FileName);
 	void Unload();

@@ -131,11 +131,12 @@ public:
 #ifdef _DEBUG
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, Renderer::GetWindowColor());
 
-		ImGui::Begin("Parameters by Scene", &parameters_by_scene);
+		ImGui::Begin("Parameters by Scene", &parameters_by_scene, ImGuiWindowFlags_MenuBar);
 #endif // _DEBUG
 
 
-		for (int i = 0; i < LAYER_NUM_MAX; i++) {
+		for (int i = 0; i < LAYER_NUM_MAX; i++) {					
+
 			for (GameObject* object : m_GameObject[i])
 			{
 				object->Draw();
@@ -147,7 +148,7 @@ public:
 					object->DrawImgui();
 				}				
 #endif // _DEBUG
-			}
+			}			
 		}
 
 #ifdef _DEBUG

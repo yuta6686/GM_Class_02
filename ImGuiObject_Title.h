@@ -18,11 +18,48 @@ class ImGuiObject_Title :
 {
 	float ROTATION_MIN = -D3DX_PI;
 	float ROTATION_MAX = D3DX_PI;
+
+	bool mMenu1 = false;
 public:
 	virtual void Draw()override
 	{
 #ifdef _DEBUG
 
+		//	メニューバー
+		ImGui::BeginMenuBar();
+		
+		if (ImGui::BeginMenu("Enemy Generater")) 
+		{
+			if (ImGui::BeginMenu("Generate")) 
+			{
+				ImGui::Text("Set Parameter");
+				ImGui::Button("Generate!");
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Save"))
+			{				
+				ImGui::Text("Set Save Infomation");
+				ImGui::Button("Save");
+				ImGui::EndMenu();
+			}
+			
+			if (ImGui::BeginMenu("Load")) 
+			{
+				ImGui::Text("Set Load Information");
+
+				ImGui::Button("Load");
+
+				ImGui::EndMenu();
+			}
+
+			ImGui::EndMenu();
+		}
+
+		ImGui::EndMenuBar();
+
+		
+		
 
 		//	Rotation
 		if (ImGui::CollapsingHeader("Player Rotation")) {
