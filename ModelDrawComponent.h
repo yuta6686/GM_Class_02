@@ -1,4 +1,11 @@
 #pragma once
+//  ---------------------------------------------------------
+//  ModelDrawComponent [ModelDrawComponent.h]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  - Model•`‰æ—p
+//  ---------------------------------------------------------
 #include "Component.h"
 #include "model.h"
 #include "ResourceManager.h"

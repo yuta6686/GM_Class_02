@@ -1,3 +1,10 @@
+//  ---------------------------------------------------------
+//  Polygon3DComponent [Polygon3DComponent.cpp]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  - wasureta
+//  ---------------------------------------------------------
 #include "Polygon3DComponent.h"
 #include "gameObject.h"
 #include "VertexInitialize.h"

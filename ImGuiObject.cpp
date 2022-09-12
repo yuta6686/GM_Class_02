@@ -1,3 +1,10 @@
+//  ---------------------------------------------------------
+//  ImGuiObject [ImGuiObject.cpp]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  -ImGui‚Ì“Š‡ˆ—
+//  ---------------------------------------------------------
 #include "ImGuiObject.h"
 #include "manager.h"
 #include "GameScene.h"

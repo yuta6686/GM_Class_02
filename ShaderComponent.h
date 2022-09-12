@@ -1,4 +1,13 @@
 #pragma once
+//  ---------------------------------------------------------
+//  ShaderComponent [ShaderComponent.h]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  - シェーダ用コンポーネント
+// 
+//	- ShaderTypeで変わる
+//  ---------------------------------------------------------
 #include "gameObject.h"
 #include "Component.h"
 

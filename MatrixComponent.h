@@ -1,4 +1,12 @@
 #pragma once
+//  ---------------------------------------------------------
+//  MatrixComponent [MatrixComponent.h]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/08/10
+//  ------------------------summary--------------------------
+//  - Matrix 2D ,3D
+//  ---------------------------------------------------------
+
 #include "Component.h"
 #include "scene.h"
 #include "manager.h"
@@ -15,11 +23,7 @@ private:
     std::shared_ptr<Scene> m_Scene;
 
     Camera* m_Camera;
-
-public:
-
-
-    // Component ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
+public:    
     virtual void Init() override;
 
     virtual void Uninit() override;
