@@ -1,3 +1,13 @@
+//  ---------------------------------------------------------
+//  ShaderComponent [ShaderComponent.cpp]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  - シェーダ用コンポーネント
+// 
+//	- ShaderTypeで変わる
+//  ---------------------------------------------------------
+
 #include "ShaderComponent.h"
 #include "ResourceManager.h"
 

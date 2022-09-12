@@ -1,3 +1,10 @@
+//  ---------------------------------------------------------
+//  MatrixComponent [MatrixComponent.cpp]
+//                                  Author: YanagisawaYuta
+//                                  Date  : 2022/09/06
+//  ------------------------summary--------------------------
+//  - Matrix (3D , 2D)
+//  ---------------------------------------------------------
 #include "MatrixComponent.h"
 #include "gameObject.h"
 
