@@ -155,6 +155,13 @@ public:
 	static void CreateVertexShader(ID3D11VertexShader** VertexShader, ID3D11InputLayout** VertexLayout, const char* FileName);
 	static void CreatePixelShader(ID3D11PixelShader** PixelShader, const char* FileName);
 
+	static void CreateComputeShader(ID3D11ComputeShader** PixelShader, const char* FileName);
+	static HRESULT CreateStructuredBuffer(UINT uElementSize, UINT uCount, void* pInitData,
+		ID3D11Buffer** ppBufOut);
+	static HRESULT CreateBufferSRV(ID3D11Buffer* pBuffer, ID3D11ShaderResourceView** ppSRVOut);
+	static HRESULT CreateBufferUAV(ID3D11Buffer* pBuffer, ID3D11UnorderedAccessView** ppUAVOut);
+	
+
 	static const int GetLightNum() { return m_LightNum; }
 
 	inline static VALIABLE m_Valiable = { 0.0f,0.0f,0.0f,0.0f };
