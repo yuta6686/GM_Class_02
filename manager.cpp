@@ -7,7 +7,7 @@
 #include "audio.h"
 #include "GameObject_Invoke.h"
 #include "AnimationModel.h"
-
+#include "DebugScene.h"
 
 //Scene* Manager::m_Scene;
 std::shared_ptr<Scene> Manager::m_Scene=nullptr;
@@ -19,7 +19,7 @@ void Manager::Init()
 
 	Audio::InitMaster();
 
-	m_Scene = std::make_shared<TitleScene>();
+	m_Scene = std::make_shared<DebugScene>();
 	m_Scene->Init();
 	
 	//m_Scene = new ResultScene();

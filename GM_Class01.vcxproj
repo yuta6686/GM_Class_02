@@ -27,8 +27,10 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CO_AnimationModelTest.cpp" />
+    <ClCompile Include="CO_MeshField.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
+    <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="EnemyGenerate.cpp" />
@@ -118,6 +120,7 @@
     <ClInclude Include="CO_AnimationModelTest.h" />
     <ClInclude Include="CO_Bow.h" />
     <ClInclude Include="CO_Confirmation.h" />
+    <ClInclude Include="CO_MeshField.h" />
     <ClInclude Include="CO_Noise.h" />
     <ClInclude Include="CO_Select.h" />
     <ClInclude Include="CO_Stand.h" />
@@ -141,6 +144,7 @@
     <ClInclude Include="CO_UI_Tutorial_Move.h" />
     <ClInclude Include="Cube2D.h" />
     <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="DebugScene.h" />
     <ClInclude Include="DefeatScene.h" />
     <ClInclude Include="EnemyGenerate.h" />
     <ClInclude Include="EnemyWave.h" />

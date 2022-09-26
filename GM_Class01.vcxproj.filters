@@ -336,6 +336,12 @@
     <ClCompile Include="CO_AnimationModelTest.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="CO_MeshField.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugScene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -772,6 +778,12 @@
     </ClInclude>
     <ClInclude Include="AnimationModelComponent.h">
       <Filter>GameObject\Component\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="CO_MeshField.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugScene.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
