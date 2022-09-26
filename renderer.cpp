@@ -692,6 +692,45 @@ HRESULT Renderer::CreateBufferUAV(ID3D11Buffer* pBuffer, ID3D11UnorderedAccessVi
 	return m_Device->CreateUnorderedAccessView(pBuffer, &desc, ppUAVOut);
 }
 
+ID3D11Buffer* Renderer::CreateAndCopyToDebugBuf(ID3D11Buffer* pBuffer)
+{
+	ID3D11Buffer* debugbuf = nullptr;
+
+	D3D11_BUFFER_DESC desc = {};
+	pBuffer->GetDesc(&desc);
+	desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+	desc.Usage = D3D11_USAGE_STAGING;
+	desc.BindFlags = 0;
+	desc.MiscFlags = 0;
+	if (SUCCEEDED(m_Device->CreateBuffer(&desc, nullptr, &debugbuf))) {
+		m_DeviceContext->CopyResource(debugbuf, pBuffer);
+	}
+	return debugbuf;
+}
+
+void Renderer::RunComputeShader(UINT nNumViews, ID3D11ShaderResourceView** pShaderResourceViews, ID3D11UnorderedAccessView* pUnorderedAccessView, UINT X, UINT Y, UINT Z, ID3D11ComputeShader* ComputeShader)
+{
+	m_DeviceContext->CSSetShader(ComputeShader, nullptr, 0);
+	m_DeviceContext->CSSetShaderResources(0, nNumViews, pShaderResourceViews);
+	m_DeviceContext->CSSetUnorderedAccessViews(0, 1, &pUnorderedAccessView, nullptr);
+
+	m_DeviceContext->Dispatch(X, Y, Z);
+	m_DeviceContext->CSSetShader(nullptr, nullptr, 0);
+
+	ID3D11UnorderedAccessView* ppUAVnullptr[] = { nullptr };
+	m_DeviceContext->CSSetUnorderedAccessViews(0, 1, ppUAVnullptr, nullptr);
+
+	ID3D11ShaderResourceView* ppSRVnullptr[] = { nullptr, nullptr };
+	m_DeviceContext->CSSetShaderResources(0, 2, ppSRVnullptr);
+
+	ID3D11Buffer* ppCBnullptr[] = { nullptr };
+	m_DeviceContext->CSSetConstantBuffers(0, 1, ppCBnullptr);
+}
+
+
+
+
+
 #ifdef _DEBUG
 void Renderer::imguiDraw()
 {

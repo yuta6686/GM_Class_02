@@ -805,6 +805,9 @@
     <FxCompile Include="unlitTextureNoMat.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
+    <FxCompile Include="ParticleCS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="imgui\misc\debuggers\imgui.natvis">

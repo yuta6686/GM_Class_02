@@ -160,8 +160,10 @@ public:
 		ID3D11Buffer** ppBufOut);
 	static HRESULT CreateBufferSRV(ID3D11Buffer* pBuffer, ID3D11ShaderResourceView** ppSRVOut);
 	static HRESULT CreateBufferUAV(ID3D11Buffer* pBuffer, ID3D11UnorderedAccessView** ppUAVOut);
-	
-
+	static ID3D11Buffer* CreateAndCopyToDebugBuf(ID3D11Buffer* pBuffer);
+	void RunComputeShader(UINT nNumViews, ID3D11ShaderResourceView** pShaderResourceViews,
+	ID3D11UnorderedAccessView* pUnorderedAccessView, UINT X, UINT Y, UINT Z,
+		ID3D11ComputeShader* ComputeShader);
 	static const int GetLightNum() { return m_LightNum; }
 
 	inline static VALIABLE m_Valiable = { 0.0f,0.0f,0.0f,0.0f };
