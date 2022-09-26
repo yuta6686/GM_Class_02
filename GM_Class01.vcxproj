@@ -27,6 +27,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="ComputeShaderTest.cpp" />
+    <ClCompile Include="ComputeShaderTest2.cpp" />
     <ClCompile Include="CO_AnimationModelTest.cpp" />
     <ClCompile Include="Cube2D.cpp" />
     <ClCompile Include="Cylinder.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />
     <ClInclude Include="ComputeShaderTest.h" />
+    <ClInclude Include="ComputeShaderTest2.h" />
     <ClInclude Include="ConfirmationComponent.h" />
     <ClInclude Include="CountComponent.h" />
     <ClInclude Include="CO_3DPloygonTest.h" />

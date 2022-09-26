@@ -339,6 +339,9 @@
     <ClCompile Include="ComputeShaderTest.cpp">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClCompile>
+    <ClCompile Include="ComputeShaderTest2.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -778,6 +781,9 @@
     </ClInclude>
     <ClInclude Include="ComputeShaderTest.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ComputeShaderTest2.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -96,9 +96,10 @@ void ComputeShaderTest::Update()
         D3D11_MAPPED_SUBRESOURCE subRes;
         Renderer::GetDeviceContext()->Map(mpParticleBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subRes);
         ParticleCompute* pBufType = (ParticleCompute*)subRes.pData;
-        //memcpy(subRes.pData, mparticle, sizeof(ParticleCompute) * mParticleAmount);
+        memcpy(subRes.pData, mparticle, sizeof(ParticleCompute) * mParticleAmount);
         Renderer::GetDeviceContext()->Unmap(mpParticleBuffer, 0);
     }
+
     //　コンピュートシェーダー実行
     ID3D11ShaderResourceView* pSRVs[1] = { mpParticleSRV };
     Renderer::GetDeviceContext()->CSSetShaderResources(0, 1, pSRVs);
