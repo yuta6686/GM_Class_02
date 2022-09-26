@@ -11,6 +11,7 @@ class AnimationModelComponent :
     std::string m_SourcePath = "asset\\model\\M_otorii.obj";
 
     bool m_IsVariable = false;
+    int mFrame = 0;
 public:
     void SetSourcePath(std::string path) {
         m_SourcePath = path;
@@ -31,12 +32,15 @@ public:
     {
         m_Animation_Model =
             ResourceManger<AnimationModel>::GetResource(m_SourcePath.c_str());
+
+        mFrame = 0;
     };
 
     virtual void Uninit() override {};
 
     virtual void Update() override {
-        m_Animation_Model->Update();
+        m_Animation_Model->Update(mFrame);
+        mFrame++;
     };
 
     virtual void Draw() override

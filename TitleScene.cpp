@@ -122,7 +122,7 @@ void TitleScene::Init()
 
 	AddGameObject< CO_Noise>(LAYER_2D);
 
-	AddGameObject< CO_AnimationModelTest>(LAYER_3D);
+	//AddGameObject< CO_AnimationModelTest>(LAYER_3D);
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------
