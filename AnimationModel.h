@@ -34,6 +34,9 @@ class AnimationModel
 	:public Resource
 {
 private:
+	//	アニメーション複数保存用
+	std::unordered_map<std::string, const aiScene*> m_Animation;
+
 	const aiScene* m_AiScene = NULL;
 	ID3D11Buffer** m_VertexBuffer;
 	ID3D11Buffer** m_IndexBuffer;
@@ -51,8 +54,10 @@ private:
 	void UpdateBoneMatrix(aiNode* node, aiMatrix4x4 matrix);
 public:
 	void Load(const char* FileName);
+	void LoadAnimation(const char* FileName, const char* AnimationName);
 	void Unload();
-	void Update(int Frame);
+	//void Update(int Frame);
+	void Update(const char* AnimationName, const char* AnimationName2, int Frame, float BlendRate);
 	void Draw();
 };
 

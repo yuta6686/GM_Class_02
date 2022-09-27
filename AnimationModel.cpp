@@ -184,6 +184,14 @@ void AnimationModel::Load(const char* FileName)
 	}
 }
 
+void AnimationModel::LoadAnimation(const char* FileName, const char* AnimationName)
+{
+	m_Animation[AnimationName] = aiImportFile(FileName,
+		aiProcess_ConvertToLeftHanded);
+
+	assert(m_Animation[AnimationName]);
+}
+
 void AnimationModel::Unload()
 {
 	for (unsigned int m = 0; m < m_AiScene->mNumMeshes; m++) {
@@ -204,13 +212,17 @@ void AnimationModel::Unload()
 	aiReleaseImport(m_AiScene);
 }
 
-void AnimationModel::Update(int Frame)
+void AnimationModel::Update(const char* AnimationName, const char* AnimationName2, int Frame, float BlendRate)
 {
-	if (!m_AiScene->HasAnimations())
+	if (!m_Animation[AnimationName]->HasAnimations())
+		return;
+
+	if (!m_Animation[AnimationName2]->HasAnimations())
 		return;
 
 	//	アニメーションデータからボーンマトリクス算出
-	aiAnimation* animation = m_AiScene->mAnimations[0];
+	aiAnimation* animation = m_Animation[AnimationName]->mAnimations[0];
+	aiAnimation* animation2 = m_Animation[AnimationName2]->mAnimations[0];
 
 	for (unsigned int c = 0; c < animation->mNumChannels; c++) {
 		aiNodeAnim* nodeAnim = animation->mChannels[c];
@@ -218,7 +230,7 @@ void AnimationModel::Update(int Frame)
 
 		int f;
 		f = Frame % nodeAnim->mNumRotationKeys;
-		aiQuaternion rot = nodeAnim->mRotationKeys[f].mValue;
+		aiQuaternion rot1 = nodeAnim->mRotationKeys[f].mValue;
 
 		f = Frame % nodeAnim->mNumPositionKeys;
 		aiVector3D pos = nodeAnim->mPositionKeys[f].mValue;
@@ -227,6 +239,21 @@ void AnimationModel::Update(int Frame)
 			aiVector3D scale = nodeAnim->mScalingKeys[f].mValue;*/
 
 			//	bone->AnimationMatrix = aiMatrix4x4(scale, rot, pos);
+
+			//	Animation2も取り出す。
+
+		aiNodeAnim* nodeAnim2 = animation2->mChannels[c];
+
+		f = Frame % nodeAnim2->mNumRotationKeys;
+		aiQuaternion rot2 = nodeAnim2->mRotationKeys[f].mValue;
+
+		//	aiQuaternion::Interpolate()
+		aiQuaternion rot;
+		aiQuaternion::Interpolate(rot, rot1, rot2, BlendRate);
+
+
+		if (nodeAnim->mNumPositionKeys > 1)
+			pos = nodeAnim->mPositionKeys[f].mValue;
 
 		bone->AnimationMatrix = aiMatrix4x4(aiVector3D(1.0f, 1.0f, 1.0f), rot, pos);
 	}
