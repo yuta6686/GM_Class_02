@@ -35,6 +35,8 @@ void DebugScene::Init()
 			MyImgui::mbGameObjectMap[object->GetTypeName()] = false;
 		}
 	}	
+
+	MyImgui::mbGameObjectMap["MeshField"] = true;
 }
 
 //void DebugScene::Update()

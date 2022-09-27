@@ -196,16 +196,19 @@ void CO_MeshField::Move()
 }
 void CO_MeshField::DrawImgui()
 {
+    if (ImGui::CollapsingHeader("MeshField")) {
+        ImGui::Text("Height:%.2f", GetHeight(mpScene->GetGameObject<Player>()->GetPosition()));
 
-    ImGui::Text("aaa");
+        if (ImGui::TreeNode("Parameter")) {
+            ImGui::SliderFloat("MoveSpeed", &mMoveSpeed, -0.02f, 0.02f, "%.4f");
+            ImGui::SliderFloat("Height Power", &mHeightPower, 0.0f, 10.0f, "%.2f");
+            ImGui::SliderFloat("Height Mul", &mHeightMul, 0.0f, 10.0f, "%.2f");
+            ImGui::SliderFloat("Width", &mWidth, 0.0f, 10.0f, "%.2f");
+            ImGui::SliderFloat("Depth", &mDepth, 0.0f, 10.0f, "%.2f");
 
-    ImGui::Text("Height:%.2f", GetHeight(mpScene->GetGameObject<Player>()->GetPosition()));
-    
-    ImGui::SliderFloat("MoveSpeed", &mMoveSpeed, -0.02f, 0.02f, "%.4f");
-    ImGui::SliderFloat("Height Power", &mHeightPower, 0.0f, 10.0f, "%.2f");
-    ImGui::SliderFloat("Height Mul", &mHeightMul, 0.0f, 10.0f, "%.2f");
-    ImGui::SliderFloat("Width", &mWidth, 0.0f, 10.0f, "%.2f");
-    ImGui::SliderFloat("Depth", &mDepth, 0.0f, 10.0f, "%.2f");
+            ImGui::TreePop();
+        }
+    }
 }
 
 void CO_MeshField::Init()

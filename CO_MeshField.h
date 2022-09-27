@@ -5,11 +5,6 @@
 #include "ResourceManager.h"
 #include "manager.h"
 
-//  問題点
-//
-//  - ノーマルが全部上向き
-//
-
 class CO_MeshField :
     public ComponentObject
 {

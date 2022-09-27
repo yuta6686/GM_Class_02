@@ -8,7 +8,7 @@ class AnimationModelComponent :
     public Component
 {
     std::shared_ptr<AnimationModel> m_Animation_Model;
-    std::string m_SourcePath = "asset\\model\\M_otorii.obj";
+    std::string m_SourcePath = "asset\\model\\Akai_Idle.fbx";
 
     std::string mAnimationName1 = "asset\\model\\Akai_Idle.fbx";
     std::string mAnimationName2 = "asset\\model\\Akai_Run.fbx";
