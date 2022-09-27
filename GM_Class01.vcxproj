@@ -103,6 +103,7 @@
     <ClInclude Include="BlinkComponent_Scale.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletComponent.h" />
+    <ClInclude Include="C1_GameObject.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CircleDeploy.h" />
     <ClInclude Include="Collision.h" />

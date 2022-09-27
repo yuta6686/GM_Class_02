@@ -788,6 +788,9 @@
     <ClInclude Include="MyImgui.h">
       <Filter>System\MyImGui</Filter>
     </ClInclude>
+    <ClInclude Include="C1_GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
