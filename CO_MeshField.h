@@ -17,7 +17,7 @@ private:
     inline static const int VertexNum_Virtical = 30;
     inline static const int VertexNum_Horizontal = 30;
 
-    float mMoveSpeed = 0.02f;
+    float mMoveSpeed = 0.01f;
     float mHeightPower = 4.0f;
     float mHeightMul = 4.0f;
     float mWidth = 4.0f;

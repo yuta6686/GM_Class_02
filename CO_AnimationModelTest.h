@@ -18,7 +18,7 @@ public:
 
         ComponentObject::Init();
 
-        float scale = 0.01f;
+        float scale = 0.1f;
         m_Scale = { scale,scale,scale };
 
         m_Position.y = 4.0f;
