@@ -1,5 +1,6 @@
 #include "CO_MeshField.h"
 #include "DebugScene.h"
+#include "player.h"
 
 #define HASH_CODE_MAX       (256)
 #define HASH_CODE_TABLE_NUM     (HASH_CODE_MAX*2)
@@ -98,13 +99,115 @@ void CO_MeshField::Remap(const int& seed)
         Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_IndexBuffer);
     }
 }
+
+void CO_MeshField::Move()
+{
+    static float movex = 0.0f;
+
+    //  後でコンポーネント化する
+       //  頂点バッファ生成
+    {
+        //  横
+        for (int x = 0; x <= VertexNum_Horizontal; x++)
+        {
+            //  縦
+            for (int z = 0; z <= VertexNum_Virtical; z++)
+            {
+                float fx = (float)x / VertexNum_Horizontal * mWidth + movex;
+                float fz = (float)z / VertexNum_Virtical * mDepth;
+
+                float y = powf(fabsf( PerlinNoise(fx, fz) * mHeightMul), mHeightPower);
+                m_Vertex[x][z].Position = D3DXVECTOR3((x - 10) * 5.0f, y, (z - 10) * -5.0f);
+                m_Vertex[x][z].Normal = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+                m_Vertex[x][z].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+                m_Vertex[x][z].TexCoord = D3DXVECTOR2(0.5f * x, z * 0.5f);
+            }
+        }
+
+        for (int x = 1; x <= VertexNum_Horizontal - 1; x++)
+        {
+            //  縦
+            for (int z = 1; z <= VertexNum_Virtical - 1; z++)
+            {
+                D3DXVECTOR3 vx, vz, vn;
+                vx = m_Vertex[x + 1][z].Position
+                    - m_Vertex[x - 1][z].Position;
+                vz = m_Vertex[x][z - 1].Position
+                    - m_Vertex[x][z + 1].Position;
+
+                D3DXVec3Cross(&vn, &vz, &vx);
+                D3DXVec3Normalize(&vn, &vn);
+                m_Vertex[x][z].Normal = vn;
+            }
+        }
+
+        D3D11_BUFFER_DESC bd;
+        ZeroMemory(&bd, sizeof(bd));
+        bd.Usage = D3D11_USAGE_DEFAULT;
+        bd.ByteWidth = sizeof(VERTEX_3D) * VertexNum_Horizontal * VertexNum_Virtical;
+        bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+        bd.CPUAccessFlags = 0;
+
+        D3D11_SUBRESOURCE_DATA sd;
+        ZeroMemory(&sd, sizeof(sd));
+        sd.pSysMem = m_Vertex;
+
+        Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
+    }
+
+    //  インデックスバッファ生成 
+    {
+        unsigned int index[((VertexNum_Virtical + 2) * 2) * VertexNum_Horizontal - 2];
+        int i = 0;
+        for (int x = 0; x < VertexNum_Horizontal; x++)
+        {
+            for (int z = 0; z < VertexNum_Virtical + 1; z++) {
+                index[i] = x * (VertexNum_Virtical + 1) + z;
+                i++;
+
+                index[i] = (x + 1) * (VertexNum_Virtical + 1) + z;
+                i++;
+            }
+            if (x == 19)
+                break;
+
+            index[i] = (x + 1) * (VertexNum_Horizontal + 1) + VertexNum_Virtical;
+            i++;
+
+            index[i] = (x + 1) * (VertexNum_Horizontal + 1);
+            i++;
+        }
+
+        D3D11_BUFFER_DESC bd;
+        ZeroMemory(&bd, sizeof(bd));
+        bd.Usage = D3D11_USAGE_DEFAULT;
+        bd.ByteWidth = sizeof(unsigned int) * (((VertexNum_Virtical + 2) * 2) * VertexNum_Horizontal - 2);
+        bd.BindFlags = D3D11_BIND_INDEX_BUFFER;
+        bd.CPUAccessFlags = 0;
+
+        D3D11_SUBRESOURCE_DATA sd;
+        ZeroMemory(&sd, sizeof(sd));
+        sd.pSysMem = index;
+
+        Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_IndexBuffer);
+    }
+
+    movex += mMoveSpeed;
+}
 void CO_MeshField::DrawImgui()
 {
-    if (DebugScene::mbGameObject)
-    {
-        ImGui::Text("aaa");
-    }
+
+    ImGui::Text("aaa");
+
+    ImGui::Text("Height:%.2f", GetHeight(mpScene->GetGameObject<Player>()->GetPosition()));
+    
+    ImGui::SliderFloat("MoveSpeed", &mMoveSpeed, -0.02f, 0.02f, "%.4f");
+    ImGui::SliderFloat("Height Power", &mHeightPower, 0.0f, 10.0f, "%.2f");
+    ImGui::SliderFloat("Height Mul", &mHeightMul, 0.0f, 10.0f, "%.2f");
+    ImGui::SliderFloat("Width", &mWidth, 0.0f, 10.0f, "%.2f");
+    ImGui::SliderFloat("Depth", &mDepth, 0.0f, 10.0f, "%.2f");
 }
+
 void CO_MeshField::Init()
 {
     SettingHash(MyMath::Random(0,100));
@@ -220,6 +323,8 @@ void CO_MeshField::Init()
     ComponentObject::Init();
 
     mpScene = Manager::GetScene();
+
+    m_TypeName = "MeshField";
 }
 
 void CO_MeshField::Uninit()
@@ -237,6 +342,10 @@ void CO_MeshField::Update()
         Remap(seed);
         seed++;
     }
+
+
+    Move();
+    
 
     ComponentObject::Update();
 }
@@ -396,7 +505,49 @@ float CO_MeshField::GetValue(int x, int y)
 
 float CO_MeshField::GetHeight(D3DXVECTOR3 Position)
 {
-    return 0.0f;
+    int x, z;
+
+    //  ブロック番号算出
+    x = Position.x / 5.0f + 10.0f;
+    z = Position.z / -5.0f + 10.0f;
+
+    D3DXVECTOR3 pos0, pos1, pos2, pos3;
+
+    pos0 = m_Vertex[x][z].Position;
+    pos1 = m_Vertex[x + 1][z].Position;
+    pos2 = m_Vertex[x][z + 1].Position;
+    pos3 = m_Vertex[x + 1][z + 1].Position;
+
+    D3DXVECTOR3 v12, v1p, c;
+
+    v12 = pos2 - pos1;
+    v1p = Position - pos1;
+
+    D3DXVec3Cross(&c, &v12, &v1p);
+
+    float py;
+    D3DXVECTOR3 n;
+
+    if (c.y > 0.0f)
+    {
+        //  左上ポリゴン
+        D3DXVECTOR3 v10;
+        v10 = pos0 - pos1;
+        D3DXVec3Cross(&n, &v10, &v12);
+    }
+    else
+    {
+        //  右下ポリゴン
+        D3DXVECTOR3 v13;
+        v13 = pos3 - pos1;
+        D3DXVec3Cross(&n, &v12, &v13);
+    }
+
+    //  高さ取得
+    py = -((Position.x - pos1.x) * n.x
+        + (Position.z - pos1.z) * n.z) / n.y + pos1.y;
+
+    return py;
 }
 
 

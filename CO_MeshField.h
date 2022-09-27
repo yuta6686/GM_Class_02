@@ -17,6 +17,12 @@ private:
     inline static const int VertexNum_Virtical = 30;
     inline static const int VertexNum_Horizontal = 30;
 
+    float mMoveSpeed = 0.02f;
+    float mHeightPower = 4.0f;
+    float mHeightMul = 4.0f;
+    float mWidth = 4.0f;
+    float mDepth = 4.0f;
+
     float m_FieldHeight[VertexNum_Horizontal +1][VertexNum_Virtical +1];
 
     std::shared_ptr<Scene> mpScene;
@@ -48,5 +54,6 @@ public:
     float GetHeight(D3DXVECTOR3 Position);
 
     void Remap(const int& seed);
+    void Move();
 };
 

@@ -785,6 +785,9 @@
     <ClInclude Include="DebugScene.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="MyImgui.h">
+      <Filter>System\MyImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -809,6 +812,12 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="unlitTextureNoMat.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelLightingVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelLightingPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

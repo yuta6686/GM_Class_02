@@ -120,10 +120,10 @@ private:
 	inline static bool show_another_window = false;
 	inline static bool show_hello_world = true;
 	inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	inline static ImVec4 window_color = ImVec4(0.0f,0.0f,0.2f,0.0f);
+	inline static ImVec4 window_color = ImVec4(0.0f,0.0f,0.2f,0.8f);
 	
 #endif // _DEBUG
-	inline static float m_ImGuiFontSize = 28.0f;
+	inline static float m_ImGuiFontSize = 20.0f;
 public:
 	static void Init();
 	static void Uninit();

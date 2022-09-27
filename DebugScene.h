@@ -1,5 +1,6 @@
 #pragma once
 #include "scene.h"
+#include "MyImgui.h"
 
 class DebugScene :
     public Scene
@@ -12,6 +13,5 @@ public:
     virtual void Init() override;
     virtual void Draw()override;
 
-    inline static bool mbGameObject = false;
 };
 

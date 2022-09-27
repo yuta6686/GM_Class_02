@@ -5,6 +5,8 @@
 #include "CO_MeshField.h"
 #include "CO_UI_AimLing.h"
 #include "UI_Charge.h"
+#include "MyImgui.h"
+#include "CO_AnimationModelTest.h"
 
 void DebugScene::Init()
 {
@@ -24,7 +26,15 @@ void DebugScene::Init()
 
 	AddGameObject<UI_Charge>(LAYER_2D);
 
-	
+	AddGameObject<CO_AnimationModelTest>(LAYER_3D);
+
+	for (int i = 0; i < LAYER_NUM_MAX; i++) {
+
+		for (GameObject* object : m_GameObject[i])
+		{
+			MyImgui::mbGameObjectMap[object->GetTypeName()] = false;
+		}
+	}	
 }
 
 //void DebugScene::Update()
@@ -44,9 +54,12 @@ void DebugScene::Draw()
 	ImGui::BeginMenuBar();
 
 	
+
 	if (ImGui::BeginMenu("GameObject"))
 	{
-		ImGui::MenuItem("MeshField", NULL, &mbGameObject);		
+		for (auto gomap : MyImgui::mbGameObjectMap) {
+			ImGui::MenuItem(gomap.first.c_str(),NULL, &MyImgui::mbGameObjectMap[gomap.first]);			
+		}
 
 		ImGui::EndMenu();
 	}
@@ -58,9 +71,10 @@ void DebugScene::Draw()
 		for (GameObject* object : m_GameObject[i])
 		{
 			object->Draw();
-#ifdef _DEBUG				
-			object->DrawImgui();
+#ifdef _DEBUG
 			
+			if(MyImgui::mbGameObjectMap[object->GetTypeName()])
+				object->DrawImgui();					
 #endif // _DEBUG
 		}
 	}

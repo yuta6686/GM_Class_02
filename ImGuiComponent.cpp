@@ -9,6 +9,7 @@
 #include "gameObject.h"
 #include "ComponentObject.h"
 #include "Enemy.h"
+#include "MyImgui.h"
 
 #define nameof(x) #x
 
@@ -33,8 +34,9 @@ void ImGuiComponent::DrawImgui()
 {
 #ifdef _DEBUG
 
-	ImGui::BeginChild(ImGui::GetID((void*)0),
-		ImVec2(SCREEN_WIDTH,SCREEN_HEIGHT/2.0f));
+	//ImGui::BeginChild(ImGui::GetID((void*)0),
+	//	ImVec2(SCREEN_WIDTH,SCREEN_HEIGHT/2.0f));	
+	
 
 	//	Position
 	{
@@ -127,7 +129,7 @@ void ImGuiComponent::DrawImgui()
 		}
 	}
 
-	ImGui::EndChild();
+	//ImGui::EndChild();
 
 
 #endif // _DEBUG

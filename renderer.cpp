@@ -154,17 +154,17 @@ void Renderer::Init()
 	//  ウィンドウの角丸み->多分角度
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 15.0f);
 
-	//  ウィンドウボーダーサイズ
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 10.0f);
+	////  ウィンドウボーダーサイズ
+	//ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 10.0f);
 
-	//	ウィンドウのタイトルのアラインメント
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowTitleAlign, ImVec2(0.5f, 0.5f));
+	////	ウィンドウのタイトルのアラインメント
+	//ImGui::PushStyleVar(ImGuiStyleVar_WindowTitleAlign, ImVec2(0.5f, 0.5f));
 
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(20.0f, 20.0f));
+	//ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(20.0f, 20.0f));
 
-	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(20.0f, 3.0f));
+	//ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(20.0f, 3.0f));
 
-	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(5.0f, 10.0f));
+	//ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(5.0f, 10.0f));
 
 	ImGui_ImplWin32_Init(GetWindow());
 	ImGui_ImplDX11_Init(m_Device, m_DeviceContext);

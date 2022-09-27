@@ -14,6 +14,9 @@
 #include "StageLimitComponent.h"
 #include "HPComponent.h"
 #include "CollisionComponent_Player.h"
+#include "DebugScene.h"
+#include "CO_MeshField.h"
+
 
 using namespace std;
 
@@ -73,7 +76,7 @@ void Player::Init()
 
 	m_VelocityCom = AddComponent<VelocityComponent>(COMLAYER_SECOND);
 
-	AddComponent< StageLimitComponent>(COMLAYER_SECOND);
+	//AddComponent< StageLimitComponent>(COMLAYER_SECOND);
 
 	AddComponent< HPComponent>(COMLAYER_SECOND);
 
@@ -125,8 +128,7 @@ void Player::Draw()
 void Player::DrawImgui()
 {
 #ifdef _DEBUG
-
-	
+		
 
 	ImGui::Separator();
 
@@ -290,6 +292,10 @@ void Player::PlayerMove()
 			break;
 		}
 	}
+
+	//	メッシュフィールド高さ取得
+	CO_MeshField* meshf = g_Scene->GetGameObject<CO_MeshField>();
+	groundHeight = max(groundHeight, meshf->GetHeight(m_Position));
 
 
 
