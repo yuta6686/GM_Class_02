@@ -2,6 +2,7 @@
 #include "DebugScene.h"
 #include "player.h"
 
+
 #define HASH_CODE_MAX       (256)
 #define HASH_CODE_TABLE_NUM     (HASH_CODE_MAX*2)
 
@@ -194,10 +195,13 @@ void CO_MeshField::Move()
 
     movex += mMoveSpeed;
 }
+
 void CO_MeshField::DrawImgui()
 {
     if (ImGui::CollapsingHeader("MeshField")) {
         ImGui::Text("Height:%.2f", GetHeight(mpScene->GetGameObject<Player>()->GetPosition()));
+        ImGui::Text("Bloeck X:%d, Z:%d", GetBloeckNumX(mpScene->GetGameObject<Player>()->GetPosition()), 
+            GetBloeckNumZ(mpScene->GetGameObject<Player>()->GetPosition()));
 
         if (ImGui::TreeNode("Parameter")) {
             ImGui::SliderFloat("MoveSpeed", &mMoveSpeed, -0.02f, 0.02f, "%.4f");
@@ -279,7 +283,7 @@ void CO_MeshField::Init()
                 index[i] = (x + 1) * (VertexNum_Virtical + 1) + z;
                 i++;
             }
-            if (x == 19)
+            if (x == VertexNum_Horizontal-1)
                 break;
 
             index[i] = (x + 1) * (VertexNum_Horizontal + 1) + VertexNum_Virtical;
@@ -314,9 +318,9 @@ void CO_MeshField::Init()
     assert(m_Texture);
 
     m_VertexShader =
-        ResourceManger<VertexShader>::GetResource(VertexShader::DEFAULT_VERTEX_SHADER.c_str());
+        ResourceManger<VertexShader>::GetResource("MeshFieldVS.cso");
     m_PixelShader =
-        ResourceManger<PixelShader>::GetResource(PixelShader::DEFAULT_PIXEL_SHADER.c_str());
+        ResourceManger<PixelShader>::GetResource("MeshFieldPS.cso");
 
     m_Position = { 0.0f,0.0f,0.0f };
     m_Rotation = { 0.0f,0.0f,0.0f };
@@ -505,8 +509,16 @@ float CO_MeshField::GetValue(int x, int y)
 {
     return (float)GetHash(x, y) / (float)(HASH_CODE_MAX - 1);
 }
+int CO_MeshField::GetBloeckNumX(const D3DXVECTOR3& Position)
+{
+    return Position.x / 5.0f + 10.0f;
+}
+int CO_MeshField::GetBloeckNumZ(const D3DXVECTOR3& Position)
+{
+    return Position.z / -5.0f + 10.0f;
+}
 
-float CO_MeshField::GetHeight(D3DXVECTOR3 Position)
+float CO_MeshField::GetHeight(const D3DXVECTOR3& Position)
 {
     int x, z;
 

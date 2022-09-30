@@ -42,16 +42,6 @@ struct LIGHT
 	D3DXVECTOR3 ptColor;        // カラー
 	float ptRange;          // 影響範囲
 
-	// step-1 ライト構造体にスポットライト用のメンバ変数を追加
-	D3DXVECTOR3 spPosition;
-	float pad3;
-
-	D3DXVECTOR3 spColor;
-	float spRange;
-
-	D3DXVECTOR3 spDirection;
-	float spAngle;
-
 	D3DXVECTOR3 eyePos;         // 視点の位置
 	float pad4;
 

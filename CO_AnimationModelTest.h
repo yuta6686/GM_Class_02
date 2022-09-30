@@ -14,11 +14,17 @@ public:
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 
         AddComponent< AnimationModelComponent>(COMLAYER_DRAW)
-            ->SetSourcePath("asset\\model\\Akai_Idle.fbx");
+            ->LoadAnimationData("asset\\model\\BlenderTest3.fbx",
+                "asset\\model\\BlenderTest3.fbx", "Idle",
+                "asset\\model\\BlenderTest3.fbx", "Run");
+
+        AddComponent<ImGuiComponent>(COMLAYER_DRAW);
 
         ComponentObject::Init();
 
-        float scale = 0.1f;
+        m_TypeName = "AnimationModel";
+
+        float scale = 1.1f;
         m_Scale = { scale,scale,scale };
 
         m_Position.y = 4.0f;

@@ -9,8 +9,8 @@ class CO_MeshField :
     public ComponentObject
 {
 private:
-    inline static const int VertexNum_Virtical = 30;
-    inline static const int VertexNum_Horizontal = 30;
+    inline static const int VertexNum_Virtical = 20;
+    inline static const int VertexNum_Horizontal = 20;
 
     float mMoveSpeed = 0.01f;
     float mHeightPower = 4.0f;
@@ -46,7 +46,10 @@ public:
     virtual void Draw()override;
     virtual void DrawImgui()override;
 
-    float GetHeight(D3DXVECTOR3 Position);
+    float GetHeight(const D3DXVECTOR3& Position);
+
+    int GetBloeckNumX(const D3DXVECTOR3& Position);
+    int GetBloeckNumZ(const D3DXVECTOR3& Position);
 
     void Remap(const int& seed);
     void Move();
