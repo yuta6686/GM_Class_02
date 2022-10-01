@@ -342,6 +342,12 @@
     <ClCompile Include="DebugScene.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="ComputeShader.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ComputeShaderTestObject.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -791,6 +797,12 @@
     <ClInclude Include="C1_GameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="ComputeShader.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ComputeShaderTestObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -827,6 +839,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="MeshFieldPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="testCS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
