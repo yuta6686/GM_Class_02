@@ -30,14 +30,10 @@ void ComputeShaderTestObject::Update()
    
 
     //  コンピュートシェーダーへ入力時に使用するシェーダーリソースビューを作成する
-    mhr = CreateSRVForStructuredBuffer(Renderer::GetDevice(), sizeof(BUFIN_TYPE), NUM_ELEMENTS, &mvBufInArray[0], &mpBuff, &mpBufSRV);
-    if (FAILED(mhr))
-    {
-        //  だめだったときの処理書く
-    }
+    CreateSRVForStructuredBuffer(Renderer::GetDevice(), sizeof(BUFIN_TYPE), NUM_ELEMENTS, &mvBufInArray[0], &mpBuff, &mpBufSRV);
 
     //  コンピュートシェーダーから出力時に使用するアンオーダードアクセスビューを作成
-    mhr = CreateUAVForStructuredBuffer(Renderer::GetDevice(), sizeof(BUFOUT_TYPE), NUM_ELEMENTS, NULL, &mppBuffResult, &mpBufResultUAV);
+    CreateUAVForStructuredBuffer(Renderer::GetDevice(), sizeof(BUFOUT_TYPE), NUM_ELEMENTS, NULL, &mppBuffResult, &mpBufResultUAV);
 
     //  コンピュートシェーダを実行する
     RunComputeShader(Renderer::GetDeviceContext(), mpComputeShader, mpBufSRV, mpBufResultUAV, NUM_ELEMENTS / 2, 1, 1);

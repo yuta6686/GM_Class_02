@@ -8,6 +8,7 @@
 #include "MyImgui.h"
 #include "CO_AnimationModelTest.h"
 #include "ComputeShaderTestObject.h"
+#include "CO_ComputeShadertest.h"
 
 void DebugScene::Init()
 {
@@ -29,7 +30,7 @@ void DebugScene::Init()
 
 	AddGameObject<CO_AnimationModelTest>(LAYER_3D);
 
-	AddGameObject<ComputeShaderTestObject>(LAYER_3D);
+	AddGameObject<CO_ComputeShadertest>(LAYER_3D);
 
 	for (int i = 0; i < LAYER_NUM_MAX; i++) {
 

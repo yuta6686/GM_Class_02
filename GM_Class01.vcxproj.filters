@@ -803,6 +803,9 @@
     <ClInclude Include="ComputeShaderTestObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CO_ComputeShadertest.h">
+      <Filter>GameObject\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -842,6 +845,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="testCS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="test2CS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
