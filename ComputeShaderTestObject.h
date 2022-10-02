@@ -1,14 +1,17 @@
 #pragma once
 #include "gameObject.h"
+
 struct BUFIN_TYPE
 {
-    int i;
+    D3DXVECTOR3 pos;
     float f;
+    int status;
 };
 
 struct BUFOUT_TYPE
 {
     int i;
+    int status;
 };
 class ComputeShaderTestObject :
     public GameObject
@@ -29,7 +32,8 @@ private:
 
     BUFOUT_TYPE* mpOutData;
 
-    HRESULT CreateSRVForStructuredBuffer(ID3D11Device* pD3DDevice
+public:
+    static HRESULT CreateSRVForStructuredBuffer(ID3D11Device* pD3DDevice
         , UINT uElementSize
         , UINT uCount
         , VOID* pInitData
@@ -37,7 +41,7 @@ private:
         , ID3D11ShaderResourceView** ppSRVOut
     );
 
-    HRESULT CreateUAVForStructuredBuffer(ID3D11Device* pD3DDevice
+    static HRESULT CreateUAVForStructuredBuffer(ID3D11Device* pD3DDevice
         , UINT uElementSize
         , UINT uCount
         , VOID* pInitData
@@ -45,16 +49,16 @@ private:
         , ID3D11UnorderedAccessView** ppUAVOut
     );
     // コンピュートシェーダーを実行する
-    void RunComputeShader(ID3D11DeviceContext* pD3DDeviceContext
+    static void RunComputeShader(ID3D11DeviceContext* pD3DDeviceContext
         , ID3D11ComputeShader* pComputeShader
         , ID3D11ShaderResourceView* pBufSRV         // 入力用
         , ID3D11UnorderedAccessView* pBufResultUAV  // 出力用
         , UINT X
         , UINT Y
-        , UINT Z
+        , UINT Z        
     );
 
-    ID3D11Buffer* CreateAndCopyToDebugBuf(ID3D11Device* pD3DDevice,
+    static ID3D11Buffer* CreateAndCopyToDebugBuf(ID3D11Device* pD3DDevice,
         ID3D11DeviceContext* pD3DDeviceContext,
         ID3D11Buffer* pBuffer);
 public:

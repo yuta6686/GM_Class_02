@@ -9,9 +9,13 @@ void ComputeShaderTestObject::Init()
     //  入力用バッファに初期値を設定
     for (int i = 0; i < NUM_ELEMENTS; i++)
     {
-        mvBufInArray[i].i = i;
-        mvBufInArray[i].f = static_cast<float>(NUM_ELEMENTS - 1 - i);
+        mvBufInArray[i].pos.x = (float)i;
+        mvBufInArray[i].pos.y = (float)i*2;
+        mvBufInArray[i].pos.z = (float)i*3;
+        mvBufInArray[i].f = static_cast<float>(NUM_ELEMENTS - 1 - i);;
     }
+
+
 }
 
 void ComputeShaderTestObject::Uninit()
@@ -23,6 +27,9 @@ void ComputeShaderTestObject::Uninit()
     mpBufSRV->Release();
     
     mpComputeShader->Release();
+
+    //delete mpOutData;
+    //delete mpOutParticles;
 }
 
 void ComputeShaderTestObject::Update()
@@ -37,7 +44,7 @@ void ComputeShaderTestObject::Update()
     }
 
     //  コンピュートシェーダーから出力時に使用するアンオーダードアクセスビューを作成
-    mhr = CreateUAVForStructuredBuffer(Renderer::GetDevice(), sizeof(BUFOUT_TYPE), NUM_ELEMENTS, NULL, &mppBuffResult, &mpBufResultUAV);
+    mhr = CreateUAVForStructuredBuffer(Renderer::GetDevice(), sizeof(BUFIN_TYPE), NUM_ELEMENTS, NULL, &mppBuffResult, &mpBufResultUAV);
 
     //  コンピュートシェーダを実行する
     RunComputeShader(Renderer::GetDeviceContext(), mpComputeShader, mpBufSRV, mpBufResultUAV, NUM_ELEMENTS / 2, 1, 1);
@@ -54,6 +61,12 @@ void ComputeShaderTestObject::Update()
     Renderer::GetDeviceContext()->Unmap(debugbuf, 0);
 
     debugbuf->Release();
+
+    for (int i = 0; i < NUM_ELEMENTS; i++)
+    {
+        mvBufInArray[i].status = mpOutData[i].status;
+    }
+    
 }
 
 void ComputeShaderTestObject::Draw()
@@ -64,8 +77,11 @@ void ComputeShaderTestObject::DrawImgui()
 {
     for (int i = 0; i < NUM_ELEMENTS; i++)
     {
-        ImGui::Text("%d + %d = %d", i, NUM_ELEMENTS - 1 - i, mpOutData[i]);
+        ImGui::Text("%d + %d = %d", i, NUM_ELEMENTS - 1 - i, mpOutData[i].i);
+        ImGui::Text("status:%d", mpOutData[i].status);
         //printf("%d + %d = %d", i, NUM_ELEMENTS - 1 - i, mpOutData[i].i);
+
+        //ImGui::Text("%d: status:%d", mpOutData[i].status);
     }
 }
 
@@ -198,13 +214,13 @@ void ComputeShaderTestObject::RunComputeShader(ID3D11DeviceContext* pD3DDeviceCo
     , ID3D11UnorderedAccessView* pBufResultUAV  // 出力用
     , UINT X
     , UINT Y
-    , UINT Z
+    , UINT Z    
 )
 {
     pD3DDeviceContext->CSSetShader(pComputeShader, NULL, 0);
 
     // シェーダーリソースビューをコンピュートシェーダーに設定
-    pD3DDeviceContext->CSSetShaderResources(0, 1, &pBufSRV);
+    pD3DDeviceContext->CSSetShaderResources(0 , 1, &pBufSRV);
 
     // アンオーダードアクセスビューをコンピュートシェーダーに設定
     pD3DDeviceContext->CSSetUnorderedAccessViews(0, 1, &pBufResultUAV, NULL);

@@ -3,11 +3,13 @@
 #include "VertexInitialize.h"
 #include "manager.h"
 #include "player.h"
+#include "ComputeShaderTestObject.h"
 #include <sstream>
 
 
 void ParticleObject::Init()
 {
+	m_TypeName = "ParticleObject";
 
 	m_Model = ResourceManger<Model_variable>::GetResource(m_ModelName.c_str());
 	m_Model_Cube = ResourceManger<Model_variable>::GetResource(m_ModelName_Cube.c_str());
@@ -42,27 +44,41 @@ void ParticleObject::Init()
 		m_Particles[i].pos = { 0.0f,0.0f,0.0f };
 		m_Particles[i].vel = { 0.0f,-0.5f,0.0f };
 		m_Particles[i].rot = { 0.0f,0.0f,0.0f };
-		m_Particles[i].acc = { 0.0f,0.1f,0.0f };
+		m_Particles[i].acc = { 0.0f,0.1f,0.0f };		
+		
 		m_Particles[i].m_SizeOverLifeTime_Start = 0.0f;
 		m_Particles[i].m_SizeOverLifeTime_End = 1.0f;
 		m_Particles[i].size = m_Particles[i].m_SizeOverLifeTime_Start;
 		m_Particles[i].use = false;
+		m_Particles[i].m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,1.0f };
+		m_Particles[i].m_ColorOverLifeTime_End = { 1.0f,1.0f,1.0f,0.0f };
 		m_Particles[i].col = m_Particles[i].m_ColorOverLifeTime_Start;
+		m_Particles[i].use_torii = false;
+		m_Particles[i].life = 60;
+		m_Particles[i].rot_vel = { 0.0f,0.0f,0.0f };
+		m_Particles[i].type = 0;
 		
 		
 	}
+
+	Renderer::CreateComputeShader(&mpComputeShader, "ParticleCS.cso");
 }
 
 void ParticleObject::Uninit()
 {
 
+	mpBuff->Release();
+	mppBuffResult->Release();
+	mpBufResultUAV->Release();
+	mpBufSRV->Release();
+
+	mpComputeShader->Release();
 }
 
 void ParticleObject::Update()
 {
-
-
-	for (unsigned int i = 0; i < m_Particles.size(); i++) {
+	for (unsigned int i = 0; i < m_Particles.size(); i++)
+	{
 		//	寿命で終了
 		if (m_Particles[i].status >= m_Particles[i].life)
 		{
@@ -70,34 +86,67 @@ void ParticleObject::Update()
 			m_Particles[i].status = 0;
 		}
 
-
 		//	使われていなかったら戻る
 		if (!m_Particles[i].use) continue;
-		
-		//	加速度
-		m_Particles[i].vel += m_Particles[i].acc;
 
-		//	速度
-		m_Particles[i].pos += m_Particles[i].vel;
-
-		//	回転速度
-		m_Particles[i].rot += m_Particles[i].rot_vel;
-
-		//	寿命に応じた色
-		D3DXColorLerp(&m_Particles[i].col,
-			&m_Particles[i].m_ColorOverLifeTime_Start,
-			&m_Particles[i].m_ColorOverLifeTime_End,
-			(float)m_Particles[i].status / (float)m_Particles[i].life);
-
-		//	寿命に応じたサイズ
-		MyMath::FloatLerp(&m_Particles[i].size,
-			&m_Particles[i].m_SizeOverLifeTime_Start,
-			&m_Particles[i].m_SizeOverLifeTime_End,
-			powf((float)m_Particles[i].status / (float)m_Particles[i].life,2.0f));
-		
-		//	寿命測定
-		m_Particles[i].status++;
+			
 	}
+	for (unsigned int i = 0; i < PARTICLE_MAX; i++)
+	{
+		mvIn[i].acc = m_Particles[i].acc;
+		mvIn[i].col = m_Particles[i].col;
+		mvIn[i].life = m_Particles[i].life;
+		mvIn[i].m_ColorOverLifeTime_End = m_Particles[i].m_ColorOverLifeTime_End;
+		mvIn[i].m_ColorOverLifeTime_Start = m_Particles[i].m_ColorOverLifeTime_Start;
+		mvIn[i].m_SizeOverLifeTime_End = m_Particles[i].m_SizeOverLifeTime_End;
+		mvIn[i].m_SizeOverLifeTime_Start = m_Particles[i].m_SizeOverLifeTime_Start;
+		mvIn[i].pos = m_Particles[i].pos;
+		mvIn[i].size = m_Particles[i].size;
+		mvIn[i].status = m_Particles[i].status;
+		mvIn[i].use = m_Particles[i].use;
+		mvIn[i].vel = m_Particles[i].vel;		
+		mvIn[i].rot = m_Particles[i].rot;
+		mvIn[i].rot_vel = m_Particles[i].rot_vel;
+	}
+
+	   //  コンピュートシェーダーへ入力時に使用するシェーダーリソースビューを作成する
+	ComputeShaderTestObject::CreateSRVForStructuredBuffer(Renderer::GetDevice(), sizeof(PARTICLE_INOUT), PARTICLE_MAX, &mvIn[0], &mpBuff, &mpBufSRV);
+
+	//  コンピュートシェーダーから出力時に使用するアンオーダードアクセスビューを作成
+	ComputeShaderTestObject::CreateUAVForStructuredBuffer(Renderer::GetDevice(), sizeof(PARTICLE_INOUT), PARTICLE_MAX, NULL, &mppBuffResult, &mpBufResultUAV);
+
+	//  コンピュートシェーダを実行する
+	ComputeShaderTestObject::RunComputeShader(Renderer::GetDeviceContext(), mpComputeShader, mpBufSRV, mpBufResultUAV, PARTICLE_MAX /2, 1, 1);
+
+	//  アンオーダードアクセスビューのバッファの内容をCPUから読み込み可能なバッファへコピーする
+	ID3D11Buffer* debugbuf = ComputeShaderTestObject::CreateAndCopyToDebugBuf(Renderer::GetDevice(), Renderer::GetDeviceContext(), mppBuffResult);
+	D3D11_MAPPED_SUBRESOURCE MappedResource;
+	Renderer::GetDeviceContext()->Map(debugbuf, 0, D3D11_MAP_READ, 0, &MappedResource);
+	mpOut = reinterpret_cast<PARTICLE_INOUT*>(MappedResource.pData);
+
+
+	for (unsigned int i = 0; i < PARTICLE_MAX; i++)
+	{
+		m_Particles[i].acc = mpOut[i].acc;
+		m_Particles[i].col = mpOut[i].col;
+		m_Particles[i].life = mpOut[i].life;
+		m_Particles[i].m_ColorOverLifeTime_End = mpOut[i].m_ColorOverLifeTime_End;
+		m_Particles[i].m_ColorOverLifeTime_Start = mpOut[i].m_ColorOverLifeTime_Start;
+		m_Particles[i].m_SizeOverLifeTime_End = mpOut[i].m_SizeOverLifeTime_End;
+		m_Particles[i].m_SizeOverLifeTime_Start = mpOut[i].m_SizeOverLifeTime_Start;
+		m_Particles[i].pos = mpOut[i].pos;
+		m_Particles[i].size = mpOut[i].size;
+		m_Particles[i].status = mpOut[i].status;
+		m_Particles[i].use = mpOut[i].use;
+		m_Particles[i].vel = mpOut[i].vel;
+		m_Particles[i].rot = mpOut[i].rot;
+		m_Particles[i].rot_vel = mpOut[i].rot_vel;
+	}
+
+
+	Renderer::GetDeviceContext()->Unmap(debugbuf, 0);
+
+	debugbuf->Release();
 }
 
 void ParticleObject::Draw()
@@ -173,12 +222,16 @@ void ParticleObject::Draw()
 
 void ParticleObject::DrawImgui()
 {
-	ImGui::Begin("ParticleObject");
+	ImGui::Text("ParticleObject");
 
-	ImGui::Text("ModelName:%s", m_ModelName.c_str());
-
-
-	ImGui::End();
+	for (unsigned int i = 0; i < m_Particles.size(); i++)
+	{
+		if (m_Particles[i].use == false)continue;
+		ImGui::Text("%d :status%d",i, m_Particles[i].status);
+		ImGui::Text("life%d", m_Particles[i].life);
+		ImGui::Text("Position x:%.2f,y:%.2f,z:%.2f", m_Particles[i].pos.x, m_Particles[i].pos.y, m_Particles[i].pos.z);
+		ImGui::Text("Size %.2f", m_Particles[i].size);
+	}
 }
 
 void ParticleObject::SetParticle_Preset1()

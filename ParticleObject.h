@@ -12,17 +12,17 @@ enum PARTICLE_MODEL_TYPE {
 };
 struct PARTICLE
 {
-	int		status = 0;		// 状態
-	int		type = 0;
-	D3DXVECTOR3	pos = { 0.0f,0.0f,0.0f };		// 位置
-	D3DXVECTOR3	vel = { 0.0f,0.0f,0.0f };		// 速度
+	int		status = 0;		// 状態	
+	int		type = 0;	
+	D3DXVECTOR3	pos = { 0.0f,0.0f,0.0f };		// 位置	
+	D3DXVECTOR3	vel = { 0.0f,0.0f,0.0f };		// 速度	
 	D3DXVECTOR3	acc = { 0.0f,0.0f,0.0f };		// 加速度
 	D3DXVECTOR3 rot = { 0.0f,0.0f,0.0f };	//	回転	
 	D3DXVECTOR3 rot_vel = { 0.0f,0.0f,0.0f };
 	float	size = 1.0f;		// 大きさ
 	int		life = 60;		// 消滅時間(フレーム数)
 	bool    use = false;
-	bool	use_torii = false;
+	bool	use_torii = false;	
 
 	D3DXCOLOR col = { 1.0f,1.0f,1.0f,1.0f };		// 色
 
@@ -30,15 +30,39 @@ struct PARTICLE
 	D3DXCOLOR m_ColorOverLifeTime_End = { 0.0f,0.0f,0.0f,0.0f };
 
 	float m_SizeOverLifeTime_Start = 0.0f;
+	float m_SizeOverLifeTime_End = 1.0f;	
+};
+struct PARTICLE_INOUT
+{
+	int status;
+	int life;
+
+	float size;
+	float m_SizeOverLifeTime_Start = 0.0f;
 	float m_SizeOverLifeTime_End = 1.0f;
+
+	bool use;
+	D3DXVECTOR3 acc;
+	D3DXVECTOR3 vel;
+	D3DXVECTOR3 pos;
+	D3DXCOLOR col;
+	D3DXVECTOR3 rot;	//	回転	
+	D3DXVECTOR3 rot_vel;
+	
+	D3DXCOLOR m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,1.0f };
+	D3DXCOLOR m_ColorOverLifeTime_End = { 0.0f,0.0f,0.0f,0.0f };
+
+	
 };
 class ParticleObject :
 	public ComponentObject
 {
 private:
-	inline static const int PARTICLE_MAX = 1000;
+	inline static const UINT PARTICLE_MAX = 2000;
 	std::vector<PARTICLE> m_Particles;
-
+	
+	PARTICLE_INOUT mvIn[PARTICLE_MAX];
+	PARTICLE_INOUT* mpOut;
 
 	std::shared_ptr<Model_variable> m_Model;
 	std::shared_ptr<Model_variable> m_Model_Cube;
@@ -59,6 +83,12 @@ private:
 	float m_Random_Max = 0.1f;
 
 	Camera* m_Camera;
+
+	ID3D11ComputeShader* mpComputeShader = nullptr;
+	ID3D11Buffer* mpBuff = nullptr;
+	ID3D11Buffer* mppBuffResult = nullptr;
+	ID3D11ShaderResourceView* mpBufSRV = nullptr;
+	ID3D11UnorderedAccessView* mpBufResultUAV = nullptr;
 public:
 	static unsigned int GetToriiModelMax() { return m_Torii_Broken.size(); }
 	void SetModelName(const std::string& name) { m_ModelName = name; }
