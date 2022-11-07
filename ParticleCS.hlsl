@@ -33,7 +33,7 @@ void main(uint3 DTid : SV_DispatchThreadID)
 {
    
     //Out[DTid.x] = In[DTid.x];
-    Out[DTid.x].status = In[DTid.x].status + 1;
+    Out[DTid.x].status = In[DTid.x].status;
     
     Out[DTid.x].acc = In[DTid.x].acc;
     Out[DTid.x].col = In[DTid.x].col;
@@ -48,9 +48,17 @@ void main(uint3 DTid : SV_DispatchThreadID)
     Out[DTid.x].size = In[DTid.x].size;    
     Out[DTid.x].use = In[DTid.x].use;
     
+    if (Out[DTid.x].status >= Out[DTid.x].life)
+    {
+        Out[DTid.x].use = false;
+        Out[DTid.x].status = 0;
+    }
+    
     if (Out[DTid.x].use == false)
         return;
     
+    
+    Out[DTid.x].status += 1;
     Out[DTid.x].vel = In[DTid.x].vel;    
     Out[DTid.x].vel += Out[DTid.x].acc;
     Out[DTid.x].pos += Out[DTid.x].vel;

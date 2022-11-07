@@ -9,6 +9,30 @@
 #include "CO_AnimationModelTest.h"
 #include "ComputeShaderTestObject.h"
 
+void DebugScene::SetParticle()
+{
+	PARTICLE par;
+	par.acc = { 0.0f,0.0f,0.0f };
+	par.m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,1.0f };
+	par.m_ColorOverLifeTime_End = { 0.0f,0.0f,0.0f,1.0f };
+	par.col = par.m_ColorOverLifeTime_Start;
+	par.life = 60;
+	par.pos = _player->GetPosition() + MyMath::XZRandom(-3.0f, 3.0f);
+	par.rot = { 0.0f,0.0f,0.0f };
+	par.rot_vel = MyMath::VEC3Random(-0.01f, 0.01f);
+	par.m_SizeOverLifeTime_Start = MyMath::Random(0.05f, 0.1f);
+	par.m_SizeOverLifeTime_End = 0.0f;
+	par.size = par.m_SizeOverLifeTime_Start;
+	par.status = 0;
+	par.type = rand() % PARTICLE_TYPE_MAX;
+	par.use = true;
+	par.use_torii = false;
+	par.vel = MyMath::XZRandom(-0.15f, 0.15f);
+	par.vel.y = MyMath::Random(0.01f, 0.05f);
+	_particleObject->SetParticle(par);
+
+}
+
 void DebugScene::Init()
 {
 	//	カメラ
@@ -17,8 +41,12 @@ void DebugScene::Init()
 	//	ライト
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
+	// パーティクル
+	_particleObject = AddGameObject<ParticleObject>(LAYER_3D);
+
 	//	プレイヤー
-	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });
+	_player = AddGameObject<Player>(LAYER_3D);
+	_player->SetPosition({ 2.5f,5.0f,0.0f });
 
 	//	メッシュフィールド
 	AddGameObject<CO_MeshField>(LAYER_3D);
@@ -29,7 +57,7 @@ void DebugScene::Init()
 
 	AddGameObject<CO_AnimationModelTest>(LAYER_3D);
 
-	AddGameObject<ComputeShaderTestObject>(LAYER_3D);
+	//AddGameObject<ComputeShaderTestObject>(LAYER_3D);
 
 	for (int i = 0; i < LAYER_NUM_MAX; i++) {
 
@@ -42,12 +70,13 @@ void DebugScene::Init()
 	MyImgui::mbGameObjectMap["MeshField"] = true;
 }
 
-//void DebugScene::Update()
-//{
-//
-//
-//	Scene::Update();
-//}
+void DebugScene::Update()
+{
+	for(int i=0;i<_particle1FrameNum;i++)
+		SetParticle();
+
+	Scene::Update();
+}
 void DebugScene::Draw()
 {
 #ifdef _DEBUG
@@ -58,7 +87,7 @@ void DebugScene::Draw()
 
 	ImGui::BeginMenuBar();
 
-	
+	ImGui::SliderInt("Particle 1Frame Num", &_particle1FrameNum, 0, 30, "%d");
 
 	if (ImGui::BeginMenu("GameObject"))
 	{

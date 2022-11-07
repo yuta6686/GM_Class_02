@@ -54,7 +54,7 @@ void Player::Init()
 
 	m_TypeName = "Player";
 
-	m_Particle = g_Scene->AddGameObject<ParticleObject>(LAYER_3D);
+	m_Particle = g_Scene->GetGameObject<ParticleObject>();
 	
 
 //	↓ここにコンポーネントついか　--------------------------------------	
@@ -352,6 +352,7 @@ void Player::GetItem()
 
 void Player::SetParticle(const D3DXCOLOR& start_col)
 {
+	if (m_Particle == nullptr)return;
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
 	par.m_ColorOverLifeTime_Start = start_col;
@@ -376,6 +377,7 @@ void Player::SetParticle(const D3DXCOLOR& start_col)
 
 void Player::SetParticle_Landing()
 {
+	if (m_Particle == nullptr)return;
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
 	par.m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,1.0f };

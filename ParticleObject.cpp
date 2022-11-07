@@ -77,20 +77,20 @@ void ParticleObject::Uninit()
 
 void ParticleObject::Update()
 {
-	for (unsigned int i = 0; i < m_Particles.size(); i++)
-	{
-		//	寿命で終了
-		if (m_Particles[i].status >= m_Particles[i].life)
-		{
-			m_Particles[i].use = false;
-			m_Particles[i].status = 0;
-		}
+	//for (unsigned int i = 0; i < m_Particles.size(); i++)
+	//{
+	//	//	寿命で終了
+	//	if (m_Particles[i].status >= m_Particles[i].life)
+	//	{
+	//		m_Particles[i].use = false;
+	//		m_Particles[i].status = 0;
+	//	}
 
-		//	使われていなかったら戻る
-		if (!m_Particles[i].use) continue;
+	//	//	使われていなかったら戻る
+	//	if (!m_Particles[i].use) continue;
 
-			
-	}
+	//		
+	//}
 	for (unsigned int i = 0; i < PARTICLE_MAX; i++)
 	{
 		mvIn[i].acc = m_Particles[i].acc;
