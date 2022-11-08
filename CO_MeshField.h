@@ -25,6 +25,9 @@ private:
     ID3D11Buffer* m_VertexBuffer = NULL;
     ID3D11Buffer* m_IndexBuffer = NULL;
     ID3D11ShaderResourceView* m_Texture = NULL;
+    ID3D11ShaderResourceView* m_Texture2 = NULL;
+    ID3D11ShaderResourceView* m_NormalTexture = NULL;
+    ID3D11ShaderResourceView* m_PixelNoiseTexture = NULL;
 
     VERTEX_3D m_Vertex[VertexNum_Horizontal + 1][VertexNum_Virtical +1];
 

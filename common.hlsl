@@ -106,6 +106,8 @@ struct VS_IN
 	float4 Normal		: NORMAL0;
 	float4 Diffuse		: COLOR0;
 	float2 TexCoord		: TEXCOORD0;
+    float3 tangent      : TANGENT;
+    float3 biNormal     : BINORMAL;
 };
 
 
@@ -117,5 +119,6 @@ struct PS_IN
 	float4 Diffuse		: COLOR0;
 	float2 TexCoord		: TEXCOORD0;
     float3 worldPos		: TEXCOORD1;
-    
+    float3 tangent      : TANGENT;
+    float3 biNormal     : BINORMAL;
 };

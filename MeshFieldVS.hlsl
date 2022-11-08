@@ -22,4 +22,8 @@ void main(in VS_IN In, out PS_IN Out)
     
     //  テクスチャ座標を出力
     Out.TexCoord = In.TexCoord;
+    
+    Out.tangent = normalize(mul(World, In.tangent));
+    Out.biNormal = normalize(mul(World, In.biNormal));
+
 }

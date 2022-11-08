@@ -308,14 +308,46 @@ void CO_MeshField::Init()
     }
 
     //テクスチャ読み込み
+    // 通常テクスチャ1枚目
     D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-        "asset\\texture\\field1.jpg",
+        "asset\\texture\\water.png",
         NULL,
         NULL,
         &m_Texture,
         NULL);
 
     assert(m_Texture);
+
+    // 通常テクスチャ2枚目
+    D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+        "asset\\texture\\water1.png",
+        NULL,
+        NULL,
+        &m_Texture2,
+        NULL);
+
+    assert(m_Texture2);
+
+    // ノーマルテクスチャ
+    D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+        "asset\\texture\\normalmap.png",
+        NULL,
+        NULL,
+        &m_NormalTexture,
+        NULL);
+
+    assert(m_NormalTexture);
+
+    // ピクセルテクスチャ
+    D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+        "asset\\texture\\pixelNoiseColor.png",
+        NULL,
+        NULL,
+        &m_PixelNoiseTexture,
+        NULL);
+
+    assert(m_PixelNoiseTexture);
+
 
     m_VertexShader =
         ResourceManger<VertexShader>::GetResource("MeshFieldVS.cso");
@@ -339,6 +371,9 @@ void CO_MeshField::Uninit()
     m_VertexBuffer->Release();
     m_IndexBuffer->Release();
     m_Texture->Release();
+    m_Texture2->Release();
+    m_NormalTexture->Release();
+    m_PixelNoiseTexture->Release();
 }
 
 void CO_MeshField::Update()
@@ -395,6 +430,9 @@ void CO_MeshField::Draw()
 
     //  テクスチャ設定
     Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &m_Texture);
+    Renderer::GetDeviceContext()->PSSetShaderResources(1, 1, &m_NormalTexture);
+    Renderer::GetDeviceContext()->PSSetShaderResources(2, 1, &m_PixelNoiseTexture);
+    Renderer::GetDeviceContext()->PSSetShaderResources(3, 1, &m_Texture2);
 
     //  プリミティブトポロジ設定
     Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
