@@ -109,6 +109,7 @@ void ParticleObject::Draw()
 	for (unsigned int i = 0; i < m_Particles.size(); i++)
 	{
 		if (!m_Particles[i].use)continue;
+		if (!m_Camera->CheckView(m_Particles[i].pos,-0.1f))continue;
 
 		//ワールドマトリクス設定
 		D3DXMATRIX world, scale, rot, trans;
