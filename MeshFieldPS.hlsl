@@ -48,10 +48,10 @@ float CookTorranceSpecular(float3 L, float3 V, float3 N, float metallic)
     float3 H = normalize(L + V);
     
     // 各種ベクトルがどれくらい似ているかを内積を利用して求める
-    float NdotH = saturate(dot(N, H));
-    float VdotH = saturate(dot(V, H));
-    float NdotL = saturate(dot(N, L));
-    float NdotV = saturate(dot(N, V));
+    float NdotH = clamp(dot(N, H),0.01f,0.99f);
+    float VdotH = clamp(dot(V, H),0.01f,0.99f);
+    float NdotL = clamp(dot(N, L),0.01f,0.99f);
+    float NdotV = clamp(dot(N, V),0.01f,0.99f);
 
     // D項をベックマン分布を用いて計算する
     float D = Beckmann(microfacet, NdotH);
@@ -143,6 +143,6 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     outDiffuse.a = In.Diffuse.a;
 
 
-    outDiffuse.rgb += ambientLight * 1.2f * albedoColor;
+    outDiffuse.rgb += ambientLight * 1.2f * albedoColor.rgb;
     
 }
