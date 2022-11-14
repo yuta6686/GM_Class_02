@@ -67,6 +67,7 @@
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="polygon2D.cpp" />
     <ClCompile Include="Polygon3DComponent.cpp" />
+    <ClCompile Include="Prism.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="MyImgui.h" />
     <ClInclude Include="ParticleObject_2D.h" />
     <ClInclude Include="PlayerRotateComponent.h" />
+    <ClInclude Include="Prism.h" />
     <ClInclude Include="RandomJumpComponent.h" />
     <ClInclude Include="RandomVelocityComponent.h" />
     <ClInclude Include="ShootBulletComponent.h" />

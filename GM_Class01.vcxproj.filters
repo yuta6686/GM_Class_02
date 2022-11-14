@@ -342,6 +342,9 @@
     <ClCompile Include="DebugScene.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Prism.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -789,6 +792,9 @@
       <Filter>System\MyImGui</Filter>
     </ClInclude>
     <ClInclude Include="C1_GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Prism.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

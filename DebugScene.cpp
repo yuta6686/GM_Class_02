@@ -7,6 +7,7 @@
 #include "UI_Charge.h"
 #include "MyImgui.h"
 #include "CO_AnimationModelTest.h"
+#include "Prism.h"
 
 void DebugScene::Init()
 {
@@ -27,6 +28,8 @@ void DebugScene::Init()
 	AddGameObject<UI_Charge>(LAYER_2D);
 
 	AddGameObject<CO_AnimationModelTest>(LAYER_3D);
+
+	AddGameObject<Prism>(LAYER_3D);
 
 	for (int i = 0; i < LAYER_NUM_MAX; i++) {
 
