@@ -39,6 +39,12 @@ void ShaderComponent::Init()
 		m_PixelShader =
 			ResourceManger<PixelShader>::GetResource("testPS.cso");
 		break;
+	case SHADER_RENDERING_TEXTURE:
+		m_VertexShader =
+			ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
+		m_PixelShader =
+			ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+		break;
 	default:
 		break;
 	}

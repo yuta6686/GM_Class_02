@@ -15,7 +15,8 @@ enum SHADER_TYPE {
     SHADER_DEFAULT,
     SHADER_UNLIT,
     SHADER_UNLIT_NO_MATERIAL,
-    SHADER_TEST
+    SHADER_TEST,
+    SHADER_RENDERING_TEXTURE,
 };
 
 class ShaderComponent :
@@ -38,6 +39,11 @@ public:
 
     virtual void Draw() override;
     virtual void DrawImgui()  override {};
+
+    void SetShaderType(const int& shaderType)
+    {
+        m_ShaderType = shaderType;
+    }
 
     virtual void SetUnlitShader()
     {

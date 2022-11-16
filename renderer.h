@@ -7,7 +7,6 @@
 #include "imgui_impl_win32.h"
 
 
-
 struct VERTEX_3D
 {
     D3DXVECTOR3 Position;
@@ -111,7 +110,7 @@ private:
 
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;
-	static ID3D11DepthStencilState* m_DepthStateDisable;
+	static ID3D11DepthStencilState* m_DepthStateDisable;	
 
 	inline static const int m_LightNum = 1;
 

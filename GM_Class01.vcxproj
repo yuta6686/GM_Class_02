@@ -32,6 +32,7 @@
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
+    <ClCompile Include="rendering_texture.cpp" />
     <ClCompile Include="Effect_explosion.cpp" />
     <ClCompile Include="EnemyGenerate.cpp" />
     <ClCompile Include="EnemyWave_1_3.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="DefeatScene.h" />
+    <ClInclude Include="rendering_texture.h" />
     <ClInclude Include="EnemyGenerate.h" />
     <ClInclude Include="EnemyWave.h" />
     <ClInclude Include="CO_EnemyWave.h" />

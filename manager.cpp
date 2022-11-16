@@ -8,6 +8,7 @@
 #include "GameObject_Invoke.h"
 #include "AnimationModel.h"
 #include "DebugScene.h"
+#include "rendering_texture.h"
 
 //Scene* Manager::m_Scene;
 std::shared_ptr<Scene> Manager::m_Scene=nullptr;
@@ -22,6 +23,8 @@ void Manager::Init()
 	m_Scene = std::make_shared<DebugScene>();
 	m_Scene->Init();
 	
+	
+
 	//m_Scene = new ResultScene();
 	//m_Scene->Init();
 }
@@ -51,7 +54,6 @@ void Manager::Uninit()
 void Manager::Update()
 {
 	m_Scene->Update();
-
 	
 
 	//m_Scene->Update();
@@ -69,7 +71,7 @@ void Manager::Draw()
 
 	Renderer::Begin();	
 
-	m_Scene->Draw();
+	// m_Scene->Draw();	
 
 #ifdef _DEBUG
 	Renderer::imguiDraw();

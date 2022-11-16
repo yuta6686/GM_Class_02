@@ -116,7 +116,7 @@ void Renderer::Init()
 	//	return;
 	//}
 
-
+	
 
 	// m_pRTTex;
 	
@@ -460,7 +460,7 @@ void Renderer::BeginDef()
 {
 	m_DeviceContext->OMSetRenderTargets(1, &_colorRTV, m_DepthStencilView);
 
-	float clearColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	m_DeviceContext->ClearRenderTargetView(_colorRTV, clearColor);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 	
