@@ -184,8 +184,10 @@ void Prism::Update()
 		// https://risalc.info/src/line-plane-intersection-point.html
 		//
 		// OpenGL(右手座標系)とDirectX(左手座標系)の違い(Zが逆)に注意
+		D3DXVECTOR3 cameraForward = Manager::GetScene()->GetGameObject<Camera>()->GetForward();
+		D3DXVec3Normalize(&cameraForward, &cameraForward);
 		v_tmp = D3DXVECTOR3(0.0f, 0.0f, -80.0f) - v_vtx2;	// ここの定数は適当
-		bg_norm = Manager::GetScene()->GetGameObject<Camera>()->GetForward() * -1.0f;			// ＢＧのテクスチャ面の法線ベクトル
+		bg_norm = cameraForward * -1.0f;			// ＢＧのテクスチャ面の法線ベクトル
 		n = D3DXVec3Dot(&v_tmp, &bg_norm) / D3DXVec3Dot(&v_ref, &bg_norm);
 		v_pos = v_vtx2 + n * v_ref;
 
@@ -219,8 +221,17 @@ void Prism::Draw()
 	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// テクスチャ設定
-	Renderer::GetDeviceContext()->VSSetShaderResources(0, 1, &_texture);
-	Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &_texture);
+	if (Renderer::_isRenderTexture) {
+		Renderer::SetRenderTexture(true);
+		Renderer::GetDeviceContext()->VSSetShaderResources(0, 1, &_texture);
+		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &_texture);
+	}
+	else
+	{
+		Renderer::SetRenderTexture(false);
+	}
+
+	
 
 
 	Renderer::SetWorldMatrix(&matWorld);

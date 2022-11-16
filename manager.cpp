@@ -61,9 +61,13 @@ void Manager::Update()
 //•`‰æˆ—
 void Manager::Draw()
 {
-	Renderer::Begin();
+	Renderer::BeginDef();
 
-	//	m_Scene->Draw();
+	m_Scene->Draw();
+
+	Renderer::EndDef();
+
+	Renderer::Begin();	
 
 	m_Scene->Draw();
 

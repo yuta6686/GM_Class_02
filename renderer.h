@@ -78,10 +78,21 @@ private:
 	static IDXGISwapChain*			m_SwapChain;
 
 	//ディスプレイのバッグバッファのテクスチャ	
-	static ComPtr<ID3D11Texture2D> m_pRTTex;
+	inline static ComPtr<ID3D11Texture2D> m_pRTTex;
+
+	inline static ID3D11SamplerState* _defaultSampler = nullptr;
+	inline static ID3D11SamplerState* _renderTextureSampler;
+
 
 	static ID3D11RenderTargetView* m_RenderTargetView;
 	static ID3D11DepthStencilView* m_DepthStencilView;
+
+	inline static ID3D11RenderTargetView* _colorRTV  = nullptr	;	
+
+	// SRV
+	// inline static ID3D11Texture2D* _colorRenderTex  = nullptr;
+	inline static ID3D11ShaderResourceView* _colorSRV = nullptr;
+
 	static ID3D11BlendState* m_BlendState;
 	static ID3D11BlendState* m_BlendStateATC;
 	static ID3D11BlendState* m_BlendStateADDATC;
@@ -119,6 +130,9 @@ public:
 	static void Uninit();
 	static void Begin();
 	static void End();
+	static void BeginDef();
+	static void EndDef();
+
 
 	static void SetAlphaToCoverage(bool Enable);
 	static void SetAddBlend(bool Enable);
@@ -135,7 +149,7 @@ public:
 	static void SetValiable(VALIABLE val);
 	//static void SetPointLight(POINT_LIGHT Light);
 	void SetBlendState(BLEND_MODE bm);
-	
+	static void SetRenderTexture(bool isdefault);
 
 	static ID3D11Device* GetDevice( void ){ return m_Device; }
 	static ID3D11DeviceContext* GetDeviceContext( void ){ return m_DeviceContext; }
@@ -148,7 +162,7 @@ public:
 	static const int GetLightNum() { return m_LightNum; }
 
 	inline static VALIABLE m_Valiable = { 0.0f,0.0f,0.0f,0.0f };
-
+	inline static bool _isRenderTexture = true;
 #ifdef _DEBUG
 	static void imguiDraw();
 	static ImVec4 GetWindowColor() { return window_color; }

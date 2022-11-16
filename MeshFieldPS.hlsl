@@ -79,7 +79,7 @@ float CalcDiffuseFromFresnel(float3 N, float3 L, float3 V)
 
 }
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target0)
 {
     //  ピクセルの法線を正規化
     float3 normal = GetNormal(In.Normal.xyz, In.tangent, In.biNormal, In.TexCoord);

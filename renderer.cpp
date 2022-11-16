@@ -11,7 +11,6 @@ D3D_FEATURE_LEVEL       Renderer::m_FeatureLevel = D3D_FEATURE_LEVEL_11_0;
 ID3D11Device* Renderer::m_Device = NULL;
 ID3D11DeviceContext* Renderer::m_DeviceContext = NULL;
 IDXGISwapChain* Renderer::m_SwapChain = NULL;
-ComPtr<ID3D11Texture2D> Renderer::m_pRTTex = nullptr;
 ID3D11RenderTargetView* Renderer::m_RenderTargetView = NULL;	//こいつに背景色入れてる
 ID3D11DepthStencilView* Renderer::m_DepthStencilView = NULL;
 
@@ -57,7 +56,7 @@ void Renderer::Init()
 	swapChainDesc.OutputWindow = GetWindow();
 	swapChainDesc.SampleDesc.Count = 1;
 	swapChainDesc.SampleDesc.Quality = 0;
-	swapChainDesc.Windowed = TRUE;
+	swapChainDesc.Windowed = TRUE;	
 
 	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 #if defined(_DEBUG)
@@ -80,27 +79,54 @@ void Renderer::Init()
 		&m_DeviceContext);
 
 
+	// 
+	D3D11_TEXTURE2D_DESC rtDesc;
+	memset(&rtDesc, 0, sizeof(rtDesc));
+	rtDesc.Width = SCREEN_WIDTH;
+	rtDesc.Height = SCREEN_HEIGHT;
+	rtDesc.MipLevels = 1;
+	rtDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	rtDesc.SampleDesc.Count = 1;
+	rtDesc.Usage = D3D11_USAGE_DEFAULT;
+	rtDesc.ArraySize = 1;
+	rtDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+	rtDesc.CPUAccessFlags = 0;	
+	
+	m_Device->CreateTexture2D(&rtDesc, 0, &m_pRTTex);
+
+	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
+	ZeroMemory(&srvDesc, sizeof(srvDesc));
+	srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+	srvDesc.Texture2D.MostDetailedMip = 0;
+	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;
+	m_Device->CreateShaderResourceView(m_pRTTex.Get(), &srvDesc, &_colorSRV);
+
 
 
 	// スワップチェインに用意されたバッファ（2Dテクスチャ）を取得
-	hr = m_SwapChain->GetBuffer(0, IID_PPV_ARGS(&m_pRTTex));
-	if (FAILED(hr)) {
-		return;
-	}
+	//hr = m_SwapChain->GetBuffer(0, IID_PPV_ARGS(&m_pRTTex));
+	//if (FAILED(hr)) {
+	//	return;
+	//}	
 
+	//// レンダーターゲットView作成
+	//hr = m_Device->CreateRenderTargetView(m_pRTTex.Get(), NULL, &m_RenderTargetView);
+	//if (FAILED(hr)) {
+	//	return;
+	//}
+
+
+
+	// m_pRTTex;
 	
 
-	// レンダーターゲットView作成
-	hr = m_Device->CreateRenderTargetView(m_pRTTex.Get(), NULL, &m_RenderTargetView);
-	if (FAILED(hr)) {
-		return;
-	}
-
 	// レンダーターゲットビュー作成
-	/*ID3D11Texture2D* renderTarget = NULL;
+	ID3D11Texture2D* renderTarget = NULL;
 	m_SwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&renderTarget );
-	m_Device->CreateRenderTargetView( renderTarget, NULL, &m_RenderTargetView );
-	renderTarget->Release();*/
+	m_Device->CreateRenderTargetView(renderTarget, NULL, &m_RenderTargetView );
+	m_Device->CreateRenderTargetView(m_pRTTex.Get(), NULL, &_colorRTV);
+	renderTarget->Release();
 
 	// デプスステンシルバッファ作成
 	ID3D11Texture2D* depthStencile = NULL;
@@ -127,8 +153,8 @@ void Renderer::Init()
 
 
 	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
-
-
+	//m_DeviceContext->OMSetRenderTargets(2, rts, m_DepthStencilView);
+	
 
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
@@ -270,12 +296,11 @@ void Renderer::Init()
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	
+	m_Device->CreateSamplerState(&samplerDesc, &_defaultSampler);
+	m_DeviceContext->PSSetSamplers(0, 1, &_defaultSampler);
 
-	ID3D11SamplerState* samplerState = NULL;
-	m_Device->CreateSamplerState(&samplerDesc, &samplerState);
-
-	m_DeviceContext->PSSetSamplers(0, 1, &samplerState);
-
+	m_Device->CreateSamplerState(&samplerDesc, &_renderTextureSampler);
 
 
 	// 定数バッファ生成
@@ -391,6 +416,15 @@ void Renderer::Uninit()
 
 	m_DeviceContext->ClearState();
 	m_RenderTargetView->Release();
+
+	// defefferd
+	_colorRTV->Release();
+	
+	//_colorRenderTex->Release();
+	_colorSRV->Release();
+	_renderTextureSampler->Release();
+
+
 	m_SwapChain->Release();
 	m_DeviceContext->Release();
 	m_Device->Release();
@@ -401,25 +435,44 @@ void Renderer::Uninit()
 
 //	
 void Renderer::Begin()
-{
+{	
+
+	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, clearColor);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	
+	m_DeviceContext->PSSetShaderResources(0, 1, &_colorSRV);
+	// []ToDoここでテクスチャセット
+	// shaderresourceview作ってそれを入れなきゃいけない。
+	_isRenderTexture = false;
 }
-
-
 
 void Renderer::End()
 {
-
-
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-
-
 	m_SwapChain->Present(1, 0);
 }
+
+void Renderer::BeginDef()
+{
+	m_DeviceContext->OMSetRenderTargets(1, &_colorRTV, m_DepthStencilView);
+
+	float clearColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	m_DeviceContext->ClearRenderTargetView(_colorRTV, clearColor);
+	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	
+
+	_isRenderTexture = true;
+}
+
+void Renderer::EndDef()
+{
+	// m_SwapChain->Present(1, 0);	
+}
+
 
 
 void Renderer::SetBlendState(BLEND_MODE bm)
@@ -443,6 +496,19 @@ void Renderer::SetBlendState(BLEND_MODE bm)
 		m_DeviceContext->OMSetBlendState(g_BlendStateSubtract, blendFactor, 0xffffffff);
 		break;
 	}*/
+}
+
+void Renderer::SetRenderTexture(bool isdefault)
+{
+	if (isdefault) {
+		m_DeviceContext->PSSetSamplers(0, 1, &_defaultSampler);
+	}
+	else
+	{
+		m_DeviceContext->PSSetSamplers(0, 1, &_renderTextureSampler);
+		m_DeviceContext->VSSetShaderResources(0, 1, &_colorSRV);
+		m_DeviceContext->PSSetShaderResources(0, 1, &_colorSRV);		
+	}		
 }
 
 void Renderer::SetAlphaToCoverage(bool Enable)

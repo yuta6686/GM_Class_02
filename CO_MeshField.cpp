@@ -429,7 +429,7 @@ void CO_MeshField::Draw()
     Renderer::SetMaterial(material);
 
     //  テクスチャ設定
-    Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &m_Texture);
+    Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &m_Texture);        
     Renderer::GetDeviceContext()->PSSetShaderResources(1, 1, &m_NormalTexture);
     Renderer::GetDeviceContext()->PSSetShaderResources(2, 1, &m_PixelNoiseTexture);
     Renderer::GetDeviceContext()->PSSetShaderResources(3, 1, &m_Texture2);
