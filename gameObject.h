@@ -5,7 +5,7 @@
 #include "vertexShader.h"
 #include "pixelShader.h"
 #include "MyMath.h"
-#include "Component.h"
+#include "component.h"
 
 enum COMPONENT_LAYER {
 	COMLAYER_FIRST = 0,

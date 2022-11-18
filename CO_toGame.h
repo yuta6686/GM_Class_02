@@ -6,9 +6,9 @@
 //  ------------------------summary--------------------------
 //  - Titleシーンのオブジェクト
 //  ---------------------------------------------------------
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "ModelColorChangeComponent_Titlebg.h"
-#include "BlinkComponent_Scale.h"
+#include "blink_scale_component.h"
 class CO_toGame :
     public ComponentObject
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "component.h"
 //  ---------------------------------------------------------
 //  BlinkComponent [BlinkComponent.h]
 //                                  Author: Yanagisawa Yuta

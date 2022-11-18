@@ -1,5 +1,5 @@
 #pragma once
-#include "StageLimitComponent.h"
+#include "stage_limit_component.h"
 
 class StageLimitComponent_Reflect : public StageLimitComponent
 {

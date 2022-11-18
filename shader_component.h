@@ -9,7 +9,7 @@
 //	- ShaderType‚Å•Ï‚í‚é
 //  ---------------------------------------------------------
 #include "gameObject.h"
-#include "Component.h"
+#include "component.h"
 
 enum SHADER_TYPE {
     SHADER_DEFAULT,

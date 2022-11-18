@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "component.h"
 #include "AnimationModel.h"
 #include "ResourceManager.h"
 

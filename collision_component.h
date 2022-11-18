@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "component.h"
 #include "manager.h"
 #include "scene.h"
 #include "gameObject.h"

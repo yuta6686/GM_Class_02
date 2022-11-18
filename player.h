@@ -3,12 +3,12 @@
 #include "main.h"
 #include "model.h"
 #include "gameObject_Invoke.h"
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "PlayerRotateComponent.h"
 #include "ShootBulletComponent.h"
 #include "MonochromeComponent.h"
 #include "VelocityComponent.h"
-#include "JumpComponent.h"
+#include "jump_component.h"
 #include "ParticleObject.h"
 
 class Audio;

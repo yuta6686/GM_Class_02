@@ -1,9 +1,9 @@
 #pragma once
-#include "ComponentObject.h"
-#include "TrackingComponent.h"
-#include "StageLimitComponent_Reflect.h"
+#include "component_object.h"
+#include "tracking_component.h"
+#include "stage_limit_reflect_component.h"
 #include "collision_component_enemy.h"
-#include "GravityComponent.h"
+#include "gravity_component.h"
 #include "CountComponent.h"
 
 #include "ParticleObject.h"

@@ -1,6 +1,6 @@
 #pragma once
 #include "gameObject.h"
-#include "Component.h"
+#include "component.h"
 class TransformInit :
     public Component
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "component.h"
 #include "UserInterfaceComponent.h"
 #include "manager.h"
 #include "audio.h"

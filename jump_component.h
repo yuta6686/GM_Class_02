@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "component.h"
 #include "VelocityComponent.h"
 #include "manager.h"
 #include "Cylinder.h"

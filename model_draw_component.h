@@ -6,7 +6,7 @@
 //  ------------------------summary--------------------------
 //  - Model•`‰æ—p
 //  ---------------------------------------------------------
-#include "Component.h"
+#include "component.h"
 #include "model.h"
 #include "ResourceManager.h"
 

@@ -7,7 +7,7 @@
 //  ---------------------------------------------------------
 #pragma once
 
-#include "Component.h"
+#include "component.h"
 #include "gameObject.h"
 class ImGuiComponent :
     public Component

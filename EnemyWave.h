@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "Enemy.h"
 #include "manager.h"
 #include "Cylinder.h"

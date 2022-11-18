@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "CO_UI_Tutorial.h"
 
 #include "manager.h"

@@ -2,9 +2,9 @@
 #include "main.h"
 #include "Resource.h"
 #include "Enemy_Interface.h"
-#include "StageLimitComponent_Reflect.h"
-#include "RandomVelocityComponent.h"
-#include "RandomJumpComponent.h"
+#include "stage_limit_reflect_component.h"
+#include "random_velocity_component.h"
+#include "random_jump_component.h"
 
 class Enemy : public Enemy_Interface
 {

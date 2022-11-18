@@ -225,7 +225,7 @@
     <ClCompile Include="shader_component.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="StageLimitComponent.cpp">
+    <ClCompile Include="stage_limit_component.cpp">
       <Filter>GameObject\Component\Function</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface_Animation.cpp">
@@ -491,16 +491,16 @@
     <ClInclude Include="imgui\backends\imgui_impl_win32.h">
       <Filter>System\ImGui\backend</Filter>
     </ClInclude>
-    <ClInclude Include="StageLimitDeleteComponent.h">
+    <ClInclude Include="stage_limit_delete_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="TransformInit.h">
+    <ClInclude Include="transform_init.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface_Animation.h">
       <Filter>GameObject\UI</Filter>
     </ClInclude>
-    <ClInclude Include="BlinkComponent_Scale.h">
+    <ClInclude Include="blink_scale_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="imgui_component.h">
@@ -524,7 +524,7 @@
     <ClInclude Include="ConfirmationComponent.h">
       <Filter>GameObject\Component\UI</Filter>
     </ClInclude>
-    <ClInclude Include="TrackingComponent.h">
+    <ClInclude Include="tracking_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="BlinkComponentAlpha2D.h">
@@ -662,7 +662,7 @@
     <ClInclude Include="CO_EnemyWave.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="StageLimitComponent_Reflect.h">
+    <ClInclude Include="stage_limit_reflect_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="CO_Select.h">
@@ -704,28 +704,28 @@
     <ClInclude Include="collision_component_enemy.h">
       <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="RandomJumpComponent.h">
+    <ClInclude Include="random_jump_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="RandomVelocityComponent.h">
+    <ClInclude Include="random_velocity_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="GravityComponent.h">
+    <ClInclude Include="gravity_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="HPComponent.h">
       <Filter>GameObject\Component\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
+    <ClInclude Include="component.h">
       <Filter>GameObject\Component\main</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentObject.h">
+    <ClInclude Include="component_object.h">
       <Filter>GameObject\Component\main</Filter>
     </ClInclude>
     <ClInclude Include="CountComponent.h">
       <Filter>GameObject\Component\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="JumpComponent.h">
+    <ClInclude Include="jump_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="BulletComponent.h">
@@ -740,7 +740,7 @@
     <ClInclude Include="ShootBulletComponent.h">
       <Filter>GameObject\Component\Special</Filter>
     </ClInclude>
-    <ClInclude Include="StageLimitComponent.h">
+    <ClInclude Include="stage_limit_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
     <ClInclude Include="ResultPolygon.h">

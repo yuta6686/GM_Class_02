@@ -7,7 +7,7 @@
 //  ---------------------------------------------------------
 #include "imgui_component.h"
 #include "gameObject.h"
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "Enemy.h"
 #include "MyImgui.h"
 

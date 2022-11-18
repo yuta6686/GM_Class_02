@@ -1,9 +1,9 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "UserInterfaceComponent.h"
 #include "VertexChangeComponent.h"
 #include "BlinkComponentAlpha2D.h"
-#include "BlinkComponent_Scale.h"
+#include "blink_scale_component.h"
 #include "Rotate2D.h"
 
 class CO_UI_PlayerHPGauge :

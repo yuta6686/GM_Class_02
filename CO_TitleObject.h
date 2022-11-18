@@ -1,8 +1,8 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "ModelColorChangeComponent_Titlebg.h"
 #include "BlinkComponent.h"
-#include "BlinkComponent_Scale.h"
+#include "blink_scale_component.h"
 #include "gameObject.h"
 class CO_TitleObject :
     public ComponentObject

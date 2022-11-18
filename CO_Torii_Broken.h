@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "model_variable.h"
 #include "model.h"
 #include "Resource.h"
@@ -171,7 +171,7 @@ public:
                 ImGui::Text("Could not open file.");
             }
 
-            for (int i = 0; i < m_Objects.size(); i++) {
+            for (unsigned int i = 0; i < m_Objects.size(); i++) {
 
                 ofs << std::showpoint
                     << m_Objects[i]._position.x << ","

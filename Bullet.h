@@ -1,7 +1,7 @@
 #pragma once
 #include "main.h"
-#include "ComponentObject.h"
-#include "StageLimitDeleteComponent.h"
+#include "component_object.h"
+#include "stage_limit_delete_component.h"
 #include "BulletComponent.h"
 #include "collision_component_bullet.h"
 

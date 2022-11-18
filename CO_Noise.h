@@ -1,6 +1,6 @@
 #pragma once
 #include "renderer.h"
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "UserInterfaceComponent.h"
 #include "VertexChangeComponent.h"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "animation_model_component.h"
 class CO_AnimationModelTest :
     public ComponentObject

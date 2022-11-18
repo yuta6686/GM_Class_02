@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "CO_UI_Select.h"
 #include "audio.h"
 enum SELECT_NEXT {

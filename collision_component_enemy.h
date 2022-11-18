@@ -3,7 +3,7 @@
 #include "gameObject.h"
 #include "CO_Stand.h"
 #include "VelocityComponent.h"
-#include "StageLimitComponent_Reflect.h"
+#include "stage_limit_reflect_component.h"
 #include "Cylinder.h"
 class CollisionComponent_Enemy :
     public CollisionComponent

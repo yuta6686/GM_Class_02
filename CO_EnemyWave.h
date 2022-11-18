@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "EnemyWave.h"
 #include "EnemyWave_1_1.h"
 #include "CO_UI_Quest.h"

@@ -11,7 +11,7 @@
 #include "ShootBullet_Idle.h"
 #include "Cylinder.h"
 
-#include "StageLimitComponent.h"
+#include "stage_limit_component.h"
 #include "HPComponent.h"
 #include "collision_component_player.h"
 #include "DebugScene.h"

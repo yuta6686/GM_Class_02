@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "scene.h"
 #include "manager.h"
 #include "camera.h"

@@ -1,6 +1,6 @@
 #pragma once
 #include "main.h"
-#include "Component.h"
+#include "component.h"
 #include "ParticleObject.h"
 class BulletComponent :
     public Component

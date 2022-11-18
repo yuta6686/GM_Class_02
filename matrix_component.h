@@ -7,7 +7,7 @@
 //  - Matrix 2D ,3D
 //  ---------------------------------------------------------
 
-#include "Component.h"
+#include "component.h"
 #include "scene.h"
 #include "manager.h"
 #include "camera.h"

@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "ModelColorChangeComponent_Titlebg.h"
 class CO_ToriiBlock :
     public ComponentObject

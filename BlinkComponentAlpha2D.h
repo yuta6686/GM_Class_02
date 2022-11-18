@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "component.h"
 #include "UserInterfaceComponent.h"
 #include "BlinkComponent.h"
 class AlphaBlink2DComponent :

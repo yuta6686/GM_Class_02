@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "UserInterfaceComponent.h"
 #include "VertexChangeComponent.h"
 #include "BlinkComponentAlpha2D.h"
