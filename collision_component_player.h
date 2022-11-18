@@ -2,11 +2,11 @@
 #include "collision_component.h"
 #include "Enemy_Interface.h"
 #include "effect_explosion.h"
-#include "HPComponent.h"
+#include "hp_component.h"
 #include "ParticleObject_2D.h"
 #include "CO_Stand.h"
-#include "HPComponent.h"
-#include "CountComponent.h"
+#include "hp_component.h"
+#include "count_component.h"
 class CollisionComponent_Player :
     public CollisionComponent
 {

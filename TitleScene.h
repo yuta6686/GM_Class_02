@@ -1,7 +1,7 @@
 #pragma once
 #include "scene.h"
 #include "CO_3DPloygonTest.h"
-#include "CO_Confirmation.h"
+#include "co_confirmation.h"
 class Audio;
 class Transition;
 class CO_3DPolygon_circle;

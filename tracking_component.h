@@ -4,7 +4,7 @@
 #include "scene.h"
 #include "manager.h"
 #include "player.h"
-#include "VelocityComponent.h"
+#include "velocity_component.h"
 
 class TrackingComponent :
     public Component

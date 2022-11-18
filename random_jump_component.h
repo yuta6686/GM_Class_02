@@ -1,7 +1,7 @@
 #pragma once
 #include "component.h"
-#include "VelocityComponent.h"
-#include "CountComponent.h"
+#include "velocity_component.h"
+#include "count_component.h"
 #include "player.h"
 
 class RandomJumpComponent :

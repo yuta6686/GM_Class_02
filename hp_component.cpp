@@ -1,7 +1,7 @@
-#include "HPComponent.h"
+#include "hp_component.h"
 #include "player.h"
 #include "manager.h"
-#include "CO_UI_PlayerHPGauge.h"
+#include "co_ui_player_hp_gauge.h"
 
 void HPComponent::Init()
 {

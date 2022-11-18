@@ -291,7 +291,7 @@
     <ClCompile Include="renderer.cpp">
       <Filter>System\Main</Filter>
     </ClCompile>
-    <ClCompile Include="HPComponent.cpp">
+    <ClCompile Include="hp_component.cpp">
       <Filter>GameObject\Component\Utility</Filter>
     </ClCompile>
     <ClCompile Include="bullet_component.cpp">
@@ -518,7 +518,7 @@
     <ClInclude Include="collision_component_bullet.h">
       <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="ConfirmationComponent.h">
+    <ClInclude Include="confirmation_component.h">
       <Filter>GameObject\Component\UI</Filter>
     </ClInclude>
     <ClInclude Include="tracking_component.h">
@@ -557,7 +557,7 @@
     <ClInclude Include="CO_3DPolygon_circle.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Confirmation.h">
+    <ClInclude Include="co_confirmation.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
     <ClInclude Include="CO_TitleBackGround.h">
@@ -572,7 +572,7 @@
     <ClInclude Include="CO_ToriiBlock.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_AimLing.h">
+    <ClInclude Include="co_ui_aimling.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
     <ClInclude Include="ComponentObjectTest.h">
@@ -620,31 +620,31 @@
     <ClInclude Include="DefeatScene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Select.h">
+    <ClInclude Include="co_ui_select.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Default.h">
+    <ClInclude Include="co_ui_default.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_dot.h">
+    <ClInclude Include="co_ui_dot.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Line.h">
+    <ClInclude Include="co_ui_line.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_PlayerHPGauge.h">
+    <ClInclude Include="co_ui_player_hp_gauge.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Quest.h">
+    <ClInclude Include="co_ui_quest.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Quest_Belt.h">
+    <ClInclude Include="co_ui_quest_belt.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Quest_Purpose.h">
+    <ClInclude Include="co_ui_quest_purpose.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="VelocityComponent.h">
+    <ClInclude Include="velocity_component.h">
       <Filter>GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CO_Bow.h">
@@ -662,7 +662,7 @@
     <ClInclude Include="stage_limit_reflect_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Select.h">
+    <ClInclude Include="co_select.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
     <ClInclude Include="audio.h">
@@ -686,13 +686,13 @@
     <ClInclude Include="CO_TitleObject.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Tutorial.h">
+    <ClInclude Include="co_ui_tutorial.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Tutorial_Move.h">
+    <ClInclude Include="co_ui_tutorial_move.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_UI_Tutorial_Move2.h">
+    <ClInclude Include="co_ui_tutorial_move2.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
     <ClInclude Include="ExitScene.h">
@@ -710,7 +710,7 @@
     <ClInclude Include="gravity_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="HPComponent.h">
+    <ClInclude Include="hp_component.h">
       <Filter>GameObject\Component\Utility</Filter>
     </ClInclude>
     <ClInclude Include="component.h">
@@ -719,7 +719,7 @@
     <ClInclude Include="component_object.h">
       <Filter>GameObject\Component\main</Filter>
     </ClInclude>
-    <ClInclude Include="CountComponent.h">
+    <ClInclude Include="count_component.h">
       <Filter>GameObject\Component\Utility</Filter>
     </ClInclude>
     <ClInclude Include="jump_component.h">

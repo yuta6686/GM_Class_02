@@ -2,9 +2,9 @@
 #include "component_object.h"
 #include "EnemyWave.h"
 #include "EnemyWave_1_1.h"
-#include "CO_UI_Quest.h"
-#include "CO_UI_Quest_Purpose.h"
-#include "CO_UI_Quest_Belt.h"
+#include "co_ui_quest.h"
+#include "co_ui_quest_purpose.h"
+#include "co_ui_quest_belt.h"
 #include "manager.h"
 
 

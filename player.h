@@ -7,7 +7,7 @@
 #include "player_rotate_component.h"
 #include "shoot_bullet_component.h"
 #include "monochrome_component.h"
-#include "VelocityComponent.h"
+#include "velocity_component.h"
 #include "jump_component.h"
 #include "ParticleObject.h"
 

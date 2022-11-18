@@ -19,9 +19,9 @@
 #include "CO_toExit.h"
 #include "CO_toGame.h"
 #include "ExitScene.h"
-#include "CO_Confirmation.h"
-#include "CO_UI_Quest.h"
-#include "CO_UI_Quest_Belt.h"
+#include "co_confirmation.h"
+#include "co_ui_quest.h"
+#include "co_ui_quest_belt.h"
 #include "CO_TitleObject.h"
 #include "ParticleObject.h"
 #include "CO_Noise.h"
@@ -29,6 +29,7 @@
 #include "CO_MeshField.h"
 #include "SwitchingRenderer.h"
 #include "rendering_texture.h"
+#include "confirmation_component.h"
 
 void TitleScene::Init()
 {

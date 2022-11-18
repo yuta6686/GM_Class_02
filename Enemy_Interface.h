@@ -4,7 +4,7 @@
 #include "stage_limit_reflect_component.h"
 #include "collision_component_enemy.h"
 #include "gravity_component.h"
-#include "CountComponent.h"
+#include "count_component.h"
 
 #include "ParticleObject.h"
 #include "audio.h"

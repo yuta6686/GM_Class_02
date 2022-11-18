@@ -8,10 +8,10 @@
 #include "CO_3DPloygonTest.h"
 #include "CO_TitleBackGround.h"
 #include "CO_ToriiBlock.h"
-#include "CO_Confirmation.h"
-#include "CO_UI_Quest.h"
-#include "CO_UI_Quest_Purpose.h"
-#include "CO_UI_Quest_Belt.h"
+#include "co_confirmation.h"
+#include "co_ui_quest.h"
+#include "co_ui_quest_purpose.h"
+#include "co_ui_quest_belt.h"
 
 class ImGuiObject_Title :
 	public ImGuiObject

@@ -2,7 +2,7 @@
 #include "component_object.h"
 #include "CO_UI_Tutorial.h"
 #include "manager.h"
-#include "CO_UI_Tutorial_Move2.h"
+#include "co_ui_tutorial_move2.h"
 #include "ParticleObject_2D.h"
 
 class CO_UI_Tutorial_Move :

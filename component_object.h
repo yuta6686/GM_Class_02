@@ -7,7 +7,7 @@
 #include "model_draw_component.h"
 #include "transform_init.h"
 #include "imgui_component.h"
-#include "CountComponent.h"
+#include "count_component.h"
 
 
 class ComponentObject :

@@ -11,15 +11,15 @@
 #include "player.h"	
 #include "Enemy.h"
 #include "Bullet.h"
-#include "CO_UI_AimLing.h"
+#include "co_ui_aimling.h"
 #include "blink_alpha2d_component.h"
 #include "Enemy.h"
 #include "audio.h"
 #include "ComponentObjectTest.h"
 #include "model_color_change_component.h"
-#include "CO_UI_Quest.h"
+#include "co_ui_quest.h"
 #include "CO_EnemyWave.h"
-#include "CO_UI_Tutorial_Move.h"
+#include "co_ui_tutorial_move.h"
 
 void ImGuiObject::Init()
 {

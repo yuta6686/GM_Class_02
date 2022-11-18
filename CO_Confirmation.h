@@ -5,7 +5,7 @@
 #include "blink_alpha2d_component.h"
 #include "blink_scale_component.h"
 #include "rotate2d_component.h"
-#include "ConfirmationComponent.h"
+#include "confirmation_component.h"
 class CO_Confirmation :
     public ComponentObject
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include "component.h"
-#include "CountComponent.h"
+#include "count_component.h"
 #include "jump_component.h"
 
 #include "manager.h"

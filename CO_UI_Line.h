@@ -1,7 +1,7 @@
 #pragma once
 #include "component_object.h"
 #include "user_interface_component.h"
-#include "HPComponent.h"
+#include "hp_component.h"
 #include "vertex_change_component.h"
 class CO_UI_Line :
     public ComponentObject

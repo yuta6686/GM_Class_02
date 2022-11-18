@@ -12,7 +12,7 @@
 #include "Cylinder.h"
 
 #include "stage_limit_component.h"
-#include "HPComponent.h"
+#include "hp_component.h"
 #include "collision_component_player.h"
 #include "DebugScene.h"
 #include "CO_MeshField.h"

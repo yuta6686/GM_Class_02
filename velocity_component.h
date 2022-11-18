@@ -1,7 +1,7 @@
 #pragma once
 #include "component.h"
 #include "gameObject.h"
-#include "CountComponent.h"
+#include "count_component.h"
 class VelocityComponent :
     public Component
 {

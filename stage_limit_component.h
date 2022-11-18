@@ -1,6 +1,6 @@
 #pragma once
 #include "component.h"
-#include "VelocityComponent.h"
+#include "velocity_component.h"
 
 class StageLimitComponent :
     public Component

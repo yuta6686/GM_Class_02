@@ -3,14 +3,14 @@
 #include "light.h"
 #include "player.h"
 #include "CO_MeshField.h"
-#include "CO_UI_AimLing.h"
+#include "co_ui_aimling.h"
 #include "UI_Charge.h"
 #include "MyImgui.h"
 #include "CO_AnimationModelTest.h"
 #include "Prism.h"
 #include "UI_Score.h"
 
-#include "CO_UI_Quest_Belt.h"
+#include "co_ui_quest_belt.h"
 #include "SwitchingRenderer.h"
 #include "rendering_texture.h"
 
