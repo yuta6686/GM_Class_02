@@ -1,8 +1,8 @@
 #pragma once
 #include "renderer.h"
 #include "component_object.h"
-#include "UserInterfaceComponent.h"
-#include "VertexChangeComponent.h"
+#include "user_interface_component.h"
+#include "vertex_change_component.h"
 
 class CO_Noise :
     public ComponentObject

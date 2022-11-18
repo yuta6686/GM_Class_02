@@ -1,6 +1,6 @@
 #pragma once
 #include "component_object.h"
-#include "UserInterfaceComponent.h"
+#include "user_interface_component.h"
 
 
 class CO_UI_Default :

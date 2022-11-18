@@ -1,5 +1,5 @@
 #pragma once
-#include "ModelColorChangeComponent.h"
+#include "model_color_change_component.h"
 #include "model_draw_component.h"
 #include "scene.h"
 #include "manager.h"

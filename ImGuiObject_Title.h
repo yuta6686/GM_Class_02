@@ -4,7 +4,7 @@
 #include "player.h"
 #include "scene.h"
 #include "manager.h"
-#include "VertexChangerComponent_Color.h"
+#include "vertex_changer_color_component.h"
 #include "CO_3DPloygonTest.h"
 #include "CO_TitleBackGround.h"
 #include "CO_ToriiBlock.h"

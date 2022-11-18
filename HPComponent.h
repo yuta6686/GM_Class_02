@@ -1,7 +1,7 @@
 #pragma once
 #include "component.h"
 #include "gameObject.h"
-#include "UserInterfaceComponent.h"
+#include "user_interface_component.h"
 class HPComponent :
     public Component
 {

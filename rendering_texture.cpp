@@ -1,5 +1,5 @@
 #include "rendering_texture.h"
-#include "UserInterfaceComponent.h"
+#include "user_interface_component.h"
 
 
 void RenderingTexture::Init()

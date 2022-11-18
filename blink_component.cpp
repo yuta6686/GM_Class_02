@@ -1,4 +1,4 @@
-#include "BlinkComponent.h"
+#include "blink_component.h"
 #include "gameObject.h"
 
 void BlinkComponent::Update()

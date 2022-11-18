@@ -4,7 +4,7 @@
 #include "model.h"
 #include "Resource.h"
 #include "ResourceManager.h"
-#include "BlinkComponent.h"
+#include "blink_component.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>

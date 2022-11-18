@@ -1,5 +1,5 @@
 #pragma once
-#include "BlinkComponent.h"
+#include "blink_component.h"
 #include "gameObject.h"
 
 enum AXIS

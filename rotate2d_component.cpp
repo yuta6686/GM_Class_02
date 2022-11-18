@@ -1,4 +1,4 @@
-#include "Rotate2D.h"
+#include "rotate2d_component.h"
 #include "gameObject.h"
 
 void Rotate2D::Init()

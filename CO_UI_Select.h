@@ -1,8 +1,8 @@
 #pragma once
 #include "component_object.h"
-#include "UserInterfaceComponent.h"
+#include "user_interface_component.h"
 #include "HPComponent.h"
-#include "VertexChangeComponent.h"
+#include "vertex_change_component.h"
 
 class CO_UI_Select :
     public ComponentObject

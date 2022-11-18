@@ -1,5 +1,5 @@
 #pragma once
-#include "VertexChangerComponent_Color.h"
+#include "vertex_changer_color_component.h"
 #include "audio.h"
 class VertexChangeComponent_ToGame :
     public VertexChangerComponent_Color

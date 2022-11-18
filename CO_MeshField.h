@@ -1,6 +1,5 @@
 #pragma once
 #include "component_object.h"
-#include "TextureComponent.h"
 #include "shader_component.h"
 #include "ResourceManager.h"
 #include "manager.h"

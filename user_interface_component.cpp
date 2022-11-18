@@ -1,4 +1,4 @@
-#include "UserInterfaceComponent.h"
+#include "user_interface_component.h"
 #include "gameObject.h"
 
 void UserInterfaceComponent::Init()

@@ -1,10 +1,10 @@
 #pragma once
 #include "component_object.h"
-#include "UserInterfaceComponent.h"
-#include "VertexChangeComponent.h"
-#include "BlinkComponentAlpha2D.h"
+#include "user_interface_component.h"
+#include "vertex_change_component.h"
+#include "blink_alpha2d_component.h"
 #include "blink_scale_component.h"
-#include "Rotate2D.h"
+#include "rotate2d_component.h"
 class CO_UI_AimLing :
     public ComponentObject
 {

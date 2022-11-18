@@ -1,7 +1,7 @@
 #pragma once
 #include "component_object.h"
-#include "UserInterfaceComponent.h"
-#include "VertexChangeComponent.h"
+#include "user_interface_component.h"
+#include "vertex_change_component.h"
 
 class CO_UI_Quest_Purpose :
     public ComponentObject

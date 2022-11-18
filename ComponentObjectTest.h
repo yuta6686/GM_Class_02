@@ -1,7 +1,7 @@
 #pragma once
 #include "component_object.h"
 
-#include "ModelColorChangeComponent.h"
+#include "model_color_change_component.h"
 
 class ComponentObjectTest :
     public ComponentObject
