@@ -6,8 +6,8 @@
 #include "result_scene.h"
 #include "audio.h"
 #include "GameObject_Invoke.h"
-#include "AnimationModel.h"
-#include "DebugScene.h"
+#include "animation_model.h"
+#include "debug_scene.h"
 #include "rendering_texture.h"
 
 //Scene* Manager::m_Scene;

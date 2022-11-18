@@ -1,5 +1,5 @@
 #include "particle_object.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 #include "VertexInitialize.h"
 #include "manager.h"
 #include "player.h"

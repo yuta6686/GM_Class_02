@@ -9,8 +9,8 @@
 #include "co_ui_aimling.h"
 #include "audio.h"
 #include "transition.h"
-#include "UI_Charge.h"
-#include "UI_Score.h"
+#include "ui_charge.h"
+#include "ui_score.h"
 #include "ImGuiObject.h"
 #include "co_ui_quest_belt.h"
 #include "co_ui_quest.h"
@@ -33,7 +33,7 @@
 #include "co_stand.h"
 #include "co_bow.h"
 #include "co_noise.h"
-#include "SwitchingRenderer.h"
+#include "switching_renderer.h"
 #include "rendering_texture.h"
 
 void GameScene2::Init()

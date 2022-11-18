@@ -5,8 +5,8 @@
 #include "manager.h"
 #include "player.h"
 #include "audio.h"
-#include "UI_Charge.h"
-#include "UI_Score.h"
+#include "ui_charge.h"
+#include "ui_score.h"
 
 using namespace std;
 

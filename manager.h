@@ -1,5 +1,5 @@
 #pragma once
-#include "polygon2D.h"
+#include "polygon2d.h"
 #include "scene.h"
 
 enum SCENE {

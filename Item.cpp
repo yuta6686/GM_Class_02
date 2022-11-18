@@ -6,7 +6,7 @@
 #include "manager.h"
 #include "scene.h"
 #include "Item.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 
 #define PLAYER_SPEED 0.25f
 

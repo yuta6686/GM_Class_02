@@ -2,7 +2,7 @@
 #include "manager.h"
 #include "title_scene.h"
 #include "transition.h"
-#include "ResultPolygon.h"
+#include "result_polygon.h"
 #include "co_ui_select.h"
 #include "co_select.h"
 #include "exit_scene.h"
@@ -10,7 +10,7 @@
 #include "co_ui_default.h"
 #include "particle_object_2d.h"
 #include "audio.h"
-#include "SwitchingRenderer.h"
+#include "switching_renderer.h"
 #include "rendering_texture.h"
 
 void DefeatScene::Init()

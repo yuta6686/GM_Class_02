@@ -1,5 +1,5 @@
 #include "stage_otorii.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 
 void stage_otorii::Init()
 {

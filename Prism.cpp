@@ -1,6 +1,6 @@
-#include "Prism.h"
-#include "ResourceManager.h"
-#include "Resource.h"
+#include "prism.h"
+#include "resource_manager.h"
+#include "resource.h"
 #include "vertexShader.h"
 #include "pixelShader.h"
 

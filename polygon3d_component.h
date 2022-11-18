@@ -1,6 +1,6 @@
 #pragma once
 #include "component.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 #include "texture.h"
 class Polygon3DComponent :
     public Component

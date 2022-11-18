@@ -1,5 +1,5 @@
 #include "result_scene.h"
-#include "ResultPolygon.h"
+#include "result_polygon.h"
 #include "manager.h"
 #include "title_scene.h"
 #include "transition.h"
@@ -10,7 +10,7 @@
 #include "co_ui_default.h"
 #include "particle_object_2d.h"
 #include "audio.h"
-#include "SwitchingRenderer.h"
+#include "switching_renderer.h"
 #include "rendering_texture.h"
 
 void ResultScene::Init()

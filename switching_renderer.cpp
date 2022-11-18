@@ -1,4 +1,4 @@
-#include "SwitchingRenderer.h"
+#include "switching_renderer.h"
 #include "scene.h"
 
 void SwitchingRenderer::Init()

@@ -7,7 +7,7 @@
 #include "renderer.h"
 #include "field.h"
 #include "texture.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 #include "scene.h"
 #include "manager.h"
 #include "camera.h"

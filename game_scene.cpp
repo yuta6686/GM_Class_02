@@ -14,17 +14,16 @@
 #include "light.h" 
 #include "ao_sphere.h"
 #include "bullet.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 #include "stage_include.h"
 #include "enemy_factory.h"
-#include "Collision.h"
 #include "manager.h"
 #include "result_scene.h"
 #include "audio.h"
-#include "UI_Charge.h"
+#include "ui_charge.h"
 #include "cylinder.h"
-#include "UI_Score.h"
-#include "UserInterface_Animation.h"
+#include "ui_score.h"
+#include "user_interface_animation.h"
 #include "transition.h"
 #include "component_object_test.h"
 #include "ImGuiObject.h"
@@ -48,7 +47,7 @@
 #include "co_ui_tutorial_move.h"
 #include "CO_Noise.h"
 #include "co_ui_tutorial_move2.h"
-#include "SwitchingRenderer.h"
+#include "switching_renderer.h"
 #include "rendering_texture.h"
 
 void GameScene::Init()
@@ -91,9 +90,7 @@ void GameScene::Init()
 	//	User Interface
 	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 	
-	AddGameObject<UI_Charge>(LAYER_2D);
-
-	AddGameObject<Collision2D>(LAYER_2D);
+	AddGameObject<UI_Charge>(LAYER_2D);	
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);

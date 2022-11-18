@@ -1,4 +1,4 @@
-#include "AnimationModel.h"
+#include "animation_model.h"
 #include "renderer.h"
 
 void AnimationModel::CreateBone(aiNode* node)

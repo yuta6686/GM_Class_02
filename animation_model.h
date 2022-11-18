@@ -8,7 +8,7 @@
 
 #include "main.h"
 #include "renderer.h"
-#include "Resource.h"
+#include "resource.h"
 
 #pragma comment(lib,"assimp.lib")
 

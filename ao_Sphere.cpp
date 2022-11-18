@@ -1,6 +1,6 @@
 #include "main.h"
 #include "renderer.h"
-#include "polygon2D.h"
+#include "polygon2d.h"
 #include "field.h"
 #include "model.h"
 #include "input.h"

@@ -6,7 +6,7 @@
 #include <string>
 
 
-#include "ResourceManager.h"
+#include "resource_manager.h"
 #include "gameObject.h"
 #include "imgui_component.h"
 

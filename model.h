@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Resource.h"
+#include "resource.h"
 
 // マテリアル構造体
 struct MODEL_MATERIAL

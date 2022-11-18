@@ -1,6 +1,6 @@
 #pragma once
 #include "main.h"
-#include "Resource.h"
+#include "resource.h"
 
 
 class Texture :

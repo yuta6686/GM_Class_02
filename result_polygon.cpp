@@ -1,33 +1,34 @@
-#include "UserInterface.h"
-#include "ResourceManager.h"
+#include "result_polygon.h"
+#include "resource_manager.h"
 
-void UserInterface::Init()
+void ResultPolygon::Init()
 {
-	m_mainPos.x = 100.0f;
-	m_mainPos.y = 100.0f;
+	m_mainPos.x = SCREEN_WIDTH / 2.0f;
+	m_mainPos.y = SCREEN_HEIGHT / 2.0f;
 
-	m_Radius = 100.0f;
+	m_mainPos = m_Offset;
 
+	VERTEX_3D vertex[4];
 
-	m_vertex[0].Position = D3DXVECTOR3(-m_mainPos.x, -m_mainPos.y, 0.0f);
-	m_vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
+	vertex[0].Position = D3DXVECTOR3(-m_mainPos.x, -m_mainPos.y, 0.0f);
+	vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	vertex[0].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[0].TexCoord = D3DXVECTOR2(0.0f, 0.0f);
 
-	m_vertex[1].Position = D3DXVECTOR3(m_mainPos.x, -m_mainPos.y, 0.0f);
-	m_vertex[1].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
+	vertex[1].Position = D3DXVECTOR3(m_mainPos.x, -m_mainPos.y, 0.0f);
+	vertex[1].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	vertex[1].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[1].TexCoord = D3DXVECTOR2(1.0f, 0.0f);
 
-	m_vertex[2].Position = D3DXVECTOR3(-m_mainPos.x, m_mainPos.y, 0.0f);
-	m_vertex[2].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
+	vertex[2].Position = D3DXVECTOR3(-m_mainPos.x, m_mainPos.y, 0.0f);
+	vertex[2].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	vertex[2].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[2].TexCoord = D3DXVECTOR2(0.0f, 1.0f);
 
-	m_vertex[3].Position = D3DXVECTOR3(m_mainPos.x, m_mainPos.y, 0.0f);
-	m_vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
+	vertex[3].Position = D3DXVECTOR3(m_mainPos.x, m_mainPos.y, 0.0f);
+	vertex[3].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	vertex[3].Diffuse = D3DXVECTOR4(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[3].TexCoord = D3DXVECTOR2(1.0f, 1.0f);
 
 	//	頂点バッファ生成
 	D3D11_BUFFER_DESC bd{};
@@ -37,7 +38,7 @@ void UserInterface::Init()
 	bd.CPUAccessFlags = 0;
 
 	D3D11_SUBRESOURCE_DATA sd{};
-	sd.pSysMem = m_vertex;
+	sd.pSysMem = vertex;
 
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
@@ -50,7 +51,7 @@ void UserInterface::Init()
 		NULL);
 
 	assert(m_Texture);*/
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\blender1.png");
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\gameover_bg.png");
 	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
 	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
 
@@ -60,16 +61,16 @@ void UserInterface::Init()
 	m_Scale = { 1.0f,1.0f,1.0f };
 }
 
-void UserInterface::Uninit()
+void ResultPolygon::Uninit()
 {
 	m_VertexBuffer->Release();
 }
 
-void UserInterface::Update()
+void ResultPolygon::Update()
 {
 }
 
-void UserInterface::Draw()
+void ResultPolygon::Draw()
 {
 	m_VertexShader->Draw();
 	m_PixelShader->Draw();
@@ -93,5 +94,5 @@ void UserInterface::Draw()
 
 
 	m_Texture->Draw();
-}
 
+}

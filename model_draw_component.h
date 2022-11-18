@@ -8,7 +8,7 @@
 //  ---------------------------------------------------------
 #include "component.h"
 #include "model.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 
 class ModelDrawComponent :
     public Component

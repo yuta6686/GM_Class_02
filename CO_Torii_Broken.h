@@ -2,8 +2,8 @@
 #include "component_object.h"
 #include "model_variable.h"
 #include "model.h"
-#include "Resource.h"
-#include "ResourceManager.h"
+#include "resource.h"
+#include "resource_manager.h"
 #include "blink_component.h"
 #include <fstream>
 #include <iostream>

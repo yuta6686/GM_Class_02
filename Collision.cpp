@@ -1,5 +1,5 @@
-#include "Collision.h"
-#include "Cube2D.h"
+#include "collision.h"
+#include "cube2d.h"
 #include "scene.h"
 #include "manager.h"
 
@@ -13,11 +13,11 @@ bool Collision2D::AxisOfSeparationAe1(Cube2D& c1, Cube2D& c2)
 	D3DXVECTOR3 eb2 = c2.GetUp() * -c2.GetMainPos().y;
 
 	FLOAT ra = c1.GetMainPos().y;
-	FLOAT rb = fabs(D3DXVec3Dot(&L, &eb1)) + fabs(D3DXVec3Dot(&L, &eb2));
+	FLOAT rb = fabsf(D3DXVec3Dot(&L, &eb1)) + fabsf(D3DXVec3Dot(&L, &eb2));
 
 	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
 
-	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+	FLOAT Interval = fabsf(D3DXVec3Dot(&posdiff, &L));
 
 	if (Interval < ra + rb) {
 		return true;
@@ -34,11 +34,11 @@ bool Collision2D::AxisOfSeparationAe2(Cube2D& c1, Cube2D& c2)
 	D3DXVECTOR3 eb2 = c2.GetUp() * -c2.GetMainPos().y;
 	
 	FLOAT ra = c1.GetMainPos().x;
-	FLOAT rb = fabs(D3DXVec3Dot(&L, &eb1)) + fabs(D3DXVec3Dot(&L, &eb2));
+	FLOAT rb = fabsf(D3DXVec3Dot(&L, &eb1)) + fabsf(D3DXVec3Dot(&L, &eb2));
 
 	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
 
-	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+	FLOAT Interval = fabsf(D3DXVec3Dot(&posdiff, &L));
 
 	if (Interval < ra + rb) {
 		return true;
@@ -54,12 +54,12 @@ bool Collision2D::AxisOfSeparationBe1(Cube2D& c1, Cube2D& c2)
 	D3DXVECTOR3 ea1 = c1.GetRight() * c1.GetMainPos().x;
 	D3DXVECTOR3 ea2 = c1.GetUp() * -c1.GetMainPos().y;
 
-	FLOAT ra = fabs(D3DXVec3Dot(&L, &ea1)) + fabs(D3DXVec3Dot(&L, &ea2));
+	FLOAT ra = fabsf(D3DXVec3Dot(&L, &ea1)) + fabsf(D3DXVec3Dot(&L, &ea2));
 	FLOAT rb = c2.GetMainPos().y;
 
 	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
 
-	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+	FLOAT Interval = fabsf(D3DXVec3Dot(&posdiff, &L));
 
 	if (Interval < ra + rb) {
 		return true;
@@ -75,12 +75,12 @@ bool Collision2D::AxisOfSeparationBe2(Cube2D& c1, Cube2D& c2)
 	D3DXVECTOR3 ea1 = c1.GetRight() * c1.GetMainPos().x;
 	D3DXVECTOR3 ea2 = c1.GetUp() * -c1.GetMainPos().y;
 
-	FLOAT ra = fabs(D3DXVec3Dot(&L, &ea1)) + fabs(D3DXVec3Dot(&L, &ea2));
+	FLOAT ra = fabsf(D3DXVec3Dot(&L, &ea1)) + fabsf(D3DXVec3Dot(&L, &ea2));
 	FLOAT rb = c2.GetMainPos().x;
 
 	D3DXVECTOR3 posdiff = c1.GetPosition() - c2.GetPosition();
 
-	FLOAT Interval = fabs(D3DXVec3Dot(&posdiff, &L));
+	FLOAT Interval = fabsf(D3DXVec3Dot(&posdiff, &L));
 
 	if (Interval < ra + rb) {
 		return true;
@@ -193,9 +193,9 @@ void Collision2D::Update()
 
 	if (cubes.size() <= 0)return;
 
-	for (int i = 0;i<cubes.size()-1;i++) 
+	for (unsigned int i = 0;i<cubes.size()-1;i++)
 	{
-		for (int j = i+1; j < cubes.size(); j++) {
+		for (unsigned int j = i+1; j < cubes.size(); j++) {
 			if (BallHitCcheck(*cubes[i], *cubes[j])) 
 			{
 				OnBallHit(cubes[i], cubes[j]);

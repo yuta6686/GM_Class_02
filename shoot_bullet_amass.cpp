@@ -1,6 +1,6 @@
 #include "shoot_bullet_amass.h"
 #include "shoot_bullet_shoot.h"
-#include "UI_Charge.h"
+#include "ui_charge.h"
 #include "player.h"
 
 #include "game_scene.h"

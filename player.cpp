@@ -14,8 +14,8 @@
 #include "stage_limit_component.h"
 #include "hp_component.h"
 #include "collision_component_player.h"
-#include "DebugScene.h"
-#include "CO_MeshField.h"
+#include "debug_scene.h"
+#include "co_mesh_field.h"
 
 
 using namespace std;

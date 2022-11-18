@@ -1,5 +1,5 @@
 #include "cylinder.h"
-#include "ResourceManager.h"
+#include "resource_manager.h"
 
 void Cylinder::Init()
 {

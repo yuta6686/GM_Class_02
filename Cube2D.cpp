@@ -1,8 +1,8 @@
-#include "Cube2D.h"
-#include "ResourceManager.h"
+#include "cube2d.h"
+#include "resource_manager.h"
 #include "scene.h"
 #include "manager.h"
-#include "Collision.h"
+#include "collision.h"
 
 #define FRICTION				(0.5f)					// –€ŽC
 #define FPS						(60)					// FPS

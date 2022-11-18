@@ -1,5 +1,5 @@
-#include "CO_MeshField.h"
-#include "DebugScene.h"
+#include "co_mesh_field.h"
+#include "debug_scene.h"
 #include "player.h"
 
 

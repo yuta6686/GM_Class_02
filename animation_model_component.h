@@ -1,8 +1,8 @@
 #pragma once
 
 #include "component.h"
-#include "AnimationModel.h"
-#include "ResourceManager.h"
+#include "animation_model.h"
+#include "resource_manager.h"
 
 class AnimationModelComponent :
     public Component
