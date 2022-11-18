@@ -1,6 +1,6 @@
 #pragma once
 //  ---------------------------------------------------------
-//  CO_toGame [CO_toGame.h]
+//  CO_toGame [co_to_game.h]
 //                                  Author: YanagisawaYuta
 //                                  Date  : 2022/09/05
 //  ------------------------summary--------------------------

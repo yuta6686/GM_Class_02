@@ -1,7 +1,7 @@
 #pragma once
 #include "collision_component.h"
 #include "gameObject.h"
-#include "CO_Stand.h"
+#include "co_stand.h"
 #include "velocity_component.h"
 #include "stage_limit_reflect_component.h"
 #include "Cylinder.h"

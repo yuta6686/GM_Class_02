@@ -15,7 +15,7 @@
 #include "blink_alpha2d_component.h"
 #include "Enemy.h"
 #include "audio.h"
-#include "ComponentObjectTest.h"
+#include "component_object_test.h"
 #include "model_color_change_component.h"
 #include "co_ui_quest.h"
 #include "CO_EnemyWave.h"

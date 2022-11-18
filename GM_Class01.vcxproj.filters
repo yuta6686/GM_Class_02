@@ -551,31 +551,31 @@
     <ClInclude Include="user_interface_component.h">
       <Filter>GameObject\Component\UI\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_3DPloygonTest.h">
+    <ClInclude Include="co_3dpolygon_test.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_3DPolygon_circle.h">
+    <ClInclude Include="co_3dpolygon_circle.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
     <ClInclude Include="co_confirmation.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_TitleBackGround.h">
+    <ClInclude Include="co_title_background.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_toExit.h">
+    <ClInclude Include="co_to_exit.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_toGame.h">
+    <ClInclude Include="co_to_game.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_ToriiBlock.h">
+    <ClInclude Include="co_torii_block.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
     <ClInclude Include="co_ui_aimling.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentObjectTest.h">
+    <ClInclude Include="component_object_test.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
     <ClInclude Include="Transition.h">
@@ -647,13 +647,13 @@
     <ClInclude Include="velocity_component.h">
       <Filter>GameObject\Component</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Bow.h">
+    <ClInclude Include="co_bow.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Stand.h">
+    <ClInclude Include="co_stand.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Torii_Broken.h">
+    <ClInclude Include="co_torii_broken.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
     <ClInclude Include="CO_EnemyWave.h">
@@ -680,10 +680,10 @@
     <ClInclude Include="renderer.h">
       <Filter>System\Main</Filter>
     </ClInclude>
-    <ClInclude Include="CO_Noise.h">
+    <ClInclude Include="co_noise.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_TitleObject.h">
+    <ClInclude Include="co_title_object.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
     <ClInclude Include="co_ui_tutorial.h">

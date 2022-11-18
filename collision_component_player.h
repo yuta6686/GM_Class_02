@@ -4,7 +4,7 @@
 #include "effect_explosion.h"
 #include "hp_component.h"
 #include "ParticleObject_2D.h"
-#include "CO_Stand.h"
+#include "co_stand.h"
 #include "hp_component.h"
 #include "count_component.h"
 class CollisionComponent_Player :

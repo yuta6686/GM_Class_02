@@ -9,7 +9,7 @@
 #include "gameObject.h"
 #include "scene.h"
 #include "manager.h"
-#include "CO_3DPloygonTest.h"
+#include "co_3dpolygon_test.h"
 class CircleDeploy
 {
 private:

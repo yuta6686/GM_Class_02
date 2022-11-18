@@ -3,7 +3,7 @@
 #include "model_draw_component.h"
 #include "scene.h"
 #include "manager.h"
-#include "CO_3DPloygonTest.h"
+#include "co_3dpolygon_test.h"
 
 class ModelColorChangeComponent_Titlebg :
     public ModelColorChangeComponent
