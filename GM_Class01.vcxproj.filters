@@ -246,13 +246,13 @@
     <ClCompile Include="user_interface_component.cpp">
       <Filter>GameObject\Component\UI\2D</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyWave_1_3.cpp">
+    <ClCompile Include="enemy_wave_1_3.cpp">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyWave_2_3.cpp">
+    <ClCompile Include="enemy_wave_2_3.cpp">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyWave_3_3.cpp">
+    <ClCompile Include="enemy_wave_3_3.cpp">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="GameScene2.cpp">
@@ -422,13 +422,13 @@
     <ClInclude Include="TitlePolygon.h">
       <Filter>GameObject\TitleSceneObject</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_Interface.h">
+    <ClInclude Include="enemy_interface.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyFactory.h">
+    <ClInclude Include="enemy_factory.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
+    <ClInclude Include="enemy.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="effect_explosion.h">
@@ -581,31 +581,31 @@
     <ClInclude Include="Transition.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave_1_1.h">
+    <ClInclude Include="enemy_wave_1_1.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyGenerate.h">
+    <ClInclude Include="enemy_generate.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave.h">
+    <ClInclude Include="enemy_wave.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave_1_2.h">
+    <ClInclude Include="enemy_wave_1_2.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave_1_3.h">
+    <ClInclude Include="enemy_wave_1_3.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave_2_1.h">
+    <ClInclude Include="enemy_wave_2_1.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave_2_2.h">
+    <ClInclude Include="enemy_wave_2_2.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave_2_3.h">
+    <ClInclude Include="enemy_wave_2_3.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyWave_3_all.h">
+    <ClInclude Include="enemy_wave_3_all.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="GameScene3.h">
@@ -656,7 +656,7 @@
     <ClInclude Include="co_torii_broken.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="CO_EnemyWave.h">
+    <ClInclude Include="co_enemy_wave.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="stage_limit_reflect_component.h">

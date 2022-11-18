@@ -1,6 +1,6 @@
 #pragma once
 #include "collision_component.h"
-#include "Enemy.h"
+#include "enemy.h"
 #include "effect_explosion.h"
 #include "ParticleObject.h"
 class CollisionComponent_Bullet :

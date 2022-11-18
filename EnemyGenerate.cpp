@@ -1,5 +1,5 @@
-#include "EnemyGenerate.h"
-#include "Enemy.h"
+#include "enemy_generate.h"
+#include "enemy.h"
 #include "Cylinder.h"
 #include "CircleDeploy.h"
 #include "collision_component_player.h"

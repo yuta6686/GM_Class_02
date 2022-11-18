@@ -1,5 +1,5 @@
 #include "monochrome_component.h"
-#include "Enemy.h"
+#include "enemy.h"
 #include "ShootBullet_Amass.h"
 #include "ShootBullet_Shoot.h"
 void MonochromeComponent::Init()

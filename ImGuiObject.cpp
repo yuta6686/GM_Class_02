@@ -9,16 +9,15 @@
 #include "manager.h"
 #include "GameScene.h"
 #include "player.h"	
-#include "Enemy.h"
+#include "enemy.h"
 #include "Bullet.h"
 #include "co_ui_aimling.h"
 #include "blink_alpha2d_component.h"
-#include "Enemy.h"
 #include "audio.h"
 #include "component_object_test.h"
 #include "model_color_change_component.h"
 #include "co_ui_quest.h"
-#include "CO_EnemyWave.h"
+#include "co_enemy_wave.h"
 #include "co_ui_tutorial_move.h"
 
 void ImGuiObject::Init()

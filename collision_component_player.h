@@ -1,6 +1,6 @@
 #pragma once
 #include "collision_component.h"
-#include "Enemy_Interface.h"
+#include "enemy_interface.h"
 #include "effect_explosion.h"
 #include "hp_component.h"
 #include "ParticleObject_2D.h"

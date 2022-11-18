@@ -1,5 +1,5 @@
 #pragma once
-#include "EnemyWave.h"
+#include "enemy_wave.h"
 #include "manager.h"
 
 

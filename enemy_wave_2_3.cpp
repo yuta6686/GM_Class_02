@@ -1,5 +1,5 @@
-#include "EnemyWave_2_3.h"
-#include "CO_EnemyWave.h"
+#include "enemy_wave_2_3.h"
+#include "co_enemy_wave.h"
 
 EnemyWave* EnemyWave_2_3::CreateNextWave()
 {

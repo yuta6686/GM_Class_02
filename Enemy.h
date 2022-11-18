@@ -1,7 +1,7 @@
 #pragma once
 #include "main.h"
 #include "Resource.h"
-#include "Enemy_Interface.h"
+#include "enemy_interface.h"
 #include "stage_limit_reflect_component.h"
 #include "random_velocity_component.h"
 #include "random_jump_component.h"

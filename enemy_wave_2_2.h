@@ -1,6 +1,6 @@
 #pragma once
-#include "EnemyWave.h"
-#include "EnemyWave_2_3.h"
+#include "enemy_wave.h"
+#include "enemy_wave_2_3.h"
 class EnemyWave_2_2 :
     public EnemyWave
 {

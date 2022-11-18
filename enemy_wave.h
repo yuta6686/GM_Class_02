@@ -1,6 +1,6 @@
 #pragma once
 #include "component_object.h"
-#include "Enemy.h"
+#include "enemy.h"
 #include "manager.h"
 #include "Cylinder.h"
 #include "audio.h"

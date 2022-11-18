@@ -8,7 +8,7 @@
 #include "imgui_component.h"
 #include "gameObject.h"
 #include "component_object.h"
-#include "Enemy.h"
+#include "enemy.h"
 #include "MyImgui.h"
 
 #define nameof(x) #x

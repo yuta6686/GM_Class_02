@@ -1,7 +1,7 @@
 #pragma once
 #include "component_object.h"
-#include "EnemyWave.h"
-#include "EnemyWave_1_1.h"
+#include "enemy_wave.h"
+#include "enemy_wave_1_1.h"
 #include "co_ui_quest.h"
 #include "co_ui_quest_purpose.h"
 #include "co_ui_quest_belt.h"
