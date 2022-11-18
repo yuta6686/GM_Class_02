@@ -23,7 +23,7 @@
     <ClCompile Include="ao_Sphere.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="BlinkComponent.cpp" />
-    <ClCompile Include="BulletComponent.cpp" />
+    <ClCompile Include="bullet_component.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CO_AnimationModelTest.cpp" />
@@ -60,7 +60,7 @@
     <ClCompile Include="matrix_component.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="model_variable.cpp" />
-    <ClCompile Include="MonochromeComponent.cpp" />
+    <ClCompile Include="monochrome_component.cpp" />
     <ClCompile Include="ParticleObject.cpp" />
     <ClCompile Include="ParticleObject_2D.cpp" />
     <ClCompile Include="pixelShader.cpp" />
@@ -105,7 +105,7 @@
     <ClInclude Include="BlinkComponent.h" />
     <ClInclude Include="blink_scale_component.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="BulletComponent.h" />
+    <ClInclude Include="bullet_component.h" />
     <ClInclude Include="C1_GameObject.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CircleDeploy.h" />
@@ -167,14 +167,14 @@
     <ClInclude Include="gravity_component.h" />
     <ClInclude Include="HPComponent.h" />
     <ClInclude Include="jump_component.h" />
-    <ClInclude Include="MonochromeComponent.h" />
+    <ClInclude Include="monochrome_component.h" />
     <ClInclude Include="MyImgui.h" />
     <ClInclude Include="ParticleObject_2D.h" />
-    <ClInclude Include="PlayerRotateComponent.h" />
+    <ClInclude Include="player_rotate_component.h" />
     <ClInclude Include="Prism.h" />
     <ClInclude Include="random_jump_component.h" />
     <ClInclude Include="random_velocity_component.h" />
-    <ClInclude Include="ShootBulletComponent.h" />
+    <ClInclude Include="shoot_bullet_component.h" />
     <ClInclude Include="stage_limit_component.h" />
     <ClInclude Include="stage_limit_reflect_component.h" />
     <ClInclude Include="SwitchingRenderer.h" />

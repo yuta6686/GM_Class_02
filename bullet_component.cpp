@@ -1,4 +1,4 @@
-#include "BulletComponent.h"
+#include "bullet_component.h"
 #include "gameObject.h"
 #include "manager.h"
 

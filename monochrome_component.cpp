@@ -1,4 +1,4 @@
-#include "MonochromeComponent.h"
+#include "monochrome_component.h"
 #include "Enemy.h"
 #include "ShootBullet_Amass.h"
 #include "ShootBullet_Shoot.h"

@@ -2,7 +2,7 @@
 #include "main.h"
 #include "component_object.h"
 #include "stage_limit_delete_component.h"
-#include "BulletComponent.h"
+#include "bullet_component.h"
 #include "collision_component_bullet.h"
 
 class Bullet : public ComponentObject

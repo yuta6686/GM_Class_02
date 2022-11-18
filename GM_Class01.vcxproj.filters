@@ -294,7 +294,7 @@
     <ClCompile Include="HPComponent.cpp">
       <Filter>GameObject\Component\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="BulletComponent.cpp">
+    <ClCompile Include="bullet_component.cpp">
       <Filter>GameObject\Component\Special</Filter>
     </ClCompile>
     <ClCompile Include="Cylinder.cpp">
@@ -303,7 +303,7 @@
     <ClCompile Include="ResultPolygon.cpp">
       <Filter>System\First</Filter>
     </ClCompile>
-    <ClCompile Include="MonochromeComponent.cpp">
+    <ClCompile Include="monochrome_component.cpp">
       <Filter>GameObject\Component\Special</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiObject.cpp">
@@ -728,16 +728,16 @@
     <ClInclude Include="jump_component.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="BulletComponent.h">
+    <ClInclude Include="bullet_component.h">
       <Filter>GameObject\Component\Special</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerRotateComponent.h">
+    <ClInclude Include="player_rotate_component.h">
       <Filter>GameObject\Component\Special</Filter>
     </ClInclude>
-    <ClInclude Include="MonochromeComponent.h">
+    <ClInclude Include="monochrome_component.h">
       <Filter>GameObject\Component\Special</Filter>
     </ClInclude>
-    <ClInclude Include="ShootBulletComponent.h">
+    <ClInclude Include="shoot_bullet_component.h">
       <Filter>GameObject\Component\Special</Filter>
     </ClInclude>
     <ClInclude Include="stage_limit_component.h">
