@@ -20,7 +20,7 @@ void Manager::Init()
 
 	Audio::InitMaster();
 
-	m_Scene = std::make_shared<DebugScene>();
+	m_Scene = std::make_shared<TitleScene>();
 	m_Scene->Init();
 	
 	
@@ -63,13 +63,13 @@ void Manager::Update()
 //•`‰æˆ—
 void Manager::Draw()
 {
-	Renderer::BeginDef();
+	//Renderer::BeginDef();
 
 	m_Scene->Draw();
 
-	Renderer::EndDef();
+	//Renderer::EndDef();
 
-	Renderer::Begin();	
+	//Renderer::Begin();	
 
 	// m_Scene->Draw();	
 

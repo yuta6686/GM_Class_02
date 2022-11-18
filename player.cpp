@@ -295,7 +295,9 @@ void Player::PlayerMove()
 
 	//	メッシュフィールド高さ取得
 	CO_MeshField* meshf = g_Scene->GetGameObject<CO_MeshField>();
-	groundHeight = max(groundHeight, meshf->GetHeight(m_Position));
+	if (meshf) {
+		groundHeight = max(groundHeight, meshf->GetHeight(m_Position));
+	}
 
 
 

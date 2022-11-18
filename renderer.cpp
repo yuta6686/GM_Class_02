@@ -460,6 +460,9 @@ void Renderer::BeginDef()
 {
 	m_DeviceContext->OMSetRenderTargets(1, &_colorRTV, m_DepthStencilView);
 
+	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
+
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	m_DeviceContext->ClearRenderTargetView(_colorRTV, clearColor);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);

@@ -8,11 +8,13 @@ enum SCENE {
 	SCENE_RESULT,
 };
 
+class RenderingTexture;
 class Manager
 {
 private:	
 	inline static bool m_IsExit = false;
 	static class std::shared_ptr<Scene> m_Scene;
+	inline static RenderingTexture* _rt = nullptr;
 public:
 	//‰Šú‰»
 	static void Init();

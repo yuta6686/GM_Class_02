@@ -348,6 +348,9 @@
     <ClCompile Include="rendering_texture.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="SwitchingRenderer.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -801,6 +804,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="rendering_texture.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchingRenderer.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

@@ -33,9 +33,19 @@
 #include "CO_Stand.h"
 #include "CO_Bow.h"
 #include "CO_Noise.h"
+#include "SwitchingRenderer.h"
+#include "rendering_texture.h"
 
 void GameScene2::Init()
 {
+	AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
+		->SetLayerNum(LAYER_BEGIN);
+
+	AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
+		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
+
+	AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
+
 	//	ÉJÉÅÉâ
 	AddGameObject<Camera>(LAYER_FIRST);
 

@@ -10,9 +10,21 @@
 #include "Prism.h"
 #include "UI_Score.h"
 
+#include "CO_UI_Quest_Belt.h"
+#include "SwitchingRenderer.h"
+#include "rendering_texture.h"
+
 
 void DebugScene::Init()
 {
+	AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
+		->SetLayerNum(LAYER_BEGIN);
+
+	AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
+		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
+
+	AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
+
 	//	ÉJÉÅÉâ
 	AddGameObject<Camera>(LAYER_FIRST);
 
@@ -33,7 +45,22 @@ void DebugScene::Init()
 
 	AddGameObject<Prism>(LAYER_3D);
 
-	
+	float dest_y = 400.0f;
+	float dep_y = 800.0f;
+	{
+		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
+		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
+		couibelt->Start(false, 60, 60);
+	}
+
+	{
+		float sep_y = 200.0f;
+		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
+		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
+		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
+		couibelt->Start(false, 60, 90);
+	}
 
 	for (int i = 0; i < LAYER_NUM_MAX; i++) {
 

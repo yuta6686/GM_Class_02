@@ -10,9 +10,19 @@
 #include "CO_UI_Default.h"
 #include "ParticleObject_2D.h"
 #include "audio.h"
+#include "SwitchingRenderer.h"
+#include "rendering_texture.h"
 
 void DefeatScene::Init()
 {
+	AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
+		->SetLayerNum(LAYER_BEGIN);
+
+	AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
+		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
+
+	AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
+
 	AddGameObject<ResultPolygon>(LAYER_2D);
 	
 

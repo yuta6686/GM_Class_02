@@ -83,6 +83,7 @@
     <ClCompile Include="stage_corridor_corner.cpp" />
     <ClCompile Include="stage_otorii.cpp" />
     <ClCompile Include="stage_wator_field.cpp" />
+    <ClCompile Include="SwitchingRenderer.cpp" />
     <ClCompile Include="TitlePolygon.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Transition.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="ShootBulletComponent.h" />
     <ClInclude Include="StageLimitComponent.h" />
     <ClInclude Include="StageLimitComponent_Reflect.h" />
+    <ClInclude Include="SwitchingRenderer.h" />
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="TrackingComponent.h" />
     <ClInclude Include="ImGuiComponent.h" />

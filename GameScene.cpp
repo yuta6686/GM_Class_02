@@ -48,10 +48,19 @@
 #include "CO_UI_Tutorial_Move.h"
 #include "CO_Noise.h"
 #include "CO_UI_Tutorial_Move2.h"
-
+#include "SwitchingRenderer.h"
+#include "rendering_texture.h"
 
 void GameScene::Init()
 {
+	AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
+		->SetLayerNum(LAYER_BEGIN);
+
+	AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
+		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
+
+	AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
+
 	//	ÉJÉÅÉâ
 	AddGameObject<Camera>(LAYER_FIRST);
 
