@@ -5,7 +5,7 @@
 //  ------------------------summary--------------------------
 //  - Matrix (3D , 2D)
 //  ---------------------------------------------------------
-#include "MatrixComponent.h"
+#include "matrix_component.h"
 #include "gameObject.h"
 
 

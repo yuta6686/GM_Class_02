@@ -77,20 +77,21 @@ private:
 	static IDXGISwapChain*			m_SwapChain;
 
 	//ディスプレイのバッグバッファのテクスチャ	
-	inline static ComPtr<ID3D11Texture2D> m_pRTTex;
+	inline static ComPtr<ID3D11Texture2D> _pTexture;
 
-	inline static ID3D11SamplerState* _defaultSampler = nullptr;
-	inline static ID3D11SamplerState* _renderTextureSampler;
+	// サンプラー
+	inline static ID3D11SamplerState* _pDefaultSampler = nullptr;
+	inline static ID3D11SamplerState* _pRenderTextureSampler;
 
-
+	// もともと在るやつ
 	static ID3D11RenderTargetView* m_RenderTargetView;
 	static ID3D11DepthStencilView* m_DepthStencilView;
 
-	inline static ID3D11RenderTargetView* _colorRTV  = nullptr	;	
+	// オフスク用 RTV
+	inline static ID3D11RenderTargetView* _pRenderingTextureRTV  = nullptr	;	
 
-	// SRV
-	// inline static ID3D11Texture2D* _colorRenderTex  = nullptr;
-	inline static ID3D11ShaderResourceView* _colorSRV = nullptr;
+	// オフスク用 SRV
+	inline static ID3D11ShaderResourceView* _pRenderingTextureSRV = nullptr;
 
 	static ID3D11BlendState* m_BlendState;
 	static ID3D11BlendState* m_BlendStateATC;
@@ -129,7 +130,12 @@ public:
 	static void Uninit();
 	static void Begin();
 	static void End();
-	static void BeginDef();
+
+	/// <summary BeginOfScr()>
+	/// オフスクリーンレンダリング用のBegin関数
+	/// - ShaderResourceViewの切り替えを行う
+	/// </summary>
+	static void BeginOfScr();
 	static void EndDef();
 
 
@@ -148,6 +154,11 @@ public:
 	static void SetValiable(VALIABLE val);
 	//static void SetPointLight(POINT_LIGHT Light);
 	void SetBlendState(BLEND_MODE bm);
+
+	/// <summary>
+	/// サンプラーとテクスチャ設定をする。
+	/// Draw時、テクスチャに読み込んだSRVを設定するのと同じイメージ
+	/// </summary>	
 	static void SetRenderTexture(bool isdefault);
 
 	static ID3D11Device* GetDevice( void ){ return m_Device; }

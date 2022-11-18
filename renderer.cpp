@@ -41,9 +41,6 @@ void Renderer::Init()
 {
 	HRESULT hr = S_OK;
 
-
-
-
 	// デバイス、スワップチェーン作成
 	DXGI_SWAP_CHAIN_DESC swapChainDesc{};
 	swapChainDesc.BufferCount = 1;
@@ -79,7 +76,7 @@ void Renderer::Init()
 		&m_DeviceContext);
 
 
-	// 
+	// テクスチャ設定 オフスク用
 	D3D11_TEXTURE2D_DESC rtDesc;
 	memset(&rtDesc, 0, sizeof(rtDesc));
 	rtDesc.Width = SCREEN_WIDTH;
@@ -92,41 +89,27 @@ void Renderer::Init()
 	rtDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
 	rtDesc.CPUAccessFlags = 0;	
 	
-	m_Device->CreateTexture2D(&rtDesc, 0, &m_pRTTex);
+	m_Device->CreateTexture2D(&rtDesc, 0, &_pTexture);
 
+
+	//	SRV設定 オフスク用
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
 	ZeroMemory(&srvDesc, sizeof(srvDesc));
 	srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MostDetailedMip = 0;
 	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;
-	m_Device->CreateShaderResourceView(m_pRTTex.Get(), &srvDesc, &_colorSRV);
-
-
-
-	// スワップチェインに用意されたバッファ（2Dテクスチャ）を取得
-	//hr = m_SwapChain->GetBuffer(0, IID_PPV_ARGS(&m_pRTTex));
-	//if (FAILED(hr)) {
-	//	return;
-	//}	
-
-	//// レンダーターゲットView作成
-	//hr = m_Device->CreateRenderTargetView(m_pRTTex.Get(), NULL, &m_RenderTargetView);
-	//if (FAILED(hr)) {
-	//	return;
-	//}
-
+	m_Device->CreateShaderResourceView(_pTexture.Get(), &srvDesc, &_pRenderingTextureSRV);
 	
 
-	// m_pRTTex;
-	
-
-	// レンダーターゲットビュー作成
+	// レンダーターゲットビュー作成 (デフォルト)
 	ID3D11Texture2D* renderTarget = NULL;
-	m_SwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&renderTarget );
-	m_Device->CreateRenderTargetView(renderTarget, NULL, &m_RenderTargetView );
-	m_Device->CreateRenderTargetView(m_pRTTex.Get(), NULL, &_colorRTV);
+	m_SwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&renderTarget );	
+	m_Device->CreateRenderTargetView(renderTarget, NULL, &m_RenderTargetView );	
 	renderTarget->Release();
+
+	// RTV 作成 オフスク用
+	m_Device->CreateRenderTargetView(_pTexture.Get(), NULL, &_pRenderingTextureRTV);
 
 	// デプスステンシルバッファ作成
 	ID3D11Texture2D* depthStencile = NULL;
@@ -297,10 +280,10 @@ void Renderer::Init()
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 	
-	m_Device->CreateSamplerState(&samplerDesc, &_defaultSampler);
-	m_DeviceContext->PSSetSamplers(0, 1, &_defaultSampler);
+	m_Device->CreateSamplerState(&samplerDesc, &_pDefaultSampler);
+	m_DeviceContext->PSSetSamplers(0, 1, &_pDefaultSampler);
 
-	m_Device->CreateSamplerState(&samplerDesc, &_renderTextureSampler);
+	m_Device->CreateSamplerState(&samplerDesc, &_pRenderTextureSampler);
 
 
 	// 定数バッファ生成
@@ -418,11 +401,11 @@ void Renderer::Uninit()
 	m_RenderTargetView->Release();
 
 	// defefferd
-	_colorRTV->Release();
+	_pRenderingTextureRTV->Release();
 	
 	//_colorRenderTex->Release();
-	_colorSRV->Release();
-	_renderTextureSampler->Release();
+	_pRenderingTextureSRV->Release();
+	_pRenderTextureSampler->Release();
 
 
 	m_SwapChain->Release();
@@ -441,10 +424,7 @@ void Renderer::Begin()
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, clearColor);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-	
-	m_DeviceContext->PSSetShaderResources(0, 1, &_colorSRV);
-	// []ToDoここでテクスチャセット
-	// shaderresourceview作ってそれを入れなきゃいけない。
+		
 	_isRenderTexture = false;
 }
 
@@ -456,17 +436,13 @@ void Renderer::End()
 	m_SwapChain->Present(1, 0);
 }
 
-void Renderer::BeginDef()
+void Renderer::BeginOfScr()
 {
-	m_DeviceContext->OMSetRenderTargets(1, &_colorRTV, m_DepthStencilView);
-
-	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
+	m_DeviceContext->OMSetRenderTargets(1, &_pRenderingTextureRTV, m_DepthStencilView);
 
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	m_DeviceContext->ClearRenderTargetView(_colorRTV, clearColor);
-	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-	
+	m_DeviceContext->ClearRenderTargetView(_pRenderingTextureRTV, clearColor);
+	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);	
 
 	_isRenderTexture = true;
 }
@@ -500,17 +476,20 @@ void Renderer::SetBlendState(BLEND_MODE bm)
 		break;
 	}*/
 }
-
+/// <summary>
+/// サンプラーとテクスチャ設定をする。
+/// Draw時、テクスチャに読み込んだSRVを設定するのと同じイメージ
+/// </summary>	
 void Renderer::SetRenderTexture(bool isdefault)
 {
 	if (isdefault) {
-		m_DeviceContext->PSSetSamplers(0, 1, &_defaultSampler);
+		m_DeviceContext->PSSetSamplers(0, 1, &_pDefaultSampler);
 	}
 	else
 	{
-		m_DeviceContext->PSSetSamplers(0, 1, &_renderTextureSampler);
-		m_DeviceContext->VSSetShaderResources(0, 1, &_colorSRV);
-		m_DeviceContext->PSSetShaderResources(0, 1, &_colorSRV);		
+		m_DeviceContext->PSSetSamplers(0, 1, &_pRenderTextureSampler);
+		m_DeviceContext->VSSetShaderResources(0, 1, &_pRenderingTextureSRV);
+		m_DeviceContext->PSSetShaderResources(0, 1, &_pRenderingTextureSRV);		
 	}		
 }
 

@@ -5,7 +5,7 @@
 //  ------------------------summary--------------------------
 //  - Transformï\é¶ÅEí≤êÆ
 //  ---------------------------------------------------------
-#include "ImGuiComponent.h"
+#include "imgui_component.h"
 #include "gameObject.h"
 #include "ComponentObject.h"
 #include "Enemy.h"

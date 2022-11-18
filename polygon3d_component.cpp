@@ -5,7 +5,7 @@
 //  ------------------------summary--------------------------
 //  - wasureta
 //  ---------------------------------------------------------
-#include "Polygon3DComponent.h"
+#include "polygon3d_component.h"
 #include "gameObject.h"
 #include "VertexInitialize.h"
 

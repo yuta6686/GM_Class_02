@@ -549,11 +549,11 @@ float CO_MeshField::GetValue(int x, int y)
 }
 int CO_MeshField::GetBloeckNumX(const D3DXVECTOR3& Position)
 {
-    return Position.x / 5.0f + 10.0f;
+    return static_cast<int> (Position.x / 5.0f + 10.0f);
 }
 int CO_MeshField::GetBloeckNumZ(const D3DXVECTOR3& Position)
 {
-    return Position.z / -5.0f + 10.0f;
+    return static_cast<int>(Position.z / -5.0f + 10.0f);
 }
 
 float CO_MeshField::GetHeight(const D3DXVECTOR3& Position)
@@ -561,8 +561,8 @@ float CO_MeshField::GetHeight(const D3DXVECTOR3& Position)
     int x, z;
 
     //  ブロック番号算出
-    x = Position.x / 5.0f + 10.0f;
-    z = Position.z / -5.0f + 10.0f;
+    x = static_cast<int>(Position.x / 5.0f + 10.0f);
+    z = static_cast<int>(Position.z / -5.0f + 10.0f);
 
     D3DXVECTOR3 pos0, pos1, pos2, pos3;
 

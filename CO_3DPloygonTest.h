@@ -1,6 +1,6 @@
 #pragma once
 #include "ComponentObject.h"
-#include "Polygon3DComponent.h"
+#include "polygon3d_component.h"
 #include "VertexChangeComponent_ToGame.h"
 class CO_3DPloygonTest :
     public ComponentObject

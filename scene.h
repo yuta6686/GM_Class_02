@@ -8,7 +8,7 @@
 
 #include "ResourceManager.h"
 #include "gameObject.h"
-#include "ImGuiComponent.h"
+#include "imgui_component.h"
 
 enum LAYER {
 	LAYER_BEGIN = 0,

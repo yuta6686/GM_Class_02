@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "gameObject.h"
-#include "ModelDrawComponent.h"
+#include "model_draw_component.h"
 
 class ModelColorChangeComponent :
     public Component

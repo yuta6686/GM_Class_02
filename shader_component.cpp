@@ -8,7 +8,7 @@
 //	- ShaderType‚Å•Ï‚í‚é
 //  ---------------------------------------------------------
 
-#include "ShaderComponent.h"
+#include "shader_component.h"
 #include "ResourceManager.h"
 
 void ShaderComponent::Init()

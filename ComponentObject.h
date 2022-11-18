@@ -2,11 +2,11 @@
 #include "gameObject.h"
 
 //	デフォルトインクルード
-#include "ShaderComponent.h"
-#include "MatrixComponent.h"
-#include "ModelDrawComponent.h"
+#include "shader_component.h"
+#include "matrix_component.h"
+#include "model_draw_component.h"
 #include "TransformInit.h"
-#include "ImGuiComponent.h"
+#include "imgui_component.h"
 #include "CountComponent.h"
 
 

@@ -219,10 +219,10 @@
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp">
       <Filter>System\ImGui\backend</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixComponent.cpp">
+    <ClCompile Include="matrix_component.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderComponent.cpp">
+    <ClCompile Include="shader_component.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
     <ClCompile Include="StageLimitComponent.cpp">
@@ -231,7 +231,7 @@
     <ClCompile Include="UserInterface_Animation.cpp">
       <Filter>GameObject\UI</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiComponent.cpp">
+    <ClCompile Include="imgui_component.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
     <ClCompile Include="BlinkComponent.cpp">
@@ -303,9 +303,6 @@
     <ClCompile Include="ResultPolygon.cpp">
       <Filter>System\First</Filter>
     </ClCompile>
-    <ClCompile Include="Polygon3DComponent.cpp">
-      <Filter>GameObject\Component\Draw</Filter>
-    </ClCompile>
     <ClCompile Include="MonochromeComponent.cpp">
       <Filter>GameObject\Component\Special</Filter>
     </ClCompile>
@@ -350,6 +347,9 @@
     </ClCompile>
     <ClCompile Include="SwitchingRenderer.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon3d_component.cpp">
+      <Filter>GameObject\Component\UI\3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -467,13 +467,13 @@
     <ClInclude Include="UserInterface.h">
       <Filter>GameObject\UI</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixComponent.h">
+    <ClInclude Include="matrix_component.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="ModelDrawComponent.h">
+    <ClInclude Include="model_draw_component.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderComponent.h">
+    <ClInclude Include="shader_component.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imconfig.h">
@@ -503,7 +503,7 @@
     <ClInclude Include="BlinkComponent_Scale.h">
       <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiComponent.h">
+    <ClInclude Include="imgui_component.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
     <ClInclude Include="BlinkComponent.h">
@@ -533,7 +533,7 @@
     <ClInclude Include="Rotate2D.h">
       <Filter>GameObject\Component\UI\2D</Filter>
     </ClInclude>
-    <ClInclude Include="Polygon3DComponent.h">
+    <ClInclude Include="polygon3d_component.h">
       <Filter>GameObject\Component\UI\3D</Filter>
     </ClInclude>
     <ClInclude Include="ModelColorChangeComponent.h">
@@ -785,7 +785,7 @@
     <ClInclude Include="CO_AnimationModelTest.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationModelComponent.h">
+    <ClInclude Include="animation_model_component.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
     <ClInclude Include="CO_MeshField.h">

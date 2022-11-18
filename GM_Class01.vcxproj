@@ -43,7 +43,7 @@
     <ClCompile Include="GameScene2.cpp" />
     <ClCompile Include="GameScene3.cpp" />
     <ClCompile Include="HPComponent.cpp" />
-    <ClCompile Include="ImGuiComponent.cpp" />
+    <ClCompile Include="imgui_component.cpp" />
     <ClCompile Include="ImGuiObject.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
@@ -57,7 +57,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
-    <ClCompile Include="MatrixComponent.cpp" />
+    <ClCompile Include="matrix_component.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="model_variable.cpp" />
     <ClCompile Include="MonochromeComponent.cpp" />
@@ -67,13 +67,13 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="polygon2D.cpp" />
-    <ClCompile Include="Polygon3DComponent.cpp" />
+    <ClCompile Include="polygon3d_component.cpp" />
     <ClCompile Include="Prism.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="ResultPolygon.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Rotate2D.cpp" />
-    <ClCompile Include="ShaderComponent.cpp" />
+    <ClCompile Include="shader_component.cpp" />
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="ShootBullet_Amass.cpp" />
     <ClCompile Include="ShootBullet_Idle.cpp" />
@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationModel.h" />
-    <ClInclude Include="AnimationModelComponent.h" />
+    <ClInclude Include="animation_model_component.h" />
     <ClInclude Include="BlinkComponentAlpha2D.h" />
     <ClInclude Include="ao_Sphere.h" />
     <ClInclude Include="audio.h" />
@@ -180,7 +180,7 @@
     <ClInclude Include="SwitchingRenderer.h" />
     <ClInclude Include="TextureComponent.h" />
     <ClInclude Include="TrackingComponent.h" />
-    <ClInclude Include="ImGuiComponent.h" />
+    <ClInclude Include="imgui_component.h" />
     <ClInclude Include="ImGuiObject.h" />
     <ClInclude Include="ImGuiObject_Title.h" />
     <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />
@@ -190,7 +190,7 @@
     <ClInclude Include="imgui\imgui_internal.h" />
     <ClInclude Include="ModelColorChangeComponent.h" />
     <ClInclude Include="ModelColorChangeComponent_Titlebg.h" />
-    <ClInclude Include="ModelDrawComponent.h" />
+    <ClInclude Include="model_draw_component.h" />
     <ClInclude Include="effect_explosion.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
@@ -203,13 +203,13 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
-    <ClInclude Include="MatrixComponent.h" />
+    <ClInclude Include="matrix_component.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="model_variable.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="ParticleObject.h" />
     <ClInclude Include="pixelShader.h" />
-    <ClInclude Include="Polygon3DComponent.h" />
+    <ClInclude Include="polygon3d_component.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="pointLight.h" />
@@ -220,7 +220,7 @@
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="Rotate2D.h" />
     <ClInclude Include="scene.h" />
-    <ClInclude Include="ShaderComponent.h" />
+    <ClInclude Include="shader_component.h" />
     <ClInclude Include="Shadow.h" />
     <ClInclude Include="ShootBullet.h" />
     <ClInclude Include="ShootBullet_Amass.h" />

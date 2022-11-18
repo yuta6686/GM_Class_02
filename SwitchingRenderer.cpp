@@ -18,7 +18,7 @@ void SwitchingRenderer::Draw()
 	switch (_layerNum)
 	{
 	case LAYER_BEGIN:
-		Renderer::BeginDef();		
+		Renderer::BeginOfScr();		
 		break;
 	case LAYER_TO_RENDERING_TEXTURE:
 		Renderer::Begin();

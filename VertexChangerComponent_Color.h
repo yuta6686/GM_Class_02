@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "gameObject.h"
-#include "Polygon3DComponent.h"
+#include "polygon3d_component.h"
 #include "scene.h"
 #include "manager.h"
 #include "player.h"
