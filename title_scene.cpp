@@ -10,8 +10,8 @@
 
 #include "player.h"
 #include "light.h"
-#include "ImGuiObject_Title.h"
-#include "CircleDeploy.h"
+#include "imgui_object_title.h"
+#include "circle_deploy.h"
 #include "CO_3DPolygon_circle.h"
 #include "co_title_background.h"
 #include "component_object_test.h"

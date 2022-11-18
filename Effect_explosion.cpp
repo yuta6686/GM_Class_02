@@ -11,7 +11,7 @@
 #include "scene.h"
 #include "manager.h"
 #include "camera.h"
-#include "VertexInitialize.h"
+#include "vertex_initialize.h"
 
 void Effect_explosion::Init()
 {

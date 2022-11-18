@@ -1,6 +1,6 @@
 #pragma once
 //  ---------------------------------------------------------
-//  MyMath [MyMath.h]
+//  MyMath [my_math.h]
 //                                  Author: YanagisawaYuta
 //                                  Date  : 2022/09/05
 //  ------------------------summary--------------------------

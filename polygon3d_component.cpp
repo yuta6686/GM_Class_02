@@ -7,7 +7,7 @@
 //  ---------------------------------------------------------
 #include "polygon3d_component.h"
 #include "gameObject.h"
-#include "VertexInitialize.h"
+#include "vertex_initialize.h"
 
 
 void Polygon3DComponent::Init()

@@ -12,7 +12,7 @@
 #include "transition.h"
 #include "ui_charge.h"
 #include "ui_score.h"
-#include "ImGuiObject.h"
+#include "imgui_object.h"
 #include "co_ui_quest_belt.h"
 #include "co_ui_quest.h"
 #include "co_ui_quest_purpose.h"

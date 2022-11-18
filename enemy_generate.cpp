@@ -1,7 +1,7 @@
 #include "enemy_generate.h"
 #include "enemy.h"
 #include "cylinder.h"
-#include "CircleDeploy.h"
+#include "circle_deploy.h"
 #include "collision_component_player.h"
 
 #include <fstream>

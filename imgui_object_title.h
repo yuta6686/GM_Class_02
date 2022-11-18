@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ImGuiObject.h"
+#include "imgui_object.h"
 #include "player.h"
 #include "scene.h"
 #include "manager.h"

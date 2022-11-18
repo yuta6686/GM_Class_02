@@ -26,7 +26,7 @@
 #include "user_interface_animation.h"
 #include "transition.h"
 #include "component_object_test.h"
-#include "ImGuiObject.h"
+#include "imgui_object.h"
 #include "co_ui_aimling.h"
 #include "enemy_generate.h"
 #include "co_ui_quest.h"

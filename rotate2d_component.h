@@ -1,6 +1,6 @@
 #pragma once
 #include "component.h"
-#include "MyMath.h"
+#include "my_math.h"
 class Rotate2D :
     public Component
 {

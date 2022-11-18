@@ -5,7 +5,7 @@
 //  ------------------------summary--------------------------
 //  -ImGui‚Ì“Š‡ˆ—
 //  ---------------------------------------------------------
-#include "ImGuiObject.h"
+#include "imgui_object.h"
 #include "manager.h"
 #include "game_scene.h"
 #include "player.h"	

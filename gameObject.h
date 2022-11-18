@@ -4,7 +4,7 @@
 #include "texture.h"
 #include "vertexShader.h"
 #include "pixelShader.h"
-#include "MyMath.h"
+#include "my_math.h"
 #include "component.h"
 
 enum COMPONENT_LAYER {

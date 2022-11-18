@@ -43,7 +43,7 @@
     <ClCompile Include="game_scene3.cpp" />
     <ClCompile Include="hp_component.cpp" />
     <ClCompile Include="imgui_component.cpp" />
-    <ClCompile Include="ImGuiObject.cpp" />
+    <ClCompile Include="imgui_object.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_dx11.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -104,7 +104,7 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bullet_component.h" />
     <ClInclude Include="camera.h" />
-    <ClInclude Include="CircleDeploy.h" />
+    <ClInclude Include="circle_deploy.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="collision_component.h" />
     <ClInclude Include="collision_component_bullet.h" />
@@ -164,7 +164,7 @@
     <ClInclude Include="hp_component.h" />
     <ClInclude Include="jump_component.h" />
     <ClInclude Include="monochrome_component.h" />
-    <ClInclude Include="MyImgui.h" />
+    <ClInclude Include="my_imgui.h" />
     <ClInclude Include="particle_object_2d.h" />
     <ClInclude Include="player_rotate_component.h" />
     <ClInclude Include="prism.h" />
@@ -176,8 +176,8 @@
     <ClInclude Include="switching_renderer.h" />
     <ClInclude Include="tracking_component.h" />
     <ClInclude Include="imgui_component.h" />
-    <ClInclude Include="ImGuiObject.h" />
-    <ClInclude Include="ImGuiObject_Title.h" />
+    <ClInclude Include="imgui_object.h" />
+    <ClInclude Include="imgui_object_title.h" />
     <ClInclude Include="imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -201,7 +201,7 @@
     <ClInclude Include="matrix_component.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="model_variable.h" />
-    <ClInclude Include="MyMath.h" />
+    <ClInclude Include="my_math.h" />
     <ClInclude Include="particle_object.h" />
     <ClInclude Include="pixelShader.h" />
     <ClInclude Include="polygon3d_component.h" />
@@ -239,7 +239,7 @@
     <ClInclude Include="user_interface_animation.h" />
     <ClInclude Include="vertex_change_component.h" />
     <ClInclude Include="vertex_changer_color_component.h" />
-    <ClInclude Include="VertexInitialize.h" />
+    <ClInclude Include="vertex_initialize.h" />
     <ClInclude Include="vertexShader.h" />
     <ClInclude Include="texture.h" />
   </ItemGroup>

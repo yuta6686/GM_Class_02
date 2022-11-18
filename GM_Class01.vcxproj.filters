@@ -294,7 +294,7 @@
     <ClCompile Include="monochrome_component.cpp">
       <Filter>GameObject\Component\Special</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiObject.cpp">
+    <ClCompile Include="imgui_object.cpp">
       <Filter>System\MyImGui</Filter>
     </ClCompile>
     <ClCompile Include="polygon2d.cpp">
@@ -725,10 +725,10 @@
     <ClInclude Include="result_polygon.h">
       <Filter>System\First</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiObject.h">
+    <ClInclude Include="imgui_object.h">
       <Filter>System\MyImGui</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiObject_Title.h">
+    <ClInclude Include="imgui_object_title.h">
       <Filter>System\MyImGui</Filter>
     </ClInclude>
     <ClInclude Include="polygon2d.h">
@@ -740,13 +740,13 @@
     <ClInclude Include="particle_object.h">
       <Filter>GameObject\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="MyMath.h">
+    <ClInclude Include="my_math.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="VertexInitialize.h">
+    <ClInclude Include="vertex_initialize.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="CircleDeploy.h">
+    <ClInclude Include="circle_deploy.h">
       <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="stage_include.h">
@@ -764,7 +764,7 @@
     <ClInclude Include="animation_model_component.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="MyImgui.h">
+    <ClInclude Include="my_imgui.h">
       <Filter>System\MyImGui</Filter>
     </ClInclude>
     <ClInclude Include="prism.h">

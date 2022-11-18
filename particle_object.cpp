@@ -1,6 +1,6 @@
 #include "particle_object.h"
 #include "resource_manager.h"
-#include "VertexInitialize.h"
+#include "vertex_initialize.h"
 #include "manager.h"
 #include "player.h"
 #include <sstream>

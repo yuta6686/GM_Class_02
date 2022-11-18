@@ -1,6 +1,6 @@
 #pragma once
 #include "scene.h"
-#include "MyImgui.h"
+#include "my_imgui.h"
 
 class DebugScene :
     public Scene
