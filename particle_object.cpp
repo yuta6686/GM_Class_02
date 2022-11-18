@@ -1,4 +1,4 @@
-#include "ParticleObject.h"
+#include "particle_object.h"
 #include "ResourceManager.h"
 #include "VertexInitialize.h"
 #include "manager.h"

@@ -1,4 +1,4 @@
-#include "Shadow.h"
+#include "shadow.h"
 #include "ResourceManager.h"
 
 //	Šî–{Field‚Æ“¯‚¶

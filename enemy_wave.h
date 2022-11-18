@@ -2,7 +2,7 @@
 #include "component_object.h"
 #include "enemy.h"
 #include "manager.h"
-#include "Cylinder.h"
+#include "cylinder.h"
 #include "audio.h"
 
 #include <fstream>

@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 #include "scene.h"
 #include "manager.h"
-#include "GameScene.h"
+#include "game_scene.h"
 #include "camera.h"
 
 void UI_Score::Init()

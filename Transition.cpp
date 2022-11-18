@@ -5,7 +5,7 @@
 //  ------------------------summary--------------------------
 //  - フェード処理
 //  ---------------------------------------------------------
-#include "Transition.h"
+#include "transition.h"
 #include "ResourceManager.h"
 #include "audio.h"
 #include "manager.h"

@@ -135,7 +135,7 @@
     <ClCompile Include="vertexShader.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="ao_Sphere.cpp">
+    <ClCompile Include="ao_sphere.cpp">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClCompile>
     <ClCompile Include="field.cpp">
@@ -144,7 +144,7 @@
     <ClCompile Include="stage_corridor.cpp">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
+    <ClCompile Include="item.cpp">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
@@ -162,31 +162,31 @@
     <ClCompile Include="stage_wator_field.cpp">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
+    <ClCompile Include="game_scene.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
+    <ClCompile Include="title_scene.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
     <ClCompile Include="TitlePolygon.cpp">
       <Filter>GameObject\TitleSceneObject</Filter>
     </ClCompile>
-    <ClCompile Include="Effect_explosion.cpp">
+    <ClCompile Include="effect_explosion.cpp">
       <Filter>GameObject\Object\GameSceneObject\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
+    <ClCompile Include="result_scene.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Shadow.cpp">
+    <ClCompile Include="shadow.cpp">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClCompile>
-    <ClCompile Include="ShootBullet_Amass.cpp">
+    <ClCompile Include="shoot_bullet_amass.cpp">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ShootBullet_Idle.cpp">
+    <ClCompile Include="shoot_bullet_idle.cpp">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="ShootBullet_Shoot.cpp">
+    <ClCompile Include="shoot_bullet_shoot.cpp">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="UI_Charge.cpp">
@@ -255,16 +255,16 @@
     <ClCompile Include="enemy_wave_3_3.cpp">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene2.cpp">
+    <ClCompile Include="game_scene2.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene3.cpp">
+    <ClCompile Include="game_scene3.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="DefeatScene.cpp">
+    <ClCompile Include="defeat_scene.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Transition.cpp">
+    <ClCompile Include="transition.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
     <ClCompile Include="audio.cpp">
@@ -315,10 +315,10 @@
     <ClCompile Include="polygon2D.cpp">
       <Filter>System\First</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleObject_2D.cpp">
+    <ClCompile Include="particle_object_2d.cpp">
       <Filter>GameObject\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleObject.cpp">
+    <ClCompile Include="particle_object.cpp">
       <Filter>GameObject\Particle</Filter>
     </ClCompile>
     <ClCompile Include="Collision.cpp">
@@ -371,7 +371,7 @@
     <ClInclude Include="vertexShader.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="ao_Sphere.h">
+    <ClInclude Include="ao_sphere.h">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClInclude>
     <ClInclude Include="field.h">
@@ -392,7 +392,7 @@
     <ClInclude Include="pixelShader.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
+    <ClInclude Include="item.h">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
@@ -401,7 +401,7 @@
     <ClInclude Include="gameObject.h">
       <Filter>GameObject\MainObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
+    <ClInclude Include="light.h">
       <Filter>GameObject\MainObjects</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
@@ -413,10 +413,10 @@
     <ClInclude Include="scene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
+    <ClInclude Include="game_scene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h">
+    <ClInclude Include="title_scene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="TitlePolygon.h">
@@ -434,28 +434,28 @@
     <ClInclude Include="effect_explosion.h">
       <Filter>GameObject\Object\GameSceneObject\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="ResultScene.h">
+    <ClInclude Include="result_scene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Cylinder.h">
+    <ClInclude Include="cylinder.h">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Shadow.h">
+    <ClInclude Include="shadow.h">
       <Filter>GameObject\Object\GameSceneObject\StageObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
+    <ClInclude Include="bullet.h">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ShootBullet.h">
+    <ClInclude Include="shoot_bullet.h">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ShootBullet_Amass.h">
+    <ClInclude Include="shoot_bullet_amass.h">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ShootBullet_Idle.h">
+    <ClInclude Include="shoot_bullet_idle.h">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="ShootBullet_Shoot.h">
+    <ClInclude Include="shoot_bullet_shoot.h">
       <Filter>GameObject\Object\GameSceneObject\MoveObjects\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="UI_Charge.h">
@@ -578,7 +578,7 @@
     <ClInclude Include="component_object_test.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClInclude>
-    <ClInclude Include="Transition.h">
+    <ClInclude Include="transition.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="enemy_wave_1_1.h">
@@ -608,16 +608,16 @@
     <ClInclude Include="enemy_wave_3_all.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene3.h">
+    <ClInclude Include="game_scene3.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene2.h">
+    <ClInclude Include="game_scene2.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="collision_component_player.h">
       <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="DefeatScene.h">
+    <ClInclude Include="defeat_scene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="co_ui_select.h">
@@ -695,7 +695,7 @@
     <ClInclude Include="co_ui_tutorial_move2.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClInclude>
-    <ClInclude Include="ExitScene.h">
+    <ClInclude Include="exit_scene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="collision_component_enemy.h">
@@ -752,10 +752,10 @@
     <ClInclude Include="polygon2D.h">
       <Filter>System\First</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleObject_2D.h">
+    <ClInclude Include="particle_object_2d.h">
       <Filter>GameObject\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleObject.h">
+    <ClInclude Include="particle_object.h">
       <Filter>GameObject\Particle</Filter>
     </ClInclude>
     <ClInclude Include="MyMath.h">

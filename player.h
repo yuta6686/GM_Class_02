@@ -9,7 +9,7 @@
 #include "monochrome_component.h"
 #include "velocity_component.h"
 #include "jump_component.h"
-#include "ParticleObject.h"
+#include "particle_object.h"
 
 class Audio;
 class Shadow;

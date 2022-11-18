@@ -3,7 +3,7 @@
 #include "enemy_interface.h"
 #include "effect_explosion.h"
 #include "hp_component.h"
-#include "ParticleObject_2D.h"
+#include "particle_object_2d.h"
 #include "co_stand.h"
 #include "hp_component.h"
 #include "count_component.h"

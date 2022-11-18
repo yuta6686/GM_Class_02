@@ -1,7 +1,7 @@
 #pragma once
 #include "main.h"
 #include "component.h"
-#include "ParticleObject.h"
+#include "particle_object.h"
 class BulletComponent :
     public Component
 {

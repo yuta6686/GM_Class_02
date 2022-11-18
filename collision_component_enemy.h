@@ -4,7 +4,7 @@
 #include "co_stand.h"
 #include "velocity_component.h"
 #include "stage_limit_reflect_component.h"
-#include "Cylinder.h"
+#include "cylinder.h"
 class CollisionComponent_Enemy :
     public CollisionComponent
 {

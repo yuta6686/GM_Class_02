@@ -2,7 +2,7 @@
 #include "component.h"
 #include "velocity_component.h"
 #include "manager.h"
-#include "Cylinder.h"
+#include "cylinder.h"
 
 class JumpComponent :
     public Component

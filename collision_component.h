@@ -3,7 +3,7 @@
 #include "manager.h"
 #include "scene.h"
 #include "gameObject.h"
-#include "Cylinder.h"
+#include "cylinder.h"
 
 class CollisionComponent :
     public Component

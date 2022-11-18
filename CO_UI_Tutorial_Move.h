@@ -3,7 +3,7 @@
 #include "CO_UI_Tutorial.h"
 #include "manager.h"
 #include "co_ui_tutorial_move2.h"
-#include "ParticleObject_2D.h"
+#include "particle_object_2d.h"
 
 class CO_UI_Tutorial_Move :
     public ComponentObject

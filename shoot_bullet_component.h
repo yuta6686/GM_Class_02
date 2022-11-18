@@ -1,6 +1,6 @@
 #pragma once
 #include "component.h"
-#include "ShootBullet_Idle.h"
+#include "shoot_bullet_idle.h"
 class ShootBulletComponent :
     public Component
 {

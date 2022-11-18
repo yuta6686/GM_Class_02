@@ -1,5 +1,5 @@
-#include "ShootBullet_Idle.h"
-#include "ShootBullet_Amass.h"
+#include "shoot_bullet_idle.h"
+#include "shoot_bullet_amass.h"
 
 void ShootBullet_Idle::Init()
 {

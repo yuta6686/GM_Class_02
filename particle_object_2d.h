@@ -1,6 +1,6 @@
 #pragma once
 #include "component_object.h"
-#include "ParticleObject.h"
+#include "particle_object.h"
 #include "texture.h"
 #include "ResourceManager.h"
 #include "Resource.h"

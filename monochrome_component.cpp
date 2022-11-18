@@ -1,7 +1,7 @@
 #include "monochrome_component.h"
 #include "enemy.h"
-#include "ShootBullet_Amass.h"
-#include "ShootBullet_Shoot.h"
+#include "shoot_bullet_amass.h"
+#include "shoot_bullet_shoot.h"
 void MonochromeComponent::Init()
 {
     m_VelocityComponents = m_Parent->GetComponents<VelocityComponent>();

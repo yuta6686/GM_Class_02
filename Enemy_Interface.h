@@ -6,7 +6,7 @@
 #include "gravity_component.h"
 #include "count_component.h"
 
-#include "ParticleObject.h"
+#include "particle_object.h"
 #include "audio.h"
 enum ENEMY
 {

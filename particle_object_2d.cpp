@@ -1,4 +1,4 @@
-#include "ParticleObject_2D.h"
+#include "particle_object_2d.h"
 
 void ParticleObject_2D::Init()
 {

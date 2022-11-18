@@ -7,10 +7,10 @@
 //  ---------------------------------------------------------
 #include "ImGuiObject.h"
 #include "manager.h"
-#include "GameScene.h"
+#include "game_scene.h"
 #include "player.h"	
 #include "enemy.h"
-#include "Bullet.h"
+#include "bullet.h"
 #include "co_ui_aimling.h"
 #include "blink_alpha2d_component.h"
 #include "audio.h"

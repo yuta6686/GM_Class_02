@@ -2,7 +2,7 @@
 #include "renderer.h"
 #include "model.h"
 #include "player.h"
-#include "Bullet.h"
+#include "bullet.h"
 #include "manager.h"
 #include "scene.h"
 #include "Item.h"

@@ -2,7 +2,7 @@
 #include "scene.h"
 #include "manager.h"
 #include "renderer.h"
-#include "GameScene.h"
+#include "game_scene.h"
 #include "player.h"
 #include "camera.h"
 

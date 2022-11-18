@@ -1,4 +1,4 @@
-#include "Cylinder.h"
+#include "cylinder.h"
 #include "ResourceManager.h"
 
 void Cylinder::Init()

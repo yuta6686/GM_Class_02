@@ -2,7 +2,7 @@
 #include "collision_component.h"
 #include "enemy.h"
 #include "effect_explosion.h"
-#include "ParticleObject.h"
+#include "particle_object.h"
 class CollisionComponent_Bullet :
     public CollisionComponent
 {
