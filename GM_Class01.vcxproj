@@ -110,10 +110,10 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="CircleDeploy.h" />
     <ClInclude Include="Collision.h" />
-    <ClInclude Include="CollisionComponent.h" />
-    <ClInclude Include="CollisionComponent_Bullet.h" />
-    <ClInclude Include="CollisionComponent_Enemy.h" />
-    <ClInclude Include="CollisionComponent_Player.h" />
+    <ClInclude Include="collision_component.h" />
+    <ClInclude Include="collision_component_bullet.h" />
+    <ClInclude Include="collision_component_enemy.h" />
+    <ClInclude Include="collision_component_player.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentObject.h" />
     <ClInclude Include="ComponentObjectTest.h" />

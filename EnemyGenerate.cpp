@@ -2,7 +2,7 @@
 #include "Enemy.h"
 #include "Cylinder.h"
 #include "CircleDeploy.h"
-#include "CollisionComponent_Player.h"
+#include "collision_component_player.h"
 
 #include <fstream>
 #include <iostream>

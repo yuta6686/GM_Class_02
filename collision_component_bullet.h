@@ -1,5 +1,5 @@
 #pragma once
-#include "CollisionComponent.h"
+#include "collision_component.h"
 #include "Enemy.h"
 #include "effect_explosion.h"
 #include "ParticleObject.h"

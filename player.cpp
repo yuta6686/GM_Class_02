@@ -13,7 +13,7 @@
 
 #include "StageLimitComponent.h"
 #include "HPComponent.h"
-#include "CollisionComponent_Player.h"
+#include "collision_component_player.h"
 #include "DebugScene.h"
 #include "CO_MeshField.h"
 

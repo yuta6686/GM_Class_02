@@ -2,7 +2,7 @@
 #include "ComponentObject.h"
 #include "TrackingComponent.h"
 #include "StageLimitComponent_Reflect.h"
-#include "CollisionComponent_Enemy.h"
+#include "collision_component_enemy.h"
 #include "GravityComponent.h"
 #include "CountComponent.h"
 

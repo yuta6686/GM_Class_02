@@ -512,10 +512,10 @@
     <ClInclude Include="model_variable.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionComponent.h">
+    <ClInclude Include="collision_component.h">
       <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionComponent_Bullet.h">
+    <ClInclude Include="collision_component_bullet.h">
       <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
     <ClInclude Include="TextureComponent.h">
@@ -617,7 +617,7 @@
     <ClInclude Include="GameScene2.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionComponent_Player.h">
+    <ClInclude Include="collision_component_player.h">
       <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
     <ClInclude Include="DefeatScene.h">
@@ -701,7 +701,7 @@
     <ClInclude Include="ExitScene.h">
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionComponent_Enemy.h">
+    <ClInclude Include="collision_component_enemy.h">
       <Filter>GameObject\Component\Collision</Filter>
     </ClInclude>
     <ClInclude Include="RandomJumpComponent.h">
