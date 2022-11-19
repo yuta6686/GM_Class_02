@@ -48,17 +48,10 @@
 #include "CO_Noise.h"
 #include "co_ui_tutorial_move2.h"
 #include "switching_renderer.h"
-#include "rendering_texture.h"
 
 void GameScene::Init()
 {
-	AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
-		->SetLayerNum(LAYER_BEGIN);
-
-	AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
-		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
-
-	AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
+	AddGameObject<SwitchinRendererFactory>(LAYER_BEGIN);
 
 	//	カメラ
 	AddGameObject<Camera>(LAYER_FIRST);
@@ -131,7 +124,7 @@ void GameScene::Init()
 	}
 
 	//	EnemyWave
-	//m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
+	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
 
 	//	鳥居の破片パーティクル
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);

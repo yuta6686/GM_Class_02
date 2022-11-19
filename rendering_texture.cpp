@@ -62,7 +62,9 @@ void RenderingTexture::Update()
 }
 
 void RenderingTexture::Draw()
-{
+{	
+
+
 	ComponentObject::Draw();
 
 	//頂点バッファ設定

@@ -1,5 +1,5 @@
 #include "switching_renderer.h"
-#include "scene.h"
+#include "rendering_texture.h"
 
 void SwitchingRenderer::Init()
 {
@@ -26,4 +26,15 @@ void SwitchingRenderer::Draw()
 	default:
 		break;
 	}
+}
+
+void SwitchinRendererFactory::Create()
+{
+	_scene->AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
+		->SetLayerNum(LAYER_BEGIN);
+
+	_scene->AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
+		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
+
+	_scene->AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
 }

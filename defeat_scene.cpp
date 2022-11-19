@@ -11,17 +11,10 @@
 #include "particle_object_2d.h"
 #include "audio.h"
 #include "switching_renderer.h"
-#include "rendering_texture.h"
 
 void DefeatScene::Init()
 {
-	AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
-		->SetLayerNum(LAYER_BEGIN);
-
-	AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
-		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
-
-	AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
+	AddGameObject<SwitchinRendererFactory>(LAYER_BEGIN);
 
 	AddGameObject<ResultPolygon>(LAYER_2D);
 	

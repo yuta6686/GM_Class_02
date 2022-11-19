@@ -118,6 +118,9 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{1bd45fbd-897d-49df-acc3-378be59057e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\utility">
+      <UniqueIdentifier>{3bdc758f-6d5b-439b-a2f1-1c3c8486f9a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="texture.cpp">
@@ -784,6 +787,9 @@
     </ClInclude>
     <ClInclude Include="debug_scene.h">
       <Filter>GameObject\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="factory.h">
+      <Filter>GameObject\utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

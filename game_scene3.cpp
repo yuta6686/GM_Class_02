@@ -35,17 +35,10 @@
 #include "co_bow.h"
 #include "co_noise.h"
 #include "switching_renderer.h"
-#include "rendering_texture.h"
 
 void GameScene3::Init()
 {
-	AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
-		->SetLayerNum(LAYER_BEGIN);
-
-	AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
-		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
-
-	AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE);
+	AddGameObject<SwitchinRendererFactory>(LAYER_BEGIN);
 
 	//	ÉJÉÅÉâ
 	AddGameObject<Camera>(LAYER_FIRST);

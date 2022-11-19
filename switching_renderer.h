@@ -1,5 +1,6 @@
 #pragma once
 #include "gameObject.h"
+#include "factory.h"
 class SwitchingRenderer :
     public GameObject
 {
@@ -19,5 +20,12 @@ public:
     void SetLayerNum(const int& layer) { 
         _layerNum = layer; 
     }
+};
+
+class SwitchinRendererFactory :public Factory
+{
+public:            
+    // Factory ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
+    virtual void Create() override;
 };
 

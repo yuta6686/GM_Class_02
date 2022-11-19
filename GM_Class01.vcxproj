@@ -146,6 +146,7 @@
     <ClInclude Include="cylinder.h" />
     <ClInclude Include="debug_scene.h" />
     <ClInclude Include="defeat_scene.h" />
+    <ClInclude Include="factory.h" />
     <ClInclude Include="rendering_texture.h" />
     <ClInclude Include="enemy_generate.h" />
     <ClInclude Include="enemy_wave.h" />
