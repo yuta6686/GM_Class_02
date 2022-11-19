@@ -99,7 +99,7 @@ public:
     virtual void Init() {
         AddComponent<TransformInit>(COMLAYER_FIRST);
 
-        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetUnlitShader();
+        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_UNLIT);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 

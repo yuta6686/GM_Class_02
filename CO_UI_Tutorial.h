@@ -30,7 +30,7 @@ public:
         AddComponent<TransformInit>(COMLAYER_FIRST)
             ->SetInitPosition({ 300.0f,800.0f,0.0f });
 
-        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetUnlitShader();
+        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_UNLIT);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX)->SetIs2D();
 

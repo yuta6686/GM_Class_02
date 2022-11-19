@@ -26,6 +26,8 @@ private:
     std::shared_ptr <VertexShader> m_VertexShader;
     std::shared_ptr<PixelShader> m_PixelShader;
     int m_ShaderType = SHADER_DEFAULT;
+    std::string _fileNameVS;
+    std::string _fileNamePS;
 public:    
     ShaderComponent():m_ShaderType(SHADER_DEFAULT) {}
     ShaderComponent(const int& stype) :m_ShaderType(stype) {}
@@ -43,21 +45,6 @@ public:
     void SetShaderType(const int& shaderType)
     {
         m_ShaderType = shaderType;
-    }
-
-    virtual void SetUnlitShader()
-    {
-        m_ShaderType = SHADER_UNLIT;
-    }
-
-    virtual void SetUnlitNoMaterialShader()
-    {
-        m_ShaderType = SHADER_UNLIT_NO_MATERIAL;
-    }
-
-    void SetTestShader()
-    {
-        m_ShaderType = SHADER_TEST;
     }
 };
 

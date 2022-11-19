@@ -16,5 +16,6 @@ public:
 
     inline static const std::string DEFAULT_PIXEL_SHADER = "vertexLightingPS.cso";
     inline static const std::string UNLIT_PIXEL_SHADER = "unlitTexturePS.cso";
+    inline static const std::string RENDERING_TEXTURE_PS = "rendering_texture_ps.cso";
 };
 

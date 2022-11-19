@@ -12,7 +12,7 @@ public:
         init->SetInitScale({ scale,scale,scale });
         
 
-        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetUnlitShader();
+        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_UNLIT);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 

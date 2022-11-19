@@ -42,7 +42,7 @@ void RenderingTexture::Init()
 	m_Rotation = { 0.0f,0.0f,0.0f };
 	m_Scale = { 1.0f,1.0f,1.0f };
 
-	AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetUnlitNoMaterialShader();
+	AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_RENDERING_TEXTURE);
 //---------------------------------
 	ComponentObject::Init();
 }
