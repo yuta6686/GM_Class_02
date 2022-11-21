@@ -1,37 +1,42 @@
-#include "stage_limit_delete_component.h"
-#include "gameObject.h"
 #include "stage_limit_component.h"
 
-void StageLimitDeleteComponent::Init()
+void StageLimitComponent::Init() 
+{
+	m_Velocities = m_Parent->GetComponents<VelocityComponent>();
+}
+void StageLimitComponent::Uninit() 
 {
 }
-
-void StageLimitDeleteComponent::Uninit()
+void StageLimitComponent::Update() 
 {
-}
+	D3DXVECTOR3 parent_pos = m_Parent->GetPosition();
+	if (parent_pos.x > X_MAX ||
+		parent_pos.x < X_MIN) {
+		for (auto vel : m_Velocities) {
+			vel->m_Velocity.x = 0.0f;
+			vel->SetOldPos('x');
+		}
+	}
 
-void StageLimitDeleteComponent::Update()
-{
-	//	ŒÀŠE’l
-	D3DXVECTOR3 ppos = m_Parent->GetPosition();
-	if (ppos.z > Z_MAX ||
-		ppos.z < Z_MIN ||
-		ppos.x > X_MAX ||
-		ppos.x < X_MIN || 
-		ppos.y > Y_MAX ||
-		ppos.y < Y_MIN)
-	{
-		m_Parent->SetDestroy();
-		return;
+	if (parent_pos.y > Y_MAX) {
+		for (auto vel : m_Velocities) {
+			vel->m_Velocity.y = 0.0f;
+			vel->SetOldPos('y');
+		}
+	}
+	if (parent_pos.z > Z_MAX ||
+		parent_pos.z < Z_MIN) {
+		for (auto vel : m_Velocities) {
+			vel->m_Velocity.z = 0.0f;
+			vel->SetOldPos('z');
+		}
 	}
 }
 
-void StageLimitDeleteComponent::Draw()
+void StageLimitComponent::Draw()
 {
 }
 
-void StageLimitDeleteComponent::DrawImgui()
+void StageLimitComponent::DrawImgui()
 {
-	if(m_NoLimit)
-		ImGui::Text("No Limit Value");
 }

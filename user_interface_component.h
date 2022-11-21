@@ -1,4 +1,12 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  [user_interface_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  
+ * todo ƒCƒ“ƒ‰ƒCƒ“ŠÖ”®—
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "resource_manager.h"
 #include "texture.h"

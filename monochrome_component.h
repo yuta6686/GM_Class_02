@@ -1,12 +1,19 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  MonochromeComponent [monochrome_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  左クリック押下中、画面全体モノクロ化
+ ** ---------------------------------------------------------*/
 #include "component.h"
-#include "count_component.h"
-#include "jump_component.h"
-
 #include "manager.h"
+#include "gameObject.h"
 
 class Enemy;
 class ShootBullet;
+class VelocityComponent;
+class CountComponent;
 class MonochromeComponent :
 	public Component
 {

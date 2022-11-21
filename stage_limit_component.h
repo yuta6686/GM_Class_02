@@ -1,60 +1,35 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  StageLimitComponent [stage_limit_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  ステージの限界値に来たら、ベロシティを0にする
+ * 
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "velocity_component.h"
 
 class StageLimitComponent :
-    public Component
+	public Component
 {
 protected:
-    std::vector<VelocityComponent*> m_Velocities;
+	std::vector<VelocityComponent*> m_Velocities;
 
-    inline static const float X_MAX = 23.5f;
-    inline static const float X_MIN = -19.5f;
+	inline static const float X_MAX = 23.5f;
+	inline static const float X_MIN = -19.5f;
 
-    inline static const float Y_MAX = 100.0f;   
-    //  下方向の限界は他でやってるのでやらない
+	inline static const float Y_MAX = 100.0f;
+	//  下方向の限界は他でやってるのでやらない
 
-    inline static const float Z_MAX = 42.0f;
-    inline static const float Z_MIN = -37.5f;
-public:   
-    virtual void Init() override
-    {
-        m_Velocities = m_Parent->GetComponents<VelocityComponent>();
-    }
-    virtual void Uninit() override
-    {
-    }
-    virtual void Update() override
-    {
-        D3DXVECTOR3 parent_pos = m_Parent->GetPosition();
-        if (parent_pos.x > X_MAX ||
-            parent_pos.x < X_MIN ) {
+	inline static const float Z_MAX = 42.0f;
+	inline static const float Z_MIN = -37.5f;
+public:
 
-            for (auto vel : m_Velocities) {
-                vel->m_Velocity.x = 0.0f;
-                vel->SetOldPos('x');
-            }
-        }
+	virtual void Init() override;
+	virtual void Uninit() override;
+	virtual void Update() override;
+	virtual void Draw() override;
 
-        if (parent_pos.y > Y_MAX) {
-            for (auto vel : m_Velocities) {
-                vel->m_Velocity.y = 0.0f;
-                vel->SetOldPos('y');
-            }
-        }
-        if (parent_pos.z > Z_MAX ||
-            parent_pos.z < Z_MIN) {
-            for (auto vel : m_Velocities) {
-                vel->m_Velocity.z = 0.0f;
-                vel->SetOldPos('z');
-            }
-        }
-    }
-    virtual void Draw() override
-    {
-    }
-    virtual void DrawImgui() override
-    {
-    }
+	virtual void DrawImgui() override;
 };
-

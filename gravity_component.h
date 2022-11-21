@@ -1,35 +1,24 @@
 #pragma once
+/** ---------------------------------------------------------
+///  GravityComponent [gravity_component.h]
+///                                  @author: yanagisaya.yuta
+///                                  @date  : 2022/11/21
+///  ------------------------summary--------------------------
+///  * @brief  重力コンポーネント
+///  ---------------------------------------------------------*/
 #include "component.h"
-#include "velocity_component.h"
-#include "player.h"
+#include "main.h"
 
+class VelocityComponent;
 class GravityComponent :
-    public Component
+	public Component
 {
 private:
-    std::vector<VelocityComponent*> m_Velocity;
+	std::vector<VelocityComponent*> m_Velocity;
 public:
-    
-    virtual void Init() override
-    {
-        m_Velocity = m_Parent->GetComponents<VelocityComponent>();
-    }
-    virtual void Uninit() override
-    {
-    }
-    virtual void Update() override
-    {
-        for (auto vel : m_Velocity)
-        {
-            vel->m_Velocity.y -= Player::GetGravity();
-            break;
-        }
-    }
-    virtual void Draw() override
-    {
-    }
-    virtual void DrawImgui() override
-    {
-    }
+	virtual void Init() override;
+	virtual void Uninit() override {}
+	virtual void Update() override;
+	virtual void Draw() override {}
+	virtual void DrawImgui() override {}
 };
-

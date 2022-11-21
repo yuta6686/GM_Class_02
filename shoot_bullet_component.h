@@ -1,6 +1,13 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  ShootBulletComponent [shoot_bullet_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  
+ ** ---------------------------------------------------------*/
 #include "component.h"
-#include "shoot_bullet_idle.h"
+
 class ShootBulletComponent :
     public Component
 {
@@ -8,48 +15,18 @@ private:
     class ShootBullet* m_ShootBullet;
 
     bool m_IsUseBullet = true;
-public:    
+public:       
     ShootBullet* GetShootBullet() { return m_ShootBullet; }
     void SetIsUseBullet(bool flag = true) { m_IsUseBullet = flag; }
-    virtual void Init() override
-    {
-        m_ShootBullet = new ShootBullet_Idle();
-        m_ShootBullet->Init();
-    }
 
-    virtual void Uninit() override
-    {
-        m_ShootBullet->Uninit();
-        delete m_ShootBullet;
-    }
+    virtual void Init() override;
 
-    virtual void Update() override
-    {
-        if (!m_IsUseBullet)return;
+    virtual void Uninit() override;
 
-        m_ShootBullet->Update();
+    virtual void Update() override;
 
-        if (m_ShootBullet->GetIsNextState()) {
-            //	次のstateのポインタだけもらう。
-            ShootBullet* sb = m_ShootBullet->CreateNextState();
+    virtual void Draw() override;
 
-            //	今のポインタは消す。
-            m_ShootBullet->Uninit();
-            delete m_ShootBullet;
-
-            //	新しいポインタを作る
-            m_ShootBullet = sb;
-            m_ShootBullet->Init();
-        }
-    }
-
-    virtual void Draw() override
-    {
-    }
-
-    virtual void DrawImgui() override
-    {        
-        ImGui::Checkbox("IsUseBullet", &m_IsUseBullet);
-    }
+    virtual void DrawImgui() override;
 };
 

@@ -1,63 +1,32 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  RandomJumpComponent [random_jump_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  êîïbÇ≤Ç∆Ç…ìÆÇ≠
+ ** ---------------------------------------------------------*/
+
 #include "component.h"
-#include "velocity_component.h"
-#include "count_component.h"
-#include "player.h"
+#include "main.h"
 
+class CountComponent;
+class VelocityComponent;
 class RandomJumpComponent :
-    public Component
+	public Component
 {
-private:
-    std::vector<VelocityComponent*> m_Velociy;
-    CountComponent* m_Count;
-    inline static const float ENEMY_JUMP_VALUE = 0.5f;
+private: // const
+	inline static const float ENEMY_JUMP_VALUE = 0.5f;
+	inline static const int JUMP_INTERVAL = 180;
+
+private: // member
+	std::vector<VelocityComponent*> m_Velociy;
+	CountComponent* m_Count;
+
 public:
-
-    virtual void Init() override
-    {
-        m_Velociy = m_Parent->GetComponents<VelocityComponent>();
-        m_Count = m_Parent->AddComponent<CountComponent>(COMLAYER_SECOND);
-    }
-
-    virtual void Uninit() override
-    {
-    }
-
-    virtual void Update() override
-    {
-        if (m_Count->GetInFinist()) 
-        {
-            m_Count->Start(false, 180, 0);
-
-            for (auto vel : m_Velociy)
-            {
-                vel->m_Velocity.y = ENEMY_JUMP_VALUE;
-                break;
-            }
-        }
-
-        if (m_Count->GetFinish()) 
-        {
-            m_Count->Start(true, 180, 0);
-
-            for (auto vel : m_Velociy)
-            {
-                vel->m_Velocity.y = ENEMY_JUMP_VALUE;
-                break;
-            }
-        }
-        
-
-
-    }
-
-    virtual void Draw() override
-    {
-    }
-
-    virtual void DrawImgui() override
-    {
-    }
-
+	virtual void Init() override;
+	virtual void Uninit() override;
+	virtual void Update() override;
+	virtual void Draw() override;
+	virtual void DrawImgui() override;
 };
-

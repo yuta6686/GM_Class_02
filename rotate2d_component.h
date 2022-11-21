@@ -1,4 +1,11 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  [rotate2d_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "my_math.h"
 class Rotate2D :

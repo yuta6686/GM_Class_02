@@ -11,28 +11,27 @@
 
 enum AXIS
 {
-    AXIS_X,
-    AXIS_Y,
-    AXIS_Z,
-    AXIS_XY,
-    AXIS_XZ,
-    AXIS_YZ,
-    AXIS_XYZ
+	AXIS_X,
+	AXIS_Y,
+	AXIS_Z,
+	AXIS_XY,
+	AXIS_XZ,
+	AXIS_YZ,
+	AXIS_XYZ
 };
 
 class BlinkComponent_Scale :
-    public BlinkComponent
+	public BlinkComponent
 {
 private:
-    D3DXVECTOR3 m_Scale;
-    bool m_IsX = false;
-    bool m_IsY = false;
-    bool m_IsZ = false;
-public:    
-    virtual void Init()override;
-    virtual void Update()override;
+	D3DXVECTOR3 m_Scale;
+	bool m_IsX = false;
+	bool m_IsY = false;
+	bool m_IsZ = false;
+public:
+	virtual void Init()override;
+	virtual void Update()override;
 
-    virtual void SetParameter(const int& axis,
-        const float& speed, const float& min, const float& max);    
+	virtual void SetParameter(const int& axis,
+		const float& speed, const float& min, const float& max);
 };
-

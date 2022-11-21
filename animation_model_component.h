@@ -1,4 +1,12 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  JumpComponent [animation_model_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  アニメーションモデル（Assimp）
+ * 
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "resource_manager.h"
 

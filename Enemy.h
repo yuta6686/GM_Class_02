@@ -5,6 +5,7 @@
 #include "stage_limit_reflect_component.h"
 #include "random_velocity_component.h"
 #include "random_jump_component.h"
+#include "player.h"
 
 class Enemy : public Enemy_Interface
 {

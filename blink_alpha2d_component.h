@@ -1,25 +1,22 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  AlphaBlink2DComponent [blink_alpha2d_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  2D点滅処理
+ ** ---------------------------------------------------------*/
 #include "component.h"
-#include "user_interface_component.h"
 #include "blink_component.h"
+
 class AlphaBlink2DComponent :
 	public BlinkComponent
 {
 private:
-	UserInterfaceComponent* m_UIComponent = nullptr;
+	class UserInterfaceComponent* m_UIComponent = nullptr;
 public:
-	virtual void Init() override {
-		m_UIComponent = m_Parent->GetComponent<UserInterfaceComponent>();
+	virtual void Init() override;
 
-		//	nullptr がいたらわかるように、確認。　後で消せ
-		m_UIComponent->m_Parent->GetPosition();
-	}
-
-	virtual void Update() override
-	{
-		BlinkComponent::Update();
-		m_UIComponent->SetAlpha(m_BlinkValue);
-	}
-
+	virtual void Update() override;
 };
 

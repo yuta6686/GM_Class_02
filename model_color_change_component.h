@@ -1,4 +1,12 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  [model_color_change_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  モデルの色が変更されるようにするコンポーネント
+ ** ---------------------------------------------------------*/
+// ?普通にモデルコンポーネントにまとめたら良くない？ @todo
 #include "component.h"
 #include "gameObject.h"
 #include "model_draw_component.h"

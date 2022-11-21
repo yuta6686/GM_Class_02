@@ -1,4 +1,11 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  BulletComponent [bullet_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/21
+ * ------------------------summary--------------------------
+ * @brief  
+ ** ---------------------------------------------------------*/
 #include "main.h"
 #include "component.h"
 #include "particle_object.h"

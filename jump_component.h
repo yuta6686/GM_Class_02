@@ -11,25 +11,24 @@
 
 class VelocityComponent;
 class JumpComponent :
-    public Component
+	public Component
 {
 private:
-    inline static const float JUMP = 0.6f;
-    inline static const float GRAVITY = 0.01f;
-    inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };        
+	inline static const float JUMP = 0.6f;
+	inline static const float GRAVITY = 0.01f;
+	inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };
 
-    std::shared_ptr<Scene> m_Scene;
-public:    
-    VelocityComponent* m_VelocityCom;
+	std::shared_ptr<Scene> m_Scene;
+	VelocityComponent* m_VelocityCom;
+public:
 
-    virtual void Init() override;
+	virtual void Init() override;
 
-    virtual void Uninit() override
-    {
-    }
-    virtual void Update() override;
+	virtual void Uninit() override
+	{
+	}
+	virtual void Update() override;
 
-    virtual void Draw() override {}
-    virtual void DrawImgui() override {}
+	virtual void Draw() override {}
+	virtual void DrawImgui() override {}
 };
-

@@ -372,6 +372,30 @@
     <ClCompile Include="jump_component.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="gravity_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="random_jump_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="random_velocity_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="stage_limit_delete_component.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackingComponent.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="shoot_bullet_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="blink_alpha2d_component.cpp">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
