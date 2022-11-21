@@ -354,6 +354,12 @@
     <ClCompile Include="collision_component_player.cpp">
       <Filter>GameObject\Component\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="collision_component_bullet.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="collision_component_enemy.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">

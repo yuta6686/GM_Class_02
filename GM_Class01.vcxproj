@@ -27,6 +27,8 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="collision_component.cpp" />
+    <ClCompile Include="collision_component_bullet.cpp" />
+    <ClCompile Include="collision_component_enemy.cpp" />
     <ClCompile Include="collision_component_player.cpp" />
     <ClCompile Include="CO_MeshField.cpp" />
     <ClCompile Include="cube2d.cpp" />

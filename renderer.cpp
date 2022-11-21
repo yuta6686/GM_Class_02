@@ -99,10 +99,10 @@ void Renderer::Init()
 	
 
 	// ダウンサンプリング用
-	rtDesc.Width = SCREEN_WIDTH / 2.0f;
+	rtDesc.Width = static_cast<UINT>(SCREEN_WIDTH / 2.0f);
 	m_Device->CreateTexture2D(&rtDesc, 0, &_pTextureX);
 
-	rtDesc.Height = SCREEN_HEIGHT / 2.0f;
+	rtDesc.Height = static_cast<UINT>(SCREEN_HEIGHT / 2.0f);
 	m_Device->CreateTexture2D(&rtDesc, 0, &_pTextureY);
 
 	//	SRV設定 オフスク用
@@ -289,14 +289,20 @@ void Renderer::Init()
 	m_DeviceContext->OMSetDepthStencilState(m_DepthStateEnable, NULL);
 
 
-
-
 	// サンプラーステート設定
 	D3D11_SAMPLER_DESC samplerDesc{};
-	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	samplerDesc.Filter = D3D11_FILTER_ANISOTROPIC;
+	samplerDesc.MaxAnisotropy = 4;
+
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+
+	// ミップマップ設定
+	samplerDesc.MipLODBias = 0;
+	samplerDesc.MinLOD = 0;
+	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
+	
 	
 	m_Device->CreateSamplerState(&samplerDesc, &_pDefaultSampler);
 	m_DeviceContext->PSSetSamplers(0, 1, &_pDefaultSampler);

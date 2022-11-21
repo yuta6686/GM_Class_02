@@ -16,6 +16,7 @@ void CollisionComponent_Player::Init()
 
 void CollisionComponent_Player::Update() 
 {
+
     if (m_IsGenerateMode)return;
 
     if (m_Count->GetFinish()) {
@@ -24,13 +25,16 @@ void CollisionComponent_Player::Update()
 
     if (m_IsCollision == false)return;
 
+    // 衝突しているエネミー取得
     std::vector<GameObject*> enemys = IsCollisionSphere(LAYER_ENEMY);
+
+    // プレイヤーのhp取得
     HPComponent* hp = m_Parent->GetComponent<HPComponent>();
 
-
-
-    for (auto enemy : enemys) {
-        m_Count->Start(false, 60, 0);
+    // 衝突しているエネミーがいれば
+    for (auto enemy : enemys) 
+    {
+        m_Count->Start(false, NO_COLL_TIME, 0);
         m_IsCollision = false;
 
         dynamic_cast<Enemy_Interface*>(enemy)->CollosionWithBullet();
@@ -42,32 +46,13 @@ void CollisionComponent_Player::Update()
         m_Scene->AddGameObject<Effect_explosion>
             (LAYER_3D)->SetPosition(m_Parent->GetPosition());
 
+        // 3Dパーティクル
         for (int i = 0; i < 5; i++) {
             m_Scene->GetGameObject< ParticleObject>()
                 ->SetParticle_Preset1(m_Parent->GetPosition());
         }
 
-        int loop = 100;
-        D3DXVECTOR4 color = { 1.0f,1.0f,1.0f,1.0f };
-
-        if (hp->GetHpRatio() >= 0.5f)
-        {
-            color = { 1.0f,1.0f,1.0f,1.0f };
-            loop = 50;
-        }
-        else if (hp->GetHpRatio() < 0.5f &&
-            hp->GetHpRatio() >= 0.3f) {
-            color = { 1.0f,0.0f,1.0f,1.0f };
-            loop = 100;
-        }
-        else
-        {
-            color = { 1.0f,0.0f,0.0f,1.0f };
-            loop = 300;
-        }
-
-        for (int i = 0; i < loop; i++)
-            m_Scene->GetGameObject< ParticleObject_2D>()->SetParticle_Gather(color);
+        SetParticle2D(hp);
 
         break;
     }
@@ -94,4 +79,29 @@ std::vector<GameObject*> CollisionComponent_Player::IsCollisionSphere(const int&
     }
 
     return ResultObjects;
+}
+
+void CollisionComponent_Player::SetParticle2D(HPComponent* hp)
+{
+    int loop = 100;
+    D3DXVECTOR4 color = { 1.0f,1.0f,1.0f,1.0f };
+
+    if (hp->GetHpRatio() >= 0.5f)
+    {
+        color = { 1.0f,1.0f,1.0f,1.0f };
+        loop = 50;
+    }
+    else if (hp->GetHpRatio() < 0.5f &&
+        hp->GetHpRatio() >= 0.3f) {
+        color = { 1.0f,0.0f,1.0f,1.0f };
+        loop = 100;
+    }
+    else
+    {
+        color = { 1.0f,0.0f,0.0f,1.0f };
+        loop = 300;
+    }
+
+    for (int i = 0; i < loop; i++)
+        m_Scene->GetGameObject< ParticleObject_2D>()->SetParticle_Gather(color);
 }

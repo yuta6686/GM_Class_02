@@ -16,7 +16,7 @@
 #include "collision_component_player.h"
 #include "debug_scene.h"
 #include "co_mesh_field.h"
-
+#include "co_stand.h"
 
 using namespace std;
 
@@ -260,6 +260,8 @@ void Player::PlayerMove()
 	D3DXVECTOR3 oldPos = m_Position;
 	float groundHeight = 0.0f;
 
+	// []ToDo ここでコリジョンを呼ぶんじゃなくて、
+	// コンポーネント内でこの後の処理をして欲しい
 	std::vector<CO_Stand*> stands = GetComponent<CollisionComponent>()->IsCollisionXAxis<CO_Stand>();
 	if (!stands.empty())
 	{
