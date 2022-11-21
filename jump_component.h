@@ -1,9 +1,15 @@
 #pragma once
+//  ---------------------------------------------------------
+//  JumpComponent [jump_component.h]
+//                                  Author: –öàV—D‘¾
+//                                  Date  : 2022/11/21
+//  ------------------------summary--------------------------
+//  ƒWƒƒƒ“ƒv
+//  ---------------------------------------------------------
 #include "component.h"
-#include "velocity_component.h"
 #include "manager.h"
-#include "cylinder.h"
 
+class VelocityComponent;
 class JumpComponent :
     public Component
 {
@@ -13,46 +19,17 @@ private:
     inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };        
 
     std::shared_ptr<Scene> m_Scene;
-public:
+public:    
     VelocityComponent* m_VelocityCom;
 
-    virtual void Init() override
-    {
-        m_VelocityCom = m_Parent->AddComponent<VelocityComponent>(COMLAYER_SECOND);
-        m_VelocityCom->SetNoLinerEffect();
-        m_VelocityCom->SetNoAdd();
+    virtual void Init() override;
 
-        m_Scene = Manager::GetScene();
-    }
     virtual void Uninit() override
     {
     }
-    virtual void Update() override
-    {
-        //	ƒWƒƒƒ“ƒv
-        if (GetKeyboardTrigger(DIK_SPACE)) {
-            m_VelocityCom->m_Velocity.y = JUMP;
-        }
-        
+    virtual void Update() override;
 
-        //m_VelocityCom->m_Velocity.y *= ATTENUATION.y;
-
-
-
-    }
-    virtual void Draw() override
-    {
-    }
-    virtual void DrawImgui() override
-    {
-        //if (ImGui::Button("Player->Jump")) {
-        //    if (m_Parent->GetPosition().y >= 0.2f) {
-        //        m_VelocityCom->m_Velocity.y = JUMP * 1.5f;
-        //    }
-        //    else {
-        //        m_VelocityCom->m_Velocity.y = JUMP;
-        //    }
-        //}
-    }
+    virtual void Draw() override {}
+    virtual void DrawImgui() override {}
 };
 

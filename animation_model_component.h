@@ -1,9 +1,8 @@
 #pragma once
-
 #include "component.h"
-#include "animation_model.h"
 #include "resource_manager.h"
 
+class AnimationModel;
 class AnimationModelComponent :
     public Component
 {
@@ -22,30 +21,11 @@ class AnimationModelComponent :
 public:
     
     void LoadAnimationData(std::string mPath,// モデルデータ
-        std::string aPath1,std::string aName1,  //  アニメーションデータ1
-        std::string aPath2,std::string aName2) //   アニメーションデータ2
-    {
-        //  モデルパス
-        m_SourcePath = mPath;
+        std::string aPath1, std::string aName1,  //  アニメーションデータ1
+        std::string aPath2, std::string aName2); //   アニメーションデータ2
+        
 
-        //  アニメーション1データ
-        mAnimationPath1 = aPath1;
-        mAnimationName1 = aName1;
-
-        //  アニメーション2データ
-        mAnimationPath2 = aPath2;
-        mAnimationName2 = aName2;
-
-        //  ロード
-        m_Animation_Model =
-            ResourceManger<AnimationModel>::GetResource(m_SourcePath.c_str());
-        m_Animation_Model->LoadAnimation(mAnimationPath1.c_str(), mAnimationName1.c_str());
-        m_Animation_Model->LoadAnimation(mAnimationPath2.c_str(), mAnimationName2.c_str());
-    }
-
-    void SetIsVariable(bool flag = true) {
-        m_IsVariable = flag;
-    }
+    void SetIsVariable(bool flag = true);
 
     //void SetDiffuse(D3DXCOLOR diff) { m_Animation_Model->SetDiffuse(diff); }
 
@@ -54,41 +34,14 @@ public:
 
 
     // Component を介して継承されました
-    virtual void Init() override
-    {
-        m_Animation_Model =
-            ResourceManger<AnimationModel>::GetResource(m_SourcePath.c_str());        
-        
-
-        mFrame = 0;
-    };
+    virtual void Init() override;
 
     virtual void Uninit() override {};
 
-    virtual void Update() override {
-        m_Animation_Model->Update(mAnimationName1.c_str(), mAnimationName2.c_str(), mFrame, mBlendRate);
-        mFrame++;
-        if (GetKeyboardPress(DIK_W)) {
-            mBlendRate += 0.03f;
-        }
-        else
-        {
-            mBlendRate -= 0.03f;
-        }
+    virtual void Update() override;
 
-        if (mBlendRate >= 1.0f)
-            mBlendRate = 1.0f;
-        if (mBlendRate <= 0.0f)
-            mBlendRate = 0.0f;
-    };
-
-    virtual void Draw() override
-    {
-        m_Animation_Model->Draw();
-
-    };
+    virtual void Draw() override;
 
     virtual void DrawImgui()  override {};
-
 };
 

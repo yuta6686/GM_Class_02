@@ -42,6 +42,7 @@ public:
 
 	virtual void LastInit() {}
 
+	
 	virtual void SetPosition(D3DXVECTOR3 Position)
 	{
 		m_Position = Position;

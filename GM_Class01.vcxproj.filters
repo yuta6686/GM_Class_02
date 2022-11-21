@@ -360,6 +360,18 @@
     <ClCompile Include="collision_component_enemy.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="animation_model_component.cpp">
+      <Filter>GameObject\Component\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="model_draw_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="blink_scale_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="jump_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -817,6 +829,9 @@
     </ClInclude>
     <ClInclude Include="resource1.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="extend_fanction.h">
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

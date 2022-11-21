@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation_model.cpp" />
+    <ClCompile Include="animation_model_component.cpp" />
     <ClCompile Include="ao_sphere.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="blink_component.cpp" />
+    <ClCompile Include="blink_scale_component.cpp" />
     <ClCompile Include="bullet_component.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="collision.cpp" />
@@ -35,6 +37,8 @@
     <ClCompile Include="cylinder.cpp" />
     <ClCompile Include="debug_scene.cpp" />
     <ClCompile Include="defeat_scene.cpp" />
+    <ClCompile Include="jump_component.cpp" />
+    <ClCompile Include="model_draw_component.cpp" />
     <ClCompile Include="player_factory.cpp" />
     <ClCompile Include="rendering_texture.cpp" />
     <ClCompile Include="effect_explosion.cpp" />
@@ -116,6 +120,7 @@
     <ClInclude Include="collision_component_bullet.h" />
     <ClInclude Include="collision_component_enemy.h" />
     <ClInclude Include="collision_component_player.h" />
+    <ClInclude Include="extend_fanction.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="component_object.h" />
     <ClInclude Include="component_object_test.h" />

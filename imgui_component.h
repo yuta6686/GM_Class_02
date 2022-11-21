@@ -48,21 +48,7 @@ public:
         m_Is2D = flag;
     }
 
-    void SetEnemyVersion() 
-    {
-        m_IsEnemyVersion = true;
-
-        POSITION_MIN = -200.0f;
-        POSITION_MAX = 200.0f;
-
-        ROTATION_MIN = -D3DX_PI;
-        ROTATION_MAX = D3DX_PI;
-
-        SCALE_MIN = 0.2f;
-        SCALE_MAX = 5.0f;
-
-        m_ImVecY = 700;
-    }
+    void SetEnemyVersion();
 
     bool GetIsUse()const { return m_IsUse; }
     void SetIsUse(const bool& flag) { m_IsUse = flag; }  

@@ -1,7 +1,13 @@
 #pragma once
+//  ---------------------------------------------------------
+//  CollisionComponent [collision_component.h]
+//                                  Author: Yuta Yanagisawa
+//                                  Date  : 2022/11/21
+//  ------------------------summary--------------------------
+//  - コリジョンコンポーネント
+//  ---------------------------------------------------------
 #include "component.h"
 #include "manager.h"
-
 
 class CollisionComponent :
     public Component

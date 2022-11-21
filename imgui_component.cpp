@@ -36,7 +36,7 @@ void ImGuiComponent::DrawImgui()
 
 	//ImGui::BeginChild(ImGui::GetID((void*)0),
 	//	ImVec2(SCREEN_WIDTH,SCREEN_HEIGHT/2.0f));	
-	
+
 	if (ImGui::CollapsingHeader(m_Parent->GetTypeName().c_str())) {
 
 		//	Position
@@ -137,3 +137,18 @@ void ImGuiComponent::DrawImgui()
 #endif // _DEBUG
 }
 
+void ImGuiComponent::SetEnemyVersion()
+{
+	m_IsEnemyVersion = true;
+
+	POSITION_MIN = -200.0f;
+	POSITION_MAX = 200.0f;
+
+	ROTATION_MIN = -D3DX_PI;
+	ROTATION_MAX = D3DX_PI;
+
+	SCALE_MIN = 0.2f;
+	SCALE_MAX = 5.0f;
+
+	m_ImVecY = 700;
+}
