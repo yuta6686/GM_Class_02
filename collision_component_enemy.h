@@ -39,5 +39,28 @@ public:
         slcr->SetYmin(ymin);
     }
 
+private:
+    std::vector<Cylinder*> IsCollisionCylinder()
+    {
+        std::vector<Cylinder*> m_GameObjects;
+        std::vector<Cylinder*> ResultObjects;
+        m_GameObjects = m_Scene->GetGameObjects<Cylinder>();
+        for (auto object : m_GameObjects) {
+
+            D3DXVECTOR3 clyPos = object->GetPosition();
+            D3DXVECTOR3 clyScale = object->GetScale();
+
+            D3DXVECTOR3 direction = m_Parent->GetPosition() - clyPos;
+            direction.y = 0.0f;
+
+            float length = D3DXVec3Length(&direction);
+
+            if (length < clyScale.x) {
+                ResultObjects.push_back(object);
+            }
+        }
+
+        return ResultObjects;
+    }
 };
 

@@ -7,15 +7,9 @@
 #include "player.h"
 #include "item.h"
 #include "ao_sphere.h"
-#include "co_ui_aimling.h"
 #include "audio.h"
 #include "transition.h"
-#include "ui_charge.h"
-#include "ui_score.h"
 #include "imgui_object.h"
-#include "co_ui_quest_belt.h"
-#include "co_ui_quest.h"
-#include "co_ui_quest_purpose.h"
 #include "co_enemy_wave.h"
 #include "enemy_wave_2_1.h"
 
@@ -35,6 +29,7 @@
 #include "co_bow.h"
 #include "co_noise.h"
 #include "switching_renderer.h"
+#include "ui_factory.h"
 
 void GameScene3::Init()
 {
@@ -71,11 +66,6 @@ void GameScene3::Init()
 
 		AddGameObject < CO_Stand>(LAYER_3D)->SetPosition({ 2.5f,0.0f,23.0f * i });
 	}
-
-	AddGameObject<CO_UI_AimLing>(LAYER_2D);
-
-	AddGameObject<UI_Charge>(LAYER_2D);
-
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
@@ -118,27 +108,6 @@ void GameScene3::Init()
 
 
 
-
-	AddGameObject<CO_UI_Quest>(LAYER_2D);
-	AddGameObject< CO_UI_Quest_Purpose>(LAYER_2D);
-
-	float dest_y = 400.0f;
-	float dep_y = 800.0f;
-	{
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
-		couibelt->Start(false, 60, 60);
-	}
-
-	{
-		float sep_y = 200.0f;
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
-		couibelt->Start(false, 60, 90);
-	}
-
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);
 
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
@@ -148,6 +117,9 @@ void GameScene3::Init()
 
 
 	AddGameObject<ParticleObject_2D>(LAYER_2D);
+
+	// ui
+	AddGameObject<UIGameSceneFactory>(LAYER_2D);
 
 	AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });
 

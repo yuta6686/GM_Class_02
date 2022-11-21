@@ -26,11 +26,14 @@
     <ClCompile Include="bullet_component.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="collision.cpp" />
+    <ClCompile Include="collision_component.cpp" />
+    <ClCompile Include="collision_component_player.cpp" />
     <ClCompile Include="CO_MeshField.cpp" />
     <ClCompile Include="cube2d.cpp" />
     <ClCompile Include="cylinder.cpp" />
     <ClCompile Include="debug_scene.cpp" />
     <ClCompile Include="defeat_scene.cpp" />
+    <ClCompile Include="player_factory.cpp" />
     <ClCompile Include="rendering_texture.cpp" />
     <ClCompile Include="effect_explosion.cpp" />
     <ClCompile Include="enemy_generate.cpp" />
@@ -86,6 +89,7 @@
     <ClCompile Include="title_scene.cpp" />
     <ClCompile Include="transition.cpp" />
     <ClCompile Include="ui_charge.cpp" />
+    <ClCompile Include="ui_factory.cpp" />
     <ClCompile Include="ui_score.cpp" />
     <ClCompile Include="user_interface.cpp" />
     <ClCompile Include="user_interface_component.cpp" />
@@ -147,6 +151,7 @@
     <ClInclude Include="debug_scene.h" />
     <ClInclude Include="defeat_scene.h" />
     <ClInclude Include="factory.h" />
+    <ClInclude Include="player_factory.h" />
     <ClInclude Include="rendering_texture.h" />
     <ClInclude Include="enemy_generate.h" />
     <ClInclude Include="enemy_wave.h" />
@@ -171,6 +176,7 @@
     <ClInclude Include="prism.h" />
     <ClInclude Include="random_jump_component.h" />
     <ClInclude Include="random_velocity_component.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="shoot_bullet_component.h" />
     <ClInclude Include="stage_limit_component.h" />
     <ClInclude Include="stage_limit_reflect_component.h" />
@@ -229,6 +235,7 @@
     <ClInclude Include="stage_wator_field.h" />
     <ClInclude Include="title_polygon.h" />
     <ClInclude Include="title_scene.h" />
+    <ClInclude Include="ui_factory.h" />
     <ClInclude Include="velocity_component.h" />
     <ClInclude Include="vertex_change_to_game_component.h" />
     <ClInclude Include="transform_init.h" />

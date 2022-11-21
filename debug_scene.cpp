@@ -13,6 +13,9 @@
 #include "co_ui_quest_belt.h"
 #include "switching_renderer.h"
 
+// factory
+#include "ui_factory.h"
+#include "player_factory.h"
 
 void DebugScene::Init()
 {
@@ -25,35 +28,18 @@ void DebugScene::Init()
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
 	//	プレイヤー
-	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });
+	AddGameObject<PlayerFactory>(LAYER_3D);
 
 	//	メッシュフィールド
 	AddGameObject<CO_MeshField>(LAYER_3D);
-
-	AddGameObject<CO_UI_AimLing>(LAYER_2D);
-
-	AddGameObject<UI_Charge>(LAYER_2D);
 
 	AddGameObject<CO_AnimationModelTest>(LAYER_3D);
 
 	AddGameObject<Prism>(LAYER_3D);
 
-	float dest_y = 400.0f;
-	float dep_y = 800.0f;
-	{
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
-		couibelt->Start(false, 60, 60);
-	}
+	
 
-	{
-		float sep_y = 200.0f;
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
-		couibelt->Start(false, 60, 90);
-	}
+	AddGameObject<UIFactory>(LAYER_2D);
 
 	for (int i = 0; i < LAYER_NUM_MAX; i++) {
 

@@ -118,7 +118,7 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{1bd45fbd-897d-49df-acc3-378be59057e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\utility">
+    <Filter Include="GameObject\factory">
       <UniqueIdentifier>{3bdc758f-6d5b-439b-a2f1-1c3c8486f9a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -341,6 +341,18 @@
     </ClCompile>
     <ClCompile Include="enemy_generate.cpp">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ui_factory.cpp">
+      <Filter>GameObject\factory</Filter>
+    </ClCompile>
+    <ClCompile Include="player_factory.cpp">
+      <Filter>GameObject\factory</Filter>
+    </ClCompile>
+    <ClCompile Include="collision_component.cpp">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="collision_component_player.cpp">
+      <Filter>GameObject\Component\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -789,7 +801,16 @@
       <Filter>GameObject\Scene</Filter>
     </ClInclude>
     <ClInclude Include="factory.h">
-      <Filter>GameObject\utility</Filter>
+      <Filter>GameObject\factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_factory.h">
+      <Filter>GameObject\factory</Filter>
+    </ClInclude>
+    <ClInclude Include="player_factory.h">
+      <Filter>GameObject\factory</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,34 +20,30 @@
 #include "manager.h"
 #include "result_scene.h"
 #include "audio.h"
-#include "ui_charge.h"
 #include "cylinder.h"
 #include "ui_score.h"
 #include "user_interface_animation.h"
 #include "transition.h"
 #include "component_object_test.h"
 #include "imgui_object.h"
-#include "co_ui_aimling.h"
 #include "enemy_generate.h"
-#include "co_ui_quest.h"
-#include "co_ui_quest_belt.h"
-#include "co_ui_quest_purpose.h"
 #include "co_enemy_wave.h"
 #include "game_scene2.h"
 #include "particle_object.h"
 #include "hp_component.h"
 #include "defeat_scene.h"
-#include "co_ui_player_hp_gauge.h"
-#include "co_ui_dot.h"
-#include "co_ui_line.h"
+
 #include "particle_object_2d.h"
 #include "co_torii_broken.h"
 #include "co_stand.h"
 #include "co_bow.h"
-#include "co_ui_tutorial_move.h"
-#include "CO_Noise.h"
-#include "co_ui_tutorial_move2.h"
+#include "co_noise.h"
 #include "switching_renderer.h"
+
+// factory
+#include "ui_factory.h"
+#include "player_factory.h"
+
 
 void GameScene::Init()
 {
@@ -59,14 +55,8 @@ void GameScene::Init()
 	//	ライト
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
-	//	プレイヤーの前に入れる
-	AddGameObject<CO_UI_dot>(LAYER_2D);
-	AddGameObject< CO_UI_PlayerHPGauge>(LAYER_2D);
-	AddGameObject< CO_UI_Line>(LAYER_2D)->SetPosition({ 0.0f,55.0f,0.0f });
-	AddGameObject< CO_UI_Line>(LAYER_2D)->SetPosition({ 0.0f,85.0f,0.0f });
-
-	//	プレイヤー
-	AddGameObject<Player>(LAYER_3D)->SetPosition({ 2.5f,5.0f,0.0f });		
+	// プレイヤー
+	AddGameObject<PlayerFactory>(LAYER_3D);
 
 	//	AO球
 	AddGameObject<Ao_Sphere>(LAYER_3D)->LoadModel("asset\\model\\ao_Sphere_omaga.obj");
@@ -80,10 +70,7 @@ void GameScene::Init()
 		AddGameObject < CO_Stand>(LAYER_3D)->SetPosition({2.5f,0.0f,23.0f * i});
 	}
 	
-	//	User Interface
-	AddGameObject<CO_UI_AimLing>(LAYER_2D);
 	
-	AddGameObject<UI_Charge>(LAYER_2D);	
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
@@ -101,27 +88,7 @@ void GameScene::Init()
 
 	//	EnemyGenerate
 	AddGameObject<EnemyGenerate>(LAYER_3D);
-	
-	//	UserInterface 
-	AddGameObject<CO_UI_Quest>(LAYER_2D);
-	AddGameObject< CO_UI_Quest_Purpose>(LAYER_2D);
-
-	float dest_y = 400.0f;
-	float dep_y = 800.0f;
-	{
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
-		couibelt->Start(false, 60, 60);
-	}
-
-	{
-		float sep_y = 200.0f;
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
-		couibelt->Start(false, 60, 90);
-	}
+		
 
 	//	EnemyWave
 	m_EnemyWave = AddGameObject< CO_EnemyWave>(LAYER_3D);
@@ -135,12 +102,12 @@ void GameScene::Init()
 	//	このシーンの2Dパーティクル
 	AddGameObject<ParticleObject_2D>(LAYER_PARTICLE);
 
+	// ui
+	AddGameObject<UIGameSceneFactory>(LAYER_2D);
+
 	//	装飾用弓矢
 	AddGameObject<CO_Bow>(LAYER_3D);
 	AddGameObject<CO_Bow>(LAYER_3D)->SetPosition({ 0.0f,20.0f,-50.0f });
-
-	//	UI
-	AddGameObject< CO_UI_Tutorial_Move>(LAYER_2D);
 
 	//	Noise Object
 	AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });

@@ -34,6 +34,7 @@
 #include "co_bow.h"
 #include "co_noise.h"
 #include "switching_renderer.h"
+#include "ui_factory.h"
 
 
 void GameScene2::Init()
@@ -70,11 +71,7 @@ void GameScene2::Init()
 
 		AddGameObject < CO_Stand>(LAYER_3D)->SetPosition({ 2.5f,0.0f,23.0f * i });
 	}
-
-	AddGameObject<CO_UI_AimLing>(LAYER_2D);
-	AddGameObject<UI_Charge>(LAYER_2D);
-	
-	
+		
 
 	//	Audio
 	m_BGM = AddGameObject<Audio>(LAYER_AUDIO);
@@ -118,25 +115,6 @@ void GameScene2::Init()
 
 
 
-	AddGameObject<CO_UI_Quest>(LAYER_2D);
-	AddGameObject< CO_UI_Quest_Purpose>(LAYER_2D);
-
-	float dest_y = 400.0f;
-	float dep_y = 800.0f;
-	{
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y,0.0f });
-		couibelt->Start(false, 60, 60);
-	}
-
-	{
-		float sep_y = 200.0f;
-		CO_UI_Quest_Belt* couibelt = AddGameObject<CO_UI_Quest_Belt>(LAYER_2D);
-		couibelt->SetDestination({ 1920.0f + 1920.0f / 1.5f,dest_y + sep_y,0.0f });
-		couibelt->SetDeparture({ -1920.0f / 1.5f,dep_y + sep_y,0.0f });
-		couibelt->Start(false, 60, 90);
-	}
 
 	AddGameObject<CO_Torii_Broken>(LAYER_3D);
 
@@ -146,6 +124,9 @@ void GameScene2::Init()
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
 	AddGameObject<ParticleObject_2D>(LAYER_2D);
+
+	// ui
+	AddGameObject<UIGameSceneFactory>(LAYER_2D);
 
 	AddGameObject<CO_Bow>(LAYER_3D);
 

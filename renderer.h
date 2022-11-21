@@ -78,6 +78,8 @@ private:
 
 	//ディスプレイのバッグバッファのテクスチャ	
 	inline static ComPtr<ID3D11Texture2D> _pTexture;
+	inline static ComPtr<ID3D11Texture2D> _pTextureX;
+	inline static ComPtr<ID3D11Texture2D> _pTextureY;
 
 	// サンプラー
 	inline static ID3D11SamplerState* _pDefaultSampler = nullptr;

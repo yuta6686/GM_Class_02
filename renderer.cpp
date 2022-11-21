@@ -83,23 +83,41 @@ void Renderer::Init()
 	rtDesc.Height = SCREEN_HEIGHT;
 	rtDesc.MipLevels = 1;
 	rtDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	// rtDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+	rtDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
 	rtDesc.SampleDesc.Count = 1;
 	rtDesc.Usage = D3D11_USAGE_DEFAULT;
 	rtDesc.ArraySize = 1;
-	rtDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+	rtDesc.BindFlags = 
+		D3D11_BIND_RENDER_TARGET |
+		D3D11_BIND_SHADER_RESOURCE |
+		D3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS;
 	rtDesc.CPUAccessFlags = 0;	
 	
 	m_Device->CreateTexture2D(&rtDesc, 0, &_pTexture);
 
+	
+
+	// ダウンサンプリング用
+	rtDesc.Width = SCREEN_WIDTH / 2.0f;
+	m_Device->CreateTexture2D(&rtDesc, 0, &_pTextureX);
+
+	rtDesc.Height = SCREEN_HEIGHT / 2.0f;
+	m_Device->CreateTexture2D(&rtDesc, 0, &_pTextureY);
 
 	//	SRV設定 オフスク用
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
 	ZeroMemory(&srvDesc, sizeof(srvDesc));
 	srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	//srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+	srvDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
 	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MostDetailedMip = 0;
-	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;
-	m_Device->CreateShaderResourceView(_pTexture.Get(), &srvDesc, &_pRenderingTextureSRV);
+	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;	
+	hr = m_Device->CreateShaderResourceView(_pTexture.Get(), &srvDesc, &_pRenderingTextureSRV);
+	if (hr) {
+		assert(_pRenderingTextureSRV);
+	}
 	
 
 	// レンダーターゲットビュー作成 (デフォルト)

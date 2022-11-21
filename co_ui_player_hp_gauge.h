@@ -5,6 +5,7 @@
 #include "blink_alpha2d_component.h"
 #include "blink_scale_component.h"
 #include "rotate2d_component.h"
+#include "hp_component.h"
 
 class CO_UI_PlayerHPGauge :
     public ComponentObject

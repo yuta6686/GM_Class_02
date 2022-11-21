@@ -12,7 +12,16 @@ void ShootBullet_Amass::Init()
 	m_Counter = 0;
 
 	m_Scene = Manager::GetScene();
-	m_uiCharge = m_Scene->GetGameObject<UI_Charge>();
+
+	// ToDo後でシングルトンにしよう
+	// 多分AddGameObjectでシングルトンフラグをデフォルトでつけて
+	// GetGameObject<T>でnullptrなら新しく作る
+	// すでにあったらそれを返す。
+	auto ui_charge = m_Scene->GetGameObject<UI_Charge>();
+	if (ui_charge == nullptr) 
+		m_uiCharge = m_Scene->AddGameObject<UI_Charge>(LAYER_2D);
+	else
+		m_uiCharge = ui_charge;
 }
 
 void ShootBullet_Amass::Uninit()

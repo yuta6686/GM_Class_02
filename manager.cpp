@@ -20,7 +20,7 @@ void Manager::Init()
 
 	Audio::InitMaster();
 
-	m_Scene = std::make_shared<TitleScene>();
+	m_Scene = std::make_shared<DebugScene>();
 	m_Scene->Init();
 	
 	
