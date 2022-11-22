@@ -411,6 +411,24 @@
     <ClCompile Include="Singleton.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="vertex_changer_color_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="confirmation_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="count_component.cpp">
+      <Filter>GameObject\Component\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="velocity_component.cpp">
+      <Filter>GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="co_confirmation.cpp">
+      <Filter>GameObject\ComponentObject\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="co_select.cpp">
+      <Filter>GameObject\ComponentObject\2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -930,5 +948,10 @@
     <Natvis Include="imgui\misc\debuggers\imgui.natvis">
       <Filter>System\ImGui\backend</Filter>
     </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="テキスト.md">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

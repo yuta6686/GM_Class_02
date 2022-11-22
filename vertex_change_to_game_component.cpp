@@ -1,37 +1,39 @@
 #include "vertex_change_to_game_component.h"
 #include "audio.h"
+#include "player.h"
+
 
  void VertexChangeComponent_ToGame::Init()
 {
     std::shared_ptr<Scene> scene = Manager::GetScene();
-    m_Player = scene->GetGameObject<Player>();
-    m_PlayerForwardVector = m_Player->GetForward();
+    _player = scene->GetGameObject<Player>();
+    _playerForwardVector = _player->GetForward();
 
-    m_SE = scene->AddGameObject<Audio>(LAYER_AUDIO);
-    m_SE->Load("asset\\audio\\SE_Scroll.wav");
+    _se = scene->AddGameObject<Audio>(LAYER_AUDIO);
+    _se->Load("asset\\audio\\SE_Scroll.wav");
 
     //  中心から30度の視野角内に写っているかわかる
-    D3DXVECTOR3 playerForwardvec = m_Player->GetForward();
+    D3DXVECTOR3 playerForwardvec = _player->GetForward();
     D3DXVec3Normalize(&playerForwardvec, &playerForwardvec);
 
 
-    D3DXVECTOR3 myForwardvec = m_Parent->GetPosition() - m_Player->GetPosition();
+    D3DXVECTOR3 myForwardvec = m_Parent->GetPosition() - _player->GetPosition();
     D3DXVec3Normalize(&myForwardvec, &myForwardvec);
 
-    m_first_degree = MyMath::GetDegree(acosf(D3DXVec3Dot(&playerForwardvec, &myForwardvec)));
+    _first_degree = MyMath::GetDegree(acosf(D3DXVec3Dot(&playerForwardvec, &myForwardvec)));
 
-    if (m_first_degree <= ANGLE_MAX) {
-        m_IsToGame = true;
+    if (_first_degree <= ANGLE_MAX) {
+        _isToGame = true;
         m_Color = TO_EXIT_COLOR;
     }
-    else if (m_first_degree >= 150.0f) {
-        m_IsToExit = true;
+    else if (_first_degree >= 150.0f) {
+        _isToExit = true;
         m_Color = TO_EXIT_COLOR;
     }
     else
     {
-        m_IsToGame = false;
-        m_IsToExit = false;
+        _isToGame = false;
+        _isToExit = false;
         m_Color = BACK_FACE_COLOR;
     }
 }
@@ -40,43 +42,43 @@
  void VertexChangeComponent_ToGame::Update()
 {
     //  中心から30度の視野角内に写っているかわかる
-    D3DXVECTOR3 playerForwardvec = m_Player->GetForward();
+    D3DXVECTOR3 playerForwardvec = _player->GetForward();
     D3DXVec3Normalize(&playerForwardvec, &playerForwardvec);
 
 
-    D3DXVECTOR3 myForwardvec = m_Parent->GetPosition() - m_Player->GetPosition();
+    D3DXVECTOR3 myForwardvec = m_Parent->GetPosition() - _player->GetPosition();
     D3DXVec3Normalize(&myForwardvec, &myForwardvec);
 
-    m_degree = MyMath::GetDegree(acosf(D3DXVec3Dot(&playerForwardvec, &myForwardvec)));
+    _degree = MyMath::GetDegree(acosf(D3DXVec3Dot(&playerForwardvec, &myForwardvec)));
 
 
 
-    if (m_degree <= ANGLE_MAX)
+    if (_degree <= ANGLE_MAX)
     {
-        float lerp_scale = (1.0f - m_degree / ANGLE_MAX) * 3.0f;
+        float lerp_scale = (1.0f - _degree / ANGLE_MAX) * 3.0f;
 
-        m_myScale.x = DEFAULT_SCALE.x + lerp_scale;
-        m_myScale.y = DEFAULT_SCALE.y + lerp_scale;
-        m_myScale.z = DEFAULT_SCALE.z + lerp_scale;
+        _myScale.x = DEFAULT_SCALE.x + lerp_scale;
+        _myScale.y = DEFAULT_SCALE.y + lerp_scale;
+        _myScale.z = DEFAULT_SCALE.z + lerp_scale;
 
-        m_Parent->SetScale(m_myScale);
-        m_IsInSide = true;
+        m_Parent->SetScale(_myScale);
+        _isInSide = true;
 
 
-        if (m_degree / ANGLE_MAX >= 0.9f) {
-            if (once_flag == false) {
-                once_flag = true;
-                m_SE->Play();
+        if (_degree / ANGLE_MAX >= 0.9f) {
+            if (_onceFlag == false) {
+                _onceFlag = true;
+                _se->Play();
             }
         }
         else {
-            once_flag = false;
+            _onceFlag = false;
         }
     }
     else
     {
         m_Parent->SetScale(DEFAULT_SCALE);
-        m_IsInSide = false;
+        _isInSide = false;
     }
 
     //  強制で色を変更する
@@ -97,7 +99,7 @@
         m_Color = BACK_FACE_COLOR;
     }
 
-    if (m_IsInSide) {
+    if (_isInSide) {
         m_Color += FRONT_FACE_COLOR;
     }
 }
@@ -106,9 +108,9 @@
 
  void VertexChangeComponent_ToGame::DrawImgui()
 {
-    ImGui::Text("angle:%.2f", m_degree);
-    ImGui::Text("m_first_degree:%.2f", m_first_degree);
-    ImGui::Checkbox("IsToGame", &m_IsToGame);
-    ImGui::Checkbox("IsToExit", &m_IsToExit);
-    ImGui::Checkbox("IsInside", &m_IsInSide);
+    ImGui::Text("angle:%.2f", _degree);
+    ImGui::Text("m_first_degree:%.2f", _first_degree);
+    ImGui::Checkbox("IsToGame", &_isToGame);
+    ImGui::Checkbox("IsToExit", &_isToExit);
+    ImGui::Checkbox("IsInside", &_isInSide);
 }

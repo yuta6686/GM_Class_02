@@ -1,47 +1,28 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  HPComponent [hp_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/8/16
+ * ------------------------summary--------------------------
+ * @brief  プレイヤー・エネミーのHP
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "gameObject.h"
-#include "user_interface_component.h"
+
 class HPComponent :
     public Component
 {
-private:
-    int m_Hp = 10;    
-    int m_MaxHp = 10;    
-    bool m_IsDeath = false;
-    UserInterfaceComponent* m_UIComponent = nullptr;
+private: // const
     inline static const float MERGINE = 50.0f;
     inline static const float LEFT_POSITION = MERGINE;
     inline static const float RIGHT_POSITION = 500.0f - MERGINE;
+private:
+    int m_Hp;    
+    int m_MaxHp;    
+    bool m_IsDeath;
+    class UserInterfaceComponent* m_UIComponent;
 public:
-    static float GetLEFTPOSITION() { return LEFT_POSITION; }
-    static float GetRIGHTPOSITION() { return RIGHT_POSITION; }
-    bool GetIsDeath()const { return m_IsDeath; }
-
-    void RecoverHp(const int& hp) 
-    {
-        m_Hp += hp;
-        if (m_Hp > m_MaxHp)
-        {
-            m_Hp = m_MaxHp;
-        }
-    }
-    void ResetHp() 
-    {
-        m_Hp = m_MaxHp;
-    }
-    void SetMaxHp(const int& maxHp) 
-    {
-        m_MaxHp = maxHp;
-    }
-    void TakeDamage(const int& damage)
-    {
-        m_Hp -= damage;
-
-        if (m_Hp <= 0) {
-            m_IsDeath = true;
-        }
-    }
+    HPComponent();
     
     virtual void Init() override;
 
@@ -53,12 +34,19 @@ public:
 
     virtual void DrawImgui() override;
 
-    float GetHpRatio()
-    {
-        return (float)m_Hp / (float)m_MaxHp;
-    }
-    
+    void RecoverHp(const int& hp);
+    void ResetHp();
+    void SetMaxHp(const int& maxHp);
+    void TakeDamage(const int& damage);
+
+    // Getter
+    float GetHpRatio() { return static_cast<float>(m_Hp) / static_cast<float>(m_MaxHp); }    
     int GetHp() { return m_Hp; }
     int GetMaxHp() { return m_MaxHp; }
+    bool GetIsDeath()const { return m_IsDeath; }
+
+    // static
+    static float GetLEFTPOSITION() { return LEFT_POSITION; }
+    static float GetRIGHTPOSITION() { return RIGHT_POSITION; }
 };
 

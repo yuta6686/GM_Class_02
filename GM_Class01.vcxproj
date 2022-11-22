@@ -33,7 +33,11 @@
     <ClCompile Include="collision_component_bullet.cpp" />
     <ClCompile Include="collision_component_enemy.cpp" />
     <ClCompile Include="collision_component_player.cpp" />
+    <ClCompile Include="confirmation_component.cpp" />
+    <ClCompile Include="count_component.cpp" />
+    <ClCompile Include="co_confirmation.cpp" />
     <ClCompile Include="CO_MeshField.cpp" />
+    <ClCompile Include="co_select.cpp" />
     <ClCompile Include="CO_Stand.cpp" />
     <ClCompile Include="CO_UI_Default.cpp" />
     <ClCompile Include="cube2d.cpp" />
@@ -111,9 +115,11 @@
     <ClCompile Include="user_interface.cpp" />
     <ClCompile Include="user_interface_component.cpp" />
     <ClCompile Include="user_interface_animation.cpp" />
+    <ClCompile Include="velocity_component.cpp" />
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="stage_limit_delete_component.cpp" />
+    <ClCompile Include="vertex_changer_color_component.cpp" />
     <ClCompile Include="vertex_change_to_game_component.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -416,6 +422,9 @@
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="imgui\misc\debuggers\imgui.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="テキスト.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

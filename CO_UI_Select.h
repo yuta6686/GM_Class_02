@@ -3,6 +3,7 @@
 #include "user_interface_component.h"
 #include "hp_component.h"
 #include "vertex_change_component.h"
+#include "blink_scale_component.h"
 
 class CO_UI_Select :
     public ComponentObject

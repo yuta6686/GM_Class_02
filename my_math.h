@@ -25,6 +25,9 @@
 // - X‚ÆZ²‚¾‚¯Aƒ‰ƒ“ƒ_ƒ€‚Ì’l‚ğ•Ô‚·D3DXVECTOR3‚ÌŠÖ”
 // 
 //  ---------------------------------------------------------
+
+// https://protective-icon-1bc.notion.site/5fe08c879c9f41348026691e5d2e563b?v=6c4928c57afe4b5bbf80bc096fb0fccb
+
 #include "main.h"
 #include "renderer.h"
 class MyMath

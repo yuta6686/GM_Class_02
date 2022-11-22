@@ -1,7 +1,16 @@
 #include "hp_component.h"
+#include "user_interface_component.h"
 #include "player.h"
 #include "manager.h"
 #include "co_ui_player_hp_gauge.h"
+
+HPComponent::HPComponent()
+	:m_Hp(10),
+	m_MaxHp(10),
+	m_IsDeath(false),
+	m_UIComponent(nullptr)
+{
+}
 
 void HPComponent::Init()
 {
@@ -60,4 +69,31 @@ void HPComponent::DrawImgui()
 	if (m_UIComponent == nullptr)return;
 
 	ImGui::Text("HPRatio : %.2f", (float)m_Hp / (float)m_MaxHp);
+}
+
+
+
+void HPComponent::RecoverHp(const int& hp)
+{
+	m_Hp += hp;
+	if (m_Hp > m_MaxHp)
+	{
+		m_Hp = m_MaxHp;
+	}
+}
+void HPComponent::ResetHp()
+{
+	m_Hp = m_MaxHp;
+}
+void HPComponent::SetMaxHp(const int& maxHp)
+{
+	m_MaxHp = maxHp;
+}
+void HPComponent::TakeDamage(const int& damage)
+{
+	m_Hp -= damage;
+
+	if (m_Hp <= 0) {
+		m_IsDeath = true;
+	}
 }

@@ -1,146 +1,56 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  CountComponent [count_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/22
+ * ------------------------summary--------------------------
+ * @brief  
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "gameObject.h"
 class CountComponent :
     public Component
 {
 private:
-    int m_Count = 0;
-    int m_CountOffset = 0;
-    int m_MaxCount = 60;
-    int m_Delay = 0;
-    float m_0to1 = 0.0f;
+    static const int DEFAULT_MAX_COUNT = 60;
+private:
+    int _count;
+    int m_CountOffset;
+    int m_MaxCount;
+    int m_Delay;
 
-    bool m_In = false;    
-    bool m_Finish = false;
-    bool m_InFinish = false;
+    float m_0to1;
+
+    bool m_In;    
+    bool m_Finish;
+    bool m_InFinish;
 public:    
-    virtual void Init() override
-    {
-        m_Count = 0;
-    }
-    virtual void Uninit() override {}
-    virtual void Update() override
-    {
-        if (m_In) {
-            if (m_Count + m_Delay > 0)
-            {
-                m_Count--;
-            }
-            else
-            {
-                m_InFinish = true;
-            }
-            
-            
-            m_0to1 = static_cast<float>(min(m_Count + m_Delay, m_MaxCount)) / static_cast<float>(m_MaxCount);
-        }        
-        else
-        {
-            //  最大値に至った --> m_Count >= m_Delay + m_MaxCount
-            if (m_Count - m_Delay > m_MaxCount)
-            {
-                m_Finish = true;
-            }
-            else
-            {
-                m_Count++;
-            }
-            
+    CountComponent();
 
-            m_0to1 = static_cast<float>(max(m_Count - m_Delay, 0)) / static_cast<float>(m_MaxCount);
-        }        
-
-        
-    }
-    virtual void Draw() override {}
-    virtual void DrawImgui() override {}
-
-
-    void SetParameter(        
-        const int& max,
-        const int& delay = 0)
-    {        
-        m_MaxCount = max;
-        m_Delay = delay;
-    }
-
-    void Start(bool in)
-    {        
-        m_In = in;        
-        m_InFinish = false;
-        m_Finish = false;
-
-        if (m_In) {
-            m_Count = m_MaxCount + m_Delay;         
-        }
-        else
-        {            
-            m_Count = 0;
-        }
-    }
-
+    /** Start
+     * @brief 計測開始
+     * @param "in"      true--> 0からスタート.false --> 1からスタート(to 0)
+     * @param "max"     計測する時間の指定
+     * @param "delay"   遅延
+     * @param "offset" 　
+     */
     void Start(bool in,
-        const int& max,
-        const int& delay) {        
-        m_MaxCount = max;
-        m_Delay = delay;        
-
-
-        m_InFinish = false;
-        m_Finish = false;
-        m_In = in;
-
-
-        if (m_In) {
-            m_Count = m_MaxCount + m_Delay;            
-        }
-        else
-        {            
-            m_Count = 0;
-        }
-    }
-
-    void Start(bool in,
-        const int& max,
-        const int& delay,
-        const int& offset) {
-        m_CountOffset = offset;
-        m_MaxCount = max;
-        m_Delay = delay;
-
-
-        m_InFinish = false;
-        m_Finish = false;
-        m_In = in;
-
-
-        if (m_In) {
-            m_Count = m_MaxCount + m_Delay - m_CountOffset;
-        }
-        else
-        {
-            m_Count = m_CountOffset;
-        }
-    }
+        const int& max = DEFAULT_MAX_COUNT,
+        const int& delay = 0,
+        const int& offset = 0);
 
 //  Getter--------------------------------------------------------------------    
-    int GetCount()const { 
-        return max(m_Count - m_Delay, 0); 
-    }
-    float Get0to1Count()const {        
-        return m_0to1;
-    }
-    bool GetStart()const {
-        return m_In;
-    }
-    bool GetFinish() { 
-        return m_Finish; 
-    }
+    int GetCount()const { return max(_count - m_Delay, 0); }
+    float Get0to1Count()const { return m_0to1; }
+    bool GetStart()const { return m_In; }
+    bool GetFinish()const { return m_Finish; }
+    bool GetInFinist()const { return m_InFinish; }
 
-    bool GetInFinist()
-    {
-        return m_InFinish;
-    }
+    // Component を介して継承されました
+    virtual void Init() override;
+    virtual void Uninit() override;
+    virtual void Update() override;
+    virtual void Draw() override;
+    virtual void DrawImgui() override;
 };
 
