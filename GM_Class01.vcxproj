@@ -34,11 +34,14 @@
     <ClCompile Include="collision_component_enemy.cpp" />
     <ClCompile Include="collision_component_player.cpp" />
     <ClCompile Include="CO_MeshField.cpp" />
+    <ClCompile Include="CO_Stand.cpp" />
+    <ClCompile Include="CO_UI_Default.cpp" />
     <ClCompile Include="cube2d.cpp" />
     <ClCompile Include="cylinder.cpp" />
     <ClCompile Include="debug_scene.cpp" />
     <ClCompile Include="defeat_scene.cpp" />
     <ClCompile Include="gravity_component.cpp" />
+    <ClCompile Include="ImGuiComponent_Enemy.cpp" />
     <ClCompile Include="jump_component.cpp" />
     <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp" />
     <ClCompile Include="model_draw_component.cpp" />
@@ -91,6 +94,7 @@
     <ClCompile Include="shoot_bullet_component.cpp" />
     <ClCompile Include="shoot_bullet_idle.cpp" />
     <ClCompile Include="shoot_bullet_shoot.cpp" />
+    <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="stage_limit_component.cpp" />
     <ClCompile Include="stage_corridor.cpp" />
     <ClCompile Include="stage_corridor_corner.cpp" />
@@ -110,6 +114,7 @@
     <ClCompile Include="vertexShader.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="stage_limit_delete_component.cpp" />
+    <ClCompile Include="vertex_change_to_game_component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation_model.h" />
@@ -166,6 +171,8 @@
     <ClInclude Include="debug_scene.h" />
     <ClInclude Include="defeat_scene.h" />
     <ClInclude Include="factory.h" />
+    <ClInclude Include="GameObject_Invoke.h" />
+    <ClInclude Include="ImGuiComponent_Enemy.h" />
     <ClInclude Include="player_factory.h" />
     <ClInclude Include="rendering_texture.h" />
     <ClInclude Include="enemy_generate.h" />
@@ -193,6 +200,7 @@
     <ClInclude Include="random_velocity_component.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="shoot_bullet_component.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="stage_limit_component.h" />
     <ClInclude Include="stage_limit_reflect_component.h" />
     <ClInclude Include="switching_renderer.h" />

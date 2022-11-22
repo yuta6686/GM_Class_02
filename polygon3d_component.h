@@ -1,4 +1,11 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  Polygon3DComponent [polygon3d_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/11/22
+ * ------------------------summary--------------------------
+ * @brief  3Dƒ|ƒŠƒSƒ“’¸“_•ÏŒ`
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "resource_manager.h"
 #include "texture.h"

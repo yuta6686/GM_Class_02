@@ -396,6 +396,21 @@
     <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp">
       <Filter>GameObject\Component\UI\3D</Filter>
     </ClCompile>
+    <ClCompile Include="vertex_change_to_game_component.cpp">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_Stand.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Default.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiComponent_Enemy.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -856,6 +871,15 @@
     </ClInclude>
     <ClInclude Include="extend_fanction.h">
       <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject_Invoke.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiComponent_Enemy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
