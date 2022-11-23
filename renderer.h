@@ -80,6 +80,7 @@ private:
 	inline static ComPtr<ID3D11Texture2D> _pTexture;
 	inline static ComPtr<ID3D11Texture2D> _pTextureX;
 	inline static ComPtr<ID3D11Texture2D> _pTextureY;
+	inline static ComPtr<ID3D11Texture2D> _pTextureDraw;
 
 	// サンプラー
 	inline static ID3D11SamplerState* _pDefaultSampler = nullptr;
@@ -90,10 +91,17 @@ private:
 	static ID3D11DepthStencilView* m_DepthStencilView;
 
 	// オフスク用 RTV
-	inline static ID3D11RenderTargetView* _pRenderingTextureRTV  = nullptr	;	
+	inline static ID3D11RenderTargetView* _pRenderingTextureRTV = nullptr;
+	inline static ID3D11RenderTargetView* _blurXRTV = nullptr;
+	inline static ID3D11RenderTargetView* _blurYRTV = nullptr;
+	inline static ID3D11RenderTargetView* _DrawCopyRTV = nullptr;
 
 	// オフスク用 SRV
 	inline static ID3D11ShaderResourceView* _pRenderingTextureSRV = nullptr;
+	inline static ID3D11ShaderResourceView* _blurXSRV = nullptr;
+	inline static ID3D11ShaderResourceView* _blurYSRV = nullptr;
+	inline static ID3D11ShaderResourceView* _DrawCopySRV = nullptr;
+
 
 	static ID3D11BlendState* m_BlendState;
 	static ID3D11BlendState* m_BlendStateATC;
@@ -110,6 +118,7 @@ private:
 	static std::vector<ID3D11Buffer*>			m_LightBuffer;
 	static ID3D11Buffer*			m_PointLightBuffer;
 	static ID3D11Buffer* m_MonochoromBuffer;
+	static ID3D11Buffer* _weightsBuffer;
 
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;
@@ -138,8 +147,12 @@ public:
 	/// - ShaderResourceViewの切り替えを行う
 	/// </summary>
 	static void BeginOfScr();
+	static void BeginBlurX();
+	static void BeginBlurY();
+	static void BeginCopyDraw();
 	static void EndDef();
 
+	static void SetDefaultConstantBuffer();
 
 	static void SetAlphaToCoverage(bool Enable);
 	static void SetAddBlend(bool Enable);
@@ -162,6 +175,9 @@ public:
 	/// Draw時、テクスチャに読み込んだSRVを設定するのと同じイメージ
 	/// </summary>	
 	static void SetRenderTexture(bool isdefault);
+	static void SetBlurXTexture();
+	static void SetBlurYTexture();
+	static void SetCopyTexture();
 
 	static ID3D11Device* GetDevice( void ){ return m_Device; }
 	static ID3D11DeviceContext* GetDeviceContext( void ){ return m_DeviceContext; }
@@ -179,4 +195,6 @@ public:
 	static void imguiDraw();
 	static ImVec4 GetWindowColor() { return window_color; }
 #endif // _DEBUG
+
+	static void CalcWeightsTableFromGaussian(float* weightsTbl, int sizeOfWeightsTbl, float sigma);
 };

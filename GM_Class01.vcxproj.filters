@@ -315,9 +315,6 @@
     <ClCompile Include="animation_model.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="rendering_texture.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="polygon3d_component.cpp">
       <Filter>GameObject\Component\UI\3D</Filter>
     </ClCompile>
@@ -449,6 +446,9 @@
     </ClCompile>
     <ClCompile Include="velocity_component.cpp">
       <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering_texture.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -962,6 +962,15 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="rendering_texture_ps.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="post_effect_blur_x_vs.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="post_effect_blur_ps.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="post_effect_blur_y_vs.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

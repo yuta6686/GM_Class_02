@@ -39,12 +39,25 @@ void ShaderComponent::Init()
 		m_PixelShader =
 			ResourceManger<PixelShader>::GetResource("testPS.cso");
 		break;
+	case SHADER_BLURX:
+		m_VertexShader =
+			ResourceManger<VertexShader>::GetResource(VertexShader::BLURX_VS.c_str());
+		m_PixelShader =
+			ResourceManger<PixelShader>::GetResource(PixelShader::BLUR_PS.c_str());
+		break;
+	case SHADER_BLURY:
+		m_VertexShader =
+			ResourceManger<VertexShader>::GetResource(VertexShader::BLURY_VS.c_str());
+		m_PixelShader =
+			ResourceManger<PixelShader>::GetResource(PixelShader::BLUR_PS.c_str());
+		break;
 	case SHADER_RENDERING_TEXTURE:
 		m_VertexShader =
 			ResourceManger<VertexShader>::GetResource(VertexShader::RENDERING_TEXTURE_VS.c_str());
 		m_PixelShader =
 			ResourceManger<PixelShader>::GetResource(PixelShader::RENDERING_TEXTURE_PS.c_str());
 		break;
+		
 	default:
 		break;
 	}

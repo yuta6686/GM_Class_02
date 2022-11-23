@@ -21,6 +21,7 @@ ID3D11Buffer* Renderer::m_MaterialBuffer = NULL;
 std::vector<ID3D11Buffer*>			Renderer::m_LightBuffer(m_LightNum);
 ID3D11Buffer* Renderer::m_PointLightBuffer = NULL;
 ID3D11Buffer* Renderer::m_MonochoromBuffer = NULL;
+ID3D11Buffer* Renderer::_weightsBuffer = NULL;
 
 ID3D11DepthStencilState* Renderer::m_DepthStateEnable = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateDisable = NULL;
@@ -53,7 +54,7 @@ void Renderer::Init()
 	swapChainDesc.OutputWindow = GetWindow();
 	swapChainDesc.SampleDesc.Count = 1;
 	swapChainDesc.SampleDesc.Quality = 0;
-	swapChainDesc.Windowed = TRUE;	
+	swapChainDesc.Windowed = TRUE;
 
 	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 #if defined(_DEBUG)
@@ -88,15 +89,16 @@ void Renderer::Init()
 	rtDesc.SampleDesc.Count = 1;
 	rtDesc.Usage = D3D11_USAGE_DEFAULT;
 	rtDesc.ArraySize = 1;
-	rtDesc.BindFlags = 
+	rtDesc.BindFlags =
 		D3D11_BIND_RENDER_TARGET |
 		D3D11_BIND_SHADER_RESOURCE |
 		D3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS;
-	rtDesc.CPUAccessFlags = 0;	
-	
-	m_Device->CreateTexture2D(&rtDesc, 0, &_pTexture);
+	rtDesc.CPUAccessFlags = 0;
 
-	
+	m_Device->CreateTexture2D(&rtDesc, 0, &_pTexture);
+	m_Device->CreateTexture2D(&rtDesc, 0, &_pTextureDraw);
+
+
 
 	// ダウンサンプリング用
 	rtDesc.Width = static_cast<UINT>(SCREEN_WIDTH / 2.0f);
@@ -113,21 +115,43 @@ void Renderer::Init()
 	srvDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
 	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MostDetailedMip = 0;
-	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;	
+	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;
 	hr = m_Device->CreateShaderResourceView(_pTexture.Get(), &srvDesc, &_pRenderingTextureSRV);
 	if (hr) {
 		assert(_pRenderingTextureSRV);
+	}
+	hr = m_Device->CreateShaderResourceView(_pTextureDraw.Get(), &srvDesc, &_DrawCopySRV);
+	if (hr) {
+		assert(_DrawCopyRTV);
+	}
+
+	// ダウンサンプリング用
+	hr = m_Device->CreateShaderResourceView(_pTextureX.Get(), &srvDesc, &_blurXSRV);
+	if (hr) {
+		assert(_blurXSRV);
+	}
+
+	hr = m_Device->CreateShaderResourceView(_pTextureY.Get(), &srvDesc, &_blurYSRV);
+	if (hr) {
+		assert(_blurYSRV);
 	}
 	
 
 	// レンダーターゲットビュー作成 (デフォルト)
 	ID3D11Texture2D* renderTarget = NULL;
-	m_SwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&renderTarget );	
-	m_Device->CreateRenderTargetView(renderTarget, NULL, &m_RenderTargetView );	
+	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&renderTarget);
+	m_Device->CreateRenderTargetView(renderTarget, NULL, &m_RenderTargetView);
 	renderTarget->Release();
 
 	// RTV 作成 オフスク用
 	m_Device->CreateRenderTargetView(_pTexture.Get(), NULL, &_pRenderingTextureRTV);
+	m_Device->CreateRenderTargetView(_pTextureDraw.Get(), NULL, &_DrawCopyRTV);
+
+	
+	// ダウンサンプリング用
+	m_Device->CreateRenderTargetView(_pTextureX.Get(), NULL, &_blurXRTV);
+	m_Device->CreateRenderTargetView(_pTextureY.Get(), NULL, &_blurYRTV);
+	
 
 	// デプスステンシルバッファ作成
 	ID3D11Texture2D* depthStencile = NULL;
@@ -155,7 +179,7 @@ void Renderer::Init()
 
 	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
 	//m_DeviceContext->OMSetRenderTargets(2, rts, m_DepthStencilView);
-	
+
 
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
@@ -266,7 +290,7 @@ void Renderer::Init()
 
 	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
-	
+
 	m_Device->CreateBlendState(&blendDesc, &m_BlendStateADDATC);
 
 	m_DeviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
@@ -302,8 +326,8 @@ void Renderer::Init()
 	samplerDesc.MipLODBias = 0;
 	samplerDesc.MinLOD = 0;
 	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
-	
-	
+
+
 	m_Device->CreateSamplerState(&samplerDesc, &_pDefaultSampler);
 	m_DeviceContext->PSSetSamplers(0, 1, &_pDefaultSampler);
 
@@ -344,10 +368,21 @@ void Renderer::Init()
 	}
 
 	bufferDesc.ByteWidth = sizeof(VALIABLE);
-	
+
 	m_Device->CreateBuffer(&bufferDesc, NULL, &m_MonochoromBuffer);
 	m_DeviceContext->VSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
 	m_DeviceContext->PSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
+
+	const int NUM_WEIGHTS = 8;
+	float weights[NUM_WEIGHTS];
+
+	CalcWeightsTableFromGaussian(weights,
+		NUM_WEIGHTS, 8.0f);
+
+	bufferDesc.ByteWidth = sizeof(weights);
+	m_Device->CreateBuffer(&bufferDesc, NULL, &_weightsBuffer);
+	m_DeviceContext->PSSetConstantBuffers(6, 1, &_weightsBuffer);
+	m_DeviceContext->UpdateSubresource(_weightsBuffer, 0, NULL, &weights, 0, 0);
 
 	VALIABLE a;
 	a.MonochoromeRate = 0.0f;
@@ -355,6 +390,9 @@ void Renderer::Init()
 	a.pad3 = 1.0f;
 	a.pad3 = 1.0f;
 	m_DeviceContext->UpdateSubresource(m_MonochoromBuffer, 0, NULL, &a, 0, 0);
+
+
+
 
 	//bufferDesc.ByteWidth = sizeof(POINT_LIGHT);
 
@@ -392,7 +430,7 @@ void Renderer::Init()
 	MATERIAL material{};
 	material.Diffuse = D3DXCOLOR(0.5f, 0.5f, 0.5f, 0.0f);
 	material.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 0.2f);
-	material.Emission = D3DXCOLOR(0, 0, 0, 0);	
+	material.Emission = D3DXCOLOR(0, 0, 0, 0);
 	SetMaterial(material);
 
 }
@@ -426,7 +464,7 @@ void Renderer::Uninit()
 
 	// defefferd
 	_pRenderingTextureRTV->Release();
-	
+
 	//_colorRenderTex->Release();
 	_pRenderingTextureSRV->Release();
 	_pRenderTextureSampler->Release();
@@ -442,13 +480,13 @@ void Renderer::Uninit()
 
 //	
 void Renderer::Begin()
-{	
+{
 
 	m_DeviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	m_DeviceContext->ClearRenderTargetView(m_RenderTargetView, clearColor);
 	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-		
+
 	_isRenderTexture = false;
 }
 
@@ -466,14 +504,53 @@ void Renderer::BeginOfScr()
 
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	m_DeviceContext->ClearRenderTargetView(_pRenderingTextureRTV, clearColor);
-	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);	
+	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
 	_isRenderTexture = true;
 }
 
+void Renderer::BeginBlurX()
+{
+	m_DeviceContext->OMSetRenderTargets(1, &_blurXRTV, m_DepthStencilView);
+	float clearColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	m_DeviceContext->ClearRenderTargetView(_blurXRTV, clearColor);
+	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+void Renderer::BeginBlurY()
+{
+	m_DeviceContext->OMSetRenderTargets(1, &_blurYRTV, m_DepthStencilView);
+	float clearColor[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
+	m_DeviceContext->ClearRenderTargetView(_blurYRTV, clearColor);
+	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+void Renderer::BeginCopyDraw()
+{
+	m_DeviceContext->OMSetRenderTargets(1, &_DrawCopyRTV, m_DepthStencilView);
+	float clearColor[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
+	m_DeviceContext->ClearRenderTargetView(_DrawCopyRTV, clearColor);
+	m_DeviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+
 void Renderer::EndDef()
 {
 	// m_SwapChain->Present(1, 0);	
+}
+
+void Renderer::SetDefaultConstantBuffer()
+{
+	m_DeviceContext->VSSetConstantBuffers(0, 1, &m_WorldBuffer);
+	m_DeviceContext->VSSetConstantBuffers(1, 1, &m_ViewBuffer);
+	m_DeviceContext->VSSetConstantBuffers(2, 1, &m_ProjectionBuffer);
+	m_DeviceContext->VSSetConstantBuffers(3, 1, &m_MaterialBuffer);
+	for (int i = 0; i < m_LightNum; i++) {
+		m_DeviceContext->VSSetConstantBuffers(4, 1, &m_LightBuffer[i]);
+		m_DeviceContext->PSSetConstantBuffers(4, 1, &m_LightBuffer[i]);
+	}
+	m_DeviceContext->VSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
+	m_DeviceContext->PSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
 }
 
 
@@ -513,8 +590,23 @@ void Renderer::SetRenderTexture(bool isdefault)
 	{
 		m_DeviceContext->PSSetSamplers(0, 1, &_pRenderTextureSampler);
 		m_DeviceContext->VSSetShaderResources(0, 1, &_pRenderingTextureSRV);
-		m_DeviceContext->PSSetShaderResources(0, 1, &_pRenderingTextureSRV);		
-	}		
+		m_DeviceContext->PSSetShaderResources(0, 1, &_pRenderingTextureSRV);
+	}
+}
+
+void Renderer::SetBlurXTexture()
+{
+	m_DeviceContext->PSSetShaderResources(0, 1, &_blurXSRV);
+}
+
+void Renderer::SetBlurYTexture()
+{
+	m_DeviceContext->PSSetShaderResources(0, 1, &_blurYSRV);
+}
+
+void Renderer::SetCopyTexture()
+{
+	m_DeviceContext->PSSetShaderResources(0, 1, &_DrawCopySRV);
 }
 
 void Renderer::SetAlphaToCoverage(bool Enable)
@@ -548,7 +640,7 @@ void Renderer::SetDepthEnable(bool Enable)
 
 void Renderer::SetCullNone(bool Enable)
 {
-	if(Enable)		
+	if (Enable)
 		m_DeviceContext->RSSetState(m_RS_CullNone);
 	else
 		m_DeviceContext->RSSetState(m_RS_CullBack);
@@ -670,7 +762,7 @@ void Renderer::CreateVertexShader(ID3D11VertexShader** VertexShader, ID3D11Input
 		{ "NORMAL",   0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 4 * 3, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 4 * 6, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 4 * 10, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "TANGENT",  0, DXGI_FORMAT_R32G32B32_FLOAT,0,4*13,D3D11_INPUT_PER_VERTEX_DATA,0 },
+		{ "TANGENT",  0, DXGI_FORMAT_R32G32B32_FLOAT,0,4 * 13,D3D11_INPUT_PER_VERTEX_DATA,0 },
 		{ "BINORMAL",  0, DXGI_FORMAT_R32G32B32_FLOAT,0,4 * 16,D3D11_INPUT_PER_VERTEX_DATA,0 },
 	};
 	UINT numElements = ARRAYSIZE(layout);
@@ -763,4 +855,32 @@ void Renderer::imguiDraw()
 
 
 }
+
+
 #endif // _DEBUG
+
+// <summary>
+/// ガウシアン関数を利用して重みテーブルを計算する
+/// </summary>
+/// <param name="weightsTbl">重みテーブルの記録先</param>
+/// <param name="sizeOfWeightsTbl">重みテーブルのサイズ</param>
+/// <param name="sigma">分散具合。この数値が大きくなると分散具合が強くなる</param>
+void Renderer::CalcWeightsTableFromGaussian(float* weightsTbl, int sizeOfWeightsTbl, float sigma)
+{
+	// 重みの合計を記録する変数を定義する
+	float total = 0;
+
+	// ここからガウス関数を用いて重みを計算している
+	// ループ変数のxが基準テクセルからの距離
+	for (int x = 0; x < sizeOfWeightsTbl; x++)
+	{
+		weightsTbl[x] = expf(-0.5f * (float)(x * x) / sigma);
+		total += 2.0f * weightsTbl[x];
+	}
+
+	// 重みの合計で除算することで、重みの合計を1にしている
+	for (int i = 0; i < sizeOfWeightsTbl; i++)
+	{
+		weightsTbl[i] /= total;
+	}
+}

@@ -59,6 +59,11 @@ cbuffer Valiable : register(b5)
     float pad3;
 }
 
+cbuffer CBBlur : register(b6)
+{
+    float4 weight[2];
+}
+
 
 //struct LIGHT
 //{
@@ -110,6 +115,18 @@ struct VS_IN
     float3 biNormal     : BINORMAL;
 };
 
+struct PS_BlurIN
+{
+    float4 pos : SV_POSITION;
+    float4 tex0 : TEXCOORD0;
+    float4 tex1 : TEXCOORD1;
+    float4 tex2 : TEXCOORD2;
+    float4 tex3 : TEXCOORD3;
+    float4 tex4 : TEXCOORD4;
+    float4 tex5 : TEXCOORD5;
+    float4 tex6 : TEXCOORD6;
+    float4 tex7 : TEXCOORD7;
+};
 
 struct PS_IN
 {
