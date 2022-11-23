@@ -85,7 +85,7 @@ void Renderer::Init()
 	rtDesc.MipLevels = 1;
 	rtDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	// rtDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-	rtDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+	//rtDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
 	rtDesc.SampleDesc.Count = 1;
 	rtDesc.Usage = D3D11_USAGE_DEFAULT;
 	rtDesc.ArraySize = 1;
@@ -112,7 +112,7 @@ void Renderer::Init()
 	ZeroMemory(&srvDesc, sizeof(srvDesc));
 	srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	//srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-	srvDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+	//srvDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
 	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MostDetailedMip = 0;
 	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;
@@ -464,10 +464,18 @@ void Renderer::Uninit()
 
 	// defefferd
 	_pRenderingTextureRTV->Release();
+	_blurXRTV->Release();
+	_blurYRTV->Release();
+	_DrawCopyRTV->Release();
 
 	//_colorRenderTex->Release();
 	_pRenderingTextureSRV->Release();
+	_blurXSRV->Release();
+	_blurYSRV->Release();
+	_DrawCopySRV->Release();
+
 	_pRenderTextureSampler->Release();
+	_pDefaultSampler->Release();
 
 
 	m_SwapChain->Release();
