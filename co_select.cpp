@@ -1,6 +1,59 @@
 #include "co_select.h"
+#include "co_ui_select.h"
+#include "audio.h"
 
- void CO_Select::Update()
+CO_Select::CO_Select()
+    :m_UISelects({ nullptr }),
+    m_UISelects_Box({ nullptr }),
+    m_UISelects_String({ nullptr }),
+    m_SelectIndex(0),
+    m_Select(SELECT_NO),
+    m_NowFileName_true(CO_UI_Select::GetFileName_SelectTrue()),
+    m_NowFileName_false(CO_UI_Select::GetFileName_SelectFalse()),
+    m_SESelect(nullptr),
+    m_SEKettei(nullptr),
+    m_TrueColor({ 1.0f,0.0f,0.0f,1.0f }),
+    m_IsBlue(false)
+{
+}
+
+void CO_Select::Init()
+{
+    _scene = Manager::GetScene();
+
+    m_UISelects = _scene->GetGameObjects<CO_UI_Select>();
+
+    //  ボックスUI と 文字UI に わける
+    //  挙動が少し違うため。
+    for (auto x : m_UISelects)
+    {
+        if (x->GetIsString()) {
+            m_UISelects_String.push_back(x);
+        }
+        else {
+            m_UISelects_Box.push_back(x);
+        }
+
+        //  位置をデフォルトfalseで設定
+        x->PositionAdaptation(false);
+    }
+
+
+    m_SelectIndex = 0;
+
+    
+    
+
+    m_SESelect = _scene->AddGameObject<Audio>(LAYER_AUDIO);
+    m_SESelect->Load("asset\\audio\\SE_Scroll.wav");
+
+    m_SEKettei = _scene->AddGameObject<Audio>(LAYER_AUDIO);
+    m_SEKettei->Load("asset\\audio\\SE_Kettei2.wav");
+
+    ComponentObject::Init();
+}
+
+void CO_Select::Update()
 {
 
     //  Select-->True
@@ -39,6 +92,9 @@
         m_SESelect->Play(false);
     }
 
+
+
+
     if (GetKeyboardTrigger(DIK_S) ||
         GetKeyboardTrigger(DIK_DOWN))
     {
@@ -75,4 +131,18 @@
     }
 
     ComponentObject::Update();
+}
+
+void CO_Select::SetBlue(bool flag)
+{
+    m_IsBlue = flag;
+    m_TrueColor = { 0.0f,0.25f,0.65f,1.0f };
+
+    m_NowFileName_true = CO_UI_Select::GetFileName_SelectTrue_Blue();
+    m_NowFileName_false = CO_UI_Select::GetFileName_SelectFalse_Blue();
+
+    for (auto x : m_UISelects_Box)
+    {
+        x->GetComponent<UserInterfaceComponent>()->LoadTexture(m_NowFileName_false);
+    }
 }

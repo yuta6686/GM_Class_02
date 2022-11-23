@@ -102,21 +102,6 @@ public:
         Init();
     }
 
-    UI_Information GetUIInfo()
-    {
-        UI_Information uiinfo;
-        uiinfo._color = m_Color;
-        uiinfo._deploy_index = m_DeployIndex;
-        uiinfo._down_pos = m_DownXPosition;
-        uiinfo._is_change_vertex = m_IsChangeVertex;
-        uiinfo._left_pos = m_LeftXPosition;
-        uiinfo._main_pos = m_mainPos;
-        uiinfo._right_pos = m_RightXPosition;
-        uiinfo._texture = m_TextureName;
-        uiinfo._up_pos = m_UpXPosition;
-
-        return uiinfo;
-    }
     void SetRightXPosition(const float& pos) { m_RightXPosition = pos; }
     void SetLeftXPosition(const float& pos) { m_LeftXPosition = pos; }
     void SetUpXPosition(const float& pos) { m_UpXPosition = pos; }

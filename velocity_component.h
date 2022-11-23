@@ -1,4 +1,12 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  [velocity_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/8/9
+ * ------------------------summary--------------------------
+ * @brief  このコンポーネントを取得して、動く処理を行う
+ * Position に Velocityを加算していく
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "gameObject.h"
 

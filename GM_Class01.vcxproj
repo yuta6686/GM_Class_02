@@ -39,7 +39,14 @@
     <ClCompile Include="CO_MeshField.cpp" />
     <ClCompile Include="co_select.cpp" />
     <ClCompile Include="CO_Stand.cpp" />
+    <ClCompile Include="CO_UI_AimLing.cpp" />
     <ClCompile Include="CO_UI_Default.cpp" />
+    <ClCompile Include="CO_UI_dot.cpp" />
+    <ClCompile Include="CO_UI_Line.cpp" />
+    <ClCompile Include="co_ui_player_hp_gauge.cpp" />
+    <ClCompile Include="CO_UI_Quest.cpp" />
+    <ClCompile Include="CO_UI_Quest_Belt.cpp" />
+    <ClCompile Include="CO_UI_Quest_Purpose.cpp" />
     <ClCompile Include="cube2d.cpp" />
     <ClCompile Include="cylinder.cpp" />
     <ClCompile Include="debug_scene.cpp" />

@@ -2,7 +2,7 @@
 /** ---------------------------------------------------------
  *  ConfirmationComponent [confirmation_component.h]
  *                                 @author: yanagisaya.yuta
- *                                 @date  : 2022/11/22
+ *                                 @date  : 2022/8/8
  * ------------------------summary--------------------------
  * @brief  確認メッセージボックスをUIに出す。
  *         IsYes()でYes or Noを取得

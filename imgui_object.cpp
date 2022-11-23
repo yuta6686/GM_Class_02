@@ -19,6 +19,7 @@
 #include "co_ui_quest.h"
 #include "co_enemy_wave.h"
 #include "co_ui_tutorial_move.h"
+#include "rotate2d_component.h"
 
 void ImGuiObject::Init()
 {
