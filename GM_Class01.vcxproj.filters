@@ -231,9 +231,6 @@
     <ClCompile Include="imgui_component.cpp">
       <Filter>GameObject\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="blink_component.cpp">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClCompile>
     <ClCompile Include="model_variable.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
@@ -324,7 +321,7 @@
     <ClCompile Include="polygon3d_component.cpp">
       <Filter>GameObject\Component\UI\3D</Filter>
     </ClCompile>
-    <ClCompile Include="CO_MeshField.cpp">
+    <ClCompile Include="co_mesh_field.cpp">
       <Filter>GameObject\ComponentObject\3D</Filter>
     </ClCompile>
     <ClCompile Include="debug_scene.cpp">
@@ -354,41 +351,14 @@
     <ClCompile Include="collision_component_player.cpp">
       <Filter>GameObject\Component\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="collision_component_bullet.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="collision_component_enemy.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="animation_model_component.cpp">
       <Filter>GameObject\Component\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="model_draw_component.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="blink_scale_component.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="jump_component.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="gravity_component.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="random_jump_component.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="random_velocity_component.cpp">
-      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="stage_limit_delete_component.cpp">
       <Filter>GameObject\Component\Function</Filter>
     </ClCompile>
     <ClCompile Include="TrackingComponent.cpp">
       <Filter>GameObject\Component\Function</Filter>
-    </ClCompile>
-    <ClCompile Include="shoot_bullet_component.cpp">
-      <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="blink_alpha2d_component.cpp">
       <Filter>GameObject\Component\UI\2D</Filter>
@@ -411,17 +381,8 @@
     <ClCompile Include="Singleton.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="vertex_changer_color_component.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="confirmation_component.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="count_component.cpp">
       <Filter>GameObject\Component\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="velocity_component.cpp">
-      <Filter>GameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="co_confirmation.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
@@ -429,26 +390,65 @@
     <ClCompile Include="co_select.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClCompile>
-    <ClCompile Include="CO_UI_AimLing.cpp">
+    <ClCompile Include="co_ui_aimling.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClCompile>
-    <ClCompile Include="CO_UI_dot.cpp">
+    <ClCompile Include="co_ui_dot.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClCompile>
-    <ClCompile Include="CO_UI_Line.cpp">
+    <ClCompile Include="co_ui_line.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClCompile>
     <ClCompile Include="co_ui_player_hp_gauge.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClCompile>
-    <ClCompile Include="CO_UI_Quest.cpp">
+    <ClCompile Include="co_ui_quest.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClCompile>
-    <ClCompile Include="CO_UI_Quest_Belt.cpp">
+    <ClCompile Include="co_ui_quest_belt.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
     </ClCompile>
-    <ClCompile Include="CO_UI_Quest_Purpose.cpp">
+    <ClCompile Include="co_ui_quest_purpose.cpp">
       <Filter>GameObject\ComponentObject\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="blink_scale_component.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="collision_component_bullet.cpp">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="collision_component_enemy.cpp">
+      <Filter>GameObject\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="confirmation_component.cpp">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="blink_component.cpp">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="gravity_component.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="jump_component.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="random_jump_component.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="random_velocity_component.cpp">
+      <Filter>GameObject\Component\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="model_draw_component.cpp">
+      <Filter>GameObject\Component\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="vertex_changer_color_component.cpp">
+      <Filter>GameObject\Component\UI\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="shoot_bullet_component.cpp">
+      <Filter>GameObject\Component\Special</Filter>
+    </ClCompile>
+    <ClCompile Include="velocity_component.cpp">
+      <Filter>GameObject\Component\Function</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -599,9 +599,6 @@
     <ClInclude Include="imgui_component.h">
       <Filter>GameObject\Component\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="blink_component.h">
-      <Filter>GameObject\Component\UI</Filter>
-    </ClInclude>
     <ClInclude Include="model_variable.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
@@ -610,9 +607,6 @@
     </ClInclude>
     <ClInclude Include="collision_component_bullet.h">
       <Filter>GameObject\Component\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="confirmation_component.h">
-      <Filter>GameObject\Component\UI</Filter>
     </ClInclude>
     <ClInclude Include="tracking_component.h">
       <Filter>GameObject\Component\Function</Filter>
@@ -736,9 +730,6 @@
     </ClInclude>
     <ClInclude Include="co_ui_quest_purpose.h">
       <Filter>GameObject\ComponentObject\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="velocity_component.h">
-      <Filter>GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="co_bow.h">
       <Filter>GameObject\ComponentObject\3D</Filter>
@@ -919,6 +910,15 @@
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="confirmation_component.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="blink_component.h">
+      <Filter>GameObject\Component\UI\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="velocity_component.h">
+      <Filter>GameObject\Component\Function</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
