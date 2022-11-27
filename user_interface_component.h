@@ -8,7 +8,7 @@
  * todo ƒCƒ“ƒ‰ƒCƒ“ŠÖ”®—
  ** ---------------------------------------------------------*/
 #include "component.h"
-#include "resource_manager.h"
+
 #include "texture.h"
 
 enum TEXTURE_DEPLOY {

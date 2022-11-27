@@ -6,7 +6,6 @@
  * ------------------------summary--------------------------
  * @brief  
  ** ---------------------------------------------------------*/
-#include "main.h"
 #include "component.h"
 #include "particle_object.h"
 class BulletComponent :

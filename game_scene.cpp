@@ -7,6 +7,7 @@
 //	- ステージ1
 //	- シーンを継承
 //  ---------------------------------------------------------
+#include "stdafx.h"
 #include "game_scene.h"
 #include "camera.h"
 #include "player.h"
@@ -14,10 +15,10 @@
 #include "light.h" 
 #include "ao_sphere.h"
 #include "bullet.h"
-#include "resource_manager.h"
+
 #include "stage_include.h"
 #include "enemy_factory.h"
-#include "manager.h"
+
 #include "result_scene.h"
 #include "audio.h"
 #include "cylinder.h"

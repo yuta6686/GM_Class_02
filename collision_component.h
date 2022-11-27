@@ -7,7 +7,7 @@
 //  - コリジョンコンポーネント
 //  ---------------------------------------------------------
 #include "component.h"
-#include "manager.h"
+
 
 class CollisionComponent :
     public Component

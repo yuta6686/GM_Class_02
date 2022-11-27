@@ -7,9 +7,9 @@
 #include "renderer.h"
 #include "field.h"
 #include "texture.h"
-#include "resource_manager.h"
+
 #include "scene.h"
-#include "manager.h"
+
 #include "camera.h"
 #include "vertex_initialize.h"
 

@@ -1,5 +1,4 @@
 #pragma once
-#include "main.h"
 #include "gameobject.h"
 
 class Camera : public GameObject

@@ -1,7 +1,7 @@
 #include "collision.h"
 #include "cube2d.h"
 #include "scene.h"
-#include "manager.h"
+
 
 
 

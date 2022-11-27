@@ -1,5 +1,5 @@
 #include "defeat_scene.h"
-#include "manager.h"
+
 #include "title_scene.h"
 #include "transition.h"
 #include "result_polygon.h"

@@ -3,7 +3,7 @@
 #include "model_variable.h"
 #include "model.h"
 #include "resource.h"
-#include "resource_manager.h"
+
 #include "blink_component.h"
 #include <fstream>
 #include <iostream>

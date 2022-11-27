@@ -1,7 +1,7 @@
 #pragma once
 #include "component_object.h"
 #include "enemy.h"
-#include "manager.h"
+
 #include "cylinder.h"
 #include "audio.h"
 

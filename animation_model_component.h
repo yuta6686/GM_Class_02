@@ -8,7 +8,7 @@
  * 
  ** ---------------------------------------------------------*/
 #include "component.h"
-#include "resource_manager.h"
+
 
 class AnimationModel;
 class AnimationModelComponent :

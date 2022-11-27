@@ -1,6 +1,6 @@
 #include "light.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "renderer.h"
 #include "game_scene.h"
 #include "player.h"

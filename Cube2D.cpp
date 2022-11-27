@@ -1,7 +1,7 @@
 #include "cube2d.h"
-#include "resource_manager.h"
+
 #include "scene.h"
-#include "manager.h"
+
 #include "collision.h"
 
 #define FRICTION				(0.5f)					// –€ŽC

@@ -1,5 +1,5 @@
 #pragma once
-#include "main.h"
+
 #include"gameObject.h"
 #include "texture.h"
 class Polygon2D:public GameObject

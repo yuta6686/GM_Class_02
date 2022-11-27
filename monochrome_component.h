@@ -7,7 +7,7 @@
  * @brief  左クリック押下中、画面全体モノクロ化
  ** ---------------------------------------------------------*/
 #include "component.h"
-#include "manager.h"
+
 #include "gameObject.h"
 
 class Enemy;

@@ -1,8 +1,7 @@
-#include "main.h"
 #include "renderer.h"
 #include "camera.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "player.h"
 
 #define	VALUE_ROTATE_CAMERA	(D3DX_PI * 0.01f)				// ƒJƒƒ‰‚Ì‰ñ“]—Ê

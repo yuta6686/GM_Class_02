@@ -2,7 +2,7 @@
 #include "component_object.h"
 #include "CO_UI_Tutorial.h"
 
-#include "manager.h"
+
 class CO_UI_Tutorial_Move2 :
     public ComponentObject
 {

@@ -7,7 +7,7 @@
 //  - Model•`‰æ—p
 //  ---------------------------------------------------------
 #include "component.h"
-#include "main.h"
+
 class Model;
 class Model_variable;
 class ModelDrawComponent :

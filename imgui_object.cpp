@@ -6,7 +6,7 @@
 //  -ImGui‚Ì“Š‡ˆ—
 //  ---------------------------------------------------------
 #include "imgui_object.h"
-#include "manager.h"
+
 #include "game_scene.h"
 #include "player.h"	
 #include "enemy.h"

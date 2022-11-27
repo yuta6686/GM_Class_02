@@ -1,8 +1,7 @@
-#include "main.h"
 #include "renderer.h"
 #include "field.h"
 #include "texture.h"
-#include "resource_manager.h"
+
 
 void Field::Init()
 {

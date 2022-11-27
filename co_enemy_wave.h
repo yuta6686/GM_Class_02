@@ -5,7 +5,7 @@
 #include "co_ui_quest.h"
 #include "co_ui_quest_purpose.h"
 #include "co_ui_quest_belt.h"
-#include "manager.h"
+
 
 
 class CO_EnemyWave :

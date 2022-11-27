@@ -9,7 +9,7 @@
 
 #include "component.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "camera.h"
 
 class MatrixComponent :

@@ -1,9 +1,9 @@
-#include "main.h"
+
 #include "renderer.h"
 #include "model.h"
 #include "player.h"
 #include "bullet.h"
-#include "manager.h"
+
 #include "scene.h"
 #include "item.h"
 #include "audio.h"

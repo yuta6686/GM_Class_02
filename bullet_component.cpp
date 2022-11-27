@@ -1,6 +1,6 @@
 #include "bullet_component.h"
 #include "gameObject.h"
-#include "manager.h"
+
 
 void BulletComponent::Init()
 {

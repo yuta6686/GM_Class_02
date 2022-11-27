@@ -1,7 +1,7 @@
 #pragma once
 #include "component_object.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "camera.h"
 #include "model_variable.h"
 enum PARTICLE_MODEL_TYPE {

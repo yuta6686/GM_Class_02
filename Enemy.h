@@ -1,5 +1,4 @@
 #pragma once
-#include "main.h"
 #include "resource.h"
 #include "enemy_interface.h"
 #include "stage_limit_reflect_component.h"

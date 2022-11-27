@@ -1,5 +1,6 @@
 #include "game_scene3.h"
 
+#include "stdafx.h"
 #include "switching_renderer.h"
 #include "rendering_texture.h"
 #include "light.h"

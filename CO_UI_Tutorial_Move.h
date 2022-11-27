@@ -1,7 +1,7 @@
 #pragma once
 #include "component_object.h"
 #include "CO_UI_Tutorial.h"
-#include "manager.h"
+
 #include "co_ui_tutorial_move2.h"
 #include "particle_object_2d.h"
 

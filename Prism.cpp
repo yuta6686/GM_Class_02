@@ -1,5 +1,5 @@
 #include "prism.h"
-#include "resource_manager.h"
+
 #include "resource.h"
 #include "vertexShader.h"
 #include "pixelShader.h"

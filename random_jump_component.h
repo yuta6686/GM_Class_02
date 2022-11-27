@@ -8,7 +8,7 @@
  ** ---------------------------------------------------------*/
 
 #include "component.h"
-#include "main.h"
+
 
 class CountComponent;
 class VelocityComponent;

@@ -1,7 +1,7 @@
 #include "polygon2d.h"
 #include "renderer.h"
-#include "main.h"
-#include "resource_manager.h"
+
+
 
 void Polygon2D::Init()
 {

@@ -7,7 +7,7 @@
  * @brief  3Dƒ|ƒŠƒSƒ“’¸“_•ÏŒ`
  ** ---------------------------------------------------------*/
 #include "component.h"
-#include "resource_manager.h"
+
 #include "texture.h"
 class Polygon3DComponent :
     public Component

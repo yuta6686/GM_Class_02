@@ -1,8 +1,7 @@
 
-#include "main.h"
 #include "renderer.h"
 #include "scene.h"
-#include "manager.h"
+
 #include <io.h>
 #include <vector>
 
@@ -604,11 +603,13 @@ void Renderer::SetRenderTexture(bool isdefault)
 
 void Renderer::SetBlurXTexture()
 {
+	m_DeviceContext->VSSetShaderResources(0, 1, &_blurXSRV);
 	m_DeviceContext->PSSetShaderResources(0, 1, &_blurXSRV);
 }
 
 void Renderer::SetBlurYTexture()
 {
+	m_DeviceContext->VSSetShaderResources(0, 1, &_blurYSRV);
 	m_DeviceContext->PSSetShaderResources(0, 1, &_blurYSRV);
 }
 

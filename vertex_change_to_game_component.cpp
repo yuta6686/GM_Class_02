@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "vertex_change_to_game_component.h"
 #include "audio.h"
 #include "player.h"

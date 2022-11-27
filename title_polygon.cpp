@@ -1,5 +1,5 @@
 #include "title_polygon.h"
-#include "resource_manager.h"
+
 
 void TitlePolygon::Init()
 {

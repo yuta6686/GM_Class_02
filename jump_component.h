@@ -7,7 +7,7 @@
 //  ƒWƒƒƒ“ƒv
 //  ---------------------------------------------------------
 #include "component.h"
-#include "manager.h"
+
 
 class VelocityComponent;
 class JumpComponent :

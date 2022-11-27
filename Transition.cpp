@@ -6,9 +6,9 @@
 //  - フェード処理
 //  ---------------------------------------------------------
 #include "transition.h"
-#include "resource_manager.h"
+
 #include "audio.h"
-#include "manager.h"
+
 
 void Transition::Init()
 {

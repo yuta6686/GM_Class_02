@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "gravity_component.h"
 #include "player.h"
 

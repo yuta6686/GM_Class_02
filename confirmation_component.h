@@ -8,7 +8,7 @@
  *         IsYes()‚ÅYes or No‚ðŽæ“¾
  ** ---------------------------------------------------------*/
 #include "component.h"
-#include "manager.h"
+
 
 class ConfirmationComponent :
     public Component

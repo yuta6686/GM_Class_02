@@ -1,6 +1,5 @@
 #pragma once
 
-#include "main.h"
 #include "texture.h"
 #include "vertexShader.h"
 #include "pixelShader.h"

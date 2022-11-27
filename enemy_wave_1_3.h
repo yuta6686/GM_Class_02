@@ -1,6 +1,6 @@
 #pragma once
 #include "enemy_wave.h"
-#include "manager.h"
+
 
 
 class EnemyWave_1_3 :

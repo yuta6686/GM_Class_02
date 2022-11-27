@@ -8,7 +8,7 @@
 //  ---------------------------------------------------------
 #include "gameObject.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "co_3dpolygon_test.h"
 class CircleDeploy
 {

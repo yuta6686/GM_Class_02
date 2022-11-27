@@ -1,5 +1,5 @@
 #include "UI_Charge.h"
-#include "resource_manager.h"
+
 #include <cmath>
 
 void UI_Charge::Init()

@@ -1,5 +1,5 @@
 #include "user_interface.h"
-#include "resource_manager.h"
+
 
 void UserInterface::Init()
 {

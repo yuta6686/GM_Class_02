@@ -2,7 +2,7 @@
 #include "shoot_bullet_idle.h"
 #include "bullet.h"
 #include "game_scene.h"
-#include "manager.h"
+
 #include "player.h"
 #include "audio.h"
 #include "ui_charge.h"

@@ -7,7 +7,7 @@
 ///  * @brief  重力コンポーネント
 ///  ---------------------------------------------------------*/
 #include "component.h"
-#include "main.h"
+
 
 class VelocityComponent;
 class GravityComponent :

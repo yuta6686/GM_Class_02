@@ -1,8 +1,8 @@
 #pragma once
 #include "component_object.h"
 #include "shader_component.h"
-#include "resource_manager.h"
-#include "manager.h"
+
+
 
 class CO_MeshField :
     public ComponentObject

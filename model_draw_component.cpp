@@ -1,6 +1,6 @@
 #include "model_draw_component.h"
 #include "model.h"
-#include "resource_manager.h"
+
 
 void ModelDrawComponent::SetSourcePath(std::string path) {
     m_SourcePath = path;

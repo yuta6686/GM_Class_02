@@ -1,5 +1,5 @@
 #include "user_interface_animation.h"
-#include "resource_manager.h"
+
 
 void UserInterface_Animation::Init()
 {

@@ -1,5 +1,5 @@
 #include "result_polygon.h"
-#include "resource_manager.h"
+
 
 void ResultPolygon::Init()
 {

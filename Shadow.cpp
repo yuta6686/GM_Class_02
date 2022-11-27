@@ -1,5 +1,5 @@
 #include "shadow.h"
-#include "resource_manager.h"
+
 
 //	Šî–{Field‚Æ“¯‚¶
 

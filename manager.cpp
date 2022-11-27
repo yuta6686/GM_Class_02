@@ -1,5 +1,5 @@
-#include "main.h"
-#include "manager.h"
+
+
 #include "renderer.h"
 #include "game_scene.h"
 #include "title_scene.h"

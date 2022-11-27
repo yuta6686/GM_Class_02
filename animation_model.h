@@ -6,7 +6,6 @@
 #include "assimp/postprocess.h"
 #include "assimp/matrix4x4.h"
 
-#include "main.h"
 #include "renderer.h"
 #include "resource.h"
 

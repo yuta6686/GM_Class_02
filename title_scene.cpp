@@ -1,6 +1,6 @@
 #include "title_scene.h"
 #include "title_polygon.h"
-#include "manager.h"
+
 #include "game_scene.h"
 #include "camera.h"
 #include "transition.h"

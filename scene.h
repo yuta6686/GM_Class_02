@@ -1,13 +1,9 @@
 #pragma once
 
-#include <list>
-#include <vector>
-#include <typeinfo>
-#include <string>
+
 
 
 #include "resource_manager.h"
-#include "gameObject.h"
 #include "imgui_component.h"
 
 enum LAYER {
@@ -25,7 +21,6 @@ enum LAYER {
 	LAYER_PARTICLE,	
 	LAYER_NUM_MAX,
 };
-
 
 class Scene
 {

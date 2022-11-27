@@ -1,7 +1,7 @@
 #include "ui_score.h"
-#include "resource_manager.h"
+
 #include "scene.h"
-#include "manager.h"
+
 #include "game_scene.h"
 #include "camera.h"
 

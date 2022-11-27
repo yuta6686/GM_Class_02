@@ -1,12 +1,12 @@
-#include "main.h"
+
 #include "renderer.h"
 #include "model.h"
 #include "player.h"
 #include "bullet.h"
-#include "manager.h"
+
 #include "scene.h"
 #include "Item.h"
-#include "resource_manager.h"
+
 
 #define PLAYER_SPEED 0.25f
 

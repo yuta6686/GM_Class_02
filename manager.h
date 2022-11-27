@@ -1,6 +1,5 @@
 #pragma once
 #include "polygon2d.h"
-#include "scene.h"
 
 enum SCENE {
 	SCENE_TITLE = 0,

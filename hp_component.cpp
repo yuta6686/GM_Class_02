@@ -1,7 +1,8 @@
+#include "stdafx.h"
 #include "hp_component.h"
 #include "user_interface_component.h"
 #include "player.h"
-#include "manager.h"
+
 #include "co_ui_player_hp_gauge.h"
 
 HPComponent::HPComponent()

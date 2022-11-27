@@ -1,6 +1,6 @@
 #pragma once
 #include "gameObject.h"
-#include "manager.h"
+
 //  ---------------------------------------------------------
 //  Factory [factory.h]
 //                                  Author: Yanagisawa Yuta

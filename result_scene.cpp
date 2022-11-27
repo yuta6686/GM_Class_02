@@ -1,6 +1,6 @@
 #include "result_scene.h"
 #include "result_polygon.h"
-#include "manager.h"
+
 #include "title_scene.h"
 #include "transition.h"
 #include "co_ui_select.h"

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "ModelColorChangeComponent_Titlebg.h"
 #include "model_draw_component.h"
 #include "co_3dpolygon_test.h"

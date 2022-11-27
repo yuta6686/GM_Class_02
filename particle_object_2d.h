@@ -2,7 +2,7 @@
 #include "component_object.h"
 #include "particle_object.h"
 #include "texture.h"
-#include "resource_manager.h"
+
 #include "resource.h"
 enum PARTICLE_TEXTURE_TYPE_2D
 {    

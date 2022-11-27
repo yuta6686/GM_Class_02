@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------
 
 #include "shader_component.h"
-#include "resource_manager.h"
+
 
 void ShaderComponent::Init()
 {

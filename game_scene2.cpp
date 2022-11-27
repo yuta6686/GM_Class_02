@@ -1,6 +1,7 @@
 #include "game_scene2.h"
 
 
+#include "stdafx.h"
 #include "light.h"
 #include "field.h"
 #include "player.h"

@@ -1,4 +1,3 @@
-#include "main.h"
 #include "renderer.h"
 #include "polygon2d.h"
 #include "field.h"
@@ -6,7 +5,7 @@
 #include "input.h"
 #include "bullet.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "ao_Sphere.h"
 #include "player.h"
 

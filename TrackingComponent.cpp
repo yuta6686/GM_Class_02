@@ -1,5 +1,6 @@
+#include "stdafx.h"
 #include "tracking_component.h"
-#include "manager.h"
+
 #include "player.h"
 #include "velocity_component.h"
 

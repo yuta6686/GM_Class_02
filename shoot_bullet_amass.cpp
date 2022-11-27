@@ -4,7 +4,7 @@
 #include "player.h"
 
 #include "game_scene.h"
-#include "manager.h"
+
 
 void ShootBullet_Amass::Init()
 {

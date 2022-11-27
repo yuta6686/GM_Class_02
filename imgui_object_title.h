@@ -3,7 +3,7 @@
 #include "imgui_object.h"
 #include "player.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "vertex_changer_color_component.h"
 #include "co_3dpolygon_test.h"
 #include "co_title_background.h"

@@ -1,5 +1,5 @@
 #include "stage_wator_field.h"
-#include "resource_manager.h"
+
 
 void stage_wator_field::Init()
 {
