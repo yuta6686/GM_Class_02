@@ -1,5 +1,4 @@
 #pragma once
-#include "main.h"
 #include "component_object.h"
 #include "stage_limit_delete_component.h"
 #include "bullet_component.h"
