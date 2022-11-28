@@ -310,7 +310,7 @@ void CO_MeshField::Init()
     //テクスチャ読み込み
     // 通常テクスチャ1枚目
     D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-        "asset\\texture\\water.png",
+        "asset\\texture\\water.dds",
         NULL,
         NULL,
         &m_Texture,
@@ -320,7 +320,7 @@ void CO_MeshField::Init()
 
     // 通常テクスチャ2枚目
     D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-        "asset\\texture\\water1.png",
+        "asset\\texture\\water1.dds",
         NULL,
         NULL,
         &m_Texture2,

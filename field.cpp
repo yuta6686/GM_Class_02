@@ -48,7 +48,7 @@ void Field::Init()
 	//	NULL);
 
 	//assert(m_Texture);
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\water.png");
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\water.dds");
 
 	/*Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");

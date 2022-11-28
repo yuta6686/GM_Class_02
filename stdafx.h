@@ -6,6 +6,7 @@
 #include <list>
 #include <string>
 #include <map>
+#include <unordered_map>
 #include <time.h>
 #include <typeinfo>
 
@@ -18,3 +19,4 @@
 #include "component_object.h"
 #include "component.h"
 #include "renderer.h"
+

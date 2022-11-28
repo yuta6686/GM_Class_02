@@ -121,6 +121,7 @@ void Player::Update()
 
 void Player::Draw()
 {
+	Renderer::SetAlphaToCoverage(false);
 	if (GetComponent<HPComponent>()->GetIsDeath())return;
 	ComponentObject::Draw();
 }

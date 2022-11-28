@@ -3,9 +3,9 @@
 #include "audio.h"
 
 CO_Select::CO_Select()
-    :m_UISelects({ nullptr }),
-    m_UISelects_Box({ nullptr }),
-    m_UISelects_String({ nullptr }),
+    :m_UISelects({ }),
+    m_UISelects_Box({ }),
+    m_UISelects_String({ }),
     m_SelectIndex(0),
     m_Select(SELECT_NO),
     m_NowFileName_true(CO_UI_Select::GetFileName_SelectTrue()),

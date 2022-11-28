@@ -23,7 +23,7 @@ void Texture::Load(const char* FileName)
 		&m_Texture,
 		NULL);
 
-	assert(m_Texture);
+	assert(m_Texture);		
 }
 
 void Texture::Unload()

@@ -34,7 +34,7 @@ void Effect_explosion::Init()
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
 	//	テクスチャ読み込み
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\effect_explosion.png");
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\effect_explosion.dds");
 
 	//	シェーダ読み込み
 	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());

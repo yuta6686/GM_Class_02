@@ -17,13 +17,13 @@ private:
     class UserInterfaceComponent* m_UIComponent;
 
     const std::string m_MessageBox =
-        "asset\\texture\\message_box.png";
+        "asset\\texture\\message_box.dds";
 
     const std::string m_MessageBox_Yes = 
-        "asset\\texture\\message_box_Yes.png";
+        "asset\\texture\\message_box_Yes.dds";
 
     const std::string m_MessageBox_No =
-        "asset\\texture\\message_box_No.png";
+        "asset\\texture\\message_box_No.dds";
 
     bool m_IsYes = false;
 

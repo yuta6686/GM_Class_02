@@ -24,20 +24,38 @@ void Prism::Init()
 
 //テクスチャ読み込み
 	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+		"asset\\texture\\yellow\\js_diffuse.dds",
+		NULL,
+		NULL,
+		&_baseTexture,
+		NULL);
+
+	assert(_baseTexture);
+
+	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
+		"asset\\texture\\yellow\\js_normal.dds",
+		NULL,
+		NULL,
+		&_normalTexture,
+		NULL);
+
+	assert(_normalTexture);
+
+	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
 		_textureName.c_str(),
 		NULL,
 		NULL,
-		&_texture,
+		&_envTexture,
 		NULL);
 
-	assert(_texture);
+	assert(_envTexture);
 	
 // シェーダロード
 	_vertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
+		ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");
 
 	_pixelShader = 
-		ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+		ResourceManger<PixelShader>::GetResource("env_mapping_ps.cso");
 }
 
 void Prism::Uninit()
@@ -48,10 +66,10 @@ void Prism::Uninit()
 		_vertexBufferPrism = nullptr;
 	}
 
-	if (_texture)
+	if (_baseTexture)
 	{
-		_texture->Release();
-		_texture = nullptr;
+		_baseTexture->Release();
+		_baseTexture = nullptr;
 	}
 }
 
@@ -223,8 +241,10 @@ void Prism::Draw()
 	// テクスチャ設定
 	if (Renderer::_isRenderTexture) {
 		Renderer::SetRenderTexture(true);
-		Renderer::GetDeviceContext()->VSSetShaderResources(0, 1, &_texture);
-		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &_texture);
+		Renderer::GetDeviceContext()->VSSetShaderResources(0, 1, &_baseTexture);
+		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &_baseTexture);
+		Renderer::GetDeviceContext()->PSSetShaderResources(1, 1, &_normalTexture);
+		Renderer::GetDeviceContext()->PSSetShaderResources(2, 1, &_envTexture);
 	}
 	else
 	{

@@ -11,10 +11,13 @@
 #include "particle_object_2d.h"
 #include "audio.h"
 #include "switching_renderer.h"
+#include "co_bow.h"
 
 void DefeatScene::Init()
 {
 	AddGameObject<SwitchinRendererFactory>(LAYER_BEGIN);
+
+	AddGameObject<CO_Bow>(LAYER_3D);
 
 	AddGameObject<ResultPolygon>(LAYER_2D);
 	
@@ -42,7 +45,7 @@ void DefeatScene::Init()
 
 	UI_Information uii;
 	uii._deploy_index = DEPLOY_CENTER;
-	uii._texture = "asset\\texture\\GameOver.png";
+	uii._texture = "asset\\texture\\GameOver.dds";
 	uii._main_pos = { 200.0f ,50.0f,0.0f};
 
 	CO_UI_Default* ui2d = AddGameObject< CO_UI_Default>(LAYER_2D);

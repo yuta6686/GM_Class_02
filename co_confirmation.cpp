@@ -17,7 +17,7 @@
     AddComponent<MatrixComponent>(COMLAYER_MATRIX)->SetIs2D();
 
     UserInterfaceComponent* uic = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
-    uic->LoadTexture("asset\\texture\\message_box.png");
+    uic->LoadTexture("asset\\texture\\message_box.dds");
     D3DXVECTOR3 widthheight = { 960.0f,540.0f ,0.0f };
     uic->SetWidthHeight(widthheight / 3.0f);
 

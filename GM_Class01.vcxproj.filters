@@ -979,6 +979,12 @@
     <FxCompile Include="post_effect_blur_y_vs.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
+    <FxCompile Include="env_mapping_vs.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="env_mapping_ps.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="imgui\misc\debuggers\imgui.natvis">

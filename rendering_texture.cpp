@@ -119,7 +119,8 @@ void RenderingTexture::Draw()
 		Renderer::SetCopyTexture();		
 		break;
 	case LAYER_COPY:
-		Renderer::SetBlurYTexture();		
+		//Renderer::SetBlurYTexture();		
+		Renderer::SetRenderTexture(false);		
 		break;
 	default:
 		break;

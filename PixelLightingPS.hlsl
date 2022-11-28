@@ -50,4 +50,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     outDiffuse.rgb += specular;
     outDiffuse += rim;
     
+    if (outDiffuse.a < 0.01)
+        discard;
+
 }

@@ -11,10 +11,13 @@
 #include "particle_object_2d.h"
 #include "audio.h"
 #include "switching_renderer.h"
+#include "co_bow.h"
 
 void ResultScene::Init()
 {
 	AddGameObject<SwitchinRendererFactory>(LAYER_BEGIN);
+
+	AddGameObject<CO_Bow>(LAYER_3D);
 
 	AddGameObject<ResultPolygon>(LAYER_2D);
 
@@ -42,10 +45,12 @@ void ResultScene::Init()
 
 	UI_Information uii;
 	uii._deploy_index = DEPLOY_CENTER;
-	uii._texture = "asset\\texture\\GameClear.png";
+	uii._texture = "asset\\texture\\GameClear.dds";
 	uii._main_pos = { 200.0f ,50.0f,0.0f };
-
-	AddGameObject< CO_UI_Default>(LAYER_2D)->SetUIInfo(uii, { SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f - 100.0f,0.0f });
+	
+	CO_UI_Default* ui2d = AddGameObject< CO_UI_Default>(LAYER_2D);
+	ui2d->SetUIInfo(uii, { SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f - 100.0f,0.0f });
+	ui2d->AddComponent<BlinkComponent_Scale>(COMLAYER_SECOND)->SetParameter(AXIS_XY, 0.1f, 1.0f, 1.5f);
 
 	m_Particle = AddGameObject<ParticleObject_2D>(LAYER_2D);
 

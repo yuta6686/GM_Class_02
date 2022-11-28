@@ -1,13 +1,12 @@
 #pragma once
-#include <unordered_map>
+
 
 #include "assimp/cimport.h"
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 #include "assimp/matrix4x4.h"
 
-#include "renderer.h"
-#include "resource.h"
+
 
 #pragma comment(lib,"assimp.lib")
 
