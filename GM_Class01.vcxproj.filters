@@ -453,6 +453,15 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="texture_compoennt.cpp">
+      <Filter>GameObject\Component\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>GameObject\ComponentObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_interface.cpp">
+      <Filter>GameObject\ComponentObject\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -926,6 +935,9 @@
     <ClInclude Include="stdafx.h">
       <Filter>リソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="texture_compoennt.h">
+      <Filter>GameObject\Component\Draw</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -983,6 +995,12 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="env_mapping_ps.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="enemy_vs.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="enemy_ps.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

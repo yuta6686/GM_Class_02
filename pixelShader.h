@@ -19,5 +19,6 @@ public:
     inline static const std::string RENDERING_TEXTURE_PS = "rendering_texture_ps.cso";
 
     inline static const std::string BLUR_PS = "post_effect_blur_ps.cso";
+    inline static const std::string ENEMY_PS = "enemy_ps.cso";
 };
 

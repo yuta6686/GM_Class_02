@@ -1,0 +1,33 @@
+#include "stdafx.h"
+#include "texture_compoennt.h"
+
+
+
+
+void TextureComponent::Init()
+{
+	
+}
+
+void TextureComponent::Uninit()
+{
+}
+
+void TextureComponent::Update()
+{
+}
+
+void TextureComponent::Draw()
+{
+	_texture->Draw();
+}
+
+void TextureComponent::DrawImgui()
+{
+}
+
+void TextureComponent::SetTextureAndSlot(const std::string& fileName, const int& texSlot,const bool& flag)
+{
+	_texture = ResourceManger<Texture>::GetResource(fileName);
+	_texture->SetTextureNum(texSlot,flag);
+}

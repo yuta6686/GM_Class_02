@@ -19,6 +19,7 @@ enum SHADER_TYPE {
     SHADER_BLURX,
     SHADER_BLURY,
     SHADER_RENDERING_TEXTURE,
+    SHADER_ENEMY,
 };
 
 class ShaderComponent :

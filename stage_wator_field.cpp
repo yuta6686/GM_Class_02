@@ -1,5 +1,5 @@
 #include "stage_wator_field.h"
-
+#include "texture_compoennt.h"
 
 void stage_wator_field::Init()
 {
@@ -10,20 +10,33 @@ void stage_wator_field::Init()
 	float scale = 100.1f;
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
-	m_VertexShader = ResourceManger<VertexShader>::GetResource("vertexLightingVS.cso");
-	m_PixelShader = ResourceManger<PixelShader>::GetResource("vertexLightingPS.cso");
+	m_VertexShader = ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");
+	m_PixelShader = ResourceManger<PixelShader>::GetResource("env_mapping_ps.cso");
+
+	AddComponent<TextureComponent>(COMLAYER_SHADER)->
+		SetTextureAndSlot("asset\\texture\\normalmap.png", 1, true);
+
+	AddComponent<TextureComponent>(COMLAYER_SHADER)->
+		SetTextureAndSlot("asset\\texture\\pixelNoiseColor.png", 2, true);
+
+	ComponentObject::Init();
 }
 
 void stage_wator_field::Uninit()
 {
+	ComponentObject::Uninit();
 }
 
 void stage_wator_field::Update()
 {
+	ComponentObject::Update();
 }
 
 void stage_wator_field::Draw()
 {
+
+	ComponentObject::Draw();
+
 	//VertexShader‚ÌDraw“Ç‚ñ‚Å‚©‚çPixelShader‚ÌDraw
 	m_VertexShader->Draw();
 	m_PixelShader->Draw();

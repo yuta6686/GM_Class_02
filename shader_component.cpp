@@ -57,7 +57,12 @@ void ShaderComponent::Init()
 		m_PixelShader =
 			ResourceManger<PixelShader>::GetResource(PixelShader::RENDERING_TEXTURE_PS.c_str());
 		break;
-		
+	case SHADER_ENEMY:
+		m_VertexShader =
+			ResourceManger<VertexShader>::GetResource(VertexShader::ENEMY_VS.c_str());
+		m_PixelShader =
+			ResourceManger<PixelShader>::GetResource(PixelShader::ENEMY_PS.c_str());
+		break;
 	default:
 		break;
 	}
