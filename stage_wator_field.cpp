@@ -13,11 +13,14 @@ void stage_wator_field::Init()
 	m_VertexShader = ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");
 	m_PixelShader = ResourceManger<PixelShader>::GetResource("env_mapping_ps.cso");
 
+	//m_VertexShader = ResourceManger<VertexShader>::GetResource("MeshFieldVS.cso");
+	//m_PixelShader = ResourceManger<PixelShader>::GetResource("MeshFieldPS.cso");
+
 	AddComponent<TextureComponent>(COMLAYER_SHADER)->
 		SetTextureAndSlot("asset\\texture\\normalmap.png", 1, true);
 
 	AddComponent<TextureComponent>(COMLAYER_SHADER)->
-		SetTextureAndSlot("asset\\texture\\pixelNoiseColor.png", 2, true);
+		SetTextureAndSlot("asset\\texture\\envmap_2.dds", 2, true);
 
 	ComponentObject::Init();
 }

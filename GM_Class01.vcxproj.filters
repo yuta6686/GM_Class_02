@@ -267,9 +267,6 @@
     <ClCompile Include="input.cpp">
       <Filter>System\Main</Filter>
     </ClCompile>
-    <ClCompile Include="light.cpp">
-      <Filter>System\Main</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>System\Main</Filter>
     </ClCompile>
@@ -461,6 +458,9 @@
     </ClCompile>
     <ClCompile Include="enemy_interface.cpp">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>GameObject\MainObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

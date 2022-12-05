@@ -129,7 +129,7 @@ void TitleScene::Init()
 
 	//AddGameObject< CO_AnimationModelTest>(LAYER_3D);
 
-	AddGameObject<CO_MeshField>(LAYER_3D);
+	// AddGameObject<CO_MeshField>(LAYER_3D);
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------

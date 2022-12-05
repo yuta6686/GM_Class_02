@@ -82,7 +82,11 @@ void MonochromeComponent::Draw()
 }
 void MonochromeComponent::DrawImgui() 
 {
+#ifdef _DEBUG
+
+
     ImGui::Text("%d", ImGui::GetKeyIndex(ImGuiKey_Space));
     ImGui::Text("%d", ImGui::GetKeyPressedAmount(ImGuiKey_Space, 0.0f, 1.0f));
+#endif // _DEBUG
 
 }
