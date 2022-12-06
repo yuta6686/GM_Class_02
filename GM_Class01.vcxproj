@@ -657,7 +657,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\cereal</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
@@ -681,7 +681,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\cereal</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
@@ -701,7 +701,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\cereal</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
@@ -724,7 +724,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\imgui\backends;C:\Users\yuta2\Desktop\GameProjetct_all\GM31_ポリゴン02\GM_Class01\cereal</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -9,6 +9,19 @@
 #include <unordered_map>
 #include <time.h>
 #include <typeinfo>
+#include <io.h>
+
+
+
+#include "imgui.h"
+#include "imgui_impl_dx11.h"
+#include "imgui_impl_win32.h"
+
+#include <cereal.hpp>
+#include <archives/json.hpp>
+#include <types/vector.hpp>
+
+#include "my_imgui.h"
 
 #include "main.h"
 #include "scene.h"

@@ -41,14 +41,6 @@ void ImGuiObject::Draw()
 {
 #ifdef _DEBUG
 
-	//	Player
-	if (ImGui::CollapsingHeader("Player")) {
-		m_Player->DrawImgui();
-	}
-
-
-	
-
 	//	Bullet
 	if (ImGui::CollapsingHeader("Bullet")) {
 		std::vector<Bullet*> bullets = m_Scene->GetGameObjects<Bullet>();

@@ -6,6 +6,7 @@ class SwitchingRenderer :
 {
 private:
     int _layerNum = 0;
+    
 public:   
     SwitchingRenderer() :_layerNum(0) {}
 

@@ -1,11 +1,4 @@
 #pragma once
-#include <vector>
-
-
-#include "imgui.h"
-#include "imgui_impl_dx11.h"
-#include "imgui_impl_win32.h"
-
 
 struct VERTEX_3D
 {
@@ -70,11 +63,11 @@ class Renderer
 {
 private:
 
-	static D3D_FEATURE_LEVEL		m_FeatureLevel;
+	static D3D_FEATURE_LEVEL		_featureLevel;
 
-	static ID3D11Device*			m_Device;
-	static ID3D11DeviceContext*		m_DeviceContext;
-	static IDXGISwapChain*			m_SwapChain;
+	static ID3D11Device*			_device;
+	static ID3D11DeviceContext*		_deviceContext;
+	static IDXGISwapChain*			_swapChain;
 
 	//ディスプレイのバッグバッファのテクスチャ	
 	inline static ComPtr<ID3D11Texture2D> _pTexture;
@@ -83,10 +76,10 @@ private:
 	inline static ComPtr<ID3D11Texture2D> _pTextureDraw;
 
 	// サンプラー
-	inline static ID3D11SamplerState* _pDefaultSampler = nullptr;
-	inline static ID3D11SamplerState* _pRenderTextureSampler;
+	inline static ComPtr<ID3D11SamplerState> _pDefaultSampler;
+	inline static ComPtr<ID3D11SamplerState> _pRenderTextureSampler;
 
-	// もともと在るやつ
+	// もともと在るRTVとDPS
 	static ID3D11RenderTargetView* m_RenderTargetView;
 	static ID3D11DepthStencilView* m_DepthStencilView;
 
@@ -94,13 +87,13 @@ private:
 	inline static ID3D11RenderTargetView* _pRenderingTextureRTV = nullptr;
 	inline static ID3D11RenderTargetView* _blurXRTV = nullptr;
 	inline static ID3D11RenderTargetView* _blurYRTV = nullptr;
-	inline static ID3D11RenderTargetView* _DrawCopyRTV = nullptr;
+	inline static ID3D11RenderTargetView* _drawCopyRTV = nullptr;
 
 	// オフスク用 SRV
 	inline static ID3D11ShaderResourceView* _pRenderingTextureSRV = nullptr;
 	inline static ID3D11ShaderResourceView* _blurXSRV = nullptr;
 	inline static ID3D11ShaderResourceView* _blurYSRV = nullptr;
-	inline static ID3D11ShaderResourceView* _DrawCopySRV = nullptr;
+	inline static ID3D11ShaderResourceView* _drawCopySRV = nullptr;
 
 
 	static ID3D11BlendState* m_BlendState;
@@ -167,6 +160,7 @@ public:
 	static void SetMaterial(MATERIAL Material);
 	static void SetLight(LIGHT Light,const int& index);	
 	static void SetValiable(VALIABLE val);
+	static void SetBlur(const float& strength);
 	//static void SetPointLight(POINT_LIGHT Light);
 	void SetBlendState(BLEND_MODE bm);
 
@@ -179,10 +173,10 @@ public:
 	static void SetBlurYTexture();
 	static void SetCopyTexture();
 
-	static ID3D11Device* GetDevice( void ){ return m_Device; }
-	static ID3D11DeviceContext* GetDeviceContext( void ){ return m_DeviceContext; }
+	static ID3D11Device* GetDevice( void ){ return _device; }
+	static ID3D11DeviceContext* GetDeviceContext( void ){ return _deviceContext; }
 
-
+	
 
 	static void CreateVertexShader(ID3D11VertexShader** VertexShader, ID3D11InputLayout** VertexLayout, const char* FileName);
 	static void CreatePixelShader(ID3D11PixelShader** PixelShader, const char* FileName);

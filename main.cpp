@@ -51,7 +51,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	RegisterClassEx(&wcex);
 
-
+	// AdjustWindowRect
+	// マウスカーソルの位置がずれる場合これを使えば行けるらしい
 
 	g_Window = CreateWindowEx(0,
 		CLASS_NAME,

@@ -2,6 +2,7 @@
 #include "user_interface_component.h"
 
 
+
 void RenderingTexture::Init()
 {
 	// 頂点データ初期化
@@ -42,6 +43,13 @@ void RenderingTexture::Init()
 	m_Rotation = { 0.0f,0.0f,0.0f };
 	m_Scale = { 1.0f,1.0f,1.0f };
 
+	m_TypeName = "RenderingTexture";
+
+	// RenderingTextureは複数あるので一つだけ持つようにする
+	if(auto obj = Manager::GetScene()->GetGameObjects<RenderingTexture>().size() == 0)
+	{
+		AddComponent<ImGuiComponent>(COMLAYER_FIRST)->SetIsUse(true);	
+	}
 
 
 //---------------------------------
@@ -119,8 +127,16 @@ void RenderingTexture::Draw()
 		Renderer::SetCopyTexture();		
 		break;
 	case LAYER_COPY:
-		//Renderer::SetBlurYTexture();		
-		Renderer::SetRenderTexture(false);		
+		// ここでブラーの有無切り替えできる。
+		if (MyImgui::mbGameObjectMap[_typeName])
+		{
+			Renderer::SetBlurYTexture();		
+		}
+		else
+		{
+			Renderer::SetRenderTexture(false);		
+		} 
+				
 		break;
 	default:
 		break;
@@ -136,6 +152,18 @@ void RenderingTexture::Draw()
 
 	Renderer::SetRenderTexture(true);
 
+
+}
+
+void RenderingTexture::DrawImgui()
+{	
+	ImGui::Checkbox(_typeName.c_str(),&MyImgui::mbGameObjectMap[_typeName]);
+
+	static float _strength = 8.0f;
+
+	ImGui::SliderFloat("Blur Strength", &_strength, 0.1f, 100.0f);
+
+	Renderer::SetBlur(_strength);
 
 }
 

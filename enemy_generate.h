@@ -1,5 +1,5 @@
 #pragma once
-#include "gameObject.h"
+#include "component_object.h"
 
 #include "scene.h"
 #include "player.h"
@@ -13,7 +13,7 @@ enum VERTICAL_DEPLOY_AXIS {
 };
 
 class EnemyGenerate :
-	public GameObject
+	public ComponentObject
 {
 private:
 	std::shared_ptr<Scene> m_Scene;
@@ -63,6 +63,22 @@ public:
 
 	virtual void DrawImgui()override;
 
+private:
+	void Generate(std::vector<GameObject*> enemys, std::vector<class Cylinder*> clies);
+	void Save(std::vector<GameObject*> enemys, std::vector<class Cylinder*> clies);
+	void Load(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies);
 
+	void SaveCereal(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies);
 };
 
+class test{
+public:
+	std::string name;
+	int hp = 0;
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(name, hp);
+	}
+};

@@ -18,7 +18,7 @@ void SwitchingRenderer::Draw()
 	switch (_layerNum)
 	{
 	case LAYER_BEGIN:
-		Renderer::SetDefaultConstantBuffer();
+		// Renderer::SetDefaultConstantBuffer();
 		Renderer::BeginOfScr();		
 		break;
 	case LAYER_BLUR_X:
@@ -29,6 +29,7 @@ void SwitchingRenderer::Draw()
 		break;
 	case LAYER_TO_RENDERING_TEXTURE:
 		// todo rendering textureópÇÃConstantBufferÇê›íËÇ∑ÇÈ
+		
 		Renderer::Begin();
 		break;
 	case LAYER_COPY:

@@ -14,7 +14,9 @@ private:
     D3DXVECTOR3 m_mainPos = _screenHalf;
     inline static const D3DXVECTOR4 m_Color = { 1.0f,1.0f,1.0f,1.0f };        
 
-    int _layerNum = 0;
+    int _layerNum = 0;    
+
+    inline static const std::string _typeName = "Switch Blur";
 public:
     // GameObject ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
     virtual void Init() override;
@@ -24,6 +26,9 @@ public:
     virtual void Update() override;
 
     virtual void Draw() override;
+
+    virtual void DrawImgui()override;
+        
 
     void SetLayerNum(const int& layer) {
         _layerNum = layer;
