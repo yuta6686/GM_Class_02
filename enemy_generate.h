@@ -20,6 +20,8 @@ private:
 	std::string m_FileName = "asset\\file\\EnemyGenerate";
 	std::string m_Extension = ".txt";
 	std::string m_Version = "_EnemyIndex";
+
+	inline static const std::string _serialize_file_name = "_out.json";
 	int m_SaveFileIndex = 2;
 	int m_LoadFileIndex = 2;
 	int m_NowFileNum = 2;
@@ -65,10 +67,15 @@ public:
 
 private:
 	void Generate(std::vector<GameObject*> enemys, std::vector<class Cylinder*> clies);
-	void Save(std::vector<GameObject*> enemys, std::vector<class Cylinder*> clies);
+	void Save(std::vector<GameObject* > enemys, std::vector<class Cylinder*> clies);
 	void Load(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies);
 
-	void SaveCereal(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies);
+	// シリアライズ
+	void SerializeMenu();
+	void Serialize(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies);
+
+	// デシリアライズ
+	void Deserialize();
 };
 
 class test{

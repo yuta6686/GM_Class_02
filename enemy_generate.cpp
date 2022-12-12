@@ -37,6 +37,9 @@ void EnemyGenerate::Init()
 		}
 	}
 	m_Player = m_Scene->GetGameObject<Player>();
+
+	MyImgui::mbGameObjectMap["Serialize"] = true;
+	MyImgui::mbGameObjectMap["Deserialize"] = true;
 }
 
 void EnemyGenerate::Uninit()
@@ -68,14 +71,14 @@ void EnemyGenerate::Update()
 	if (ImGui::BeginMenu("Enemy Generater")) {
 
 		Generate(enemys, clies);
-		
+
 		Save(enemys, clies);
 
 
 		Load(enemys, clies);
 
-		SaveCereal(enemys, clies);
-		
+		SerializeMenu();
+
 
 		if (ImGui::BeginMenu("Reset")) {
 			if (ImGui::Button("Reset Enemy Button")) {
@@ -96,6 +99,10 @@ void EnemyGenerate::Update()
 	}
 
 	ImGui::EndMenuBar();
+
+	Serialize(enemys, clies);
+
+	Deserialize();
 
 	//	Enemy
 	if (ImGui::CollapsingHeader("Enemy")) {
@@ -313,7 +320,7 @@ void EnemyGenerate::Generate(std::vector<GameObject*> enemys, std::vector<class 
 	}
 }
 
-void EnemyGenerate::Save(std::vector<GameObject*> enemys,std::vector<Cylinder*> clies)
+void EnemyGenerate::Save(std::vector<GameObject*> enemys, std::vector<Cylinder*> clies)
 {
 	if (ImGui::BeginMenu("Save")) {
 
@@ -572,35 +579,62 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 	}
 }
 
-void EnemyGenerate::SaveCereal(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies)
+void EnemyGenerate::SerializeMenu()
+{	
+	ImGui::MenuItem("Serialize", NULL, &MyImgui::mbGameObjectMap["Serialize"]);	
+	ImGui::MenuItem("Deserialize", NULL, &MyImgui::mbGameObjectMap["Deserialize"]);
+}
+
+void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies)
 {
-	// https://kagasu.hatenablog.com/entry/2019/11/19/130749
-
-	if (ImGui::BeginMenu("Save Cereal")) 
-	{
-		if (ImGui::Button("Save! Cereal!"))
+	if (MyImgui::mbGameObjectMap["Serialize"]) {
+			static std::stringstream ss;
+		if (ImGui::Button("Serialize!"))
 		{
-			/*for (auto enemy : enemys) {
+			ss.str("");
+			
 
-				std::stringstream ss;
-				{
-					cereal::JSONOutputArchive o_archive(ss);
-					o_archive(enemy);
-				}
-				
-			}*/
-			std::ofstream os("out.json", std::ios::out);
+			std::ofstream os(_serialize_file_name, std::ios::out);
 			cereal::JSONOutputArchive archiveFile(os);
-			
 
-			for (unsigned int i = 0; i < enemys.size(); i++) {
-				dynamic_cast<Enemy_Interface*>(enemys[i])->serialize(archiveFile);
+			for (auto enemy : enemys) {								
+				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archiveFile);
 			}
-			
 
+			cereal::JSONOutputArchive archiveFile2(ss);
+			for (auto enemy : enemys) {
+				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archiveFile2);
+			}
 
 		}
+			ImGui::Text(ss.str().c_str());
 
-		ImGui::EndMenu();
+		if (ImGui::Button("Desirialize")) 
+		{
+			std::ifstream is(_serialize_file_name, std::ios::in);
+
+			cereal::JSONInputArchive archive(is);
+
+			for (auto enemy : enemys) 
+			{
+				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archive);
+			}
+		}
+	}
+}
+
+void EnemyGenerate::Deserialize()
+{
+	if (MyImgui::mbGameObjectMap["Deserialize"]) {
+		if (ImGui::Button("Deserialize!"))
+		{		
+			Enemy_Interface* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+						
+			std::ifstream is(_serialize_file_name, std::ios::in);			
+
+			cereal::JSONInputArchive archive(is);
+
+			enemy->serialize(archive);
+		}		
 	}
 }

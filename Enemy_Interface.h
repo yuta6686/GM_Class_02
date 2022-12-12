@@ -12,6 +12,14 @@ enum ENEMY
     ENEMY_BOSS,
     ENEMY_MAX
 };
+template<class Archive>
+void serialize(Archive& archive, D3DXVECTOR3& vector) {
+    archive(cereal::make_nvp("x", vector.x),
+        cereal::make_nvp("y", vector.y),
+        cereal::make_nvp("z", vector.z));
+}
+
+
 class Enemy_Interface :
     public ComponentObject
 {
@@ -52,7 +60,7 @@ public: // ‚»‚Ì‘¼
     template<class Archive>
     void serialize(Archive& archive)
     {
-        archive(CEREAL_NVP(m_Position.x), CEREAL_NVP(m_Position.y), CEREAL_NVP(m_Position.z));
+        archive(CEREAL_NVP(m_Position));
     }
 };
 

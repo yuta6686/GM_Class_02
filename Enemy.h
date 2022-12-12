@@ -15,6 +15,8 @@ public:
     Enemy() :Enemy_Interface(ENEMY_NORMAL){}
 
     virtual void Init();    
+
+
 };
 
 class Enemy_Tracking : public Enemy_Interface
