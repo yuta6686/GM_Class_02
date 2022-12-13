@@ -462,6 +462,15 @@
     <ClCompile Include="light.cpp">
       <Filter>GameObject\MainObjects</Filter>
     </ClCompile>
+    <ClCompile Include="loading_scene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Select.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="CO_UI_Tutorial.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -937,6 +946,12 @@
     </ClInclude>
     <ClInclude Include="texture_compoennt.h">
       <Filter>GameObject\Component\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="loading_scene.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_include.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,15 +15,15 @@ private:
     static const int DEFAULT_MAX_COUNT = 60;
 private:
     int _count;
-    int m_CountOffset;
-    int m_MaxCount;
-    int m_Delay;
+    int _countOffset;
+    int _maxCount;
+    int _delay;
 
-    float m_0to1;
+    float _linerReturn0to1;
 
-    bool m_In;    
-    bool m_Finish;
-    bool m_InFinish;
+    bool _in;    
+    bool _finish;
+    bool _inFinish;
 public:    
     CountComponent();
 
@@ -40,11 +40,11 @@ public:
         const int& offset = 0);
 
 //  Getter--------------------------------------------------------------------    
-    int GetCount()const { return max(_count - m_Delay, 0); }
-    float Get0to1Count()const { return m_0to1; }
-    bool GetStart()const { return m_In; }
-    bool GetFinish()const { return m_Finish; }
-    bool GetInFinist()const { return m_InFinish; }
+    int GetCount()const { return max(_count - _delay, 0); }
+    float Get0to1Count()const { return _linerReturn0to1; }
+    bool GetStart()const { return _in; }
+    bool GetFinish()const { return _finish; }
+    bool GetInFinist()const { return _inFinish; }
 
     // Component ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
     virtual void Init() override;

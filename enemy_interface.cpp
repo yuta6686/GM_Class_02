@@ -69,10 +69,10 @@ void Enemy_Interface::Update()
 
 void Enemy_Interface::Draw()
 {
-    if (m_Hp <= 1) {
+    if (_hp <= 1) {
         SetDiffuse({ 1.0f,0.5f,0.5f,1.0f });
     }
-    else if (m_Hp <= 2 && m_Hp > 1) {
+    else if (_hp <= 2 && _hp > 1) {
         SetDiffuse({ 1.0f,1.0f,0.5f,1.0f });
     }
     else {
@@ -85,10 +85,10 @@ void Enemy_Interface::Draw()
 bool Enemy_Interface::SetHp(const int& hp)
 {
     if (hp < 0 || hp >= MAX_HP) {
-        m_Hp = 1;
+        _hp = 1;
         return false;
     }
-    m_Hp = hp;
+    _hp = hp;
     return true;
 }
 
@@ -101,13 +101,13 @@ bool Enemy_Interface::SetMaxHp(const int& hp)
 
 {
     if (hp < 0 || hp >= MAX_HP) {
-        m_MaxHp = 1;
+        _maxHp = 1;
         return false;
     }
-    if (m_MaxHp == hp) {
+    if (_maxHp == hp) {
         return false;
     }
-    m_MaxHp = hp;
+    _maxHp = hp;
     SetHp(hp);
     return true;
 }
@@ -129,9 +129,9 @@ void Enemy_Interface::SetDiffuse(const D3DXCOLOR& color)
 
 void Enemy_Interface::CollosionWithBullet()
 {
-    m_Hp--;
+    _hp--;
 
-    if (m_Hp <= 0) {
+    if (_hp <= 0) {
         m_IsDestroy = true;
         //SetDestroy();
         m_SEEnemyKill->Play(false);

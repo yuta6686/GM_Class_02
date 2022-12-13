@@ -2,13 +2,13 @@
 
 CountComponent::CountComponent()
     : _count(0),
-    m_CountOffset(0),
-    m_MaxCount(60),
-    m_Delay(0),
-    m_0to1(0.0f),
-    m_In(false),
-    m_Finish(false),
-    m_InFinish(false)
+    _countOffset(0),
+    _maxCount(60),
+    _delay(0),
+    _linerReturn0to1(0.0f),
+    _in(false),
+    _finish(false),
+    _inFinish(false)
 {
 }
 
@@ -18,25 +18,25 @@ void CountComponent::Uninit() { }
 
 void CountComponent::Update()
 {
-    if (m_In) {
-        if (_count + m_Delay > 0)
+    if (_in) {
+        if (_count + _delay > 0)
         {
             _count--;
         }
         else
         {
-            m_InFinish = true;
+            _inFinish = true;
         }
 
 
-        m_0to1 = static_cast<float>(min(_count + m_Delay, m_MaxCount)) / static_cast<float>(m_MaxCount);
+        _linerReturn0to1 = static_cast<float>(min(_count + _delay, _maxCount)) / static_cast<float>(_maxCount);
     }
     else
     {
-        //  Å‘å’l‚ÉŽŠ‚Á‚½ --> m_Count >= m_Delay + m_MaxCount
-        if (_count - m_Delay > m_MaxCount)
+        //  Å‘å’l‚ÉŽŠ‚Á‚½ --> m_Count >= _delay + _maxCount
+        if (_count - _delay > _maxCount)
         {
-            m_Finish = true;
+            _finish = true;
         }
         else
         {
@@ -44,7 +44,7 @@ void CountComponent::Update()
         }
 
 
-        m_0to1 = static_cast<float>(max(_count - m_Delay, 0)) / static_cast<float>(m_MaxCount);
+        _linerReturn0to1 = static_cast<float>(max(_count - _delay, 0)) / static_cast<float>(_maxCount);
     }
 }
 
@@ -57,21 +57,21 @@ void CountComponent::Start(bool in,
     const int& delay,
     const int& offset) 
 {
-    m_CountOffset = offset;
-    m_MaxCount = max;
-    m_Delay = delay;
+    _countOffset = offset;
+    _maxCount = max;
+    _delay = delay;
 
 
-    m_InFinish = false;
-    m_Finish = false;
-    m_In = in;
+    _inFinish = false;
+    _finish = false;
+    _in = in;
 
 
-    if (m_In) {
-        _count = m_MaxCount + m_Delay - m_CountOffset;
+    if (_in) {
+        _count = _maxCount + _delay - _countOffset;
     }
     else
     {
-        _count = m_CountOffset;
+        _count = _countOffset;
     }
 }

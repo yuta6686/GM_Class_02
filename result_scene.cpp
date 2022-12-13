@@ -13,6 +13,8 @@
 #include "switching_renderer.h"
 #include "co_bow.h"
 
+#include "blink_scale_component.h"
+
 void ResultScene::Init()
 {
 	AddGameObject<SwitchinRendererFactory>(LAYER_BEGIN);

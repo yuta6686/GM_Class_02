@@ -4,14 +4,14 @@
 
 void AlphaBlink2DComponent::Init() 
 {
-	m_UIComponent = m_Parent->GetComponent<UserInterfaceComponent>();
+	_uiComponent = m_Parent->GetComponent<UserInterfaceComponent>();
 
 	//	nullptr がいたらわかるように、確認。　後で消せ
-	m_UIComponent->m_Parent->GetPosition();
+	_uiComponent->m_Parent->GetPosition();
 }
 
 void AlphaBlink2DComponent::Update()
 {
 	BlinkComponent::Update();
-	m_UIComponent->SetAlpha(m_BlinkValue);
+	_uiComponent->SetAlpha(m_BlinkValue);
 }

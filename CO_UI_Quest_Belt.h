@@ -20,7 +20,7 @@ private:
     D3DXVECTOR3 m_Departure;
     D3DXVECTOR3 m_Destination;
 
-    class UserInterfaceComponent* m_UIComponent;
+    class UserInterfaceComponent* _uiComponent;
     class CountComponent* m_Count;    
 public:
     CO_UI_Quest_Belt();

@@ -5,7 +5,7 @@
 CO_UI_Quest_Purpose::CO_UI_Quest_Purpose()
     :m_Divider(10.0f),
     m_WidthHeight({ 1920.0f,1080,0.0f }),
-    m_UIComponent(nullptr),m_Count(nullptr)
+    _uiComponent(nullptr),m_Count(nullptr)
 {
 }
 
@@ -16,7 +16,7 @@ void CO_UI_Quest_Purpose::Start()
 
 void CO_UI_Quest_Purpose::SetTexture(std::string file)
 {
-    m_UIComponent->LoadTexture(file.c_str());
+    _uiComponent->LoadTexture(file.c_str());
 }
 
 
@@ -32,12 +32,12 @@ void CO_UI_Quest_Purpose::Init()
 
     AddComponent<MatrixComponent>(COMLAYER_MATRIX)->SetIs2D();
 
-    m_UIComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
-    m_UIComponent->LoadTexture("asset\\texture\\purpose.png");
+    _uiComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
+    _uiComponent->LoadTexture("asset\\texture\\purpose.png");
     //  uifc->SetDeployIndex(DEPLOY_LEFTUP);
     D3DXVECTOR3 widthheight = { 1920.0f,1080.0f ,0.0f };
-    m_UIComponent->SetWidthHeight(widthheight / m_Divider);
-    m_UIComponent->SetIsChangeVertex();
+    _uiComponent->SetWidthHeight(widthheight / m_Divider);
+    _uiComponent->SetIsChangeVertex();
 
     AddComponent<ImGuiComponent>(COMLAYER_SECOND)->SetIs2D();
 
@@ -62,7 +62,7 @@ void CO_UI_Quest_Purpose::Update()
         m_Count->Start(true, 60, 120);
     }
 
-    m_UIComponent->SetAlpha(m_Count->Get0to1Count());
+    _uiComponent->SetAlpha(m_Count->Get0to1Count());
 }
 
 void CO_UI_Quest_Purpose::DrawImgui()
@@ -70,7 +70,7 @@ void CO_UI_Quest_Purpose::DrawImgui()
     ComponentObject::DrawImgui();
 
     ImGui::SliderFloat("Divider", &m_Divider, 1.0f, 10.0f, "%.2f");
-    m_UIComponent->SetWidthHeight(m_WidthHeight / m_Divider);
+    _uiComponent->SetWidthHeight(m_WidthHeight / m_Divider);
 
     ImGui::Text("count:%d", m_Count->GetCount());
 }

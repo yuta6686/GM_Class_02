@@ -6,29 +6,29 @@
 #include "co_ui_player_hp_gauge.h"
 
 HPComponent::HPComponent()
-	:m_Hp(10),
-	m_MaxHp(10),
-	m_IsDeath(false),
-	m_UIComponent(nullptr)
+	:_hp(10),
+	_maxHp(10),
+	_isDeath(false),
+	_uiComponent(nullptr)
 {
 }
 
 void HPComponent::Init()
 {
-	m_IsDeath = false;
+	_isDeath = false;
 
 	CO_UI_PlayerHPGauge* hpgauge = Manager::GetScene()->
 		GetGameObject<CO_UI_PlayerHPGauge>();
 	
 	if (hpgauge) {
-		m_UIComponent = hpgauge->
+		_uiComponent = hpgauge->
 			GetComponent<UserInterfaceComponent>();
 
-		m_UIComponent->SetLeftXPosition(LEFT_POSITION);
+		_uiComponent->SetLeftXPosition(LEFT_POSITION);
 	}
 	else
 	{
-		m_UIComponent = nullptr;
+		_uiComponent = nullptr;
 	}
 
 }
@@ -39,9 +39,9 @@ void HPComponent::Uninit()
 
 void HPComponent::Update()
 {
-	if (m_UIComponent == nullptr)return;
+	if (_uiComponent == nullptr)return;
 
-	float ratio = (float)m_Hp / (float)m_MaxHp;
+	float ratio = (float)_hp / (float)_maxHp;
 	float result = 0.0f;
 	float start = 0.0f;
 	MyMath::FloatLerp(&result,
@@ -49,52 +49,52 @@ void HPComponent::Update()
 		&RIGHT_POSITION,
 		ratio);
 
-	m_UIComponent->SetRightXPosition(result);
+	_uiComponent->SetRightXPosition(result);
 	
 	if (ratio <= 0.5f) {
-		m_UIComponent->SetColor({ 1.0f,1.0f,0.0f,1.0f });
+		_uiComponent->SetColor({ 1.0f,1.0f,0.0f,1.0f });
 	}
 
 	if (ratio <= 0.2f) {
-		m_UIComponent->SetColor({ 1.0f,0.0f,0.0f,1.0f });
+		_uiComponent->SetColor({ 1.0f,0.0f,0.0f,1.0f });
 	}
 }
 
 void HPComponent::Draw()
 {
-	if (m_UIComponent == nullptr)return;
+	if (_uiComponent == nullptr)return;
 }
 
 void HPComponent::DrawImgui()
 {
-	if (m_UIComponent == nullptr)return;
+	if (_uiComponent == nullptr)return;
 
-	ImGui::Text("HPRatio : %.2f", (float)m_Hp / (float)m_MaxHp);
+	ImGui::Text("HPRatio : %.2f", (float)_hp / (float)_maxHp);
 }
 
 
 
 void HPComponent::RecoverHp(const int& hp)
 {
-	m_Hp += hp;
-	if (m_Hp > m_MaxHp)
+	_hp += hp;
+	if (_hp > _maxHp)
 	{
-		m_Hp = m_MaxHp;
+		_hp = _maxHp;
 	}
 }
 void HPComponent::ResetHp()
 {
-	m_Hp = m_MaxHp;
+	_hp = _maxHp;
 }
 void HPComponent::SetMaxHp(const int& maxHp)
 {
-	m_MaxHp = maxHp;
+	_maxHp = maxHp;
 }
 void HPComponent::TakeDamage(const int& damage)
 {
-	m_Hp -= damage;
+	_hp -= damage;
 
-	if (m_Hp <= 0) {
-		m_IsDeath = true;
+	if (_hp <= 0) {
+		_isDeath = true;
 	}
 }

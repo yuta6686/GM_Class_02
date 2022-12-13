@@ -17,10 +17,10 @@ private: // const
     inline static const float LEFT_POSITION = MERGINE;
     inline static const float RIGHT_POSITION = 500.0f - MERGINE;
 private:
-    int m_Hp;    
-    int m_MaxHp;    
-    bool m_IsDeath;
-    class UserInterfaceComponent* m_UIComponent;
+    int _hp;    
+    int _maxHp;    
+    bool _isDeath;
+    class UserInterfaceComponent* _uiComponent;
 public:
     HPComponent();
     
@@ -40,10 +40,10 @@ public:
     void TakeDamage(const int& damage);
 
     // Getter
-    float GetHpRatio() { return static_cast<float>(m_Hp) / static_cast<float>(m_MaxHp); }    
-    int GetHp() { return m_Hp; }
-    int GetMaxHp() { return m_MaxHp; }
-    bool GetIsDeath()const { return m_IsDeath; }
+    float GetHpRatio() { return static_cast<float>(_hp) / static_cast<float>(_maxHp); }
+    int GetHp() { return _hp; }
+    int GetMaxHp() { return _maxHp; }
+    bool GetIsDeath()const { return _isDeath; }
 
     // static
     static float GetLEFTPOSITION() { return LEFT_POSITION; }

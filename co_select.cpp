@@ -1,6 +1,8 @@
 #include "co_select.h"
 #include "co_ui_select.h"
 #include "audio.h"
+#include "user_interface_component.h"
+#include "blink_scale_component.h"
 
 CO_Select::CO_Select()
     :m_UISelects({ }),

@@ -47,6 +47,8 @@
     <ClCompile Include="co_ui_quest.cpp" />
     <ClCompile Include="co_ui_quest_belt.cpp" />
     <ClCompile Include="co_ui_quest_purpose.cpp" />
+    <ClCompile Include="CO_UI_Select.cpp" />
+    <ClCompile Include="CO_UI_Tutorial.cpp" />
     <ClCompile Include="cube2d.cpp" />
     <ClCompile Include="cylinder.cpp" />
     <ClCompile Include="debug_scene.cpp" />

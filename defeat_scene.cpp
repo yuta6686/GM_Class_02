@@ -13,6 +13,7 @@
 #include "switching_renderer.h"
 #include "co_bow.h"
 #include "resource_manager.h"
+#include "blink_scale_component.h"
 
 void DefeatScene::Init()
 {

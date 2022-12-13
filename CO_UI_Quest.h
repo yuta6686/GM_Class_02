@@ -14,7 +14,7 @@ class CO_UI_Quest :
 private:
     float m_Divider;
     D3DXVECTOR3 m_WidthHeight;
-    class UserInterfaceComponent* m_UIComponent;
+    class UserInterfaceComponent* _uiComponent;
     class CountComponent* m_Count;
 public:
 

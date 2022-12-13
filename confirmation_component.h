@@ -14,7 +14,7 @@ class ConfirmationComponent :
     public Component
 {
 private:    
-    class UserInterfaceComponent* m_UIComponent;
+    class UserInterfaceComponent* _uiComponent;
 
     const std::string m_MessageBox =
         "asset\\texture\\message_box.dds";

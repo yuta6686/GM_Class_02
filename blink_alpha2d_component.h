@@ -13,7 +13,7 @@ class AlphaBlink2DComponent :
 	public BlinkComponent
 {
 private:
-	class UserInterfaceComponent* m_UIComponent = nullptr;
+	class UserInterfaceComponent* _uiComponent = nullptr;
 public:
 	virtual void Init() override;
 

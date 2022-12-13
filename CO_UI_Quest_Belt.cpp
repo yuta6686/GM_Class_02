@@ -6,7 +6,7 @@
 CO_UI_Quest_Belt::CO_UI_Quest_Belt()
     :m_Divider(1.5f),
     m_WidthHeight({ 1920.0f,1080.0f,0.0f }),
-    m_UIComponent(nullptr),
+    _uiComponent(nullptr),
     m_Count(nullptr),
     m_Departure({0.0f,0.0f,0.0f}),
     m_Destination({ 0.0f,0.0f,0.0f }),
@@ -26,13 +26,13 @@ void CO_UI_Quest_Belt::Init()
 
     AddComponent<MatrixComponent>(COMLAYER_MATRIX)->SetIs2D();
 
-    m_UIComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
-    m_UIComponent->LoadTexture("asset\\texture\\UI_blue_belt.png");
+    _uiComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
+    _uiComponent->LoadTexture("asset\\texture\\UI_blue_belt.png");
     //  uifc->SetDeployIndex(DEPLOY_LEFTUP);
     D3DXVECTOR3 widthheight = { 1920.0f,1080.0f ,0.0f };
     widthheight /= m_Divider;
-    m_UIComponent->SetWidthHeight(widthheight);
-    m_UIComponent->SetIsChangeVertex();
+    _uiComponent->SetWidthHeight(widthheight);
+    _uiComponent->SetIsChangeVertex();
 
 
 
@@ -61,7 +61,7 @@ void CO_UI_Quest_Belt::Update()
 {
     ComponentObject::Update();
 
-    m_UIComponent->SetAlpha(1.0f);
+    _uiComponent->SetAlpha(1.0f);
 
     if (m_Count == nullptr)return;
     if (m_Count->GetFinish() && m_IsReverse)
@@ -77,7 +77,7 @@ void CO_UI_Quest_Belt::DrawImgui()
     ComponentObject::DrawImgui();
 
     ImGui::SliderFloat("Divider", &m_Divider, 1.0f, 10.0f, "%.2f");
-    m_UIComponent->SetWidthHeight(m_WidthHeight / m_Divider);
+    _uiComponent->SetWidthHeight(m_WidthHeight / m_Divider);
 
     if (m_Count == nullptr)return;
 

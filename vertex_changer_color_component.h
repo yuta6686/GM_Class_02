@@ -1,9 +1,14 @@
 #pragma once
+/** ---------------------------------------------------------
+ *  [vertex_changer_color_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/12/13
+ * ------------------------summary--------------------------
+ * @brief  色を変えるだけの機能を持ったコンポーネント
+ ** ---------------------------------------------------------*/
 #include "component.h"
 #include "gameObject.h"
 
-//  色を変えるだけの機能を提供すればOK
-//  今あるconstの色情報、Boolはいらない。
 class VertexChangerComponent_Color :
     public Component
 {

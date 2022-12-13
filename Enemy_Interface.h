@@ -27,8 +27,8 @@ private:
     class Audio* m_SEEnemyCollision;
     class Audio* m_SEEnemyKill;
 protected:    
-    int m_MaxHp=1;
-    int m_Hp = m_MaxHp;
+    int _maxHp=1;
+    int _hp = _maxHp;
     static const int MAX_HP = 9999;
     int m_EnemyIndex = ENEMY_NORMAL;
     CountComponent* m_Count;
@@ -50,8 +50,8 @@ public: // セッター
     void SetDiffuse(const D3DXCOLOR& color);
 
 public: // ゲッター
-    int GetMaxHp()const { return m_MaxHp; }
-    int GetHp()const { return m_Hp; }    
+    int GetMaxHp()const { return _maxHp; }
+    int GetHp()const { return _hp; }    
     int GetEnemyIndex()const { return m_EnemyIndex; }
 
 public: // その他

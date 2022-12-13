@@ -37,8 +37,8 @@ public:
 
         //uiinf._color = { 1.0f,1.0f,1.0f,1.0f };
 
-        //m_UIComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
-        //m_UIComponent->SetUIInfo(uiinf);
+        //_uiComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
+        //_uiComponent->SetUIInfo(uiinf);
 
 
 
