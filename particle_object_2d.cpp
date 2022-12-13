@@ -46,12 +46,14 @@ void ParticleObject_2D::Init()
 
 //	シェーダ初期化---------------------------------------
 	m_VertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
 	m_PixelShader =
-		ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 //	パーティクルデータ初期化--------------------------------
 	m_Particles.resize(PARTICLE_MAX);
+
+	#pragma omp parallel for
 	for (unsigned int i = 0; i < m_Particles.size(); i++) {
 		m_Particles[i].status = 0;
 		m_Particles[i].pos = { 0.0f,0.0f,0.0f };

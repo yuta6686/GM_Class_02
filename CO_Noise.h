@@ -78,7 +78,11 @@ public:
 
         Renderer::SetValiable(Renderer::m_Valiable);
 
+        
+        //Renderer::SetAlphaToCoverage(true);
         ComponentObject::Draw();
+        Renderer::SetAlphaToCoverage(false);
+
     }
 };
 

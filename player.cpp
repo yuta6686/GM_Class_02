@@ -65,7 +65,7 @@ void Player::Init()
 
 	auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
 	mdc->SetSourcePath("asset\\model\\bow.obj");
-	mdc->SetIsVariable(true);
+	mdc->SetIsVariable(true);	
 
 	AddComponent<PlayerRotateComponent>(COMLAYER_SECOND);
 

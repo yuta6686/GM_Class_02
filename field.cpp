@@ -55,8 +55,8 @@ void Field::Init()
 
 	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");*/
 
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::DEFAULT_VERTEX_SHADER.c_str());
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::DEFAULT_PIXEL_SHADER.c_str());
+	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_DEFAULT]);
+	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_DEFAULT]);
 
 	m_Position =	D3DXVECTOR3( 0.0f,0.0f,0.0f );
 	m_Rotation =	D3DXVECTOR3( 0.0f,0.0f,0.0f );

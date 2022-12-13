@@ -7,7 +7,7 @@ void stage_wator_field::Init()
 
 	m_Position = D3DXVECTOR3(0.0f, 0.1f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	float scale = 100.1f;
+	float scale = 50.1f;
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
 	m_VertexShader = ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");

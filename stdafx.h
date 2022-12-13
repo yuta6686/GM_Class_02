@@ -10,7 +10,9 @@
 #include <time.h>
 #include <typeinfo>
 #include <io.h>
-
+#include <thread>
+#include <functional>
+#include <omp.h>
 
 
 #include "imgui.h"

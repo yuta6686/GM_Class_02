@@ -40,11 +40,99 @@
 #include "co_bow.h"
 #include "co_noise.h"
 #include "switching_renderer.h"
+#include "loading_scene.h"
 
 // factory
 #include "ui_factory.h"
 #include "player_factory.h"
 
+void GameScene::Load()
+{
+	// Loadの処理	
+
+
+	// Model_variable
+	ResourceManger<Model_variable>::GetResource("asset\\model\\particle_object.obj");
+	ResourceManger<Model_variable>::GetResource("asset\\model\\particle_object_cube.obj");
+	ResourceManger<Model_variable>::GetResource("asset\\model\\particle_object_sphere.obj");
+	ResourceManger<Model_variable>::GetResource("asset\\model\\bow.obj");
+	ResourceManger<Model_variable>::GetResource("asset\\model\\stone_white.obj");
+
+	// Model
+	ResourceManger<Model>::GetResource("asset\\model\\M_otorii.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\M_kairou.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\M_kairou_corner.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\bow_red.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\drum.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\bow.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\ao_Sphere_omaga.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\ao_Sphere_sinonome.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\ao_Sphere_sky.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\curtains.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\stand.obj");
+	ResourceManger<Model>::GetResource("asset\\model\\arrow.obj");
+
+	// パーティクルのモデル
+	for (int i = 1; i <= 50; i++)
+	{
+		std::ostringstream oss;
+		if (i <= 9) {
+			oss << 0 << 0;
+		}
+		else if (i >= 10) {
+			oss << 0;
+		}
+
+		oss << i;
+		ResourceManger<Model_variable>::GetResource("asset\\model\\torii\\torii_broken_" + oss.str() + ".obj");
+	}
+
+	// Texture
+	ResourceManger<Texture>::GetResource("asset\\texture\\effect_explosion.dds");
+	ResourceManger<Texture>::GetResource("asset\\texture\\water.dds");
+	ResourceManger<Texture>::GetResource("asset\\texture\\water1.dds");
+	ResourceManger<Texture>::GetResource("asset\\texture\\wave0.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\wave1.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\wave2.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\omagadoki.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\Tutorial_charge.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\Tutorial_jump.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\Tutorial_move.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\Tutorial_ray_move.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\Tutorial_shoot.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\UI_black_belt.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\UI_blue_belt.png");
+
+	ResourceManger<Texture>::GetResource("asset\\texture\\UI_Continue.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\UI_GiveUp.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\UI_Ling.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\UI_Points.png");
+
+	ResourceManger<Texture>::GetResource("asset\\texture\\UI_red_belt.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\Line.dds");
+	ResourceManger<Texture>::GetResource("asset\\texture\\Line_EndPoint.dds");
+
+	ResourceManger<Texture>::GetResource("asset\\texture\\label.dds");
+	ResourceManger<Texture>::GetResource("asset\\texture\\label_white.dds");
+	ResourceManger<Texture>::GetResource("asset\\texture\\particle_circle.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\particle_circle_outline.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\particle_rect.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\particle_rect_outline.png");
+
+	ResourceManger<Texture>::GetResource("asset\\texture\\particle_triangle.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\particle_triangle_outline.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\purpose.png");
+	ResourceManger<Texture>::GetResource("asset\\texture\\pixelNoiseColor.png");
+
+
+
+	// Shader
+	for (auto file : VertexShader::GetFileNames()) {
+		ResourceManger<VertexShader>::GetResource(file.second);
+	}
+
+	_loadFinish = true;
+}
 
 void GameScene::Init()
 {
@@ -122,6 +210,7 @@ void GameScene::Init()
 void GameScene::Uninit()
 {
 	Scene::UnInit();
+	_loadFinish = false;
 }
 
 void GameScene::Update()
@@ -162,6 +251,7 @@ void GameScene::Update()
 		Manager::SetScene <GameScene2>();
 	}	
 }
+
 
 void GameScene::StageCorridorCreate()
 {
@@ -289,4 +379,5 @@ void GameScene::AudioUpdate()
 	}
 #endif // _DEBUG
 }
+
 

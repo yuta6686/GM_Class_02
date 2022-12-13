@@ -15,7 +15,12 @@ public:
     void Uninit();
     void Update();
 
+    // êVãK
+    static void Load();
+
     Audio* GetBGM()const { return m_BGM; }
+
+    static bool GetLoadFinish() { return _loadFinish; }
 private:
     void StageCorridorCreate();
     void AudioUpdate();
@@ -32,5 +37,7 @@ private:
 
     CO_EnemyWave* m_EnemyWave = nullptr;
     ParticleObject* m_Particle;
+
+    inline static bool _loadFinish = false;
 };
 

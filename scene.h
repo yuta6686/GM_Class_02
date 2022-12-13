@@ -33,7 +33,7 @@ public:
 	inline Scene() {}
 	inline virtual ~Scene() {}
 
-	inline virtual void Init() = 0;
+	virtual void Init() = 0;
 
 	inline void Unload() {
 		ResourceManger<Model>::AllRelease();

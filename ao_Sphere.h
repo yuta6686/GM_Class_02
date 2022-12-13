@@ -4,7 +4,7 @@ class Ao_Sphere :
     public GameObject
 {
 private:
-    Model* m_Model;
+    Model* m_Model=nullptr;
 
     ID3D11VertexShader* m_VertexShader = NULL;
     ID3D11PixelShader* m_PixelShader = NULL;
@@ -14,6 +14,7 @@ public:
     {
         m_Model->Load(filename.c_str());
     }
+    
 
     // GameObject ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual void Init() override;

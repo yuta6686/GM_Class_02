@@ -13,59 +13,12 @@
 
 void ShaderComponent::Init()
 {
-	switch (m_ShaderType)
-	{
-	case SHADER_DEFAULT:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource(VertexShader::DEFAULT_VERTEX_SHADER.c_str());
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource(PixelShader::DEFAULT_PIXEL_SHADER.c_str());
-		break;
-	case SHADER_UNLIT:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
-		break;
-	case SHADER_UNLIT_NO_MATERIAL:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_NO_MATERIAL_VERTEX_SHADER.c_str());
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
-		break;
-	case SHADER_TEST:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource("testVS.cso");
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource("testPS.cso");
-		break;
-	case SHADER_BLURX:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource(VertexShader::BLURX_VS.c_str());
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource(PixelShader::BLUR_PS.c_str());
-		break;
-	case SHADER_BLURY:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource(VertexShader::BLURY_VS.c_str());
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource(PixelShader::BLUR_PS.c_str());
-		break;
-	case SHADER_RENDERING_TEXTURE:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource(VertexShader::RENDERING_TEXTURE_VS.c_str());
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource(PixelShader::RENDERING_TEXTURE_PS.c_str());
-		break;
-	case SHADER_ENEMY:
-		m_VertexShader =
-			ResourceManger<VertexShader>::GetResource(VertexShader::ENEMY_VS.c_str());
-		m_PixelShader =
-			ResourceManger<PixelShader>::GetResource(PixelShader::ENEMY_PS.c_str());
-		break;
-	default:
-		break;
-	}
+	m_VertexShader =
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[(SHADER_TYPE)m_ShaderType]);
+
+	m_PixelShader = 
+	ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[(SHADER_TYPE)m_ShaderType]);
+
 	
 
 }

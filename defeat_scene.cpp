@@ -12,6 +12,7 @@
 #include "audio.h"
 #include "switching_renderer.h"
 #include "co_bow.h"
+#include "resource_manager.h"
 
 void DefeatScene::Init()
 {

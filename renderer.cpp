@@ -505,7 +505,7 @@ void Renderer::BeginOfScr()
 {
 	_deviceContext->OMSetRenderTargets(1, &_pRenderingTextureRTV, m_DepthStencilView);
 
-	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV, clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
@@ -515,7 +515,7 @@ void Renderer::BeginOfScr()
 void Renderer::BeginBlurX()
 {
 	_deviceContext->OMSetRenderTargets(1, &_blurXRTV, m_DepthStencilView);
-	float clearColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	_deviceContext->ClearRenderTargetView(_blurXRTV, clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
@@ -523,7 +523,7 @@ void Renderer::BeginBlurX()
 void Renderer::BeginBlurY()
 {
 	_deviceContext->OMSetRenderTargets(1, &_blurYRTV, m_DepthStencilView);
-	float clearColor[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	_deviceContext->ClearRenderTargetView(_blurYRTV, clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
@@ -531,7 +531,7 @@ void Renderer::BeginBlurY()
 void Renderer::BeginCopyDraw()
 {
 	_deviceContext->OMSetRenderTargets(1, &_drawCopyRTV, m_DepthStencilView);
-	float clearColor[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	_deviceContext->ClearRenderTargetView(_drawCopyRTV, clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

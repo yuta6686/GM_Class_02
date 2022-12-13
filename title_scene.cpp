@@ -29,6 +29,7 @@
 #include "co_mesh_field.h"
 #include "switching_renderer.h"
 #include "confirmation_component.h"
+#include "loading_scene.h"
 
 void TitleScene::Init()
 {
@@ -205,7 +206,7 @@ void TitleScene::Update()
 
 
 		if (m_Fade->GetFinish() && istogame) {
-			Manager::SetScene <GameScene>();
+			Manager::SetScene <Loading>();
 			return;
 		}
 	}

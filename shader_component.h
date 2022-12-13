@@ -11,16 +11,6 @@
 #include "gameObject.h"
 #include "component.h"
 
-enum SHADER_TYPE {
-    SHADER_DEFAULT,
-    SHADER_UNLIT,
-    SHADER_UNLIT_NO_MATERIAL,
-    SHADER_TEST,
-    SHADER_BLURX,
-    SHADER_BLURY,
-    SHADER_RENDERING_TEXTURE,
-    SHADER_ENEMY,
-};
 
 class ShaderComponent :
     public Component
