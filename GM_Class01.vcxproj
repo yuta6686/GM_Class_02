@@ -153,6 +153,7 @@
     <ClCompile Include="result_polygon.cpp" />
     <ClCompile Include="result_scene.cpp" />
     <ClCompile Include="rotate2d_component.cpp" />
+    <ClCompile Include="scene.cpp" />
     <ClCompile Include="shader_component.cpp" />
     <ClCompile Include="shadow.cpp" />
     <ClCompile Include="shoot_bullet_amass.cpp" />

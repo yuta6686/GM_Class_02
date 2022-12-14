@@ -73,9 +73,6 @@ void Manager::Draw()
 
 	// m_Scene->Draw();	
 
-#ifdef _DEBUG
-	Renderer::imguiDraw();
-#endif // _DEBUG
 
 	
 

@@ -87,7 +87,7 @@ void Player::Init()
 
 	AddComponent<MonochromeComponent>(COMLAYER_SECOND);
 
-	AddComponent< ImGuiComponent>(COMLAYER_SECOND);
+	AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetIsUse(true);
 
 	ComponentObject::Init();
 
@@ -130,25 +130,26 @@ void Player::DrawImgui()
 {
 #ifdef _DEBUG
 		
+	if (MyImgui::_myFlag["Player"] && ImGui::CollapsingHeader("Player")) {
+		ImGui::Separator();
 
-	ImGui::Separator();
-
-	ImGui::Text("Velocity Length:%.2f",D3DXVec3Length(&m_VelocityCom->m_Velocity));
-	ImGui::Text("Velocity Y:%.2f", m_VelocityCom->m_Velocity.y);
+		ImGui::Text("Velocity Length:%.2f", D3DXVec3Length(&m_VelocityCom->m_Velocity));
+		ImGui::Text("Velocity Y:%.2f", m_VelocityCom->m_Velocity.y);
 
 
-	ImGui::Checkbox("IsPlayer_Move", &m_IsUseBullet);
+		ImGui::Checkbox("IsPlayer_Move", &m_IsUseBullet);
 
-	static ImVec4 color = { 1.0f,1.0f,1.0f,1.0f };
+		static ImVec4 color = { 1.0f,1.0f,1.0f,1.0f };
 
-	ImGui::ColorEdit4("color", (float*)&color);
+		ImGui::ColorEdit4("color", (float*)&color);
 
-	MyMath::FromImVec4ToD3DXCOLOR(&m_Color ,color);
-	GetComponent< ModelDrawComponent>()->SetDiffuse(m_Color);
+		MyMath::FromImVec4ToD3DXCOLOR(&m_Color, color);
+		GetComponent< ModelDrawComponent>()->SetDiffuse(m_Color);
 
-	ImGui::Separator();
+		ImGui::Separator();
 
-	ComponentObject::DrawImgui();
+		ComponentObject::DrawImgui();
+	}
 
 #endif // _DEBUG
 }

@@ -128,7 +128,7 @@ void RenderingTexture::Draw()
 		break;
 	case LAYER_COPY:
 		// ここでブラーの有無切り替えできる。
-		if (MyImgui::mbGameObjectMap[_typeName])
+		if (MyImgui::_myFlag[_typeName])
 		{
 			Renderer::SetBlurYTexture();		
 		}
@@ -157,13 +157,14 @@ void RenderingTexture::Draw()
 
 void RenderingTexture::DrawImgui()
 {	
-	ImGui::Checkbox(_typeName.c_str(),&MyImgui::mbGameObjectMap[_typeName]);
+	if (MyImgui::_myFlag["RenderingTexture"] && ImGui::CollapsingHeader("RenderingTexture")) {
+		ImGui::Checkbox(_typeName.c_str(), &MyImgui::_myFlag[_typeName]);
 
-	static float _strength = 8.0f;
+		static float _strength = 8.0f;
 
-	ImGui::SliderFloat("Blur Strength", &_strength, 0.1f, 100.0f);
+		ImGui::SliderFloat("Blur Strength", &_strength, 0.1f, 100.0f);
 
-	Renderer::SetBlur(_strength);
-
+		Renderer::SetBlur(_strength);
+	}
 }
 

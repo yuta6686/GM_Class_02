@@ -1,10 +1,11 @@
 #pragma once
-
-
-
-
-#include "resource_manager.h"
-#include "imgui_component.h"
+/** ---------------------------------------------------------
+ *  [scene.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/5/17
+ * ------------------------summary--------------------------
+ * @brief  sceneの元クラス
+ ** ---------------------------------------------------------*/
 
 enum LAYER {
 	LAYER_BEGIN = 0,
@@ -21,13 +22,14 @@ enum LAYER {
 	LAYER_PARTICLE,	
 	LAYER_NUM_MAX,
 };
-
+class GameObject;
 class Scene
 {
 protected:
 	std::list<GameObject*> m_GameObject[LAYER_NUM_MAX];
 	std::map<std::string, bool> m_Container;
 public:
+	inline static bool parameters_by_scene = true;
 
 
 	inline Scene() {}
@@ -35,19 +37,17 @@ public:
 
 	virtual void Init() = 0;
 
-	inline void Unload() {
-		ResourceManger<Model>::AllRelease();
-		ResourceManger<Texture>::AllRelease();
-		ResourceManger<VertexShader>::AllRelease();
-		ResourceManger<PixelShader>::AllRelease();
+	void Unload();
 
-	}
-	GameObject* AddGameObject(GameObject* pGameObject, int layer)
-	{
-		pGameObject->Init();
-		m_GameObject[layer].push_back(pGameObject);
-		return pGameObject;
-	}
+
+	virtual void UnInit();
+
+	virtual void Update();
+
+	virtual void Draw();
+
+
+	GameObject* AddGameObject(GameObject* pGameObject, int layer);
 
 	template <typename T>//テンプレート解放
 	T* AddGameObject(int Layer)
@@ -59,14 +59,7 @@ public:
 		return gameObject;
 	}
 
-	std::vector<GameObject*> GetGameObjectLayer(const int& Layer)
-	{
-		std::vector<GameObject*> objects;
-		for (auto obj : m_GameObject[Layer]) {
-			objects.push_back(obj);
-		}		
-		return objects;
-	}
+	std::vector<GameObject*> GetGameObjectLayer(const int& Layer);
 
 	template <typename T>
 	T* GetGameObject() {
@@ -98,68 +91,6 @@ public:
 	}
 
 
-	inline virtual void UnInit()
-	{
-		for (int i = 0; i < LAYER_NUM_MAX; i++) {
-			for (GameObject* object : m_GameObject[i])
-			{
-				object->Uninit();
-				delete object;
-			}
-			m_GameObject[i].clear();//リストのクリア
-		}
-
-		//Unload();
-	}
-
-	inline virtual void Update()
-	{
-		for (int i = 0; i < LAYER_NUM_MAX; i++) {
-			for (GameObject* object : m_GameObject[i])
-			{
-
-				object->Update();
-
-			}
-
-			m_GameObject[i].remove_if([](GameObject* object) {return object->Destroy(); });
-		}
-	}
-
-	inline virtual void Draw()
-	{
-#ifdef _DEBUG
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, Renderer::GetWindowColor());
-
-		ImGui::Begin("Parameters by Scene", &parameters_by_scene, ImGuiWindowFlags_MenuBar);
-#endif // _DEBUG
-
-
-		for (int i = 0; i < LAYER_NUM_MAX; i++) {					
-
-			for (GameObject* object : m_GameObject[i])
-			{
-				object->Draw();
-#ifdef _DEBUG
-				ImGuiComponent* imc = object->GetComponent<ImGuiComponent>();
-				if (imc == nullptr)continue;
-				if (imc->GetIsUse() == false)continue;
-				if (ImGui::CollapsingHeader(object->GetTypeName().c_str())) {
-					object->DrawImgui();
-				}				
-#endif // _DEBUG
-			}			
-		}
-
-#ifdef _DEBUG
-		ImGui::End();
-
-		ImGui::PopStyleColor();
-#endif // _DEBUG
-
-	}
-
-	inline static bool parameters_by_scene = true;
 private:
 
 

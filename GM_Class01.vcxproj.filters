@@ -471,6 +471,9 @@
     <ClCompile Include="CO_UI_Tutorial.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">

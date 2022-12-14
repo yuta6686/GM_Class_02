@@ -119,15 +119,7 @@ private:
 
 	inline static const int m_LightNum = 1;
 
-#ifdef _DEBUG
-	// Our state
-	inline static bool show_demo_window = false;
-	inline static bool show_another_window = false;
-	inline static bool show_hello_world = true;
-	inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	inline static ImVec4 window_color = ImVec4(0.0f,0.0f,0.2f,0.8f);
-	
-#endif // _DEBUG
+
 	inline static float m_ImGuiFontSize = 20.0f;
 public:
 	static void Init();
@@ -185,10 +177,7 @@ public:
 
 	inline static VALIABLE m_Valiable = { 0.0f,0.0f,0.0f,0.0f };
 	inline static bool _isRenderTexture = true;
-#ifdef _DEBUG
-	static void imguiDraw();
-	static ImVec4 GetWindowColor() { return window_color; }
-#endif // _DEBUG
+
 
 	static void CalcWeightsTableFromGaussian(float* weightsTbl, int sizeOfWeightsTbl, float sigma);
 };

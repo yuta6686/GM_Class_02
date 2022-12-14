@@ -13,7 +13,7 @@ class CO_UI_Default :
     public ComponentObject
 {
 private:    
-    UserInterfaceComponent* m_UIComponent;
+    UserInterfaceComponent* _uiComponent;
 public:
     virtual void Init()override;    
 

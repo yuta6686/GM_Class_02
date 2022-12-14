@@ -38,8 +38,8 @@ void EnemyGenerate::Init()
 	}
 	m_Player = m_Scene->GetGameObject<Player>();
 
-	MyImgui::mbGameObjectMap["Serialize"] = true;
-	MyImgui::mbGameObjectMap["Deserialize"] = true;
+	MyImgui::_myFlag["Serialize"] = true;
+	MyImgui::_myFlag["Deserialize"] = true;
 }
 
 void EnemyGenerate::Uninit()
@@ -581,13 +581,13 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 
 void EnemyGenerate::SerializeMenu()
 {	
-	ImGui::MenuItem("Serialize", NULL, &MyImgui::mbGameObjectMap["Serialize"]);	
-	ImGui::MenuItem("Deserialize", NULL, &MyImgui::mbGameObjectMap["Deserialize"]);
+	ImGui::MenuItem("Serialize", NULL, &MyImgui::_myFlag["Serialize"]);	
+	ImGui::MenuItem("Deserialize", NULL, &MyImgui::_myFlag["Deserialize"]);
 }
 
 void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies)
 {
-	if (MyImgui::mbGameObjectMap["Serialize"]) {
+	if (MyImgui::_myFlag["Serialize"]) {
 			static std::stringstream ss;
 		if (ImGui::Button("Serialize!"))
 		{
@@ -625,7 +625,7 @@ void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class
 
 void EnemyGenerate::Deserialize()
 {
-	if (MyImgui::mbGameObjectMap["Deserialize"]) {
+	if (MyImgui::_myFlag["Deserialize"]) {
 		if (ImGui::Button("Deserialize!"))
 		{		
 			Enemy_Interface* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);

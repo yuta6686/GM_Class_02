@@ -45,11 +45,11 @@ void DebugScene::Init()
 
 		for (GameObject* object : m_GameObject[i])
 		{
-			MyImgui::mbGameObjectMap[object->GetTypeName()] = false;
+			MyImgui::_myFlag[object->GetTypeName()] = false;
 		}
 	}	
 
-	MyImgui::mbGameObjectMap["MeshField"] = true;
+	MyImgui::_myFlag["MeshField"] = true;
 }
 
 //void DebugScene::Update()
@@ -61,7 +61,7 @@ void DebugScene::Init()
 void DebugScene::Draw()
 {
 #ifdef _DEBUG
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, Renderer::GetWindowColor());
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, MyImgui::window_color);
 
 	ImGui::Begin("Debug Scene", &parameters_by_scene, ImGuiWindowFlags_MenuBar);
 #endif // _DEBUG
@@ -72,8 +72,8 @@ void DebugScene::Draw()
 
 	if (ImGui::BeginMenu("GameObject"))
 	{
-		for (auto gomap : MyImgui::mbGameObjectMap) {
-			ImGui::MenuItem(gomap.first.c_str(),NULL, &MyImgui::mbGameObjectMap[gomap.first]);			
+		for (auto gomap : MyImgui::_myFlag) {
+			ImGui::MenuItem(gomap.first.c_str(),NULL, &MyImgui::_myFlag[gomap.first]);			
 		}
 
 		ImGui::EndMenu();
@@ -88,7 +88,7 @@ void DebugScene::Draw()
 			object->Draw();
 #ifdef _DEBUG
 			
-			if(MyImgui::mbGameObjectMap[object->GetTypeName()])
+			if(MyImgui::_myFlag[object->GetTypeName()])
 				object->DrawImgui();					
 #endif // _DEBUG
 		}

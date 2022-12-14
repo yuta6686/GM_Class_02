@@ -131,14 +131,15 @@ void VelocityComponent::Update()
 
 void VelocityComponent::Draw()
 {
-#ifdef _DEBUG
-    ImGui::Text("aaaaa %.2f", m_Liner);
-    ImGui::Text("Get0to1Count %.2f", m_Counter->Get0to1Count());
-#endif // _DEBUG
+
 }
 
 void VelocityComponent::DrawImgui()
 {
+#ifdef _DEBUG
+    ImGui::Text("aaaaa %.2f", m_Liner);
+    ImGui::Text("Get0to1Count %.2f", m_Counter->Get0to1Count());
+#endif // _DEBUG
 }
 
 void VelocityComponent::SetStart(const bool& in,
