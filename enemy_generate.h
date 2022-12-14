@@ -21,6 +21,8 @@ private:
 	std::string m_Extension = ".txt";
 	std::string m_Version = "_EnemyIndex";
 
+	const std::string _menuName = "EnemyGenerate";
+
 	inline static const std::string _serialize_file_name = "_out.json";
 	int m_SaveFileIndex = 2;
 	int m_LoadFileIndex = 2;

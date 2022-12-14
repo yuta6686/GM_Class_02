@@ -474,6 +474,9 @@
     <ClCompile Include="scene.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="my_imgui.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">

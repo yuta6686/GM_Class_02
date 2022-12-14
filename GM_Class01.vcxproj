@@ -61,6 +61,7 @@
     <ClCompile Include="loading_scene.cpp" />
     <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp" />
     <ClCompile Include="model_draw_component.cpp" />
+    <ClCompile Include="my_imgui.cpp" />
     <ClCompile Include="player_factory.cpp" />
     <ClCompile Include="random_jump_component.cpp" />
     <ClCompile Include="random_velocity_component.cpp" />

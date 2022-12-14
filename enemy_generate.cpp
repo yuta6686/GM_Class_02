@@ -38,6 +38,8 @@ void EnemyGenerate::Init()
 	}
 	m_Player = m_Scene->GetGameObject<Player>();
 
+	AddComponent<ImGuiComponent>(COMLAYER_FIRST)->SetIsUse(true);
+
 	MyImgui::_myFlag["Serialize"] = true;
 	MyImgui::_myFlag["Deserialize"] = true;
 }
@@ -48,38 +50,35 @@ void EnemyGenerate::Uninit()
 
 void EnemyGenerate::Update()
 {
-#ifdef _DEBUG
 
+
+}
+
+void EnemyGenerate::Draw()
+{
+
+}
+
+void EnemyGenerate::DrawImgui()
+{
+	
 	std::vector<GameObject*> enemys = m_Scene->GetGameObjectLayer(LAYER_ENEMY);
 	std::vector<Cylinder*> clies = m_Scene->GetGameObjects<Cylinder>();
 
-
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, window_color);
-
-	ImGui::Begin("EnemyGenerate", NULL, ImGuiWindowFlags_MenuBar);
-
-
-	ImGui::ColorEdit4("window color", (float*)&window_color);
-
-
-	ImGui::Checkbox("Set Enemy Generate Mode!", &IsEnemyGenerateMode);
-
 	SetEnemyGenerateMode(IsEnemyGenerateMode);
+	
+	Generate(enemys, clies);			
 
-	ImGui::BeginMenuBar();
+	Save(enemys, clies);	
+	
+	Load(enemys, clies);
+	
 
-	if (ImGui::BeginMenu("Enemy Generater")) {
+	 
+	SerializeMenu();
+	
 
-		Generate(enemys, clies);
-
-		Save(enemys, clies);
-
-
-		Load(enemys, clies);
-
-		SerializeMenu();
-
-
+	if (MyImgui::_myFlagTree[_menuName]["Reset"]) {
 		if (ImGui::BeginMenu("Reset")) {
 			if (ImGui::Button("Reset Enemy Button")) {
 				for (auto enemy : enemys) {
@@ -94,67 +93,52 @@ void EnemyGenerate::Update()
 			}
 			ImGui::EndMenu();
 		}
-
-		ImGui::EndMenu();
 	}
 
-	ImGui::EndMenuBar();
-
-	Serialize(enemys, clies);
-
-	Deserialize();
-
 	//	Enemy
-	if (ImGui::CollapsingHeader("Enemy")) {
-		for (unsigned int i = 0; i < enemys.size(); i++) {
-			char buff[255];
-			sprintf(buff, "Enemy_%d", i);
-			if (ImGui::TreeNode(buff))
-			{
-				enemys[i]->DrawImgui();
-				ImGui::TreePop();
+	if (MyImgui::_myFlagTree[_menuName]["Enemy"]) {
+		if (ImGui::BeginMenu("Enemy")) {
+			for (unsigned int i = 0; i < enemys.size(); i++) {
+				char buff[255];
+				sprintf(buff, "Enemy_%d", i);
+				if (ImGui::TreeNode(buff))
+				{
+					enemys[i]->DrawImgui();
+					ImGui::TreePop();
+				}
+				if (ImGui::Button("destroy")) {
+					enemys[i]->SetDestroy();
+				}
 			}
-			if (ImGui::Button("destroy")) {
-				enemys[i]->SetDestroy();
-			}
+			ImGui::EndMenu();
 		}
 	}
 
 	std::vector<Cylinder*> cylinder = m_Scene->GetGameObjects< Cylinder>();
-	if (ImGui::CollapsingHeader("Drum")) {
-		for (unsigned int i = 0; i < cylinder.size(); i++) {
-			std::ostringstream oss;
-			oss << "Drum_" << i;
-			if (ImGui::TreeNode(oss.str().c_str())) {
-				cylinder[i]->DrawImgui();
-				ImGui::TreePop();
+	if (MyImgui::_myFlagTree[_menuName]["Drum"]) {
+		if (ImGui::BeginMenu("Drum")) {
+			for (unsigned int i = 0; i < cylinder.size(); i++) {
+				std::ostringstream oss;
+				oss << "Drum_" << i;
+				if (ImGui::TreeNode(oss.str().c_str())) {
+					cylinder[i]->DrawImgui();
+					ImGui::TreePop();
+				}
 			}
+			ImGui::EndMenu();
 		}
 	}
 
+	Serialize(enemys, clies);
 
-
-
-
-	ImGui::End();
-
-	ImGui::PopStyleColor();
-
-#endif // _DEBUG
-}
-
-void EnemyGenerate::Draw()
-{
-
-}
-
-void EnemyGenerate::DrawImgui()
-{
+	Deserialize();
 }
 
 void EnemyGenerate::Generate(std::vector<GameObject*> enemys, std::vector<class Cylinder*> clies)
 {
-	if (ImGui::BeginMenu("EnemyGenerate!")) {
+	if (!MyImgui::_myFlagTree[_menuName]["Generate"])return;
+
+	if (ImGui::BeginMenu("EnemyGenerate!") ) {
 		ImGui::SliderFloat("scale3.x", &_scale3.x, 1.0f, 30.0f);
 		ImGui::SliderFloat("scale3.y", &_scale3.y, 1.0f, 30.0f);
 		ImGui::SliderFloat("scale3.z", &_scale3.z, 1.0f, 30.0f);
@@ -322,6 +306,7 @@ void EnemyGenerate::Generate(std::vector<GameObject*> enemys, std::vector<class 
 
 void EnemyGenerate::Save(std::vector<GameObject*> enemys, std::vector<Cylinder*> clies)
 {
+	if (!MyImgui::_myFlagTree[_menuName]["Save"]) return;
 	if (ImGui::BeginMenu("Save")) {
 
 		ImGui::SliderInt("SaveFileIndex", &m_SaveFileIndex, 1, m_NowFileNum, "%d");
@@ -382,6 +367,7 @@ void EnemyGenerate::Save(std::vector<GameObject*> enemys, std::vector<Cylinder*>
 
 void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies)
 {
+	if (!MyImgui::_myFlagTree[_menuName]["Load"])return;
 	if (ImGui::BeginMenu("Load")) {
 
 		ImGui::SliderInt("LoadFileIndex", &m_LoadFileIndex, 1, m_NowFileNum - 1, "%d");
@@ -580,24 +566,27 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 }
 
 void EnemyGenerate::SerializeMenu()
-{	
-	ImGui::MenuItem("Serialize", NULL, &MyImgui::_myFlag["Serialize"]);	
+{
+	if (!MyImgui::_myFlagTree[_menuName]["Serialize"])return;
+	ImGui::MenuItem("Serialize", NULL, &MyImgui::_myFlag["Serialize"]);
 	ImGui::MenuItem("Deserialize", NULL, &MyImgui::_myFlag["Deserialize"]);
 }
 
 void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies)
 {
-	if (MyImgui::_myFlag["Serialize"]) {
-			static std::stringstream ss;
+	if (!MyImgui::_myFlagTree[_menuName]["Serialize"])return;
+	if(ImGui::BeginMenu("Serialize"))
+	{
+		static std::stringstream ss;
 		if (ImGui::Button("Serialize!"))
 		{
 			ss.str("");
-			
+
 
 			std::ofstream os(_serialize_file_name, std::ios::out);
 			cereal::JSONOutputArchive archiveFile(os);
 
-			for (auto enemy : enemys) {								
+			for (auto enemy : enemys) {
 				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archiveFile);
 			}
 
@@ -607,34 +596,38 @@ void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class
 			}
 
 		}
-			ImGui::Text(ss.str().c_str());
+		ImGui::Text(ss.str().c_str());
 
-		if (ImGui::Button("Desirialize")) 
+		if (ImGui::Button("Desirialize"))
 		{
 			std::ifstream is(_serialize_file_name, std::ios::in);
 
 			cereal::JSONInputArchive archive(is);
 
-			for (auto enemy : enemys) 
+			for (auto enemy : enemys)
 			{
 				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archive);
 			}
 		}
+		ImGui::EndMenu();
 	}
 }
 
 void EnemyGenerate::Deserialize()
 {
-	if (MyImgui::_myFlag["Deserialize"]) {
+	if (!MyImgui::_myFlagTree[_menuName]["Deserialize"])return;
+	if(ImGui::BeginMenu("Deserialize")){
 		if (ImGui::Button("Deserialize!"))
-		{		
+		{
 			Enemy_Interface* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
-						
-			std::ifstream is(_serialize_file_name, std::ios::in);			
+
+			std::ifstream is(_serialize_file_name, std::ios::in);
 
 			cereal::JSONInputArchive archive(is);
 
 			enemy->serialize(archive);
-		}		
+		}
+
+		ImGui::EndMenu();
 	}
 }

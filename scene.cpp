@@ -64,6 +64,7 @@ void Scene::Draw()
 	//	メニューバー
 	ImGui::BeginMenuBar(); {
 
+		// mainに入れる方
 		static bool mainflag = false;
 		if (ImGui::BeginMenu("main")) {
 
@@ -72,6 +73,19 @@ void Scene::Draw()
 			}
 
 			ImGui::EndMenu();
+		}
+
+		// main以外のMenu群
+		for (auto& menu : MyImgui::_myFlagTree) {
+			if (ImGui::BeginMenu(menu.first.c_str()))
+			{
+
+				for (auto& menu_item : menu.second) {
+					ImGui::MenuItem(menu_item.first.c_str(), NULL, &menu_item.second);
+				}
+
+				ImGui::EndMenu();
+			}
 		}
 
 		//	メニューバー終了
@@ -96,7 +110,10 @@ void Scene::Draw()
 		}
 	}
 
+
 #ifdef _DEBUG
+	MyImgui::MyImguiDraw();
+
 	ImGui::End();
 
 	ImGui::PopStyleColor();
