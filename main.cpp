@@ -126,6 +126,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 				Manager::Update();
 				Manager::Draw();
 				
+				ImGui::EndFrame();
+				ImGui::UpdatePlatformWindows();
 			}
 		}
 	}
