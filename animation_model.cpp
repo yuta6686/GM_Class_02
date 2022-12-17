@@ -226,6 +226,7 @@ void AnimationModel::Update(const char* AnimationName, const char* AnimationName
 
 	for (unsigned int c = 0; c < animation->mNumChannels; c++) {
 		aiNodeAnim* nodeAnim = animation->mChannels[c];
+		if (!nodeAnim)continue;		
 		BONE* bone = &m_Bone[nodeAnim->mNodeName.C_Str()];
 
 		int f;

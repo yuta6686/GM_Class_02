@@ -1,14 +1,15 @@
 #pragma once
 
 
+
 #include "assimp/cimport.h"
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 #include "assimp/matrix4x4.h"
 
 
-
 #pragma comment(lib,"assimp.lib")
+#pragma comment(lib,"assimp-vc143-mtd.lib")
 
 //	ïœå`å„í∏ì_ç\ë¢ëÃ
 struct DEFORM_VERTEX
