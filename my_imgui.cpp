@@ -6,7 +6,11 @@ void MyImgui::MyImguiDraw()
 	_myFlagTree["Test"]["test2"];
 	_myFlagTree["Test"]["test3"];
 
+	
+	//ImGui::Begin("Gizmo");
+	//ImGuizmo::SetDrawlist();
 
+	//ImGuizmo::DrawGrid();
 
 
 }

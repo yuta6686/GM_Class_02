@@ -29,7 +29,7 @@ void CountComponent::Update()
         }
 
 
-        _linerReturn0to1 = static_cast<float>(min(_count + _delay, _maxCount)) / static_cast<float>(_maxCount);
+        _linerReturn0to1 = static_cast<float>(std::min(_count + _delay, _maxCount)) / static_cast<float>(_maxCount);
     }
     else
     {
@@ -44,7 +44,7 @@ void CountComponent::Update()
         }
 
 
-        _linerReturn0to1 = static_cast<float>(max(_count - _delay, 0)) / static_cast<float>(_maxCount);
+        _linerReturn0to1 = static_cast<float>(std::max(_count - _delay, 0)) / static_cast<float>(_maxCount);
     }
 }
 

@@ -85,7 +85,7 @@ void CO_Select::Update()
         m_SelectIndex--;
         if (m_SelectIndex < 0)
         {
-            m_SelectIndex = (int)(min(m_UISelects_Box.size(), m_UISelects_Box.size())) - 1;
+            m_SelectIndex = (int)(std:: min(m_UISelects_Box.size(), m_UISelects_Box.size())) - 1;
         }
 
         m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()
@@ -113,7 +113,7 @@ void CO_Select::Update()
 
         //  インデックス処理
         m_SelectIndex++;
-        m_SelectIndex %= (int)(min(m_UISelects_Box.size(), m_UISelects_Box.size()));
+        m_SelectIndex %= (int)(std::min(m_UISelects_Box.size(), m_UISelects_Box.size()));
 
 
         m_UISelects_Box[m_SelectIndex]->GetComponent<BlinkComponent_Scale>()

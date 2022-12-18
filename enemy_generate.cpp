@@ -567,16 +567,14 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 
 void EnemyGenerate::SerializeMenu()
 {
-	if (!MyImgui::_myFlagTree[_menuName]["Serialize"])return;
-	ImGui::MenuItem("Serialize", NULL, &MyImgui::_myFlag["Serialize"]);
-	ImGui::MenuItem("Deserialize", NULL, &MyImgui::_myFlag["Deserialize"]);
 }
 
 void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class Cylinder*> cliies)
 {
+	
 	if (!MyImgui::_myFlagTree[_menuName]["Serialize"])return;
 	if(ImGui::BeginMenu("Serialize"))
-	{
+	{		
 		static std::stringstream ss;
 		if (ImGui::Button("Serialize!"))
 		{
@@ -586,29 +584,13 @@ void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class
 			std::ofstream os(_serialize_file_name, std::ios::out);
 			cereal::JSONOutputArchive archiveFile(os);
 
-			for (auto enemy : enemys) {
-				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archiveFile);
-			}
+			serialize(archiveFile,enemys);
+			
 
 			cereal::JSONOutputArchive archiveFile2(ss);
-			for (auto enemy : enemys) {
-				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archiveFile2);
-			}
-
+			serialize(archiveFile2, enemys);
 		}
-		ImGui::Text(ss.str().c_str());
-
-		if (ImGui::Button("Desirialize"))
-		{
-			std::ifstream is(_serialize_file_name, std::ios::in);
-
-			cereal::JSONInputArchive archive(is);
-
-			for (auto enemy : enemys)
-			{
-				dynamic_cast<Enemy_Interface*>(enemy)->serialize(archive);
-			}
-		}
+		ImGui::Text(ss.str().c_str());		
 		ImGui::EndMenu();
 	}
 }
@@ -619,13 +601,22 @@ void EnemyGenerate::Deserialize()
 	if(ImGui::BeginMenu("Deserialize")){
 		if (ImGui::Button("Deserialize!"))
 		{
-			Enemy_Interface* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+			// Enemy_Interface* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+			std::vector<GameObject*> enemys;
 
 			std::ifstream is(_serialize_file_name, std::ios::in);
 
 			cereal::JSONInputArchive archive(is);
 
-			enemy->serialize(archive);
+			serialize(archive, enemys);
+
+			// enemy->serialize(archive);
+			//for (auto enemy : enemys) {
+			//	Enemy_Interface* addenemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
+			//	addenemy->SetPosition(enemy->GetPosition());
+			//	addenemy->SetRotation(enemy->GetRotation());
+			//	addenemy->SetScale(enemy->GetScale());
+			//}
 		}
 
 		ImGui::EndMenu();

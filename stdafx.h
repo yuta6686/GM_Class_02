@@ -1,6 +1,7 @@
 #pragma once
 
 #define _CRT_SECURE_NO_WARNINGS
+#define NOMINMAX
 #include <memory>
 #include <vector>
 #include <list>
@@ -19,9 +20,19 @@
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
 
+//#include "imgui_node_editor.h"
+
+#include "ImGuizmo.h"
+#include "ImSequencer.h"
+//#include "ImZoomSlider.h"
+#include "ImCurveEdit.h"
+//#include "GraphEditor.h"
+
+
 #include <cereal.hpp>
 #include <archives/json.hpp>
 #include <types/vector.hpp>
+#include <types/list.hpp>
 
 #include "my_imgui.h"
 

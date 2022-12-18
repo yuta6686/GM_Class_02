@@ -102,6 +102,7 @@ public:
 	static D3DXVECTOR3 VEC3Random(float min, float max)
 	{
 		D3DXVECTOR3 random;
+
 		random.x = Random(min, max);
 		random.y = Random(min, max);
 		random.z = Random(min, max);

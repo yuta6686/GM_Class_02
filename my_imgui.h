@@ -1,6 +1,5 @@
 #pragma once
 
-
 class MyImgui
 {
 public:
@@ -10,9 +9,10 @@ public:
 
 	inline static std::map<std::string,bool> _myFlag;
 
-	inline static std::unordered_map<std::string,std::unordered_map<std::string, bool>> _myFlagTree;
-	
+	inline static std::unordered_map<std::string,std::unordered_map<std::string, bool>> _myFlagTree;	
+
 	static void MyImguiDraw();
 
+	
 };
 

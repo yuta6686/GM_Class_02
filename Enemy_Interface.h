@@ -57,10 +57,6 @@ public: // ÉQÉbÉ^Å[
 public: // ÇªÇÃëº
     void CollosionWithBullet();
 
-    template<class Archive>
-    void serialize(Archive& archive)
-    {
-        archive(CEREAL_NVP(m_Position));
-    }
+
 };
 

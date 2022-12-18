@@ -15,7 +15,7 @@ void CollisionComponent_Enemy::Update()
     if (!stands.empty()) {
         for (auto stand : stands) {
 
-            ymin = (max(0.1f * stand->GetScale().y, ymin));
+            ymin = (std::max(0.1f * stand->GetScale().y, ymin));
             break;
         }
     }
@@ -25,7 +25,7 @@ void CollisionComponent_Enemy::Update()
     if (!cylinders.empty()) {
         for (auto cy : cylinders) {
 
-            ymin = (max(cy->GetPosition().y + cy->GetScale().y, ymin));
+            ymin = (std::max(cy->GetPosition().y + cy->GetScale().y, ymin));
 
             break;
         }

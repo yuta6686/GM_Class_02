@@ -59,7 +59,9 @@ void Scene::Draw()
 	if (MyImgui::_myFlag["showDemoWindow"])
 		ImGui::ShowDemoWindow();
 
-	ImGui::Begin("Parameters by Scene", &parameters_by_scene, ImGuiWindowFlags_MenuBar);
+	ImGui::Begin("Parameters by Scene", &parameters_by_scene, 
+		ImGuiWindowFlags_MenuBar | 
+		ImGuiWindowFlags_AlwaysAutoResize);
 
 	//	メニューバー
 	ImGui::BeginMenuBar(); {

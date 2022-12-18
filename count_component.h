@@ -40,7 +40,7 @@ public:
         const int& offset = 0);
 
 //  Getter--------------------------------------------------------------------    
-    int GetCount()const { return max(_count - _delay, 0); }
+    int GetCount()const { return std::max(_count - _delay, 0); }
     float Get0to1Count()const { return _linerReturn0to1; }
     bool GetStart()const { return _in; }
     bool GetFinish()const { return _finish; }

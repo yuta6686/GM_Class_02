@@ -16,8 +16,6 @@ public:
 
     virtual void Unload() override;
 
-
-
     inline static std::map<SHADER_TYPE, std::string> GetFileNames() { return _fileNames; }
 private:
     inline static const std::map<SHADER_TYPE, std::string> _fileNames = {
@@ -29,7 +27,7 @@ private:
         {SHADER_TYPE::SHADER_BLURX,"post_effect_blur_x_vs.cso"},
         {SHADER_TYPE::SHADER_BLURY,"post_effect_blur_y_vs.cso"},
         {SHADER_TYPE::SHADER_ENEMY,"enemy_vs.cso"},
-    };
+    };    
     
 };
 

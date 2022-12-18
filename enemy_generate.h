@@ -3,6 +3,7 @@
 
 #include "scene.h"
 #include "player.h"
+#include "Enemy_Interface.h"
 
 enum VERTICAL_DEPLOY_AXIS {
 	VDA_X = 0,
@@ -11,6 +12,15 @@ enum VERTICAL_DEPLOY_AXIS {
 	VDA_Z,
 	VDA_MZ
 };
+
+template<class Archive>
+void serialize(Archive& archive,GameObject* enemy)
+{	
+	D3DXVECTOR3 pos = enemy->GetPosition();
+	D3DXVECTOR3 rot = enemy->GetRotation();
+	D3DXVECTOR3 sca = enemy->GetScale();
+	archive(CEREAL_NVP(pos), CEREAL_NVP(rot), CEREAL_NVP(sca));
+}
 
 class EnemyGenerate :
 	public ComponentObject
@@ -78,6 +88,18 @@ private:
 
 	// デシリアライズ
 	void Deserialize();
+
+	template<class Archive>
+	void serialize(Archive& archive,std::vector<GameObject*>& enemys)
+	{		
+		archive(CEREAL_NVP(enemys));
+	}
+
+	//template<class Archive>
+	//void serialize(Archive& archive, std::vector<GameObject*>& enemys)
+	//{
+	//	archive(CEREAL_NVP(enemys));
+	//}
 };
 
 class test{
