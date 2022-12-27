@@ -14,7 +14,7 @@
 #include <thread>
 #include <functional>
 #include <omp.h>
-
+#include <typeindex>
 
 #include "imgui.h"
 #include "imgui_impl_dx11.h"

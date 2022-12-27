@@ -13,6 +13,7 @@ enum VERTICAL_DEPLOY_AXIS {
 	VDA_MZ
 };
 
+// GameObjectのシリアライズ
 template<class Archive>
 void serialize(Archive& archive,GameObject* enemy)
 {	
@@ -21,6 +22,43 @@ void serialize(Archive& archive,GameObject* enemy)
 	D3DXVECTOR3 sca = enemy->GetScale();
 	archive(CEREAL_NVP(pos), CEREAL_NVP(rot), CEREAL_NVP(sca));
 }
+
+// EnemyをSerializeするための保存用構造体
+class SerializeEnemy {
+public:
+
+	D3DXVECTOR3 _position;
+	D3DXVECTOR3 _rotation;
+	D3DXVECTOR3 _scale;
+
+	int _hp;
+	int _index;
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(CEREAL_NVP(_position), CEREAL_NVP(_rotation), CEREAL_NVP(_scale),
+			CEREAL_NVP(_hp), CEREAL_NVP(_index));
+	}
+};
+class SerializeEnemys 
+{
+public:
+	SerializeEnemys() {};
+	SerializeEnemys(std::vector<GameObject*> Enemys);
+
+	// シリアライズ用に一時変数を保持
+	std::vector<SerializeEnemy> _serializeEnemy;
+
+	// デシリアライズした結果をゲームオブジェクトとして追加する
+	std::vector<GameObject*> AddDeserializeEnemys();
+
+	template <class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(CEREAL_NVP(_serializeEnemy));
+	}
+};
 
 class EnemyGenerate :
 	public ComponentObject
@@ -90,26 +128,10 @@ private:
 	void Deserialize();
 
 	template<class Archive>
-	void serialize(Archive& archive,std::vector<GameObject*>& enemys)
-	{		
-		archive(CEREAL_NVP(enemys));
+	void serialize(Archive& archive, SerializeEnemys& serializeEnemys)
+	{			
+		archive(CEREAL_NVP(serializeEnemys));
 	}
 
-	//template<class Archive>
-	//void serialize(Archive& archive, std::vector<GameObject*>& enemys)
-	//{
-	//	archive(CEREAL_NVP(enemys));
-	//}
 };
 
-class test{
-public:
-	std::string name;
-	int hp = 0;
-
-	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		archive(name, hp);
-	}
-};

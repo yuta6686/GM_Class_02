@@ -12,6 +12,7 @@ enum ENEMY
     ENEMY_BOSS,
     ENEMY_MAX
 };
+
 template<class Archive>
 void serialize(Archive& archive, D3DXVECTOR3& vector) {
     archive(cereal::make_nvp("x", vector.x),

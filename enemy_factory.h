@@ -21,9 +21,13 @@ public:
 	{
 		Enemy_Interface* pEnemy = new T();
 
-		pEnemy->SetMaxHp(hp);
+		pEnemy->SetMaxHp(hp);		
 
 		return pEnemy;
 	}
+
+	static Enemy_Interface* Create(const int& hp, const int& index = ENEMY_NORMAL);
+
+	
 };
 

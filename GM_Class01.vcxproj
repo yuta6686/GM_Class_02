@@ -54,6 +54,7 @@
     <ClCompile Include="debug_scene.cpp" />
     <ClCompile Include="defeat_scene.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemy_factory.cpp" />
     <ClCompile Include="enemy_interface.cpp" />
     <ClCompile Include="gravity_component.cpp" />
     <ClCompile Include="ImGuiComponent_Enemy.cpp" />

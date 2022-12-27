@@ -15,6 +15,8 @@ GameObject* Scene::AddGameObject(GameObject* pGameObject, int layer)
 	return pGameObject;
 }
 
+
+
 std::vector<GameObject*> Scene::GetGameObjectLayer(const int& Layer)
 {
 	std::vector<GameObject*> objects;

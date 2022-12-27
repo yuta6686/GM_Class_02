@@ -3,11 +3,45 @@
 #include "cylinder.h"
 #include "circle_deploy.h"
 #include "collision_component_player.h"
+#include "enemy_factory.h"
 
 #include <fstream>
 #include <iostream>
 #include <sstream>
 using namespace std;
+
+// エネミーを一時別変換するための変換
+SerializeEnemys::SerializeEnemys(std::vector<GameObject*> Enemys)
+{
+	for (auto Enemy : Enemys)
+	{
+		SerializeEnemy _enemy;
+		_enemy._position = Enemy->GetPosition();
+		_enemy._rotation = Enemy->GetRotation();
+		_enemy._scale = Enemy->GetScale();
+		_enemy._hp = dynamic_cast<Enemy_Interface*>(Enemy)->GetHp();
+		_enemy._index = dynamic_cast<Enemy_Interface*>(Enemy)->GetEnemyIndex();
+		_serializeEnemy.push_back(_enemy);
+	}
+}
+
+// デシリアライズした結果をゲームオブジェクトとして追加する
+std::vector<GameObject*> SerializeEnemys::AddDeserializeEnemys()
+{
+	std::vector<GameObject*> deserializeEnemys;
+	for (auto enemy : _serializeEnemy)
+	{
+		Enemy_Interface* desEnemy = EnemyFactory::Create(enemy._hp, enemy._index);
+		desEnemy->SetPosition(enemy._position);
+		desEnemy->SetRotation(enemy._rotation);
+		desEnemy->SetScale(enemy._scale);
+
+		deserializeEnemys.push_back(desEnemy);
+	}
+
+	return deserializeEnemys;
+}
+
 
 void EnemyGenerate::SetEnemyGenerateMode(bool flag)
 {
@@ -584,11 +618,12 @@ void EnemyGenerate::Serialize(std::vector<GameObject*> enemys, std::vector<class
 			std::ofstream os(_serialize_file_name, std::ios::out);
 			cereal::JSONOutputArchive archiveFile(os);
 
-			serialize(archiveFile,enemys);
+			SerializeEnemys serializeEnemys(enemys);
+			serialize(archiveFile,serializeEnemys);
 			
 
 			cereal::JSONOutputArchive archiveFile2(ss);
-			serialize(archiveFile2, enemys);
+			serialize(archiveFile2, serializeEnemys);
 		}
 		ImGui::Text(ss.str().c_str());		
 		ImGui::EndMenu();
@@ -601,8 +636,7 @@ void EnemyGenerate::Deserialize()
 	if(ImGui::BeginMenu("Deserialize")){
 		if (ImGui::Button("Deserialize!"))
 		{
-			// Enemy_Interface* enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
-			std::vector<GameObject*> enemys;
+			SerializeEnemys enemys;
 
 			std::ifstream is(_serialize_file_name, std::ios::in);
 
@@ -610,15 +644,10 @@ void EnemyGenerate::Deserialize()
 
 			serialize(archive, enemys);
 
-			// enemy->serialize(archive);
-			//for (auto enemy : enemys) {
-			//	Enemy_Interface* addenemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
-			//	addenemy->SetPosition(enemy->GetPosition());
-			//	addenemy->SetRotation(enemy->GetRotation());
-			//	addenemy->SetScale(enemy->GetScale());
-			//}
+			enemys.AddDeserializeEnemys();
 		}
 
 		ImGui::EndMenu();
 	}
 }
+
