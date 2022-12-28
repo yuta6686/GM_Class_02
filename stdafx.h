@@ -15,6 +15,9 @@
 #include <functional>
 #include <omp.h>
 #include <typeindex>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
 #include "imgui.h"
 #include "imgui_impl_dx11.h"
@@ -33,8 +36,10 @@
 #include <archives/json.hpp>
 #include <types/vector.hpp>
 #include <types/list.hpp>
+#include <types/string.hpp>
 
 #include "my_imgui.h"
+
 
 #include "main.h"
 #include "scene.h"
@@ -45,4 +50,5 @@
 #include "component_object.h"
 #include "component.h"
 #include "renderer.h"
-
+#include "texture_compoennt.h"
+#include "serealize_archive.h"

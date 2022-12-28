@@ -142,7 +142,7 @@ void GameScene::Init()
 	AddGameObject<Camera>(LAYER_FIRST);
 
 	//	ライト
-	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
+	AddGameObject<Light>(LAYER_FIRST);
 
 	// プレイヤー
 	AddGameObject<PlayerFactory>(LAYER_3D);
@@ -169,7 +169,7 @@ void GameScene::Init()
 
 	
 
-	AddGameObject< ImGuiObject>(LAYER_3D);
+	
 
 	//	シーン遷移
 	m_Fade = AddGameObject<Transition>(LAYER_2D);
@@ -200,6 +200,8 @@ void GameScene::Init()
 
 	//	Noise Object
 	AddGameObject<CO_Noise>(LAYER_3D)->SetScale({ 1.0f,1.0f,1.0f });
+
+	AddGameObject< ImGuiObject>(LAYER_3D);
 
 	Renderer::SetValiable({ 0.0f,1.0f,1.0f,1.0f });
 

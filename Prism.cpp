@@ -54,8 +54,9 @@ void Prism::Init()
 	_vertexShader =
 		ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");
 
-	_pixelShader = 
-		ResourceManger<PixelShader>::GetResource("env_mapping_ps.cso");
+	_pixelShader =
+		ResourceManger<PixelShader>::
+		GetResource(PixelShader::GetFileNames()[SHADER_ENVIRONMENT_MAPPING]);
 }
 
 void Prism::Uninit()

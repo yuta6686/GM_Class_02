@@ -5,9 +5,7 @@
 #include "collision_component_player.h"
 #include "enemy_factory.h"
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
+
 using namespace std;
 
 // エネミーを一時別変換するための変換

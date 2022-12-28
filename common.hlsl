@@ -139,3 +139,68 @@ struct PS_IN
     float3 tangent      : TANGENT;
     float3 biNormal     : BINORMAL;
 };
+
+// 定数
+static const float PI = 3.1415926f;
+
+
+// ベックマン分布を計算する
+float Beckmann(float m, float t)
+{
+    float t2 = t * t;
+    float t4 = t * t * t * t;
+    float m2 = m * m;
+    float D = 1.0f / (4.0f * m2 * t4);
+    D *= exp((-1.0f / m2) * (1.0f - t2) / t2);
+    return D;
+}
+
+// フレネルを計算。Schlick近似を使用
+float SpcFresnel(float f0, float u)
+{
+    return f0 + (1 - f0) * pow(1 - u, 5);
+}
+
+// Cook-Torranceモデルの鏡面反射を計算
+float CookTorranceSpecular(float3 L, float3 V, float3 N, float metallic)
+{
+    float microfacet = 0.76f;
+    
+    // 金属度を垂直入射のときのフレネル反射率として扱う
+    // 金属度が高いほどフレネル反射は大きくなる
+    float f0 = metallic;
+    
+    /// ライトに向かうベクトルと視線に向かうベクトルのハーフベクトル
+    float3 H = normalize(L + V);
+    
+    // 各種ベクトルがどれくらい似ているかを内積を利用して求める
+    float NdotH = clamp(dot(N, H), 0.01f, 0.99f);
+    float VdotH = clamp(dot(V, H), 0.01f, 0.99f);
+    float NdotL = clamp(dot(N, L), 0.01f, 0.99f);
+    float NdotV = clamp(dot(N, V), 0.01f, 0.99f);
+
+    // D項をベックマン分布を用いて計算する
+    float D = Beckmann(microfacet, NdotH);
+    
+    float F = SpcFresnel(f0, VdotH);
+    
+    float G = min(1.0f, min(2 * NdotH * NdotV / VdotH, 2 * NdotH * NdotL / VdotH));
+    
+    float m = PI * NdotV * NdotH;
+    
+    return max(F * D * G / m, 0.0f);
+}
+
+
+// N : ノーマル
+// L : 光源に向かうベクトル direction?
+// V : 視線に向かうベクトル eyevec
+float CalcDiffuseFromFresnel(float3 N, float3 L, float3 V)
+{
+    float dotNL = saturate(dot(N, L));
+    
+    float dotNV = saturate(dot(N, V));
+    
+    return (dotNL * dotNV);
+
+}

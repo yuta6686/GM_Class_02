@@ -30,6 +30,7 @@
 #include "switching_renderer.h"
 #include "confirmation_component.h"
 #include "loading_scene.h"
+#include "prism_factory.h"
 
 void TitleScene::Init()
 {
@@ -74,7 +75,7 @@ void TitleScene::Init()
 	}
 
 	//	îwåiÇÃè\éö
-	AddGameObject< CO_TitleBackGround>(LAYER_3D);
+	// AddGameObject< CO_TitleBackGround>(LAYER_3D);
 
 	
 
@@ -95,6 +96,8 @@ void TitleScene::Init()
 
 	auto* title_object = AddGameObject< CO_TitleObject>(LAYER_3D);
 	title_object->SetPosition({ 0.0f,15.0f,30.0f });
+
+	AddGameObject<PrismFactory>(LAYER_3D);
 
 	//AddGameObject<CO_UI_Quest>(LAYER_2D);
 	
@@ -126,7 +129,7 @@ void TitleScene::Init()
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
-	AddGameObject< CO_Noise>(LAYER_2D);
+	AddGameObject< CO_Noise>(LAYER_3D);
 
 	//AddGameObject< CO_AnimationModelTest>(LAYER_3D);
 

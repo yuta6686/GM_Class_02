@@ -495,7 +495,16 @@
     <ClCompile Include="ImGuizmo\ImSequencer.cpp">
       <Filter>System\ImGuizmo</Filter>
     </ClCompile>
+    <ClCompile Include="co_prism.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
     <ClCompile Include="enemy_factory.cpp">
+      <Filter>GameObject\factory</Filter>
+    </ClCompile>
+    <ClCompile Include="prism_factory.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="blink_position_component.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -564,9 +573,6 @@
       <Filter>GameObject\TitleSceneObject</Filter>
     </ClInclude>
     <ClInclude Include="enemy_interface.h">
-      <Filter>GameObject\ComponentObject\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy_factory.h">
       <Filter>GameObject\ComponentObject\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="enemy.h">
@@ -997,6 +1003,21 @@
     </ClInclude>
     <ClInclude Include="ImGuizmo\ImZoomSlider.h">
       <Filter>System\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="co_prism.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_factory.h">
+      <Filter>GameObject\factory</Filter>
+    </ClInclude>
+    <ClInclude Include="prism_factory.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="blink_position_component.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="serealize_archive.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

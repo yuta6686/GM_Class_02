@@ -31,10 +31,16 @@ void Light::Init()
 
 	
     Renderer::SetLight(m_Light, m_index);
+
+    MyImgui::_myFlag["Light"] = true;
+    AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(MyImgui::_myFlag["Light"]);
+
+    ComponentObject::Init();
 }
 
 void Light::Uninit()
 {
+    ComponentObject::Uninit();
 }
 
 void Light::Update()
@@ -88,11 +94,37 @@ void Light::Update()
 
     SetWindowText(GetWindow(), GetDebugStr());*/
 #endif    	
+
+    ComponentObject::Update();
 }
 
 void Light::Draw()
 {
     Renderer::SetLight(m_Light, m_index);
+
+    ComponentObject::Draw();
+}
+
+void Light::DrawImgui()
+{
+    if (!MyImgui::_myFlag["Light"])return;
+    if (ImGui::CollapsingHeader("Light")) {
+        if (ImGui::TreeNode("Direction")) {
+            ImGui::SliderFloat("Direction.x", &m_Light.dirDirection.x, -1.0f, 1.0f);
+            ImGui::SliderFloat("Direction.y", &m_Light.dirDirection.y, -1.0f, 1.0f);
+            ImGui::SliderFloat("Direction.z", &m_Light.dirDirection.z, -1.0f, 1.0f);
+            ImGui::TreePop();
+        }
+        if (ImGui::TreeNode("Color")) {
+            ImGui::SliderFloat("Color.r", &m_Light.dirColor.x, 0.0f, 1.0f);
+            ImGui::SliderFloat("Color.g", &m_Light.dirColor.y, 0.0f, 1.0f);
+            ImGui::SliderFloat("Color.b", &m_Light.dirColor.z, 0.0f, 1.0f);
+            ImGui::TreePop();
+        }
+
+    }
+
+    ComponentObject::DrawImgui();
 }
 
 void Light::InitDirectionLight(LIGHT& light)
@@ -115,6 +147,8 @@ void Light::InitDirectionLight(LIGHT& light)
     //m_Light.eyePos = camera->GetPosition();
 
     light.eyePos = camera->GetPositionReference();
+
+    
 }
 
 void Light::InitPointLight(LIGHT& light)

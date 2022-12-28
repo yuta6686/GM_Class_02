@@ -25,6 +25,7 @@
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="blink_alpha2d_component.cpp" />
     <ClCompile Include="blink_component.cpp" />
+    <ClCompile Include="blink_position_component.cpp" />
     <ClCompile Include="blink_scale_component.cpp" />
     <ClCompile Include="bullet_component.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="count_component.cpp" />
     <ClCompile Include="co_confirmation.cpp" />
     <ClCompile Include="co_mesh_field.cpp" />
+    <ClCompile Include="co_prism.cpp" />
     <ClCompile Include="co_select.cpp" />
     <ClCompile Include="CO_Stand.cpp" />
     <ClCompile Include="co_ui_aimling.cpp" />
@@ -69,6 +71,7 @@
     <ClCompile Include="model_draw_component.cpp" />
     <ClCompile Include="my_imgui.cpp" />
     <ClCompile Include="player_factory.cpp" />
+    <ClCompile Include="prism_factory.cpp" />
     <ClCompile Include="random_jump_component.cpp" />
     <ClCompile Include="random_velocity_component.cpp" />
     <ClCompile Include="rendering_texture.cpp" />
@@ -212,6 +215,7 @@
     <ClInclude Include="ao_sphere.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="blink_component.h" />
+    <ClInclude Include="blink_position_component.h" />
     <ClInclude Include="blink_scale_component.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bullet_component.h" />
@@ -222,6 +226,7 @@
     <ClInclude Include="collision_component_bullet.h" />
     <ClInclude Include="collision_component_enemy.h" />
     <ClInclude Include="collision_component_player.h" />
+    <ClInclude Include="co_prism.h" />
     <ClInclude Include="extend_fanction.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="component_object.h" />
@@ -270,6 +275,7 @@
     <ClInclude Include="ImGuizmo\ImZoomSlider.h" />
     <ClInclude Include="loading_scene.h" />
     <ClInclude Include="player_factory.h" />
+    <ClInclude Include="prism_factory.h" />
     <ClInclude Include="rendering_texture.h" />
     <ClInclude Include="enemy_generate.h" />
     <ClInclude Include="enemy_wave.h" />
@@ -295,6 +301,7 @@
     <ClInclude Include="random_jump_component.h" />
     <ClInclude Include="random_velocity_component.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="serealize_archive.h" />
     <ClInclude Include="shader_include.h" />
     <ClInclude Include="shoot_bullet_component.h" />
     <ClInclude Include="Singleton.h" />

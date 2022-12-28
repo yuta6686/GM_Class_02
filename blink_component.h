@@ -17,6 +17,8 @@ protected:
     float m_Speed = 0.01f;
     float m_Min = 0.3f;
     float m_Max = 0.5f;
+
+    AXIS _axis = AXIS::AXIS_Y;
 public:    
     virtual void Init() override {};
 
@@ -34,11 +36,12 @@ public:
     /// <param name="speed">点滅速度</param>
     /// <param name="min">点滅最小値</param>
     /// <param name="max">点滅最大値</param>
-    void SetParameter(float speed, float min, float max)
+    void SetParameter(float speed, float min, float max, AXIS axis = AXIS::AXIS_Y)
     {
         m_Speed = speed;
         m_Min = min;
         m_Max = max;
+        _axis = axis;
     }
 
     /// <summary>

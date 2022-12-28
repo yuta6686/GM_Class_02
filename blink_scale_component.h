@@ -9,16 +9,7 @@
 #include "blink_component.h"
 #include "gameObject.h"
 
-enum AXIS
-{
-	AXIS_X,
-	AXIS_Y,
-	AXIS_Z,
-	AXIS_XY,
-	AXIS_XZ,
-	AXIS_YZ,
-	AXIS_XYZ
-};
+
 
 class BlinkComponent_Scale :
 	public BlinkComponent

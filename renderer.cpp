@@ -318,9 +318,9 @@ void Renderer::Init()
 	// フィルタリング
 	samplerDesc.Filter = D3D11_FILTER_ANISOTROPIC;
 	samplerDesc.MaxAnisotropy = 4;	
-	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MIRROR;// アドレッシングモード
-	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MIRROR;
-	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MIRROR;
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;// アドレッシングモード
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 
 	// ミップマップ設定
 	samplerDesc.MipLODBias = 0;
@@ -485,8 +485,7 @@ void Renderer::Uninit()
 
 //	
 void Renderer::Begin()
-{
-
+{	
 	_deviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(m_RenderTargetView, clearColor);
