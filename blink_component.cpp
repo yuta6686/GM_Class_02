@@ -3,19 +3,19 @@
 
 void BlinkComponent::Update()
 {
-	m_Work += m_Speed;
+	_param._work += _param._speed;
 
-	if (m_Work > D3DX_PI * 2.0f) {
-		m_Work = 0.0f;
+	if (_param._work > D3DX_PI * 2.0f) {
+		_param._work = 0.0f;
 	}
 
-	m_BlinkValue = (sinf(m_Work) + 1.0f) / (2.0f) * (m_Max - m_Min) + m_Min;	
+	_param._blinkValue = (sinf(_param._work) + 1.0f) / (2.0f) * (_param._max - _param._min) + _param._min;
 }
 
 void BlinkComponent::DrawImgui()
 {
-	ImGui::SliderFloat("Speed", &m_Speed, 0.0f, 1.0f);
-	ImGui::SliderFloat("AlphaMin", &m_Min, -1.0f, 1.0f);
-	ImGui::SliderFloat("AlphaMax", &m_Max, -1.0f, 1.0f);
-	ImGui::SliderFloat("Alpha", &m_BlinkValue, m_Min, m_Max);
+	ImGui::SliderFloat("Speed", &_param._speed, 0.0f, 1.0f);
+	ImGui::SliderFloat("AlphaMin", &_param._min, -1.0f, 1.0f);
+	ImGui::SliderFloat("AlphaMax", &_param._max, -1.0f, 1.0f);
+	ImGui::SliderFloat("Alpha", &_param._blinkValue, _param._min, _param._max);
 }

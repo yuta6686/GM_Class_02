@@ -15,7 +15,7 @@ public:
     virtual void DrawImgui()override;
 
 // name
-    void SetName(const std::string& name);
+    void SetName(const std::string& name ,bool notJudge = false);
     std::string GetName()const;
 
 // Component

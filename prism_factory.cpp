@@ -44,7 +44,7 @@ void PrismFactory::Create()
 
 #endif // SEREALIZE
 
-	auto prismGenerator =_scene->AddGameObject<PrismGenerator>(LAYER_3D);
+	auto prismGenerator = _scene->AddGameObject<PrismGenerator>(LAYER_3D);
 
 	prismGenerator->AddPrisms(transform);
 
@@ -95,7 +95,7 @@ void PrismGenerator::DrawImgui()
 
 		if (ImGui::Button("Prism Generate"))
 		{
-											
+
 		}
 
 
@@ -117,16 +117,67 @@ void PrismGenerator::DrawImgui()
 			}
 			std::vector<const char*> names;
 			names.resize(_prism.size());
-			for (unsigned int i = 0; i < _prism.size(); i++) {				
+			for (unsigned int i = 0; i < _prism.size(); i++) {
 				names[i] = str[i].c_str();
 			}
 
-			static int item_current = 0;
-			ImGui::ListBox("prism", &item_current, names.data(), names.size(), 8);
+
+			ImGui::ListBox("prism", &_itemCurrent, names.data(), names.size(), 8);
 		}
+
+		// ListBoxで選択されているPrismの情報開示システム
+		if (ImGui::TreeNode("##", "Current: [%s]", _prism[_itemCurrent]->GetName().c_str()))
+		{
+			ImGui::Text("Current: [%s]", _prism[_itemCurrent]->GetName().c_str());
+
+			PrismGenerateParameter param;
+			param.SetPrismParameter(_prism[_itemCurrent]);
+
+			
+			if (ImGui::TreeNode("##", "Position x:%.2f y:%.2f z:%.2f", param._position.x, param._position.y, param._position.z))
+			{
+				ImGui::SliderFloat("x", &param._position.x,-10.0,10.0f);
+				ImGui::SliderFloat("y", &param._position.y, -10.0, 10.0f);
+				ImGui::SliderFloat("z", &param._position.z, -10.0, 10.0f);
+				ImGui::TreePop();
+			}
+
+			param.SetPrism(_prism[_itemCurrent]);
+
+			ImGui::TreePop();
+		}
+
 	}
 
 
 
-	ComponentObject::DrawImgui();
+
+}
+
+void PrismGenerateParameter::SetPrismParameter(CO_Prism* prism)
+{
+
+	BlinkParameter blinkParam = prism->_blinkPositionComponent->GetBlinkParameter();
+
+	_name = prism->GetName();
+	_position = prism->GetPosition();
+	_rotation = prism->GetRotation();
+	_scale = prism->GetScale();
+	_speed = blinkParam._speed;
+	_min = blinkParam._min;
+	_max = blinkParam._max;
+	_axis = blinkParam._axis;
+	_fileName_EnvironmentMapping = prism->_textureComponent->GetFileName();
+}
+
+void PrismGenerateParameter::SetPrism(CO_Prism* prism)
+{
+	prism->SetName(_name,true);
+	prism->SetPosition(_position);
+	prism->SetRotation(_rotation);
+	prism->SetScale(_scale);
+	prism->_blinkPositionComponent->ReturnInitPositionOnce();
+	prism->_blinkPositionComponent->
+		SetParameter(_speed, _min, _max, (AXIS)_axis);
+	prism->_textureComponent->SetTextureAndSlot(_fileName_EnvironmentMapping, 2);
 }

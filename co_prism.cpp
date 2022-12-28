@@ -56,9 +56,12 @@ void CO_Prism::DrawImgui()
 	ComponentObject::DrawImgui();
 }
 
-void CO_Prism::SetName(const std::string& name)
+void CO_Prism::SetName(const std::string& name,bool notJudge)
 {
-	_name = IsDuplicationName(name);
+	if (notJudge)
+		_name = name;
+	else
+		_name = IsDuplicationName(name);
 }
 
 std::string CO_Prism::GetName() const

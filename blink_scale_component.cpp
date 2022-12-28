@@ -10,15 +10,15 @@ void BlinkComponent_Scale::Update()
 	BlinkComponent::Update();
 
 	if (m_IsX) {
-		m_Scale.x = m_BlinkValue;
+		m_Scale.x = _param._blinkValue;
 	}
 
 	if (m_IsY) {
-		m_Scale.y = m_BlinkValue;
+		m_Scale.y = _param._blinkValue;
 	}
 
 	if (m_IsZ) {
-		m_Scale.z = m_BlinkValue;
+		m_Scale.z = _param._blinkValue;
 	}
 	m_Parent->SetScale(m_Scale);
 }

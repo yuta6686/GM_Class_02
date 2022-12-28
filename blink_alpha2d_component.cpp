@@ -13,5 +13,5 @@ void AlphaBlink2DComponent::Init()
 void AlphaBlink2DComponent::Update()
 {
 	BlinkComponent::Update();
-	_uiComponent->SetAlpha(m_BlinkValue);
+	_uiComponent->SetAlpha(_param._blinkValue);
 }

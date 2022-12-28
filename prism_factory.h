@@ -3,7 +3,10 @@
 #include "co_prism.h"
 
 struct PrismGenerateParameter
-{
+{	
+	void SetPrismParameter(CO_Prism* prism);
+	void SetPrism(CO_Prism* prism);
+
 	// –¼‘O
 	std::string _name;
 
@@ -57,6 +60,8 @@ class PrismGenerator :
 	std::vector<PrismGenerateParameter> _prismParam;
 	std::vector<CO_Prism*> _prism;	
 	std::shared_ptr<Scene> _scene;
+
+	int _itemCurrent = 0;
 public:
 	virtual void Init()override;
 	/*virtual void Update()override;*/

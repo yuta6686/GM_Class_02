@@ -24,6 +24,9 @@ public:
         _initPosition({ 0.0f,0.0f,0.0f }) 
     {}
     virtual void Update()override;       
-
+    void ReturnInitPositionOnce(bool flag = false)
+    {
+        _isOnce = flag;
+    }
 };
 

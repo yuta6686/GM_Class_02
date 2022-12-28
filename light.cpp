@@ -123,8 +123,7 @@ void Light::DrawImgui()
         }
 
     }
-
-    ComponentObject::DrawImgui();
+    
 }
 
 void Light::InitDirectionLight(LIGHT& light)

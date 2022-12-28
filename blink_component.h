@@ -7,18 +7,23 @@
 //  ------------------------summary--------------------------
 //  点滅コンポーネントのインタフェース
 //  ---------------------------------------------------------
+struct BlinkParameter 
+{
+    float _blinkValue = 0.0f;
+    float _work = 0.0f;
+
+    float _speed = 0.01f;
+    float _min = 0.3f;
+    float _max = 0.5f;
+
+    AXIS _axis = AXIS::AXIS_Y;
+};
 class BlinkComponent :
     public Component
 {
 protected:
-    float m_BlinkValue = 0.0f;
-    float m_Work = 0.0f;
 
-    float m_Speed = 0.01f;
-    float m_Min = 0.3f;
-    float m_Max = 0.5f;
-
-    AXIS _axis = AXIS::AXIS_Y;
+    BlinkParameter _param;
 public:    
     virtual void Init() override {};
 
@@ -38,16 +43,20 @@ public:
     /// <param name="max">点滅最大値</param>
     void SetParameter(float speed, float min, float max, AXIS axis = AXIS::AXIS_Y)
     {
-        m_Speed = speed;
-        m_Min = min;
-        m_Max = max;
-        _axis = axis;
+        _param._speed = speed;
+        _param._min = min;
+        _param._max = max;
+        _param._axis = axis;
+        _param._blinkValue = 0.0f;
     }
 
     /// <summary>
     /// 点滅情報の取得
     /// </summary>
     /// <returns></returns>
-    float GetBlinkValue() { return m_BlinkValue; }
+    float GetBlinkValue() { return _param._blinkValue; }
+
+    BlinkParameter GetBlinkParameter()const { return _param; }
+    void SetBlinkParameter(const BlinkParameter& param) { _param = param; }
 };
 

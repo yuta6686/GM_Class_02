@@ -14,33 +14,33 @@ void BlinkPositionComponent::Update()
 	SetInitPositionOnce();
 
 	D3DXVECTOR3 blinkPos = _initPosition;
-	switch (_axis)
+	switch (_param._axis)
 	{
 	case AXIS_X:
-		blinkPos.x += m_BlinkValue;
+		blinkPos.x += _param._blinkValue;
 		break;
 	case AXIS_Y:
-		blinkPos.y += m_BlinkValue;
+		blinkPos.y += _param._blinkValue;
 		break;
 	case AXIS_Z:
-		blinkPos.z += m_BlinkValue;
+		blinkPos.z += _param._blinkValue;
 		break;
 	case AXIS_XY:
-		blinkPos.x += m_BlinkValue;
-		blinkPos.y += m_BlinkValue;
+		blinkPos.x += _param._blinkValue;
+		blinkPos.y += _param._blinkValue;
 		break;
 	case AXIS_XZ:
-		blinkPos.x += m_BlinkValue;
-		blinkPos.z += m_BlinkValue;
+		blinkPos.x += _param._blinkValue;
+		blinkPos.z += _param._blinkValue;
 		break;
 	case AXIS_YZ:
-		blinkPos.y += m_BlinkValue;
-		blinkPos.z += m_BlinkValue;
+		blinkPos.y += _param._blinkValue;
+		blinkPos.z += _param._blinkValue;
 		break;
 	case AXIS_XYZ:
-		blinkPos.x += m_BlinkValue;
-		blinkPos.y += m_BlinkValue;
-		blinkPos.z += m_BlinkValue;
+		blinkPos.x += _param._blinkValue;
+		blinkPos.y += _param._blinkValue;
+		blinkPos.z += _param._blinkValue;
 		break;
 	default:
 		break;

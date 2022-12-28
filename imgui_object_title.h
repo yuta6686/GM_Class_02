@@ -28,33 +28,33 @@ public:
 		//	メニューバー
 		// ImGui::BeginMenuBar();
 		
-		if (ImGui::BeginMenu("Enemy Generater")) 
-		{
-			if (ImGui::BeginMenu("Generate")) 
-			{
-				ImGui::Text("Set Parameter");
-				ImGui::Button("Generate!");
-				ImGui::EndMenu();
-			}
+		//if (ImGui::BeginMenu("Enemy Generater")) 
+		//{
+		//	if (ImGui::BeginMenu("Generate")) 
+		//	{
+		//		ImGui::Text("Set Parameter");
+		//		ImGui::Button("Generate!");
+		//		ImGui::EndMenu();
+		//	}
 
-			if (ImGui::BeginMenu("Save"))
-			{				
-				ImGui::Text("Set Save Infomation");
-				ImGui::Button("Save");
-				ImGui::EndMenu();
-			}
-			
-			if (ImGui::BeginMenu("Load")) 
-			{
-				ImGui::Text("Set Load Information");
+		//	if (ImGui::BeginMenu("Save"))
+		//	{				
+		//		ImGui::Text("Set Save Infomation");
+		//		ImGui::Button("Save");
+		//		ImGui::EndMenu();
+		//	}
+		//	
+		//	if (ImGui::BeginMenu("Load")) 
+		//	{
+		//		ImGui::Text("Set Load Information");
 
-				ImGui::Button("Load");
+		//		ImGui::Button("Load");
 
-				ImGui::EndMenu();
-			}
+		//		ImGui::EndMenu();
+		//	}
 
-			ImGui::EndMenu();
-		}
+		//	ImGui::EndMenu();
+		//}
 
 		// ImGui::EndMenuBar();
 

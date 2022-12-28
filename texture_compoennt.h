@@ -11,6 +11,7 @@ class TextureComponent :
     public Component
 {
     std::shared_ptr<Texture> _texture;
+    std::string _fileName;
 public:    
 
     virtual void Init() override;
@@ -26,5 +27,8 @@ public:
     void SetTextureAndSlot(const std::string& fileName,
         const int& texSlot = 0,
         const bool& flag=false);
+
+    std::string GetFileName()const;
+
 };
 
