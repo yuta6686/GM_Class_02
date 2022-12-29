@@ -18,6 +18,8 @@ public:
     void SetName(const std::string& name ,bool notJudge = false);
     std::string GetName()const;
 
+    void ResetMyName();
+
 // Component
     class TextureComponent* _textureComponent;
     class BlinkPositionComponent* _blinkPositionComponent;

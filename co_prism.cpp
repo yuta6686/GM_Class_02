@@ -68,6 +68,10 @@ std::string CO_Prism::GetName() const
 {
 	return _name;
 }
+void CO_Prism::ResetMyName()
+{
+	_isDuplication[_name] = false;
+}
 std::string CO_Prism::IsDuplicationName(std::string name, int index)
 {
 	// d•¡‚ª1ˆÈã‡‚Á‚½ê‡

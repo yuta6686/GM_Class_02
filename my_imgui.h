@@ -1,4 +1,5 @@
 #pragma once
+#define IMCOLOR_HSV(col,bright) (ImVec4)ImColor::HSV(col,biright,bright)
 
 class MyImgui
 {
@@ -12,7 +13,10 @@ public:
 	inline static std::unordered_map<std::string,std::unordered_map<std::string, bool>> _myFlagTree;	
 
 	static void MyImguiDraw();
-
 	
+	// 絶対に ImGui::PopStyleColor(3); をボタン使用後に置く。
+	static void PushStyleColor_Button(float hue);
+
+	static ImVec4 GetHSV(float color, float bright);
 };
 

@@ -4,7 +4,10 @@
 
 struct PrismGenerateParameter
 {	
-	void SetPrismParameter(CO_Prism* prism);
+	// prismからパラメータを取り出して、thisにセットする
+	void TakeOutPrismParameter(CO_Prism* prism);
+
+	// prismにthisのパラメータをセットする
 	void SetPrism(CO_Prism* prism);
 
 	// 名前
@@ -40,8 +43,6 @@ class PrismFactory :
 {
 public:    
     virtual void Create() override;
-
-
 public:
 			
 	inline static const std::string PRISM_FILE_NAME = "_prism.json";
@@ -62,18 +63,56 @@ class PrismGenerator :
 	std::shared_ptr<Scene> _scene;
 
 	int _itemCurrent = 0;
+	float _pos_max = 20.0f;
 public:
-	virtual void Init()override;
-	/*virtual void Update()override;*/
+	virtual void Init()override;	
+	virtual void Uninit()override;
 	virtual void DrawImgui()override;
+		
 
-	
-	// デシリアライズした結果をまとめてAddGameObjcetしてる
+	/** AddPrisms
+	 * デシリアライズした結果をまとめてAddGameObjcetしてる.
+	 * 
+	 * \param param デシリアライズされた結果をもらう
+	 */
 	void AddPrisms(std::vector<PrismGenerateParameter> param);
+	void AddPrism(PrismGenerateParameter param);
 
+	// 全部のCO_Prismを削除と名前のリセット
+	void RemovePrisms();	
 
 private:
 	void GetPrismObjects();
+	void UpdatePrism();
+private:
+	// ImGuiでの操作（ボタンごとに関数化する）
 
-	// PrismGenerateParameterとCO_Prismの変換が必要になったら作る
+	
+	// 生成
+	void Generate();
+
+	// シリアライズ
+	void Serialize();
+
+	// バックアップ用	
+	void SerializeBackUp_End();
+	
+	// デシリアライズ 追加Version
+	void DesirializeAdd();
+
+	// デシリアライズ 上書きVersion
+	void DesirializeAdress();
+
+	// リストボックス ヒエラルキーの内部処理
+	void ShowListBox();
+
+	// 情報開示用
+	void ShowParameter();
+
+private:
+	template<class Archive>
+	static void serialize(Archive& archive, std::vector<PrismGenerateParameter>& param)
+	{
+		archive(param);
+	}
 };

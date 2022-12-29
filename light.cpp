@@ -31,8 +31,7 @@ void Light::Init()
 
 	
     Renderer::SetLight(m_Light, m_index);
-
-    MyImgui::_myFlag["Light"] = true;
+    
     AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(MyImgui::_myFlag["Light"]);
 
     ComponentObject::Init();
