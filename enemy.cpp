@@ -33,7 +33,7 @@ void Enemy_Tracking::Init()
     ComponentObject::Init();
 }
 
-void Enemy_Tracking_Fast::Init()
+void Enemy_Tracking_Fast::InitInternal()
 {
 
     Enemy_Interface::Init();
@@ -43,9 +43,7 @@ void Enemy_Tracking_Fast::Init()
     mdc->SetIsVariable(true);
 
     AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.3f);
-
-
-    ComponentObject::Init();
+    
 }
 
 void Enemy_Tracking_Late::Init()

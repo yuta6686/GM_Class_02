@@ -32,7 +32,7 @@ class Enemy_Tracking_Fast : public Enemy_Interface
 public:
     Enemy_Tracking_Fast() :Enemy_Interface(ENEMY_TRACKING_FAST) {}
 
-    virtual void Init();
+    virtual void InitInternal();
 };
 
 class Enemy_Tracking_Late : public Enemy_Interface

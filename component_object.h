@@ -26,6 +26,8 @@ class ComponentObject :
 public:
 	virtual void Init()
 	{
+		InitInternal();
+
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
 				com->Init();
@@ -34,6 +36,8 @@ public:
 	}
 	virtual void Uninit()
 	{
+		UninitInternal();
+
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
 				com->Uninit();
@@ -42,14 +46,19 @@ public:
 	}
 	virtual void Update()
 	{
+		UpdateInternal();
+
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
 				com->Update();
 			}
 		}
+
 	}
 	virtual void Draw()
 	{
+		DrawInternal();
+
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
 				com->Draw();
@@ -59,11 +68,22 @@ public:
 
 	virtual void DrawImgui()override
 	{
+		DrawImguiInternal();
+
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
 			for (auto com : m_ComponentList[i]) {
 				com->DrawImgui();
 			}
 		}
 	}
+
+protected:
+	// TODO コンポーネントオブジェクト全部これに置き換える
+	// 今までのものに変更を与えずにやるにはこれをするしかない
+	virtual void InitInternal() {};
+	virtual void UninitInternal() {};
+	virtual void UpdateInternal() {};
+	virtual void DrawInternal() {};
+	virtual void DrawImguiInternal() {};
 };
 

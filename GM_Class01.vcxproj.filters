@@ -474,9 +474,6 @@
     <ClCompile Include="CO_UI_Tutorial.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="scene.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="my_imgui.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -506,6 +503,9 @@
     </ClCompile>
     <ClCompile Include="blink_position_component.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>GameObject\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

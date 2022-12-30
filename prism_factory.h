@@ -2,6 +2,21 @@
 #include "factory.h"
 #include "co_prism.h"
 
+struct PrismTexture
+{
+	inline static int _itemCurrent = 0;
+	inline static const std::vector<const char*> _texture =
+	{
+		"asset\\texture\\swordOfKirito.png",
+		"asset\\texture\\enviroment.dds",
+	};
+
+	static const char* GetNowTexture()
+	{
+		return _texture[_itemCurrent];
+	}
+};
+
 struct PrismGenerateParameter
 {	
 	// prismからパラメータを取り出して、thisにセットする
@@ -84,6 +99,9 @@ public:
 private:
 	void GetPrismObjects();
 	void UpdatePrism();
+
+	// 現在と前のフレームの選択されている_prismParamが変更されていたらtrue
+	bool IsChangeBlinkParameter();
 private:
 	// ImGuiでの操作（ボタンごとに関数化する）
 

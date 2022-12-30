@@ -207,88 +207,87 @@ void PrismGenerator::UpdatePrism()
 	}
 }
 
+bool PrismGenerator::IsChangeBlinkParameter()
+{
+	static PrismGenerateParameter previous;
+
+	const PrismGenerateParameter now = _prismParam[_itemCurrent];
+	bool flag = false;
+
+	// 前のフレームとなにかが少しでも変わっていたら
+	if (previous._speed != now._speed ||
+		previous._min != now._min ||
+		previous._max != now._max ||
+		previous._axis != now._axis)
+	{
+		flag = true;
+	}
+
+	previous = _prismParam[_itemCurrent];
+
+	return flag;
+}
+
 
 void PrismGenerator::Generate()
 {
-	if (ImGui::TreeNode("Generate")) {
-		static PrismGenerateParameter param;
-		param._scale = { 1.0f,1.0f,1.0f };
-		param._speed = 0.01f;
-		param._min = -5.0f;
-		param._max = 5.0f;
-		param._axis = AXIS_Y;
-		param._fileName_EnvironmentMapping =
-			"asset\\texture\\swordOfKirito.png";
+	ImGui::Begin("Generate", NULL,
+		ImGuiWindowFlags_MenuBar);
+	static PrismGenerateParameter param = {
+		"prism",
+		{0.0f,0.0f,0.0f},
+		{0.0f,0.0f,0.0f},
+		{1.0f,1.0f,1.0f},
+		0.01f,-5.0f,5.0f,AXIS_Y,
+		"asset\\texture\\swordOfKirito.png"
+	};
 
-		static char buff[1024];
-		ImGui::InputText("name", buff, 1024);
-		param._name = buff;
+	// "asset\\texture\\enviroment.dds";
+	
+	ImGui::InputText("name", (char*)param._name.c_str(), 1024);
 
+	// パラメーター
+	ImGui::DragFloat3("Position", (float*)&param._position, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
+	ImGui::DragFloat3("Rotation", (float*)&param._rotation, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
+	ImGui::DragFloat3("Scale   ", (float*)&param._scale, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 
-		if (ImGui::TreeNode("##1", "Position x:%.2f y:%.2f z:%.2f", param._position.x, param._position.y, param._position.z))
-		{
-			ImGui::SliderFloat("x", &param._position.x, -_pos_max, _pos_max);
-			ImGui::SliderFloat("y", &param._position.y, -_pos_max, _pos_max);
-			ImGui::SliderFloat("z", &param._position.z, -_pos_max, _pos_max);
-			ImGui::TreePop();
-		}
+	ImGui::DragFloat("Speed", &param._speed, 0.1f, 0.0f, 0.1f);
+	ImGui::DragFloat("Min", &param._min, 0.1f, -10.0f, 10.0f);
+	ImGui::DragFloat("Max", &param._max, 0.1f, -10.0f, 10.0f);
+	ImGui::DragInt("Axis", &param._axis, 1, AXIS_X, AXIS_XYZ);
 
-		//ImGui::SliderFloat3();
-		ImGui::DragFloat("x", &param._position.x,0.1f);
-		ImGui::SameLine();
-		ImGui::DragFloat("y", &param._position.y,0.1f);
-		ImGui::SameLine();
-		ImGui::DragFloat("z", &param._position.z, 0.1f);		
-			
-		if (ImGui::TreeNode("##2", "Rotation x:%.2f y:%.2f z:%.2f", param._rotation.x, param._rotation.y, param._rotation.z))
-		{
-			ImGui::SliderFloat("x", &param._rotation.x, -D3DX_PI, D3DX_PI);
-			ImGui::SliderFloat("y", &param._rotation.y, -D3DX_PI, D3DX_PI);
-			ImGui::SliderFloat("z", &param._rotation.z, -D3DX_PI, D3DX_PI);
-			ImGui::TreePop();
-		}
-		if (ImGui::TreeNode("##3", "Scale x:%.2f y:%.2f z:%.2f", param._scale.x, param._scale.y, param._scale.z))
-		{
-			ImGui::SliderFloat("x", &param._scale.x, 0.0f, 10.0f);
-			ImGui::SliderFloat("y", &param._scale.y, 0.0f, 10.0f);
-			ImGui::SliderFloat("z", &param._scale.z, 0.0f, 10.0f);
-			ImGui::TreePop();
-		}
+	// 名前
+	static char* buffFileName;
+	buffFileName = (char*)param._fileName_EnvironmentMapping.c_str();
 
-		if (ImGui::TreeNode("##4", "Blink speed:[%.2f] min:[%.2f] max:[%.2f] axis:[%d]"))
-		{
-			ImGui::SliderFloat("speed", &param._speed, 0.0f, 2.0f);
-			ImGui::SliderFloat("min", &param._min, -10.0f, 10.0f);
-			ImGui::SliderFloat("max", &param._max, -10.0f, 10.0f);
-			ImGui::SliderInt("axis", &param._axis, AXIS_X, AXIS_XYZ);
-
-			ImGui::TreePop();
-		}
-
-		if (ImGui::TreeNode("##5", "FileName: [%s]", param._fileName_EnvironmentMapping.c_str()))
-		{
-			static char* buffFileName;
-			buffFileName = (char*)param._fileName_EnvironmentMapping.c_str();
-
-			ImGui::InputText("FlieName", buffFileName, 1024);
-
-			ImGui::TreePop();
-		}
+	static bool useListBox = false;
+	ImGui::Checkbox("Texture use listBox", &useListBox);
 
 
+	if (useListBox)
+	{
+		ImGui::ListBox("textures", &PrismTexture::_itemCurrent,
+			PrismTexture::_texture.data(), PrismTexture::_texture.size());
 
-
-		ImGui::Separator();
-
-		MyImgui::PushStyleColor_Button(0.5f);
-
-		if (ImGui::Button("Prism Generate"))
-		{
-			AddPrism(param);
-		}
-		ImGui::PopStyleColor(3);
-		ImGui::TreePop();
+		buffFileName = (char*)PrismTexture::GetNowTexture();
 	}
+
+	ImGui::InputText("FlieName", buffFileName, 1024);
+	param._fileName_EnvironmentMapping = buffFileName;
+
+
+	ImGui::Separator();
+
+	MyImgui::PushStyleColor_Button(0.5f);
+
+	if (ImGui::Button("Prism Generate"))
+	{
+		AddPrism(param);
+	}
+	ImGui::PopStyleColor(3);
+	ImGui::End();
+
+
 }
 
 void PrismGenerator::Serialize()
@@ -358,55 +357,33 @@ void PrismGenerator::ShowParameter()
 		param.TakeOutPrismParameter(_prism[_itemCurrent]);
 
 		param._name.resize(1024);
-		ImGui::InputText("name", param._name.data(), 1024);
 
-		ImGui::Separator();
+		ImGui::InputText("Name", param._name.data(), 1024);
 
 
-		if (ImGui::TreeNode("##1", "Position x:%.2f y:%.2f z:%.2f", param._position.x, param._position.y, param._position.z))
-		{
-			ImGui::SliderFloat("x", &param._position.x, -_pos_max, _pos_max);
-			ImGui::SliderFloat("y", &param._position.y, -_pos_max, _pos_max);
-			ImGui::SliderFloat("z", &param._position.z, -_pos_max, _pos_max);
-			ImGui::TreePop();
-		}
-		ImGui::Separator();
-		if (ImGui::TreeNode("##2", "Rotation x:%.2f y:%.2f z:%.2f", param._rotation.x, param._rotation.y, param._rotation.z))
-		{
-			ImGui::SliderFloat("x", &param._rotation.x, -D3DX_PI, D3DX_PI);
-			ImGui::SliderFloat("y", &param._rotation.y, -D3DX_PI, D3DX_PI);
-			ImGui::SliderFloat("z", &param._rotation.z, -D3DX_PI, D3DX_PI);
-			ImGui::TreePop();
-		}
-		ImGui::Separator();
-		if (ImGui::TreeNode("##3", "Scale x:%.2f y:%.2f z:%.2f", param._scale.x, param._scale.y, param._scale.z))
-		{
-			ImGui::SliderFloat("x", &param._scale.x, 0.0f, 10.0f);
-			ImGui::SliderFloat("y", &param._scale.y, 0.0f, 10.0f);
-			ImGui::SliderFloat("z", &param._scale.z, 0.0f, 10.0f);
-			ImGui::TreePop();
-		}
-		ImGui::Separator();
+		ImGui::DragFloat3("Position", (float*)&param._position, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 
-		if (ImGui::TreeNode("##4", "Blink speed:[%.2f] min:[%.2f] max:[%.2f] axis:[%d]"))
-		{
-			ImGui::SliderFloat("speed", &param._speed, 0.0f, 0.1f);
-			ImGui::SliderFloat("min", &param._min, -10.0f, 10.0f);
-			ImGui::SliderFloat("max", &param._max, -10.0f, 10.0f);
-			ImGui::SliderInt("axis", &param._axis, AXIS_X, AXIS_XYZ);
+		ImGui::DragFloat3("Rotation", (float*)&param._rotation, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 
-			ImGui::TreePop();
-		}
+		ImGui::DragFloat3("Scale", (float*)&param._scale, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 
-		if (ImGui::TreeNode("##5", "FileName: [%s]", param._fileName_EnvironmentMapping.c_str()))
-		{
-			static char* buffFileName;
-			buffFileName = (char*)param._fileName_EnvironmentMapping.c_str();
+		ImGui::DragFloat("Speed", &param._speed, 0.1f, 0.0f, 0.1f);
+		ImGui::DragFloat("Min", &param._min, 0.1f, -10.0f, 10.0f);
+		ImGui::DragFloat("Max", &param._max, 0.1f, -10.0f, 10.0f);
+		ImGui::DragInt("Axis", &param._axis, 1, AXIS_X, AXIS_XYZ);
 
-			ImGui::InputText("FlieName", buffFileName, 1024);
+		static char* buffFileName;
+		buffFileName = (char*)param._fileName_EnvironmentMapping.c_str();
 
-			ImGui::TreePop();
-		}
+	
+		ImGui::ListBox("textures", &PrismTexture::_itemCurrent,
+			PrismTexture::_texture.data(), PrismTexture::_texture.size());
+
+		buffFileName = (char*)PrismTexture::GetNowTexture();
+
+
+
+		param._fileName_EnvironmentMapping = buffFileName;
 
 		MyImgui::PushStyleColor_Button(0.0f);
 		if (ImGui::Button("Remove"))
