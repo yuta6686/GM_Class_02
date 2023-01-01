@@ -207,23 +207,22 @@ void PrismGenerator::UpdatePrism()
 	}
 }
 
-bool PrismGenerator::IsChangeBlinkParameter()
-{
-	static PrismGenerateParameter previous;
-
-	const PrismGenerateParameter now = _prismParam[_itemCurrent];
+bool PrismGenerator::IsChangeBlinkParameter(const PrismGenerateParameter& now)
+{	
 	bool flag = false;
 
 	// 前のフレームとなにかが少しでも変わっていたら
-	if (previous._speed != now._speed ||
-		previous._min != now._min ||
-		previous._max != now._max ||
-		previous._axis != now._axis)
+	if (_previousPrismParam._name != now._name ||
+		_previousPrismParam._position != now._position ||
+		_previousPrismParam._rotation != now._rotation ||
+		_previousPrismParam._scale != now._scale ||
+		_previousPrismParam._speed != now._speed ||
+		_previousPrismParam._min != now._min ||
+		_previousPrismParam._max != now._max ||
+		_previousPrismParam._axis != now._axis)
 	{
 		flag = true;
-	}
-
-	previous = _prismParam[_itemCurrent];
+	}	
 
 	return flag;
 }
@@ -356,10 +355,16 @@ void PrismGenerator::ShowParameter()
 		PrismGenerateParameter param;
 		param.TakeOutPrismParameter(_prism[_itemCurrent]);
 
+		// 1フレーム前の検出用
+		_previousPrismParam = param;
+
 		param._name.resize(1024);
 
 		ImGui::InputText("Name", param._name.data(), 1024);
 
+		static bool isnoupdate = false;
+		ImGui::Checkbox("Stop Blink",&isnoupdate);
+		_prism[_itemCurrent]->_blinkPositionComponent->SetIsNoUpdate(isnoupdate);
 
 		ImGui::DragFloat3("Position", (float*)&param._position, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 
@@ -367,7 +372,7 @@ void PrismGenerator::ShowParameter()
 
 		ImGui::DragFloat3("Scale", (float*)&param._scale, 0.1f, 0.0f, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 
-		ImGui::DragFloat("Speed", &param._speed, 0.1f, 0.0f, 0.1f);
+		ImGui::DragFloat("Speed", &param._speed, 0.01f, 0.0f, 0.5f);
 		ImGui::DragFloat("Min", &param._min, 0.1f, -10.0f, 10.0f);
 		ImGui::DragFloat("Max", &param._max, 0.1f, -10.0f, 10.0f);
 		ImGui::DragInt("Axis", &param._axis, 1, AXIS_X, AXIS_XYZ);
@@ -394,8 +399,14 @@ void PrismGenerator::ShowParameter()
 		}
 		ImGui::PopStyleColor(3);
 
-		_prism[_itemCurrent]->ResetMyName();
-		param.SetPrism(_prism[_itemCurrent]);
+
+
+		if (IsChangeBlinkParameter(param)) 
+		{
+			_prism[_itemCurrent]->ResetMyName();
+			_prism[_itemCurrent]->_blinkPositionComponent->SetIsNoUpdate();
+			param.SetPrism(_prism[_itemCurrent]);
+		}		
 
 		ImGui::TreePop();
 	}

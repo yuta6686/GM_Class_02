@@ -77,6 +77,8 @@ class PrismGenerator :
 	std::vector<CO_Prism*> _prism;	
 	std::shared_ptr<Scene> _scene;
 
+	PrismGenerateParameter _previousPrismParam;
+
 	int _itemCurrent = 0;
 	float _pos_max = 20.0f;
 public:
@@ -101,7 +103,7 @@ private:
 	void UpdatePrism();
 
 	// 現在と前のフレームの選択されている_prismParamが変更されていたらtrue
-	bool IsChangeBlinkParameter();
+	bool IsChangeBlinkParameter(const PrismGenerateParameter& now);
 private:
 	// ImGuiでの操作（ボタンごとに関数化する）
 

@@ -13,6 +13,7 @@ class BlinkPositionComponent :
 private:
     // ïœêî
     bool _isOnce = false;
+    bool _isNoUpdate = false;
     D3DXVECTOR3 _initPosition;
 private:
     // ä÷êî
@@ -27,6 +28,11 @@ public:
     void ReturnInitPositionOnce(bool flag = false)
     {
         _isOnce = flag;
+    }
+
+    void SetIsNoUpdate(bool flag = true)
+    {
+        _isNoUpdate = flag;
     }
 };
 

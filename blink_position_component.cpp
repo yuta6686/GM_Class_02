@@ -10,6 +10,13 @@ void BlinkPositionComponent::SetInitPositionOnce()
 
 void BlinkPositionComponent::Update()
 {
+	// 1フレームだけ更新しない
+	if (_isNoUpdate) 
+	{
+		_isNoUpdate = false;
+		return;
+	}
+
 	// 親の位置取得
 	SetInitPositionOnce();
 
