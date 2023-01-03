@@ -43,6 +43,7 @@ enum AXIS
 
 class MyMath
 {
+	inline static const float IKD_EPSIRON = 0.00001f;
 public:
 //	静的変数
 	inline static VALIABLE m_MonochromeRate = { 0.0f,1.0f,1.0f,1.0f };
@@ -128,6 +129,104 @@ public:
 		random.y = 0.0f;
 		random.z = Random(min, max);
 		return random;
+	}
+
+	//https://yuta6686.atlassian.net/browse/AS-4
+	///////////////////////////////////////////////////
+	// 球と無限レイの衝突判定
+	// r          : 球の半径
+	// center     : 球の中心点
+	// s          : レイの開始点
+	// v          : レイの方向ベクトル
+	// pOut_colli : 衝突位置
+	// pOut_t     : 衝突時刻（出力）
+	// 戻り値     : 衝突(true), 非衝突(false)
+	static bool CalcSphereRayCollision(
+		float r,
+		D3DXVECTOR3* center,
+		D3DXVECTOR3* s,
+		D3DXVECTOR3* v,
+		D3DXVECTOR3* pOut_colli,
+		float* pOut_t
+	) {
+		D3DXVECTOR3 u = *s - *center;
+
+		float a = D3DXVec3Dot(v, v);
+		float b = D3DXVec3Dot(v, &u);
+		float c = D3DXVec3Dot(&u, &u) - r * r;
+
+		if (a - IKD_EPSIRON <= 0.0f) {
+			// 誤差
+			return false;
+		}
+
+		float isColli = b * b - a * c;
+		if (isColli < 0.0f) {
+			// 衝突しない
+			return false;
+		}
+
+		float t = (-b - sqrt(b * b - a * c)) / a;
+
+		if (pOut_t) {
+			*pOut_t = t;
+		}
+
+		if (pOut_colli) {
+			*pOut_colli = *s + *v * t;
+		}
+
+		// 衝突している
+		return true;
+	}
+
+	///////////////////////////////////////////////////
+	// スクリーン座標をワールド座標へ変換
+	// out    : ワールド座標（出力）
+	// pDev   : 描画デバイス
+	// sx, xy : スクリーン座標
+	// z      : スクリーン座標の仮想的なZ成分（0.0～1.0）
+	// view   : ビュー行列
+	// proj   : 射影変換行列
+	// 戻り値 : ワールド座標（出力）
+	static D3DXVECTOR3* transScreenToWorld(
+		D3DXVECTOR3* out,		
+		int sx,
+		int sy,
+		float z,
+		D3DXMATRIX* view,
+		D3DXMATRIX* proj
+	) {
+		// ビューポート行列を作成
+		D3DXMATRIX vpMat;
+		D3DXMatrixIdentity(&vpMat);
+		
+		D3D11_VIEWPORT vp;
+		UINT num = 1;
+		Renderer::GetDeviceContext()->RSGetViewports(&num, &vp);
+		
+		
+
+		vpMat._11 = (float)vp.Width / 2;
+		vpMat._22 = -1.0f * (float)(vp.Height / 2);
+		vpMat._33 = (float)vp.MaxDepth - vp.MinDepth;
+		vpMat._41 = (float)(vp.TopLeftX + vp.Width / 2);
+		vpMat._42 = (float)(vp.TopLeftY + vp.Height / 2);
+		vpMat._43 = vp.MinDepth;
+
+		// スクリーン位置をワールドへ
+		out->x = (float)sx;
+		out->y = (float)sy;
+		out->z = z;
+
+		D3DXMATRIX invMat, inv_proj, inv_view;
+		D3DXMatrixInverse(&invMat, 0, &vpMat);
+		D3DXMatrixInverse(&inv_proj, 0, proj);
+		D3DXMatrixInverse(&inv_view, 0, view);
+
+		invMat *= inv_proj * inv_view;
+
+		return D3DXVec3TransformCoord(out, out, &invMat);
 	}
 };
 

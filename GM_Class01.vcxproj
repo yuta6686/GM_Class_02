@@ -29,6 +29,7 @@
     <ClCompile Include="blink_scale_component.cpp" />
     <ClCompile Include="bullet_component.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="chain_of_responsibility.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="collision_component.cpp" />
     <ClCompile Include="collision_component_bullet.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="bullet_component.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="chain_of_responsibility.h" />
     <ClInclude Include="circle_deploy.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="collision_component.h" />
@@ -415,6 +417,12 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="env_mapping_select_ps.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
     <FxCompile Include="env_mapping_vs.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>

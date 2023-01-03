@@ -38,6 +38,8 @@ public:
     void SetShaderType(const int& shaderType)
     {
         m_ShaderType = shaderType;
+
+        Init();
     }
 };
 

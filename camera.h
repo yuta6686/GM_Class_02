@@ -16,5 +16,8 @@ public:
 	void Draw();
 
 	D3DXMATRIX GetViewMatrix() { return m_ViewMatrix; }		
+	D3DXMATRIX GetProjectionMatrix() { return _projectionMatrix; }
 	bool CheckView(const D3DXVECTOR3& Position, const float& Scale);
+
+	
 };

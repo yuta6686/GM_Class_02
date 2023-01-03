@@ -1,3 +1,188 @@
 {
-    "value0": []
+    "value0": [
+        {
+            "_name": "prism",
+            "_position": {
+                "x": -20.0,
+                "y": 9.293391227722168,
+                "z": 6.944192886352539
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 2.549999952316284,
+                "y": 5.110000133514404,
+                "z": 3.3499999046325685
+            },
+            "_speed": 0.014999999664723874,
+            "_min": -5.0,
+            "_max": 5.0,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\enviroment.dds"
+        },
+        {
+            "_name": "prism1",
+            "_position": {
+                "x": -20.0,
+                "y": 7.230958461761475,
+                "z": 3.684000015258789
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "_speed": 0.009999999776482582,
+            "_min": -5.0,
+            "_max": 5.0,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\enviroment.dds"
+        },
+        {
+            "_name": "prism2",
+            "_position": {
+                "x": -20.0,
+                "y": 8.213120460510254,
+                "z": -4.605000019073486
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "_speed": 0.03500000014901161,
+            "_min": -6.9079999923706059,
+            "_max": 5.328999996185303,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\swordOfKirito.png"
+        },
+        {
+            "_name": "prism3",
+            "_position": {
+                "x": -13.553000450134278,
+                "y": -12.903566360473633,
+                "z": -15.395000457763672
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "_speed": 0.03700000047683716,
+            "_min": -10.0,
+            "_max": 6.25,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\swordOfKirito.png"
+        },
+        {
+            "_name": "prism4",
+            "_position": {
+                "x": 13.946999549865723,
+                "y": -9.748830795288086,
+                "z": 9.342000007629395
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "_speed": 0.04100000113248825,
+            "_min": -7.039000034332275,
+            "_max": 7.105000019073486,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\swordOfKirito.png"
+        },
+        {
+            "_name": "prism5",
+            "_position": {
+                "x": -7.5,
+                "y": -10.767378807067871,
+                "z": -15.262999534606934
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "_speed": 0.009999999776482582,
+            "_min": -8.946999549865723,
+            "_max": 6.25,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\swordOfKirito.png"
+        },
+        {
+            "_name": "prism6",
+            "_position": {
+                "x": -20.0,
+                "y": 20.916032791137697,
+                "z": -19.474000930786134
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "_speed": 0.009999999776482582,
+            "_min": -5.0,
+            "_max": 5.0,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\swordOfKirito.png"
+        },
+        {
+            "_name": "prism7",
+            "_position": {
+                "x": 18.55299949645996,
+                "y": -16.692354202270509,
+                "z": 9.473999977111817
+            },
+            "_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "_speed": 0.012000000104308129,
+            "_min": -7.105000019073486,
+            "_max": 6.315999984741211,
+            "_axis": 1,
+            "_fileName_EnvironmentMapping": "asset\\texture\\swordOfKirito.png"
+        }
+    ]
 }

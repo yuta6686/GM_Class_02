@@ -2,7 +2,7 @@
 #include "prism_factory.h"
 #include "co_prism.h"
 #include "blink_position_component.h"
-
+#include "chain_of_responsibility.h"
 
 
 void PrismGenerateParameter::TakeOutPrismParameter(CO_Prism* prism)
@@ -74,9 +74,16 @@ void PrismFactory::Create()
 
 #endif // SEREALIZE
 
+// PrismGeneratorをReleaseで表示しないようにする https://yuta6686.atlassian.net/browse/AS-7
+#ifdef _DEBUG
 	auto prismGenerator = _scene->AddGameObject<PrismGenerator>(LAYER_3D);
 
 	prismGenerator->AddPrisms(transform);
+
+	_scene->AddGameObject<ChainOfResponsibility>(LAYER_3D);
+#else	
+	PrismGenerator::AddPrismFirst(transform);
+#endif // _DEBUG
 }
 
 void PrismGenerator::Init()
@@ -88,6 +95,67 @@ void PrismGenerator::Init()
 	ComponentObject::Init();
 }
 
+void PrismGenerator::Update()
+{
+	// https://yuta6686.atlassian.net/browse/AS-4
+	// 左クリックでPrismオブジェクトを選択できるようにする	
+	GetPrismObjects();
+
+	if (_prism.size() > _itemCurrent) 
+	{
+		_prism[_itemCurrent]->SetIsSelect(true);
+	}
+
+	// 左クリック時のみ
+	if (!IsMouseLeftTriggered())return;
+
+	// レイとの判定の準備
+	Camera* camera = _scene->GetGameObject<Camera>();	
+	D3DXVECTOR3 start, end, vec;
+	D3DXMATRIX view, proj;
+	view = camera->GetViewMatrix();
+	proj = camera->GetProjectionMatrix();
+
+	// 始点位置を変に
+	MyMath::transScreenToWorld(&start,
+		ImGui::GetIO().MousePos.x,
+		ImGui::GetIO().MousePos.y,
+		0.0f,
+		&view, &proj
+	);
+
+	// 終点位置に変換
+	MyMath::transScreenToWorld(&end,
+		ImGui::GetIO().MousePos.x,
+		ImGui::GetIO().MousePos.y,
+		1.0f,
+		&view, &proj
+	);
+	vec = end - start;
+	D3DXVec3Normalize(&vec, &vec);
+
+	
+
+	// プリズム全部で検証
+	// レイと衝突していたら、選択状態にする
+	for (unsigned int i=0;i<_prism.size();i++) 
+	{
+		D3DXVECTOR3 center;
+		center = _prism[i]->GetPosition();
+
+		if (MyMath::CalcSphereRayCollision(
+			_prism[i]->GetScale().y,
+			&center,
+			&start,
+			&vec,
+			&_pos_collision, nullptr
+		)) {
+			_itemCurrent = i;			
+			return;
+		}				
+	}
+}
+
 void PrismGenerator::Uninit()
 {
 	SerializeBackUp_End();
@@ -97,6 +165,10 @@ void PrismGenerator::Uninit()
 
 void PrismGenerator::DrawImgui()
 {
+	ImGui::Text("x %.2f", ImGui::GetIO().MousePos.x);
+	ImGui::Text("y %.2f", ImGui::GetIO().MousePos.y);
+	ImGui::Text("x %.2f y %.2f z %.2f", _pos_collision.x, _pos_collision.y, _pos_collision.z);
+	
 
 	if (ImGui::CollapsingHeader("Prism Generate Menu"))
 	{
@@ -183,6 +255,21 @@ void PrismGenerator::AddPrism(PrismGenerateParameter param)
 
 }
 
+void PrismGenerator::AddPrismFirst(std::vector<PrismGenerateParameter> param)
+{
+	CO_Prism* prism = Manager::GetScene()->AddGameObject<CO_Prism>(LAYER_3D);
+	for (PrismGenerateParameter t : param)
+	{		
+		auto prism = Manager::GetScene()->AddGameObject<CO_Prism>(LAYER_3D);
+		prism->SetName(t._name);
+		prism->SetPosition(t._position);
+		prism->SetRotation(t._rotation);
+		prism->SetScale(t._scale);
+		prism->_textureComponent->SetTextureAndSlot(t._fileName_EnvironmentMapping, 2);
+		prism->_blinkPositionComponent->SetParameter(t._speed, t._min, t._max, (AXIS)t._axis);
+	}
+}
+
 void PrismGenerator::RemovePrisms()
 {
 	for (auto prism : _prism)
@@ -212,20 +299,15 @@ bool PrismGenerator::IsChangeBlinkParameter(const PrismGenerateParameter& now)
 	bool flag = false;
 
 	// 前のフレームとなにかが少しでも変わっていたら
-	if (_previousPrismParam._name != now._name ||
-		_previousPrismParam._position != now._position ||
-		_previousPrismParam._rotation != now._rotation ||
-		_previousPrismParam._scale != now._scale ||
-		_previousPrismParam._speed != now._speed ||
-		_previousPrismParam._min != now._min ||
-		_previousPrismParam._max != now._max ||
-		_previousPrismParam._axis != now._axis)
+	if(_previousPrismParam != now)
 	{
 		flag = true;
 	}	
 
 	return flag;
 }
+
+
 
 
 void PrismGenerator::Generate()
@@ -355,7 +437,7 @@ void PrismGenerator::ShowParameter()
 		PrismGenerateParameter param;
 		param.TakeOutPrismParameter(_prism[_itemCurrent]);
 
-		// 1フレーム前の検出用
+		// 1フレーム前の検出用 https://yuta6686.atlassian.net/browse/AS-2
 		_previousPrismParam = param;
 
 		param._name.resize(1024);

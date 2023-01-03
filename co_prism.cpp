@@ -5,13 +5,15 @@
 
 
 
-void CO_Prism::Init()
+void CO_Prism::InitInternal()
 {
 	AddComponent<TransformInit>(COMLAYER_FIRST);
 
 	AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 
-	AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_ENVIRONMENT_MAPPING);
+	_shaderComponent =
+		AddComponent<ShaderComponent>(COMLAYER_SHADER);
+	_shaderComponent->SetShaderType(SHADER_ENVIRONMENT_MAPPING);
 
 	_textureComponent =
 		AddComponent<TextureComponent>(COMLAYER_DRAW);
@@ -23,37 +25,38 @@ void CO_Prism::Init()
 	_blinkPositionComponent = AddComponent<BlinkPositionComponent>(COMLAYER_SECOND);
 	_blinkPositionComponent->SetParameter(0.01f, -5.0f, 5.0f, AXIS_Y);
 
-
-	//--これより↑に書く-----------------
-	ComponentObject::Init();
 }
 
-void CO_Prism::Uninit()
+void CO_Prism::UninitInternal()
 {
 
-	//--これより↑に書く-----------------
-	ComponentObject::Uninit();
 }
 
-void CO_Prism::Update()
+void CO_Prism::UpdateInternal()
 {
+	// 選択されていたらシェーダー変える
+	if (_isSelect) 
+	{
+		_shaderComponent->SetShaderType(SHADER_ENVIRONMENT_MAPPING_SELECT);
 
-	//--これより↑に書く-----------------
-	ComponentObject::Update();
+		_isSelect = false;
+	}
+	else 
+	{
+		// 戻す		
+		_shaderComponent->SetShaderType(SHADER_ENVIRONMENT_MAPPING);
+	}
 }
 
-void CO_Prism::Draw()
+void CO_Prism::DrawInternal()
 {
 
-	//--これより↑に書く-----------------
-	ComponentObject::Draw();
 }
 
-void CO_Prism::DrawImgui()
+void CO_Prism::DrawImguiInternal()
 {
 
-	//--これより↑に書く-----------------
-	ComponentObject::DrawImgui();
+
 }
 
 void CO_Prism::SetName(const std::string& name,bool notJudge)

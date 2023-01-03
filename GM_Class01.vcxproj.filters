@@ -507,6 +507,9 @@
     <ClCompile Include="scene.cpp">
       <Filter>GameObject\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="chain_of_responsibility.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -1019,6 +1022,9 @@
     <ClInclude Include="serealize_archive.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="chain_of_responsibility.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -1082,6 +1088,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="enemy_ps.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="env_mapping_select_ps.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

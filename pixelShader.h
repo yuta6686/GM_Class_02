@@ -26,6 +26,7 @@ private:
 		{SHADER_TYPE::SHADER_BLURY,"post_effect_blur_ps.cso"},
 		{SHADER_TYPE::SHADER_ENEMY,"enemy_ps.cso"},
 		{SHADER_TYPE::SHADER_ENVIRONMENT_MAPPING,"env_mapping_ps.cso"},
+		{SHADER_TYPE::SHADER_ENVIRONMENT_MAPPING_SELECT,"env_mapping_select_ps.cso"},
 	};
 };
 

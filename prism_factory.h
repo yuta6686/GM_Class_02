@@ -51,6 +51,23 @@ struct PrismGenerateParameter
 			CEREAL_NVP(_axis),
 			CEREAL_NVP(_fileName_EnvironmentMapping));
 	}
+
+	bool operator != (const PrismGenerateParameter& param)
+	{
+		if (this->_name != param._name ||
+			this->_position != param._position ||
+			this->_rotation != param._rotation ||
+			this->_scale != param._scale ||
+			this->_speed != param._speed ||
+			this->_min != param._min ||
+			this->_max != param._max ||
+			this->_axis != param._axis ||
+			this->_fileName_EnvironmentMapping !=
+			param._fileName_EnvironmentMapping) {
+			return true;
+		}
+		return false;
+	}
 };
 
 class PrismFactory :
@@ -81,8 +98,11 @@ class PrismGenerator :
 
 	int _itemCurrent = 0;
 	float _pos_max = 20.0f;
+
+	D3DXVECTOR3 _pos_collision = { 0.0f,0.0f,0.0f };
 public:
 	virtual void Init()override;	
+	virtual void Update()override;
 	virtual void Uninit()override;
 	virtual void DrawImgui()override;
 		
@@ -95,6 +115,9 @@ public:
 	void AddPrisms(std::vector<PrismGenerateParameter> param);
 	void AddPrism(PrismGenerateParameter param);
 
+	// PrismGeneratorをReleaseで表示しないようにする https://yuta6686.atlassian.net/browse/AS-7
+	static void AddPrismFirst(std::vector<PrismGenerateParameter> param);
+
 	// 全部のCO_Prismを削除と名前のリセット
 	void RemovePrisms();	
 
@@ -104,6 +127,7 @@ private:
 
 	// 現在と前のフレームの選択されている_prismParamが変更されていたらtrue
 	bool IsChangeBlinkParameter(const PrismGenerateParameter& now);
+
 private:
 	// ImGuiでの操作（ボタンごとに関数化する）
 
