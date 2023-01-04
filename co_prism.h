@@ -32,8 +32,15 @@ public:
         _isSelect = flag;
     }
 
+// move
+    void Movement(const D3DXVECTOR3& diff);
+    void Rotation(const D3DXVECTOR3& diff);
+    void Scaling(const D3DXVECTOR3& diff);
+
 // Component
     class TextureComponent* _textureComponent;
     class BlinkPositionComponent* _blinkPositionComponent;
+
+    class Camera* _camera;
 };
 

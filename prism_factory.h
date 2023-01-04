@@ -73,6 +73,7 @@ struct PrismGenerateParameter
 class PrismFactory :
     public Factory
 {
+	
 public:    
     virtual void Create() override;
 public:
@@ -100,6 +101,8 @@ class PrismGenerator :
 	float _pos_max = 20.0f;
 
 	D3DXVECTOR3 _pos_collision = { 0.0f,0.0f,0.0f };
+
+	class ChainOfResponsibility* _chain;
 public:
 	virtual void Init()override;	
 	virtual void Update()override;

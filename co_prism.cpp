@@ -25,6 +25,7 @@ void CO_Prism::InitInternal()
 	_blinkPositionComponent = AddComponent<BlinkPositionComponent>(COMLAYER_SECOND);
 	_blinkPositionComponent->SetParameter(0.01f, -5.0f, 5.0f, AXIS_Y);
 
+	_camera = Manager::GetScene()->GetGameObject<Camera>();
 }
 
 void CO_Prism::UninitInternal()
@@ -74,6 +75,20 @@ std::string CO_Prism::GetName() const
 void CO_Prism::ResetMyName()
 {
 	_isDuplication[_name] = false;
+}
+
+
+void CO_Prism::Movement(const D3DXVECTOR3& diff) 
+{
+	m_Position += diff;
+}
+void CO_Prism::Rotation(const D3DXVECTOR3& diff)
+{
+	m_Rotation += diff;
+}
+void CO_Prism::Scaling(const D3DXVECTOR3& diff)
+{
+	m_Scale += diff;
 }
 std::string CO_Prism::IsDuplicationName(std::string name, int index)
 {

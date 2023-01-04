@@ -80,7 +80,7 @@ void PrismFactory::Create()
 
 	prismGenerator->AddPrisms(transform);
 
-	_scene->AddGameObject<ChainOfResponsibility>(LAYER_3D);
+	
 #else	
 	PrismGenerator::AddPrismFirst(transform);
 #endif // _DEBUG
@@ -91,6 +91,8 @@ void PrismGenerator::Init()
 	AddComponent<ImGuiComponent>(COMLAYER_FIRST)->SetIsUse(true);
 
 	_scene = Manager::GetScene();
+
+	_chain = _scene->AddGameObject<ChainOfResponsibility>(LAYER_3D);
 
 	ComponentObject::Init();
 }
@@ -103,8 +105,10 @@ void PrismGenerator::Update()
 
 	if (_prism.size() > _itemCurrent) 
 	{
-		_prism[_itemCurrent]->SetIsSelect(true);
+		_prism[_itemCurrent]->SetIsSelect(true);		
 	}
+	
+	
 
 	// 左クリック時のみ
 	if (!IsMouseLeftTriggered())return;
@@ -440,7 +444,11 @@ void PrismGenerator::ShowParameter()
 		// 1フレーム前の検出用 https://yuta6686.atlassian.net/browse/AS-2
 		_previousPrismParam = param;
 
-		param._name.resize(1024);
+		// ここで_chainにparam渡して変更させればいいのでは？
+		_chain->SetCurrentPrism(_prism[_itemCurrent], &param);
+		_chain->UpdateHandler();
+
+		param._name.resize(1024);		
 
 		ImGui::InputText("Name", param._name.data(), 1024);
 

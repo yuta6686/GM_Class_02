@@ -40,5 +40,7 @@ public:
 
     void SetIsBillboard(bool flag = true) { m_IsBillboard = flag; }
     void SetIsInvertXYRotate(bool flag = true) { m_IsInvertXYRotate = flag; }
+
+    D3DXMATRIX GetWorldMatrix();
 };
 
