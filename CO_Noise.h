@@ -15,7 +15,7 @@ public:
             
         AddComponent<TransformInit>(COMLAYER_FIRST);
 
-        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_TEST);
+        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_NOISE);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 

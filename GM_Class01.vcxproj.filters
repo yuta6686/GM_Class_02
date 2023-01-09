@@ -510,6 +510,9 @@
     <ClCompile Include="chain_of_responsibility.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="co_noise_circle.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -1025,6 +1028,9 @@
     <ClInclude Include="chain_of_responsibility.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="co_noise_circle.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -1091,6 +1097,12 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="env_mapping_select_ps.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="noise_circle_vs.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="noise_circle_ps.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

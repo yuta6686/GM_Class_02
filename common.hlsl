@@ -204,3 +204,9 @@ float CalcDiffuseFromFresnel(float3 N, float3 L, float3 V)
     return (dotNL * dotNV);
 
 }
+
+float GetMonochrome(float3 color)
+{
+    return 0.299f * color.r + 0.587f * color.g + 0.114f * color.b;
+
+}

@@ -39,6 +39,7 @@
     <ClCompile Include="count_component.cpp" />
     <ClCompile Include="co_confirmation.cpp" />
     <ClCompile Include="co_mesh_field.cpp" />
+    <ClCompile Include="co_noise_circle.cpp" />
     <ClCompile Include="co_prism.cpp" />
     <ClCompile Include="co_select.cpp" />
     <ClCompile Include="CO_Stand.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="collision_component_bullet.h" />
     <ClInclude Include="collision_component_enemy.h" />
     <ClInclude Include="collision_component_player.h" />
+    <ClInclude Include="co_noise_circle.h" />
     <ClInclude Include="co_prism.h" />
     <ClInclude Include="extend_fanction.h" />
     <ClInclude Include="component.h" />
@@ -460,6 +462,18 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="noise_circle_ps.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="noise_circle_vs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="PixelLightingPS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>

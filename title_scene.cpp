@@ -31,6 +31,7 @@
 #include "confirmation_component.h"
 #include "loading_scene.h"
 #include "prism_factory.h"
+#include "co_noise_circle.h"
 
 void TitleScene::Init()
 {
@@ -128,12 +129,15 @@ void TitleScene::Init()
 	m_SESelect->SetAudioVolume(0.5f);
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
-
+	
+	AddGameObject<CO_NoiseCircle>(LAYER_3D); // https://yuta6686.atlassian.net/browse/AS-9
+	
 	AddGameObject< CO_Noise>(LAYER_3D);
 
 	//AddGameObject< CO_AnimationModelTest>(LAYER_3D);
 
 	// AddGameObject<CO_MeshField>(LAYER_3D);
+
 
 //	Å™Ç…í«â¡
 //--Ç±ÇÍà»ç~ÇÕí«â¡ÇµÇ»Ç¢-------------------------------------------------------------------
