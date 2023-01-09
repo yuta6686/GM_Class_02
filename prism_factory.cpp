@@ -40,7 +40,7 @@ void PrismFactory::Create()
 	{
 		{
 			"name",
-			{0.0f,0.0f,0.0f},
+			{10.0f,0.0f,0.0f},
 			{0.0f,0.0f,0.0f},
 			{1.0f,1.0f,1.0f},
 			0.01f,-5.0f,5.0f,AXIS_Y,
@@ -48,7 +48,7 @@ void PrismFactory::Create()
 		},
 		{
 			"abc",
-			{0.0f,3.0f,0.0f},
+			{10.0f,3.0f,0.0f},
 			{0.0f,0.0f,0.0f},
 			{1.0f,1.0f,1.0f},
 			0.01f,-5.0f,5.0f,AXIS_Y,
@@ -67,6 +67,7 @@ void PrismFactory::Create()
 #else
 	// デシリアライズ
 	{
+		transform.clear();
 		std::ifstream is(PRISM_FILE_NAME, std::ios::in);
 		cereal::JSONInputArchive archiveFile(is);
 		serialize(archiveFile, transform);
@@ -261,10 +262,9 @@ void PrismGenerator::AddPrism(PrismGenerateParameter param)
 
 void PrismGenerator::AddPrismFirst(std::vector<PrismGenerateParameter> param)
 {
-	CO_Prism* prism = Manager::GetScene()->AddGameObject<CO_Prism>(LAYER_3D);
 	for (PrismGenerateParameter t : param)
 	{		
-		auto prism = Manager::GetScene()->AddGameObject<CO_Prism>(LAYER_3D);
+		CO_Prism* prism = Manager::GetScene()->AddGameObject<CO_Prism>(LAYER_3D);		
 		prism->SetName(t._name);
 		prism->SetPosition(t._position);
 		prism->SetRotation(t._rotation);
