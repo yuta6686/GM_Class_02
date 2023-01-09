@@ -121,9 +121,6 @@
     <Filter Include="GameObject\factory">
       <UniqueIdentifier>{3bdc758f-6d5b-439b-a2f1-1c3c8486f9a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\ImGuizmo">
-      <UniqueIdentifier>{3dd438f9-1975-4d95-a7b9-f8bbbe298c75}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="texture.cpp">
@@ -476,21 +473,6 @@
     </ClCompile>
     <ClCompile Include="my_imgui.cpp">
       <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuizmo\GraphEditor.cpp">
-      <Filter>System\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuizmo\ImCurveEdit.cpp">
-      <Filter>System\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuizmo\ImGradient.cpp">
-      <Filter>System\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuizmo\ImGuizmo.cpp">
-      <Filter>System\ImGuizmo</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuizmo\ImSequencer.cpp">
-      <Filter>System\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="co_prism.cpp">
       <Filter>System</Filter>
@@ -991,24 +973,6 @@
     </ClInclude>
     <ClInclude Include="shader_include.h">
       <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuizmo\GraphEditor.h">
-      <Filter>System\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuizmo\ImCurveEdit.h">
-      <Filter>System\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuizmo\ImGradient.h">
-      <Filter>System\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuizmo\ImGuizmo.h">
-      <Filter>System\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuizmo\ImSequencer.h">
-      <Filter>System\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuizmo\ImZoomSlider.h">
-      <Filter>System\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="co_prism.h">
       <Filter>GameObject</Filter>

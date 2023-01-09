@@ -32,7 +32,7 @@ void Enemy_Interface::Init()
     AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
 
     AddComponent<TextureComponent>(COMLAYER_SHADER)
-        ->SetTextureAndSlot("asset\\texture\\normalmap.png", 1,true);
+        ->SetTextureAndSlot("asset\\texture\\normalmap.dds", 1,true);
 
     AddComponent<TextureComponent>(COMLAYER_SHADER)
         ->SetTextureAndSlot("asset\\texture\\pixelNoiseColor.png", 2,true);

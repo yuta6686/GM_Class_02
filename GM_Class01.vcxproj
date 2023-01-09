@@ -62,11 +62,6 @@
     <ClCompile Include="enemy_interface.cpp" />
     <ClCompile Include="gravity_component.cpp" />
     <ClCompile Include="ImGuiComponent_Enemy.cpp" />
-    <ClCompile Include="ImGuizmo\GraphEditor.cpp" />
-    <ClCompile Include="ImGuizmo\ImCurveEdit.cpp" />
-    <ClCompile Include="ImGuizmo\ImGradient.cpp" />
-    <ClCompile Include="ImGuizmo\ImGuizmo.cpp" />
-    <ClCompile Include="ImGuizmo\ImSequencer.cpp" />
     <ClCompile Include="jump_component.cpp" />
     <ClCompile Include="loading_scene.cpp" />
     <ClCompile Include="ModelColorChangeComponent_Titlebg.cpp" />
@@ -271,12 +266,6 @@
     <ClInclude Include="factory.h" />
     <ClInclude Include="GameObject_Invoke.h" />
     <ClInclude Include="ImGuiComponent_Enemy.h" />
-    <ClInclude Include="ImGuizmo\GraphEditor.h" />
-    <ClInclude Include="ImGuizmo\ImCurveEdit.h" />
-    <ClInclude Include="ImGuizmo\ImGradient.h" />
-    <ClInclude Include="ImGuizmo\ImGuizmo.h" />
-    <ClInclude Include="ImGuizmo\ImSequencer.h" />
-    <ClInclude Include="ImGuizmo\ImZoomSlider.h" />
     <ClInclude Include="loading_scene.h" />
     <ClInclude Include="player_factory.h" />
     <ClInclude Include="prism_factory.h" />
@@ -733,7 +722,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)imgui;$(SolutionDir)imgui\backends;$(SolutionDir)cereal;$(SolutionDir)assimp;$(SolutionDir)ImGuizmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)imgui;$(SolutionDir)imgui\backends;$(SolutionDir)cereal;$(SolutionDir)assimp</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>

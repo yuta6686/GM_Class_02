@@ -11,7 +11,7 @@ public:
             ->SetInitPosScale({ 2.5f,0.1f,0.0f }, { 5.0f,5.0f,5.0f });
 
         AddComponent<TextureComponent>(COMLAYER_DRAW)->
-            SetTextureAndSlot("asset\\texture\\normalmap.png",1);
+            SetTextureAndSlot("asset\\texture\\normalmap.dds",1);
         
 
         AddComponent<ShaderComponent>(COMLAYER_SHADER);

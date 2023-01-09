@@ -17,7 +17,7 @@ void stage_wator_field::Init()
 	//m_PixelShader = ResourceManger<PixelShader>::GetResource("MeshFieldPS.cso");
 
 	AddComponent<TextureComponent>(COMLAYER_SHADER)->
-		SetTextureAndSlot("asset\\texture\\normalmap.png", 1, true);
+		SetTextureAndSlot("asset\\texture\\normalmap.dds", 1, true);
 
 	AddComponent<TextureComponent>(COMLAYER_SHADER)->
 		SetTextureAndSlot("asset\\texture\\envmap_2.dds", 2, true);

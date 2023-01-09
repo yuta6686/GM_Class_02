@@ -25,11 +25,7 @@
 
 //#include "imgui_node_editor.h"
 
-#include "ImGuizmo.h"
-#include "ImSequencer.h"
-//#include "ImZoomSlider.h"
-#include "ImCurveEdit.h"
-//#include "GraphEditor.h"
+
 
 
 #include <cereal.hpp>

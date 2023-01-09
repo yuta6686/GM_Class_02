@@ -10,7 +10,7 @@ void CO_NoiseCircle::InitInternal()
 	D3DXVECTOR3 Position = { 0.0f,-7.0f,0.0f };
 	AddComponent<TransformInit>(COMLAYER_FIRST)->SetInitPosScale(Position, Scale);
 	auto polygon = AddComponent<Polygon3DComponent>(COMLAYER_DRAW);
-	polygon->LoadTexture("asset\\texture\\field.jpg");
+	polygon->LoadTexture("asset\\texture\\swordOfKirito.png");
 	polygon->SetIsVertical(false);
 
 

@@ -330,7 +330,7 @@ void CO_MeshField::Init()
 
     // ノーマルテクスチャ
     D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-        "asset\\texture\\normalmap.png",
+        "asset\\texture\\normalmap.dds",
         NULL,
         NULL,
         &m_NormalTexture,
