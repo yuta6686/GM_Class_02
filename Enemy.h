@@ -7,6 +7,7 @@
  * @brief  
  ** ---------------------------------------------------------*/
 #include "enemy_interface.h"
+#include "state_machine.h"
 
 
 class Enemy : public Enemy_Interface
@@ -66,3 +67,20 @@ public:
 
     virtual void Init();
 };
+
+// https://yuta6686.atlassian.net/browse/AS-12 ステートマシンをエネミーの挙動に組み込む
+class Enemy_StateMachine : public Enemy_Interface
+{
+public:
+    Enemy_StateMachine() :Enemy_Interface(ENEMY_STATE_MACHINE) {}
+    virtual void Init();
+};
+
+// EnemyStateMachieneを作る
+class EnemyStateMachine : public StateMachine
+{
+public:
+
+};
+
+// EnemyStateを作る

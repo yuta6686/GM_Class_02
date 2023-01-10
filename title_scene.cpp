@@ -131,7 +131,7 @@ void TitleScene::Init()
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
 
-	AddGameObject<StateMachine>(LAYER_3D);
+	AddGameObject<CO_StateMachine>(LAYER_3D);
 	
 	AddGameObject<CO_NoiseCircle>(LAYER_3D); // https://yuta6686.atlassian.net/browse/AS-9
 	

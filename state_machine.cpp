@@ -2,7 +2,7 @@
 #include "state_machine.h"
 
 // InitInternalよりも先にこれが呼ばれるので、継承先のInitはこれが呼ばれることになる？といいな
-void StateMachine::Init()
+void CO_StateMachine::Init()
 {
 	_context = new Context(new StateEmpty());
 	AddComponent(_context, COMLAYER_SECOND);	
@@ -11,11 +11,40 @@ void StateMachine::Init()
 }
 
 // CO_StateMachineで使いたいInit 継承先で使うときはこれを上書きする
-void StateMachine::InitInternal()
+void CO_StateMachine::InitInternal()
 {
 	AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(true);
 	
 	_context->TransitionTo(new StateA());	
+}
+
+void StateMachine::Init()
+{
+	_context = new Context(new StateEmpty());
+
+	InitInternal();
+
+	_context->Init();
+}
+
+void StateMachine::Uninit()
+{
+	_context->Uninit();
+}
+
+void StateMachine::Update()
+{
+	_context->Update();
+}
+
+void StateMachine::Draw()
+{
+	_context->Draw();
+}
+
+void StateMachine::DrawImgui()
+{
+	_context->DrawImgui();
 }
 
 
@@ -75,3 +104,4 @@ void StateB::Update()
 	if (GetKeyboardTrigger(DIK_O))
 		_context->TransitionTo(new StateA());
 }
+

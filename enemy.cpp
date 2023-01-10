@@ -4,6 +4,7 @@
 #include "tracking_component.h"
 #include "gravity_component.h"
 
+
 void Enemy::Init()
 {
 
@@ -113,6 +114,28 @@ void Enemy_Boss::Init()
     AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.5f);
 
     AddComponent< RandomJumpComponent>(COMLAYER_DRAW);
+
+    ComponentObject::Init();
+
+    m_Scale = { 2.0f,2.0f,2.0f };
+}
+
+void Enemy_StateMachine::Init()
+{
+    Enemy_Interface::Init();
+
+    ModelDrawComponent* mdc = AddComponent< ModelDrawComponent>(COMLAYER_DRAW);
+    mdc->SetSourcePath("asset\\model\\enemy_boss.obj");
+    mdc->SetIsVariable(true);
+
+
+    AddComponent< GravityComponent>(COMLAYER_SECOND);
+
+    //AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.5f);
+
+    //AddComponent< RandomJumpComponent>(COMLAYER_DRAW);
+
+    // StateMachine‚ğŒp³‚µ‚½Enemyê—p‚ÌEnemyStateMachine‚ğì‚Á‚ÄA‚±‚±‚ÅAdd‚·‚é
 
     ComponentObject::Init();
 
