@@ -2,9 +2,11 @@
 #include "renderer.h"
 
 void Texture::Draw()
-{
+{	
 	//テクスチャ設定
-	Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &m_Texture);
+	Renderer::GetDeviceContext()->PSSetShaderResources(_textureNum, 1, &m_Texture);
+
+	if (_onlySet)return;
 
 	//プリミティブトポロジ設定
 	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
@@ -23,7 +25,7 @@ void Texture::Load(const char* FileName)
 		&m_Texture,
 		NULL);
 
-	assert(m_Texture);
+	assert(m_Texture);		
 }
 
 void Texture::Unload()

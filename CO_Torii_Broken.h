@@ -1,10 +1,10 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "model_variable.h"
 #include "model.h"
-#include "Resource.h"
-#include "ResourceManager.h"
-#include "BlinkComponent.h"
+#include "resource.h"
+
+#include "blink_component.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -66,9 +66,9 @@ public:
         }
 
         m_VertexShader =
-            ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
+            ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
         m_PixelShader =
-            ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+            ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
       
         for (int i = 0; i < m_MaxIndex; i++) {
             FIELD_OBJECT fo;
@@ -171,7 +171,7 @@ public:
                 ImGui::Text("Could not open file.");
             }
 
-            for (int i = 0; i < m_Objects.size(); i++) {
+            for (unsigned int i = 0; i < m_Objects.size(); i++) {
 
                 ofs << std::showpoint
                     << m_Objects[i]._position.x << ","

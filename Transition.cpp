@@ -5,10 +5,10 @@
 //  ------------------------summary--------------------------
 //  - フェード処理
 //  ---------------------------------------------------------
-#include "Transition.h"
-#include "ResourceManager.h"
+#include "transition.h"
+
 #include "audio.h"
-#include "manager.h"
+
 
 void Transition::Init()
 {
@@ -53,8 +53,8 @@ void Transition::Init()
 	m_Offset = { 0.0f,SCREEN_HEIGHT / 2.0f,0.0f };
 
 	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\noen_white.png");
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_NO_MATERIAL_VERTEX_SHADER.c_str());
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT_NO_MATERIAL]);
+	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 	m_SE = Manager::GetScene()->AddGameObject<Audio>(LAYER_AUDIO);
 	

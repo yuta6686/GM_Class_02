@@ -1,18 +1,19 @@
-#include "main.h"
 #include "renderer.h"
-#include "polygon2D.h"
+#include "polygon2d.h"
 #include "field.h"
 #include "model.h"
 #include "input.h"
 #include "bullet.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "ao_Sphere.h"
 #include "player.h"
+
 
 void Ao_Sphere::Init()
 {
 	m_Model = new Model();
+
 	m_Model->Load("asset\\model\\ao_Sphere_sky.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);

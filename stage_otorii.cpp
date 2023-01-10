@@ -1,5 +1,5 @@
 #include "stage_otorii.h"
-#include "ResourceManager.h"
+
 
 void stage_otorii::Init()
 {
@@ -11,9 +11,9 @@ void stage_otorii::Init()
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
 	m_VertexShader = 
-		ResourceManger<VertexShader>::GetResource(VertexShader::DEFAULT_VERTEX_SHADER.c_str());
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_DEFAULT]);
 	m_PixelShader = 
-		ResourceManger<PixelShader>::GetResource(PixelShader::DEFAULT_PIXEL_SHADER.c_str());
+		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_DEFAULT]);
 }
 
 void stage_otorii::Uninit()

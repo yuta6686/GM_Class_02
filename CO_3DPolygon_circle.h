@@ -1,7 +1,7 @@
 #pragma once
-#include "ComponentObject.h"
-#include "Polygon3DComponent.h"
-#include "VertexChangeComponent_ToGame.h"
+#include "component_object.h"
+#include "polygon3d_component.h"
+#include "vertex_change_to_game_component.h"
 class CO_3DPolygon_circle :
     public ComponentObject
 {
@@ -11,7 +11,7 @@ public:
         AddComponent<TransformInit>(COMLAYER_FIRST)->
             SetInitScale({ 1.0f,1.0f,1.0f });
 
-        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetUnlitShader();
+        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_UNLIT);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 

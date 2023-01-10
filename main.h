@@ -42,12 +42,6 @@
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
 
-#include <memory>
-#include <vector>
-#include <list>
-#include <string>
-#include <map>
-#include <time.h>
 
 #define SCREEN_WIDTH	(960*2)
 #define SCREEN_HEIGHT	(540*2)

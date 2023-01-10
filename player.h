@@ -1,15 +1,15 @@
 #pragma once
 
-#include "main.h"
+
 #include "model.h"
 #include "gameObject_Invoke.h"
-#include "ComponentObject.h"
-#include "PlayerRotateComponent.h"
-#include "ShootBulletComponent.h"
-#include "MonochromeComponent.h"
-#include "VelocityComponent.h"
-#include "JumpComponent.h"
-#include "ParticleObject.h"
+#include "component_object.h"
+#include "player_rotate_component.h"
+#include "shoot_bullet_component.h"
+#include "monochrome_component.h"
+#include "velocity_component.h"
+#include "jump_component.h"
+#include "particle_object.h"
 
 class Audio;
 class Shadow;

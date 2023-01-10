@@ -1,0 +1,38 @@
+#pragma once
+/** ---------------------------------------------------------
+ *  [blink_position_component.h]
+ *                                 @author: yanagisaya.yuta
+ *                                 @date  : 2022/12/28
+ * ------------------------summary--------------------------
+ * @brief  s‚Á‚½‚è—ˆ‚½‚è‚·‚é‚â‚Â
+ ** ---------------------------------------------------------*/
+#include "blink_component.h"
+class BlinkPositionComponent :
+    public BlinkComponent
+{
+private:
+    // •Ï”
+    bool _isOnce = false;
+    bool _isNoUpdate = false;
+    D3DXVECTOR3 _initPosition;
+private:
+    // ŠÖ”
+    // 1‰ñ‚¾‚¯Å‰‚Ée‚ÌˆÊ’u‚ğæ“¾
+    void SetInitPositionOnce();
+public:    
+    BlinkPositionComponent() :
+        _isOnce(false), 
+        _initPosition({ 0.0f,0.0f,0.0f }) 
+    {}
+    virtual void Update()override;       
+    void ReturnInitPositionOnce(bool flag = false)
+    {
+        _isOnce = flag;
+    }
+
+    void SetIsNoUpdate(bool flag = true)
+    {
+        _isNoUpdate = flag;
+    }
+};
+

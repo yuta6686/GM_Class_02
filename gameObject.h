@@ -1,11 +1,10 @@
 #pragma once
 
-#include "main.h"
 #include "texture.h"
 #include "vertexShader.h"
 #include "pixelShader.h"
-#include "MyMath.h"
-#include "Component.h"
+#include "my_math.h"
+#include "component.h"
 
 enum COMPONENT_LAYER {
 	COMLAYER_FIRST = 0,
@@ -42,6 +41,7 @@ public:
 
 	virtual void LastInit() {}
 
+	
 	virtual void SetPosition(D3DXVECTOR3 Position)
 	{
 		m_Position = Position;

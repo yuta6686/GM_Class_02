@@ -1,12 +1,14 @@
-#include "main.h"
-#include "manager.h"
+
+
 #include "renderer.h"
-#include "GameScene.h"
-#include "TitleScene.h"
-#include "ResultScene.h"
+#include "game_scene.h"
+#include "title_scene.h"
+#include "result_scene.h"
 #include "audio.h"
 #include "GameObject_Invoke.h"
-
+#include "animation_model.h"
+#include "debug_scene.h"
+#include "rendering_texture.h"
 
 //Scene* Manager::m_Scene;
 std::shared_ptr<Scene> Manager::m_Scene=nullptr;
@@ -21,6 +23,8 @@ void Manager::Init()
 	m_Scene = std::make_shared<TitleScene>();
 	m_Scene->Init();
 	
+	
+
 	//m_Scene = new ResultScene();
 	//m_Scene->Init();
 }
@@ -38,6 +42,7 @@ void Manager::Uninit()
 	ResourceManger<Texture>::AllRelease();
 	ResourceManger<VertexShader>::AllRelease();
 	ResourceManger<PixelShader>::AllRelease();
+	ResourceManger<AnimationModel>::AllRelease();
 
 	Audio::UninitMaster();
 
@@ -49,7 +54,6 @@ void Manager::Uninit()
 void Manager::Update()
 {
 	m_Scene->Update();
-
 	
 
 	//m_Scene->Update();
@@ -59,15 +63,16 @@ void Manager::Update()
 //•`‰æˆ—
 void Manager::Draw()
 {
-	Renderer::Begin();
-
-	//	m_Scene->Draw();
+	//Renderer::BeginDef();
 
 	m_Scene->Draw();
 
-#ifdef _DEBUG
-	Renderer::imguiDraw();
-#endif // _DEBUG
+	//Renderer::EndDef();
+
+	//Renderer::Begin();	
+
+	// m_Scene->Draw();	
+
 
 	
 

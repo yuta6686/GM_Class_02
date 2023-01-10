@@ -1,8 +1,8 @@
-#include "Cube2D.h"
-#include "ResourceManager.h"
+#include "cube2d.h"
+
 #include "scene.h"
-#include "manager.h"
-#include "Collision.h"
+
+#include "collision.h"
 
 #define FRICTION				(0.5f)					// –€ŽC
 #define FPS						(60)					// FPS
@@ -58,9 +58,9 @@ void Cube2D::Init()
 		NULL);
 
 	assert(m_Texture);*/
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\blender1.png");
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\gameover_bg.dds");
+	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 	
 
 	m_Position = { 0.0f,0.0f,0.0f };

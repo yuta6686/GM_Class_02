@@ -1,19 +1,22 @@
-#include "main.h"
+
 #include "renderer.h"
 #include "model.h"
 #include "player.h"
-#include "Bullet.h"
-#include "manager.h"
-#include "scene.h"
-#include "Item.h"
-#include "audio.h"
-#include "Shadow.h"
-#include "ShootBullet_Idle.h"
-#include "Cylinder.h"
+#include "bullet.h"
 
-#include "StageLimitComponent.h"
-#include "HPComponent.h"
-#include "CollisionComponent_Player.h"
+#include "scene.h"
+#include "item.h"
+#include "audio.h"
+#include "shadow.h"
+#include "shoot_bullet_idle.h"
+#include "cylinder.h"
+
+#include "stage_limit_component.h"
+#include "hp_component.h"
+#include "collision_component_player.h"
+#include "debug_scene.h"
+#include "co_mesh_field.h"
+#include "co_stand.h"
 
 using namespace std;
 
@@ -62,7 +65,7 @@ void Player::Init()
 
 	auto* mdc = AddComponent<ModelDrawComponent>(COMLAYER_DRAW);
 	mdc->SetSourcePath("asset\\model\\bow.obj");
-	mdc->SetIsVariable(true);
+	mdc->SetIsVariable(true);	
 
 	AddComponent<PlayerRotateComponent>(COMLAYER_SECOND);
 
@@ -73,7 +76,7 @@ void Player::Init()
 
 	m_VelocityCom = AddComponent<VelocityComponent>(COMLAYER_SECOND);
 
-	AddComponent< StageLimitComponent>(COMLAYER_SECOND);
+	//AddComponent< StageLimitComponent>(COMLAYER_SECOND);
 
 	AddComponent< HPComponent>(COMLAYER_SECOND);
 
@@ -84,7 +87,7 @@ void Player::Init()
 
 	AddComponent<MonochromeComponent>(COMLAYER_SECOND);
 
-	AddComponent< ImGuiComponent>(COMLAYER_SECOND);
+	AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetIsUse(true);
 
 	ComponentObject::Init();
 
@@ -118,6 +121,7 @@ void Player::Update()
 
 void Player::Draw()
 {
+	Renderer::SetAlphaToCoverage(false);
 	if (GetComponent<HPComponent>()->GetIsDeath())return;
 	ComponentObject::Draw();
 }
@@ -125,27 +129,27 @@ void Player::Draw()
 void Player::DrawImgui()
 {
 #ifdef _DEBUG
+		
+	if (MyImgui::_myFlag["Player"] && ImGui::CollapsingHeader("Player")) {
+		ImGui::Separator();
 
-	
-
-	ImGui::Separator();
-
-	ImGui::Text("Velocity Length:%.2f",D3DXVec3Length(&m_VelocityCom->m_Velocity));
-	ImGui::Text("Velocity Y:%.2f", m_VelocityCom->m_Velocity.y);
+		ImGui::Text("Velocity Length:%.2f", D3DXVec3Length(&m_VelocityCom->m_Velocity));
+		ImGui::Text("Velocity Y:%.2f", m_VelocityCom->m_Velocity.y);
 
 
-	ImGui::Checkbox("IsPlayer_Move", &m_IsUseBullet);
+		ImGui::Checkbox("IsPlayer_Move", &m_IsUseBullet);
 
-	static ImVec4 color = { 1.0f,1.0f,1.0f,1.0f };
+		static ImVec4 color = { 1.0f,1.0f,1.0f,1.0f };
 
-	ImGui::ColorEdit4("color", (float*)&color);
+		ImGui::ColorEdit4("color", (float*)&color);
 
-	MyMath::FromImVec4ToD3DXCOLOR(&m_Color ,color);
-	GetComponent< ModelDrawComponent>()->SetDiffuse(m_Color);
+		MyMath::FromImVec4ToD3DXCOLOR(&m_Color, color);
+		GetComponent< ModelDrawComponent>()->SetDiffuse(m_Color);
 
-	ImGui::Separator();
+		ImGui::Separator();
 
-	ComponentObject::DrawImgui();
+		ComponentObject::DrawImgui();
+	}
 
 #endif // _DEBUG
 }
@@ -258,6 +262,8 @@ void Player::PlayerMove()
 	D3DXVECTOR3 oldPos = m_Position;
 	float groundHeight = 0.0f;
 
+	// []ToDo ここでコリジョンを呼ぶんじゃなくて、
+	// コンポーネント内でこの後の処理をして欲しい
 	std::vector<CO_Stand*> stands = GetComponent<CollisionComponent>()->IsCollisionXAxis<CO_Stand>();
 	if (!stands.empty())
 	{
@@ -289,6 +295,12 @@ void Player::PlayerMove()
 
 			break;
 		}
+	}
+
+	//	メッシュフィールド高さ取得
+	CO_MeshField* meshf = g_Scene->GetGameObject<CO_MeshField>();
+	if (meshf) {
+		groundHeight = max(groundHeight, meshf->GetHeight(m_Position));
 	}
 
 

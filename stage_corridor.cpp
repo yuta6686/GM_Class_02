@@ -1,5 +1,5 @@
 #include "stage_corridor.h"
-#include "ResourceManager.h"
+
 
 void stage_corridor::Init()
 {

@@ -4,7 +4,7 @@
 #include <shlwapi.h>
 #pragma comment(lib, "shlwapi.lib")
 
-#include "main.h"
+
 #include "renderer.h"
 #include "model.h"
 
@@ -32,7 +32,7 @@ void Model::Draw()
 		Renderer::SetMaterial( m_SubsetArray[i].Material.Material );
 
 		// テクスチャ設定
-		Renderer::GetDeviceContext()->PSSetShaderResources( 0, 1, &m_SubsetArray[i].Material.Texture );
+		Renderer::GetDeviceContext()->PSSetShaderResources( _textureNum, 1, &m_SubsetArray[i].Material.Texture );
 
 		// ポリゴン描画
 		Renderer::GetDeviceContext()->DrawIndexed( m_SubsetArray[i].IndexNum, m_SubsetArray[i].StartIndex, 0 );

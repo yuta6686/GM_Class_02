@@ -7,11 +7,11 @@
 #include "renderer.h"
 #include "field.h"
 #include "texture.h"
-#include "ResourceManager.h"
+
 #include "scene.h"
-#include "manager.h"
+
 #include "camera.h"
-#include "VertexInitialize.h"
+#include "vertex_initialize.h"
 
 void Effect_explosion::Init()
 {
@@ -34,11 +34,11 @@ void Effect_explosion::Init()
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
 	//	テクスチャ読み込み
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\effect_explosion.png");
+	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\effect_explosion.dds");
 
 	//	シェーダ読み込み
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::UNLIT_VERTEX_SHADER.c_str());
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::UNLIT_PIXEL_SHADER.c_str());
+	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 	//	トランスフォーム初期化
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);

@@ -1,5 +1,5 @@
 #include "model_variable.h"
-#include "MyMath.h"
+#include "my_math.h"
 
 void Model_variable::Draw()
 {

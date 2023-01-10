@@ -1,7 +1,7 @@
 #pragma once
-#include "gameObject.h"
+#include "component_object.h"
 class stage_wator_field :
-    public GameObject
+    public ComponentObject
 {
 private:
     std::shared_ptr<Model> m_Model;

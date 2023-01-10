@@ -1,8 +1,7 @@
-#include "main.h"
 #include "renderer.h"
 #include "camera.h"
 #include "scene.h"
-#include "manager.h"
+
 #include "player.h"
 
 #define	VALUE_ROTATE_CAMERA	(D3DX_PI * 0.01f)				// カメラの回転量
@@ -57,10 +56,79 @@ void Camera::Draw()
 	Renderer::SetViewMatrix(&m_ViewMatrix);
 
 
-	//プロジェクションマトリクス設定
-	D3DXMATRIX projectionMatrix;
-	D3DXMatrixPerspectiveFovLH(&projectionMatrix, 1.0f,
+	//プロジェクションマトリクス設定	
+	D3DXMatrixPerspectiveFovLH(&_projectionMatrix, 1.0f,
 		(float)SCREEN_WIDTH / SCREEN_HEIGHT, 1.0f, 1000.0f);
 
-	Renderer::SetProjectionMatrix(&projectionMatrix);
+	Renderer::SetProjectionMatrix(&_projectionMatrix);
+}
+
+bool Camera::CheckView(const D3DXVECTOR3& Position,const float& Scale)
+{
+	D3DXMATRIX vp, invvp;
+
+	vp = m_ViewMatrix * _projectionMatrix;
+	D3DXMatrixInverse(&invvp, NULL, &vp);
+
+	D3DXVECTOR3 vpos[4];
+	D3DXVECTOR3 wpos[4];
+
+	vpos[0] = D3DXVECTOR3(-1.0f, 1.0f, 1.0f);
+	vpos[1] = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
+	vpos[2] = D3DXVECTOR3(-1.0f, -1.0f, 1.0f);
+	vpos[3] = D3DXVECTOR3(1.0f, -1.0f, 1.0f);
+
+	for (unsigned int i = 0; i < 4; i++)
+		D3DXVec3TransformCoord(&wpos[i], &vpos[i], &invvp);
+
+	D3DXVECTOR3 v, v1, v2, n;
+
+	v = Position - m_Position;
+
+	// 左面判定
+	{
+		v1 = wpos[0] - m_Position;
+		v2 = wpos[2] - m_Position;
+		D3DXVec3Cross(&n, &v1, &v2);
+		D3DXVec3Normalize(&n, &n);
+		if (D3DXVec3Dot(&n, &v) < -Scale)
+			return false;
+	}
+
+	// 右面判定
+	{
+		v1 = wpos[3] - m_Position;
+		v2 = wpos[1] - m_Position;
+
+		D3DXVec3Cross(&n, &v1, &v2);
+		D3DXVec3Normalize(&n, &n);
+
+		if (D3DXVec3Dot(&n, &v) < -Scale)
+			return false;
+	}
+
+	// 上面判定
+	{
+		v1 = wpos[1] - m_Position;
+		v2 = wpos[0] - m_Position;
+
+		D3DXVec3Cross(&n, &v1, &v2);
+		D3DXVec3Normalize(&n, &n);
+
+		if (D3DXVec3Dot(&n, &v) < -Scale)
+			return false;
+	}
+
+	// 下面判定
+	{
+		v1 = wpos[2] - m_Position;
+		v2 = wpos[3] - m_Position;
+
+		D3DXVec3Cross(&n, &v1, &v2);
+		D3DXVec3Normalize(&n, &n);
+
+		if (D3DXVec3Dot(&n, &v) < -Scale)
+			return false;
+	}
+	return true;
 }

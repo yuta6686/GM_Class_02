@@ -1,8 +1,8 @@
 #pragma once
 #include "renderer.h"
-#include "ComponentObject.h"
-#include "UserInterfaceComponent.h"
-#include "VertexChangeComponent.h"
+#include "component_object.h"
+#include "user_interface_component.h"
+#include "vertex_change_component.h"
 
 class CO_Noise :
     public ComponentObject
@@ -15,7 +15,7 @@ public:
             
         AddComponent<TransformInit>(COMLAYER_FIRST);
 
-        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetTestShader();
+        AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_NOISE);
 
         AddComponent<MatrixComponent>(COMLAYER_MATRIX);
 
@@ -37,8 +37,8 @@ public:
 
         //uiinf._color = { 1.0f,1.0f,1.0f,1.0f };
 
-        //m_UIComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
-        //m_UIComponent->SetUIInfo(uiinf);
+        //_uiComponent = AddComponent< UserInterfaceComponent>(COMLAYER_DRAW);
+        //_uiComponent->SetUIInfo(uiinf);
 
 
 
@@ -78,7 +78,11 @@ public:
 
         Renderer::SetValiable(Renderer::m_Valiable);
 
+        
+        Renderer::SetAlphaToCoverage(true);
         ComponentObject::Draw();
+        Renderer::SetAlphaToCoverage(false);
+
     }
 };
 

@@ -1,6 +1,5 @@
 #pragma once
-#include "polygon2D.h"
-#include "scene.h"
+#include "polygon2d.h"
 
 enum SCENE {
 	SCENE_TITLE = 0,
@@ -8,11 +7,13 @@ enum SCENE {
 	SCENE_RESULT,
 };
 
+class RenderingTexture;
 class Manager
 {
 private:	
 	inline static bool m_IsExit = false;
 	static class std::shared_ptr<Scene> m_Scene;
+	inline static RenderingTexture* _rt = nullptr;
 public:
 	//èâä˙âª
 	static void Init();

@@ -1,9 +1,9 @@
 #pragma once
-#include "ComponentObject.h"
+#include "component_object.h"
 #include "CO_UI_Tutorial.h"
-#include "manager.h"
-#include "CO_UI_Tutorial_Move2.h"
-#include "ParticleObject_2D.h"
+
+#include "co_ui_tutorial_move2.h"
+#include "particle_object_2d.h"
 
 class CO_UI_Tutorial_Move :
     public ComponentObject
@@ -38,7 +38,7 @@ public:
 
             UI_Information uiinf;
             uiinf._deploy_index = DEPLOY_SEPALATE_UP_DOWN;
-            uiinf._texture = "asset\\texture\\gameover_bg.png";
+            uiinf._texture = "asset\\texture\\gameover_bg.dds";
 
             D3DXVECTOR3 widthheight = { 1500.0f,1080.0f ,0.0f };
             uiinf._main_pos = widthheight / 5.0f;
@@ -64,7 +64,7 @@ public:
 
             UI_Information uiinf;
             uiinf._deploy_index = DEPLOY_SEPALATE_UP_DOWN;
-            uiinf._texture = "asset\\texture\\label_white.png";
+            uiinf._texture = "asset\\texture\\label_white.dds";
 
             D3DXVECTOR3 widthheight = { 250.0f,40.0f ,0.0f };
             uiinf._main_pos = widthheight;
@@ -90,7 +90,7 @@ public:
 
             UI_Information uiinf;
             uiinf._deploy_index = DEPLOY_SEPALATE_UP_DOWN;
-            uiinf._texture = "asset\\texture\\label_white.png";
+            uiinf._texture = "asset\\texture\\label_white.dds";
 
             D3DXVECTOR3 widthheight = { 250.0f,40.0f ,0.0f };
             uiinf._main_pos = widthheight;
@@ -116,7 +116,7 @@ public:
 
             UI_Information uiinf;
             uiinf._deploy_index = DEPLOY_SEPALATE_UP_DOWN;
-            uiinf._texture = "asset\\texture\\label_white.png";
+            uiinf._texture = "asset\\texture\\label_white.dds";
 
             D3DXVECTOR3 widthheight = { 250.0f,40.0f ,0.0f };
             uiinf._main_pos = widthheight;
