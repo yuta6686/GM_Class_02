@@ -43,6 +43,7 @@
     <ClCompile Include="co_prism.cpp" />
     <ClCompile Include="co_select.cpp" />
     <ClCompile Include="CO_Stand.cpp" />
+    <ClCompile Include="state_machine.cpp" />
     <ClCompile Include="co_ui_aimling.cpp" />
     <ClCompile Include="CO_UI_Default.cpp" />
     <ClCompile Include="co_ui_dot.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="collision_component_player.h" />
     <ClInclude Include="co_noise_circle.h" />
     <ClInclude Include="co_prism.h" />
+    <ClInclude Include="state_machine.h" />
     <ClInclude Include="extend_fanction.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="component_object.h" />

@@ -32,6 +32,7 @@
 #include "loading_scene.h"
 #include "prism_factory.h"
 #include "co_noise_circle.h"
+#include "state_machine.h"
 
 void TitleScene::Init()
 {
@@ -129,6 +130,8 @@ void TitleScene::Init()
 	m_SESelect->SetAudioVolume(0.5f);
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
+
+	AddGameObject<StateMachine>(LAYER_3D);
 	
 	AddGameObject<CO_NoiseCircle>(LAYER_3D); // https://yuta6686.atlassian.net/browse/AS-9
 	
