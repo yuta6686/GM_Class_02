@@ -7,11 +7,8 @@
 //  - Matrix 2D ,3D
 //  ---------------------------------------------------------
 
-<<<<<<< HEAD:MatrixComponent.h
-#include "Component.h"
-=======
+
 #include "component.h"
->>>>>>> develop:matrix_component.h
 #include "scene.h"
 
 #include "camera.h"
