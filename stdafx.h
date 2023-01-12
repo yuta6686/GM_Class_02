@@ -48,3 +48,4 @@
 #include "renderer.h"
 #include "texture_compoennt.h"
 #include "serealize_archive.h"
+#include "animation_model.h"

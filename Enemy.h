@@ -69,18 +69,67 @@ public:
 };
 
 // https://yuta6686.atlassian.net/browse/AS-12 ステートマシンをエネミーの挙動に組み込む
-class Enemy_StateMachine : public Enemy_Interface
+class Enemy_Rush : public Enemy_Interface
 {
 public:
-    Enemy_StateMachine() :Enemy_Interface(ENEMY_STATE_MACHINE) {}
+    Enemy_Rush() :Enemy_Interface(ENEMY_STATE_MACHINE) {}
     virtual void Init();
 };
 
 // EnemyStateMachieneを作る
-class EnemyStateMachine : public StateMachine
+class EnemyStateMachine_Component : public StateMachine
 {
 public:
-
+    // StateMachine を介して継承されました
+    virtual void InitInternal() override;
+    virtual void DrawImgui()override;
 };
 
 // EnemyStateを作る
+// Stateとしてエネミーの待機状態の実装
+// https://yuta6686.atlassian.net/browse/AS-16
+// -------------------------------------------
+class EnemyStateIdle : public State
+{
+    inline static const std::string NAME = "Idle";
+    inline static const int IDLE_TIME = 60;
+    int _time;
+public:
+    EnemyStateIdle() :State(NAME),_time(0) {}
+    virtual void Update() override;
+};
+
+// Stateとしてエネミーの接近状態の実装
+// https://yuta6686.atlassian.net/browse/AS-17 
+// -------------------------------------------
+class EnemyStateApproach : public State
+{
+private: // const
+    inline static const std::string NAME = "Approach";
+
+    // 攻撃に遷移する距離
+    inline static const float APPROACH_DISTANCE = 5.0f;
+private:
+    // プレイヤーのポインタ所持する
+    class Player* _player;
+public:
+    EnemyStateApproach() :State(NAME) {}
+    virtual void Init()override;
+    virtual void Update() override;
+    virtual void Uninit()override;
+};
+
+// Stateとしてエネミーの攻撃の実装
+// https://yuta6686.atlassian.net/browse/AS-14
+// -------------------------------------------
+class EnemyStateRush : public State
+{
+    inline static const std::string NAME = "Rush";
+
+    D3DXVECTOR3 _vec;
+public:
+    
+    EnemyStateRush(const D3DXVECTOR3& vec) :State(NAME),_vec(vec) {}
+    virtual void Update() override;
+};
+

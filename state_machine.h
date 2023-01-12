@@ -30,6 +30,7 @@ public:
 // https://yuta6686.atlassian.net/browse/AS-13	StateMachine‚ğComponent‚Æ‚µ‚Ä‘g‚İ‚ß‚é‚æ‚¤‚É‚µ‚½‚¢
 class StateMachine : public Component 
 {
+protected:
 	Context* _context;
 public:
 	virtual void InitInternal() = 0;
@@ -88,6 +89,7 @@ public:
 
 	virtual void DrawImgui() override;
 
+	State* GetState() { return _state; }
 };
 
 

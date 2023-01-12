@@ -4,6 +4,8 @@ void Scene::Unload()
 {
 	ResourceManger<Model>::AllRelease();
 	ResourceManger<Texture>::AllRelease();
+	ResourceManger<Model_variable>::AllRelease();
+	ResourceManger<AnimationModel>::AllRelease();
 	ResourceManger<VertexShader>::AllRelease();
 	ResourceManger<PixelShader>::AllRelease();
 }
@@ -50,6 +52,7 @@ void Scene::Update()
 		}
 
 		m_GameObject[i].remove_if([](GameObject* object) {return object->Destroy(); });
+		
 	}
 }
 

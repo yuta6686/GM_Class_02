@@ -22,7 +22,7 @@ class Model;
 class GameObject
 {
 protected:
-	bool m_Destroy = false;
+	bool m_Destroy = false;	
 	bool m_NoUpdate = false;
 
 	D3DXVECTOR3 m_Position;
@@ -161,6 +161,7 @@ public:
 		return nullptr;
 	}
 
+
 	template<class T>
 	std::vector<T*> GetComponents()
 	{
@@ -189,6 +190,7 @@ public:
 	}
 
 	Component* AddComponent(Component* pComponent, int layer) {
+		pComponent->m_Parent = this;
 		pComponent->Init();
 		m_ComponentList[layer].push_back(pComponent);
 		return pComponent;

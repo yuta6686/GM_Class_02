@@ -41,10 +41,21 @@ std::vector<GameObject*> SerializeEnemys::AddDeserializeEnemys()
 }
 
 
-void EnemyGenerate::SetEnemyGenerateMode(bool flag)
+void EnemyGenerate::SetEnemyGenerateMode()
 {
 	if (!m_Player)return;
-	if (flag) {
+
+	// ƒtƒ‰ƒOŠÇ—
+	if (MyImgui::_myFlagTree[_menuName]["IsEnemyGenerateMode"])
+	{
+		IsEnemyGenerateMode = true;
+	}
+	else {
+		IsEnemyGenerateMode = false;
+	}
+
+	if (IsEnemyGenerateMode) 
+	{
 		m_Player->GetComponent<CollisionComponent_Player>()->SetIsGenerateMode(true);
 		m_Player->SetIsUseBullet(true);
 	}
@@ -96,8 +107,9 @@ void EnemyGenerate::DrawImgui()
 	
 	std::vector<GameObject*> enemys = m_Scene->GetGameObjectLayer(LAYER_ENEMY);
 	std::vector<Cylinder*> clies = m_Scene->GetGameObjects<Cylinder>();
+	
 
-	SetEnemyGenerateMode(IsEnemyGenerateMode);
+	SetEnemyGenerateMode();
 	
 	Generate(enemys, clies);			
 
@@ -186,7 +198,8 @@ void EnemyGenerate::Generate(std::vector<GameObject*> enemys, std::vector<class 
 			"4:ENEMY_NO_DRUM",
 			"5:ENEMY_MOVE_STRAIGHT",
 			"6:ENEMY_JUMP",
-			"7:ENEMY_BOSS"
+			"7:ENEMY_BOSS",
+			"8:ENEMY_STATE_MACHINE",
 		};
 		static const char* current_item = "0:ENEMY_NORMAL";
 
@@ -223,7 +236,7 @@ void EnemyGenerate::Generate(std::vector<GameObject*> enemys, std::vector<class 
 		}*/
 
 		if (ImGui::Button("Generate!")) {
-			m_Scene->AddGameObject<Enemy>(LAYER_ENEMY)->SetMaxHp(2);
+			m_Scene->AddGameObject<Enemy>(LAYER_ENEMY)->SetMaxHp(2);			
 		}
 
 		ImGui::SameLine();
@@ -258,6 +271,9 @@ void EnemyGenerate::Generate(std::vector<GameObject*> enemys, std::vector<class 
 				break;
 			case ENEMY_BOSS:
 				enemy = m_Scene->AddGameObject<Enemy_Boss>(LAYER_ENEMY);
+				break;
+			case ENEMY_STATE_MACHINE:
+				enemy = m_Scene->AddGameObject<Enemy_Rush>(LAYER_ENEMY);
 				break;
 			case ENEMY_MAX:
 				enemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);

@@ -111,7 +111,7 @@ private:
 
 	Player* m_Player;
 public:
-	void SetEnemyGenerateMode(bool flag);
+	void SetEnemyGenerateMode();
 
 	virtual void Init() override;
 

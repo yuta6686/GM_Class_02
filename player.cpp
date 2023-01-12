@@ -111,12 +111,7 @@ void Player::Update()
 	PlayerMove();
 
 	//	ƒAƒCƒeƒ€Žæ“¾	
-	GetItem();
-
-
-
-
-	
+	GetItem();	
 }
 
 void Player::Draw()

@@ -22,6 +22,10 @@ void StateMachine::Init()
 {
 	_context = new Context(new StateEmpty());
 
+	// コンポーネントとして作ってはいるけど、コンポーネントとして使ってないので、(AddComponentしてない)
+	// m_Parentは手動でつけなきゃいけない。
+	_context->m_Parent = m_Parent;
+
 	InitInternal();
 
 	_context->Init();
@@ -61,6 +65,8 @@ void Context::TransitionTo(State* state)
 
 	_state = state;
 	_state->SetContext(this);
+
+	_state->Init();
 }
 
 void Context::Init()
