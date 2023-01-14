@@ -20,7 +20,7 @@
 
 using namespace std;
 
-#define PLAYER_SPEED 0.015f
+
 
 static char texName[] = { "asset\\model\\torii.obj" };
 static float scale = 1.0f;

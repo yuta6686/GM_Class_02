@@ -182,7 +182,7 @@ void EnemyStateIdle::Update()
 
 void EnemyStateApproach::Init()
 {
-	_context->m_Parent->AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.3f);
+	_context->m_Parent->AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(APPROACH_SPEED);
 	_player = Manager::GetScene()->GetGameObject<Player>();
 }
 
@@ -234,7 +234,7 @@ void EnemyStateApproach::DrawImgui()
 void EnemyStateRush::Update()
 {
 	// エネミーに突進する
-	_context->m_Parent->GetComponent<VelocityComponent>()->m_Velocity += _vec * 0.5f;
+	_context->m_Parent->GetComponent<VelocityComponent>()->m_Velocity += _vec * RUSH_SPEED;
 
 	_context->TransitionTo(new EnemyStateIdle());
 }

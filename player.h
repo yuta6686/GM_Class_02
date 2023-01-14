@@ -14,9 +14,9 @@
 class Audio;
 class Shadow;
 
-
 class Player :public ComponentObject
 {
+	inline static const float PLAYER_SPEED = 0.02f;
 private:
 
 	/// <summary>

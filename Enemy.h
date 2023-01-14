@@ -92,7 +92,7 @@ public:
 class EnemyStateIdle : public State
 {
     inline static const std::string NAME = "Idle";
-    inline static const int IDLE_TIME = 60;
+    inline static const int IDLE_TIME = 90;
     int _time;
 public:
     EnemyStateIdle() :State(NAME),_time(0) {}
@@ -107,8 +107,10 @@ class EnemyStateApproach : public State
 private: // const
     inline static const std::string NAME = "Approach";
 
-    // UŒ‚‚É‘JˆÚ‚·‚é‹——£
+    // UŒ‚‚É‘JˆÚ‚·‚é‹——£ 
     inline static const float APPROACH_DISTANCE = 10.0f;
+
+    inline static const float APPROACH_SPEED = 0.2f;
 private:
     // ƒvƒŒƒCƒ„[‚Ìƒ|ƒCƒ“ƒ^Š‚·‚é
     class Player* _player;
@@ -126,6 +128,8 @@ public:
 class EnemyStateRush : public State
 {
     inline static const std::string NAME = "Rush";
+    
+    inline static const float RUSH_SPEED = 0.3f;
 
     D3DXVECTOR3 _vec;
 public:
