@@ -43,9 +43,11 @@ void ImGuiComponent::DrawImgui()
 	// Headerじゃなくて、メニューアイテムに入れる。
 	// メニューの名前は【Objects】
 	// 
-	
+	const std::string name = "ImGuiComponent";
 
-	if (ImGui::BeginMenu("ImGuiComponent")) {
+	if (MyImgui::_myFlag[name] == false)return;
+
+	if (ImGui::BeginMenu(name.c_str())) {
 
 		if (ImGui::MenuItem(m_Parent->GetTypeName().c_str())) {
 

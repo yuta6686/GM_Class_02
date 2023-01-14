@@ -13,9 +13,10 @@ class GameObject;
 class Component
 {
 	bool _removeComponent = false;
-protected:
-	bool _isValidity = true;
+
 public:
+	bool _isValidity = true;
+
 	GameObject* m_Parent;
 	
 	virtual void Init() = 0;

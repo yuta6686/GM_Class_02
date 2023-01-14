@@ -48,14 +48,6 @@ void EnemyGenerate::SetEnemyGenerateMode()
 	// ƒtƒ‰ƒOŠÇ—
 	if (MyImgui::_myFlagTree[_menuName]["IsEnemyGenerateMode"])
 	{
-		IsEnemyGenerateMode = true;
-	}
-	else {
-		IsEnemyGenerateMode = false;
-	}
-
-	if (IsEnemyGenerateMode) 
-	{
 		m_Player->GetComponent<CollisionComponent_Player>()->SetIsGenerateMode(true);
 		m_Player->SetIsUseBullet(true);
 	}
@@ -64,6 +56,26 @@ void EnemyGenerate::SetEnemyGenerateMode()
 		m_Player->SetIsUseBullet(false);
 	}
 
+}
+
+void EnemyGenerate::SetEnemyStop(std::vector<GameObject*> enemys)
+{
+	if (!m_Player)return;
+
+	if (MyImgui::_myFlagTree[_menuName]["IsEnemyStop"])
+	{
+		for (auto enemy : enemys)
+		{
+			enemy->GetComponent<VelocityComponent>()->_isValidity = false;
+		}
+	}
+	else 
+	{
+		for (auto enemy : enemys)
+		{
+			enemy->GetComponent<VelocityComponent>()->_isValidity = true;
+		}
+	}
 }
 
 void EnemyGenerate::Init()
@@ -110,6 +122,7 @@ void EnemyGenerate::DrawImgui()
 	
 
 	SetEnemyGenerateMode();
+	SetEnemyStop(enemys);
 	
 	Generate(enemys, clies);			
 
@@ -140,7 +153,7 @@ void EnemyGenerate::DrawImgui()
 	}
 
 	//	Enemy
-	if (MyImgui::_myFlagTree[_menuName]["Enemy"]) {
+	/*if (MyImgui::_myFlagTree[_menuName]["Enemy"]) {
 		if (ImGui::BeginMenu("Enemy")) {
 			for (unsigned int i = 0; i < enemys.size(); i++) {
 				char buff[255];
@@ -156,7 +169,7 @@ void EnemyGenerate::DrawImgui()
 			}
 			ImGui::EndMenu();
 		}
-	}
+	}*/
 
 	std::vector<Cylinder*> cylinder = m_Scene->GetGameObjects< Cylinder>();
 	if (MyImgui::_myFlagTree[_menuName]["Drum"]) {

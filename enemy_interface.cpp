@@ -28,8 +28,7 @@ void Enemy_Interface::Init()
 
     m_Count = AddComponent< CountComponent>(COMLAYER_SECOND);
     m_Count->Start(false, 60, 0);
-
-    AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
+    
     AddComponent<ImGuiComponent>(COMLAYER_SECOND)->SetIsUse(true);
 
     AddComponent<TextureComponent>(COMLAYER_SHADER)
