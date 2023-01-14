@@ -241,6 +241,8 @@ void EnemyGenerate::Generate(std::vector<GameObject*> enemys, std::vector<class 
 
 		ImGui::SameLine();
 
+
+		// リファクタリング https://yuta6686.atlassian.net/browse/AS-23
 		if (ImGui::Button("Generate Player Transform") ||
 			GetKeyboardTrigger(DIK_E)) {
 
@@ -420,6 +422,7 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 
 		ImGui::SliderInt("LoadFileIndex", &m_LoadFileIndex, 1, m_NowFileNum - 1, "%d");
 
+		// リファクタリング https://yuta6686.atlassian.net/browse/AS-23
 		if (ImGui::Button("Load_Enemy_Index_Version")) {
 
 			std::ostringstream oss;
@@ -519,6 +522,7 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 		ImGui::SliderInt("StageNum:", &m_StageNum, 1, STAGE_NUM_MAX);
 		ImGui::SliderInt("WaveNum:", &m_WaveNum, 1, WAVE_NUM_MAX);
 
+		// リファクタリング https://yuta6686.atlassian.net/browse/AS-23
 		if (ImGui::Button("Load_Enemy_StageNum_WaveNum")) {
 
 			std::ostringstream oss;
