@@ -108,15 +108,16 @@ private: // const
     inline static const std::string NAME = "Approach";
 
     // 攻撃に遷移する距離
-    inline static const float APPROACH_DISTANCE = 5.0f;
+    inline static const float APPROACH_DISTANCE = 10.0f;
 private:
     // プレイヤーのポインタ所持する
     class Player* _player;
+
 public:
     EnemyStateApproach() :State(NAME) {}
     virtual void Init()override;
-    virtual void Update() override;
-    virtual void Uninit()override;
+    virtual void Update() override;    
+    virtual void DrawImgui()override;
 };
 
 // Stateとしてエネミーの攻撃の実装

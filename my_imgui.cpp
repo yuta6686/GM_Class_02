@@ -20,6 +20,7 @@ ImVec4 MyImgui::GetHSV(float color, float bright)
 	return (ImVec4)ImColor::HSV(color, bright, bright);
 }
 
+
 void MyImgui::PushStyleColor_Button(float hue)
 {
 	ImGui::PushStyleColor(ImGuiCol_Button, GetHSV(hue, 0.6f));

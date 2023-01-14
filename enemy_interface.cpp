@@ -30,6 +30,7 @@ void Enemy_Interface::Init()
     m_Count->Start(false, 60, 0);
 
     AddComponent< ImGuiComponent>(COMLAYER_SECOND)->SetEnemyVersion();
+    AddComponent<ImGuiComponent>(COMLAYER_SECOND)->SetIsUse(true);
 
     AddComponent<TextureComponent>(COMLAYER_SHADER)
         ->SetTextureAndSlot("asset\\texture\\normalmap.dds", 1,true);
@@ -81,6 +82,8 @@ void Enemy_Interface::Draw()
 
     ComponentObject::Draw();
 }
+
+
 
 bool Enemy_Interface::SetHp(const int& hp)
 {

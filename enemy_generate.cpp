@@ -493,6 +493,9 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 				case ENEMY_BOSS:
 					penemy = m_Scene->AddGameObject<Enemy_Boss>(LAYER_ENEMY);
 					break;
+				case ENEMY_STATE_MACHINE:
+					penemy = m_Scene->AddGameObject<Enemy_Rush>(LAYER_ENEMY);
+					break;
 				case ENEMY_MAX:
 					penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);
 					break;
@@ -588,6 +591,9 @@ void EnemyGenerate::Load(std::vector<GameObject*> enemys, std::vector<class Cyli
 					break;
 				case ENEMY_BOSS:
 					penemy = m_Scene->AddGameObject<Enemy_Boss>(LAYER_ENEMY);
+					break;
+				case ENEMY_STATE_MACHINE:
+					penemy = m_Scene->AddGameObject<Enemy_Rush>(LAYER_ENEMY);
 					break;
 				case ENEMY_MAX:
 					penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);

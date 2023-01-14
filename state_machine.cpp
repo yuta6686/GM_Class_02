@@ -91,8 +91,9 @@ void Context::Draw()
 
 void Context::DrawImgui()
 {
-	if (!MyImgui::_myFlag["StateMachine"])return;
 	_state->DrawImgui();
+
+	if (!MyImgui::_myFlag["StateMachine"])return;
 
 	ImGui::Text("%s", _state->GetName().c_str());
 }

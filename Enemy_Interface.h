@@ -37,7 +37,7 @@ public:
     
     virtual void Init();
     virtual void Update();
-    virtual void Draw();
+    virtual void Draw();    
 
 public: // セッター
     virtual bool SetHp(const int& hp);

@@ -136,7 +136,7 @@ void Enemy_Rush::Init()
 
 	//AddComponent< RandomJumpComponent>(COMLAYER_DRAW);
 
-	AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(true);
+	AddComponent<ImGuiComponent>(COMLAYER_FIRST)->SetIsUse(true);
 
 	// StateMachineを継承したEnemy専用のEnemyStateMachineを作って、ここでAddする
 	AddComponent<EnemyStateMachine_Component>(COMLAYER_SECOND);
@@ -149,14 +149,17 @@ void Enemy_Rush::Init()
 void EnemyStateMachine_Component::InitInternal()
 {
 	// 初期状態は待機にする
-	_context->TransitionTo(new EnemyStateIdle());	
+	_context->TransitionTo(new EnemyStateIdle());		
 }
 
 void EnemyStateMachine_Component::DrawImgui()
 {
+	_context->DrawImgui();
+
 	if (!MyImgui::_myFlag["EnemyStateMachine_Component"])return;
 
 	ImGui::Text("%s", _context->GetState()->GetName().c_str());
+
 }
 
 // Stateとしてエネミーの待機状態の実装
@@ -179,7 +182,8 @@ void EnemyStateIdle::Update()
 
 void EnemyStateApproach::Init()
 {
-	_context->m_Parent->AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.01f);
+	_context->m_Parent->AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(0.3f);
+	_player = Manager::GetScene()->GetGameObject<Player>();
 }
 
 // Stateとしてエネミーの接近状態の実装
@@ -187,34 +191,42 @@ void EnemyStateApproach::Init()
 // -------------------------------------------
 void EnemyStateApproach::Update()
 {
-//	if (_player == nullptr)return;
-//
-//	// プレイヤーに近づく
-//
-//	// プレイヤーとエネミーの距離を計算する
-//	const D3DXVECTOR3 playerPos = _player->GetPosition();
-//	const D3DXVECTOR3 enemyPos = _context->m_Parent->GetPosition();
-//	D3DXVECTOR3 vec = playerPos - enemyPos;
-//	const float lengthSq = D3DXVec3LengthSq(&vec);
-//	D3DXVec3Normalize(&vec, &vec);
-//
-//	if (lengthSq <= APPROACH_DISTANCE * APPROACH_DISTANCE)
-//	{
-//		_context->TransitionTo(new EnemyStateRush(vec));
-//	}
-//	else // エネミーをプレイヤーに近づける
-//	{
-//		_player->GetComponent<VelocityComponent>()->m_Velocity += vec * 0.1f;
-//	}
+	if (_player == nullptr)return;
+
+	// プレイヤーに近づく
+
+	// プレイヤーとエネミーの距離を計算する
+	const D3DXVECTOR3 playerPos = _player->GetPosition();
+	const D3DXVECTOR3 enemyPos = _context->m_Parent->GetPosition();
+	D3DXVECTOR3 vec = playerPos - enemyPos;
+	const float lengthSq = D3DXVec3Length(&vec);
+	D3DXVec3Normalize(&vec, &vec);
+
+	if (lengthSq < APPROACH_DISTANCE)
+	{
+		// EnemyStateApproach::Uninitの_context->m_Parent->GetComponent<TrackingComponent>()で終了時エラーが出る
+		// https://yuta6686.atlassian.net/browse/AS-19
+		auto tracking = _context->m_Parent->GetComponent<TrackingComponent>();
+
+		if (tracking)
+			tracking->SetRemove();
+
+		_context->TransitionTo(new EnemyStateRush(vec));
+	}
 }
 
-void EnemyStateApproach::Uninit()
+void EnemyStateApproach::DrawImgui()
 {
-	auto tracking = _context->m_Parent->GetComponent<TrackingComponent>();
-
-	if (tracking)
-		tracking->SetRemove();
+	if (_player == nullptr)return;
+	if (_context == nullptr)return;
+	const D3DXVECTOR3 playerPos = _player->GetPosition();
+	const D3DXVECTOR3 enemyPos = _context->m_Parent->GetPosition();
+	const D3DXVECTOR3 direction = playerPos - enemyPos;
+	const float length = D3DXVec3Length(&direction);
+	ImGui::Text("length: [%.2f]", length);
+	
 }
+
 
 // Stateとしてエネミーの攻撃の実装
 // https://yuta6686.atlassian.net/browse/AS-14
