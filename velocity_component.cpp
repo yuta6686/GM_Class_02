@@ -77,7 +77,11 @@ void VelocityComponent::Uninit()
 }
 
 void VelocityComponent::Update()
-{    //  前のフレームの値を保存
+{    
+    // Componentに有効・無効をつける https://yuta6686.atlassian.net/browse/AS-25
+    if (!_isValidity)return;
+
+    //  前のフレームの値を保存
     m_PreviousVelocity = m_Velocity;
 
     m_OldPos = m_Parent->GetPosition();
@@ -130,12 +134,13 @@ void VelocityComponent::Update()
 }
 
 void VelocityComponent::Draw()
-{
-
+{    
+    if (!_isValidity)return;
 }
 
 void VelocityComponent::DrawImgui()
 {
+    if (!_isValidity)return;
 #ifdef _DEBUG
     ImGui::Text("aaaaa %.2f", m_Liner);
     ImGui::Text("Get0to1Count %.2f", m_Counter->Get0to1Count());

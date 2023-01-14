@@ -13,6 +13,8 @@ class GameObject;
 class Component
 {
 	bool _removeComponent = false;
+protected:
+	bool _isValidity = true;
 public:
 	GameObject* m_Parent;
 	
