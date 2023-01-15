@@ -43,7 +43,7 @@ void GameScene3::Init()
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
 	//	フィールド
-	AddGameObject<Field>(LAYER_3D);
+	
 
 
 	//	プレイヤーの前に入れる

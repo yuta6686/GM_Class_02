@@ -48,7 +48,7 @@ void GameScene2::Init()
 	AddGameObject<Light>(LAYER_FIRST)->SetPosition(D3DXVECTOR3(0, 0, 0));
 
 	//	フィールド
-	AddGameObject<Field>(LAYER_3D);
+	//AddGameObject<Field>(LAYER_3D);
 
 	//	プレイヤーの前に入れる
 	AddGameObject<CO_UI_dot>(LAYER_2D);

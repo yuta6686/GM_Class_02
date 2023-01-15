@@ -31,7 +31,8 @@ ID3D11RasterizerState* Renderer::m_RS_Wireframe = NULL;
 ID3D11RasterizerState* Renderer::m_RS_CullBack = NULL;
 ID3D11RasterizerState* Renderer::m_RS_CullNone = NULL;
 
-
+// ãPìxíäèoóp https://yuta6686.atlassian.net/browse/AS-29
+#define RGBA16FLOAT
 
 
 
@@ -82,7 +83,10 @@ void Renderer::Init()
 	rtDesc.MipLevels = 1;
 	rtDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	// rtDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-	//rtDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+#ifdef RGBA16FLOAT
+	rtDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+#endif // RGBA16FLOAT
+
 	rtDesc.SampleDesc.Count = 1;
 	rtDesc.Usage = D3D11_USAGE_DEFAULT;
 	rtDesc.ArraySize = 1;
@@ -109,7 +113,11 @@ void Renderer::Init()
 	ZeroMemory(&srvDesc, sizeof(srvDesc));
 	srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	//srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-	//srvDesc.Format = DXGI_FORMAT_R16G16B16A16_FLOAT;
+
+#ifdef RGBA16FLOAT
+	srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+#endif // RGBA16FLOAT
+
 	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MostDetailedMip = 0;
 	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;
