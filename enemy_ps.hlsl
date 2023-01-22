@@ -38,8 +38,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     
         
         //テクスチャのピクセル色を取得
-    outDiffuse = baseTex + envTex;
-    outDiffuse = pow(outDiffuse, 2.0f);
+    outDiffuse = baseTex + envTex;    
 		
 
     outDiffuse.rgb *=

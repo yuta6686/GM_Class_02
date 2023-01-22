@@ -35,7 +35,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     
     specular = pow(specular, 30.0f) * 3.0f;
 
-    float rim = 1.0f + dot(eyevec, normal.xyz);
+    float rim = 1.0f + dot(eyevec, normal.xyz) * 2.0f;
     
         
     rim = pow(rim, 2) * 2.0f;

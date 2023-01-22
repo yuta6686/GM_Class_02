@@ -130,15 +130,24 @@ void RenderingTexture::Draw()
 		// ここでブラーの有無切り替えできる。
 		if (MyImgui::_myFlag[_typeName])
 		{
+			// ブラー処理後のテクスチャ
 			Renderer::SetBlurYTexture();		
 		}
 		else
 		{
+			// 無加工のテクスチャ
 			Renderer::SetRenderTexture(false);		
 		} 				
 		break;
 	case LAYER_RENDERING_TEXTURE:
 		Renderer::SetCopyTexture();		
+		break;
+	case LAYER_BLOOM:
+		// ブラー処理後のテクスチャ
+		Renderer::SetBlurYTexture();
+		
+		// 加算合成に変更する
+
 		break;
 	default:
 		break;
@@ -154,7 +163,7 @@ void RenderingTexture::Draw()
 
 	Renderer::SetRenderTexture(true);
 
-
+	// ブレンドモードを通常に直す
 }
 
 void RenderingTexture::DrawImgui()

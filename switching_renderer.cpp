@@ -77,4 +77,7 @@ void SwitchinRendererFactory::Create()
 
 	_scene->AddGameObject<RenderingTexture>(LAYER_COPY)
 		->SetLayerNum(LAYER_COPY);
+
+	_scene->AddGameObject<RenderingTexture>(LAYER_BLOOM)
+		->SetLayerNum(LAYER_BLOOM);
 }
