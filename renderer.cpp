@@ -458,7 +458,7 @@ void Renderer::Uninit()
 	ImGui::DestroyContext();
 
 	// https://yuta6686.atlassian.net/browse/AS-39 ComPtr“±“ü
-
+	
 
 	_deviceContext->ClearState();
 			

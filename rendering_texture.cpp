@@ -123,9 +123,6 @@ void RenderingTexture::Draw()
 		viewport.Height /= 2.0f;
 		Renderer::SetBlurXTexture();
 		break;
-	case LAYER_RENDERING_TEXTURE:
-		Renderer::SetCopyTexture();		
-		break;
 	case LAYER_COPY:
 		// ここでブラーの有無切り替えできる。
 		if (MyImgui::_myFlag[_typeName])
@@ -135,8 +132,10 @@ void RenderingTexture::Draw()
 		else
 		{
 			Renderer::SetRenderTexture(false);		
-		} 
-				
+		} 				
+		break;
+	case LAYER_RENDERING_TEXTURE:
+		Renderer::SetCopyTexture();		
 		break;
 	default:
 		break;

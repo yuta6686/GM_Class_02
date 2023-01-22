@@ -15,10 +15,10 @@ void SwitchingRenderer::Update()
 
 void SwitchingRenderer::Draw()
 {
+	// RenderingTextureü‚è‚Ì®—‚Æ‚Ü‚Æ‚ß https://yuta6686.atlassian.net/browse/AS-40
 	switch (_layerNum)
 	{
-	case LAYER_BEGIN:
-		// Renderer::SetDefaultConstantBuffer();
+	case LAYER_BEGIN:		
 		Renderer::BeginOfScr();		
 		break;
 	case LAYER_BLUR_X:
@@ -27,13 +27,11 @@ void SwitchingRenderer::Draw()
 	case LAYER_BLUR_Y:
 		Renderer::BeginBlurY();
 		break;
-	case LAYER_TO_RENDERING_TEXTURE:
-		// todo rendering texture—p‚ÌConstantBuffer‚ğİ’è‚·‚é
-		
-		Renderer::Begin();
-		break;
 	case LAYER_COPY:
 		Renderer::BeginCopyDraw();
+		break;
+	case LAYER_TO_RENDERING_TEXTURE:				
+		Renderer::Begin();
 		break;
 	default:
 		break;
