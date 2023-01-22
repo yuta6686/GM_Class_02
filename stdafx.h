@@ -38,6 +38,17 @@
 
 
 #include "main.h"
+
+// https://yuta6686.atlassian.net/browse/AS-39 ComPtr“±“ü
+using D11Buffer				= ComPtr<ID3D11Buffer>;
+using Texture2D				= ComPtr<ID3D11Texture2D>;
+using BlendState			= ComPtr<ID3D11BlendState>;
+using SamplerState			= ComPtr <ID3D11SamplerState>;
+using RenderTargetView		= ComPtr<ID3D11RenderTargetView>;
+using D11RenderTargetView	= ComPtr<ID3D11RenderTargetView>;
+using ShaderResourceView	= ComPtr<ID3D11ShaderResourceView>;
+using D11Texture			= ComPtr<ID3D11ShaderResourceView>;
+
 #include "scene.h"
 #include "manager.h"
 #include "resource_manager.h"
@@ -49,3 +60,7 @@
 #include "texture_compoennt.h"
 #include "serealize_archive.h"
 #include "animation_model.h"
+
+
+
+

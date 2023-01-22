@@ -70,30 +70,31 @@ private:
 	static IDXGISwapChain*			_swapChain;
 
 	//ディスプレイのバッグバッファのテクスチャ	
-	inline static ComPtr<ID3D11Texture2D> _pTexture;
-	inline static ComPtr<ID3D11Texture2D> _pTextureX;
-	inline static ComPtr<ID3D11Texture2D> _pTextureY;
-	inline static ComPtr<ID3D11Texture2D> _pTextureDraw;
+	inline static Texture2D _pTexture;
+	inline static Texture2D _pTextureX;
+	inline static Texture2D _pTextureY;
+	inline static Texture2D _pTextureDraw;
 
 	// サンプラー
 	inline static ComPtr<ID3D11SamplerState> _pDefaultSampler;
 	inline static ComPtr<ID3D11SamplerState> _pRenderTextureSampler;
 
 	// もともと在るRTVとDPS
-	static ID3D11RenderTargetView* m_RenderTargetView;
+	inline static D11RenderTargetView m_RenderTargetView = nullptr;
 	static ID3D11DepthStencilView* m_DepthStencilView;
 
+	// https://yuta6686.atlassian.net/browse/AS-39 ComPtr導入
 	// オフスク用 RTV
-	inline static ID3D11RenderTargetView* _pRenderingTextureRTV = nullptr;
-	inline static ID3D11RenderTargetView* _blurXRTV = nullptr;
-	inline static ID3D11RenderTargetView* _blurYRTV = nullptr;
-	inline static ID3D11RenderTargetView* _drawCopyRTV = nullptr;
+	inline static D11RenderTargetView _pRenderingTextureRTV = nullptr;
+	inline static D11RenderTargetView _blurXRTV = nullptr;
+	inline static D11RenderTargetView _blurYRTV = nullptr;
+	inline static D11RenderTargetView _drawCopyRTV = nullptr;
 
 	// オフスク用 SRV
-	inline static ID3D11ShaderResourceView* _pRenderingTextureSRV = nullptr;
-	inline static ID3D11ShaderResourceView* _blurXSRV = nullptr;
-	inline static ID3D11ShaderResourceView* _blurYSRV = nullptr;
-	inline static ID3D11ShaderResourceView* _drawCopySRV = nullptr;
+	inline static ShaderResourceView _pRenderingTextureSRV = nullptr;
+	inline static ShaderResourceView _blurXSRV = nullptr;
+	inline static ShaderResourceView _blurYSRV = nullptr;
+	inline static ShaderResourceView _drawCopySRV = nullptr;
 
 
 	static ID3D11BlendState* m_BlendState;
@@ -104,14 +105,14 @@ private:
 	static ID3D11RasterizerState* m_RS_CullBack;
 	static ID3D11RasterizerState* m_RS_CullNone;
 
-	static ID3D11Buffer*			m_WorldBuffer;
-	static ID3D11Buffer*			m_ViewBuffer;
-	static ID3D11Buffer*			m_ProjectionBuffer;
-	static ID3D11Buffer*			m_MaterialBuffer;
-	static std::vector<ID3D11Buffer*>			m_LightBuffer;
-	static ID3D11Buffer*			m_PointLightBuffer;
-	static ID3D11Buffer* m_MonochoromBuffer;
-	static ID3D11Buffer* _weightsBuffer;
+	static D11Buffer			m_WorldBuffer;
+	static D11Buffer			m_ViewBuffer;
+	static D11Buffer			m_ProjectionBuffer;
+	static D11Buffer			m_MaterialBuffer;
+	static std::vector<D11Buffer>			m_LightBuffer;
+	static D11Buffer			m_PointLightBuffer;
+	static D11Buffer m_MonochoromBuffer;
+	static D11Buffer _weightsBuffer;
 
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;

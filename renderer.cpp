@@ -8,17 +8,16 @@ D3D_FEATURE_LEVEL       Renderer::_featureLevel = D3D_FEATURE_LEVEL_11_0;
 ID3D11Device* Renderer::_device = NULL;
 ID3D11DeviceContext* Renderer::_deviceContext = NULL;
 IDXGISwapChain* Renderer::_swapChain = NULL;
-ID3D11RenderTargetView* Renderer::m_RenderTargetView = NULL;	//こいつに背景色入れてる
 ID3D11DepthStencilView* Renderer::m_DepthStencilView = NULL;
 
-ID3D11Buffer* Renderer::m_WorldBuffer = NULL;
-ID3D11Buffer* Renderer::m_ViewBuffer = NULL;
-ID3D11Buffer* Renderer::m_ProjectionBuffer = NULL;
-ID3D11Buffer* Renderer::m_MaterialBuffer = NULL;
-std::vector<ID3D11Buffer*>			Renderer::m_LightBuffer(m_LightNum);
-ID3D11Buffer* Renderer::m_PointLightBuffer = NULL;
-ID3D11Buffer* Renderer::m_MonochoromBuffer = NULL;
-ID3D11Buffer* Renderer::_weightsBuffer = NULL;
+D11Buffer Renderer::m_WorldBuffer = NULL;
+D11Buffer Renderer::m_ViewBuffer = NULL;
+D11Buffer Renderer::m_ProjectionBuffer = NULL;
+D11Buffer Renderer::m_MaterialBuffer = NULL;
+std::vector<D11Buffer>			Renderer::m_LightBuffer(m_LightNum);
+D11Buffer Renderer::m_PointLightBuffer = NULL;
+D11Buffer Renderer::m_MonochoromBuffer = NULL;
+D11Buffer Renderer::_weightsBuffer = NULL;
 
 ID3D11DepthStencilState* Renderer::m_DepthStateEnable = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateDisable = NULL;
@@ -97,6 +96,7 @@ void Renderer::Init()
 	rtDesc.CPUAccessFlags = 0;
 
 	_device->CreateTexture2D(&rtDesc, 0, &_pTexture);
+	assert(_pTexture);
 	_device->CreateTexture2D(&rtDesc, 0, &_pTextureDraw);
 
 
@@ -121,22 +121,25 @@ void Renderer::Init()
 	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MostDetailedMip = 0;
 	srvDesc.Texture2D.MipLevels = rtDesc.MipLevels;
-	hr = _device->CreateShaderResourceView(_pTexture.Get(), &srvDesc, &_pRenderingTextureSRV);
+
+	// https://yuta6686.atlassian.net/browse/AS-39 ComPtr導入
+	// SRV作成
+	hr = _device->CreateShaderResourceView(_pTexture.Get(), &srvDesc, _pRenderingTextureSRV.GetAddressOf());
 	if (hr) {
 		assert(_pRenderingTextureSRV);
 	}
-	hr = _device->CreateShaderResourceView(_pTextureDraw.Get(), &srvDesc, &_drawCopySRV);
+	hr = _device->CreateShaderResourceView(_pTextureDraw.Get(), &srvDesc, _drawCopySRV.GetAddressOf());
 	if (hr) {
 		assert(_drawCopyRTV);
 	}
 
 	// ダウンサンプリング用
-	hr = _device->CreateShaderResourceView(_pTextureX.Get(), &srvDesc, &_blurXSRV);
+	hr = _device->CreateShaderResourceView(_pTextureX.Get(), &srvDesc, _blurXSRV.GetAddressOf());
 	if (hr) {
 		assert(_blurXSRV);
 	}
 
-	hr = _device->CreateShaderResourceView(_pTextureY.Get(), &srvDesc, &_blurYSRV);
+	hr = _device->CreateShaderResourceView(_pTextureY.Get(), &srvDesc, _blurYSRV.GetAddressOf());
 	if (hr) {
 		assert(_blurYSRV);
 	}
@@ -145,17 +148,19 @@ void Renderer::Init()
 	// レンダーターゲットビュー作成 (デフォルト)
 	ID3D11Texture2D* renderTarget = NULL;
 	_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&renderTarget);
-	_device->CreateRenderTargetView(renderTarget, NULL, &m_RenderTargetView);
+	_device->CreateRenderTargetView(renderTarget, NULL, m_RenderTargetView.GetAddressOf());
 	renderTarget->Release();
 
 	// RTV 作成 オフスク用
-	_device->CreateRenderTargetView(_pTexture.Get(), NULL, &_pRenderingTextureRTV);
-	_device->CreateRenderTargetView(_pTextureDraw.Get(), NULL, &_drawCopyRTV);
+	_device->CreateRenderTargetView(_pTexture.Get(), NULL, _pRenderingTextureRTV.GetAddressOf());
+	assert(_pRenderingTextureRTV);
+
+	_device->CreateRenderTargetView(_pTextureDraw.Get(), NULL, _drawCopyRTV.GetAddressOf());
 
 	
 	// ダウンサンプリング用
-	_device->CreateRenderTargetView(_pTextureX.Get(), NULL, &_blurXRTV);
-	_device->CreateRenderTargetView(_pTextureY.Get(), NULL, &_blurYRTV);
+	_device->CreateRenderTargetView(_pTextureX.Get(), NULL, _blurXRTV.GetAddressOf());
+	_device->CreateRenderTargetView(_pTextureY.Get(), NULL, _blurYRTV.GetAddressOf());
 	
 
 	// デプスステンシルバッファ作成
@@ -182,7 +187,7 @@ void Renderer::Init()
 	depthStencile->Release();
 
 
-	_deviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView);
 	//m_DeviceContext->OMSetRenderTargets(2, rts, m_DepthStencilView);
 
 
@@ -336,10 +341,10 @@ void Renderer::Init()
 	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
 
-	_device->CreateSamplerState(&samplerDesc, &_pDefaultSampler);
-	_deviceContext->PSSetSamplers(0, 1, &_pDefaultSampler);
+	_device->CreateSamplerState(&samplerDesc, _pDefaultSampler.GetAddressOf());
+	_deviceContext->PSSetSamplers(0, 1, _pDefaultSampler.GetAddressOf());
 
-	_device->CreateSamplerState(&samplerDesc, &_pRenderTextureSampler);
+	_device->CreateSamplerState(&samplerDesc, _pRenderTextureSampler.GetAddressOf());
 
 
 	// 定数バッファ生成
@@ -351,35 +356,35 @@ void Renderer::Init()
 	bufferDesc.MiscFlags = 0;
 	bufferDesc.StructureByteStride = sizeof(float);
 
-	_device->CreateBuffer(&bufferDesc, NULL, &m_WorldBuffer);
-	_deviceContext->VSSetConstantBuffers(0, 1, &m_WorldBuffer);
+	_device->CreateBuffer(&bufferDesc, NULL,	m_WorldBuffer.GetAddressOf());
+	_deviceContext->VSSetConstantBuffers(0, 1,	m_WorldBuffer.GetAddressOf());
 
-	_device->CreateBuffer(&bufferDesc, NULL, &m_ViewBuffer);
-	_deviceContext->VSSetConstantBuffers(1, 1, &m_ViewBuffer);
+	_device->CreateBuffer(&bufferDesc, NULL,	m_ViewBuffer.GetAddressOf());
+	_deviceContext->VSSetConstantBuffers(1, 1, m_ViewBuffer.GetAddressOf());
 
-	_device->CreateBuffer(&bufferDesc, NULL, &m_ProjectionBuffer);
-	_deviceContext->VSSetConstantBuffers(2, 1, &m_ProjectionBuffer);
+	_device->CreateBuffer(&bufferDesc, NULL,	m_ProjectionBuffer.GetAddressOf());
+	_deviceContext->VSSetConstantBuffers(2, 1, m_ProjectionBuffer.GetAddressOf());
 
 
 	bufferDesc.ByteWidth = sizeof(MATERIAL);
 
-	_device->CreateBuffer(&bufferDesc, NULL, &m_MaterialBuffer);
-	_deviceContext->VSSetConstantBuffers(3, 1, &m_MaterialBuffer);
+	_device->CreateBuffer(&bufferDesc, NULL,	m_MaterialBuffer.GetAddressOf());
+	_deviceContext->VSSetConstantBuffers(3, 1, m_MaterialBuffer.GetAddressOf());
 
 
 	bufferDesc.ByteWidth = sizeof(LIGHT);
 
 	for (int i = 0; i < m_LightNum; i++) {
-		_device->CreateBuffer(&bufferDesc, NULL, &m_LightBuffer[i]);
-		_deviceContext->VSSetConstantBuffers(4, 1, &m_LightBuffer[i]);
-		_deviceContext->PSSetConstantBuffers(4, 1, &m_LightBuffer[i]);
+		_device->CreateBuffer(&bufferDesc, NULL, m_LightBuffer[i].GetAddressOf());
+		_deviceContext->VSSetConstantBuffers(4, 1, m_LightBuffer[i].GetAddressOf());
+		_deviceContext->PSSetConstantBuffers(4, 1, m_LightBuffer[i].GetAddressOf());
 	}
 
 	bufferDesc.ByteWidth = sizeof(VALIABLE);
 
-	_device->CreateBuffer(&bufferDesc, NULL, &m_MonochoromBuffer);
-	_deviceContext->VSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
-	_deviceContext->PSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
+	_device->CreateBuffer(&bufferDesc, NULL, m_MonochoromBuffer.GetAddressOf());
+	_deviceContext->VSSetConstantBuffers(5, 1, m_MonochoromBuffer.GetAddressOf());
+	_deviceContext->PSSetConstantBuffers(5, 1, m_MonochoromBuffer.GetAddressOf());
 
 	const int NUM_WEIGHTS = 8;
 	float weights[NUM_WEIGHTS];
@@ -388,16 +393,16 @@ void Renderer::Init()
 		NUM_WEIGHTS, 8.0f);
 
 	bufferDesc.ByteWidth = sizeof(weights);
-	_device->CreateBuffer(&bufferDesc, NULL, &_weightsBuffer);
-	_deviceContext->PSSetConstantBuffers(6, 1, &_weightsBuffer);
-	_deviceContext->UpdateSubresource(_weightsBuffer, 0, NULL, &weights, 0, 0);
+	_device->CreateBuffer(&bufferDesc, NULL, _weightsBuffer.GetAddressOf());
+	_deviceContext->PSSetConstantBuffers(6, 1, _weightsBuffer.GetAddressOf());
+	_deviceContext->UpdateSubresource(_weightsBuffer.Get(), 0, NULL, &weights, 0, 0);
 
 	VALIABLE a;
 	a.MonochoromeRate = 0.0f;
 	a.pad1 = 1.0f;
 	a.pad3 = 1.0f;
 	a.pad3 = 1.0f;
-	_deviceContext->UpdateSubresource(m_MonochoromBuffer, 0, NULL, &a, 0, 0);
+	_deviceContext->UpdateSubresource(m_MonochoromBuffer.Get(), 0, NULL, &a, 0, 0);
 
 
 
@@ -447,41 +452,16 @@ void Renderer::Init()
 
 void Renderer::Uninit()
 {
-
-
 	// Cleanup
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
 
-
-	m_WorldBuffer->Release();
-	m_ViewBuffer->Release();
-	m_ProjectionBuffer->Release();
-
-	for (auto light : m_LightBuffer) {
-		light->Release();
-	}
-
-	m_MaterialBuffer->Release();
-	m_MonochoromBuffer->Release();
+	// https://yuta6686.atlassian.net/browse/AS-39 ComPtr導入
 
 
 	_deviceContext->ClearState();
-	
-
-	// defefferd
-	_pRenderingTextureRTV->Release();
-	_blurXRTV->Release();
-	_blurYRTV->Release();
-	_drawCopyRTV->Release();
-
-	//_colorRenderTex->Release();
-	_pRenderingTextureSRV->Release();
-	_blurXSRV->Release();
-	_blurYSRV->Release();
-	_drawCopySRV->Release();		
-
+			
 
 	_swapChain->Release();
 	_deviceContext->Release();
@@ -494,9 +474,9 @@ void Renderer::Uninit()
 //	
 void Renderer::Begin()
 {	
-	_deviceContext->OMSetRenderTargets(1, &m_RenderTargetView, m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, m_RenderTargetView.GetAddressOf(), m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	_deviceContext->ClearRenderTargetView(m_RenderTargetView, clearColor);
+	_deviceContext->ClearRenderTargetView(m_RenderTargetView.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
 	_isRenderTexture = false;
@@ -512,10 +492,10 @@ void Renderer::End()
 
 void Renderer::BeginOfScr()
 {
-	_deviceContext->OMSetRenderTargets(1, &_pRenderingTextureRTV, m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, _pRenderingTextureRTV.GetAddressOf(), m_DepthStencilView);
 
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV, clearColor);
+	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
 	_isRenderTexture = true;
@@ -523,25 +503,25 @@ void Renderer::BeginOfScr()
 
 void Renderer::BeginBlurX()
 {
-	_deviceContext->OMSetRenderTargets(1, &_blurXRTV, m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, _blurXRTV.GetAddressOf(), m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	_deviceContext->ClearRenderTargetView(_blurXRTV, clearColor);
+	_deviceContext->ClearRenderTargetView(_blurXRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void Renderer::BeginBlurY()
 {
-	_deviceContext->OMSetRenderTargets(1, &_blurYRTV, m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, _blurYRTV.GetAddressOf(), m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	_deviceContext->ClearRenderTargetView(_blurYRTV, clearColor);
+	_deviceContext->ClearRenderTargetView(_blurYRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void Renderer::BeginCopyDraw()
 {
-	_deviceContext->OMSetRenderTargets(1, &_drawCopyRTV, m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, _drawCopyRTV.GetAddressOf(), m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	_deviceContext->ClearRenderTargetView(_drawCopyRTV, clearColor);
+	_deviceContext->ClearRenderTargetView(_drawCopyRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
@@ -596,31 +576,31 @@ void Renderer::SetBlendState(BLEND_MODE bm)
 void Renderer::SetRenderTexture(bool isdefault)
 {
 	if (isdefault) {
-		_deviceContext->PSSetSamplers(0, 1, &_pDefaultSampler);
+		_deviceContext->PSSetSamplers(0, 1, _pDefaultSampler.GetAddressOf());
 	}
 	else
 	{
-		_deviceContext->PSSetSamplers(0, 1, &_pRenderTextureSampler);
-		_deviceContext->VSSetShaderResources(0, 1, &_pRenderingTextureSRV);
-		_deviceContext->PSSetShaderResources(0, 1, &_pRenderingTextureSRV);
+		_deviceContext->PSSetSamplers(0, 1, _pRenderTextureSampler.GetAddressOf());
+		_deviceContext->VSSetShaderResources(0, 1, _pRenderingTextureSRV.GetAddressOf());
+		_deviceContext->PSSetShaderResources(0, 1, _pRenderingTextureSRV.GetAddressOf());
 	}
 }
 
 void Renderer::SetBlurXTexture()
 {
-	_deviceContext->VSSetShaderResources(0, 1, &_blurXSRV);
-	_deviceContext->PSSetShaderResources(0, 1, &_blurXSRV);
+	_deviceContext->VSSetShaderResources(0, 1, _blurXSRV.GetAddressOf());
+	_deviceContext->PSSetShaderResources(0, 1, _blurXSRV.GetAddressOf());
 }
 
 void Renderer::SetBlurYTexture()
 {
-	_deviceContext->VSSetShaderResources(0, 1, &_blurYSRV);
-	_deviceContext->PSSetShaderResources(0, 1, &_blurYSRV);
+	_deviceContext->VSSetShaderResources(0, 1, _blurYSRV.GetAddressOf());
+	_deviceContext->PSSetShaderResources(0, 1, _blurYSRV.GetAddressOf());
 }
 
 void Renderer::SetCopyTexture()
 {
-	_deviceContext->PSSetShaderResources(0, 1, &_drawCopySRV);
+	_deviceContext->PSSetShaderResources(0, 1, _drawCopySRV.GetAddressOf());
 }
 
 void Renderer::SetAlphaToCoverage(bool Enable)
@@ -682,17 +662,17 @@ void Renderer::SetWorldViewProjection2D()
 	D3DXMatrixIdentity(&world);
 	D3DXMatrixTranspose(&world, &world);
 
-	_deviceContext->UpdateSubresource(m_WorldBuffer, 0, NULL, &world, 0, 0);
+	_deviceContext->UpdateSubresource(m_WorldBuffer.Get(), 0, NULL, &world, 0, 0);
 
 	D3DXMATRIX view;
 	D3DXMatrixIdentity(&view);
 	D3DXMatrixTranspose(&view, &view);
-	_deviceContext->UpdateSubresource(m_ViewBuffer, 0, NULL, &view, 0, 0);
+	_deviceContext->UpdateSubresource(m_ViewBuffer.Get(), 0, NULL, &view, 0, 0);
 
 	D3DXMATRIX projection;
 	D3DXMatrixOrthoOffCenterLH(&projection, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 0.0f, 1.0f);
 	D3DXMatrixTranspose(&projection, &projection);
-	_deviceContext->UpdateSubresource(m_ProjectionBuffer, 0, NULL, &projection, 0, 0);
+	_deviceContext->UpdateSubresource(m_ProjectionBuffer.Get(), 0, NULL, &projection, 0, 0);
 
 }
 
@@ -700,36 +680,36 @@ void Renderer::SetWorldMatrix(D3DXMATRIX* WorldMatrix)
 {
 	D3DXMATRIX world;
 	D3DXMatrixTranspose(&world, WorldMatrix);
-	_deviceContext->UpdateSubresource(m_WorldBuffer, 0, NULL, &world, 0, 0);
+	_deviceContext->UpdateSubresource(m_WorldBuffer.Get(), 0, NULL, &world, 0, 0);
 }
 
 void Renderer::SetViewMatrix(D3DXMATRIX* ViewMatrix)
 {
 	D3DXMATRIX view;
 	D3DXMatrixTranspose(&view, ViewMatrix);
-	_deviceContext->UpdateSubresource(m_ViewBuffer, 0, NULL, &view, 0, 0);
+	_deviceContext->UpdateSubresource(m_ViewBuffer.Get(), 0, NULL, &view, 0, 0);
 }
 
 void Renderer::SetProjectionMatrix(D3DXMATRIX* ProjectionMatrix)
 {
 	D3DXMATRIX projection;
 	D3DXMatrixTranspose(&projection, ProjectionMatrix);
-	_deviceContext->UpdateSubresource(m_ProjectionBuffer, 0, NULL, &projection, 0, 0);
+	_deviceContext->UpdateSubresource(m_ProjectionBuffer.Get(), 0, NULL, &projection, 0, 0);
 }
 
 void Renderer::SetMaterial(MATERIAL Material)
 {
-	_deviceContext->UpdateSubresource(m_MaterialBuffer, 0, NULL, &Material, 0, 0);
+	_deviceContext->UpdateSubresource(m_MaterialBuffer.Get(), 0, NULL, &Material, 0, 0);
 }
 
 void Renderer::SetLight(LIGHT Light, const int& index)
 {
-	_deviceContext->UpdateSubresource(m_LightBuffer[index], 0, NULL, &Light, 0, 0);
+	_deviceContext->UpdateSubresource(m_LightBuffer[index].Get(), 0, NULL, &Light, 0, 0);
 }
 
 void Renderer::SetValiable(VALIABLE val)
 {
-	_deviceContext->UpdateSubresource(m_MonochoromBuffer, 0, NULL, &val, 0, 0);
+	_deviceContext->UpdateSubresource(m_MonochoromBuffer.Get(), 0, NULL, &val, 0, 0);
 }
 
 void Renderer::SetBlur(const float& strength)
@@ -740,7 +720,7 @@ void Renderer::SetBlur(const float& strength)
 	CalcWeightsTableFromGaussian(weights,
 		NUM_WEIGHTS, strength);
 	
-	_deviceContext->UpdateSubresource(_weightsBuffer, 0, NULL, &weights, 0, 0);
+	_deviceContext->UpdateSubresource(_weightsBuffer.Get(), 0, NULL, &weights, 0, 0);
 }
 
 
