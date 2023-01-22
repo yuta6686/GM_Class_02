@@ -98,6 +98,11 @@ void Renderer::Init()
 	_device->CreateTexture2D(&rtDesc, 0, &_pTexture);
 	assert(_pTexture);
 	_device->CreateTexture2D(&rtDesc, 0, &_pTextureDraw);
+	assert(_pTextureDraw);
+
+	// https://yuta6686.atlassian.net/browse/AS-41 bloom用Texture
+	_device->CreateTexture2D(&rtDesc, 0, _pTextureBloom.GetAddressOf());
+	assert(_pTextureBloom);
 
 
 
@@ -133,6 +138,10 @@ void Renderer::Init()
 		assert(_drawCopyRTV);
 	}
 
+	// https://yuta6686.atlassian.net/browse/AS-41 bloom 用 SRV
+	hr = _device->CreateShaderResourceView(_pTextureBloom.Get(), &srvDesc, _luminanceSRV.GetAddressOf());
+	assert(_luminanceSRV);
+
 	// ダウンサンプリング用
 	hr = _device->CreateShaderResourceView(_pTextureX.Get(), &srvDesc, _blurXSRV.GetAddressOf());
 	if (hr) {
@@ -156,6 +165,9 @@ void Renderer::Init()
 	assert(_pRenderingTextureRTV);
 
 	_device->CreateRenderTargetView(_pTextureDraw.Get(), NULL, _drawCopyRTV.GetAddressOf());
+
+	// https://yuta6686.atlassian.net/browse/AS-41 bloom 用 RTV
+	_device->CreateRenderTargetView(_pTextureBloom.Get(), NULL, _luminanceRTV.GetAddressOf());
 
 	
 	// ダウンサンプリング用
@@ -501,6 +513,15 @@ void Renderer::BeginOfScr()
 	_isRenderTexture = true;
 }
 
+// https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用
+void Renderer::BeginLuminance()
+{
+	_deviceContext->OMSetRenderTargets(1, _luminanceRTV.GetAddressOf(), m_DepthStencilView);
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	_deviceContext->ClearRenderTargetView(_luminanceRTV.Get(), clearColor);
+	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
 void Renderer::BeginBlurX()
 {
 	_deviceContext->OMSetRenderTargets(1, _blurXRTV.GetAddressOf(), m_DepthStencilView);
@@ -584,6 +605,13 @@ void Renderer::SetRenderTexture(bool isdefault)
 		_deviceContext->VSSetShaderResources(0, 1, _pRenderingTextureSRV.GetAddressOf());
 		_deviceContext->PSSetShaderResources(0, 1, _pRenderingTextureSRV.GetAddressOf());
 	}
+}
+
+// https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用
+void Renderer::SetLuminanceTexture()
+{
+	_deviceContext->PSSetShaderResources(0, 1, _luminanceSRV.GetAddressOf());
+	_deviceContext->VSSetShaderResources(0, 1, _luminanceSRV.GetAddressOf());
 }
 
 void Renderer::SetBlurXTexture()

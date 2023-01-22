@@ -21,6 +21,9 @@ void SwitchingRenderer::Draw()
 	case LAYER_BEGIN:		
 		Renderer::BeginOfScr();		
 		break;
+	case LAYER_LUMINANCE:
+		Renderer::BeginLuminance();
+		break;
 	case LAYER_BLUR_X:
 		Renderer::BeginBlurX();
 		break;
@@ -43,6 +46,10 @@ void SwitchinRendererFactory::Create()
 	_scene->AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
 		->SetLayerNum(LAYER_BEGIN);
 
+	// https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用
+	_scene->AddGameObject<SwitchingRenderer>(LAYER_LUMINANCE)
+		->SetLayerNum(LAYER_LUMINANCE);
+
 	_scene->AddGameObject<SwitchingRenderer>(LAYER_BLUR_X)
 		->SetLayerNum(LAYER_BLUR_X);
 
@@ -55,6 +62,9 @@ void SwitchinRendererFactory::Create()
 	_scene->AddGameObject<SwitchingRenderer>(LAYER_TO_RENDERING_TEXTURE)
 		->SetLayerNum(LAYER_TO_RENDERING_TEXTURE);
 
+	// https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用
+	_scene->AddGameObject<RenderingTexture>(LAYER_LUMINANCE)
+		->SetLayerNum(LAYER_LUMINANCE);
 
 	_scene->AddGameObject<RenderingTexture>(LAYER_BLUR_X)
 		->SetLayerNum(LAYER_BLUR_X);

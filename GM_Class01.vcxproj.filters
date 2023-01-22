@@ -121,6 +121,21 @@
     <Filter Include="GameObject\factory">
       <UniqueIdentifier>{3bdc758f-6d5b-439b-a2f1-1c3c8486f9a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\rendering_texture">
+      <UniqueIdentifier>{ae0dd937-ea52-4a5d-803b-33e9267ca275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\base">
+      <UniqueIdentifier>{a591a935-346a-47e9-b6b1-5dea7f790d64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\noise">
+      <UniqueIdentifier>{07e1e845-b454-430a-94e4-798941160160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\enemy">
+      <UniqueIdentifier>{99c311d7-1537-4531-9c2a-811f06e856a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\base\environment">
+      <UniqueIdentifier>{19e4480e-e787-412e-ad1c-822a38415071}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="texture.cpp">
@@ -493,6 +508,9 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="co_noise_circle.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="state_machine.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -995,79 +1013,85 @@
     <ClInclude Include="co_noise_circle.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="state_machine.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="unlitTexturePS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="unlitTextureVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="vertexLightingPS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="vertexLightingVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="testVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="testPS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="unlitTextureNoMat.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="PixelLightingVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="PixelLightingPS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="MeshFieldVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="MeshFieldPS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="rendering_texture_vs.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="rendering_texture_ps.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="post_effect_blur_ps.hlsl">
+      <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
     <FxCompile Include="post_effect_blur_x_vs.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="post_effect_blur_ps.hlsl">
-      <Filter>Shader</Filter>
+      <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
     <FxCompile Include="post_effect_blur_y_vs.hlsl">
-      <Filter>Shader</Filter>
+      <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
-    <FxCompile Include="env_mapping_vs.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="rendering_texture_ps.hlsl">
+      <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
-    <FxCompile Include="env_mapping_ps.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="rendering_texture_vs.hlsl">
+      <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
-    <FxCompile Include="enemy_vs.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="vertexLightingVS.hlsl">
+      <Filter>Shader\base</Filter>
     </FxCompile>
-    <FxCompile Include="enemy_ps.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="unlitTextureNoMat.hlsl">
+      <Filter>Shader\base</Filter>
     </FxCompile>
-    <FxCompile Include="env_mapping_select_ps.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="unlitTexturePS.hlsl">
+      <Filter>Shader\base</Filter>
     </FxCompile>
-    <FxCompile Include="noise_circle_vs.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="unlitTextureVS.hlsl">
+      <Filter>Shader\base</Filter>
+    </FxCompile>
+    <FxCompile Include="vertexLightingPS.hlsl">
+      <Filter>Shader\base</Filter>
+    </FxCompile>
+    <FxCompile Include="testPS.hlsl">
+      <Filter>Shader\base</Filter>
+    </FxCompile>
+    <FxCompile Include="testVS.hlsl">
+      <Filter>Shader\base</Filter>
+    </FxCompile>
+    <FxCompile Include="MeshFieldPS.hlsl">
+      <Filter>Shader\base</Filter>
+    </FxCompile>
+    <FxCompile Include="MeshFieldVS.hlsl">
+      <Filter>Shader\base</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelLightingPS.hlsl">
+      <Filter>Shader\base</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelLightingVS.hlsl">
+      <Filter>Shader\base</Filter>
     </FxCompile>
     <FxCompile Include="noise_circle_ps.hlsl">
-      <Filter>Shader</Filter>
+      <Filter>Shader\noise</Filter>
+    </FxCompile>
+    <FxCompile Include="noise_circle_vs.hlsl">
+      <Filter>Shader\noise</Filter>
+    </FxCompile>
+    <FxCompile Include="enemy_ps.hlsl">
+      <Filter>Shader\enemy</Filter>
+    </FxCompile>
+    <FxCompile Include="enemy_vs.hlsl">
+      <Filter>Shader\enemy</Filter>
+    </FxCompile>
+    <FxCompile Include="env_mapping_ps.hlsl">
+      <Filter>Shader\base\environment</Filter>
+    </FxCompile>
+    <FxCompile Include="env_mapping_select_ps.hlsl">
+      <Filter>Shader\base\environment</Filter>
+    </FxCompile>
+    <FxCompile Include="env_mapping_vs.hlsl">
+      <Filter>Shader\base\environment</Filter>
+    </FxCompile>
+    <FxCompile Include="luminance_ps.hlsl">
+      <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

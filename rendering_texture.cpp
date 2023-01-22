@@ -114,9 +114,12 @@ void RenderingTexture::Draw()
 	//テクスチャ設定
 	switch (_layerNum)
 	{	
+	case LAYER_LUMINANCE:
+		Renderer::SetRenderTexture(false);
+		break;
 	case LAYER_BLUR_X:
 		viewport.Width /= 2.0f;
-		Renderer::SetRenderTexture(false);
+		Renderer::SetLuminanceTexture();
 		break;
 	case LAYER_BLUR_Y:
 		viewport.Width /= 2.0f;

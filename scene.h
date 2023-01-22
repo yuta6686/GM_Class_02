@@ -13,6 +13,7 @@ enum LAYER {
 	LAYER_3D,
 	LAYER_AUDIO,
 	LAYER_ENEMY,
+	LAYER_LUMINANCE, // https://yuta6686.atlassian.net/browse/AS-41 ãPìxíäèoóp
 	LAYER_BLUR_X,
 	LAYER_BLUR_Y,
 	LAYER_COPY,

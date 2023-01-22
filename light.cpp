@@ -135,9 +135,9 @@ void Light::InitDirectionLight(LIGHT& light)
     D3DXVec3Normalize(&light.dirDirection, &light.dirDirection);
 
     // ライトのカラーは白
-    light.dirColor.x = 1.5f;
-    light.dirColor.y = 1.5f;
-    light.dirColor.z = 1.5f;
+    light.dirColor.x = 3.5f;
+    light.dirColor.y = 3.5f;
+    light.dirColor.z = 3.5f;
 
     // 視点の位置を設定する
     std::shared_ptr<Scene> scene = Manager::GetScene();

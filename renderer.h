@@ -71,6 +71,7 @@ private:
 
 	//ディスプレイのバッグバッファのテクスチャ	
 	inline static Texture2D _pTexture;
+	inline static Texture2D _pTextureBloom;
 	inline static Texture2D _pTextureX;
 	inline static Texture2D _pTextureY;
 	inline static Texture2D _pTextureDraw;
@@ -86,12 +87,14 @@ private:
 	// https://yuta6686.atlassian.net/browse/AS-39 ComPtr導入
 	// オフスク用 RTV
 	inline static D11RenderTargetView _pRenderingTextureRTV = nullptr;
+	inline static D11RenderTargetView _luminanceRTV = nullptr; // https://yuta6686.atlassian.net/browse/AS-41
 	inline static D11RenderTargetView _blurXRTV = nullptr;
 	inline static D11RenderTargetView _blurYRTV = nullptr;
 	inline static D11RenderTargetView _drawCopyRTV = nullptr;
 
 	// オフスク用 SRV
 	inline static ShaderResourceView _pRenderingTextureSRV = nullptr;
+	inline static ShaderResourceView _luminanceSRV = nullptr;
 	inline static ShaderResourceView _blurXSRV = nullptr;
 	inline static ShaderResourceView _blurYSRV = nullptr;
 	inline static ShaderResourceView _drawCopySRV = nullptr;
@@ -128,11 +131,11 @@ public:
 	static void Begin();
 	static void End();
 
-	/// <summary BeginOfScr()>
+	/// summary BeginOfScr()
 	/// オフスクリーンレンダリング用のBegin関数
-	/// - ShaderResourceViewの切り替えを行う
-	/// </summary>
+	/// - ShaderResourceViewの切り替えを行う		
 	static void BeginOfScr();
+	static void BeginLuminance();
 	static void BeginBlurX();
 	static void BeginBlurY();
 	static void BeginCopyDraw();
@@ -157,11 +160,11 @@ public:
 	//static void SetPointLight(POINT_LIGHT Light);
 	void SetBlendState(BLEND_MODE bm);
 
-	/// <summary>
+	
 	/// サンプラーとテクスチャ設定をする。
-	/// Draw時、テクスチャに読み込んだSRVを設定するのと同じイメージ
-	/// </summary>	
+	/// Draw時、テクスチャに読み込んだSRVを設定するのと同じイメージ	
 	static void SetRenderTexture(bool isdefault);
+	static void SetLuminanceTexture();
 	static void SetBlurXTexture();
 	static void SetBlurYTexture();
 	static void SetCopyTexture();

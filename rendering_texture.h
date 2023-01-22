@@ -35,6 +35,10 @@ public:
 
         switch (_layerNum)
         {
+        case LAYER_LUMINANCE:
+            // TODO // https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用シェーダー追加する
+            AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_LUMINANCE);
+            break;
         case LAYER_BLUR_X:
             //m_mainPos.x = SCREEN_WIDTH / 2.0f;
             AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_BLURX);
