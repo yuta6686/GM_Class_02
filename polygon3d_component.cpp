@@ -62,7 +62,7 @@ void Polygon3DComponent::Draw()
 	//SetBlendState(BLEND_MODE_ADD);
 
 	if (IsUseAlphaToCoverage) {
-		Renderer::SetAlphaToCoverage(TRUE);
+		Renderer::SetAlphaToCoverage();
 	}	
 
 	if (m_IsCullNone) {
@@ -74,7 +74,7 @@ void Polygon3DComponent::Draw()
 
 	Renderer::SetCullNone(false);
 
-	Renderer::SetAlphaToCoverage(FALSE);
+	Renderer::SetDefaultBlend();
 }
 
 void Polygon3DComponent::DrawImgui()

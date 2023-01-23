@@ -142,10 +142,10 @@ void UserInterface_Animation::Draw()
 	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
 
 
-	Renderer::SetAlphaToCoverage(TRUE);
+	Renderer::SetAlphaToCoverage();
 
 	m_Texture->Draw();
 
-	Renderer::SetAlphaToCoverage(FALSE);
+	Renderer::SetDefaultBlend();
 
 }

@@ -99,7 +99,7 @@ void TitleScene::Init()
 	auto* title_object = AddGameObject< CO_TitleObject>(LAYER_3D);
 	title_object->SetPosition({ 0.0f,15.0f,30.0f });
 
-	AddGameObject<PrismFactory>(LAYER_3D);
+	/*AddGameObject<PrismFactory>(LAYER_3D);*/
 
 	//AddGameObject<CO_UI_Quest>(LAYER_2D);
 	

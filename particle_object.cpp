@@ -28,9 +28,9 @@ void ParticleObject::Init()
 	}
 
 	m_VertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_PARTICLE]);
 	m_PixelShader =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_PARTICLE]);
 
 
 	std::shared_ptr<Scene> scene = Manager::GetScene();
@@ -132,7 +132,7 @@ void ParticleObject::Draw()
 
 		
 
-		Renderer::SetAddBlend(true);
+		Renderer::SetAddBlend();
 
 		if (m_Particles[i].use_torii) 
 		{
@@ -165,7 +165,7 @@ void ParticleObject::Draw()
 			}
 		}
 		
-		Renderer::SetAddBlend(false);
+		Renderer::SetDefaultBlend();
 
 	}
 
@@ -329,7 +329,7 @@ void ParticleObject::SetParticle_ToriiBloken_Rising()
 {
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
-	par.m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,0.7f };
+	par.m_ColorOverLifeTime_Start = { 3.0f,3.0f,3.0f,0.7f };
 	par.m_ColorOverLifeTime_End = { 1.0f,1.0f,1.0f,0.5f };
 	par.col = par.m_ColorOverLifeTime_Start;
 	par.life = 180;	

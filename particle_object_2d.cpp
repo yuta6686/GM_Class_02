@@ -124,7 +124,7 @@ void ParticleObject_2D::Draw()
 
 	
 
-	Renderer::SetAddBlend(true);
+	Renderer::SetAddBlend();
 
 	for (unsigned int i= 0; i < m_Particles.size(); i++) {
 		D3D11_MAPPED_SUBRESOURCE msr;
@@ -184,7 +184,7 @@ void ParticleObject_2D::Draw()
 		m_Textures[m_Particles[i].type]->Draw();
 	}
 	
-	Renderer::SetAddBlend(false);
+	Renderer::SetDefaultBlend();
 }
 
 void ParticleObject_2D::DrawImgui()

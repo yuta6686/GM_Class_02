@@ -98,9 +98,9 @@ void Field::Draw()
 	UINT offset = 0;
 	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
 
-	Renderer::SetAlphaToCoverage(TRUE);
+	Renderer::SetAlphaToCoverage();
 
 	m_Texture->Draw();
 
-	Renderer::SetAlphaToCoverage(FALSE);
+	Renderer::SetDefaultBlend();
 }

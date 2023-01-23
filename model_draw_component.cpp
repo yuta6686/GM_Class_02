@@ -32,9 +32,9 @@ void ModelDrawComponent::Init()
 void ModelDrawComponent::Draw()
 {
     if (m_IsVariable) {
-        Renderer::SetAlphaToCoverage(true);
+        Renderer::SetAlphaToCoverage();
         m_Model_variable->Draw();
-        Renderer::SetAlphaToCoverage(false);
+        Renderer::SetDefaultBlend();
     }
     else
     {

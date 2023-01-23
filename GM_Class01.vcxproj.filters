@@ -1093,6 +1093,9 @@
     <FxCompile Include="luminance_ps.hlsl">
       <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
+    <FxCompile Include="ParticlePS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="imgui\misc\debuggers\imgui.natvis">

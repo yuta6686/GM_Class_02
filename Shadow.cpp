@@ -103,10 +103,7 @@ void Shadow::Draw()
 	UINT stride = sizeof(VERTEX_3D);
 	UINT offset = 0;
 	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
-
-	Renderer::SetAlphaToCoverage(false);
-
+	
 	m_Texture->Draw();
-
-	Renderer::SetAlphaToCoverage(false);
+	
 }

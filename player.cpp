@@ -116,9 +116,10 @@ void Player::Update()
 
 void Player::Draw()
 {
-	Renderer::SetAlphaToCoverage(false);
+	Renderer::SetAlphaToCoverage();
 	if (GetComponent<HPComponent>()->GetIsDeath())return;
 	ComponentObject::Draw();
+	Renderer::SetDefaultBlend();
 }
 
 void Player::DrawImgui()
@@ -221,19 +222,19 @@ void Player::PlayerMove()
 
 		if (length >= 0.03f &&
 			length < 0.06f) {
-			SetParticle({0.0f,1.0f,1.0f,0.5f});
+			SetParticle({0.0f,50.0f,50.0f,0.5f});
 		}
 		else if (length >= 0.06f &&
 			length < 0.15f) 
 		{
 			for (int i = 0; i < 2; i++)
-				SetParticle({ 0.0f,1.0f,1.0f,0.75f });
+				SetParticle({ 0.0f,50.0f,50.0f,0.75f });
 
 		}
 		else if(length >= 0.15f)
 		{
 			for (int i = 0; i < 5; i++)
-				SetParticle({ 0.0f,1.0f,1.0f,1.0f });
+				SetParticle({ 0.0f,50.0f,50.0f,1.0f });
 		}
 	}
 

@@ -31,6 +31,7 @@ private:
         {SHADER_TYPE::SHADER_ENVIRONMENT_MAPPING,"env_mapping_vs.cso"},
         {SHADER_TYPE::SHADER_ENVIRONMENT_MAPPING_SELECT,"env_mapping_vs.cso"},
         {SHADER_TYPE::SHADER_LUMINANCE,"env_mapping_vs.cso"},
+        {SHADER_TYPE::SHADER_PARTICLE,"unlitTextureVS.cso"},
 
     };    
     

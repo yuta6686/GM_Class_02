@@ -22,13 +22,13 @@ D11Buffer Renderer::_weightsBuffer = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateEnable = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateDisable = NULL;
 
-ID3D11BlendState* Renderer::m_BlendState = NULL;
-ID3D11BlendState* Renderer::m_BlendStateATC = NULL;
-ID3D11BlendState* Renderer::m_BlendStateADDATC = NULL;
+BlendState Renderer::m_BlendState = NULL;
+BlendState Renderer::m_BlendStateATC = NULL;
+BlendState Renderer::m_BlendStateADDATC = NULL;
 
-ID3D11RasterizerState* Renderer::m_RS_Wireframe = NULL;
-ID3D11RasterizerState* Renderer::m_RS_CullBack = NULL;
-ID3D11RasterizerState* Renderer::m_RS_CullNone = NULL;
+RasterizerState Renderer::m_RS_Wireframe = NULL;
+RasterizerState Renderer::m_RS_CullBack = NULL;
+RasterizerState Renderer::m_RS_CullNone = NULL;
 
 // 輝度抽出用 https://yuta6686.atlassian.net/browse/AS-29
 #define RGBA16FLOAT
@@ -107,10 +107,10 @@ void Renderer::Init()
 
 
 	// ダウンサンプリング用
-	rtDesc.Width = static_cast<UINT>(SCREEN_WIDTH / 2.0f);
+	rtDesc.Width = static_cast<UINT>(BLUR_X_SCREEN);
 	_device->CreateTexture2D(&rtDesc, 0, &_pTextureX);
 
-	rtDesc.Height = static_cast<UINT>(SCREEN_HEIGHT / 2.0f);
+	rtDesc.Height = static_cast<UINT>(BLUR_Y_SCREEN);
 	_device->CreateTexture2D(&rtDesc, 0, &_pTextureY);
 
 	//	SRV設定 オフスク用
@@ -275,19 +275,19 @@ void Renderer::Init()
 
 
 	//	CULL_BACK
-	_device->CreateRasterizerState(&rasterizerDesc, &m_RS_CullBack);
+	_device->CreateRasterizerState(&rasterizerDesc, m_RS_CullBack.GetAddressOf());
 
 	//	CULL_NONE
 	rasterizerDesc.CullMode = D3D11_CULL_NONE;
-	_device->CreateRasterizerState(&rasterizerDesc, &m_RS_CullNone);
+	_device->CreateRasterizerState(&rasterizerDesc, m_RS_CullNone.GetAddressOf());
 
 	//	FILL_WIREFRAME & CULL_BACK
 	rasterizerDesc.FillMode = D3D11_FILL_WIREFRAME;
 	rasterizerDesc.CullMode = D3D11_CULL_BACK;
-	_device->CreateRasterizerState(&rasterizerDesc, &m_RS_Wireframe);
+	_device->CreateRasterizerState(&rasterizerDesc, m_RS_Wireframe.GetAddressOf());
 
 	//	これを関数化する
-	_deviceContext->RSSetState(m_RS_CullBack);
+	_deviceContext->RSSetState(m_RS_CullBack.Get());
 
 
 
@@ -307,17 +307,17 @@ void Renderer::Init()
 
 	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	//ID3D11BlendState* blendState = NULL;	->メンバ変数にする
-	_device->CreateBlendState(&blendDesc, &m_BlendState);
+	_device->CreateBlendState(&blendDesc, m_BlendState.GetAddressOf());
 
 	blendDesc.AlphaToCoverageEnable = TRUE;
-	_device->CreateBlendState(&blendDesc, &m_BlendStateATC);
+	_device->CreateBlendState(&blendDesc, m_BlendStateATC.GetAddressOf());
 
 	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
 
-	_device->CreateBlendState(&blendDesc, &m_BlendStateADDATC);
+	_device->CreateBlendState(&blendDesc, m_BlendStateADDATC.GetAddressOf());
 
-	_deviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
+	_deviceContext->OMSetBlendState(m_BlendState.Get(), blendFactor, 0xffffffff);
 
 
 
@@ -566,6 +566,12 @@ void Renderer::SetDefaultConstantBuffer()
 	_deviceContext->PSSetConstantBuffers(5, 1, &m_MonochoromBuffer);
 }
 
+void Renderer::SetDefaultBlend()
+{
+	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	_deviceContext->OMSetBlendState(m_BlendState.Get(), blendFactor, 0xffffffff);
+}
+
 
 
 void Renderer::SetBlendState(BLEND_MODE bm)
@@ -631,24 +637,19 @@ void Renderer::SetCopyTexture()
 	_deviceContext->PSSetShaderResources(0, 1, _drawCopySRV.GetAddressOf());
 }
 
-void Renderer::SetAlphaToCoverage(bool Enable)
+void Renderer::SetAlphaToCoverage()
 {
 	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-
-	if (Enable)
-		_deviceContext->OMSetBlendState(m_BlendStateATC, blendFactor, 0xffffffff);
-	else
-		_deviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
+	
+	_deviceContext->OMSetBlendState(m_BlendStateATC.Get(), blendFactor, 0xffffffff);			
 }
 
-void Renderer::SetAddBlend(bool Enable)
+void Renderer::SetAddBlend()
 {
 	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
-	if (Enable)
-		_deviceContext->OMSetBlendState(m_BlendStateADDATC, blendFactor, 0xffffffff);
-	else
-		_deviceContext->OMSetBlendState(m_BlendState, blendFactor, 0xffffffff);
+	_deviceContext->OMSetBlendState(m_BlendStateADDATC.Get(), blendFactor, 0xffffffff);
+
 }
 
 void Renderer::SetDepthEnable(bool Enable)
@@ -663,25 +664,25 @@ void Renderer::SetDepthEnable(bool Enable)
 void Renderer::SetCullNone(bool Enable)
 {
 	if (Enable)
-		_deviceContext->RSSetState(m_RS_CullNone);
+		_deviceContext->RSSetState(m_RS_CullNone.Get());
 	else
-		_deviceContext->RSSetState(m_RS_CullBack);
+		_deviceContext->RSSetState(m_RS_CullBack.Get());
 }
 
 void Renderer::SetCullBack(bool Enable)
 {
 	if (Enable)
-		_deviceContext->RSSetState(m_RS_CullBack);
+		_deviceContext->RSSetState(m_RS_CullBack.Get());
 	else
-		_deviceContext->RSSetState(m_RS_CullNone);
+		_deviceContext->RSSetState(m_RS_CullNone.Get());
 }
 
 void Renderer::SetWireframe(bool Enable)
 {
 	if (Enable)
-		_deviceContext->RSSetState(m_RS_Wireframe);
+		_deviceContext->RSSetState(m_RS_Wireframe.Get());
 	else
-		_deviceContext->RSSetState(m_RS_CullBack);
+		_deviceContext->RSSetState(m_RS_CullBack.Get());
 }
 
 void Renderer::SetWorldViewProjection2D()

@@ -118,12 +118,12 @@ void RenderingTexture::Draw()
 		Renderer::SetRenderTexture(false);
 		break;
 	case LAYER_BLUR_X:
-		viewport.Width /= 2.0f;
+		viewport.Width = Renderer::BLUR_X_SCREEN;
 		Renderer::SetLuminanceTexture();
 		break;
 	case LAYER_BLUR_Y:
-		viewport.Width /= 2.0f;
-		viewport.Height /= 2.0f;
+		viewport.Width = Renderer::BLUR_X_SCREEN;
+		viewport.Height = Renderer::BLUR_Y_SCREEN;
 		Renderer::SetBlurXTexture();
 		break;
 	case LAYER_COPY:
@@ -147,6 +147,7 @@ void RenderingTexture::Draw()
 		Renderer::SetBlurYTexture();
 		
 		// 加算合成に変更する
+		//Renderer::SetAddBlend();
 
 		break;
 	default:
@@ -164,6 +165,7 @@ void RenderingTexture::Draw()
 	Renderer::SetRenderTexture(true);
 
 	// ブレンドモードを通常に直す
+	Renderer::SetDefaultBlend();
 }
 
 void RenderingTexture::DrawImgui()

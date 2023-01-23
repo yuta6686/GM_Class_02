@@ -61,6 +61,9 @@ enum BLEND_MODE
 
 class Renderer
 {
+public:
+	inline static const float BLUR_X_SCREEN = SCREEN_WIDTH / 2.0f;
+	inline static const float BLUR_Y_SCREEN = SCREEN_HEIGHT / 2.0f;
 private:
 
 	static D3D_FEATURE_LEVEL		_featureLevel;
@@ -100,13 +103,13 @@ private:
 	inline static ShaderResourceView _drawCopySRV = nullptr;
 
 
-	static ID3D11BlendState* m_BlendState;
-	static ID3D11BlendState* m_BlendStateATC;
-	static ID3D11BlendState* m_BlendStateADDATC;
+	static BlendState m_BlendState;
+	static BlendState m_BlendStateATC;
+	static BlendState m_BlendStateADDATC;
 
-	static ID3D11RasterizerState* m_RS_Wireframe;
-	static ID3D11RasterizerState* m_RS_CullBack;
-	static ID3D11RasterizerState* m_RS_CullNone;
+	static RasterizerState m_RS_Wireframe;
+	static RasterizerState m_RS_CullBack;
+	static RasterizerState m_RS_CullNone;
 
 	static D11Buffer			m_WorldBuffer;
 	static D11Buffer			m_ViewBuffer;
@@ -143,8 +146,9 @@ public:
 
 	static void SetDefaultConstantBuffer();
 
-	static void SetAlphaToCoverage(bool Enable);
-	static void SetAddBlend(bool Enable);
+	static void SetDefaultBlend();
+	static void SetAlphaToCoverage();
+	static void SetAddBlend();
 	static void SetDepthEnable(bool Enable);
 	static void SetCullNone(bool Enable);
 	static void SetCullBack(bool Enable);

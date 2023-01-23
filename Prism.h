@@ -15,9 +15,9 @@ private:
 	// ’Êí•Ï”
 	inline static ID3D11Buffer* _vertexBufferPrism = nullptr;
 
-	ID3D11ShaderResourceView* _baseTexture;
-	ID3D11ShaderResourceView* _normalTexture;
-	ID3D11ShaderResourceView* _envTexture;
+	std::shared_ptr<Texture> _baseTexture;
+	std::shared_ptr<Texture> _normalTexture;
+	std::shared_ptr<Texture> _envTexture;
 	inline const static std::string _textureName = "asset\\texture\\swordOfKirito.png";
 
 	std::shared_ptr <VertexShader> _vertexShader;
