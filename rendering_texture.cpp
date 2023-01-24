@@ -114,19 +114,26 @@ void RenderingTexture::Draw()
 	//テクスチャ設定
 	switch (_layerNum)
 	{	
+	case LAYER_BEGIN:
+		Renderer::BeginOfScr();
+		break;
 	case LAYER_LUMINANCE:
+		Renderer::BeginLuminance();
 		Renderer::SetRenderTexture(false);
 		break;
 	case LAYER_BLUR_X:
+		Renderer::BeginBlurX();
 		viewport.Width = RenderingTexture::BLUR_X_SCREEN;
 		Renderer::SetLuminanceTexture();
 		break;
 	case LAYER_BLUR_Y:
+		Renderer::BeginBlurY();
 		viewport.Width = RenderingTexture::BLUR_X_SCREEN;
 		viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
 		Renderer::SetBlurXTexture();
 		break;
 	case LAYER_COPY:
+		Renderer::BeginCopyDraw();
 		// ここでブラーの有無切り替えできる。
 		if (MyImgui::_myFlag[_typeName])
 		{
@@ -138,6 +145,9 @@ void RenderingTexture::Draw()
 			// 無加工のテクスチャ
 			Renderer::SetRenderTexture(false);		
 		} 				
+		break;
+	case LAYER_TO_RENDERING_TEXTURE:
+		Renderer::Begin();
 		break;
 	case LAYER_RENDERING_TEXTURE:
 		Renderer::SetCopyTexture();		
