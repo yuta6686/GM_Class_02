@@ -2,9 +2,11 @@
 
 
 
+#ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+#endif // _DEBUG
 
 
 const char* CLASS_NAME = "AppClass";
@@ -141,7 +143,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	UninitInput();
 	Manager::Uninit();
 
+#ifdef _DEBUG
 	_CrtDumpMemoryLeaks();
+#endif // _DEBUG
 
 	return (int)msg.wParam;
 }

@@ -36,6 +36,7 @@ public:
 		for (auto resource : m_Container) {
 			resource.second->Unload();
 		}
+		m_Container.clear();
 	}
 };
 
