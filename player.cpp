@@ -76,7 +76,11 @@ void Player::Init()
 
 	m_VelocityCom = AddComponent<VelocityComponent>(COMLAYER_SECOND);
 
-	//AddComponent< StageLimitComponent>(COMLAYER_SECOND);
+#ifdef _DEBUG
+#else
+	AddComponent< StageLimitComponent>(COMLAYER_SECOND);
+#endif // _DEBUG
+
 
 	AddComponent< HPComponent>(COMLAYER_SECOND);
 
