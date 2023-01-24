@@ -118,12 +118,12 @@ void RenderingTexture::Draw()
 		Renderer::SetRenderTexture(false);
 		break;
 	case LAYER_BLUR_X:
-		viewport.Width = Renderer::BLUR_X_SCREEN;
+		viewport.Width = RenderingTexture::BLUR_X_SCREEN;
 		Renderer::SetLuminanceTexture();
 		break;
 	case LAYER_BLUR_Y:
-		viewport.Width = Renderer::BLUR_X_SCREEN;
-		viewport.Height = Renderer::BLUR_Y_SCREEN;
+		viewport.Width = RenderingTexture::BLUR_X_SCREEN;
+		viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
 		Renderer::SetBlurXTexture();
 		break;
 	case LAYER_COPY:
@@ -176,6 +176,7 @@ void RenderingTexture::DrawImgui()
 		static float _strength = 8.0f;
 
 		ImGui::SliderFloat("Blur Strength", &_strength, 0.1f, 100.0f);
+
 
 		Renderer::SetBlur(_strength);
 	}

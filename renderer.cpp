@@ -1,6 +1,7 @@
 
 #include "renderer.h"
 #include "scene.h"
+#include "rendering_texture.h"
 
 
 D3D_FEATURE_LEVEL       Renderer::_featureLevel = D3D_FEATURE_LEVEL_11_0;
@@ -107,10 +108,10 @@ void Renderer::Init()
 
 
 	// ダウンサンプリング用
-	rtDesc.Width = static_cast<UINT>(BLUR_X_SCREEN);
+	rtDesc.Width = static_cast<UINT>(RenderingTexture::BLUR_X_SCREEN);
 	_device->CreateTexture2D(&rtDesc, 0, &_pTextureX);
 
-	rtDesc.Height = static_cast<UINT>(BLUR_Y_SCREEN);
+	rtDesc.Height = static_cast<UINT>(RenderingTexture::BLUR_Y_SCREEN);
 	_device->CreateTexture2D(&rtDesc, 0, &_pTextureY);
 
 	//	SRV設定 オフスク用

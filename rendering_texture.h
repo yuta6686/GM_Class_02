@@ -5,6 +5,10 @@ class RenderingTexture :
     public ComponentObject
 {
 private:
+public:
+    inline static const float BLUR_X_SCREEN = SCREEN_WIDTH / 2.0f;
+    inline static const float BLUR_Y_SCREEN = SCREEN_HEIGHT / 2.0f;
+
     VERTEX_3D m_vertex[4];
     ID3D11Buffer* m_VertexBuffer = NULL;
 

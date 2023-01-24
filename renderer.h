@@ -61,9 +61,6 @@ enum BLEND_MODE
 
 class Renderer
 {
-public:
-	inline static const float BLUR_X_SCREEN = SCREEN_WIDTH / 2.0f;
-	inline static const float BLUR_Y_SCREEN = SCREEN_HEIGHT / 2.0f;
 private:
 
 	static D3D_FEATURE_LEVEL		_featureLevel;
