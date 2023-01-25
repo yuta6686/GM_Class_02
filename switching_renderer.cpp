@@ -25,10 +25,6 @@ void SwitchingRenderer::Draw()
 		
 		break;
 
-	case LAYER_COPY:
-		
-		break;
-
 	default:
 		break;
 	}
@@ -56,8 +52,6 @@ void SwitchinRendererFactory::Create()
 	_scene->AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE)
 		->SetLayerNum(LAYER_RENDERING_TEXTURE);
 
-	_scene->AddGameObject<RenderingTexture>(LAYER_COPY)
-		->SetLayerNum(LAYER_COPY);
 
 	_scene->AddGameObject<RenderingTexture>(LAYER_BLOOM)
 		->SetLayerNum(LAYER_BLOOM);

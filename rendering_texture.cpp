@@ -135,52 +135,33 @@ void RenderingTexture::Draw()
 		Renderer::SetRenderTexture(false);
 		break;
 	case LAYER_BLUR:
-		_blurXVertexShader->Draw();
-		_blurPixelShader->Draw();
+		// ここをループ処理できるようにする
 
-		Renderer::BeginBlurX();
-		viewport.Width = RenderingTexture::BLUR_X_SCREEN;
-		Renderer::SetLuminanceTexture();
-
-		Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
-
-
-		//プリミティブトポロジ設定
-		Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-		//ポリゴン描画
-		Renderer::GetDeviceContext()->Draw(4, 0);
-
-		
-
+		// X軸ブラー描画
 		{
-			_blurYVertexShader->Draw();
+			// まずシェーダー
+			_blurXVertexShader->Draw();
 			_blurPixelShader->Draw();
 
-			//頂点バッファ設定
-			UINT stride = sizeof(VERTEX_3D);
-			UINT offset = 0;
-			Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
+			Renderer::BeginBlurX();
+			viewport.Width = RenderingTexture::BLUR_X_SCREEN;
+			Renderer::SetLuminanceTexture();
+
+			Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
 
 
-			Renderer::SetWorldViewProjection2D();
+			//プリミティブトポロジ設定
+			Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
-			//ワールドマトリクス設定
-			D3DXMATRIX world, scale, rot, trans;
-			D3DXMatrixScaling(&scale,
-				GetScale().x,
-				GetScale().y,
-				GetScale().z);
-			D3DXMatrixRotationYawPitchRoll(&rot,
-				GetRotation().x,
-				GetRotation().y,
-				GetRotation().z);
-			D3DXMatrixTranslation(&trans,
-				GetPosition().x,
-				GetPosition().y,
-				GetPosition().z);
-			world = scale * rot * trans;
-			Renderer::SetWorldMatrix(&world);
+			//ポリゴン描画
+			Renderer::GetDeviceContext()->Draw(4, 0);
+		}
+		
+		// Y軸ブラー描画
+		{
+			// シェーダー
+			_blurYVertexShader->Draw();
+			_blurPixelShader->Draw();			
 
 
 			Renderer::BeginBlurY();
@@ -197,31 +178,50 @@ void RenderingTexture::Draw()
 			//ポリゴン描画
 			Renderer::GetDeviceContext()->Draw(4, 0);
 
+		}
+	
+
+		{
+			_copyVertexShader->Draw();
+			_copyPixelShader->Draw();
+
+			Renderer::BeginCopyDraw();
+
+			viewport.Width = (FLOAT)SCREEN_WIDTH;
+			viewport.Height = (FLOAT)SCREEN_HEIGHT;
+
+			Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
+
+			// ここでブラーの有無切り替えできる。
+			if (MyImgui::_myFlag[_typeName])
+			{
+				// ブラー処理後のテクスチャ
+				Renderer::SetBlurYTexture();
+			}
+			else
+			{
+				// 無加工のテクスチャ
+				Renderer::SetRenderTexture(false);
+			}
+
+			//プリミティブトポロジ設定
+			Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+			//ポリゴン描画
+			Renderer::GetDeviceContext()->Draw(4, 0);
+
 			Renderer::SetRenderTexture(true);
 
 			// ブレンドモードを通常に直す
 			Renderer::SetDefaultBlend();
 		}
 		return;
-		break;
-	case LAYER_COPY:
-		Renderer::BeginCopyDraw();
-		// ここでブラーの有無切り替えできる。
-		if (MyImgui::_myFlag[_typeName])
-		{
-			// ブラー処理後のテクスチャ
-			Renderer::SetBlurYTexture();		
-		}
-		else
-		{
-			// 無加工のテクスチャ
-			Renderer::SetRenderTexture(false);		
-		} 				
-		break;
+	
 	case LAYER_TO_RENDERING_TEXTURE:
 		Renderer::Begin();
 		break;
 	case LAYER_RENDERING_TEXTURE:
+		// コピーしたテクスチャを全部合成して貼り付けるのはここ
 		Renderer::SetCopyTexture();		
 		break;
 	case LAYER_BLOOM:
