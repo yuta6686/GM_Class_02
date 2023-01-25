@@ -185,7 +185,7 @@ void RenderingTexture::Draw()
 			_copyVertexShader->Draw();
 			_copyPixelShader->Draw();
 
-			Renderer::BeginCopyDraw();
+			Renderer::BeginCopyDraw(0);
 
 			viewport.Width = (FLOAT)SCREEN_WIDTH;
 			viewport.Height = (FLOAT)SCREEN_HEIGHT;
@@ -222,7 +222,7 @@ void RenderingTexture::Draw()
 		break;
 	case LAYER_RENDERING_TEXTURE:
 		// コピーしたテクスチャを全部合成して貼り付けるのはここ
-		Renderer::SetCopyTexture();		
+		Renderer::SetCopyTexture(0,0);		
 		break;
 	case LAYER_BLOOM:
 		// ブラー処理後のテクスチャ

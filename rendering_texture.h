@@ -9,6 +9,8 @@ public:
     inline static const float BLUR_X_SCREEN = SCREEN_WIDTH / 2.0f;
     inline static const float BLUR_Y_SCREEN = SCREEN_HEIGHT / 2.0f;
 
+    inline static const UINT BLUR_NUM = 4;
+
     std::shared_ptr <VertexShader>  _blurXVertexShader;
     std::shared_ptr <VertexShader>  _blurYVertexShader;
     std::shared_ptr <VertexShader>  _copyVertexShader;

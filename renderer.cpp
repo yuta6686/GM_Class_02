@@ -134,9 +134,12 @@ void Renderer::Init()
 	if (hr) {
 		assert(_pRenderingTextureSRV);
 	}
-	hr = _device->CreateShaderResourceView(_pTextureDraw.Get(), &srvDesc, _drawCopySRV.GetAddressOf());
-	if (hr) {
-		assert(_drawCopyRTV);
+	_drawCopySRV.resize(RenderingTexture::BLUR_NUM);
+	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++) {
+		hr = _device->CreateShaderResourceView(_pTextureDraw.Get(), &srvDesc, _drawCopySRV[i].GetAddressOf());
+		if (hr) {
+			assert(_drawCopyRTV[i]);
+		}
 	}
 
 	// https://yuta6686.atlassian.net/browse/AS-41 bloom —p SRV
@@ -165,7 +168,11 @@ void Renderer::Init()
 	_device->CreateRenderTargetView(_pTexture.Get(), NULL, _pRenderingTextureRTV.GetAddressOf());
 	assert(_pRenderingTextureRTV);
 
-	_device->CreateRenderTargetView(_pTextureDraw.Get(), NULL, _drawCopyRTV.GetAddressOf());
+	_drawCopyRTV.resize(RenderingTexture::BLUR_NUM);
+	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++) 
+	{
+		_device->CreateRenderTargetView(_pTextureDraw.Get(), NULL, _drawCopyRTV[i].GetAddressOf());
+	}
 
 	// https://yuta6686.atlassian.net/browse/AS-41 bloom —p RTV
 	_device->CreateRenderTargetView(_pTextureBloom.Get(), NULL, _luminanceRTV.GetAddressOf());
@@ -544,11 +551,11 @@ void Renderer::BeginBlurY()
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
-void Renderer::BeginCopyDraw()
+void Renderer::BeginCopyDraw(const UINT& index)
 {
-	_deviceContext->OMSetRenderTargets(1, _drawCopyRTV.GetAddressOf(), m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, _drawCopyRTV[index].GetAddressOf(), m_DepthStencilView);
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-	_deviceContext->ClearRenderTargetView(_drawCopyRTV.Get(), clearColor);
+	_deviceContext->ClearRenderTargetView(_drawCopyRTV[index].Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
@@ -641,7 +648,15 @@ void Renderer::SetBlurYTexture()
 
 void Renderer::SetCopyTexture()
 {
-	_deviceContext->PSSetShaderResources(0, 1, _drawCopySRV.GetAddressOf());
+	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++)
+	{
+		_deviceContext->PSSetShaderResources(i, 1, _drawCopySRV[i].GetAddressOf());
+	}
+}
+
+void Renderer::SetCopyTexture(UINT index, UINT slot)
+{
+	_deviceContext->PSSetShaderResources(slot, 1, _drawCopySRV[index].GetAddressOf());
 }
 
 void Renderer::SetAlphaToCoverage()

@@ -90,14 +90,18 @@ private:
 	inline static D11RenderTargetView _luminanceRTV = nullptr; // https://yuta6686.atlassian.net/browse/AS-41
 	inline static D11RenderTargetView _blurXRTV = nullptr;
 	inline static D11RenderTargetView _blurYRTV = nullptr;
-	inline static D11RenderTargetView _drawCopyRTV = nullptr;
+
+	// https://yuta6686.atlassian.net/browse/AS-45 後で配列にする
+	inline static std::vector<D11RenderTargetView> _drawCopyRTV = { nullptr,nullptr,nullptr,nullptr };
 
 	// オフスク用 SRV
 	inline static ShaderResourceView _pRenderingTextureSRV = nullptr;
 	inline static ShaderResourceView _luminanceSRV = nullptr;
 	inline static ShaderResourceView _blurXSRV = nullptr;
 	inline static ShaderResourceView _blurYSRV = nullptr;
-	inline static ShaderResourceView _drawCopySRV = nullptr;
+
+	// https://yuta6686.atlassian.net/browse/AS-45 後で配列にする
+	inline static std::vector<ShaderResourceView> _drawCopySRV = { nullptr,nullptr,nullptr,nullptr };
 
 
 	static BlendState m_BlendState;
@@ -139,7 +143,9 @@ public:
 	static void BeginLuminance();
 	static void BeginBlurX();
 	static void BeginBlurY();
-	static void BeginCopyDraw();
+
+	// // https://yuta6686.atlassian.net/browse/AS-45 インデックス対応する
+	static void BeginCopyDraw(const UINT& index);
 	static void EndDef();
 
 	static void SetDefaultConstantBuffer();
@@ -170,7 +176,10 @@ public:
 	static void SetLuminanceTexture();
 	static void SetBlurXTexture();
 	static void SetBlurYTexture();
+
+	// 全部のテクスチャを対応
 	static void SetCopyTexture();
+	static void SetCopyTexture(UINT index,UINT slot); // AS-45 後で作る
 
 	static ID3D11Device* GetDevice( void ){ return _device; }
 	static ID3D11DeviceContext* GetDeviceContext( void ){ return _deviceContext; }
