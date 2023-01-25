@@ -136,84 +136,98 @@ void RenderingTexture::Draw()
 		break;
 	case LAYER_BLUR:
 		// ここをループ処理できるようにする
+		for (UINT i = 0; i < BLUR_NUM; i++) {
 
-		// X軸ブラー描画
-		{
-			// まずシェーダー
-			_blurXVertexShader->Draw();
-			_blurPixelShader->Draw();
-
-			Renderer::BeginBlurX();
-			viewport.Width = RenderingTexture::BLUR_X_SCREEN;
-			Renderer::SetLuminanceTexture();
-
-			Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
-
-
-			//プリミティブトポロジ設定
-			Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-			//ポリゴン描画
-			Renderer::GetDeviceContext()->Draw(4, 0);
-		}
-		
-		// Y軸ブラー描画
-		{
-			// シェーダー
-			_blurYVertexShader->Draw();
-			_blurPixelShader->Draw();			
-
-
-			Renderer::BeginBlurY();
-			viewport.Width = RenderingTexture::BLUR_X_SCREEN;
-			viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
-			Renderer::SetBlurXTexture();
-
-			Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
-
-
-			//プリミティブトポロジ設定
-			Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-			//ポリゴン描画
-			Renderer::GetDeviceContext()->Draw(4, 0);
-
-		}
-	
-
-		{
-			_copyVertexShader->Draw();
-			_copyPixelShader->Draw();
-
-			Renderer::BeginCopyDraw(0);
-
-			viewport.Width = (FLOAT)SCREEN_WIDTH;
-			viewport.Height = (FLOAT)SCREEN_HEIGHT;
-
-			Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
-
-			// ここでブラーの有無切り替えできる。
-			if (MyImgui::_myFlag[_typeName])
+			// X軸ブラー描画
 			{
-				// ブラー処理後のテクスチャ
-				Renderer::SetBlurYTexture();
-			}
-			else
-			{
-				// 無加工のテクスチャ
-				Renderer::SetRenderTexture(false);
+				// まずシェーダー
+				_blurXVertexShader->Draw();
+				_blurPixelShader->Draw();
+
+				Renderer::BeginBlurX();
+				viewport.Width = RenderingTexture::BLUR_X_SCREEN;
+
+				// これをループで分岐する
+				// 0回目はLuminance
+				// 1回目以降はcopyの0から2だからi - 1
+				switch (i)
+				{
+				case 0:
+					Renderer::SetLuminanceTexture();
+					break;
+				default:
+					Renderer::SetCopyTexture(i - 1, 0);
+					break;
+				}
+
+				Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
+
+
+				//プリミティブトポロジ設定
+				Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+				//ポリゴン描画
+				Renderer::GetDeviceContext()->Draw(4, 0);
 			}
 
-			//プリミティブトポロジ設定
-			Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+			// Y軸ブラー描画
+			{
+				// シェーダー
+				_blurYVertexShader->Draw();
+				_blurPixelShader->Draw();
 
-			//ポリゴン描画
-			Renderer::GetDeviceContext()->Draw(4, 0);
 
-			Renderer::SetRenderTexture(true);
+				Renderer::BeginBlurY();
+				viewport.Width = RenderingTexture::BLUR_X_SCREEN;
+				viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
+				Renderer::SetBlurXTexture();
 
-			// ブレンドモードを通常に直す
-			Renderer::SetDefaultBlend();
+				Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
+
+
+				//プリミティブトポロジ設定
+				Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+				//ポリゴン描画
+				Renderer::GetDeviceContext()->Draw(4, 0);
+
+			}
+
+			// コピー描画
+			{
+				_copyVertexShader->Draw();
+				_copyPixelShader->Draw();
+
+				Renderer::BeginCopyDraw(i);
+
+				viewport.Width = (FLOAT)SCREEN_WIDTH;
+				viewport.Height = (FLOAT)SCREEN_HEIGHT;
+
+				Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
+
+				// ここでブラーの有無切り替えできる。
+				if (MyImgui::_myFlag[_typeName])
+				{
+					// ブラー処理後のテクスチャ
+					Renderer::SetBlurYTexture();
+				}
+				else
+				{
+					// 無加工のテクスチャ
+					Renderer::SetRenderTexture(false);
+				}
+
+				//プリミティブトポロジ設定
+				Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+				//ポリゴン描画
+				Renderer::GetDeviceContext()->Draw(4, 0);
+
+				Renderer::SetRenderTexture(true);
+
+				// ブレンドモードを通常に直す
+				Renderer::SetDefaultBlend();
+			}
 		}
 		return;
 	
@@ -222,11 +236,11 @@ void RenderingTexture::Draw()
 		break;
 	case LAYER_RENDERING_TEXTURE:
 		// コピーしたテクスチャを全部合成して貼り付けるのはここ
-		Renderer::SetCopyTexture(0,0);		
+		Renderer::SetCopyTexture(0, _blurNum);
 		break;
 	case LAYER_BLOOM:
 		// ブラー処理後のテクスチャ
-		Renderer::SetBlurYTexture();
+		//Renderer::SetBlurYTexture();
 		
 		// 加算合成に変更する
 		//Renderer::SetAddBlend();
@@ -260,6 +274,7 @@ void RenderingTexture::DrawImgui()
 
 		ImGui::SliderFloat("Blur Strength", &_strength, 0.1f, 100.0f);
 
+		ImGui::SliderInt("Blur NUm", &_blurNum, 0, 3);
 
 		Renderer::SetBlur(_strength);
 	}

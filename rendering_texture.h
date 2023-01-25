@@ -5,6 +5,7 @@ class RenderingTexture :
     public ComponentObject
 {
 private:
+    int _blurNum = 0;
 public:
     inline static const float BLUR_X_SCREEN = SCREEN_WIDTH / 2.0f;
     inline static const float BLUR_Y_SCREEN = SCREEN_HEIGHT / 2.0f;
