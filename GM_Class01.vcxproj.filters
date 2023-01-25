@@ -513,6 +513,12 @@
     <ClCompile Include="state_machine.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="co_stealth.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="shader_resource_view_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -1016,6 +1022,12 @@
     <ClInclude Include="state_machine.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="co_stealth.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_resource_view_component.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -1094,6 +1106,12 @@
       <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
     <FxCompile Include="ParticlePS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="StealthPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="StealthVS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

@@ -74,7 +74,7 @@ void Manager::Draw()
 	// m_Scene->Draw();	
 
 
-	
+	Renderer::EndImgui();
 
 	Renderer::End();
 }

@@ -13,6 +13,8 @@
 #include "co_ui_quest_belt.h"
 #include "switching_renderer.h"
 
+#include "co_stealth.h"
+
 // factory
 #include "ui_factory.h"
 #include "player_factory.h"
@@ -33,9 +35,11 @@ void DebugScene::Init()
 	//	メッシュフィールド
 	AddGameObject<CO_MeshField>(LAYER_3D);
 
-	 AddGameObject<CO_AnimationModelTest>(LAYER_3D);
+	 // AddGameObject<CO_AnimationModelTest>(LAYER_3D);
 
-	AddGameObject<Prism>(LAYER_3D);
+	 AddGameObject<co_stealth>(LAYER_3D);
+
+	// AddGameObject<Prism>(LAYER_3D);
 
 	
 

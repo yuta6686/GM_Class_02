@@ -66,6 +66,10 @@ public:
 	{
 		m_Scale = Scale;
 	}
+	void SetScale(float scale)
+	{
+		m_Scale = { scale,scale,scale };
+	}
 
 	D3DXVECTOR3 GetPosition()const { return m_Position; }
 	D3DXVECTOR3 GetRotation()const { return m_Rotation; }

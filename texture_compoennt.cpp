@@ -33,6 +33,7 @@ void TextureComponent::SetTextureAndSlot(const std::string& fileName, const int&
 	_texture->SetTextureNum(texSlot,flag);
 }
 
+
 std::string TextureComponent::GetFileName() const
 {
 	return _fileName;

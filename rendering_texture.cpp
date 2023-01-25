@@ -5,6 +5,18 @@
 
 void RenderingTexture::Init()
 {
+	_blurXVertexShader =
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
+	_blurYVertexShader =
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_BLURY]);
+	_copyVertexShader =
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
+
+	_blurPixelShader =
+		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
+	_copyPixelShader =
+		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
+
 	// 頂点データ初期化
 	m_vertex[0].Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vertex[0].Normal = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -116,21 +128,81 @@ void RenderingTexture::Draw()
 	{	
 	case LAYER_BEGIN:
 		Renderer::BeginOfScr();
-		break;
+		return;
+		
 	case LAYER_LUMINANCE:
 		Renderer::BeginLuminance();
 		Renderer::SetRenderTexture(false);
 		break;
-	case LAYER_BLUR_X:
+	case LAYER_BLUR:
+		_blurXVertexShader->Draw();
+		_blurPixelShader->Draw();
+
 		Renderer::BeginBlurX();
 		viewport.Width = RenderingTexture::BLUR_X_SCREEN;
 		Renderer::SetLuminanceTexture();
-		break;
-	case LAYER_BLUR_Y:
-		Renderer::BeginBlurY();
-		viewport.Width = RenderingTexture::BLUR_X_SCREEN;
-		viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
-		Renderer::SetBlurXTexture();
+
+		Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
+
+
+		//プリミティブトポロジ設定
+		Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+		//ポリゴン描画
+		Renderer::GetDeviceContext()->Draw(4, 0);
+
+		
+
+		{
+			_blurYVertexShader->Draw();
+			_blurPixelShader->Draw();
+
+			//頂点バッファ設定
+			UINT stride = sizeof(VERTEX_3D);
+			UINT offset = 0;
+			Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
+
+
+			Renderer::SetWorldViewProjection2D();
+
+			//ワールドマトリクス設定
+			D3DXMATRIX world, scale, rot, trans;
+			D3DXMatrixScaling(&scale,
+				GetScale().x,
+				GetScale().y,
+				GetScale().z);
+			D3DXMatrixRotationYawPitchRoll(&rot,
+				GetRotation().x,
+				GetRotation().y,
+				GetRotation().z);
+			D3DXMatrixTranslation(&trans,
+				GetPosition().x,
+				GetPosition().y,
+				GetPosition().z);
+			world = scale * rot * trans;
+			Renderer::SetWorldMatrix(&world);
+
+
+			Renderer::BeginBlurY();
+			viewport.Width = RenderingTexture::BLUR_X_SCREEN;
+			viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
+			Renderer::SetBlurXTexture();
+
+			Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
+
+
+			//プリミティブトポロジ設定
+			Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+			//ポリゴン描画
+			Renderer::GetDeviceContext()->Draw(4, 0);
+
+			Renderer::SetRenderTexture(true);
+
+			// ブレンドモードを通常に直す
+			Renderer::SetDefaultBlend();
+		}
+		return;
 		break;
 	case LAYER_COPY:
 		Renderer::BeginCopyDraw();
@@ -161,6 +233,7 @@ void RenderingTexture::Draw()
 
 		break;
 	default:
+		return;
 		break;
 	}
 	Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);

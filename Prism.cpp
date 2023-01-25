@@ -25,8 +25,8 @@ void Prism::Init()
 //テクスチャ読み込み
 
 
-	_baseTexture = ResourceManger<Texture>::GetResource("asset\\texture\\yellow\\js_diffuse.dds");
-	_normalTexture = ResourceManger<Texture>::GetResource("asset\\texture\\yellow\\js_normal.dds");
+	_baseTexture = ResourceManger<Texture>::GetResource("asset\\texture\\pixelNoiseColor.png");
+	_normalTexture = ResourceManger<Texture>::GetResource("asset\\texture\\normalmap.dds");
 	_envTexture = ResourceManger<Texture>::GetResource(_textureName);
 	
 // シェーダロード

@@ -497,10 +497,15 @@ void Renderer::Begin()
 
 void Renderer::End()
 {
-	ImGui::Render();
-	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	
 
 	_swapChain->Present(1, 0);
+}
+
+void Renderer::EndImgui()
+{
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
 
 void Renderer::BeginOfScr()
@@ -601,7 +606,7 @@ void Renderer::SetBlendState(BLEND_MODE bm)
 /// サンプラーとテクスチャ設定をする。
 /// Draw時、テクスチャに読み込んだSRVを設定するのと同じイメージ
 /// </summary>	
-void Renderer::SetRenderTexture(bool isdefault)
+void Renderer::SetRenderTexture(bool isdefault,UINT slot)
 {
 	if (isdefault) {
 		_deviceContext->PSSetSamplers(0, 1, _pDefaultSampler.GetAddressOf());
@@ -609,10 +614,11 @@ void Renderer::SetRenderTexture(bool isdefault)
 	else
 	{
 		_deviceContext->PSSetSamplers(0, 1, _pRenderTextureSampler.GetAddressOf());
-		_deviceContext->VSSetShaderResources(0, 1, _pRenderingTextureSRV.GetAddressOf());
-		_deviceContext->PSSetShaderResources(0, 1, _pRenderingTextureSRV.GetAddressOf());
+		_deviceContext->VSSetShaderResources(slot, 1, _pRenderingTextureSRV.GetAddressOf());
+		_deviceContext->PSSetShaderResources(slot, 1, _pRenderingTextureSRV.GetAddressOf());
 	}
 }
+
 
 // https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用
 void Renderer::SetLuminanceTexture()
@@ -825,6 +831,11 @@ void Renderer::CreatePixelShader(ID3D11PixelShader** PixelShader, const char* Fi
 	_device->CreatePixelShader(buffer, fsize, NULL, PixelShader);
 
 	delete[] buffer;
+}
+
+ShaderResourceView Renderer::GetRenderingTexture()
+{
+	return _pRenderingTextureSRV;
 }
 
 

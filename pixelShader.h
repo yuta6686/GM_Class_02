@@ -30,6 +30,7 @@ private:
 		{SHADER_TYPE::SHADER_ENVIRONMENT_MAPPING_SELECT,"env_mapping_select_ps.cso"},
 		{SHADER_TYPE::SHADER_LUMINANCE,"luminance_ps.cso"},
 		{SHADER_TYPE::SHADER_PARTICLE,"ParticlePS.cso"},
+		{SHADER_TYPE::SHADER_STEALTH,"StealthPS.cso"},
 	};
 };
 

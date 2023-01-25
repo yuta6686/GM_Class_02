@@ -130,6 +130,7 @@ public:
 	static void Uninit();
 	static void Begin();
 	static void End();
+	static void EndImgui();
 
 	/// summary BeginOfScr()
 	/// オフスクリーンレンダリング用のBegin関数
@@ -164,7 +165,8 @@ public:
 	
 	/// サンプラーとテクスチャ設定をする。
 	/// Draw時、テクスチャに読み込んだSRVを設定するのと同じイメージ	
-	static void SetRenderTexture(bool isdefault);
+	static void SetRenderTexture(bool isdefault,UINT slot = 0);
+	
 	static void SetLuminanceTexture();
 	static void SetBlurXTexture();
 	static void SetBlurYTexture();
@@ -185,4 +187,6 @@ public:
 
 
 	static void CalcWeightsTableFromGaussian(float* weightsTbl, int sizeOfWeightsTbl, float sigma);
+
+	static ShaderResourceView GetRenderingTexture();
 };

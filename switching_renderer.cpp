@@ -24,12 +24,7 @@ void SwitchingRenderer::Draw()
 	case LAYER_LUMINANCE:
 		
 		break;
-	case LAYER_BLUR_X:
-		
-		break;
-	case LAYER_BLUR_Y:
-		
-		break;
+
 	case LAYER_COPY:
 		
 		break;
@@ -41,7 +36,7 @@ void SwitchingRenderer::Draw()
 
 void SwitchinRendererFactory::Create()
 {
-	_scene->AddGameObject<SwitchingRenderer>(LAYER_BEGIN)
+	_scene->AddGameObject<RenderingTexture>(LAYER_BEGIN)
 		->SetLayerNum(LAYER_BEGIN);
 	
 
@@ -52,11 +47,11 @@ void SwitchinRendererFactory::Create()
 	_scene->AddGameObject<RenderingTexture>(LAYER_LUMINANCE)
 		->SetLayerNum(LAYER_LUMINANCE);
 
-	_scene->AddGameObject<RenderingTexture>(LAYER_BLUR_X)
-		->SetLayerNum(LAYER_BLUR_X);
+	_scene->AddGameObject<RenderingTexture>(LAYER_BLUR)
+		->SetLayerNum(LAYER_BLUR);
 
-	_scene->AddGameObject<RenderingTexture>(LAYER_BLUR_Y)
-		->SetLayerNum(LAYER_BLUR_Y);
+	/*_scene->AddGameObject<RenderingTexture>(LAYER_BLUR_Y)
+		->SetLayerNum(LAYER_BLUR_Y);*/
 
 	_scene->AddGameObject<RenderingTexture>(LAYER_RENDERING_TEXTURE)
 		->SetLayerNum(LAYER_RENDERING_TEXTURE);
