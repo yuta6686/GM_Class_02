@@ -8,6 +8,7 @@ void PixelShader::Draw()
 void PixelShader::Load(const char* FileName)
 {
 	Renderer::CreatePixelShader(&m_PixelShader, FileName);
+	assert(m_PixelShader);
 }
 
 void PixelShader::Unload()

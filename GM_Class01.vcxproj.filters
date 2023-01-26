@@ -1114,6 +1114,9 @@
     <FxCompile Include="StealthVS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
+    <FxCompile Include="PSBloomFinal.hlsl">
+      <Filter>Shader\rendering_texture</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="imgui\misc\debuggers\imgui.natvis">

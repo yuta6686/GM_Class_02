@@ -52,21 +52,17 @@ public:
             // TODO // https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用シェーダー追加する
             AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_LUMINANCE);
             break;
-        //case LAYER_BLUR_X:
-        //    //m_mainPos.x = SCREEN_WIDTH / 2.0f;
-        //    AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_BLURX);
-        //    break;
-        //case LAYER_BLUR_Y:
-        //    //m_mainPos.y = SCREEN_HEIGHT / 2.0f;
-        //    AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_BLURY);
-        //    break;
         case LAYER_RENDERING_TEXTURE:
             m_mainPos = _screenHalf;
             AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_RENDERING_TEXTURE);
             break;
+      /*  case LAYER_BLOOM:
+            m_mainPos = _screenHalf;
+            AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_BLOOM);
+            break;*/
         default:
             m_mainPos = _screenHalf;
-            AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_RENDERING_TEXTURE);
+            AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_UNLIT);
             break;
         }
 

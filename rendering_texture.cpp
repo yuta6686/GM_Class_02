@@ -63,6 +63,7 @@ void RenderingTexture::Init()
 		AddComponent<ImGuiComponent>(COMLAYER_FIRST)->SetIsUse(true);	
 	}
 
+	MyImgui::_myFlag["RenderingTexture"] = true;
 
 //---------------------------------
 	ComponentObject::Init();
@@ -140,11 +141,12 @@ void RenderingTexture::Draw()
 
 			// X軸ブラー描画
 			{
+				Renderer::BeginBlurX();
+
 				// まずシェーダー
 				_blurXVertexShader->Draw();
 				_blurPixelShader->Draw();
 
-				Renderer::BeginBlurX();
 				viewport.Width = RenderingTexture::BLUR_X_SCREEN;
 
 				// これをループで分岐する
@@ -168,17 +170,24 @@ void RenderingTexture::Draw()
 
 				//ポリゴン描画
 				Renderer::GetDeviceContext()->Draw(4, 0);
+//#define END
+#ifdef END
+				Renderer::End();
+#endif // END
+
+
 			}
 
 			// Y軸ブラー描画
 			{
+				Renderer::BeginBlurY();
+
 				// シェーダー
 				_blurYVertexShader->Draw();
 				_blurPixelShader->Draw();
 
 
-				Renderer::BeginBlurY();
-				viewport.Width = RenderingTexture::BLUR_X_SCREEN;
+				viewport.Width = RenderingTexture::BLUR_X_SCREEN ;
 				viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
 				Renderer::SetBlurXTexture();
 
@@ -191,31 +200,28 @@ void RenderingTexture::Draw()
 				//ポリゴン描画
 				Renderer::GetDeviceContext()->Draw(4, 0);
 
+#ifdef END
+				Renderer::End();
+#endif // END
 			}
 
 			// コピー描画
 			{
+				Renderer::BeginCopyDraw(i);
+
 				_copyVertexShader->Draw();
 				_copyPixelShader->Draw();
 
-				Renderer::BeginCopyDraw(i);
 
 				viewport.Width = (FLOAT)SCREEN_WIDTH;
 				viewport.Height = (FLOAT)SCREEN_HEIGHT;
 
 				Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
 
-				// ここでブラーの有無切り替えできる。
-				if (MyImgui::_myFlag[_typeName])
-				{
-					// ブラー処理後のテクスチャ
-					Renderer::SetBlurYTexture();
-				}
-				else
-				{
-					// 無加工のテクスチャ
-					Renderer::SetRenderTexture(false);
-				}
+				// ブラー処理後のテクスチャ
+				Renderer::SetBlurYTexture();
+				
+
 
 				//プリミティブトポロジ設定
 				Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
@@ -227,24 +233,26 @@ void RenderingTexture::Draw()
 
 				// ブレンドモードを通常に直す
 				Renderer::SetDefaultBlend();
+#ifdef END
+				Renderer::End();
+#endif // END
 			}
 		}
 		return;
 	
 	case LAYER_TO_RENDERING_TEXTURE:
 		Renderer::Begin();
-		break;
+		return;
+		
 	case LAYER_RENDERING_TEXTURE:
 		// コピーしたテクスチャを全部合成して貼り付けるのはここ
-		Renderer::SetCopyTexture(0, _blurNum);
+		Renderer::SetRenderTexture(false);
 		break;
 	case LAYER_BLOOM:
-		// ブラー処理後のテクスチャ
-		//Renderer::SetBlurYTexture();
+		Renderer::SetCopyTexture();		
 		
 		// 加算合成に変更する
-		//Renderer::SetAddBlend();
-
+		Renderer::SetAddBlend();		
 		break;
 	default:
 		return;

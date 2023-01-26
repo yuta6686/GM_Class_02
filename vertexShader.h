@@ -33,6 +33,7 @@ private:
         {SHADER_TYPE::SHADER_LUMINANCE,"env_mapping_vs.cso"},
         {SHADER_TYPE::SHADER_PARTICLE,"unlitTextureVS.cso"},
         {SHADER_TYPE::SHADER_STEALTH,"StealthVS.cso"},
+        {SHADER_TYPE::SHADER_BLOOM,"unlitTextureVS.cso"},
 
     };    
     

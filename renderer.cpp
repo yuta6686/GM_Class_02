@@ -98,8 +98,13 @@ void Renderer::Init()
 
 	_device->CreateTexture2D(&rtDesc, 0, &_pTexture);
 	assert(_pTexture);
-	_device->CreateTexture2D(&rtDesc, 0, &_pTextureDraw);
-	assert(_pTextureDraw);
+
+	_pTextureDraw.resize(RenderingTexture::BLUR_NUM);
+	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++) 
+	{
+		_device->CreateTexture2D(&rtDesc, 0, &_pTextureDraw[i]);
+		assert(_pTextureDraw[i]);
+	}
 
 	// https://yuta6686.atlassian.net/browse/AS-41 bloom用Texture
 	_device->CreateTexture2D(&rtDesc, 0, _pTextureBloom.GetAddressOf());
@@ -109,10 +114,10 @@ void Renderer::Init()
 
 	// ダウンサンプリング用
 	rtDesc.Width = static_cast<UINT>(RenderingTexture::BLUR_X_SCREEN);
-	_device->CreateTexture2D(&rtDesc, 0, &_pTextureX);
+	_device->CreateTexture2D(&rtDesc, 0, _pTextureX.GetAddressOf());
 
 	rtDesc.Height = static_cast<UINT>(RenderingTexture::BLUR_Y_SCREEN);
-	_device->CreateTexture2D(&rtDesc, 0, &_pTextureY);
+	_device->CreateTexture2D(&rtDesc, 0, _pTextureY.GetAddressOf());
 
 	//	SRV設定 オフスク用
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
@@ -136,7 +141,7 @@ void Renderer::Init()
 	}
 	_drawCopySRV.resize(RenderingTexture::BLUR_NUM);
 	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++) {
-		hr = _device->CreateShaderResourceView(_pTextureDraw.Get(), &srvDesc, _drawCopySRV[i].GetAddressOf());
+		hr = _device->CreateShaderResourceView(_pTextureDraw[i].Get(), &srvDesc, _drawCopySRV[i].GetAddressOf());
 		if (hr) {
 			assert(_drawCopyRTV[i]);
 		}
@@ -171,7 +176,7 @@ void Renderer::Init()
 	_drawCopyRTV.resize(RenderingTexture::BLUR_NUM);
 	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++) 
 	{
-		_device->CreateRenderTargetView(_pTextureDraw.Get(), NULL, _drawCopyRTV[i].GetAddressOf());
+		_device->CreateRenderTargetView(_pTextureDraw[i].Get(), NULL, _drawCopyRTV[i].GetAddressOf());
 	}
 
 	// https://yuta6686.atlassian.net/browse/AS-41 bloom 用 RTV
@@ -651,12 +656,15 @@ void Renderer::SetCopyTexture()
 	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++)
 	{
 		_deviceContext->PSSetShaderResources(i, 1, _drawCopySRV[i].GetAddressOf());
+		_deviceContext->VSSetShaderResources(i, 1, _drawCopySRV[i].GetAddressOf());
 	}
 }
 
 void Renderer::SetCopyTexture(UINT index, UINT slot)
 {
 	_deviceContext->PSSetShaderResources(slot, 1, _drawCopySRV[index].GetAddressOf());
+	_deviceContext->VSSetShaderResources(slot, 1, _drawCopySRV[index].GetAddressOf());
+
 }
 
 void Renderer::SetAlphaToCoverage()

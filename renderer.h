@@ -74,7 +74,7 @@ private:
 	inline static Texture2D _pTextureBloom;
 	inline static Texture2D _pTextureX;
 	inline static Texture2D _pTextureY;
-	inline static Texture2D _pTextureDraw;
+	inline static std::vector<Texture2D> _pTextureDraw = { nullptr,nullptr,nullptr,nullptr };
 
 	// ƒTƒ“ƒvƒ‰[
 	inline static ComPtr<ID3D11SamplerState> _pDefaultSampler;
