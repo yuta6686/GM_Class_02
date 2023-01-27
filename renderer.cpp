@@ -143,7 +143,7 @@ void Renderer::Init()
 	for (UINT i = 0; i < RenderingTexture::BLUR_NUM; i++) {
 		hr = _device->CreateShaderResourceView(_pTextureDraw[i].Get(), &srvDesc, _drawCopySRV[i].GetAddressOf());
 		if (hr) {
-			assert(_drawCopyRTV[i]);
+			assert(_drawCopySRV[i]);
 		}
 	}
 

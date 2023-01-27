@@ -21,6 +21,9 @@ public:
     VERTEX_3D m_vertex[4];
     ID3D11Buffer* m_VertexBuffer = NULL;
 
+    VERTEX_3D _vertex[4];
+    ID3D11Buffer* _vertexBuffer = NULL;
+
     inline static const D3DXVECTOR3 _screenHalf =
     { SCREEN_WIDTH ,SCREEN_HEIGHT,0.0f };
 
@@ -56,10 +59,10 @@ public:
             m_mainPos = _screenHalf;
             AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_RENDERING_TEXTURE);
             break;
-      /*  case LAYER_BLOOM:
+        case LAYER_BLOOM:
             m_mainPos = _screenHalf;
             AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_BLOOM);
-            break;*/
+            break;
         default:
             m_mainPos = _screenHalf;
             AddComponent<ShaderComponent>(COMLAYER_SHADER)->SetShaderType(SHADER_UNLIT);
@@ -68,5 +71,6 @@ public:
 
         Init();
     }
+    
 };
 
