@@ -42,7 +42,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
 		
 
     outDiffuse.rgb *=
-		In.Diffuse.rgb * 0.5f; //–¾‚é‚³‚ÆF‚ğæZ
+		In.Diffuse.rgb * 0.75f; //–¾‚é‚³‚ÆF‚ğæZ
     outDiffuse.a *=
 		In.Diffuse.a; //ƒ¿•ÊŒvZ
 }

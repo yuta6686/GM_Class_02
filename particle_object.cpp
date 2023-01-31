@@ -329,8 +329,8 @@ void ParticleObject::SetParticle_ToriiBloken_Rising()
 {
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
-	par.m_ColorOverLifeTime_Start = { 3.0f,3.0f,3.0f,0.7f };
-	par.m_ColorOverLifeTime_End = { 1.0f,1.0f,1.0f,0.5f };
+	par.m_ColorOverLifeTime_Start = { 10.0f,10.0f,10.0f,0.7f };
+	par.m_ColorOverLifeTime_End = { 2.0f,2.0f,2.0f,0.5f };
 	par.col = par.m_ColorOverLifeTime_Start;
 	par.life = 180;	
 	par.pos = MyMath::XZRandom(-50.0f, 50.0f);
@@ -354,7 +354,7 @@ void ParticleObject::SetParticle_Title()
 {
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
-	par.m_ColorOverLifeTime_Start = { 1.0f,0.3f,0.3f,MyMath::Random(0.0f,1.0f) };
+	par.m_ColorOverLifeTime_Start = { 3.0f,0.3f,0.3f,MyMath::Random(0.0f,1.0f) };
 	par.m_ColorOverLifeTime_End = { 0.0f,1.0f,1.0f,0.5f };
 	par.col = par.m_ColorOverLifeTime_Start;
 	par.life = 240;
