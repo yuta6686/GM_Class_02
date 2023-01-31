@@ -115,9 +115,9 @@ void Light::DrawImgui()
             ImGui::TreePop();
         }
         if (ImGui::TreeNode("Color")) {
-            ImGui::SliderFloat("Color.r", &m_Light.dirColor.x, 0.0f, 1.0f);
-            ImGui::SliderFloat("Color.g", &m_Light.dirColor.y, 0.0f, 1.0f);
-            ImGui::SliderFloat("Color.b", &m_Light.dirColor.z, 0.0f, 1.0f);
+            ImGui::SliderFloat("Color.r", &m_Light.dirColor.x, 0.0f, 20.0f);
+            ImGui::SliderFloat("Color.g", &m_Light.dirColor.y, 0.0f, 20.0f);
+            ImGui::SliderFloat("Color.b", &m_Light.dirColor.z, 0.0f, 20.0f);
             ImGui::TreePop();
         }
 

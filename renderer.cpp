@@ -356,9 +356,9 @@ void Renderer::Init()
 	// フィルタリング
 	samplerDesc.Filter = D3D11_FILTER_ANISOTROPIC;
 	samplerDesc.MaxAnisotropy = 4;	
-	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;// アドレッシングモード
-	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;// アドレッシングモード
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
 
 	// ミップマップ設定
 	samplerDesc.MipLODBias = 0;
@@ -524,7 +524,7 @@ void Renderer::BeginOfScr()
 {
 	_deviceContext->OMSetRenderTargets(1, _pRenderingTextureRTV.GetAddressOf(), m_DepthStencilView);
 
-	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
@@ -535,7 +535,7 @@ void Renderer::BeginOfScr()
 void Renderer::BeginLuminance()
 {
 	_deviceContext->OMSetRenderTargets(1, _luminanceRTV.GetAddressOf(), m_DepthStencilView);
-	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(_luminanceRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
@@ -543,7 +543,7 @@ void Renderer::BeginLuminance()
 void Renderer::BeginBlurX()
 {
 	_deviceContext->OMSetRenderTargets(1, _blurXRTV.GetAddressOf(), m_DepthStencilView);
-	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(_blurXRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
@@ -551,7 +551,7 @@ void Renderer::BeginBlurX()
 void Renderer::BeginBlurY()
 {
 	_deviceContext->OMSetRenderTargets(1, _blurYRTV.GetAddressOf(), m_DepthStencilView);
-	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(_blurYRTV.Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
@@ -559,7 +559,7 @@ void Renderer::BeginBlurY()
 void Renderer::BeginCopyDraw(const UINT& index)
 {
 	_deviceContext->OMSetRenderTargets(1, _drawCopyRTV[index].GetAddressOf(), m_DepthStencilView);
-	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(_drawCopyRTV[index].Get(), clearColor);
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
