@@ -44,6 +44,7 @@
     <ClCompile Include="co_select.cpp" />
     <ClCompile Include="CO_Stand.cpp" />
     <ClCompile Include="co_stealth.cpp" />
+    <ClCompile Include="co_title_ui.cpp" />
     <ClCompile Include="shader_resource_view_component.cpp" />
     <ClCompile Include="state_machine.cpp" />
     <ClCompile Include="co_ui_aimling.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="co_noise_circle.h" />
     <ClInclude Include="co_prism.h" />
     <ClInclude Include="co_stealth.h" />
+    <ClInclude Include="co_title_ui.h" />
     <ClInclude Include="shader_resource_view_component.h" />
     <ClInclude Include="state_machine.h" />
     <ClInclude Include="extend_fanction.h" />

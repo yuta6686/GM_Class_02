@@ -33,6 +33,7 @@
 #include "prism_factory.h"
 #include "co_noise_circle.h"
 #include "state_machine.h"
+#include "co_title_ui.h"
 
 void TitleScene::Init()
 {
@@ -98,6 +99,9 @@ void TitleScene::Init()
 
 	auto* title_object = AddGameObject< CO_TitleObject>(LAYER_3D);
 	title_object->SetPosition({ 0.0f,15.0f,30.0f });
+
+	AddGameObject<CO_TitleUI>(LAYER_2D);
+
 
 	/*AddGameObject<PrismFactory>(LAYER_3D);*/
 

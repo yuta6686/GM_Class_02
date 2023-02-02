@@ -25,4 +25,6 @@ public:
 
 	virtual void SetParameter(const int& axis,
 		const float& speed, const float& min, const float& max);
+
+	virtual void SetBlinkParameter(const BlinkParameter& param);
 };

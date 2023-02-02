@@ -77,7 +77,8 @@ public:
 		DrawImguiInternal();
 
 		for (int i = 0; i < COMLAYER_NUM_MAX; i++) {
-			for (auto com : m_ComponentList[i]) {
+			for (auto com : m_ComponentList[i]) 
+			{
 				com->DrawImgui();
 			}
 		}
