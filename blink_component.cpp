@@ -15,7 +15,7 @@ void BlinkComponent::Update()
 void BlinkComponent::DrawImgui()
 {
 	ImGui::SliderFloat("Speed", &_param._speed, 0.0f, 1.0f);
-	ImGui::SliderFloat("AlphaMin", &_param._min, -1.0f, 1.0f);
-	ImGui::SliderFloat("AlphaMax", &_param._max, -1.0f, 1.0f);
-	ImGui::SliderFloat("Alpha", &_param._blinkValue, _param._min, _param._max);
+	ImGui::SliderFloat("Min", &_param._min, -1.0f, 1.0f);
+	ImGui::SliderFloat("Max", &_param._max, -1.0f, 1.0f);
+	ImGui::SliderFloat("work", &_param._blinkValue, _param._min, _param._max);
 }
