@@ -32,7 +32,7 @@ void Light::Init()
 	
     Renderer::SetLight(m_Light, m_index);
     
-    AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(MyImgui::_myFlag["Light"]);
+    AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(true);
 
     ComponentObject::Init();
 }
@@ -106,7 +106,7 @@ void Light::Draw()
 
 void Light::DrawImgui()
 {
-    if (!MyImgui::_myFlag["Light"])return;
+    // if (!MyImgui::_myFlag["Light"])return;
     if (ImGui::CollapsingHeader("Light")) {
         if (ImGui::TreeNode("Direction")) {
             ImGui::SliderFloat("Direction.x", &m_Light.dirDirection.x, -1.0f, 1.0f);
