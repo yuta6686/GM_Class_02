@@ -66,9 +66,9 @@ public:
         }
 
         m_VertexShader =
-            ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+            ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_DEFAULT]);
         m_PixelShader =
-            ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+            ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_DEFAULT]);
       
         for (int i = 0; i < m_MaxIndex; i++) {
             FIELD_OBJECT fo;
