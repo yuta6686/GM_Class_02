@@ -355,7 +355,7 @@ void ParticleObject::SetParticle_Title()
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
 	par.m_ColorOverLifeTime_Start = { 3.0f,0.3f,0.3f,MyMath::Random(0.0f,1.0f) };
-	par.m_ColorOverLifeTime_End = { 0.0f,1.0f,1.0f,0.5f };
+	par.m_ColorOverLifeTime_End = { 0.0f,1.5f,1.5f,0.5f };
 	par.col = par.m_ColorOverLifeTime_Start;
 	par.life = 240;
 	par.pos = MyMath::XZRandom(-100.0f, 100.0f);

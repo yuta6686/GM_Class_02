@@ -71,8 +71,7 @@ private:
     float m_UpXPosition = SCREEN_WIDTH / 2.0f;
     float m_DownXPosition = SCREEN_HEIGHT / 2.0f;
 
-    bool m_IsChangeVertex = false;
-
+    bool m_IsChangeVertex = false;    
 public:
     virtual void Init()override;
 
@@ -124,6 +123,6 @@ public:
     void InitVertex();
     void ChangeVertex(VERTEX_3D* vertex);
 
-    void ChangeVertexDraw();
+    void ChangeVertexDraw();    
 };
 
