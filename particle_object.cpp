@@ -354,7 +354,7 @@ void ParticleObject::SetParticle_Title()
 {
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
-	par.m_ColorOverLifeTime_Start = { 3.0f,0.3f,0.3f,MyMath::Random(0.0f,1.0f) };
+	par.m_ColorOverLifeTime_Start = { 3.0f,MyMath::Random(0.0f,0.4f),MyMath::Random(0.0f,0.4f),MyMath::Random(0.0f,1.0f) };
 	par.m_ColorOverLifeTime_End = { 0.0f,1.5f,1.5f,0.5f };
 	par.col = par.m_ColorOverLifeTime_Start;
 	par.life = 240;
@@ -366,7 +366,7 @@ void ParticleObject::SetParticle_Title()
 	par.m_SizeOverLifeTime_End = 0.0f;
 	par.size = par.m_SizeOverLifeTime_Start;
 	par.status = 0;
-	par.type = PARTICLE_TYPE_SPHERE;
+	par.type = PARTICLE_TYPE_CUBE;
 	par.use = true;
 	par.use_torii = false;
 	par.vel = MyMath::XZRandom(-0.01f, 0.01f);
