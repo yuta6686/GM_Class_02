@@ -25,5 +25,7 @@ void main(in VS_IN In, out PS_IN Out)
     
     Out.tangent = normalize(mul(World, In.tangent));
     Out.biNormal = normalize(mul(World, In.biNormal));
-
+    Out.depthInView = In.Position.z;
+    
+    
 }

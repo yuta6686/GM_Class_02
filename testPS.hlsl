@@ -28,7 +28,7 @@ float perlinNoise(float2 st)
 
 }
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target,out float depth : SV_Target1)
 {
     float4 diffuse = g_Texture.Sample(g_SamplerState, In.TexCoord);
     
@@ -39,4 +39,5 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     uv.y += pad2;
     float c = (perlinNoise(uv) + perlinNoise(uv) * 0.125f);
     outDiffuse = float4(c, c, c, c) * diffuse;
+    depth = In.depthInView;
 }

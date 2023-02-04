@@ -6,8 +6,9 @@ Texture2D g_RenderingTexture : register(t2);
 
 SamplerState g_SamplerState : register(s0);
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float depth : SV_Target1)
 {
     outDiffuse = g_RenderingTexture.Sample(g_SamplerState, In.TexCoord);
     outDiffuse *= In.Diffuse;     
+    depth = In.depthInView;
 }

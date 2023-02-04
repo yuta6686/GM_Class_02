@@ -519,6 +519,9 @@
     <ClCompile Include="shader_resource_view_component.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="co_title_ui.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -1028,6 +1031,9 @@
     <ClInclude Include="shader_resource_view_component.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="co_title_ui.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -1115,6 +1121,12 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="PSBloomFinal.hlsl">
+      <Filter>Shader\rendering_texture</Filter>
+    </FxCompile>
+    <FxCompile Include="depth_of_field_vs.hlsl">
+      <Filter>Shader\rendering_texture</Filter>
+    </FxCompile>
+    <FxCompile Include="depth_of_field_ps.hlsl">
       <Filter>Shader\rendering_texture</Filter>
     </FxCompile>
   </ItemGroup>

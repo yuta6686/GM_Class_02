@@ -34,7 +34,7 @@ private:
         {SHADER_TYPE::SHADER_PARTICLE,"unlitTextureVS.cso"},
         {SHADER_TYPE::SHADER_STEALTH,"StealthVS.cso"},
         {SHADER_TYPE::SHADER_BLOOM,"unlitTextureVS.cso"},
-
+        {SHADER_TYPE::SHADER_DEPTH_OF_FIELD,"depth_of_field_vs.cso"}
     };    
     
 };

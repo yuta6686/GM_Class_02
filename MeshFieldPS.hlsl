@@ -15,7 +15,7 @@ float3 GetNormal(float3 normal, float3 tangent, float3 biNormal, float2 uv)
     return newNormal;
 }
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target0)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target0, out float depth : SV_Target1)
 {
     //  ピクセルの法線を正規化
     float3 normal = GetNormal(In.Normal.xyz, In.tangent, In.biNormal, In.TexCoord);
@@ -80,5 +80,5 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target0)
 
 
     outDiffuse.rgb += ambientLight * 1.2f * albedoColor.rgb;
-    
+    depth = In.depthInView;
 }

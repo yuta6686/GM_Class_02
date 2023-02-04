@@ -33,5 +33,7 @@ void main(in VS_IN In, out PS_IN Out)
     //lightwvp = mul(lightwvp, Light.Projecction);
     
     // Out.ShadowPosition = mul(In.Position, lightwvp);
+    Out.depthInView = In.Position.z;
+
 
 }

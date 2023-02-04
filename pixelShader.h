@@ -32,6 +32,7 @@ private:
 		{SHADER_TYPE::SHADER_PARTICLE,"ParticlePS.cso"},
 		{SHADER_TYPE::SHADER_STEALTH,"StealthPS.cso"},
 		{SHADER_TYPE::SHADER_BLOOM,"PSBloomFinal.cso"},
+		{SHADER_TYPE::SHADER_DEPTH_OF_FIELD,"depth_of_field_ps.cso"}
 	};
 };
 

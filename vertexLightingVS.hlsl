@@ -37,6 +37,6 @@ void main(in VS_IN In, out PS_IN Out)
 
 	Out.Position = mul( In.Position, wvp );
 	Out.TexCoord = In.TexCoord;
-
+    Out.depthInView = In.Position.z;
 }
 

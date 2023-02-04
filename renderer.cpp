@@ -92,7 +92,7 @@ void Renderer::Init()
 	rtDesc.ArraySize = 1;
 	rtDesc.BindFlags =
 		D3D11_BIND_RENDER_TARGET |
-		D3D11_BIND_SHADER_RESOURCE |
+		D3D11_BIND_SHADER_RESOURCE |		
 		D3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS;
 	rtDesc.CPUAccessFlags = 0;
 
@@ -110,6 +110,14 @@ void Renderer::Init()
 	_device->CreateTexture2D(&rtDesc, 0, _pTextureBloom.GetAddressOf());
 	assert(_pTextureBloom);
 
+	rtDesc.Format = DXGI_FORMAT_R32_FLOAT;
+
+	// https://yuta6686.atlassian.net/browse/AS-55 被写界深度
+	_device->CreateTexture2D(&rtDesc, 0, _pTextureDOF.GetAddressOf());
+	assert(_pTextureDOF);
+
+	rtDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+	
 
 
 	// ダウンサンプリング用
@@ -151,6 +159,12 @@ void Renderer::Init()
 	hr = _device->CreateShaderResourceView(_pTextureBloom.Get(), &srvDesc, _luminanceSRV.GetAddressOf());
 	assert(_luminanceSRV);
 
+	// https://yuta6686.atlassian.net/browse/AS-55 被写界深度
+	srvDesc.Format = DXGI_FORMAT_R32_FLOAT;
+	hr = _device->CreateShaderResourceView(_pTextureDOF.Get(), &srvDesc, _depthOfFieldSRV.GetAddressOf());
+	assert(_depthOfFieldSRV);
+	srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+
 	// ダウンサンプリング用
 	hr = _device->CreateShaderResourceView(_pTextureX.Get(), &srvDesc, _blurXSRV.GetAddressOf());
 	if (hr) {
@@ -181,6 +195,9 @@ void Renderer::Init()
 
 	// https://yuta6686.atlassian.net/browse/AS-41 bloom 用 RTV
 	_device->CreateRenderTargetView(_pTextureBloom.Get(), NULL, _luminanceRTV.GetAddressOf());
+
+	// https://yuta6686.atlassian.net/browse/AS-55 被写界深度
+	_device->CreateRenderTargetView(_pTextureDOF.Get(), NULL, _depthOfFieldRTV.GetAddressOf());
 
 	
 	// ダウンサンプリング用
@@ -522,10 +539,18 @@ void Renderer::EndImgui()
 
 void Renderer::BeginOfScr()
 {
-	_deviceContext->OMSetRenderTargets(1, _pRenderingTextureRTV.GetAddressOf(), m_DepthStencilView);
+	D11RenderTargetView rtvs[] = 
+	{		
+		_pRenderingTextureRTV,
+		_depthOfFieldRTV
+	};
+
+	_deviceContext->OMSetRenderTargets(2,rtvs->GetAddressOf(), m_DepthStencilView);
 
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV.Get(), clearColor);
+	_deviceContext->ClearRenderTargetView(_depthOfFieldRTV.Get(), clearColor);
+
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
 	_isRenderTexture = true;
@@ -859,6 +884,11 @@ void Renderer::CreatePixelShader(ID3D11PixelShader** PixelShader, const char* Fi
 ShaderResourceView Renderer::GetRenderingTexture()
 {
 	return _pRenderingTextureSRV;
+}
+
+ShaderResourceView Renderer::GetDepthTexture()
+{
+	return _depthOfFieldSRV;
 }
 
 

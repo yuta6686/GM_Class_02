@@ -11,11 +11,18 @@ void RenderingTexture::Init()
 		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_BLURY]);
 	_copyVertexShader =
 		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
+	_depthOfFieldVS =
+		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);
+		
+
 
 	_blurPixelShader =
 		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
 	_copyPixelShader =
 		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
+	_depthOfFieldPS =
+		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);
+
 
 	{
 		// 頂点データ初期化
@@ -53,7 +60,7 @@ void RenderingTexture::Init()
 		Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 	}
 
-	D3DXVECTOR2 mainPos = { SCREEN_WIDTH / 1.0f,SCREEN_HEIGHT / 1.0f };
+	D3DXVECTOR2 mainPos = { SCREEN_WIDTH / 4.0f,SCREEN_HEIGHT / 4.0f };
 
 	// 頂点データ初期化
 	_vertex[0].Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -308,64 +315,64 @@ void RenderingTexture::Draw()
 
 
 	// ---------------------------------------------------------------
-	//{
+	{
 
 
-	//	//頂点バッファ設定
-	//	UINT stride = sizeof(VERTEX_3D);
-	//	UINT offset = 0;
-	//	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &_vertexBuffer, &stride, &offset);
+		//頂点バッファ設定
+		UINT stride = sizeof(VERTEX_3D);
+		UINT offset = 0;
+		Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &_vertexBuffer, &stride, &offset);
 
 
-	//	Renderer::SetWorldViewProjection2D();
+		Renderer::SetWorldViewProjection2D();
 
-	//	//ワールドマトリクス設定
-	//	D3DXMATRIX world, scale, rot, trans;
-	//	D3DXMatrixScaling(&scale,
-	//		GetScale().x,
-	//		GetScale().y,
-	//		GetScale().z);
-	//	D3DXMatrixRotationYawPitchRoll(&rot,
-	//		GetRotation().x,
-	//		GetRotation().y,
-	//		GetRotation().z);
-	//	D3DXMatrixTranslation(&trans,
-	//		GetPosition().x,
-	//		GetPosition().y,
-	//		GetPosition().z);
-	//	world = scale * rot * trans;
-	//	Renderer::SetWorldMatrix(&world);
+		//ワールドマトリクス設定
+		D3DXMATRIX world, scale, rot, trans;
+		D3DXMatrixScaling(&scale,
+			GetScale().x,
+			GetScale().y,
+			GetScale().z);
+		D3DXMatrixRotationYawPitchRoll(&rot,
+			GetRotation().x,
+			GetRotation().y,
+			GetRotation().z);
+		D3DXMatrixTranslation(&trans,
+			GetPosition().x,
+			GetPosition().y,
+			GetPosition().z);
+		world = scale * rot * trans;
+		Renderer::SetWorldMatrix(&world);
 
-	//	_copyPixelShader->Draw();
-	//	_copyVertexShader->Draw();
+		_depthOfFieldVS->Draw();
+		_depthOfFieldPS->Draw();
 
-	//	
+		
 
-	//	// ビューポート設定
-	//	D3D11_VIEWPORT viewport;
-	//	viewport.Width = (FLOAT)SCREEN_WIDTH;
-	//	viewport.Height = (FLOAT)SCREEN_HEIGHT;
-	//	viewport.MinDepth = 0.0f;
-	//	viewport.MaxDepth = 1.0f;
-	//	viewport.TopLeftX = 0;
-	//	viewport.TopLeftY = 0;
+		// ビューポート設定
+		D3D11_VIEWPORT viewport;
+		viewport.Width = (FLOAT)SCREEN_WIDTH;
+		viewport.Height = (FLOAT)SCREEN_HEIGHT;
+		viewport.MinDepth = 0.0f;
+		viewport.MaxDepth = 1.0f;
+		viewport.TopLeftX = 0;
+		viewport.TopLeftY = 0;
 
-	//	Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
+		Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
 
-	//	
+		Renderer::SetRenderTexture(false);
+		Renderer::GetDeviceContext()->PSSetShaderResources(1, 1, Renderer::GetDepthTexture().GetAddressOf());
 
+		//プリミティブトポロジ設定
+		Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
-	//	//プリミティブトポロジ設定
-	//	Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+		//ポリゴン描画
+		Renderer::GetDeviceContext()->Draw(4, 0);
 
-	//	//ポリゴン描画
-	//	Renderer::GetDeviceContext()->Draw(4, 0);
+		Renderer::SetRenderTexture(true);
 
-	//	Renderer::SetRenderTexture(true);
-
-	//	// ブレンドモードを通常に直す
-	//	Renderer::SetDefaultBlend();
-	//}
+		// ブレンドモードを通常に直す
+		Renderer::SetDefaultBlend();
+	}
 }
 
 void RenderingTexture::DrawImgui()

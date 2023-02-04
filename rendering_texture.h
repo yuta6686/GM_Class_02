@@ -15,8 +15,11 @@ public:
     std::shared_ptr <VertexShader>  _blurXVertexShader;
     std::shared_ptr <VertexShader>  _blurYVertexShader;
     std::shared_ptr <VertexShader>  _copyVertexShader;
+    std::shared_ptr <VertexShader>  _depthOfFieldVS;
+
     std::shared_ptr<PixelShader>    _blurPixelShader;
     std::shared_ptr<PixelShader>    _copyPixelShader;
+    std::shared_ptr<PixelShader>    _depthOfFieldPS;
 
     VERTEX_3D m_vertex[4];
     ID3D11Buffer* m_VertexBuffer = NULL;
