@@ -15,14 +15,12 @@ void RenderingTexture::Init()
 		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);
 		
 
-
 	_blurPixelShader =
 		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
 	_copyPixelShader =
 		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
 	_depthOfFieldPS =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);
-
+		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);	
 
 	{
 		// 頂点データ初期化
@@ -313,6 +311,7 @@ void RenderingTexture::Draw()
 	// ブレンドモードを通常に直す
 	Renderer::SetDefaultBlend();
 
+	if (_layerNum == LAYER_LUMINANCE)return;
 
 	// ---------------------------------------------------------------
 	{
@@ -343,9 +342,16 @@ void RenderingTexture::Draw()
 		world = scale * rot * trans;
 		Renderer::SetWorldMatrix(&world);
 
-		_depthOfFieldVS->Draw();
+#define DOF
+#ifdef DOF
 		_depthOfFieldPS->Draw();
-
+		_depthOfFieldVS->Draw();
+#else
+		
+		_copyVertexShader->Draw();
+		_copyPixelShader->Draw();
+		
+#endif // DOF
 		
 
 		// ビューポート設定

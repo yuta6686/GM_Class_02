@@ -110,7 +110,7 @@ void Renderer::Init()
 	_device->CreateTexture2D(&rtDesc, 0, _pTextureBloom.GetAddressOf());
 	assert(_pTextureBloom);
 
-	rtDesc.Format = DXGI_FORMAT_R32_FLOAT;
+	 rtDesc.Format = DXGI_FORMAT_R32_FLOAT;
 
 	// https://yuta6686.atlassian.net/browse/AS-55 ”íŽÊŠE[“x
 	_device->CreateTexture2D(&rtDesc, 0, _pTextureDOF.GetAddressOf());
@@ -160,7 +160,7 @@ void Renderer::Init()
 	assert(_luminanceSRV);
 
 	// https://yuta6686.atlassian.net/browse/AS-55 ”íŽÊŠE[“x
-	srvDesc.Format = DXGI_FORMAT_R32_FLOAT;
+	 srvDesc.Format = DXGI_FORMAT_R32_FLOAT;
 	hr = _device->CreateShaderResourceView(_pTextureDOF.Get(), &srvDesc, _depthOfFieldSRV.GetAddressOf());
 	assert(_depthOfFieldSRV);
 	srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
@@ -545,7 +545,7 @@ void Renderer::BeginOfScr()
 		_depthOfFieldRTV
 	};
 
-	_deviceContext->OMSetRenderTargets(2,rtvs->GetAddressOf(), m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(2,rtvs[0].GetAddressOf(), m_DepthStencilView);
 
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV.Get(), clearColor);

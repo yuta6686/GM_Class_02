@@ -49,6 +49,7 @@ using D11RenderTargetView	= ComPtr<ID3D11RenderTargetView>;
 using ShaderResourceView	= ComPtr<ID3D11ShaderResourceView>;
 using D11Texture			= ComPtr<ID3D11ShaderResourceView>;
 using RasterizerState		= ComPtr<ID3D11RasterizerState>;
+using DepthStencilView		= ComPtr< ID3D11DepthStencilView>;
 
 
 #include "scene.h"

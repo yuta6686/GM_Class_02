@@ -12,6 +12,7 @@ void main(in VS_IN In, out PS_IN Out)
     Out.Position = mul(In.Position, wvp);
     Out.WorldPosition = mul(In.Position, World);
     
+    
 
     //  ÉmÅ[É}Éã
     float4 worldNormal, normal;
@@ -29,6 +30,8 @@ void main(in VS_IN In, out PS_IN Out)
     Out.tangent = normalize(mul(World, In.tangent));
     Out.biNormal = normalize(mul(World, In.biNormal));
 
-    Out.depthInView = In.Position.z;
+    float4 depthPosition = mul(In.Position, World);
+    depthPosition = mul(depthPosition, View);
+    Out.depthInView = depthPosition.z;
 }
 
