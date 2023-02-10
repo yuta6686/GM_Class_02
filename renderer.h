@@ -75,7 +75,6 @@ private:
 	inline static Texture2D _pTextureX;
 	inline static Texture2D _pTextureY;
 	inline static std::vector<Texture2D> _pTextureDraw = { nullptr,nullptr,nullptr,nullptr };
-	inline static Texture2D _pTextureDOF; // https://yuta6686.atlassian.net/browse/AS-55
 
 	// ÉTÉìÉvÉâÅ[
 	inline static ComPtr<ID3D11SamplerState> _pDefaultSampler;
@@ -92,9 +91,6 @@ private:
 	inline static D11RenderTargetView _blurXRTV = nullptr;
 	inline static D11RenderTargetView _blurYRTV = nullptr;
 
-	// https://yuta6686.atlassian.net/browse/AS-55 îÌé äEê[ìx
-	inline static D11RenderTargetView _depthOfFieldRTV = nullptr;
-
 	// https://yuta6686.atlassian.net/browse/AS-45 å„Ç≈îzóÒÇ…Ç∑ÇÈ
 	inline static std::vector<D11RenderTargetView> _drawCopyRTV = { nullptr,nullptr,nullptr,nullptr };
 
@@ -102,10 +98,7 @@ private:
 	inline static ShaderResourceView _pRenderingTextureSRV = nullptr;
 	inline static ShaderResourceView _luminanceSRV = nullptr;
 	inline static ShaderResourceView _blurXSRV = nullptr;
-	inline static ShaderResourceView _blurYSRV = nullptr;
-
-	// https://yuta6686.atlassian.net/browse/AS-55 îÌé äEê[ìx
-	inline static ShaderResourceView _depthOfFieldSRV = nullptr; 
+	inline static ShaderResourceView _blurYSRV = nullptr;	
 
 	// https://yuta6686.atlassian.net/browse/AS-45 å„Ç≈îzóÒÇ…Ç∑ÇÈ
 	inline static std::vector<ShaderResourceView> _drawCopySRV = { nullptr,nullptr,nullptr,nullptr };
@@ -204,6 +197,5 @@ public:
 
 	static void CalcWeightsTableFromGaussian(float* weightsTbl, int sizeOfWeightsTbl, float sigma);
 
-	static ShaderResourceView GetRenderingTexture();
-	static ShaderResourceView GetDepthTexture();
+	static ShaderResourceView GetRenderingTexture();	
 };

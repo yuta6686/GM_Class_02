@@ -22,5 +22,5 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float depth : SV_T
     
     outDiffuse = lerp(diff, monochromeColor, monochoromRate);
      depth = In.depthInView;    
-       
+    depth = 1.0f;
 }

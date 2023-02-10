@@ -366,7 +366,7 @@ void RenderingTexture::Draw()
 		Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
 
 		Renderer::SetRenderTexture(false);
-		Renderer::GetDeviceContext()->PSSetShaderResources(1, 1, Renderer::GetDepthTexture().GetAddressOf());
+		
 
 		//プリミティブトポロジ設定
 		Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);

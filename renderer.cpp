@@ -93,7 +93,7 @@ void Renderer::Init()
 	rtDesc.BindFlags =
 		D3D11_BIND_RENDER_TARGET |
 		D3D11_BIND_SHADER_RESOURCE |		
-		D3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS;
+		D3D11_RESOURCE_MISC_BUFFER_ALLOW_RAW_VIEWS;	
 	rtDesc.CPUAccessFlags = 0;
 
 	_device->CreateTexture2D(&rtDesc, 0, &_pTexture);
@@ -109,14 +109,6 @@ void Renderer::Init()
 	// https://yuta6686.atlassian.net/browse/AS-41 bloom用Texture
 	_device->CreateTexture2D(&rtDesc, 0, _pTextureBloom.GetAddressOf());
 	assert(_pTextureBloom);
-
-	 rtDesc.Format = DXGI_FORMAT_R32_FLOAT;
-
-	// https://yuta6686.atlassian.net/browse/AS-55 被写界深度
-	_device->CreateTexture2D(&rtDesc, 0, _pTextureDOF.GetAddressOf());
-	assert(_pTextureDOF);
-
-	rtDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
 	
 
 
@@ -159,12 +151,6 @@ void Renderer::Init()
 	hr = _device->CreateShaderResourceView(_pTextureBloom.Get(), &srvDesc, _luminanceSRV.GetAddressOf());
 	assert(_luminanceSRV);
 
-	// https://yuta6686.atlassian.net/browse/AS-55 被写界深度
-	 srvDesc.Format = DXGI_FORMAT_R32_FLOAT;
-	hr = _device->CreateShaderResourceView(_pTextureDOF.Get(), &srvDesc, _depthOfFieldSRV.GetAddressOf());
-	assert(_depthOfFieldSRV);
-	srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-
 	// ダウンサンプリング用
 	hr = _device->CreateShaderResourceView(_pTextureX.Get(), &srvDesc, _blurXSRV.GetAddressOf());
 	if (hr) {
@@ -196,8 +182,6 @@ void Renderer::Init()
 	// https://yuta6686.atlassian.net/browse/AS-41 bloom 用 RTV
 	_device->CreateRenderTargetView(_pTextureBloom.Get(), NULL, _luminanceRTV.GetAddressOf());
 
-	// https://yuta6686.atlassian.net/browse/AS-55 被写界深度
-	_device->CreateRenderTargetView(_pTextureDOF.Get(), NULL, _depthOfFieldRTV.GetAddressOf());
 
 	
 	// ダウンサンプリング用
@@ -223,7 +207,7 @@ void Renderer::Init()
 	// デプスステンシルビュー作成
 	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc{};
 	depthStencilViewDesc.Format = textureDesc.Format;
-	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D/*MS*/;// 最後のMSをとると元にもどる
+	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS/**/;// 最後のMSをとると元にもどる
 	depthStencilViewDesc.Flags = 0;
 	_device->CreateDepthStencilView(depthStencile, &depthStencilViewDesc, &m_DepthStencilView);
 	depthStencile->Release();
@@ -501,6 +485,9 @@ void Renderer::Uninit()
 
 	// https://yuta6686.atlassian.net/browse/AS-39 ComPtr導入
 	
+	m_DepthStencilView->Release();
+	m_DepthStateEnable->Release();
+	m_DepthStateDisable->Release();
 
 	_deviceContext->ClearState();
 			
@@ -539,17 +526,10 @@ void Renderer::EndImgui()
 
 void Renderer::BeginOfScr()
 {
-	D11RenderTargetView rtvs[] = 
-	{		
-		_pRenderingTextureRTV,
-		_depthOfFieldRTV
-	};
-
-	_deviceContext->OMSetRenderTargets(2,rtvs[0].GetAddressOf(), m_DepthStencilView);
+	_deviceContext->OMSetRenderTargets(1, _pRenderingTextureRTV.GetAddressOf(), m_DepthStencilView);
 
 	float clearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV.Get(), clearColor);
-	_deviceContext->ClearRenderTargetView(_depthOfFieldRTV.Get(), clearColor);
+	_deviceContext->ClearRenderTargetView(_pRenderingTextureRTV.Get(), clearColor);	
 
 	_deviceContext->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
@@ -886,10 +866,6 @@ ShaderResourceView Renderer::GetRenderingTexture()
 	return _pRenderingTextureSRV;
 }
 
-ShaderResourceView Renderer::GetDepthTexture()
-{
-	return _depthOfFieldSRV;
-}
 
 
 // <summary>
