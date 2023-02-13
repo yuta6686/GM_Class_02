@@ -861,6 +861,22 @@ void Renderer::CreatePixelShader(ID3D11PixelShader** PixelShader, const char* Fi
 	delete[] buffer;
 }
 
+void Renderer::CreateGeometryShader(ID3D11GeometryShader** GeometryShader, const char* FileName)
+{
+	FILE* file;
+	long int fsize;
+
+	file = fopen(FileName, "rb");
+	fsize = _filelength(_fileno(file));
+	unsigned char* buffer = new unsigned char[fsize];
+	fread(buffer, fsize, 1, file);
+	fclose(file);
+
+	_device->CreateGeometryShader(buffer, fsize, NULL, GeometryShader);
+
+	delete[] buffer;
+}
+
 ShaderResourceView Renderer::GetRenderingTexture()
 {
 	return _pRenderingTextureSRV;

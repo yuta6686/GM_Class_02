@@ -9,6 +9,7 @@
 #include "animation_model.h"
 #include "debug_scene.h"
 #include "rendering_texture.h"
+#include "geometry_shader.h"
 
 //Scene* Manager::m_Scene;
 std::shared_ptr<Scene> Manager::m_Scene=nullptr;
@@ -43,6 +44,7 @@ void Manager::Uninit()
 	ResourceManger<VertexShader>::AllRelease();
 	ResourceManger<PixelShader>::AllRelease();
 	ResourceManger<AnimationModel>::AllRelease();
+	ResourceManger<GeometryShader>::AllRelease();
 
 	Audio::UninitMaster();
 

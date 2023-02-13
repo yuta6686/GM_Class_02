@@ -188,6 +188,7 @@ public:
 
 	static void CreateVertexShader(ID3D11VertexShader** VertexShader, ID3D11InputLayout** VertexLayout, const char* FileName);
 	static void CreatePixelShader(ID3D11PixelShader** PixelShader, const char* FileName);
+	static void CreateGeometryShader(ID3D11GeometryShader** GeometryShader, const char* FileName);
 
 	static const int GetLightNum() { return m_LightNum; }
 

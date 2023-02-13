@@ -522,6 +522,9 @@
     <ClCompile Include="co_title_ui.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="geometry_shader.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -1034,6 +1037,9 @@
     <ClInclude Include="co_title_ui.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="geometry_shader.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="common.hlsl">
@@ -1128,6 +1134,9 @@
     </FxCompile>
     <FxCompile Include="depth_of_field_ps.hlsl">
       <Filter>Shader\rendering_texture</Filter>
+    </FxCompile>
+    <FxCompile Include="testGS.hlsl">
+      <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
