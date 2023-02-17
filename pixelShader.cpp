@@ -2,12 +2,12 @@
 
 void PixelShader::Draw()
 {
-	Renderer::GetDeviceContext()->PSSetShader(m_PixelShader, NULL, 0);
+	Renderer::GetDeviceContext()->PSSetShader(m_PixelShader.Get(), NULL, 0);
 }
 
 void PixelShader::Load(const char* FileName)
 {
-	Renderer::CreatePixelShader(&m_PixelShader, FileName);
+	Renderer::CreatePixelShader(m_PixelShader.GetAddressOf(), FileName);
 	assert(m_PixelShader);
 }
 

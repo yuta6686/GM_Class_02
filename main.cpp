@@ -4,6 +4,7 @@
 
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
+
 #include <stdlib.h>
 #include <crtdbg.h>
 #endif // _DEBUG
@@ -58,14 +59,17 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// AdjustWindowRect
 	// マウスカーソルの位置がずれる場合これを使えば行けるらしい
 
+	RECT rc = { 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
+	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+
 	g_Window = CreateWindowEx(0,
 		CLASS_NAME,
 		WINDOW_NAME,
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		(SCREEN_WIDTH + GetSystemMetrics(SM_CXDLGFRAME) * 2),
-		(SCREEN_HEIGHT + GetSystemMetrics(SM_CXDLGFRAME) * 2 + GetSystemMetrics(SM_CYCAPTION)),
+		rc.right - rc.left,
+		rc.bottom - rc.top,
 		NULL,
 		NULL,
 		hInstance,
@@ -144,7 +148,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	Manager::Uninit();
 
 #ifdef _DEBUG
-	_CrtDumpMemoryLeaks();
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF);
+	// _CrtDumpMemoryLeaks();
 #endif // _DEBUG
 
 	return (int)msg.wParam;

@@ -34,6 +34,7 @@
 #include "co_noise_circle.h"
 #include "state_machine.h"
 #include "co_title_ui.h"
+#include "geometry_shader_component_object.h"
 
 void TitleScene::Init()
 {
@@ -101,6 +102,8 @@ void TitleScene::Init()
 	title_object->SetPosition({ 0.0f,15.0f,30.0f });
 
 	AddGameObject<CO_TitleUI>(LAYER_2D);
+
+	AddGameObject<GeometryShaderComponentObject>(LAYER_3D);
 
 
 	/*AddGameObject<PrismFactory>(LAYER_3D);*/

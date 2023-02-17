@@ -3,7 +3,8 @@
 class PixelShader :
 	public Resource
 {
-	ID3D11PixelShader* m_PixelShader;
+	using DXPixelShader = ComPtr<ID3D11PixelShader>;
+	DXPixelShader m_PixelShader;
 public:
 
 

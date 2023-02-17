@@ -19,3 +19,8 @@ void GeometryShader::Unload()
 		_geometryShader = nullptr;
 	}
 }
+
+std::map<GEOMETRY_SHADER_TYPE, std::string> GeometryShader::GetFileNames()
+{
+	return _fileNames;
+}

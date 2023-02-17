@@ -4,7 +4,7 @@
 void Texture::Draw()
 {	
 	//テクスチャ設定
-	Renderer::GetDeviceContext()->PSSetShaderResources(_textureNum, 1, &m_Texture);
+	Renderer::GetDeviceContext()->PSSetShaderResources(_textureNum, 1, m_Texture.GetAddressOf());
 
 	if (_onlySet)return;
 
@@ -22,7 +22,7 @@ void Texture::Load(const char* FileName)
 		FileName,
 		NULL,
 		NULL,
-		&m_Texture,
+		m_Texture.GetAddressOf(),
 		NULL);
 
 	assert(m_Texture);		

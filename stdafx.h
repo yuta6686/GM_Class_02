@@ -63,6 +63,7 @@ using DepthStencilView		= ComPtr< ID3D11DepthStencilView>;
 #include "texture_compoennt.h"
 #include "serealize_archive.h"
 #include "animation_model.h"
+#include "geometry_shader_component.h"
 
 
 

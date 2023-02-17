@@ -27,6 +27,7 @@ public:
 
     virtual void Unload() override;
 
+    static std::map<GEOMETRY_SHADER_TYPE, std::string> GetFileNames();
 private:
     inline static const std::map<GEOMETRY_SHADER_TYPE, std::string> _fileNames =
     {

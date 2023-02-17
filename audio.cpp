@@ -27,7 +27,8 @@ void Audio::InitMaster()
 void Audio::UninitMaster()
 {
 	m_MasteringVoice->DestroyVoice();
-	m_Xaudio->Release();
+	m_Xaudio->Release();	
+
 	CoUninitialize();
 }
 

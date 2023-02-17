@@ -11,6 +11,7 @@ void TextureComponent::Init()
 
 void TextureComponent::Uninit()
 {
+	
 }
 
 void TextureComponent::Update()

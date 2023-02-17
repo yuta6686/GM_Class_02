@@ -13,7 +13,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float depth : SV_T
 	//outDiffuse *= In.Diffuse;
 
     float4 diff = g_Texture.Sample(g_SamplerState, In.TexCoord) * In.Diffuse;
-    diff.rgb *= 1.2f;
+    diff.rgb *= 1.5f;
 
     
     float Y = 0.299f * diff.x + 0.587f * diff.y + 0.114f * diff.b;

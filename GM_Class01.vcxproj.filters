@@ -525,6 +525,12 @@
     <ClCompile Include="geometry_shader.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="geometry_shader_component.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry_shader_component_object.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource_manager.h">
@@ -1038,6 +1044,12 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="geometry_shader.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry_shader_component.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry_shader_component_object.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

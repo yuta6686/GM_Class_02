@@ -27,7 +27,13 @@ void ModelDrawComponent::Init()
             ResourceManger<Model>::GetResource(m_SourcePath.c_str());
     }
 
-};
+}
+void ModelDrawComponent::Uninit()
+{
+    //m_Model->Unload();
+    //m_Model_variable->Unload();
+}
+;
 
 void ModelDrawComponent::Draw()
 {

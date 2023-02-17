@@ -306,12 +306,14 @@ void RenderingTexture::Draw()
 	//ポリゴン描画
 	Renderer::GetDeviceContext()->Draw(4, 0);
 
-	Renderer::SetRenderTexture(true);
+	Renderer::SetRenderTexture(true);	
+
 
 	// ブレンドモードを通常に直す
 	Renderer::SetDefaultBlend();
 
 	if (_layerNum == LAYER_LUMINANCE)return;
+	return;
 
 	// ---------------------------------------------------------------
 	{
@@ -342,7 +344,7 @@ void RenderingTexture::Draw()
 		world = scale * rot * trans;
 		Renderer::SetWorldMatrix(&world);
 
-#define DOF
+//#define DOF
 #ifdef DOF
 		_depthOfFieldPS->Draw();
 		_depthOfFieldVS->Draw();
@@ -366,7 +368,7 @@ void RenderingTexture::Draw()
 		Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
 
 		Renderer::SetRenderTexture(false);
-		
+		Renderer::SetLuminanceTexture();
 
 		//プリミティブトポロジ設定
 		Renderer::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);

@@ -7,7 +7,7 @@ Texture2D g_depthTexture : register(t1);
 SamplerState g_SamplerState : register(s0);
 
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float _depth : SV_Target1)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target)
 {
     float depth = g_depthTexture.Sample(g_SamplerState, In.TexCoord);    
     

@@ -6,8 +6,10 @@ class VertexShader :
     public Resource
 {
 private:
-    ID3D11VertexShader* m_VertexShader = nullptr;   
-    ID3D11InputLayout* m_VertexLayout = nullptr;
+    using DXVertexShader = ComPtr< ID3D11VertexShader>;
+    using DXInputLayout = ComPtr< ID3D11InputLayout>;
+    DXVertexShader m_VertexShader = nullptr;   
+    DXInputLayout m_VertexLayout = nullptr;
 public:
     // Resource ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
     virtual void Draw() override;

@@ -30,7 +30,11 @@ void AnimationModelComponent::Init()
 
 
     mFrame = 0;
-};
+}
+void AnimationModelComponent::Uninit()
+{    
+}
+
 
 void AnimationModelComponent::Update()
 {

@@ -52,7 +52,7 @@ public:
 	template <typename T>//テンプレート解放
 	T* AddGameObject(int Layer)
 	{
-		T* gameObject = new T();
+		T* gameObject = DBG_NEW T();
 		gameObject->Init();
 		m_GameObject[Layer].push_back(gameObject);
 
@@ -92,7 +92,7 @@ public:
 
 
 private:
-
+	void DefaultImGuiDraw();
 
 
 };
