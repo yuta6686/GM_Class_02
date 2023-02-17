@@ -108,7 +108,7 @@ public:
 
 
     void LoadTexture(std::string texture) {
-        m_Texture = ResourceManger<Texture>::GetResource(texture);        
+        m_Texture = ResourceManager<Texture>::GetResource(texture);        
     }
 
     void SetDeployIndex(const int& index) { m_DeployIndex = index; }

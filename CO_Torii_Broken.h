@@ -62,13 +62,13 @@ public:
             }
 
             oss << i;
-            m_Models.push_back(ResourceManger<Model>::GetResource(m_ModelName.c_str() + oss.str() + m_Obj.c_str()));
+            m_Models.push_back(ResourceManager<Model>::GetResource(m_ModelName.c_str() + oss.str() + m_Obj.c_str()));
         }
 
         m_VertexShader =
-            ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_DEFAULT]);
+            ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_DEFAULT]);
         m_PixelShader =
-            ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_DEFAULT]);
+            ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_DEFAULT]);
       
         for (int i = 0; i < m_MaxIndex; i++) {
             FIELD_OBJECT fo;

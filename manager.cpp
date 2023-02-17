@@ -38,13 +38,13 @@ void Manager::Uninit()
 	/*m_Scene->UnInit();
 	delete m_Scene;*/
 
-	ResourceManger<Model>::AllRelease();
-	ResourceManger<Model_variable>::AllRelease();
-	ResourceManger<Texture>::AllRelease();
-	ResourceManger<VertexShader>::AllRelease();
-	ResourceManger<PixelShader>::AllRelease();
-	ResourceManger<AnimationModel>::AllRelease();
-	ResourceManger<GeometryShader>::AllRelease();
+	ResourceManager<Model>::AllRelease();
+	ResourceManager<Model_variable>::AllRelease();
+	ResourceManager<Texture>::AllRelease();
+	ResourceManager<VertexShader>::AllRelease();
+	ResourceManager<PixelShader>::AllRelease();
+	ResourceManager<AnimationModel>::AllRelease();
+	ResourceManager<GeometryShader>::AllRelease();
 
 	Audio::UninitMaster();
 

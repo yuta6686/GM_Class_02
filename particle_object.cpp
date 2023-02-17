@@ -9,9 +9,9 @@
 void ParticleObject::Init()
 {
 
-	m_Model = ResourceManger<Model_variable>::GetResource(m_ModelName.c_str());
-	m_Model_Cube = ResourceManger<Model_variable>::GetResource(m_ModelName_Cube.c_str());
-	m_Model_Sphere = ResourceManger<Model_variable>::GetResource(m_ModelName_Sphere.c_str());
+	m_Model = ResourceManager<Model_variable>::GetResource(m_ModelName.c_str());
+	m_Model_Cube = ResourceManager<Model_variable>::GetResource(m_ModelName_Cube.c_str());
+	m_Model_Sphere = ResourceManager<Model_variable>::GetResource(m_ModelName_Sphere.c_str());
 
 	for (int i = 1; i <= 50; i++)
 	{
@@ -24,13 +24,13 @@ void ParticleObject::Init()
 		}
 		
 		oss << i;
-		m_Torii_Broken.push_back(ResourceManger<Model_variable>::GetResource(m_ModelName_Torii.c_str() + oss.str() + m_Obj.c_str()));
+		m_Torii_Broken.push_back(ResourceManager<Model_variable>::GetResource(m_ModelName_Torii.c_str() + oss.str() + m_Obj.c_str()));
 	}
 
 	m_VertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_PARTICLE]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_PARTICLE]);
 	m_PixelShader =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_PARTICLE]);
+		ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_PARTICLE]);
 
 
 	std::shared_ptr<Scene> scene = Manager::GetScene();

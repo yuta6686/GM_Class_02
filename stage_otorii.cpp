@@ -3,7 +3,7 @@
 
 void stage_otorii::Init()
 {
-	m_Model = ResourceManger<Model>::GetResource("asset\\model\\M_otorii.obj");
+	m_Model = ResourceManager<Model>::GetResource("asset\\model\\M_otorii.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 0.1f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -11,9 +11,9 @@ void stage_otorii::Init()
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
 	m_VertexShader = 
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_DEFAULT]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_DEFAULT]);
 	m_PixelShader = 
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_DEFAULT]);
+		ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_DEFAULT]);
 }
 
 void stage_otorii::Uninit()

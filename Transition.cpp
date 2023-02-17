@@ -52,9 +52,9 @@ void Transition::Init()
 
 	m_Offset = { 0.0f,SCREEN_HEIGHT / 2.0f,0.0f };
 
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\noen_white.png");
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT_NO_MATERIAL]);
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+	m_Texture = ResourceManager<Texture>::GetResource("asset\\texture\\noen_white.png");
+	m_VertexShader = ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT_NO_MATERIAL]);
+	m_PixelShader = ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 	m_SE = Manager::GetScene()->AddGameObject<Audio>(LAYER_AUDIO);
 	

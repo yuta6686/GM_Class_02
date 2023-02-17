@@ -30,7 +30,7 @@ void TextureComponent::DrawImgui()
 void TextureComponent::SetTextureAndSlot(const std::string& fileName, const int& texSlot,const bool& flag)
 {
 	_fileName = fileName;
-	_texture = ResourceManger<Texture>::GetResource(fileName);
+	_texture = ResourceManager<Texture>::GetResource(fileName);
 	_texture->SetTextureNum(texSlot,flag);
 }
 

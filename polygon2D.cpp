@@ -48,7 +48,7 @@ void Polygon2D::Init()
 		NULL);
 
 	assert(m_Texture);*/
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\Slimecyclon.png");
+	m_Texture = ResourceManager<Texture>::GetResource("asset\\texture\\Slimecyclon.png");
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"unlitTextureVS.cso");

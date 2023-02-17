@@ -3,18 +3,18 @@
 
 void stage_wator_field::Init()
 {
-	m_Model = ResourceManger<Model>::GetResource("asset\\model\\M_Wator_field.obj");
+	m_Model = ResourceManager<Model>::GetResource("asset\\model\\M_Wator_field.obj");
 
 	m_Position = D3DXVECTOR3(0.0f, 0.1f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	float scale = 50.1f;
 	m_Scale = D3DXVECTOR3(scale, scale, scale);
 
-	m_VertexShader = ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");
-	m_PixelShader = ResourceManger<PixelShader>::GetResource("env_mapping_ps.cso");
+	m_VertexShader = ResourceManager<VertexShader>::GetResource("env_mapping_vs.cso");
+	m_PixelShader = ResourceManager<PixelShader>::GetResource("env_mapping_ps.cso");
 
-	//m_VertexShader = ResourceManger<VertexShader>::GetResource("MeshFieldVS.cso");
-	//m_PixelShader = ResourceManger<PixelShader>::GetResource("MeshFieldPS.cso");
+	//m_VertexShader = ResourceManager<VertexShader>::GetResource("MeshFieldVS.cso");
+	//m_PixelShader = ResourceManager<PixelShader>::GetResource("MeshFieldPS.cso");
 
 	AddComponent<TextureComponent>(COMLAYER_SHADER)->
 		SetTextureAndSlot("asset\\texture\\normalmap.dds", 1, true);

@@ -6,21 +6,21 @@
 void RenderingTexture::Init()
 {
 	_blurXVertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
 	_blurYVertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_BLURY]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_BLURY]);
 	_copyVertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
 	_depthOfFieldVS =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);
 		
 
 	_blurPixelShader =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
+		ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_BLURX]);
 	_copyPixelShader =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
+		ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_RENDERING_TEXTURE]);
 	_depthOfFieldPS =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);	
+		ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_TYPE::SHADER_DEPTH_OF_FIELD]);	
 
 	{
 		// 頂点データ初期化

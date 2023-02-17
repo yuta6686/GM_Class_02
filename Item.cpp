@@ -15,7 +15,7 @@ static float scale = 0.5f;
 
 void item::Init()
 {	
-	m_Model = ResourceManger<Model>::GetResource(texName);
+	m_Model = ResourceManager<Model>::GetResource(texName);
 
 	Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");

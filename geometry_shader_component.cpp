@@ -21,7 +21,7 @@ void GeometryShaderComponent::SetGeometryShaderType(const int& shaderType)
 void GeometryShaderComponent::Init()
 {
 	_geometryShader = 
-		ResourceManger<GeometryShader>::GetResource(GeometryShader::GetFileNames()[GEOMETRY_SHADER_TYPE::GSHADER_TYPE_TEST]);
+		ResourceManager<GeometryShader>::GetResource(GeometryShader::GetFileNames()[GEOMETRY_SHADER_TYPE::GSHADER_TYPE_TEST]);
 }
 
 void GeometryShaderComponent::Uninit()

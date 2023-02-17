@@ -33,7 +33,7 @@ public:
     virtual void DrawImgui() override;
 
     void LoadTexture(std::string texture) {
-        m_Texture = ResourceManger<Texture>::GetResource(texture);
+        m_Texture = ResourceManager<Texture>::GetResource(texture);
     }
 
     void SetIsUseAlphaToCoverage(bool flag = true)

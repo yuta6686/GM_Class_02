@@ -25,16 +25,16 @@ void Prism::Init()
 //テクスチャ読み込み
 
 
-	_baseTexture = ResourceManger<Texture>::GetResource("asset\\texture\\pixelNoiseColor.png");
-	_normalTexture = ResourceManger<Texture>::GetResource("asset\\texture\\normalmap.dds");
-	_envTexture = ResourceManger<Texture>::GetResource(_textureName);
+	_baseTexture = ResourceManager<Texture>::GetResource("asset\\texture\\pixelNoiseColor.png");
+	_normalTexture = ResourceManager<Texture>::GetResource("asset\\texture\\normalmap.dds");
+	_envTexture = ResourceManager<Texture>::GetResource(_textureName);
 	
 // シェーダロード
 	_vertexShader =
-		ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");
+		ResourceManager<VertexShader>::GetResource("env_mapping_vs.cso");
 
 	_pixelShader =
-		ResourceManger<PixelShader>::
+		ResourceManager<PixelShader>::
 		GetResource(PixelShader::GetFileNames()[SHADER_ENVIRONMENT_MAPPING]);
 }
 

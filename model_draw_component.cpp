@@ -19,12 +19,12 @@ void ModelDrawComponent::Init()
 {
     if (m_IsVariable) {
         m_Model_variable =
-            ResourceManger<Model_variable>::GetResource(m_SourcePath.c_str());
+            ResourceManager<Model_variable>::GetResource(m_SourcePath.c_str());
     }
     else
     {
         m_Model =
-            ResourceManger<Model>::GetResource(m_SourcePath.c_str());
+            ResourceManager<Model>::GetResource(m_SourcePath.c_str());
     }
 
 }

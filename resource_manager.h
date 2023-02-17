@@ -16,7 +16,7 @@
 
 // 参考:https://qiita.com/FlatMountain/items/0b446900ccd058ec9d43
 template <typename T>
-class ResourceManger {
+class ResourceManager {
 private:
 	// Resourceを管理するコンテナ
 	static inline std::map<std::string, std::shared_ptr<T>> _container;

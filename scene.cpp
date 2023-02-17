@@ -2,12 +2,12 @@
 
 void Scene::Unload()
 {
-	ResourceManger<Model>::AllRelease();
-	ResourceManger<Texture>::AllRelease();
-	ResourceManger<Model_variable>::AllRelease();
-	ResourceManger<AnimationModel>::AllRelease();
-	ResourceManger<VertexShader>::AllRelease();
-	ResourceManger<PixelShader>::AllRelease();
+	ResourceManager<Model>::AllRelease();
+	ResourceManager<Texture>::AllRelease();
+	ResourceManager<Model_variable>::AllRelease();
+	ResourceManager<AnimationModel>::AllRelease();
+	ResourceManager<VertexShader>::AllRelease();
+	ResourceManager<PixelShader>::AllRelease();
 }
 
 GameObject* Scene::AddGameObject(GameObject* pGameObject, int layer)
