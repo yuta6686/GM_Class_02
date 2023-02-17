@@ -17,14 +17,14 @@ class AnimationModelComponent :
     std::shared_ptr<AnimationModel> m_Animation_Model;
     std::string m_SourcePath = "asset\\model\\Akai_Idle.fbx";
 
-    std::string mAnimationPath1 = "asset\\model\\Akai_Idle.fbx";
-    std::string mAnimationPath2 = "asset\\model\\Akai_Run.fbx";
+    std::string _animationPath1 = "asset\\model\\Akai_Idle.fbx";
+    std::string _animationPath2 = "asset\\model\\Akai_Run.fbx";
 
-    std::string mAnimationName1 = "Idle";
-    std::string mAnimationName2 = "Run";
+    std::string _animationName1 = "Idle";
+    std::string _animationName2 = "Run";
 
-    bool m_IsVariable = false;
-    int mFrame = 0;
+    bool _isVariable = false;
+    int _frame = 0;
     float mBlendRate = 0.0f;
 public:
     

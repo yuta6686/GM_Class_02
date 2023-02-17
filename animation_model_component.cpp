@@ -9,18 +9,18 @@ void AnimationModelComponent::LoadAnimationData(std::string mPath,// ƒ‚ƒfƒ‹ƒf[ƒ
     m_SourcePath = mPath;
 
     //  ƒAƒjƒ[ƒVƒ‡ƒ“1ƒf[ƒ^
-    mAnimationPath1 = aPath1;
-    mAnimationName1 = aName1;
+    _animationPath1 = aPath1;
+    _animationName1 = aName1;
 
     //  ƒAƒjƒ[ƒVƒ‡ƒ“2ƒf[ƒ^
-    mAnimationPath2 = aPath2;
-    mAnimationName2 = aName2;
+    _animationPath2 = aPath2;
+    _animationName2 = aName2;
 
     //  ƒ[ƒh
     m_Animation_Model =
         ResourceManger<AnimationModel>::GetResource(m_SourcePath.c_str());
-    m_Animation_Model->LoadAnimation(mAnimationPath1.c_str(), mAnimationName1.c_str());
-    m_Animation_Model->LoadAnimation(mAnimationPath2.c_str(), mAnimationName2.c_str());
+    m_Animation_Model->LoadAnimation(_animationPath1.c_str(), _animationName1.c_str());
+    m_Animation_Model->LoadAnimation(_animationPath2.c_str(), _animationName2.c_str());
 }
 
 void AnimationModelComponent::Init()
@@ -29,7 +29,7 @@ void AnimationModelComponent::Init()
         ResourceManger<AnimationModel>::GetResource(m_SourcePath.c_str());
 
 
-    mFrame = 0;
+    _frame = 0;
 }
 void AnimationModelComponent::Uninit()
 {    
@@ -38,8 +38,8 @@ void AnimationModelComponent::Uninit()
 
 void AnimationModelComponent::Update()
 {
-    m_Animation_Model->Update(mAnimationName1.c_str(), mAnimationName2.c_str(), mFrame, mBlendRate);
-    mFrame++;
+    m_Animation_Model->Update(_animationName1.c_str(), _animationName2.c_str(), _frame, mBlendRate);
+    _frame++;
     if (GetKeyboardPress(DIK_W)) {
         mBlendRate += 0.03f;
     }
@@ -60,5 +60,5 @@ void AnimationModelComponent::Draw()
 };
 
 void AnimationModelComponent::SetIsVariable(bool flag) {
-    m_IsVariable = flag;
+    _isVariable = flag;
 }
