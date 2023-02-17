@@ -17,7 +17,7 @@ class AnimationModelComponent :
     std::shared_ptr<AnimationModel> m_Animation_Model;
     std::string m_SourcePath = "asset\\model\\Akai_Idle.fbx";
 
-    std::string mAnimationPath1 = "asset\\model\\Akai_Idle.fbx";
+    std::string _animationPath1 = "asset\\model\\Akai_Idle.fbx";
     std::string mAnimationPath2 = "asset\\model\\Akai_Run.fbx";
 
     std::string mAnimationName1 = "Idle";

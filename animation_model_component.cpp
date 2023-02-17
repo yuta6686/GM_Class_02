@@ -9,7 +9,7 @@ void AnimationModelComponent::LoadAnimationData(std::string mPath,// ƒ‚ƒfƒ‹ƒf[ƒ
     m_SourcePath = mPath;
 
     //  ƒAƒjƒ[ƒVƒ‡ƒ“1ƒf[ƒ^
-    mAnimationPath1 = aPath1;
+    _animationPath1 = aPath1;
     mAnimationName1 = aName1;
 
     //  ƒAƒjƒ[ƒVƒ‡ƒ“2ƒf[ƒ^
@@ -19,7 +19,7 @@ void AnimationModelComponent::LoadAnimationData(std::string mPath,// ƒ‚ƒfƒ‹ƒf[ƒ
     //  ƒ[ƒh
     m_Animation_Model =
         ResourceManger<AnimationModel>::GetResource(m_SourcePath.c_str());
-    m_Animation_Model->LoadAnimation(mAnimationPath1.c_str(), mAnimationName1.c_str());
+    m_Animation_Model->LoadAnimation(_animationPath1.c_str(), mAnimationName1.c_str());
     m_Animation_Model->LoadAnimation(mAnimationPath2.c_str(), mAnimationName2.c_str());
 }
 
