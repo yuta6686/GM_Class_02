@@ -4,8 +4,6 @@
 class RenderingTexture :
     public ComponentObject
 {
-private:
-    int _blurNum = 0;
 public:
     inline static const float BLUR_X_SCREEN = SCREEN_WIDTH / 2.0f;
     inline static const float BLUR_Y_SCREEN = SCREEN_HEIGHT / 2.0f;
@@ -34,6 +32,16 @@ public:
     inline static const D3DXVECTOR4 m_Color = { 1.0f,1.0f,1.0f,1.0f };        
 
     int _layerNum = 0;    
+
+    enum DRAW_TEXTURE_NUM 
+    {
+        DTN_NORMAL_RENDERING_TEXTURE = 0,
+        DTN_LUMINANCE,
+        DTN_LUMINANCE_BLUR,
+        DTN_ALL
+    };
+    int _drawTextureNum = DTN_ALL;
+    int _blurNum = BLUR_NUM;
 
     inline static const std::string _typeName = "Switch Blur";
 public:

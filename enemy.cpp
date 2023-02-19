@@ -132,10 +132,6 @@ void Enemy_Rush::Init()
 
 	AddComponent< GravityComponent>(COMLAYER_SECOND);
 
-	//AddComponent<RandomVelocityComponent>(COMLAYER_SECOND)->SetSpeed(0.5f);
-
-	//AddComponent< RandomJumpComponent>(COMLAYER_DRAW);
-
 	AddComponent<ImGuiComponent>(COMLAYER_FIRST)->SetIsUse(true);
 
 	// StateMachineを継承したEnemy専用のEnemyStateMachineを作って、ここでAddする
@@ -149,18 +145,9 @@ void Enemy_Rush::Init()
 void EnemyStateMachine_Component::InitInternal()
 {
 	// 初期状態は待機にする
-	_context->TransitionTo(new EnemyStateIdle());		
+	_context->TransitionTo(new EnemyStateIdle());			
 }
 
-void EnemyStateMachine_Component::DrawImgui()
-{
-	_context->DrawImgui();
-
-	if (!MyImgui::_myFlag["EnemyStateMachine_Component"])return;
-
-	ImGui::Text("%s", _context->GetState()->GetName().c_str());
-
-}
 
 // Stateとしてエネミーの待機状態の実装
 // https://yuta6686.atlassian.net/browse/AS-16
@@ -178,11 +165,22 @@ void EnemyStateIdle::Update()
 	_time++;
 }
 
+void EnemyStateMachine_Component::DrawImgui()
+{
+	_context->DrawImgui();
 
+	if (!MyImgui::_myFlag["EnemyStateMachine_Component"])return;
+
+	ImGui::Text("%s", _context->GetState()->GetName().c_str());
+
+}
 
 void EnemyStateApproach::Init()
 {
+	// このステート時は接近するComponentをアタッチする
 	_context->m_Parent->AddComponent<TrackingComponent>(COMLAYER_SECOND)->SetSpeed(APPROACH_SPEED);
+
+	// プレイヤーとの距離を計算するために取得
 	_player = Manager::GetScene()->GetGameObject<Player>();
 }
 
@@ -199,18 +197,24 @@ void EnemyStateApproach::Update()
 	const D3DXVECTOR3 playerPos = _player->GetPosition();
 	const D3DXVECTOR3 enemyPos = _context->m_Parent->GetPosition();
 	D3DXVECTOR3 vec = playerPos - enemyPos;
-	const float lengthSq = D3DXVec3Length(&vec);
-	D3DXVec3Normalize(&vec, &vec);
 
+	// 距離
+	const float lengthSq = D3DXVec3Length(&vec);
+
+	// エネミーからプレイヤーへのベクトル正規化
+	D3DXVec3Normalize(&vec, &vec);
+	
 	if (lengthSq < APPROACH_DISTANCE)
 	{
 		// EnemyStateApproach::Uninitの_context->m_Parent->GetComponent<TrackingComponent>()で終了時エラーが出る
 		// https://yuta6686.atlassian.net/browse/AS-19
 		auto tracking = _context->m_Parent->GetComponent<TrackingComponent>();
-
+		
+		// 次のステートでは不要なので、Remove
 		if (tracking)
 			tracking->SetRemove();
 
+		// 突進ステートへ
 		_context->TransitionTo(new EnemyStateRush(vec));
 	}
 }
