@@ -13,7 +13,6 @@
 class Context;
 
 
-// ↓これを継承して別のステートマシンを作成する
 class CO_StateMachine :
     public ComponentObject
 {
@@ -27,7 +26,8 @@ public:
 	virtual void InitInternal()override;
 };
 
-// https://yuta6686.atlassian.net/browse/AS-13	StateMachineをComponentとして組み込めるようにしたい
+// https://yuta6686.atlassian.net/browse/AS-13	
+// StateMachineをComponentとして組み込めるようにした
 class StateMachine : public Component 
 {
 protected:
@@ -43,6 +43,7 @@ public:
 };
 
 
+// ↓これを継承して別のステートマシンを作成する
 class State : public Component
 {
 protected:

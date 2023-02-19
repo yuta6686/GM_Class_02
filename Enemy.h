@@ -116,7 +116,7 @@ private:
     class Player* _player;
 
 public:
-    EnemyStateApproach() :State(NAME) {}
+    EnemyStateApproach() :State(NAME),_player(nullptr) {}
     virtual void Init()override;
     virtual void Update() override;    
     virtual void DrawImgui()override;

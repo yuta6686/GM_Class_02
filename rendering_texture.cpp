@@ -122,7 +122,17 @@ void RenderingTexture::Uninit()
 
 void RenderingTexture::Update()
 {
+#ifdef _DEBUG
+	if (GetKeyboardTrigger(DIK_H))
+	{
+		_drawTextureNum = (_drawTextureNum + 1) % (DTN_ALL + 1);
+	}
+	if (GetKeyboardTrigger(DIK_J))
+	{
+		_blurNum = (_blurNum + 1) % (BLUR_NUM + 1);
+	}
 
+#endif // _DEBUG
 //---------------------------------
 	ComponentObject::Update();
 }
@@ -228,8 +238,8 @@ void RenderingTexture::Draw()
 				_blurPixelShader->Draw();
 
 
-				viewport.Width = RenderingTexture::BLUR_X_SCREEN ;
-				viewport.Height = RenderingTexture::BLUR_Y_SCREEN;
+				viewport.Width = RenderingTexture::BLUR_X_SCREEN  ;
+				viewport.Height = RenderingTexture::BLUR_Y_SCREEN ;
 				Renderer::SetBlurXTexture();
 
 				Renderer::GetDeviceContext()->RSSetViewports(1, &viewport);
@@ -246,6 +256,7 @@ void RenderingTexture::Draw()
 			// コピー描画
 			{
 				Renderer::BeginCopyDraw(i);
+				if (i > _blurNum)continue;
 
 				_copyVertexShader->Draw();
 				_copyPixelShader->Draw();
@@ -279,19 +290,42 @@ void RenderingTexture::Draw()
 		Renderer::Begin();
 		return;
 		
+
 	case LAYER_RENDERING_TEXTURE:
-		Renderer::SetRenderTexture(false);
+		
+		switch (_drawTextureNum)
+		{			
+		case RenderingTexture::DTN_NORMAL_RENDERING_TEXTURE:
+		case RenderingTexture::DTN_ALL:
+		default:
+				Renderer::SetRenderTexture(false);
+			break;
+		case RenderingTexture::DTN_LUMINANCE:
+			Renderer::SetLuminanceTexture();
+			break;
+		case RenderingTexture::DTN_LUMINANCE_BLUR:
+			return;			
+		}
+
 		if (MyImgui::_myFlag[_typeName])return;
 		break;
 	case LAYER_BLOOM:		
-		_copyVertexShader->Draw();
-		_copyPixelShader->Draw();
+		switch (_drawTextureNum)
+		{
+		case RenderingTexture::DTN_NORMAL_RENDERING_TEXTURE:
+		case RenderingTexture::DTN_LUMINANCE:			
+			return;
+			
+		case RenderingTexture::DTN_LUMINANCE_BLUR:
+		case RenderingTexture::DTN_ALL:
+		default:
+			// コピーしたテクスチャを全部合成して貼り付けるのはここ
+			Renderer::SetCopyTexture();
 
-		// コピーしたテクスチャを全部合成して貼り付けるのはここ
-		Renderer::SetCopyTexture();		
-		
-		// 加算合成に変更する
-		Renderer::SetAddBlend();		
+			// 加算合成に変更する
+			Renderer::SetAddBlend();
+			break;
+		}
 		break;
 	default:
 		return;
