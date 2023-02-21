@@ -36,6 +36,7 @@
 #pragma comment (lib, "dxerr.lib")
 #pragma comment (lib, "dxguid.lib")
 #pragma comment (lib, "dinput8.lib")
+#pragma comment (lib, "dxgi.lib")
 
 
 //シェーダーのコンパイラ

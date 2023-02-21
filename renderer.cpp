@@ -40,6 +40,14 @@ void Renderer::Init()
 {
 	HRESULT hr = S_OK;
 
+	// デバイス列挙
+	IDXGIFactory* factory;
+	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&factory));
+
+	IDXGIAdapter* adapter;
+	factory->EnumAdapters(0, &adapter);
+	factory->Release();
+
 	// デバイス、スワップチェーン作成
 	DXGI_SWAP_CHAIN_DESC swapChainDesc{};
 	swapChainDesc.BufferCount = 1;
@@ -61,8 +69,8 @@ void Renderer::Init()
 	creationFlags = 0;
 #endif
 
-	hr = D3D11CreateDeviceAndSwapChain(NULL,
-		D3D_DRIVER_TYPE_HARDWARE,
+	hr = D3D11CreateDeviceAndSwapChain(adapter,
+		D3D_DRIVER_TYPE_UNKNOWN,
 		NULL,
 		creationFlags,
 		NULL,
