@@ -34,6 +34,36 @@ RasterizerState Renderer::m_RS_CullNone = NULL;
 // 輝度抽出用 https://yuta6686.atlassian.net/browse/AS-29
 #define RGBA16FLOAT
 
+int Renderer::GetGPUWithMaxMemory(IDXGIFactory* factory)
+{
+	HRESULT hr = S_OK;
+
+	DXGI_ADAPTER_DESC adapterDesc;
+
+	int GPUNumber = 0;
+	int GPUMaxMem = 0;
+	for (int i = 0; i < 100; i++)
+	{
+		IDXGIAdapter* adapter;
+		hr = factory->EnumAdapters(0, &adapter);
+		if (FAILED(hr))
+			break;
+
+		hr = adapter->GetDesc(&adapterDesc);
+
+		//ビデオカードメモリを取得（MB単位）
+		int videoCardMemory = (int)(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
+
+		if (videoCardMemory > GPUMaxMem)
+		{
+			GPUMaxMem = videoCardMemory;
+			GPUNumber = i;
+		}
+
+		factory->Release();
+	}
+	return GPUNumber;
+}
 
 
 void Renderer::Init()
@@ -44,9 +74,11 @@ void Renderer::Init()
 	IDXGIFactory* factory;
 	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&factory));
 
+
 	IDXGIAdapter* adapter;
-	factory->EnumAdapters(0, &adapter);
-	factory->Release();
+	int GPUNumber = GetGPUWithMaxMemory(factory);
+	hr = factory->EnumAdapters(GPUNumber, &adapter);
+
 
 	// デバイス、スワップチェーン作成
 	DXGI_SWAP_CHAIN_DESC swapChainDesc{};
@@ -889,6 +921,7 @@ ShaderResourceView Renderer::GetRenderingTexture()
 {
 	return _pRenderingTextureSRV;
 }
+
 
 
 

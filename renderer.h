@@ -136,6 +136,8 @@ public:
 	static void End();
 	static void EndImgui();
 
+	
+
 	/// summary BeginOfScr()
 	/// オフスクリーンレンダリング用のBegin関数
 	/// - ShaderResourceViewの切り替えを行う		
@@ -199,4 +201,8 @@ public:
 	static void CalcWeightsTableFromGaussian(float* weightsTbl, int sizeOfWeightsTbl, float sigma);
 
 	static ShaderResourceView GetRenderingTexture();	
+
+private:
+	// PCに接続されたグラフィックスカードの中で最も大きなビデオメモリを持つカードを見つけ
+	static int GetGPUWithMaxMemory(IDXGIFactory* factory);
 };
