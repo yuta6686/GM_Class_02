@@ -22,7 +22,7 @@ class Model;
 class GameObject
 {
 protected:
-	bool m_Destroy = false;
+	bool m_Destroy = false;	
 	bool m_NoUpdate = false;
 
 	D3DXVECTOR3 m_Position;
@@ -65,6 +65,10 @@ public:
 	virtual void SetScale(D3DXVECTOR3 Scale)
 	{
 		m_Scale = Scale;
+	}
+	void SetScale(float scale)
+	{
+		m_Scale = { scale,scale,scale };
 	}
 
 	D3DXVECTOR3 GetPosition()const { return m_Position; }
@@ -161,6 +165,7 @@ public:
 		return nullptr;
 	}
 
+
 	template<class T>
 	std::vector<T*> GetComponents()
 	{
@@ -189,6 +194,7 @@ public:
 	}
 
 	Component* AddComponent(Component* pComponent, int layer) {
+		pComponent->m_Parent = this;
 		pComponent->Init();
 		m_ComponentList[layer].push_back(pComponent);
 		return pComponent;

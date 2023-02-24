@@ -9,9 +9,9 @@
 void ParticleObject::Init()
 {
 
-	m_Model = ResourceManger<Model_variable>::GetResource(m_ModelName.c_str());
-	m_Model_Cube = ResourceManger<Model_variable>::GetResource(m_ModelName_Cube.c_str());
-	m_Model_Sphere = ResourceManger<Model_variable>::GetResource(m_ModelName_Sphere.c_str());
+	m_Model = ResourceManager<Model_variable>::GetResource(m_ModelName.c_str());
+	m_Model_Cube = ResourceManager<Model_variable>::GetResource(m_ModelName_Cube.c_str());
+	m_Model_Sphere = ResourceManager<Model_variable>::GetResource(m_ModelName_Sphere.c_str());
 
 	for (int i = 1; i <= 50; i++)
 	{
@@ -24,13 +24,13 @@ void ParticleObject::Init()
 		}
 		
 		oss << i;
-		m_Torii_Broken.push_back(ResourceManger<Model_variable>::GetResource(m_ModelName_Torii.c_str() + oss.str() + m_Obj.c_str()));
+		m_Torii_Broken.push_back(ResourceManager<Model_variable>::GetResource(m_ModelName_Torii.c_str() + oss.str() + m_Obj.c_str()));
 	}
 
 	m_VertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_PARTICLE]);
 	m_PixelShader =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+		ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_PARTICLE]);
 
 
 	std::shared_ptr<Scene> scene = Manager::GetScene();
@@ -132,7 +132,7 @@ void ParticleObject::Draw()
 
 		
 
-		Renderer::SetAddBlend(true);
+		Renderer::SetAddBlend();
 
 		if (m_Particles[i].use_torii) 
 		{
@@ -165,7 +165,7 @@ void ParticleObject::Draw()
 			}
 		}
 		
-		Renderer::SetAddBlend(false);
+		Renderer::SetDefaultBlend();
 
 	}
 
@@ -329,8 +329,8 @@ void ParticleObject::SetParticle_ToriiBloken_Rising()
 {
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
-	par.m_ColorOverLifeTime_Start = { 1.0f,1.0f,1.0f,0.7f };
-	par.m_ColorOverLifeTime_End = { 1.0f,1.0f,1.0f,0.5f };
+	par.m_ColorOverLifeTime_Start = { 10.0f,10.0f,10.0f,0.7f };
+	par.m_ColorOverLifeTime_End = { 2.0f,2.0f,2.0f,0.5f };
 	par.col = par.m_ColorOverLifeTime_Start;
 	par.life = 180;	
 	par.pos = MyMath::XZRandom(-50.0f, 50.0f);
@@ -354,8 +354,8 @@ void ParticleObject::SetParticle_Title()
 {
 	PARTICLE par;
 	par.acc = { 0.0f,0.0f,0.0f };
-	par.m_ColorOverLifeTime_Start = { 1.0f,0.3f,0.3f,MyMath::Random(0.0f,1.0f) };
-	par.m_ColorOverLifeTime_End = { 0.0f,1.0f,1.0f,0.5f };
+	par.m_ColorOverLifeTime_Start = { 3.0f,MyMath::Random(0.0f,0.4f),MyMath::Random(0.0f,0.4f),MyMath::Random(0.0f,1.0f) };
+	par.m_ColorOverLifeTime_End = { 0.0f,1.5f,1.5f,0.5f };
 	par.col = par.m_ColorOverLifeTime_Start;
 	par.life = 240;
 	par.pos = MyMath::XZRandom(-100.0f, 100.0f);
@@ -366,7 +366,7 @@ void ParticleObject::SetParticle_Title()
 	par.m_SizeOverLifeTime_End = 0.0f;
 	par.size = par.m_SizeOverLifeTime_Start;
 	par.status = 0;
-	par.type = PARTICLE_TYPE_SPHERE;
+	par.type = PARTICLE_TYPE_CUBE;
 	par.use = true;
 	par.use_torii = false;
 	par.vel = MyMath::XZRandom(-0.01f, 0.01f);

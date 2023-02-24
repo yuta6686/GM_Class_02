@@ -100,9 +100,7 @@ private:
 	//	Vertical Deploy
 	int m_VerticalDeployNum = 3;
 	float m_VerticalDelpoyWidth = 5.0f;
-	int m_Axis = VDA_X;
-
-	bool IsEnemyGenerateMode = false;
+	int m_Axis = VDA_X;	
 
 	//  GenerateTransform    	
 	D3DXVECTOR3 _scale3 = { 1.0f,1.0f,1.0f };
@@ -111,7 +109,8 @@ private:
 
 	Player* m_Player;
 public:
-	void SetEnemyGenerateMode(bool flag);
+	void SetEnemyGenerateMode();
+	void SetEnemyStop(std::vector<GameObject*> enemys);
 
 	virtual void Init() override;
 

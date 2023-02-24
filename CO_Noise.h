@@ -79,9 +79,9 @@ public:
         Renderer::SetValiable(Renderer::m_Valiable);
 
         
-        Renderer::SetAlphaToCoverage(true);
+        Renderer::SetAlphaToCoverage();
         ComponentObject::Draw();
-        Renderer::SetAlphaToCoverage(false);
+        Renderer::SetDefaultBlend();
 
     }
 };

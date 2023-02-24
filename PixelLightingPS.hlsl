@@ -3,7 +3,7 @@
 Texture2D g_Texture : register(t0);
 SamplerState g_SamplerState : register(s0);
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float depth : SV_Target1)
 {
     //  ピクセルの法線を正規化
     float4 normal = normalize(In.Normal);
@@ -35,7 +35,7 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     
     specular = pow(specular, 30.0f) * 3.0f;
 
-    float rim = 1.0f + dot(eyevec, normal.xyz);
+    float rim = 1.0f + dot(eyevec, normal.xyz) * 2.0f;
     
         
     rim = pow(rim, 2) * 2.0f;
@@ -49,6 +49,8 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
 
     outDiffuse.rgb += specular;
     outDiffuse += rim;
+    
+    depth = In.depthInView;
     
     if (outDiffuse.a < 0.01)
         discard;

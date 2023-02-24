@@ -45,7 +45,7 @@ public:
 
     void SetIs2D(const bool& flag = true)
     {
-        m_Is2D = flag;
+        m_Is2D = flag;        
     }
 
     void SetEnemyVersion();

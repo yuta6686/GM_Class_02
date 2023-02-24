@@ -14,10 +14,10 @@
 void ShaderComponent::Init()
 {
 	m_VertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[(SHADER_TYPE)m_ShaderType]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[(SHADER_TYPE)m_ShaderType]);
 
 	m_PixelShader = 
-	ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[(SHADER_TYPE)m_ShaderType]);
+	ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[(SHADER_TYPE)m_ShaderType]);
 
 	
 

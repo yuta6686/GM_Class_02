@@ -7,6 +7,7 @@
  * @brief  
  ** ---------------------------------------------------------*/
 #include "enemy_interface.h"
+#include "state_machine.h"
 
 
 class Enemy : public Enemy_Interface
@@ -66,3 +67,74 @@ public:
 
     virtual void Init();
 };
+
+// https://yuta6686.atlassian.net/browse/AS-12 ステートマシンをエネミーの挙動に組み込む
+class Enemy_Rush : public Enemy_Interface
+{
+public:
+    Enemy_Rush() :Enemy_Interface(ENEMY_STATE_MACHINE) {}
+    virtual void Init();
+};
+
+// EnemyStateMachieneを作る
+class EnemyStateMachine_Component : public StateMachine
+{
+public:
+    // StateMachine を介して継承されました
+    virtual void InitInternal() override;
+    virtual void DrawImgui()override;
+};
+
+// EnemyStateを作る
+// Stateとしてエネミーの待機状態の実装
+// https://yuta6686.atlassian.net/browse/AS-16
+// -------------------------------------------
+class EnemyStateIdle : public State
+{
+    inline static const std::string NAME = "Idle";
+    inline static const int IDLE_TIME = 90;
+    int _time;
+public:
+    EnemyStateIdle() :State(NAME),_time(0) {}
+    virtual void Update() override;
+};
+
+// Stateとしてエネミーの接近状態の実装
+// https://yuta6686.atlassian.net/browse/AS-17 
+// -------------------------------------------
+class EnemyStateApproach : public State
+{
+private: // const
+    inline static const std::string NAME = "Approach";
+
+    // 攻撃に遷移する距離 
+    inline static const float APPROACH_DISTANCE = 10.0f;
+
+    inline static const float APPROACH_SPEED = 0.2f;
+private:
+    // プレイヤーのポインタ所持する
+    class Player* _player = nullptr;
+
+public:
+    EnemyStateApproach() :State(NAME),_player(nullptr) {}
+    virtual void Init()override;
+    virtual void Update() override;    
+    virtual void DrawImgui()override;
+};
+
+// Stateとしてエネミーの攻撃の実装
+// https://yuta6686.atlassian.net/browse/AS-14
+// -------------------------------------------
+class EnemyStateRush : public State
+{
+    inline static const std::string NAME = "Rush";
+    
+    inline static const float RUSH_SPEED = 0.3f;
+
+    D3DXVECTOR3 _vec;
+public:
+    
+    EnemyStateRush(const D3DXVECTOR3& vec) :State(NAME),_vec(vec) {}
+    virtual void Update() override;
+};
+

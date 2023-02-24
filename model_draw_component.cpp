@@ -19,22 +19,28 @@ void ModelDrawComponent::Init()
 {
     if (m_IsVariable) {
         m_Model_variable =
-            ResourceManger<Model_variable>::GetResource(m_SourcePath.c_str());
+            ResourceManager<Model_variable>::GetResource(m_SourcePath.c_str());
     }
     else
     {
         m_Model =
-            ResourceManger<Model>::GetResource(m_SourcePath.c_str());
+            ResourceManager<Model>::GetResource(m_SourcePath.c_str());
     }
 
-};
+}
+void ModelDrawComponent::Uninit()
+{
+    //m_Model->Unload();
+    //m_Model_variable->Unload();
+}
+;
 
 void ModelDrawComponent::Draw()
 {
     if (m_IsVariable) {
-        Renderer::SetAlphaToCoverage(true);
+        Renderer::SetAlphaToCoverage();
         m_Model_variable->Draw();
-        Renderer::SetAlphaToCoverage(false);
+        Renderer::SetDefaultBlend();
     }
     else
     {

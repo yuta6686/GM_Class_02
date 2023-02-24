@@ -7,7 +7,7 @@ void ParticleObject_2D::Init()
 
 	for (unsigned int i = 0; i < m_TextureName.size(); i++)
 	{		
-		m_Textures[i] = ResourceManger<Texture>::GetResource(m_TextureName[i].c_str());
+		m_Textures[i] = ResourceManager<Texture>::GetResource(m_TextureName[i].c_str());
 	}
 
 	//	頂点データ初期化
@@ -46,9 +46,9 @@ void ParticleObject_2D::Init()
 
 //	シェーダ初期化---------------------------------------
 	m_VertexShader =
-		ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+		ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
 	m_PixelShader =
-		ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+		ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 //	パーティクルデータ初期化--------------------------------
 	m_Particles.resize(PARTICLE_MAX);
@@ -124,7 +124,7 @@ void ParticleObject_2D::Draw()
 
 	
 
-	Renderer::SetAddBlend(true);
+	Renderer::SetAddBlend();
 
 	for (unsigned int i= 0; i < m_Particles.size(); i++) {
 		D3D11_MAPPED_SUBRESOURCE msr;
@@ -184,7 +184,7 @@ void ParticleObject_2D::Draw()
 		m_Textures[m_Particles[i].type]->Draw();
 	}
 	
-	Renderer::SetAddBlend(false);
+	Renderer::SetDefaultBlend();
 }
 
 void ParticleObject_2D::DrawImgui()

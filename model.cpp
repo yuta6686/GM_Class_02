@@ -122,7 +122,7 @@ void Model::Load( const char *FileName )
 void Model::Unload()
 {
 	m_VertexBuffer->Release();
-	m_IndexBuffer->Release();
+	m_IndexBuffer->Release();	
 
 	for (unsigned int i = 0; i < m_SubsetNum; i++)
 	{

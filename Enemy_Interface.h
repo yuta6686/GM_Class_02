@@ -10,6 +10,7 @@ enum ENEMY
     ENEMY_MOVE_STRAIGHT,
     ENEMY_JUMP,
     ENEMY_BOSS,
+    ENEMY_STATE_MACHINE,
     ENEMY_MAX
 };
 
@@ -36,7 +37,7 @@ public:
     
     virtual void Init();
     virtual void Update();
-    virtual void Draw();
+    virtual void Draw();    
 
 public: // セッター
     virtual bool SetHp(const int& hp);

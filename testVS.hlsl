@@ -46,6 +46,8 @@ void main(in VS_IN In, out PS_IN Out)
 	Out.TexCoord = In.TexCoord;
     Out.Diffuse = In.Diffuse * Material.Diffuse;
 	
-
+    float4 depthPosition = mul(In.Position, World);
+    depthPosition = mul(depthPosition, View);
+    Out.depthInView = depthPosition.z;
 
 }

@@ -32,7 +32,7 @@ void Light::Init()
 	
     Renderer::SetLight(m_Light, m_index);
     
-    AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(MyImgui::_myFlag["Light"]);
+    AddComponent<ImGuiComponent>(COMLAYER_DRAW)->SetIsUse(true);
 
     ComponentObject::Init();
 }
@@ -106,7 +106,7 @@ void Light::Draw()
 
 void Light::DrawImgui()
 {
-    if (!MyImgui::_myFlag["Light"])return;
+    // if (!MyImgui::_myFlag["Light"])return;
     if (ImGui::CollapsingHeader("Light")) {
         if (ImGui::TreeNode("Direction")) {
             ImGui::SliderFloat("Direction.x", &m_Light.dirDirection.x, -1.0f, 1.0f);
@@ -115,9 +115,9 @@ void Light::DrawImgui()
             ImGui::TreePop();
         }
         if (ImGui::TreeNode("Color")) {
-            ImGui::SliderFloat("Color.r", &m_Light.dirColor.x, 0.0f, 1.0f);
-            ImGui::SliderFloat("Color.g", &m_Light.dirColor.y, 0.0f, 1.0f);
-            ImGui::SliderFloat("Color.b", &m_Light.dirColor.z, 0.0f, 1.0f);
+            ImGui::SliderFloat("Color.r", &m_Light.dirColor.x, 0.0f, 20.0f);
+            ImGui::SliderFloat("Color.g", &m_Light.dirColor.y, 0.0f, 20.0f);
+            ImGui::SliderFloat("Color.b", &m_Light.dirColor.z, 0.0f, 20.0f);
             ImGui::TreePop();
         }
 
@@ -135,9 +135,9 @@ void Light::InitDirectionLight(LIGHT& light)
     D3DXVec3Normalize(&light.dirDirection, &light.dirDirection);
 
     // ライトのカラーは白
-    light.dirColor.x = 1.5f;
-    light.dirColor.y = 1.5f;
-    light.dirColor.z = 1.5f;
+    light.dirColor.x = 4.0f;
+    light.dirColor.y = 4.0f;
+    light.dirColor.z = 4.0f;
 
     // 視点の位置を設定する
     std::shared_ptr<Scene> scene = Manager::GetScene();

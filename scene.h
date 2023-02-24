@@ -13,11 +13,11 @@ enum LAYER {
 	LAYER_3D,
 	LAYER_AUDIO,
 	LAYER_ENEMY,
-	LAYER_BLUR_X,
-	LAYER_BLUR_Y,
-	LAYER_COPY,
+	LAYER_LUMINANCE, // https://yuta6686.atlassian.net/browse/AS-41 輝度抽出用
+	LAYER_BLUR,	
 	LAYER_TO_RENDERING_TEXTURE,
 	LAYER_RENDERING_TEXTURE,
+	LAYER_BLOOM,
 	LAYER_2D,
 	LAYER_PARTICLE,	
 	LAYER_NUM_MAX,
@@ -52,7 +52,7 @@ public:
 	template <typename T>//テンプレート解放
 	T* AddGameObject(int Layer)
 	{
-		T* gameObject = new T();
+		T* gameObject = DBG_NEW T();
 		gameObject->Init();
 		m_GameObject[Layer].push_back(gameObject);
 
@@ -92,7 +92,7 @@ public:
 
 
 private:
-
+	void DefaultImGuiDraw();
 
 
 };

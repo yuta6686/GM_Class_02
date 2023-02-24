@@ -34,11 +34,11 @@ void Effect_explosion::Init()
 	Renderer::GetDevice()->CreateBuffer(&bd, &sd, &m_VertexBuffer);
 
 	//	テクスチャ読み込み
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\effect_explosion.dds");
+	m_Texture = ResourceManager<Texture>::GetResource("asset\\texture\\effect_explosion.dds");
 
 	//	シェーダ読み込み
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+	m_VertexShader = ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+	m_PixelShader = ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 	//	トランスフォーム初期化
 	m_Position = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
@@ -131,9 +131,9 @@ void Effect_explosion::Draw()
 
 	//SetBlendState(BLEND_MODE_ADD);
 
-	Renderer::SetAlphaToCoverage(TRUE);
+	Renderer::SetAlphaToCoverage();
 
 	m_Texture->Draw();
 
-	Renderer::SetAlphaToCoverage(FALSE);
+	Renderer::SetDefaultBlend();
 }

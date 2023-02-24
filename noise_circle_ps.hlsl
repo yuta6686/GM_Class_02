@@ -30,7 +30,7 @@ float perlinNoise(float2 st)
 
 }
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float depth : SV_Target1)
 {
     float4 diffuse = g_Texture.Sample(g_SamplerState, In.TexCoord);
     float4 gradation = g_TextureGrad.Sample(g_SamplerState, In.TexCoord);
@@ -81,4 +81,5 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     }
 
     outDiffuse *= dist;
+    depth = In.depthInView;
 }

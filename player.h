@@ -14,9 +14,9 @@
 class Audio;
 class Shadow;
 
-
 class Player :public ComponentObject
 {
+	inline static const float PLAYER_SPEED = 0.02f;
 private:
 
 	/// <summary>
@@ -37,7 +37,7 @@ private:
 	class ShootBullet* m_ShootBullet;
 
 	inline static const float GRAVITY = 0.01f;
-	inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.99f,0.9f };
+	inline static const D3DXVECTOR3 ATTENUATION = { 0.9f,0.995f,0.9f };
 
 	bool m_IsUseBullet = false;	
 	inline static const float JUMP = 0.6f;

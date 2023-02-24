@@ -38,7 +38,8 @@ protected:
 	bool m_IsNextWave = false;
 	bool m_IsTracking = false;
 	int m_Index = EW_1_1;
-
+	
+	// リファクタリング https://yuta6686.atlassian.net/browse/AS-23
 	void LoadStageFile() {
 		std::ifstream ifs(m_StageFileName.c_str());
 
@@ -106,6 +107,9 @@ protected:
 				break;
 			case ENEMY_BOSS:
 				penemy = m_Scene->AddGameObject<Enemy_Boss>(LAYER_ENEMY);
+				break;
+			case ENEMY_STATE_MACHINE:
+				penemy = m_Scene->AddGameObject<Enemy_Rush>(LAYER_ENEMY);
 				break;
 			case ENEMY_MAX:
 				penemy = m_Scene->AddGameObject<Enemy>(LAYER_ENEMY);

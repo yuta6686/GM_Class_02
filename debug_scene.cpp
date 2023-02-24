@@ -13,6 +13,8 @@
 #include "co_ui_quest_belt.h"
 #include "switching_renderer.h"
 
+#include "co_stealth.h"
+
 // factory
 #include "ui_factory.h"
 #include "player_factory.h"
@@ -30,24 +32,26 @@ void DebugScene::Init()
 	//	プレイヤー
 	AddGameObject<PlayerFactory>(LAYER_3D);
 
-	//	メッシュフィールド
-	AddGameObject<CO_MeshField>(LAYER_3D);
+	////	メッシュフィールド
+	//AddGameObject<CO_MeshField>(LAYER_3D);
 
-	 AddGameObject<CO_AnimationModelTest>(LAYER_3D);
+	// // AddGameObject<CO_AnimationModelTest>(LAYER_3D);
 
-	AddGameObject<Prism>(LAYER_3D);
+	// AddGameObject<co_stealth>(LAYER_3D);
 
-	
+	//// AddGameObject<Prism>(LAYER_3D);
 
-	AddGameObject<UIFactory>(LAYER_2D);
+	//
 
-	for (int i = 0; i < LAYER_NUM_MAX; i++) {
+	//AddGameObject<UIFactory>(LAYER_2D);
 
-		for (GameObject* object : m_GameObject[i])
-		{
-			MyImgui::_myFlag[object->GetTypeName()] = false;
-		}
-	}	
+	//for (int i = 0; i < LAYER_NUM_MAX; i++) {
+
+	//	for (GameObject* object : m_GameObject[i])
+	//	{
+	//		MyImgui::_myFlag[object->GetTypeName()] = false;
+	//	}
+	//}	
 
 	MyImgui::_myFlag["MeshField"] = true;
 }

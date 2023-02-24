@@ -23,39 +23,18 @@ void Prism::Init()
 	Renderer::SetDepthEnable(true);
 
 //テクスチャ読み込み
-	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-		"asset\\texture\\yellow\\js_diffuse.dds",
-		NULL,
-		NULL,
-		&_baseTexture,
-		NULL);
 
-	assert(_baseTexture);
 
-	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-		"asset\\texture\\yellow\\js_normal.dds",
-		NULL,
-		NULL,
-		&_normalTexture,
-		NULL);
-
-	assert(_normalTexture);
-
-	D3DX11CreateShaderResourceViewFromFile(Renderer::GetDevice(),
-		_textureName.c_str(),
-		NULL,
-		NULL,
-		&_envTexture,
-		NULL);
-
-	assert(_envTexture);
+	_baseTexture = ResourceManager<Texture>::GetResource("asset\\texture\\pixelNoiseColor.png");
+	_normalTexture = ResourceManager<Texture>::GetResource("asset\\texture\\normalmap.dds");
+	_envTexture = ResourceManager<Texture>::GetResource(_textureName);
 	
 // シェーダロード
 	_vertexShader =
-		ResourceManger<VertexShader>::GetResource("env_mapping_vs.cso");
+		ResourceManager<VertexShader>::GetResource("env_mapping_vs.cso");
 
 	_pixelShader =
-		ResourceManger<PixelShader>::
+		ResourceManager<PixelShader>::
 		GetResource(PixelShader::GetFileNames()[SHADER_ENVIRONMENT_MAPPING]);
 }
 
@@ -66,12 +45,7 @@ void Prism::Uninit()
 		_vertexBufferPrism->Release();
 		_vertexBufferPrism = nullptr;
 	}
-
-	if (_baseTexture)
-	{
-		_baseTexture->Release();
-		_baseTexture = nullptr;
-	}
+	
 }
 
 void Prism::Update()
@@ -241,11 +215,10 @@ void Prism::Draw()
 
 	// テクスチャ設定
 	if (Renderer::_isRenderTexture) {
-		Renderer::SetRenderTexture(true);
-		Renderer::GetDeviceContext()->VSSetShaderResources(0, 1, &_baseTexture);
-		Renderer::GetDeviceContext()->PSSetShaderResources(0, 1, &_baseTexture);
-		Renderer::GetDeviceContext()->PSSetShaderResources(1, 1, &_normalTexture);
-		Renderer::GetDeviceContext()->PSSetShaderResources(2, 1, &_envTexture);
+		Renderer::SetRenderTexture(true);		
+		_baseTexture->Draw();
+		_normalTexture->Draw();
+		_envTexture->Draw();
 	}
 	else
 	{

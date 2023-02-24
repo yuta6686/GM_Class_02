@@ -9,7 +9,7 @@ Texture2D g_Env : register(t2);
 SamplerState g_SamplerState : register(s0);
 
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float depth : SV_Target1)
 {
     // 法線
     float4 normal;
@@ -38,11 +38,13 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
     
         
         //テクスチャのピクセル色を取得
-    outDiffuse = baseTex + envTex;
+    outDiffuse = baseTex + envTex;    
 		
 
     outDiffuse.rgb *=
-		In.Diffuse.rgb * 0.5f; //明るさと色を乗算
+		In.Diffuse.rgb * 0.75f; //明るさと色を乗算
     outDiffuse.a *=
 		In.Diffuse.a; //α別計算
+    
+    depth = In.depthInView;
 }

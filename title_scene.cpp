@@ -32,6 +32,9 @@
 #include "loading_scene.h"
 #include "prism_factory.h"
 #include "co_noise_circle.h"
+#include "state_machine.h"
+#include "co_title_ui.h"
+#include "geometry_shader_component_object.h"
 
 void TitleScene::Init()
 {
@@ -98,7 +101,12 @@ void TitleScene::Init()
 	auto* title_object = AddGameObject< CO_TitleObject>(LAYER_3D);
 	title_object->SetPosition({ 0.0f,15.0f,30.0f });
 
-	AddGameObject<PrismFactory>(LAYER_3D);
+	AddGameObject<CO_TitleUI>(LAYER_2D);
+
+	AddGameObject<GeometryShaderComponentObject>(LAYER_3D);
+
+
+	/*AddGameObject<PrismFactory>(LAYER_3D);*/
 
 	//AddGameObject<CO_UI_Quest>(LAYER_2D);
 	
@@ -129,6 +137,8 @@ void TitleScene::Init()
 	m_SESelect->SetAudioVolume(0.5f);
 	
 	m_Particle = AddGameObject<ParticleObject>(LAYER_3D);
+
+	AddGameObject<CO_StateMachine>(LAYER_3D);
 	
 	AddGameObject<CO_NoiseCircle>(LAYER_3D); // https://yuta6686.atlassian.net/browse/AS-9
 	

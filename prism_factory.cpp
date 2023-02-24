@@ -44,7 +44,7 @@ void PrismFactory::Create()
 			{0.0f,0.0f,0.0f},
 			{1.0f,1.0f,1.0f},
 			0.01f,-5.0f,5.0f,AXIS_Y,
-			"asset\\texture\\swordOfKirito.png",
+			"asset\\texture\\pixelNoiseColor.png",
 		},
 		{
 			"abc",
@@ -52,7 +52,7 @@ void PrismFactory::Create()
 			{0.0f,0.0f,0.0f},
 			{1.0f,1.0f,1.0f},
 			0.01f,-5.0f,5.0f,AXIS_Y,
-			"asset\\texture\\swordOfKirito.png",
+			"asset\\texture\\pixelNoiseColor.png",
 		},
 	};
 

@@ -51,9 +51,9 @@ void UI_Charge::Init()
 		NULL);
 
 	assert(m_Texture);*/
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\omagadoki.png");
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+	m_Texture = ResourceManager<Texture>::GetResource("asset\\texture\\omagadoki.png");
+	m_VertexShader = ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+	m_PixelShader = ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 	m_Position = { 0.0f,0.0f,0.0f };
 	m_Offset.x = 0.0f;

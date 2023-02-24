@@ -53,15 +53,15 @@ void Shadow::Init()
 	//	NULL);
 
 	//assert(m_Texture);
-	m_Texture = ResourceManger<Texture>::GetResource("asset\\texture\\shadow3.png");
+	m_Texture = ResourceManager<Texture>::GetResource("asset\\texture\\shadow3.png");
 
 	/*Renderer::CreateVertexShader(&m_VertexShader, &m_VertexLayout,
 		"vertexLightingVS.cso");
 
 	Renderer::CreatePixelShader(&m_PixelShader, "vertexLightingPS.cso");*/
 
-	m_VertexShader = ResourceManger<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
-	m_PixelShader = ResourceManger<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
+	m_VertexShader = ResourceManager<VertexShader>::GetResource(VertexShader::GetFileNames()[SHADER_UNLIT]);
+	m_PixelShader = ResourceManager<PixelShader>::GetResource(PixelShader::GetFileNames()[SHADER_UNLIT]);
 
 	m_Position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -103,10 +103,7 @@ void Shadow::Draw()
 	UINT stride = sizeof(VERTEX_3D);
 	UINT offset = 0;
 	Renderer::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
-
-	Renderer::SetAlphaToCoverage(false);
-
+	
 	m_Texture->Draw();
-
-	Renderer::SetAlphaToCoverage(false);
+	
 }

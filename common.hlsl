@@ -138,6 +138,7 @@ struct PS_IN
     float3 worldPos		: TEXCOORD1;
     float3 tangent      : TANGENT;
     float3 biNormal     : BINORMAL;
+    float3 depthInView : TEXCOORD2;
 };
 
 // íËêî

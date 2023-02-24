@@ -38,6 +38,8 @@ void UserInterfaceComponent::Update()
 
 void UserInterfaceComponent::Draw()
 {
+	if (!_isValidity)return;
+
 	//頂点バッファ設定
 	UINT stride = sizeof(VERTEX_3D);
 	UINT offset = 0;
@@ -285,3 +287,4 @@ void UserInterfaceComponent::ChangeVertexDraw()
 		Renderer::GetDeviceContext()->Unmap(m_VertexBuffer, 0);
 	}
 }
+

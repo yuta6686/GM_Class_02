@@ -12,7 +12,11 @@ class GameObject;
 
 class Component
 {
+	bool _removeComponent = false;
+
 public:
+	bool _isValidity = true;
+
 	GameObject* m_Parent;
 	
 	virtual void Init() = 0;
@@ -20,4 +24,19 @@ public:
 	virtual void Update()=0;
 	virtual void Draw()=0;
 	virtual void DrawImgui()=0;
+
+	void SetRemove()
+	{
+		_removeComponent = true;
+	}
+	bool Remove()
+	{
+		if (_removeComponent)
+		{
+			Uninit();
+			delete this;
+			return true;
+		}
+		return false;
+	}
 };

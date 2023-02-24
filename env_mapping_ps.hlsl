@@ -9,7 +9,7 @@ Texture2D g_Env : register(t2);
 SamplerState g_SamplerState : register(s0);
 
 
-void main(in PS_IN In, out float4 outDiffuse : SV_Target)
+void main(in PS_IN In, out float4 outDiffuse : SV_Target, out float depth : SV_Target1)
 {
     // –@ü
     float4 normal;
@@ -43,6 +43,10 @@ void main(in PS_IN In, out float4 outDiffuse : SV_Target)
 
     outDiffuse.rgb *=
 		In.Diffuse.rgb; //–¾‚é‚³‚ÆF‚ğæZ
+    
+    outDiffuse.rgb /= 2.0f;
     outDiffuse.a *=
 		In.Diffuse.a; //ƒ¿•ÊŒvZ
+    
+    depth = In.depthInView;
 }

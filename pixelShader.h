@@ -3,7 +3,8 @@
 class PixelShader :
 	public Resource
 {
-	ID3D11PixelShader* m_PixelShader;
+	using DXPixelShader = ComPtr<ID3D11PixelShader>;
+	DXPixelShader m_PixelShader;
 public:
 
 
@@ -16,6 +17,7 @@ public:
 
 	inline static std::map<SHADER_TYPE, std::string> GetFileNames() { return _fileNames; }
 private:
+	inline static const std::string SHADER_PASS = "shader\\";
 	inline static const std::map<SHADER_TYPE, std::string> _fileNames = {
 		{SHADER_TYPE::SHADER_DEFAULT,"vertexLightingPS.cso"},
 		{SHADER_TYPE::SHADER_UNLIT,"unlitTexturePS.cso"},
@@ -28,6 +30,11 @@ private:
 		{SHADER_TYPE::SHADER_ENEMY,"enemy_ps.cso"},
 		{SHADER_TYPE::SHADER_ENVIRONMENT_MAPPING,"env_mapping_ps.cso"},
 		{SHADER_TYPE::SHADER_ENVIRONMENT_MAPPING_SELECT,"env_mapping_select_ps.cso"},
+		{SHADER_TYPE::SHADER_LUMINANCE,"luminance_ps.cso"},
+		{SHADER_TYPE::SHADER_PARTICLE,"ParticlePS.cso"},
+		{SHADER_TYPE::SHADER_STEALTH,"StealthPS.cso"},
+		{SHADER_TYPE::SHADER_BLOOM,"PSBloomFinal.cso"},
+		{SHADER_TYPE::SHADER_DEPTH_OF_FIELD,"depth_of_field_ps.cso"}
 	};
 };
 
