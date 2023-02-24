@@ -11,8 +11,10 @@ void VertexShader::Draw()
 
 void VertexShader::Load(const char* FileName)
 {
+	std::string fileName;
+	fileName = SHADER_PASS + FileName;
 	Renderer::CreateVertexShader(m_VertexShader.GetAddressOf(), m_VertexLayout.GetAddressOf(),
-		FileName);
+		fileName.c_str());
 }
 
 void VertexShader::Unload()

@@ -8,7 +8,9 @@ void GeometryShader::Draw()
 
 void GeometryShader::Load(const char* FileName)
 {
-	Renderer::CreateGeometryShader(&_geometryShader, FileName);
+	std::string fileName;
+	fileName = SHADER_PASS + FileName;
+	Renderer::CreateGeometryShader(&_geometryShader, fileName.c_str());
 }
 
 void GeometryShader::Unload()

@@ -29,6 +29,7 @@ public:
 
     static std::map<GEOMETRY_SHADER_TYPE, std::string> GetFileNames();
 private:
+    inline static const std::string SHADER_PASS = "shader\\";
     inline static const std::map<GEOMETRY_SHADER_TYPE, std::string> _fileNames =
     {
         {GEOMETRY_SHADER_TYPE::GSHADER_TYPE_TEST,"testGS.cso"},
