@@ -22,7 +22,7 @@ void CO_UI_Quest_Purpose::SetTexture(std::string file)
 
 void CO_UI_Quest_Purpose::Init()
 {
-    m_TypeName = "CO_UI_test";
+    m_TypeName = "CO_UI_Quest_Purpose";
 
     TransformInit* ti = AddComponent<TransformInit>(COMLAYER_FIRST);
     ti->SetInitPosition({ 1600.0f,750.0f,0.0f });

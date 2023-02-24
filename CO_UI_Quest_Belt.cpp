@@ -16,7 +16,7 @@ CO_UI_Quest_Belt::CO_UI_Quest_Belt()
 
 void CO_UI_Quest_Belt::Init()
 {
-    m_TypeName = "CO_UI_test";
+    m_TypeName = "CO_UI_Quest_Belt";
 
     AddComponent<TransformInit>(COMLAYER_FIRST)
         ->SetInitPosition({ SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f,0.0f }

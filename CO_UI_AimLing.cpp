@@ -8,7 +8,7 @@
 
 void CO_UI_AimLing::Init()
 {
-    m_TypeName = "CO_UI_test";
+    m_TypeName = "CO_UI_AimLing";
 
 
     AddComponent<TransformInit>(COMLAYER_FIRST)->

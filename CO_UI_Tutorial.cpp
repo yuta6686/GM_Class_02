@@ -4,7 +4,7 @@
 
 void CO_UI_Tutorial::Init()
 {
-    m_TypeName = "CO_UI_test";
+    m_TypeName = "CO_UI_Tutorial";
 
     AddComponent<TransformInit>(COMLAYER_FIRST)
         ->SetInitPosition({ 300.0f,800.0f,0.0f });

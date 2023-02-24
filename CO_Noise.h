@@ -11,7 +11,7 @@ private:
     
 public:
     virtual void Init()override {
-        m_TypeName = "CO_UI_test";        
+        m_TypeName = "CO_UI_Noise";        
             
         AddComponent<TransformInit>(COMLAYER_FIRST);
 
