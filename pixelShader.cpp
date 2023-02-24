@@ -7,7 +7,9 @@ void PixelShader::Draw()
 
 void PixelShader::Load(const char* FileName)
 {
-	Renderer::CreatePixelShader(m_PixelShader.GetAddressOf(), FileName);
+	std::string fileName;
+	fileName = SHADER_PASS + FileName;
+	Renderer::CreatePixelShader(m_PixelShader.GetAddressOf(), fileName.c_str());
 	assert(m_PixelShader);
 }
 

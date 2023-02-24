@@ -17,6 +17,7 @@ public:
 
 	inline static std::map<SHADER_TYPE, std::string> GetFileNames() { return _fileNames; }
 private:
+	inline static const std::string SHADER_PASS = "shader\\";
 	inline static const std::map<SHADER_TYPE, std::string> _fileNames = {
 		{SHADER_TYPE::SHADER_DEFAULT,"vertexLightingPS.cso"},
 		{SHADER_TYPE::SHADER_UNLIT,"unlitTexturePS.cso"},

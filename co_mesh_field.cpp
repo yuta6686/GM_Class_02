@@ -350,9 +350,9 @@ void CO_MeshField::Init()
 
 
     m_VertexShader =
-        ResourceManager<VertexShader>::GetResource("MeshFieldVS.cso");
+        ResourceManager<VertexShader>::GetResource("mesh_field_vs.cso");
     m_PixelShader =
-        ResourceManager<PixelShader>::GetResource("MeshFieldPS.cso");
+        ResourceManager<PixelShader>::GetResource("mesh_field_ps.cso");
 
     m_Position = { 0.0f,0.0f,0.0f };
     m_Rotation = { 0.0f,0.0f,0.0f };
